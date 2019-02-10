@@ -1,7 +1,10 @@
 ---
 title: atom 插件
 date: 2019-01-31 16:44:42
+categories:
+- 工具
 tags:
+- atom
 ---
 
 ## 使用
@@ -13,3 +16,5 @@ tags:
 #### platformio-ide-terminal
 1. command + shift + p
 2. terminal new / terminal close
+
+<!-- more -->

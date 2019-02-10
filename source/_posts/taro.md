@@ -1,7 +1,12 @@
 ---
 title: taro 坑系列
 date: 2019-01-25 15:52:09
-tags: 技术 前端 框架 taro
+categories:
+- 技术
+tags:
+- 前端
+- 框架
+- taro
 ---
 ### taro 坑
 #### 坑 - 1
@@ -19,6 +24,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string
     at buildSinglePage (/Users/jo32/.nvm/versions/lipingzhang/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1316:30)
     at <anonymous>
 ```
+<!-- more -->
 #### for 坑 - 1 - 原因
 > 组件 render 方法返回 null 时会引起编译错误
 > `/order/detail/index` 该页面使用了组件 atCountDown，该组件编译错误

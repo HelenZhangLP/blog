@@ -1,9 +1,17 @@
 ---
 title: hexo 坑
 date: 2019-01-31 16:44:18
-tags: 博客 hexo
+categories:
+- hexo
+tags: 
 ---
 
+#### *&lt;!-- more --&gt;* 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
+```
+auto_excerpt:
+  enable: true
+  length: 150
+```
 
 #### ERROR - No layout: index.html
 ``` bash
@@ -12,6 +20,7 @@ INFO  Start processing
 INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.
 WARN  No layout: index.html
 ```
+<!-- more -->
 
 > *## 解决 ##*
 ``` bash
