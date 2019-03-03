@@ -17,3 +17,20 @@ Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrom
 两种方式：
 1.  [Node 官网](http://nodejs.cn/download/)下载自己系统相应的包，通过图型界面安装。
 2.  `brew install node` 通过命令安装，但前题是你安装过 `HomeBrew`
+
+检查是否安装成功：`node -v` && `npm -v`
+### NODE 版本切换 n
+1.  n 的安装 `npm install -g n`
+    查看 n 是否安装成功 `n -V`
+2.  用 n 切换 node 版本时遇到的问题及解决办法
+    * 问题描述
+    ```
+    pna.nextTick is not a function
+    ```
+    * 解决办法
+    ```bash
+    $ n lts # Install or activate the latest LTS node release
+    $ npm install -g npm
+    $ n stable # Install or activate the latest stable  node release
+    $ npm install -g @vue/cli
+    ```
