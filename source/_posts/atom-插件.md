@@ -17,4 +17,6 @@ tags:
 1. command + shift + p
 2. terminal new / terminal close
 
+#### [docblockr](https://atom.io/packages/docblockr)
+用于自动生成注释（annotation）
 <!-- more -->
