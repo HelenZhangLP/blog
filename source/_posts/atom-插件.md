@@ -19,4 +19,7 @@ tags:
 
 #### [docblockr](https://atom.io/packages/docblockr)
 用于自动生成注释（annotation）
+
+#### authcompletePaths
+自动补全 path
 <!-- more -->
