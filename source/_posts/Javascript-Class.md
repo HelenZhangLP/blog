@@ -46,6 +46,3 @@ let Everything = class Everything {
 > super 关键字调用父类构造函数
 #### 静态方法
 > `static` 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。
-
-```javaScript
-```
