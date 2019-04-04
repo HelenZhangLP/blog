@@ -28,6 +28,5 @@ function mapStateToProps(state) {
 @connect(mapStateToProps)
 ```
 
-
 javascript 状态容器
 ### connect
