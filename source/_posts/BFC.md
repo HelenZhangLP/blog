@@ -5,6 +5,7 @@ catergories:
 - 技术
 tags:
 - 前端
+- CSS
 ---
 [个人的官方是 MDN 文档，信得过，值得依赖](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
 BFC - Block Formatting Context Web 页面可视化css渲染的一部分，是布局过程中生成生成块级盒子的区域。
