@@ -8,7 +8,7 @@ subtitle: 咕噜的程序员妈妈
 description:
 keywords:
 author: Helen Zhang
-language:
+language: zh-CN
 timezone:
 
 # URL
@@ -85,6 +85,10 @@ deploy:
   repo: https://github.com/HelenZhangLP/gulumama.git
   branch: master
 
+nav:
+  Home: .
+  Archive: archives
+  Categories: categories
 
 # Plugins
 # ~ hexo-qiniu-sync
