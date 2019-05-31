@@ -14,7 +14,6 @@ const Promise = require('bluebird');
 ```
 
 ### javascript - Promise
-
 ```javascript
 { [Function: Promise]
   [length]: 1,
@@ -34,4 +33,9 @@ const Promise = require('bluebird');
   [defer]: { [Function: defer] [length]: 0, [name]: 'defer' },
   [accept]: { [Function: accept] [length]: 1, [name]: 'accept' },
   [Symbol(Symbol.species)]: [Getter] }
-  ```
+}
+```
+### Promise.method
+### Promise.promisify
+> NodeJS 的函数风格转换为 Promise 方法，可以认为是一种语法粮。
+[Promisify 的源码解析](https://segmentfault.com/a/1190000008479644)
