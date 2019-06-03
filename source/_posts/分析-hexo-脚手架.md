@@ -126,6 +126,7 @@ function Context(base, args) {
 
 #### ./extend/console.js
 ```javascript
+var abbrev = require('abbrev'); // 速记短别名
 // constructor Console  --> Initialization parameters store && alias
 function Console() {
   this.store = {};
@@ -174,5 +175,23 @@ Console.prototype.register = function(name, desc, options, fn) {
     } else {
       fn = Promise.method(fn);
     }
+
+    var c = this.store[name.toLowerCase()] = fn;
+    c.options = options;
+    c.desc = desc;
+
+    this.alias = abbrev(Object.keys(this.store));
   }
+}
+```
+
+### ./console/init
+```javascript
+var assign = require('object-assign');
+function initConsole(args) {
+  args = assign({
+    install: true,
+    clone: true
+  }, args);
+}
 ```
