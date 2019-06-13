@@ -58,3 +58,26 @@ Range: bytes=0-1048575
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1
 ```
+
+## [http 请求响应码 401](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401)
+> 状态码 401 Unauthorized(未授权)代表客户端错误，指的是由于缺乏目标资源要求的身份验证凭证，发送的请求未得到满足。
+  这个状态码会与   WWW-Authenticate 首部一起发送，其中包含有如何进行验证的信息。
+  这个状态类似于 403， 但是在该情况下，依然可以进行身份验证。
+```
+Request URL: https://api.github.com/user
+Request Method: GET
+Status Code: 401 Unauthorized
+Remote Address: 54.169.195.247:443
+Referrer Policy: no-referrer-when-downgrade
+```
+
+## [http 请求响应码 404](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/404)
+> 状态码 404 Not Found 代表客户端错误，指的是服务器端无法找到所请求的资源。返回该响应的链接通常称为坏链（broken link）或死链（dead link），它们会导向链接出错处理(link rot)页面。
+404 状态码并不能说明请求的资源是临时还是永久丢失。如果服务器知道该资源是永久丢失，那么应该返回 410 (Gone) 而不是 404 。
+```
+Request URL: https://api.github.com/repos/helenzhanglp/blog/issues?client_id=8e7e6dda81936172806e&client_secret=97f71b6bbdf731bc650ec39212061882b8f36e71&labels=Gitalk,1863e4a8c0596ce3dfb3ee2f0c838431&t=1560407734937
+Request Method: GET
+Status Code: 404 Not Found
+Remote Address: 54.169.195.247:443
+Referrer Policy: no-referrer-when-downgrade
+```
