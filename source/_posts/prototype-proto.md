@@ -2,8 +2,8 @@
 title: prototype && __proto__
 date: 2019-03-19 12:20:05
 tags:
-- JavaScript
-- Object
+- javaScript
+- object
 - 对象继承
 ---
 

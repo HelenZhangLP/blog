@@ -3,7 +3,7 @@ title: NodeJs 学习笔记
 date: 2019-05-31 14:32:44
 tags:
 - javascript
-- NodeJs
+- node
 ---
 ### path
 > 提供用于处理文件路径和目录路径的实用工具

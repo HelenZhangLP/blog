@@ -2,7 +2,7 @@
 title: 再看 node
 date: 2019-03-02 10:37:10
 tags:
-- Node
+- node
 ---
 [Node.js 究竟是什么？](https://www.ibm.com/developerworks/cn/opensource/os-nodejs/)
 Node 旨在提供一种简单构建可伸缩的网络程序方法

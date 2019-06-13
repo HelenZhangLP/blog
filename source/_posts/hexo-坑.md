@@ -33,7 +33,7 @@ $ git clone https://github.com/zhwangart/hexo-theme-ocean.git themes/ocean
 #### ERROR - 发布到 git 服务器访问出现空白页或无主题样式
 > 原因是发布到 github 上的项目名称要与个人github的用户名一致，且加后缀 .github.io，如 'helenzhanglp.github.io'
 
-#### ERROR - 博客中添加 gittalk
+#### ERROR - 博客中添加 gitalk
 > *## Error Error: Not Found. ##*
 *## 解决 ##*
 ```
@@ -45,3 +45,5 @@ gitalk:
   owner: HelenZhangLP  # GitHub ID
   admin: HelenZhangLP # GitHub ID
 ```
+
+#### ERROR - theme 样式修改，先需要先提交至 github，再 deploy

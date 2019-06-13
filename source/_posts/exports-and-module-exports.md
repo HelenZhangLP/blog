@@ -2,9 +2,9 @@
 title: exports and module.exports
 date: 2019-03-26 14:30:43
 tags:
-- Javascript
+- javascript
 - ES6 模块化
-- nodeJS
+- node
 ---
 ### exports 和 module.exports
 [参考文档](http://nodejs.cn/api/modules.html#modules_exports_shortcut)

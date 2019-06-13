@@ -4,7 +4,7 @@ date: 2019-02-08 10:38:30
 categories:
 - 技术
 tags:
-- Javascript
+- javascript
 ---
 
 想对 Promise 作一个深入了解，`console.dir(Promise)`，得出以下结果。

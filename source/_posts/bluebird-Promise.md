@@ -4,7 +4,7 @@ date: 2019-02-08 09:50:15
 categories:
 - 技术
 tags:
-- Javascript
+- javascript
 ---
 
 本想看看 markdown 怎么通过 hexo 生成 html。结果被第一代码吸引了，发现呐，经常用的 Promise 竟然引入 bluebird，好吧。承认怎么跑偏了。不管了，捡到篮子的都是菜。

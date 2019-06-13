@@ -2,11 +2,11 @@
 title: Javascript 模块化
 date: 2019-03-26 10:04:17
 tags:
-- Javascript
-- Commonjs
-- AMD
-- CMD
-- ES6 modules
+- javascript
+- commonjs
+- amd
+- cmd
+- es6 modules
 ---
 Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 `<script></script>` 标签即可。随着前端复杂度的提高，对于前端代码的`可读性、可扩展性`有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：
 ### 一、无模块化

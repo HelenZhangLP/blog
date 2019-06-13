@@ -2,8 +2,8 @@
 title: react 整理
 date: 2019-03-19 18:06:55
 tags:
-- JavaScript
-- React
+- javaScript
+- react
 ---
 ### React 列表渲染
 #### keys

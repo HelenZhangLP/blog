@@ -4,7 +4,7 @@ date: 2019-03-11 11:21:52
 categories:
 - 技术
 tags:
-- Javascript
+- javascript
 - immutable
 ---
 Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）

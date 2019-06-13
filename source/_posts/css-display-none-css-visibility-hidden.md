@@ -2,7 +2,7 @@
 title: 'css display: none && css visibility: hidden'
 date: 2019-05-13 14:58:59
 tags:
-- CSS
+- css
 - 面试题
 ---
 ```html

@@ -2,8 +2,8 @@
 title: Javascript Class
 date: 2019-03-20 17:06:19
 tags:
-- JavaScript
-- ES6
+- javaScript
+- es6
 ---
 ### 定义类
 #### 类声明
