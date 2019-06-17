@@ -8,7 +8,7 @@ tags:
 ---
 
 #### npm
-```bash
+```
 Usage: npm <command>
 
 where <command> is one of:

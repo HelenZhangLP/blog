@@ -17,7 +17,7 @@ connect 方法接受两个参数
 * mapDispatchToProps，函数类型，接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法
 
 #### Demo
-```javascript
+```Javascript
 import { connect } from '@tarojs/redux';
 function mapStateToProps(state) {
   return {
@@ -28,5 +28,5 @@ function mapStateToProps(state) {
 @connect(mapStateToProps)
 ```
 
-javascript 状态容器
+Javascript 状态容器
 ### connect

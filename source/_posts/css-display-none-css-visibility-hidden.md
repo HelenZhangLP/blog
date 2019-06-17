@@ -19,11 +19,14 @@ tags:
     <img src="" alt="">
     <div></div>
   </li>
+  <li>last dom</li>
 </ul>
 ```
 <!-- more -->
 ```CSS
 .style1 {
+  width: 30px;
+  height: 100px;
   background-image: url('http://img0.fengqu-inc.com/cmsres/20190430/2f836f6d-91ed-4c5e-ae2a-81c32357786e.png');
   background-repeat: no-repeat;
 }
@@ -42,11 +45,14 @@ tags:
   visibility: hidden;
 }
 ```
-### 以上三张背景图是否下载
-> 没有在官方文档中找到想着说明，以下仅代表个人实验结果
-- [ ] 没有元素引用的样式，background-image 不会下载，即 style1 中资源不会下载
-- [ ] 再要看看 display:none 与 visibility:hidden
+### 以上三张背景图是否下载 ？(`没有在官方文档中找到详细说明，以下仅代表个人实验结果`)
+- [ ] 定义样式不引用，图片资源不会下载
+- [ ] &lt;li class="style2"&gt;&lt;/li&gt; .style1{display:none} 图片资源下载
+- [ ] &lt;li class="style3"&gt;&lt;/li&gt; .style1{visibility:hidden} 图片资源下载
+
+{% codepen ewpVBp result 265 100% helenzhanglp|anonymous|anon 0 %}
+![图片下载资源](https://s2.ax1x.com/2019/06/14/V4D334.png)
 
 ### display:none 与 visibility:hidden 区别
 > display 指定元素显示框架的类型，none 隐藏不占文档流，不会影响布局
-> visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明，会影响布局
+> visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明并且 text-indent: -9999px，会影响布局

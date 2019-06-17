@@ -2,7 +2,7 @@
 title: Javascript 模块化
 date: 2019-03-26 10:04:17
 tags:
-- javascript
+- Javascript
 - commonjs
 - amd
 - cmd
@@ -23,12 +23,12 @@ Javascript 起初只为了验证表单，后来加入了动画等。只需要在
 <!-- more -->
 
 ### 二、CommonJS规范
-[参考 CommonJS 规范](http://javascript.ruanyifeng.com/nodejs/module.html#toc0)
+[参考 CommonJS 规范](http://Javascript.ruanyifeng.com/nodejs/module.html#toc0)
 - [ ] ***概述***
 > 1.  每个文件为一个模块，每个模块有自己的作用域。该模块定义的变量、函数、类均为私有，其它模块不可见。
 > 2.  CommonJS 规范规定，每个模块内部， `module` 代表当前模块。`module` 是一个对象，属性 `exports` 是对外接口。加载模块，则是加载 `module.exports` 属性。Demo 如下：
 
-```javascript
+```Javascript
 // example.js
 const variable = 'this is a varialbe'
 const fn = function() { return 'this is a function' }
@@ -41,7 +41,7 @@ module.exports.obj = obj
 ```
 - [ ] ***`require` 加载模块***
 
-```javascript
+```Javascript
 const example = require('example.js')
 ```
 > 1.  所有代码都运行在模块作用域，不会污染全局作用域。

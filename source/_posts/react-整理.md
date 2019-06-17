@@ -2,14 +2,14 @@
 title: react 整理
 date: 2019-03-19 18:06:55
 tags:
-- javaScript
+- Javascript
 - react
 ---
 ### React 列表渲染
 #### keys
 > 给数组中的每个元素赋予确定标识，当 DOM 中的某些元素被增加或删除时，可以帮助 react 识别发生变化的元素。
 
-```javaScript
+```Javascript
   items.map((item, index) => {
     <li key={item.id}>{item.text}</li>
     {/* <li key={index}>{item.text}</li> 没有 id 用索引赋 key */}

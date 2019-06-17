@@ -32,7 +32,7 @@ or you can check the docs: http://hexo.io/docs/
 3.  version
 
 ### 引入依赖包
-```javascript
+```Javascript
 var chalk = require('chalk'); // chalk 粉笔  "chalk": "^1.1.3",
 var tildify = require('tildify'); // tildify 使变薄 "tildify": "^1.2.0" convert an absolute path to a tilde path 将绝对路径转换为 ~/路径
 var Promise = require('bluebird'); // bluebird 知更鸟 "bluebird": "^3.4.0",
@@ -45,7 +45,7 @@ var camelCaseKeys = require('hexo-util/lib/camel_case_keys'); // 参数对象转
 ```
 
 ### ./lib/hexo.js
-```javascript
+```Javascript
 function entry(cwd, args) {
   cwd = cwd || process.cwd();
   /**
@@ -77,7 +77,7 @@ function entry(cwd, args) {
 }
 ```
 
-```javascript
+```Javascript
 var pathFn = require('path');
 
 function checkPkg(path) {
@@ -100,7 +100,7 @@ function checkPkg(path) {
 ```
 
 #### ./context.js
-```javascript
+```Javascript
 'use strict';
 
 var logger = require('hexo-log');
@@ -125,7 +125,7 @@ function Context(base, args) {
 ```
 
 #### ./extend/console.js
-```javascript
+```Javascript
 var abbrev = require('abbrev'); // 速记短别名
 // constructor Console  --> Initialization parameters store && alias
 function Console() {
@@ -186,7 +186,7 @@ Console.prototype.register = function(name, desc, options, fn) {
 ```
 
 ### ./console/init
-```javascript
+```Javascript
 var assign = require('object-assign');
 function initConsole(args) {
   args = assign({
