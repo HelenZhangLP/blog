@@ -21,7 +21,6 @@ tags:
 ```
 
 ```javascript
-<script>
 data() {
   return {
     form: {},
@@ -33,12 +32,15 @@ methods: {
     this.form.account = 'test1';
   }
 }
-</script>
 ```
 
 > 这里先简单的说说，vue 实现双像绑定用的是 Obeject.defineProperty() 来监听属性变动， 需要监听的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter，data 中的 form 没有 account 属性，checkSame 方法直接给 form 添加新属性，通过 `this.form.account` 添加的属性没有 setter 和 setter和getter 方法，不具备监听。所以双向绑定也就无从谈起了。修改方法有以下两种：
 
-# 修改方式 （一）
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+- 修改方式 -- 初始化每个需要双向绑定的属性及对象属性
 
 ```javascript
 // 初始化每个需要双向绑定的属性及对象属性
@@ -57,7 +59,7 @@ methods: {
 }
 ```
 
-# 修改方式 （二）
+- 通过 Object.assign 给 form 添加新属性
 
 ```javascript
 // 通过 Object.assign 给 form 添加新属性
