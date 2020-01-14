@@ -5,13 +5,6 @@ tags:
 ---
 
 ## Array 
-```flow
-st=>start: Start
-op=>operation: QuickSort
-cond=>condiation: array.length < 22
-op=>operation: InsertionSort
-op=>operation: Compare
-```
 
 ### 源码分析
 > ToUint32 将指定的值转换为 32 位，不带正负号的整数
@@ -22,6 +15,7 @@ function ArraySort(comparefn) {
   QuickSort(this, 0, length);
 }
 ```
+<!--more-->
 
 ```javascript
 function QuickSort(a, from, to) {
