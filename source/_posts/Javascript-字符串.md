@@ -1,5 +1,5 @@
 ---
-title: Javascript-字符串
+title: Javascript 字符串
 date: 2020-01-09 10:14:03
 categories: 技术
 tags: 
@@ -7,9 +7,7 @@ tags:
 - String
 ---
 
-## Javascript 字符串方法
-
-- [ ] `需求删除最后一个为 & 的字符`
+> `需求删除最后一个为 & 的字符`
 ### replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。
 > str.replace(regexp|substr, newSubStr|function)
 
