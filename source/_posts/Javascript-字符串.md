@@ -17,8 +17,6 @@ tags:
 let str = 'zhangliping&'
 // regexp = /&$/
 str.replace(/&$/, "") // zhangliping
-<!-- more -->
-
 /*
  * --- 引申 ---
  * 删除字符串全部的 &
@@ -27,6 +25,7 @@ str.replace(/&$/g, "") // 全局替换
 str.replace(/^&/,"") // 替换开头
 str.replace(/[?&]$/, "") //替换结尾的 ? 或 &
 ```
+<!-- more -->
 ### slice() 方法取字符串的一部分，返回新字符串，原字符串不动
 > str.slice(beginIndex[, endIndex])
 
