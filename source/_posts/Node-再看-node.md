@@ -2,7 +2,7 @@
 title: 再看 node
 date: 2019-03-02 10:37:10
 tags:
-- node
+- Node
 ---
 [Node.js 究竟是什么？](https://www.ibm.com/developerworks/cn/opensource/os-nodejs/)
 Node 旨在提供一种简单构建可伸缩的网络程序方法
@@ -34,3 +34,26 @@ Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrom
     $ n stable # Install or activate the latest stable  node release
     $ npm install -g @vue/cli
     ```
+
+### NODE npm install 报错
+![alt](/images/node/node_error_decies.png)
+> 关于这个报错，网络分析最多的原因是镜像引起的
+
+```
+$ npm config get registry # 获取当前系统设置的镜像
+https://registry.npmjs.com/
+```
+> 查看当前镜像 https://registry.npmjs.com/，可以换成 http://registry.npm.taobao.org/；反之，亦然
+
+```
+$ npm config set registry http://registry.npm.taobao.org/ # 设置当前系统的镜像为淘宝镜像
+```
+
+> 重置镜像 https://registry.npmjs.com/，可以换成 http://registry.npm.taobao.org/；反之，亦然
+
+```
+rm -rf package.lock.json（或 yarn.lock） # 删除 lock 文件
+npm cache clean --force # 清除缓存
+npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。
+npm i # 重新安装
+```

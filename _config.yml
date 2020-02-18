@@ -82,7 +82,7 @@ theme: ocean
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/HelenZhangLP/gulumama.git
+  repo: https://github.com/HelenZhangLP/hexo-theme.git
   branch: master
 
 nav:
@@ -102,7 +102,7 @@ qiniu:
   #secret_key: sfM6dhW15fN_M4y8sIi_s3q_o0c2BWvfJ8KjnVzd
   dirPrefix: static
   # 外链前缀
-  urlPrefix: http://pmc05lpy5.bkt.clouddn.com/static
+  urlPrefix: http://audreyzhang.s3-cn-east-1.qiniucs.com/static
   # 使用默认配置即可
   up_host: http://upload.qiniu.com
   # 本地目录

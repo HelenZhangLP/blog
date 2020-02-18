@@ -17,7 +17,8 @@ tags:
 http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html
 ### Javascript 数据类型
 纠结了多日，一直没能给出一个自己认为合理的表述方式，直到看到下图：
-{% qnimg jsDataTypes.jpg title: Javascript-knowlege extend: ?imageView2/2/w/500 %}
+<!--{% qnimg jsDataTypes.jpg title: Javascript-knowlege extend: ?imageView2/2/w/500 %}-->
+![alt](/images/Javascript/jsDataTypes.jpg)
 与《Javascript高级程序设计》不同，这张图中没有 null。我这边先就图中的信息作一个解析，图中，将数据类型分为值类型与引用类型。
 - [x] 值类型或称基本数据类型，可用 `typeof` 判断值类型
   * undefined
