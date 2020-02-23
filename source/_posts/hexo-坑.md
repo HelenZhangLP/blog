@@ -1,5 +1,5 @@
 ---
-title: hexo 坑
+title: Hexo 坑
 date: 2019-01-31 16:44:18
 categories:
 - hexo
@@ -7,7 +7,10 @@ tags:
 - hexo
 ---
 
-#### *&lt;!-- more --&gt;* 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
+#### 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
+```html
+<!--more-->
+```
 ```
 auto_excerpt:
   enable: true
