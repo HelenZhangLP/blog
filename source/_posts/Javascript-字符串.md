@@ -34,12 +34,12 @@ let str = 'zhangliping&'
 // 取默认值，str.slice() 不传参
 str.slice() // zhangliping& beginIndex 默认值 0， endIndex 默认值 strlength
 // beginIndex >= strlength, endIndex 取默认值
-str.slice(13) // ''
-// beginIndex < 0，endIndex 取默认值
 str.slice(-1) // '&' beginIndex = strlength - 1，截取到字符串长度
 // start < 0 && abs(start) > strlength, length 取默认值
 str.slice(-100) // 'zhangliping&'
 // beginIndex 取默认值 0，endIndex >= strlength
+str.slice(13) // ''
+// beginIndex < 0，endIndex 取默认值
 str.slice(0, 12) // zhangliping&
 // beginIndex 取默认值 0，endIndex < 0
 str.slice(0, -1) // 'zhangliping' endIndex = strlength - 1 截取最后一位
@@ -56,10 +56,12 @@ str.slice(0, 0) // ''
 let str = 'zhangliping&';
 // str.substring() indexStart 默认值 0； indexEnd 默认值 strlength
 str.substring() // 'zhangliping&'
-// indexStart < 0 && abs(indexStart) < strlength
-str.substring(-1) // indexStart = 0
+// indexStart > strlength
+str.substring(5) // ''
 // indexStart < 0 && abs(indexStart) > strlength
 str.substring(-15) // indexStart = 0
+// indexStart < 0 && abs(indexStart) < strlength
+str.substring(-1) // indexStart = 0
 // indexStart = 0 indexEnd > strlength
 str.substring(0, 15) // 'zhangliping&'
 str.substring(0, str.length-1);// zhangliping
@@ -80,10 +82,10 @@ str.substr() // 'zhangliping' start 默认值 0， length 默认值字符串长�
 // start >= strlength length 取默认值
 str.substr(13) // ''
 // start < 0 length 取默认值
-str.substr(-4) // start = strlength - 4 从 index = 8 开始截取
-// start < 0 && abs(start) > strlength, length 取默认值
 str.substr(-14) // 'zhangliping' 取出全部字符串
 // start 取默认值 0，length >= strlength
+str.substr(-4) // start = strlength - 4 从 index = 8 开始截取
+// start < 0 && abs(start) > strlength, length 取默认值
 str.substr(0, 14) // 'zhangliping'
 // start 取默认值 0， length <= strlength
 str.substr(0, -1) // ''
@@ -91,12 +93,14 @@ str.substr(0, -1) // ''
 str.substr(0, strlength - 1) // 'zhangliping'
 ```
 
-### slice()/substr/substring 对比
-| 方法名 | 参数一 | 参数一解释 | 参数一为负数（如 -5） | 参数一大于 strlength | 参数二解释 | 参数二为负数（如 -5）| 参数二大于 strlength
-|-------| ----- | -------- | ---------- | ---------- | -------- |
-| slice | beginIndex | 开始位置索引，以 0 为基数 | abs(-5) > strlength ? beginIndex = 0 : beginIndex = strlength - 5 | 返回空串 | 提取字符串结束位置(不包括当前数字索引) | abs(-5) > strlength ? endIndex = strlength : endIndex = strlength - 5 | 返回整个字符串 | 返回整个字符串 |
-| substr | start | 同上 | 同上 | 同上 | 截取字符长度 | 同上 | 同上 |
-| substring | indexStart | 同上 | indexStart = 0 | 同上 | 同上 | indexEnd = 0 | 同上 |
+### slice/substr/substring 对比
+| 方法名 | 参数一 | 参数二 | 参数一abs(负数)并大于等于字符串长度 | 参数一负数并小于字符串长度 | 参数一大于 strlength | 参数二abs(负数)并大于等于字符串长度| 参数一负数并小于字符串长度 | 参数二大于 strlength |
+|----| ---------------- | ------------ | ---------- | ---------- | -------- | ------- | ---| --- |
+| slice | beginIndex — 开始位置索引，以 0 为基数 | endIndex — 截取至 endIndex - 1 位置 | beginIndex = 0 | beginIndex = strlength - beginIndex | 返回空串 |  endIndex = 0 | endIndex = strlength - endIndex | endIndex = strlength |
+| substr | start — 同上 | length - 截取字符长度 | 同上 | 同上 | 同上 | 同上 | length = strlength |
+| substring | indexStart — 同上 | indexEnd — 截取至 indexEnd - 1 的位置 | indexStart = 0 | indexStart = 0 | 同上 | indexEnd = 0 | indexEnd = 0 | indexEnd = strlength |
+
+> slice、substring、sub 都是字符串截取方法，substring 参数不能为负数，如果有负数，则视为 0. substr 与 slice 同参数可以为负数，当为负数时，实际取的值是当前参数与字符串相加的和，第一个参数相加之和大于 0，时结果为 0；第二个参数相加之和大于 0 时，取字符串长度。substring 与 slice 两个参数都为索引，substr 第二个参数为截取字符串长度。 substr 在淘汰的过程中，慎用。
 
 ### match() 检索返回一个匹配正则表达式的结果
 > str.match(regexp)
