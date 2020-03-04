@@ -82,7 +82,7 @@ theme: ocean
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/HelenZhangLP/hexo-theme.git
+  repo: https://github.com/HelenZhangLP/helenzhanglp.github.io.git
   branch: master
 
 nav:
