@@ -13,6 +13,7 @@ tags:
 
 ### 坑二，Inspector - syntaxView 乱码
 > 工具栏选中 `Decode`
+<!--more-->
 
 ### 坑三，!SecureClientPipeDirect failed: System.Security.Authentication.Authenticatio
 > 以 ios 为例，`设置 - 通用 - 关于本机 - 证书信任设置 - DO_NOT_TRUST_FiddlerRoot`
