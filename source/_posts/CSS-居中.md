@@ -3,14 +3,31 @@ title: 居中
 date: 2019-05-05 17:24:39
 category: 技术
 tags:
-- css
+- CSS
 - 面试系列
 ---
+
+居中分为两种：一是水平居中，二是垂直居中。可借用不同的布局方式做多种实现。
+
+## 水平布局 + Normal flow
+不进行任何布局，采用 html 默认布局方式
+1.  行内元素：text-align: center;
+2.  块级元素：margin: 0 auto;
+
+## 水平布局 + Flexbox
+父容器设置：display: flex; justify-content: center; align-items: start; // 垂直方向不要拉伸
+
+## 水平布局 + grid (IE 浏览器不兼容)
+父容器：display: grid; 子容器 justify-self: center; align-self: center;
+
+
+<!-- more -->
 # 准备
 - [ ] 块级元素包裹行内元素
 - [ ] div 块级元素
 - [ ] span 行内元素
 <img src="https://s2.ax1x.com/2019/05/10/ERVfuq.png" alt='块级元素内包块级元素' width="300" hegiht="200" align=center />
+
 ```html
 <div class="wrap">
   <div class='btn'>
