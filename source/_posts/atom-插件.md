@@ -23,3 +23,6 @@ tags:
 #### authcompletePaths
 自动补全 path
 <!-- more -->
+
+#### emmet
+高效编写 html/css，按约定编写代码，自动扩展补全，[具体见文档](https://emmet.io/)
