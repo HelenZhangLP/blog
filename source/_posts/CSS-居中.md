@@ -1,5 +1,5 @@
 ---
-title: 居中
+title: CSS 居中
 date: 2019-05-05 17:24:39
 category: 技术
 tags:
@@ -19,6 +19,21 @@ tags:
 
 ## 水平布局 + grid (IE 浏览器不兼容)
 父容器：display: grid; 子容器 justify-self: center; align-self: center;
+
+## 水平布局 + 定位 position: absolute
+这里有三种实现(假设 元素 width: 100px)：
+1. position: absolute; margin-left: 50%; transform: translateX(-50%);
+2. position: absolute; margin-left: 50%; transform: translateX(-50px);
+3. position: absolute; left: 50%; margin-left: 50px;
+4. position: absolute; left: 0; right: 0; margin: auto;
+
+>`注意：`
+1.  absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。[详见](https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/)
+2.  transform 属性兼容 IE10 以上浏览器
+
+## 水平布局 + 定位 position: relative
+需要居中的 block 元素上设置样式： position: relative; margin: auto;
+
 
 
 <!-- more -->

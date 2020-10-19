@@ -1,5 +1,5 @@
 ---
-title: BFC
+title: CSS BFC
 date: 2019-02-20 15:27:42
 categories:
 - 技术
@@ -35,7 +35,7 @@ i {
 }
 ```
 ![position-absolute-block-1](/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg)
-上图是一个注释掉`position: absolute`后的错误示例，<i> 非块级元素，`text-indent: -9999px` 不生效，`margin: -2px 0 0 1px`在垂直方向同样不生效。注释文本撑开，显示vip图片，若无`vip icon`，背影图同样不显示，因为 `width/height` 对非块级元素不生效。`放开position: absolute 注释后，BFC 化后，实现效果如下图`
+上图是一个注释掉`position: absolute`后的错误示例，如 `<i>` 非块级元素，`text-indent: -9999px` 不生效，`margin: -2px 0 0 1px`在垂直方向同样不生效。注释文本撑开，显示vip图片，若无`vip icon`，背影图同样不显示，因为 `width/height` 对非块级元素不生效。`放开position: absolute 注释后，BFC 化后，实现效果如下图`
 
 ![position-absolute-block-2](/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg)
 
