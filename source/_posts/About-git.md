@@ -8,4 +8,3 @@ tags:
 ###  id_rsa.pub 存储位置
 > `windows` /c/Users/Administrator/.ssh/id_rsa.pub
 > `mac` ~/.ssh/id_rsa.pub
-
