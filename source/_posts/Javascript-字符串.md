@@ -22,6 +22,16 @@ str.replace(/&$/, "") // zhangliping
 str.replace(/&$/g, "") // 全局替换
 str.replace(/^&/,"") // 替换开头
 str.replace(/[?&]$/, "") //替换结尾的 ? 或 &
+
+formatParamets() {
+  const url = window.location.href; // 获取当前浏览器的URL
+  const params = {}; // 存储最终JSON结果对象
+  url.replace(/([^?&]+)=([^?&]+)/g, (match, p1, p2) => {
+    params[p1] = decodeURIComponent(p2); // 解析字符为中文
+    return p2 + '=' + p1;
+  });
+  return params;
+}
 ```
 <!-- more -->
 ### String.prototype.slice() 方法取字符串的一部分，返回新字符串，原字符串不动

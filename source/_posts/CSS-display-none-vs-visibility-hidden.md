@@ -1,10 +1,19 @@
 ---
-title: 'css display: none && css visibility: hidden'
+title: 'CSS display: none vs visibility: hidden'
 date: 2019-05-13 14:58:59
 tags:
-- css
+- CSS
 - 面试题
 ---
+
+### display:none 与 visibility:hidden 区别
+> display 指定元素显示框架的类型，none 隐藏不占文档流，不会影响布局
+> visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明并且 text-indent: -9999px，会影响布局
+
+<!--more-->
+
+#### 可以用以下实例进行验证
+
 ```html
 <ul class='item-wrap'>
   <!-- <li class="style1">
@@ -23,6 +32,7 @@ tags:
 </ul>
 ```
 <!-- more -->
+
 ```CSS
 .style1 {
   width: 30px;
@@ -45,14 +55,11 @@ tags:
   visibility: hidden;
 }
 ```
+
 ### 以上三张背景图是否下载 ？(`没有在官方文档中找到详细说明，以下仅代表个人实验结果`)
-- [ ] 定义样式不引用，图片资源不会下载
-- [ ] &lt;li class="style2"&gt;&lt;/li&gt; .style1{display:none} 图片资源下载
-- [ ] &lt;li class="style3"&gt;&lt;/li&gt; .style1{visibility:hidden} 图片资源下载
+- [ ] 定义样式不引用，图片资源不会下载，其它形式不管是 display: none 还是 visibility: hidden 都会下载图片资源，如下图
+
+---
 
 {% codepen ewpVBp result 265 100% helenzhanglp|anonymous|anon 0 %}
 ![图片下载资源](https://s2.ax1x.com/2019/06/14/V4D334.png)
-
-### display:none 与 visibility:hidden 区别
-> display 指定元素显示框架的类型，none 隐藏不占文档流，不会影响布局
-> visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明并且 text-indent: -9999px，会影响布局

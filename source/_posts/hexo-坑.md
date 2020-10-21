@@ -7,6 +7,12 @@ tags:
 - hexo
 ---
 
+#### hexo deploy 没有反应
+> 请检查 _config.yml 中 deploy 配置
+
+#### 访问页面空白
+> 请检查 themes
+
 #### 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
 ```html
 <!--more-->
