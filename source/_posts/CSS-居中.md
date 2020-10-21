@@ -11,11 +11,14 @@ tags:
 
 ## 水平布局 + Normal flow
 不进行任何布局，采用 html 默认布局方式
-1.  行内元素：text-align: center;
+1.  行内元素，父容器设置 text-align: center;
 2.  块级元素：margin: 0 auto;
 
+<!--more-->
+
 ## 水平布局 + Flexbox
-父容器设置：display: flex; justify-content: center; align-items: start; // 垂直方向不要拉伸
+1.  父容器设置：display: flex; justify-content: center; align-items: start; // 垂直方向不要拉伸
+2.  父容器设置：display: flex; margin: 0 auto;
 
 ## 水平布局 + grid (IE 浏览器不兼容)
 父容器：display: grid; 子容器 justify-self: center; align-self: center;
@@ -35,38 +38,14 @@ tags:
 ## 水平布局 + 定位 position: relative
 需要居中的 block 元素上设置样式： position: relative; margin: auto;
 
-<!-- more -->
-# 准备
-- [ ] 块级元素包裹行内元素
-- [ ] div 块级元素
-- [ ] span 行内元素
-<img src="https://s2.ax1x.com/2019/05/10/ERVfuq.png" alt='块级元素内包块级元素' width="300" hegiht="200" align=center />
+---
 
-```html
-<div class="wrap">
-  <div class='btn'>
-    block Element
-    <span>Inline Block Element</span>
-  </div>
-</div>
-```
-<!-- more -->
-```CSS
-.wrap {
-  width: 300px;
-  height: 200px;
-  background-color: #efefef;
-}
-.btn {
-  width: 30%;
-  height: 50px;
-  border-radius: 10px;
-  border:none;
-  background-image: linear-gradient(232deg, #60f 5%, #90f 100%);
-  font-size: 24px;
-  color: #999;
-}
-```
+## 垂直居中 + Normal Flow
+1. 行内元素，父容器：line-height: height
+
+## 垂直居中 + flexbox
+1. 父容器：display: flex; 要实现居中的子容器：margin: auto 0(垂直水平居中 margin: auto)
+
 
 > # display: block
 
