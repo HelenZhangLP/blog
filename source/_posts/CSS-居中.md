@@ -30,11 +30,10 @@ tags:
 >`注意：`
 1.  absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。[详见](https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/)
 2.  transform 属性兼容 IE10 以上浏览器
+3.  [有关第4种实现方式的理解](https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/)
 
 ## 水平布局 + 定位 position: relative
 需要居中的 block 元素上设置样式： position: relative; margin: auto;
-
-
 
 <!-- more -->
 # 准备
@@ -70,21 +69,6 @@ tags:
 ```
 
 > # display: block
-
-## 块级元素水平居中 - `margin: 0 auto`
-<img src="https://s2.ax1x.com/2019/05/10/ERVhD0.png" alt='块级元素水平居中' width="300" hegiht="200" align=center />
-```html
-<div class="wrap">
-  <div class='btn db-vertical-center'>
-    <span>IBE</span>
-  </div>
-</div>
-```
-```CSS
-.db-horizontal-center {
-  margin: 0 auto;
-}
-```
 
 ## 块级元素垂直居中 - `display: block; position: relative; margin: -25px auto 0;`
 > 居中元素相对于父元素向下偏移父元素的 left: 50%；再向上偏移该元素的 margin-top: -50%

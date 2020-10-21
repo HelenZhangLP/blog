@@ -56,3 +56,45 @@ i {
 ![position-absolute-block-1](/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg)
 上图是一个注释掉`position: absolute`后的错误示例，如 `<i>` 非块级元素，`text-indent: -9999px` 不生效，`margin: -2px 0 0 1px`在垂直方向同样不生效。注释文本撑开，显示vip图片，若无`vip icon`，背影图同样不显示，因为 `width/height` 对非块级元素不生效。`放开position: absolute 注释后，BFC 化后，实现效果如下图`
 ![position-absolute-block-2](/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg)
+
+### 4. demo-图标与提示文本对齐，效果如下图
+![图标与文本对齐](/images/css/position-absolute-4.jpg)
+> 1. 利用 float
+
+```html
+<span class="regist-remark regist-warn">
+	<i class="icon-warn" style="float: left"></i>
+  <i style="font-style: normal;">邮箱格式不准确</i>
+</span>
+```
+
+> 2. 利用 position
+
+```html
+<span class="regist-remark regist-warn">
+	<i class="icon-warn" style="position: absolute; margin-left: -20px;"></i>邮箱格式不准确
+</span>
+```
+
+### 5. demo-利用 position: absolute, 在提示文字溢出显出区域时，不折行或隐藏，正常整行显示。
+
+### 6. demo-利用 position: absolute，实现遮罩层
+> position: absolute 在文档流之外创建了一个层
+  left: 0 + right: 0; 新创建的层拉伸至与定位层等宽，相当于 width: 100%;
+  同理： left: 0 + right: 50% = width: 50%;（可用于一半遮罩）
+  top: 0 + bottom: 0; 新创建的层拉伸至与定位层等高，相当于 height: 100%;
+
+  **`注意：`** 这种方法适用于 `IE7+` 以上浏览器
+
+```css
+div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: .5;
+  filter: alpha(opacity=50); // 兼容 IE 浏览器
+}
+```
