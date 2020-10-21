@@ -46,7 +46,6 @@ tags:
 ## 垂直居中 + flexbox
 1. 父容器：display: flex; 要实现居中的子容器：margin: auto 0(垂直水平居中 margin: auto)
 
-
 > # display: block
 
 ## 块级元素垂直居中 - `display: block; position: relative; margin: -25px auto 0;`

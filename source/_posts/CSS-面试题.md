@@ -3,6 +3,7 @@ title: CSS 面试题
 date: 2019-03-25 15:35:18
 tags:
 - CSS
+- 面试题
 ---
 
 - [x] absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float

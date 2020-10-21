@@ -2,8 +2,8 @@
 title: vue router
 date: 2019-12-18 15:43:23
 tags:
-  -vue
-  -router
+- vue
+- router
 ---
 
 ## router && route
