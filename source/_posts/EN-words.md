@@ -176,3 +176,5 @@ bold adj.大胆的
 bold goals attract bold people 大胆的目标吸引大胆的人
 She knew she had to make a bold move to fully to her new future.
 她知道她必须采取大胆行动，全身心投入新的未来
+
+restrain v.阻止；控制
