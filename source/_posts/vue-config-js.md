@@ -1,7 +1,8 @@
 ---
 title: vue.config.js
 date: 2019-07-22T11:12:36.000Z
-tags: vue
+tags: 
+- Vue
 ---
 
 # 全面解读 `vue.config.js`

@@ -2,7 +2,8 @@
 title: CSS 面试题
 date: 2019-03-25 15:35:18
 tags:
-- CSS
+- css
+- 面试题
 ---
 
 - [x] absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float
@@ -25,7 +26,7 @@ tags:
 }
 ```
 
-- [ ] @supports、cacl()、@media 的用法和含义
+### @supports、cacl()、@media 的用法和含义
 ---
 > * @supports 在这里卡了许久，想要找出当红 ui 框架中使用的案例，但最终一无所获。但是吧，既然有这样一道面试题，那就看看文档，整理整理
     ` 兼容性：移动端浏览器兼容较好，pc 端 IE 不兼容 `
@@ -58,8 +59,8 @@ tags:
     }
     ```
     **总结一下**：根据不同的媒体类型，定义不同的样式，作响应式处理
-
 ---
+
 > * cacl() 函数允许对 css 属性值进行一些 + - * / 的运算，如上例
 
 - [ ] [水平垂直居中](https://helenzhanglp.github.io/2019/05/05/%E5%B1%85%E4%B8%AD/)

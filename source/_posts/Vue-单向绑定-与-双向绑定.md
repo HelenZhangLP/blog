@@ -1,5 +1,5 @@
 ---
-title: 单向绑定 与 双向绑定
+title: Vue 单向绑定 与 双向绑定
 date: 2019-03-03 21:32:19
 categories:
 - 技术

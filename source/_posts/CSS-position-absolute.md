@@ -2,7 +2,7 @@
 title: CSS position absolute
 date: 2020-10-12 12:40:01
 tags:
-- CSS
+- css
 ---
 
 > position: absolute 与 float 一样，使用后**脱离文档流**；具有**破坏性**和**包裹性**；使用会创建 BFC(Block_formatting_context)。

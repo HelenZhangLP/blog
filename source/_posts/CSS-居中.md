@@ -3,7 +3,7 @@ title: CSS 居中
 date: 2019-05-05 17:24:39
 category: 技术
 tags:
-- CSS
+- css
 - 面试系列
 ---
 
@@ -45,7 +45,6 @@ tags:
 
 ## 垂直居中 + flexbox
 1. 父容器：display: flex; 要实现居中的子容器：margin: auto 0(垂直水平居中 margin: auto)
-
 
 > # display: block
 

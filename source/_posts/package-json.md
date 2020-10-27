@@ -1,7 +1,8 @@
 ---
 title: package.json
 date: 2020-04-17 11:20:44
-tags: webpack
+tags:
+- webpack
 ---
 
 ###　browserslist [参考文档](https://cli.vuejs.org/zh/guide/browser-compatibility.html#browserslist)

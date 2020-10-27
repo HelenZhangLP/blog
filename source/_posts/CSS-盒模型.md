@@ -5,7 +5,7 @@ category:
 - 技术
 tags:
 - 前端
-- CSS
+- css
 ---
 
 该文档整理基于[怪异模式（Quirks Mode）对 HTML 页面的影响](https://www.ibm.com/developerworks/cn/web/1310_shatao_quirks/#N101C3)

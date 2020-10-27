@@ -2,7 +2,7 @@
 title: CSS Margin auto
 date: 2020-10-19 14:06:30
 tags:
-- CSS
+- css
 ---
 
 众所周知，margin: auto 可以使`块级元素`水平居中。这里要探讨的是为什么会居中，原理是什么？翻看了[MDN](https://wiki.developer.mozilla.org/zh-CN/docs/Web/CSS/margin)，相关描述只有一句，“让浏览器自己选择一个外边距”。
