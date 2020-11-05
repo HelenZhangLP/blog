@@ -160,3 +160,33 @@ needModules.map(item => {
 ### 四、CMD规范
 ### 五、ES6模块化
 2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，Javascript 有了 `模块` 的概念。
+* 与 CommonJS 一样，ES6 Module 每个模块都有自身的作用域；
+* 在 ES6 版本中，`import` 和 `export` 是保留关键字；
+* ES6 Module 自动采用严格模式（`use strict`）;
+
+```javascript
+// example.js
+export const a = 'this is a variable';
+export const fn = () => {
+  return 'this is a arrow function';
+}
+```
+```javascript
+// index.js
+import {a,fn} from './example';
+let b = fn();
+console.log(a, b);
+```
+
+#### node index.js
+> `SyntaxError: Cannot use import statement outside a module`
+> 不支持 import，需要 babel 转义
+
+1.  浏览器环境解决办法（目前没有运行起来）
+```html
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+// Your ES6 code
+</script>
+```
+2.  引入依赖包处理[参考解决](https://wangdoc.com/es6/intro.html)

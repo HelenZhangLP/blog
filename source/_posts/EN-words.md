@@ -113,6 +113,8 @@ May Fourth Movement 五四运动
 air conditioner 空调
 die out 逐渐消亡；灭绝
 emancipate people's minds 解放思想
+strike off 砍掉；把...除名
+member of a standing committee 常务委员
 
 词根 tein 保持
 protein n.蛋白质
@@ -178,3 +180,44 @@ She knew she had to make a bold move to fully to her new future.
 她知道她必须采取大胆行动，全身心投入新的未来
 
 restrain v.阻止；控制
+
+compendium n.事实、概要
+Compendium of Materia Medica 本草纲目
+
+demo 人民；cracy 统治
+democracy  n.民主，民主制；民主国家
+
+As I would not be a slave, so I would not be a master. This expresses my idea of democracy.
+我不想当奴隶，我也不愿做别人的主人。这是我对民主诠释。
+
+guard n.守卫；护卫队、vi.保卫、监视
+guard against 防止；提防
+on guard 警惕；站岗
+catch someone off guard 使人措手不及；
+He said the Coast Guard should have a plan to respond to problems that may arise.
+他说海岸护卫队应该有计划回复可能遇到的问题
+These is no one to guard these isolated farms against attack.
+没有人守卫那些孤立的农场抵御袭击
+
+fall vi.落下；突然；来到/n.秋天；崩溃
+fall back on 借助于，依靠
+fall behind 落后，落在...后面
+fall for 受...的骗；迷恋
+
+session n.会议、一场
+Several bills were enacted at the end of this session of Parliament
+这场国会结束时，好几个提案制定成法律。
+
+confident adj.坚信的，自信的
+In recent years the capital's culinary scene has developed to the point that it is now confident of its ability to please the tastes of any international visitor.
+近几年，首都的餐饮业已经发展到有能力满足任何国际游客的品味。
+
+vers = to turn
+conversion n.转换、变换
+The warehouse was undergoing conversion into apartments
+这座仓库正在被改建成公寓
+
+tain = to hold
+container n.集装箱；容器
+She trickled the water into container
+她将水慢慢注入容器里
