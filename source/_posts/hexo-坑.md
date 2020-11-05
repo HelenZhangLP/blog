@@ -7,13 +7,13 @@ tags:
 - hexo
 ---
 
-#### hexo deploy 没有反应
-> 请检查 _config.yml 中 deploy 配置
+## hexo deploy 没有反应
+`检查` \_config.yml 中 deploy 配置
 
-#### 访问页面空白
-> 请检查 themes
+## 访问页面空白
+`检查` themes
 
-#### 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
+## 断行，在首页展示缩略信息，该方法能被 hexo 更好识别
 ```html
 <!--more-->
 ```
@@ -23,7 +23,7 @@ auto_excerpt:
   length: 150
 ```
 
-#### ERROR - No layout: index.html
+## ERROR - No layout: index.html
 ```
 $ hexo s
 INFO  Start processing
@@ -32,19 +32,19 @@ WARN  No layout: index.html
 ```
 <!-- more -->
 
-> *## 解决 ##*
+`解决办法：`
 ```
 $ git clone https://github.com/zhwangart/hexo-theme-ocean.git themes/ocean
 ```
 > Modify theme setting in \_config.yml to ocean
 `theme: ocean`
 
-#### ERROR - 发布到 git 服务器访问出现空白页或无主题样式
+## ERROR - 发布到 git 服务器访问出现空白页或无主题样式
 > 原因是发布到 github 上的项目名称要与个人github的用户名一致，且加后缀 .github.io，如 'helenzhanglp.github.io'
 
-#### ERROR - 博客中添加 gitalk
+## ERROR - 博客中添加 gitalk
 > *## Error Error: Not Found. ##*
-*## 解决 ##*
+`解决办法：`
 ```
 gitalk:
   enable: true
@@ -55,4 +55,15 @@ gitalk:
   admin: HelenZhangLP # GitHub ID
 ```
 
-#### ERROR - theme 样式修改，先需要先提交至 github，再 deploy
+## ERROR - theme 样式修改，先需要先提交至 github，再 deploy
+
+## Error: Spawn failed
+> fatal: unable to access 'https://github.com/HelenZhangLP/helenzhanglp.github.io.git/': Received HTTP code 502 from
+ proxy after CONNECT
+FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html
+
+`解决办法：`
+\_config.yml 中 修改 deploy，https 链接换成 ssh
+deploy:
+  type: git
+  repo: git@github.com:*/*.github.io.git
