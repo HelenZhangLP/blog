@@ -1,11 +1,14 @@
 ---
-title: prototype && __proto__
+title: javascript prototype && __proto__
 date: 2019-03-19 12:20:05
 tags:
 - Javascript
 - object
 - 对象继承
 ---
+
+## 原型和原型链
+Javascript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 `__proto__` 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。
 
 [继承](https://segmentfault.com/a/1190000015727237)
 ### Javascript 继承

@@ -34,6 +34,7 @@ formatParamets() {
 }
 ```
 <!-- more -->
+## 分割字符串
 ### String.prototype.slice() 方法取字符串的一部分，返回新字符串，原字符串不动
 > str.slice(beginIndex[, endIndex])
 * beginIndex 从该索引（以 0 这基数）处开始提取原字符串。如果为负数，会被当做 strlength + beginLength
@@ -104,19 +105,35 @@ str.substr(0, strlength - 1) // 'zhangliping'
 ```
 
 ### slice/substr/substring 对比
-| 方法名 | 参数一 | 参数二 | 参数一abs(负数)并大于等于字符串长度 | 参数一负数并小于字符串长度 | 参数一大于 strlength | 参数二abs(负数)并大于等于字符串长度| 参数一负数并小于字符串长度 | 参数二大于 strlength |
-|----| ---------------- | ------------ | ---------- | ---------- | -------- | ------- | ---| --- |
-| slice | beginIndex — 开始位置索引，以 0 为基数 | endIndex — 截取至 endIndex - 1 位置 | beginIndex = 0 | beginIndex = strlength - beginIndex | 返回空串 |  endIndex = 0 | endIndex = strlength - endIndex | endIndex = strlength |
-| substr | start — 同上 | length - 截取字符长度 | 同上 | 同上 | 同上 | 同上 | length = strlength |
-| substring | indexStart — 同上 | indexEnd — 截取至 indexEnd - 1 的位置 | indexStart = 0 | indexStart = 0 | 同上 | indexEnd = 0 | indexEnd = 0 | indexEnd = strlength |
+| 方法名 | 参数一 | 参数二 |
+|----| ---------------- | ------------ |
+| slice | beginIndex — 开始位置索引，以 0 为基数 | endIndex — 截取至 endIndex - 1 位置 |
+| substr | start — 同上 | length - 截取字符长度 |
+| substring | indexStart — 同上 | indexEnd — 截取至 indexEnd - 1 的位置 |
 
-> slice、substring、sub 都是字符串截取方法，substring 参数不能为负数，如果有负数，则视为 0. substr 与 slice 同参数可以为负数，当为负数时，实际取的值是当前参数与字符串相加的和，第一个参数相加之和大于 0，时结果为 0；第二个参数相加之和大于 0 时，取字符串长度。substring 与 slice 两个参数都为索引，substr 第二个参数为截取字符串长度。 substr 在淘汰的过程中，慎用。
+| 方法名 | 参数一abs(负数)并大于等于字符串长度 | 参数一负数并小于字符串长度 | 参数一大于 strlength | 参数二abs(负数)并大于等于字符串长度| 参数一负数并小于字符串长度 | 参数二大于 strlength |
+|----|  ---------- | ---------- | -------- | ------- | ---| --- |
+| slice | beginIndex = 0 | beginIndex = strlength - beginIndex | 返回空串 |  endIndex = 0 | endIndex = strlength - endIndex | endIndex = strlength |
+| substr | 同上 | 同上 | 同上 | 同上 | |length = strlength |
+| substring | indexStart = 0 | indexStart = 0 | 同上 | indexEnd = 0 | indexEnd = 0 | indexEnd = strlength |
 
+> 1.  slice、substring、sub 都是字符串截取方法；
+  2.  substring 参数不能为负数，如果有负数，则视为 0；
+  3.  substr 与 slice 同参数可以为负数。当为负数时，实际取的值是当前参数与字符串相加的和，第一个参数相加之和大于 0，时结果为 0；第二个参数相加之和大于 0 时，取字符串长度。substring 与 slice 两个参数都为索引，substr 第二个参数为截取字符串长度。 substr 在淘汰的过程中，慎用。
+
+## 查找字符串方法
+### includes() 区分大小写查找字符串，返回 Boolean 值。（ES6 新增方法）
+```javascript
+var str = 'Mr Brownlow, fortunately, was able to persuade him to abandon this wild idea';
+console.log(str.includes('persuade')) // true
+```
+### indexOf() 和 lastIndexOf() 同样是区分大小写匹配字符串，存在返回索引值，否则返回 -1。
 ### match() 检索返回一个匹配正则表达式的结果
 > str.match(regexp)
-> 参数：一个正则表达式对象。
+> `参数`：一个正则表达式对象。
 > 若参数为非正则表达式对象，会隐式地使用 `new RegExp(obj)` 转换为 RegExp
 > 若没给参数，参数默认为包含空字符串数组，如 `[""]`
+
 ```javascript
 const str = 'abc abc'
 let reg = /(\w+)/g
@@ -130,6 +147,17 @@ str.match(reg)
  [ 'abc', 'abc', index: 0, input: 'abc abc', groups: undefined ]
 */
 ```
-> 返回值：
+> `返回值：`
 > 使用 g 标志，返回表达式匹配的所有结果，不返回匹配捕获组(`[ 'abc', 'abc' ]`)
 > 不使用 g 标志，返回第一个完整匹配及其相关的捕获组（input 搜索字符串；groups 捕获数组或 `undefined`; index 匹配结果开始位置）。
+
+##  字符串补齐方法
+
+### padStart(targetLength[,padString]) 在字符串前面加入指定字符padString，达到 targetLength 指定长度
+### padEnd(targetLength,[,padString]) 在字符串后面加入指定字符 padString，达到 targetLength 指定长度
+```javaScript
+// 隐藏电话号码后四位
+var tel = '13381892220';
+var secretTel = tel.substr(3, tel.length - 8).padEnd(tel.length-4, '*').padStart(tel.length, '*')
+console.log(secretTel) // ****189****
+```

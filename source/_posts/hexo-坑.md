@@ -67,3 +67,23 @@ FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/d
 deploy:
   type: git
   repo: git@github.com:*/*.github.io.git
+
+## hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示
+```
+sequence-diagram.js:792 Uncaught ReferenceError: Raphael is not defined
+    at sequence-diagram.js:792
+    at sequence-diagram.js:1468
+(anonymous) @ sequence-diagram.js:792
+(anonymous) @ sequence-diagram.js:1468
+(index):93 Uncaught ReferenceError: Diagram is not defined
+    at (index):93
+(anonymous) @ (index):93
+```
+`解决办法：`
+临时在头部加入
+```
+<% if(config.sequence) {%>
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+<% } %>
+```

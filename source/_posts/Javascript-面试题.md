@@ -5,13 +5,28 @@ categories:
 - 技术
 tags:
 - Javascript
-- 面试题
+- interview questions
+- ES6
 ---
 
-### 新增变量声明 let const
-####	1.	let
->	声明一个块级作用域的本地变量
+## 变量声明 let const var
+{%table table-striped%}
+| 名称    | 定义 |作用域     | 赋初值 |
+| :------------- | :------------- | :---- | :---- |
+| let       | 声明变量 | 块级作用域       | 可以不赋初值<br/>编译时声明并初始化为初值为 undefined |
+| const       | 声明常量 | 块级作用域       | 必须赋初值 |
+| var       | 声明变量 | 局部变量是函数作用域；<br/>全局变量作用域为该程序 | 不赋初值时，<br/>变量提升，代码执行前创建 js 环境，声明变量，变量赋初值为 undefined |
+{% endtable %}
 
+*`notice:`*
+1.	let 和 var 都是用来声明变量的，但作用域不同。
+2.	let 和 const 都是 ES6 开始正式加入 JavaScript 规范的
+3.	let 编译时执行声明初始化，未编译时处于 temporal dead zone，此时变量 is not defined;
+4.	const 声明常量必须赋初值(Uncaught SyntaxError: Missing initializer in const declaration)；
+5.	const 声明的常量值不能修改。
+
+##	1.	let
+>	声明一个块级作用域的本地变量
 ```javascript
 if (true) {
 	var a = 1;
@@ -29,24 +44,51 @@ var a; // undefined
 let b; // undefined
 const c; // Uncaught SyntaxError: Missing initializer in const declaration
 ```
-####	2.	const
+
+> let 声明的变量在定义编译执行时初始化。变量未声明之前不会初始化。这一时段称为暂存死区（Temporal Dead Zone, TDZ）。
+
+```javascript
+console.log(a);
+console.log(b);
+
+var a; // undefined
+let b; // Uncaught ReferenceError: b1 is not defined
+```
+
+##	2.	const
 > `Uncaught SyntaxError: Missing initializer in const declaration` const 声明的变量必须赋初值
 	`Uncaught ReferenceError: C is not defined` const 声明块级作用域变量
 
-####	3.	var
+### const 声明的变量值不能修改
+```javascript
+const variableTemplate = 30
+try {
+  variableTemplate = 22
+} catch (error) {
+  console.log(error) // TypeError: Assignment to constant variable.
+}
+console.log(variableTemplate)
+```
+### const 只读引用，只是变量的标识符不能重新分配
+> 只是变量标识符不能重新分配
+```javascript
+const VARIABLE = 'assignment value'
+VARIABLE = 'assignment value' // TypeError: Assignment to constant variable
+const VARIABLE = 'Assignment to constant variable' // Uncaught SyntaxError: Identifier 'VARIABLE' has alreay been declared
+const EN_OBJECT = {}
+EN_OBJECT.ATTRIBUTE = 1
+```
+
+##	3.	var
+JavaScript 根据赋值自动转换数据类型;
+JavaScript 中 `+` 可用来链接字符串，如果运算中涉及字符串，结果为字符串链接。其它运算符（-、\*、\/）正确计算数字字符串;
+JavaScript 中，null 乘任何数为 0;
+JavaScript 代码程序执行前会先创建执行环境，变量、函数等被创建。代码运行时赋初值。这就是 JavaScript 的提升机制（hoisting）。
+
 > var 声明变量可以不赋初值，默认值为 undefined；
 	var 声明的变量没有块级作用域
 
-#### var 和 let 定义变量时都会赋初值为是 undefined，不同的是 let 声明的变量在定义编译执行时初始化。
-```Javascript
-console.log(a); // undefined
-console.log(b); // Uncaught ReferenceError: b is not defined
-
-var a = 1;
-let b = 2;
-```
-
-#### 与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 `window`)
+### 与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 `window`)
 ```javascript
 var a = 1
 let b = 2
@@ -54,7 +96,7 @@ const c = 3
 console.log(window.a, window.b, window.c) // 1 undefined undefined
 ```
 
-#### let 和 var 定义的变量作用域不同
+### let 和 var 定义的变量作用域不同
 ```javascript
 function testVarScope() {
 	var a = 1;
@@ -82,28 +124,6 @@ testLetScope(); // 1 "let"
 /**
  *	{} 为一个作用域，{} 中的 a 变量与 函数中首先声明的 a 为两个变量，值不会相互修改
  */
-```
-
-### 一、 const
-> TypeError: Assignment to constant variable
-```javascript
-const variableTemplate = 30
-try {
-  variableTemplate = 22
-} catch (error) {
-  console.log(error) // TypeError: Assignment to constant variable.
-}
-console.log(variableTemplate)
-```
-
-### 二、 const 只读引用，只是变量的标识符不能重新分配
-> 只是变量标识符不能重新分配
-```javascript
-const VARIABLE = 'assignment value'
-VARIABLE = 'assignment value' // TypeError: Assignment to constant variable
-const VARIABLE = 'Assignment to constant variable' // Uncaught SyntaxError: Identifier 'VARIABLE' has alreay been declared
-const EN_OBJECT = {}
-EN_OBJECT.ATTRIBUTE = 1
 ```
 
 ### 三、 作用域 + promise && promise.then

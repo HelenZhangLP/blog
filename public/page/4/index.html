@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="jumbotron">
+  <div class="video">
+    
+    <div class="video-media">
+      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
+      
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">女魔头</a></h1>
+      <p>咕噜的程序员妈妈</p>
+      
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    
+
+    
+      
+        <article id="post-axios-源码解读" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/23/axios-源码解读/">axios 源码解读</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/23/axios-源码解读/" class="article-date">
+  <time datetime="2019-07-23T08:20:03.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── /dist/                     # 项目输出目录</span><br><span class="line">├── /lib/                      # 项目源码目录</span><br><span class="line">│ ├── /cancel/                 # 定义取消功能</span><br><span class="line">│ ├── /core/                   # 一些核心功能</span><br><span class="line">│ │ ├── Axios.js               # axios的核心主类</span><br><span class="line">│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求</span><br><span class="line">│ │ ├── InterceptorManager.js  # 拦截器构造函数</span><br><span class="line">│ │ └── settle.js              # 根据http响应状态，改变Promise的状态</span><br><span class="line">│ ├── /helpers/                # 一些辅助方法</span><br><span class="line">│ ├── /adapters/               # 定义请求的适配器 xhr、http</span><br><span class="line">│ │ ├── http.js                # 实现http适配器</span><br><span class="line">│ │ └── xhr.js                 # 实现xhr适配器</span><br><span class="line">│ ├── axios.js                 # 对外暴露接口</span><br><span class="line">│ ├── defaults.js              # 默认配置</span><br><span class="line">│ └── utils.js                 # 公用工具</span><br><span class="line">├── package.json               # 项目信息</span><br><span class="line">├── index.d.ts                 # 配置TypeScript的声明文件</span><br><span class="line">└── index.js                   # 入口文件</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckhlzp8ql00321a9iieoofibb"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-vue-config-js" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/22/vue-config-js/">vue.config.js</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/22/vue-config-js/" class="article-date">
+  <time datetime="2019-07-22T03:12:36.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="全面解读-vue-config-js"><a href="#全面解读-vue-config-js" class="headerlink" title="全面解读 vue.config.js"></a>全面解读 <code>vue.config.js</code></h1><blockquote>
+<p><a href="https://cli.vuejs.org/zh/config/" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line">&gt; <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;   <span class="comment">// 基本路径，默认被部署在根路径，如果需要部署在子路径，publicPath 设置为 /example/</span></span><br><span class="line">&gt;   publicPath: process.env.NODE_ENV === <span class="string">"development"</span> ? <span class="string">"/"</span> : <span class="string">"/mallActivity/"</span>,</span><br><span class="line">&gt;   outputDir: <span class="string">'dist'</span>, <span class="comment">// 运行 vue-cli-service build 时生成生产环境构建文件的目录</span></span><br><span class="line">&gt;   assetsDir: <span class="string">'assets'</span>, <span class="comment">//生成文件的静态资源目录</span></span><br><span class="line">&gt;   <span class="comment">// productionSourceMap：&#123; type:Bollean,default:true &#125; 生产源映射</span></span><br><span class="line">&gt;   <span class="comment">// 如果您不需要生产时的源映射，那么将此设置为false可以加速生产构建</span></span><br><span class="line">&gt;   productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">&gt;   css: &#123;</span><br><span class="line">&gt;     loaderOptions: &#123; <span class="comment">// CSS 加载器</span></span><br><span class="line">&gt;       stylus: &#123;</span><br><span class="line">&gt;         javascriptEnabled: <span class="literal">true</span></span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">&gt;     <span class="keyword">const</span> types = [<span class="string">'vue-modules'</span>, <span class="string">'vue'</span>, <span class="string">'normal-modules'</span>, <span class="string">'normal'</span>]</span><br><span class="line">&gt;     types.forEach(<span class="function"><span class="params">type</span> =&gt;</span> addStyleResource(config.module.rule(<span class="string">'stylus'</span>).oneOf(type)))</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   devServer: &#123;</span><br><span class="line">&gt;     proxy: &#123; <span class="comment">// 在开发环境下将 API 请求代理到 API 服务器</span></span><br><span class="line">&gt;       <span class="string">'/mock'</span>: &#123;</span><br><span class="line">&gt;         target: <span class="string">'http://10.8.5.180:80'</span>,</span><br><span class="line">&gt;         pathRewrite: &#123;</span><br><span class="line">&gt;           <span class="string">'^/mock'</span>: <span class="string">'/mock'</span></span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">addStyleResource</span> (<span class="params">rule</span>) </span>&#123;</span><br><span class="line">&gt;   rule.use(<span class="string">'style-resource'</span>)</span><br><span class="line">&gt;     .loader(<span class="string">'style-resources-loader'</span>)</span><br><span class="line">&gt;     .options(&#123;</span><br><span class="line">&gt;       patterns: [</span><br><span class="line">&gt;         path.resolve(__dirname, <span class="string">'./src/assets/stylus/golbal.styl'</span>)</span><br><span class="line">&gt;       ]</span><br><span class="line">&gt;     &#125;)</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhlzp8rs00441a9i9nbc3fwv"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/14/浏览器-cookie-webStorage/">cookie 与 Web Storage</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-date">
+  <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>先了解下浏览器缓存存储过程的序列图：</p>
+<div id="sequence-0"></div>
+`If-None-Match:"4f80f-13c-3a1xb12a"` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
+
+<p>Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。</p>
+<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">'undefined'</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code></p>
+<ul>
+<li>由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。</li>
+</ul>
+        
+          <a class="article-more-link" href="/2019/06/14/浏览器-cookie-webStorage/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhlzp8sp00501a9i3etpni8d"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/12/http-请求状态码/">http 请求状态码</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/12/http-请求状态码/" class="article-date">
+  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
+<p>请求成功，默认状态下 200 响应可以被缓存</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
+<li>HEAD: 响应的消息体为头部信息。</li>
+<li>POST: 响应的消息体中包含此次请求的结果。</li>
+<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
+<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
+</ul>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/06/12/http-请求状态码/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckhlzp8rd003q1a9ifbaxaem2"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-代码管理工具-git坑" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/03/代码管理工具-git坑/">git 坑</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/03/代码管理工具-git坑/" class="article-date">
+  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
+<p>.gitignore 中添加 .idea/ 没用</p>
+</blockquote>
+<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckhlzp8rw004b1a9i2swn3uzr"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-NodeJs-学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/31/NodeJs-学习笔记/">NodeJs 学习笔记</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/31/NodeJs-学习笔记/" class="article-date">
+  <time datetime="2019-05-31T06:32:44.000Z" itemprop="datePublished">2019-05-31</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><blockquote>
+<p>提供用于处理文件路径和目录路径的实用工具</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/05/31/NodeJs-学习笔记/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckhlzp8q8002l1a9ia5m3y69y"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-分析-hexo-脚手架" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/21/分析-hexo-脚手架/">分析 hexo 脚手架</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/21/分析-hexo-脚手架/" class="article-date">
+  <time datetime="2019-05-21T02:36:49.000Z" itemprop="datePublished">2019-05-21</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$: hexo</span><br><span class="line"></span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  <span class="built_in">help</span>     Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init     Create a new Hexo folder.</span><br><span class="line">  version  Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">'hexo help [command]'</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/05/21/分析-hexo-脚手架/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckhlzp8s3004j1a9io5asw74a"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-display-none-vs-visibility-hidden" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/13/CSS-display-none-vs-visibility-hidden/">CSS display: none vs visibility: hidden</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/13/CSS-display-none-vs-visibility-hidden/" class="article-date">
+  <time datetime="2019-05-13T06:58:59.000Z" itemprop="datePublished">2019-05-13</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="display-none-与-visibility-hidden-区别"><a href="#display-none-与-visibility-hidden-区别" class="headerlink" title="display:none 与 visibility:hidden 区别"></a>display:none 与 visibility:hidden 区别</h3><blockquote>
+<p>display 指定元素显示框架的类型，none 隐藏不占文档流，不会影响布局<br>visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明并且 text-indent: -9999px，会影响布局</p>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/05/13/CSS-display-none-vs-visibility-hidden/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckhlzp8mq000s1a9iljl50r12"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-随笔" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/09/随笔/">随笔</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/09/随笔/" class="article-date">
+  <time datetime="2019-05-09T07:57:19.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="本地服务器"><a href="#本地服务器" class="headerlink" title="本地服务器"></a>本地服务器</h3><ul>
+<li>liveServer</li>
+<li>httpServer</li>
+<li>WampServer</li>
+</ul>
+<h3 id="familiar-essay"><a href="#familiar-essay" class="headerlink" title="familiar essay"></a>familiar essay</h3><p>text-align 行内元素水平居中<br>inline-block 行内元素，没有宽高，用 padding + 文本撑开<br>inline-block 行内元素，设置 padding 会从父元素溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://app.zslb.xyz/api/order/add_refund?orderId=289&amp;amount=1</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 405</span><br><span class="line">Remote Address: 118.25.170.213:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+
+<p>服务器端请求为 post，与当前 request method get 冲突</p>
+<blockquote>
+<p>请求行中指定的请求方法不能被用于请求相应的资源。<br>  该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>  鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
+</blockquote>
+<p>元素设置 position: absolute 或 float: left 会脱离文档流</p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="tip-浏览器缓存功能"><a href="#tip-浏览器缓存功能" class="headerlink" title="tip: 浏览器缓存功能"></a><code>tip:</code> 浏览器缓存功能</h3><p>浏览网页时，浏览器会暂存网页静态资源，包括外部的 css、javascript、图片、影像等。当用户在同一浏览器浏览同一网页时，不会重新加载静态资源。优点是加快网页加载速度，减少服务器负担。缺点是当静态资源修改，缓存未到期，那么浏览器会显示缓存的旧数据。除非用户清缓存或 ctrl+f5 强制刷新重新加载。</p>
+<blockquote>
+<p><code>解决办法：</code>修改静态资源后，在外部链接的文件名后加上 ？+任意字符串，可以是版本号或日期，不同于旧片酬就可以。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...html</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;script src=&quot;./t.js?v20120929&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。"><a href="#tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。" class="headerlink" title="tip: JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。"></a><code>tip:</code> JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span></span><br><span class="line"><span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>解决办法：</code></p>
+</blockquote>
+<ol>
+<li><p>将小数运算转换成整数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>)/<span class="number">10</span></span><br><span class="line"><span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用内建函数强制转换为指定位数的小数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "0.30"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="tip：-null-amp-amp-undefined"><a href="#tip：-null-amp-amp-undefined" class="headerlink" title="tip： null &amp;&amp; undefined"></a><code>tip：</code> null &amp;&amp; undefined</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存"><a href="#tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存" class="headerlink" title="tip： Garbage Collection 会在变量超出作用域时回收，释放其占用的内存"></a><code>tip：</code> Garbage Collection 会在变量超出作用域时回收，释放其占用的内存</h3><h3 id="tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。"><a href="#tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。" class="headerlink" title="tip： ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。"></a><code>tip：</code> ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。</h3><h3 id="tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。"><a href="#tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。" class="headerlink" title="tip： for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。"></a><code>tip：</code> for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。</h3><h3 id="tip：-forEach-不能使用-break-指令中断循环。"><a href="#tip：-forEach-不能使用-break-指令中断循环。" class="headerlink" title="tip： forEach 不能使用 break 指令中断循环。"></a><code>tip：</code> forEach 不能使用 break 指令中断循环。</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckhlzp8sy00591a9i2d9o3l8b"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-居中" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/05/CSS-居中/">CSS 居中</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/05/CSS-居中/" class="article-date">
+  <time datetime="2019-05-05T09:24:39.000Z" itemprop="datePublished">2019-05-05</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>居中分为两种：一是水平居中，二是垂直居中。可借用不同的布局方式做多种实现。</p>
+<h2 id="水平布局-Normal-flow"><a href="#水平布局-Normal-flow" class="headerlink" title="水平布局 + Normal flow"></a>水平布局 + Normal flow</h2><p>不进行任何布局，采用 html 默认布局方式</p>
+<ol>
+<li>行内元素，父容器设置 text-align: center;</li>
+<li>块级元素：margin: 0 auto;</li>
+</ol>
+        
+          <a class="article-more-link" href="/2019/05/05/CSS-居中/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckhlzp8oi00131a9iw7mykf5f"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+  </article>
+  
+  
+    <nav class="page-nav">
+      
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+    </nav>
+  
+</section>
+
+</div>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    跨域 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-跨域" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      跨域
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/22/跨域/" class="article-date">
+  <time datetime="2019-02-22T10:14:44.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><code>同源，相同的协议 + 相同的域名 + 相同的端口号</code></p>
+<p>不由的觉得很开心，“跨域”，百度输入“跨域”两个字，一大堆类标题“别再问我什么跨域”，哈哈，这是一种什么样的情感。me too.<br>我的对它的感情也很复杂，可不管怎么样，总想找个时间整理，有一定的体系。<br>切入正题</p>
+<p>在页面中用 about:blank 或 Javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有明确包含有关原始服务器的信息。</p>
+<p>例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  机制）。 如果此弹出窗口也包含代码，则该代码将继承与创建它的脚本相同的源。</p>
+<h3 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">浏览器的同源策略</a></h3><blockquote>
+<ul>
+<li><code>同源</code>策略是一种隔离恶意文件的安全机制。<br>* 对不同源之间的文档或脚本交互进行了限制。<br>* <code>不同源</code>是指两个页面的协议、端口、域名有一个不同</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<p><strong><em>与<code>https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy</code>对比是否同源</em></strong></p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>link</th>
+<th>协议</th>
+<th>域名</th>
+<th>端口</th>
+<th>是否同源</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy</a></td>
+<td>https</td>
+<td>developer.mozilla.org</td>
+<td>80</td>
+<td>是</td>
+<td>路径不同</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td><a href="http://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">http://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy</a></td>
+<td>http</td>
+<td>developer.mozilla.org</td>
+<td>80</td>
+<td>否</td>
+<td>协议不同</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td><a href="https://develop.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">https://develop.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy</a></td>
+<td>https</td>
+<td>develop.mozilla.org</td>
+<td>80</td>
+<td>否</td>
+<td>域名不同</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td><a href="https://developer.mozilla.org:81/index.html" target="_blank" rel="noopener">https://developer.mozilla.org:81/index.html</a></td>
+<td>https</td>
+<td>developer.mozilla.org</td>
+<td>81</td>
+<td>否\是</td>
+<td>端口不同（IE 中端口号不在同源策略中，固在IE 浏览器中，属同源）</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td><a href="https://new.developer.mozilla.org:81/index.html" target="_blank" rel="noopener">https://new.developer.mozilla.org:81/index.html</a></td>
+<td>https</td>
+<td>new.developer.mozilla.org</td>
+<td>80</td>
+<td>否</td>
+<td>域名 new.developer.mozilla.org 不同</td>
+</tr>
+</tbody></table>
+
+
+<h4 id="IE-是否同源略有差异"><a href="#IE-是否同源略有差异" class="headerlink" title="IE 是否同源略有差异"></a>IE 是否同源略有差异</h4><blockquote>
+<ul>
+<li><input checked disabled type="checkbox"> 在 IE 中，两个高度互信的域名不用遵守同源策略限制。<code>授信范围（Trust Zones）</code></li>
+</ul>
+</blockquote>
+<ul>
+<li><input checked disabled type="checkbox"> 在 IE 中，<code>端口</code>号不在同源策略中，即协议、域名相同则不受同源策略限制</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.domain = <span class="string">"company.com"</span>; <span class="comment">// 修改当前域名</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="跨域解决方案-document-domain-iframe"><a href="#跨域解决方案-document-domain-iframe" class="headerlink" title="跨域解决方案 - document.domain + iframe"></a>跨域解决方案 - document.domain + iframe</h4><p><code>共享数据的两个页面域名有共同的主域名或b域名是a域名的子域名</code></p>
+<blockquote>
+<p>上表 4、5 中，主域名相同，均为 ‘mozilla.org’<br>  <a href="https://developer.mozilla.org:81/index.html" target="_blank" rel="noopener">https://developer.mozilla.org:81/index.html</a> 中<br>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"https://new.developer.mozilla.org:81/index.html"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.domain = <span class="string">'mozilla.org'</span>;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> user = <span class="string">'HelenZhanglp'</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><a href="https://new.developer.mozilla.org:81/index.html" target="_blank" rel="noopener">https://new.developer.mozilla.org:81/index.html</a><br>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.domain = <span class="string">'mozilla.org'</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>* 如此，new.developer.mozilla.org 所以访问到 developer.mozilla.org 中的数据 *</strong></p>
+</blockquote>
+<h4 id="跨域解决方案-jsonp"><a href="#跨域解决方案-jsonp" class="headerlink" title="跨域解决方案 - jsonp"></a>跨域解决方案 - jsonp</h4><blockquote>
+<p>jsonp 是 json 的使用模式，使用 jsonp 跨域，没有兼容方面问题<br><code>img,iframe,script</code> 三个标签可以通过 src 属性获取不同源的服务器资源<br>当使用 jsonp 模式发送请求时 <strong><em>需要服务端支持</em></strong> 需要用 callback 函数包裹 json 串</p>
+</blockquote>
+<h5 id="以下案例是用-node-启后端服务"><a href="#以下案例是用-node-启后端服务" class="headerlink" title="以下案例是用 node 启后端服务"></a>以下案例是用 node 启后端服务</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// localhost:4000/index.html</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(data.name, <span class="string">'jsonp'</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'http://localhost:8888/?callback=fn'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// node server.js</span></span><br><span class="line"><span class="keyword">let</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> urllib = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;)</span><br><span class="line">  <span class="keyword">var</span> params = urllib.parse(request.url, <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (params.query &amp;&amp; params.query.callback) &#123;</span><br><span class="line">    <span class="keyword">var</span> str =  params.query.callback + <span class="string">'('</span> + <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">      name: <span class="string">'HelenZhanglp'</span></span><br><span class="line">    &#125;) + <span class="string">')'</span>; <span class="comment">//jsonp</span></span><br><span class="line">    <span class="built_in">console</span>.log(str)</span><br><span class="line"></span><br><span class="line">    response.end(str);</span><br><span class="line">  &#125;</span><br><span class="line">  response.end(<span class="string">'localhost:8888'</span>)</span><br><span class="line">&#125;).listen(<span class="number">8888</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server running at http://127.0.0.1:8888/index.js'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>以上 Demo 二个注意点：</p>
+<ol>
+<li><a href="http://localhost:8888/?callback=fn" target="_blank" rel="noopener">http://localhost:8888/?callback=fn</a> 注意这个链接，参数以前加 <code>?</code>。如此，node 服务端可以通过 urllib.parse(request.url, true) 进入参数解析</li>
+<li>函数 fn 是以变量赋值方式声明的，这里有个<a href>变量提升</a> 的概念，一定要先声明赋值后再引用，如 demo (localhost:4000/index.html)。顺序不能错。</li>
+<li>注意：JSONP只支持GET请求，服务端可能在JSONP响应中夹带恶意代码，判断是否请求成功是困难的。</li>
+</ol>
+<h4 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">跨域资源共享（CORS）</a></h4><ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/CORS" target="_blank" rel="noopener">CORS</a> Cross-Origin Resource Sharing，跨域资源共享）是一个系统，它由一系列传输的HTTP头组成，这些<code>HTTP头决定浏览器是否阻止前端 JavaScript 代码获取跨域请求的响应</code>。同源安全策略 默认阻止“跨域”获取资源。但是 CORS 给了web服务器这样的权限，即服务器可以选择，允许跨域请求访问到它们的资源。</li>
+<li>跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器，让运行在一个 origin (domain) 上的Web应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，资源会发起一个跨域 HTTP 请求。比如，站点 <a href="http://domain-a.com" target="_blank" rel="noopener">http://domain-a.com</a> 的某 HTML 页面通过 <img> 的 src 请求 <a href="http://domain-b.com/image.jpg。网络上的许多页面都会加载来自不同域的CSS样式表，图像和脚本等资源。" target="_blank" rel="noopener">http://domain-b.com/image.jpg。网络上的许多页面都会加载来自不同域的CSS样式表，图像和脚本等资源。</a><br>出于安全原因，浏览器限制从脚本内发起的跨源HTTP请求。例如，XMLHttpRequest 和 Fetch API 遵循同源策略。这意味着使用这些 API的 Web 应用程序只能从加载应用程序的同一个域请求HTTP资源，除非响应报文包含了正确CORS响应头。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckhlzp8sx00581a9iono43ud1"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/25/前端构建工具/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            前端构建工具
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/20/CSS-BFC/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS BFC</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

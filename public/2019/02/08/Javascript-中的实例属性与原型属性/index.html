@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    Javascript 之数据类型 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript-中的实例属性与原型属性" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript 之数据类型
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/08/Javascript-中的实例属性与原型属性/" class="article-date">
+  <time datetime="2019-02-08T02:38:30.000Z" itemprop="datePublished">2019-02-08</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>想对 Promise 作一个深入了解，<code>console.dir(Promise)</code>，得出以下结果。</p>
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/Javascript-property-instance.png?imageView2/2/w/500">
+
+<p>上图可以看到 Promise 即有实例属性、方法，又有原型属性方法。接下来，我要归整归整，Javascript 中的实例属性方法与原型属性方法。</p>
+<a id="more"></a>
+<p><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html</a></p>
+<h3 id="Javascript-数据类型"><a href="#Javascript-数据类型" class="headerlink" title="Javascript 数据类型"></a>Javascript 数据类型</h3><p>纠结了多日，一直没能给出一个自己认为合理的表述方式，直到看到下图：</p>
+<!--<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/jsDataTypes.jpg">-->
+<p><img src="/images/Javascript/jsDataTypes.jpg" alt="alt"><br>与《Javascript高级程序设计》不同，这张图中没有 null。我这边先就图中的信息作一个解析，图中，将数据类型分为值类型与引用类型。</p>
+<ul>
+<li><input checked disabled type="checkbox"> <p>值类型或称基本数据类型，可用 <code>typeof</code> 判断值类型</p>
+<ul>
+<li><p>undefined</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; typeof undefined</span><br><span class="line">  <span class="string">'undefined'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>null</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; typeof null</span><br><span class="line"><span class="string">'object'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>number、boolean、string</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; typeof undefined</span><br><span class="line"><span class="string">'undefined'</span></span><br><span class="line">&gt; typeof 1</span><br><span class="line"><span class="string">'number'</span></span><br><span class="line">&gt; typeof <span class="string">''</span></span><br><span class="line"><span class="string">'string'</span></span><br><span class="line">&gt; typeof <span class="literal">true</span></span><br><span class="line"><span class="string">'boolean'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>[-] 引用类型，用 <code>instanceof</code> 判断引用类型</p>
+</li>
+</ul>
+<p>最新的 ECMAScript 标准定义了7种数据类型：</p>
+<ul>
+<li><input disabled type="checkbox"> <p>6 种基本数据类型</p>
+<ul>
+<li><p><strong>布尔值（Boolean）</strong>，有2个值分别是：true 和 false.</p>
+</li>
+<li><p><strong>null</strong>，一个表明 null 值的特殊关键字。 <code>Javascript 是大小写敏感的，因此 null 与 Null、NULL或变体完全不同</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; null</span><br><span class="line">  null</span><br><span class="line">&gt; Null</span><br><span class="line">  ReferenceError: Null is not defined</span><br><span class="line">&gt; NULL</span><br><span class="line">  ReferenceError: NULL is not defined</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>undefined</strong>，和 null 一样是一个特殊的关键字，undefined 表示变量未定义时的属性。</p>
+</li>
+<li><p><strong>数字（Number）</strong>，整数或浮点数，例如： 42 或者 3.14159。</p>
+</li>
+<li><p><strong>字符串（String）</strong>，字符串是一串表示文本值的字符序列，例如：”Howdy” 。</p>
+</li>
+<li><p><strong>代表（Symbol）</strong> ( 在 ECMAScript 6 中新添加的类型).。一种实例是唯一且不可改变的数据类型。</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>除了 null 与 undefined 以外，其它基本类型都有相应的包装对象</p>
+</blockquote>
+<ul>
+<li><input disabled type="checkbox"> 对象类型</li>
+</ul>
+<h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><p>Javascript 中的几乎所有事物都是对象：字符串、数值、数组、函数等，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckhlzp8pe001g1a9ikl7mlxci"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/20/CSS-盒模型/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            CSS 盒模型
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/08/Node-常用命令/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Node 常用命令</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

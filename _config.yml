@@ -135,3 +135,13 @@ search:
   field: post
   content: true
   format: html
+
+sequence:
+  sequence: https://bramp.github.io/js-sequence-diagrams/js/sequence-diagram-min.js
+  style:
+  options:
+    theme:
+    css_class:
+
+tag_plantuml:
+  type: static

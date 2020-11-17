@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    发布订阅者 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-模式-发布订阅者模式" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      发布订阅者
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/28/模式-发布订阅者模式/" class="article-date">
+  <time datetime="2019-08-28T05:53:29.000Z" itemprop="datePublished">2019-08-28</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="1-观察者模式"><a href="#1-观察者模式" class="headerlink" title="1. 观察者模式"></a>1. 观察者模式</h1><p>对象间的一对多依赖关系，一个对象状态发生改变，依赖于它的对象都将得到通知，并自动更新。 观察者模式属于行为模式，行为模式。行为模式关注的是对象之间的通讯，观察者模式是观察者与被观察者之间的通讯。</p>
+<h1 id="2-订阅-发布模式"><a href="#2-订阅-发布模式" class="headerlink" title="2. 订阅-发布模式"></a>2. 订阅-发布模式</h1><p>在现在的发布订阅模式中，称为发布者的消息发送者不会将消息直接发送给订阅者。发面者和订阅者之间存在第三个组件，称为调度中心或事件通道。调度中心或事件通道，维持着发布者和订阅者间的联系，过滤所有发布者传入的消息并相应地分发给订阅者。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PubSub</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.subscribers = [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    subscribe(topic, callback) &#123;</span><br><span class="line">        <span class="keyword">let</span> callbacks = <span class="keyword">this</span>.subscribers[topic];</span><br><span class="line">        <span class="keyword">if</span> (!callbacks) &#123;</span><br><span class="line">            <span class="keyword">this</span>.subscribers[topic] = [callback];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            callbacks.push(callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publish(topic, ...args) &#123;</span><br><span class="line">        <span class="keyword">let</span> callbacks = <span class="keyword">this</span>.subscribers[topic] || [];</span><br><span class="line">        callbacks.forEach(<span class="function"><span class="params">callback</span> =&gt;</span> callback(...args));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建事件调度中心，为订阅者和发布者提供调度服务</span></span><br><span class="line"><span class="keyword">let</span> pubSub = <span class="keyword">new</span> PubSub();</span><br><span class="line"><span class="comment">// A订阅了SMS事件（A只关注SMS本身，而不关心谁发布这个事件）</span></span><br><span class="line">pubSub.subscribe(<span class="string">'SMS'</span>, <span class="built_in">console</span>.log);</span><br><span class="line"><span class="comment">// B订阅了SMS事件</span></span><br><span class="line">pubSub.subscribe(<span class="string">'SMS'</span>, <span class="built_in">console</span>.log);</span><br><span class="line"><span class="comment">// C发布了SMS事件（C只关注SMS本身，不关心谁订阅了这个事件）</span></span><br><span class="line">pubSub.publish(<span class="string">'SMS'</span>, <span class="string">'I published `SMS` event'</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.observers = [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    add(observer) &#123;</span><br><span class="line">        <span class="keyword">this</span>.observers.push(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    notify(...args) &#123;</span><br><span class="line">        <span class="keyword">this</span>.observers.forEach(<span class="function"><span class="params">observer</span> =&gt;</span> observer.update(...args));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    update(...args) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(...args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建观察者ob1</span></span><br><span class="line"><span class="keyword">let</span> ob1 = <span class="keyword">new</span> Observer();</span><br><span class="line"><span class="comment">// 创建观察者ob2</span></span><br><span class="line"><span class="keyword">let</span> ob2 = <span class="keyword">new</span> Observer();</span><br><span class="line"><span class="comment">// 创建目标sub</span></span><br><span class="line"><span class="keyword">let</span> sub = <span class="keyword">new</span> Subject();</span><br><span class="line"><span class="comment">// 目标sub添加观察者ob1 （目标和观察者建立了依赖关系）</span></span><br><span class="line">sub.add(ob1);</span><br><span class="line"><span class="comment">// 目标sub添加观察者ob2</span></span><br><span class="line">sub.add(ob2);</span><br><span class="line"><span class="comment">// 目标sub触发SMS事件（目标主动通知观察者）</span></span><br><span class="line">sub.notify(<span class="string">'I fired `SMS` event'</span>);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckhlzp8so004x1a9id84dzwsk"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/12/25/日记-2019-12-25/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            日记-2019-12-25
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/08/28/Javascript-对象/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Javascript-对象</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

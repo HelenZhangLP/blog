@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    vue.config.js |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-vue-config-js" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue.config.js
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/22/vue-config-js/" class="article-date">
+  <time datetime="2019-07-22T03:12:36.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="全面解读-vue-config-js"><a href="#全面解读-vue-config-js" class="headerlink" title="全面解读 vue.config.js"></a>全面解读 <code>vue.config.js</code></h1><blockquote>
+<p><a href="https://cli.vuejs.org/zh/config/" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line">&gt; <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;   <span class="comment">// 基本路径，默认被部署在根路径，如果需要部署在子路径，publicPath 设置为 /example/</span></span><br><span class="line">&gt;   publicPath: process.env.NODE_ENV === <span class="string">"development"</span> ? <span class="string">"/"</span> : <span class="string">"/mallActivity/"</span>,</span><br><span class="line">&gt;   outputDir: <span class="string">'dist'</span>, <span class="comment">// 运行 vue-cli-service build 时生成生产环境构建文件的目录</span></span><br><span class="line">&gt;   assetsDir: <span class="string">'assets'</span>, <span class="comment">//生成文件的静态资源目录</span></span><br><span class="line">&gt;   <span class="comment">// productionSourceMap：&#123; type:Bollean,default:true &#125; 生产源映射</span></span><br><span class="line">&gt;   <span class="comment">// 如果您不需要生产时的源映射，那么将此设置为false可以加速生产构建</span></span><br><span class="line">&gt;   productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">&gt;   css: &#123;</span><br><span class="line">&gt;     loaderOptions: &#123; <span class="comment">// CSS 加载器</span></span><br><span class="line">&gt;       stylus: &#123;</span><br><span class="line">&gt;         javascriptEnabled: <span class="literal">true</span></span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">&gt;     <span class="keyword">const</span> types = [<span class="string">'vue-modules'</span>, <span class="string">'vue'</span>, <span class="string">'normal-modules'</span>, <span class="string">'normal'</span>]</span><br><span class="line">&gt;     types.forEach(<span class="function"><span class="params">type</span> =&gt;</span> addStyleResource(config.module.rule(<span class="string">'stylus'</span>).oneOf(type)))</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   devServer: &#123;</span><br><span class="line">&gt;     proxy: &#123; <span class="comment">// 在开发环境下将 API 请求代理到 API 服务器</span></span><br><span class="line">&gt;       <span class="string">'/mock'</span>: &#123;</span><br><span class="line">&gt;         target: <span class="string">'http://10.8.5.180:80'</span>,</span><br><span class="line">&gt;         pathRewrite: &#123;</span><br><span class="line">&gt;           <span class="string">'^/mock'</span>: <span class="string">'/mock'</span></span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">addStyleResource</span> (<span class="params">rule</span>) </span>&#123;</span><br><span class="line">&gt;   rule.use(<span class="string">'style-resource'</span>)</span><br><span class="line">&gt;     .loader(<span class="string">'style-resources-loader'</span>)</span><br><span class="line">&gt;     .options(&#123;</span><br><span class="line">&gt;       patterns: [</span><br><span class="line">&gt;         path.resolve(__dirname, <span class="string">'./src/assets/stylus/golbal.styl'</span>)</span><br><span class="line">&gt;       ]</span><br><span class="line">&gt;     &#125;)</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhlzp8rs00441a9i9nbc3fwv"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/07/23/axios-源码解读/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            axios 源码解读
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">cookie 与 Web Storage</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

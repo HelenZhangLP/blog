@@ -4,7 +4,7 @@ date: 2020-01-08 10:07:22
 tags:
 ---
 
-## Array 
+## Array
 
 ### 源码分析
 > ToUint32 将指定的值转换为 32 位，不带正负号的整数
@@ -87,9 +87,9 @@ function Compare(x,y) {
 function ArraySort(comparefn) {
   // In-place QuickSort algorithm.
   // For short (length <= 22) arrays, insertion sort is used for efficiency.
- 
+
   var custom_compare = IS_FUNCTION(comparefn);
- 
+
   function Compare(x,y) {
     // Assume the comparefn, if any, is a consistent comparison function.
     // If it isn't, we are allowed arbitrary behavior by ECMA 15.4.4.11.
@@ -106,7 +106,7 @@ function ArraySort(comparefn) {
     if (x == y) return 0;
     else return x < y ? -1 : 1;
   };
- 
+
   function InsertionSort(a, from, to) {
     for (var i = from + 1; i < to; i++) {
       var element = a[i];
@@ -139,7 +139,7 @@ function ArraySort(comparefn) {
       a[min] = element;
     }
   }
- 
+
   function QuickSort(a, from, to) {
     // Insertion sort is faster for short arrays.
     if (to - from <= 22) {
@@ -181,14 +181,14 @@ function ArraySort(comparefn) {
     QuickSort(a, from, low_end);
     QuickSort(a, high_start, to);
   }
- 
+
   var old_length = ToUint32(this.length);
   if (old_length < 2) return this;
- 
+
   %RemoveArrayHoles(this);
- 
+
   var length = ToUint32(this.length);
- 
+
   // Move undefined elements to the end of the array.
   for (var i = 0; i < length; ) {
     if (IS_UNDEFINED(this[i])) {
@@ -199,9 +199,9 @@ function ArraySort(comparefn) {
       i++;
     }
   }
- 
+
   QuickSort(this, 0, length);
- 
+
   // We only changed the length of the this object (in
   // RemoveArrayHoles) if it was an array.  We are not allowed to set
   // the length of the this object if it is not an array because this
@@ -209,7 +209,7 @@ function ArraySort(comparefn) {
   if (IS_ARRAY(this)) {
     this.length = old_length;
   }
- 
+
   return this;
 }
 ```
