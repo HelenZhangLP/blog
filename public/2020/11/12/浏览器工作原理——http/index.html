@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    浏览器工作原理——http |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器工作原理——http" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器工作原理——http
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/12/浏览器工作原理——http/" class="article-date">
+  <time datetime="2020-11-12T08:19:06.000Z" itemprop="datePublished">2020-11-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>XHR -&gt; Request Headers -&gt; view source</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET /shakespeare/jsd/exchange_rates/current HTTP/1.1</span><br><span class="line">Host: www.jianshu.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Accept: application/json</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36</span><br><span class="line">Sec-Fetch-Site: same-origin</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.jianshu.com/p/6dbcc3aff98b</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8</span><br><span class="line">Cookie: __yadk_uid=b5C1W8FTbvn2CMErMOWLRvRBfqtcfZyR; _ga=GA1.2.1361763253.1581860875; __gads=ID=e22e0402239bcdd8-22e9450047c200f4:T=1593494469:RT=1593494469:S=ALNI_MbgAdC1pDH1wBUKwaWC6teLb00cyg; read_mode=day; default_font=font2; locale=zh-CN; UM_distinctid=175537082be1a1-08e93312a69e19-4d112a29-38400-175537082bf1b5; CNZZDATA1278917561=2017572215-1603418142-https%253A%252F%252Fwww.jianshu.com%252F%7C1603447023; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22%24device_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22props%22%3A%7B%22%24latest_referrer%22%3A%22https%3A%2F%2Fwww.baidu.com%2Flink%22%2C%22%24latest_traffic_source_type%22%3A%22%E8%87%AA%E7%84%B6%E6%90%9C%E7%B4%A2%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC%22%7D%7D; _gid=GA1.2.1053313438.1605150552; _m7e_session_core=559108e9b8dcd6adff1770cd4662ce96; signin_redirect=https://www.jianshu.com/p/6dbcc3aff98b; Hm_lvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1604707994,1604975982,1605150555,1605156601; _gat=1; Hm_lpvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1605170209</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>HTTP 是一种允许浏览器向服务器发起资源的请求的协议，是 Web 的基础。</p>
+<h2 id="浏览器发起-HTTP-请求流程"><a href="#浏览器发起-HTTP-请求流程" class="headerlink" title="浏览器发起 HTTP 请求流程"></a>浏览器发起 HTTP 请求流程</h2><ol>
+<li><p>构建请求</p>
+<blockquote>
+<p>GET /shakespeare/jsd/exchange_rates/current HTTP/1.1</p>
+</blockquote>
+</li>
+<li><p>查找缓存<br>浏览器缓存是在本地保存资源副本，以供下次请求时直接使用的技术。如果浏览器资源的副本存在，请求被拦截，返回副本，结束请求。从而缓解服务器压力，提升性能。对于网站来说，缓存是实现资源加载最重要的部分。</p>
+</li>
+<li><p>准备 IP 和 端口 并等待 TCP 队列<br>如果浏览器请求缓存资源失败，就会进入网络请求。<br>怎么通过 url 获取 ip 地址和端口号呢？ip 地址是数字标识，从请求里面可获取，如下请求 ip 地址为 47.92.108.93：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://www.jianshu.com/shakespeare/jsd/exchange_rates/current</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 200 OK</span><br><span class="line">Remote Address: 47.92.108.93:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>ip 数字难记。我们一般记的是域名，如上请求 <code>jianshu.com</code>，需要使用 <strong>域名系统</strong> （Domain Name System，DNS）将域名和ip进行映射。浏览器有<code>DNS</code>数据缓存服务。<strong><code>总结下来：第一步浏览器从 DNS 缓存数据里面查找 ip，如果没有再请求 DNS 返回域名对应的 ip</code></strong><br>端口号在没有指定的情况下是 80 端口，像上面的案例中，端口号为 443。</p>
+<blockquote>
+<p>chrome 机制，同一个域名最多只建立 6 个 tcp 链接，多于 6 个请求会进入排队等待状态，走到进行中的请求完成。</p>
+</blockquote>
+<ol start="4">
+<li><p>建立 TCP 连接<br>三次握手，传输数据，断开链接</p>
+</li>
+<li><p>发送 HTTP 请求<br>建立 TCP 链接后浏览器和服务器便可以通信了。</p>
+</li>
+</ol>
+<ul>
+<li>发送请求行，包括请求方法、请求的 URI(Uniform Resource Identifier)统一资源标识、HTTP 版本协议<blockquote>
+<p>GET /shakespeare/jsd/exchange_rates/current HTTP/1.1</p>
+</blockquote>
+</li>
+</ul>
+<p>上面的案例是 get 请求，除此之外还有 post 请求，即发送一些数据给服务器，浏览器会把需要发送给服务器的数据通过<code>请求体</code>发送。<br>发送请求行之后，浏览器还要以<code>请求头</code>形式发送一些其他信息，把浏览器的基本信息告诉给服务器。</p>
+<blockquote>
+<p>User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36<br>Host: <a href="http://www.jianshu.com" target="_blank" rel="noopener">www.jianshu.com</a><br>Cookie: __yadk_uid=b5C1W8FTbvn2CMErMOWLRvRBfqtcfZyR; _ga=GA1.2.1361763253.1581860875;</p>
+</blockquote>
+<h2 id="服务器处理-HTTP-请求"><a href="#服务器处理-HTTP-请求" class="headerlink" title="服务器处理 HTTP 请求"></a>服务器处理 HTTP 请求</h2><ol>
+<li>返回请求<br>可以通过命令 <code>curl -i https://www.jianshu.com/p/6dbcc3aff98b</code> 查看返回的请求数据，如响应行，响应头，响应体等数据<br><code>curl -I jianshu.com</code> -I 只获取响应头和响应行数据。</li>
+</ol>
+<p>Response Headers</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: Tengine</span><br><span class="line">Date: Thu, 12 Nov 2020 08:36:49 GMT</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">X-Frame-Options: DENY</span><br><span class="line">X-XSS-Protection: 1; mode=block</span><br><span class="line">X-Content-Type-Options: nosniff</span><br><span class="line">ETag: W/&quot;4a327be29535622a46f3b610df2a02c1&quot;</span><br><span class="line">Cache-Control: max-age=0, private, must-revalidate</span><br><span class="line">Set-Cookie: locale=zh-CN; path=/</span><br><span class="line">Set-Cookie: _m7e_session_core=559108e9b8dcd6adff1770cd4662ce96; domain=.jianshu.com; path=/; expires=Thu, 12 Nov 2020 14:36:49 -0000; secure; HttpOnly</span><br><span class="line">X-Request-Id: 503c9b5a-3190-4e2a-9060-ead15564caa1</span><br><span class="line">X-Runtime: 0.007053</span><br><span class="line">Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</span><br><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应行</strong> <code>HTTP/1.1 200 OK</code> 协议版本与状态码。我们这里的状态码是 200 表示处理成功，遇到其它无法处理或处理出错的会有其它的状态码，如：没有找到返回页面 404。301 状态码表示重定向，需要重定向的网址包含在 <strong>响应头</strong> Location 字段中。<br>服务器随响应向浏览器发送 <strong>响应头</strong> 信息。包括了：<br><code>Date: Thu, 12 Nov 2020 08:36:49 GMT</code> 返回数据的时间；<br><code>Content-Type: application/json; charset=utf-8</code> 返回数据的类型；<br><code>Set-Cookie: _m7e_session_core=559108e9b8dcd6adff1770cd4662ce96; domain=.jianshu.com; path=/; expires=Thu, 12 Nov</code> 服务器在客户端保存的 cookie。</p>
+<ol start="2">
+<li>断开链接<br>通常情况下，服务向浏览器返回数据后，会断开链接。<code>Connection: keep-alive</code> 表示 TCP 连接在发送后保持打开状态，浏览器可以通过同一个 TCP 发送请求。<strong>保持 TCP 连接可以省去下次请求建立连接的时间，提升资源加载速度</strong></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckhmqx4du0053eo9inc83bbi9"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            浏览器 chrome 打开一个页面执行的进程
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/11/浏览器工作原理——数据的传输过程/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">浏览器工作原理——数据的传输过程</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

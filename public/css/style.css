@@ -1104,12 +1104,12 @@ img {
   }
   .wrap,
   .outer {
-    width: 80rem;
+    width: 100rem;
     padding-right: 0;
     padding-left: 0;
   }
   .local-search {
-    width: 80rem;
+    width: 100rem;
   }
 }
 .list-unstyled,

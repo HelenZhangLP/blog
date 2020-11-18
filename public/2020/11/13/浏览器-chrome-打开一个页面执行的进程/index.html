@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    浏览器 chrome 打开一个页面执行的进程 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器-chrome-打开一个页面执行的进程" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器 chrome 打开一个页面执行的进程
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" class="article-date">
+  <time datetime="2020-11-13T04:44:23.000Z" itemprop="datePublished">2020-11-13</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>网络流程、<br>页面渲染过程、<br>javascript 执行流程<br>网络安全理论</p>
+<p>了解 chrome 浏览器启动了几个进程</p>
+<blockquote>
+<p>chrome 选项 -&gt; more tools -&gt; task manager</p>
+</blockquote>
+<p>多线程并行处理能大大提升性能，但是线程不能单独存在，需要进行来启动、管理。一个进程是一个程序的运行实例。也就是说，启动一个程序时，操作系统为该程序创建一个内存空间，用于存放代码、运行数据和执行任务的主线程。这个运行环境就是一个进程。</p>
+<a id="more"></a>
+
+<h2 id="进程与线程的关系·"><a href="#进程与线程的关系·" class="headerlink" title="进程与线程的关系·"></a>进程与线程的关系·</h2><ol>
+<li>进程中的任意线程执行出错，整个进程崩溃；</li>
+<li>线程之间共享进程中的数据；</li>
+<li>当一个进程关闭之后，操作系统会回收进程战胜的内存；</li>
+<li>进程之间的内容相互隔离。</li>
+</ol>
+<h2 id="单进程浏览器时代"><a href="#单进程浏览器时代" class="headerlink" title="单进程浏览器时代"></a>单进程浏览器时代</h2><p>浏览器的所有功能模块（像网络、插件、javascript 运行环境、渲染引擎和页面）运行在同一个进程里。多个功能模块运行在一个进程中，导致浏览器不稳定、不安全、不流畅。<br>2007 年前的浏览器大多都是单线程，早期浏览器需要借助插件实现 Web 视频和 web 游戏的功能，插件是最容易出问题的模块，运行在浏览器进程中，很容易由于插件崩溃引起浏览器崩溃。另外渲染模块也不稳定。复杂的 javascript 代码就有可能引起渲染引擎模块崩溃，导致整个浏览器崩溃。<br>通常一个线程一直占用，或内存泄漏。运行比较复杂的页面会存在内存不能完全回收的情况，如此使用时间越长、内存占用越高、浏览器会变得越来越慢。<br>使用插件意味着该插件可以完全操作你的电脑，恶意插件会释放病毒、窃取账号密码。存在安全问题。</p>
+<h2 id="多进程浏览器时代"><a href="#多进程浏览器时代" class="headerlink" title="多进程浏览器时代"></a>多进程浏览器时代</h2><img src="http://www.plantuml.com/plantuml/svg/TP7FJi904CRl-nGR7e0d8BruqfDtoe50GqZ8GWfwCIOI27-4IXKrb89DnQGS32g2LahnOMndbnElu68rmQ397YOpl_tcopTHQ5rupWjxr-cm4SEHI2vpa4eJd9Ep2IcV5mI4I3OfOPYsc5NpjQ5dEm7CsUqccnXiCl3i1dDTDYt3J1K97PbKhU3T_HsHG6T1xsPWZy5e1p_efG4rbNRBlhwWzUfweImb2d6IoaWuj4a6sgjvLoJC6i2D-d5I3EQys8iVnlC9EPqhOAXRp6podaXyjROMTy-NvdJz-hUhkSvTRAZwlI6CDJfwMbQRN_EcI3nROIMNFJX-HQFcFTKxddtABSBL8oYZ07aplgcpLxzr3Mt5StlqsQ6E0VtIKbD3F1zP8ab9_iaI1ti40HyXZAER9cB_mrjeE2nivuwE4Oh-EYN7_ZWQ-WG0">
+
+<p>Chrome 插件及渲染都运行在各自单独的进程中，进程之间通过 ipc 机制进行通信。<br>当前页面或插件崩溃，只影响到当前页面或插件进程，浏览器的其它页面不受影响，解决了页面或插件崩溃导致的整个浏览器崩溃的 <strong>不稳定</strong> 的问题。<br>渲染页面是在沙箱中进行的，不能在硬盘上写入任何数据，也不能在敏感位置读取数据，恶意程序不能通过沙箱破坏系统，解决了 <strong>不安全</strong> 的问题。<br>Javascript 渲染进程中，阻塞渲染进程，并不会影响到浏览器其它页面，脚本运行在自己的沉浸进程中，死循环影响的仅仅是当前页面的渲染进程，解决了 <strong>不流畅</strong> 的问题。内存泄漏，只需要关闭当前页面，资源就能被系统回收。</p>
+<h2 id="目前的多进程框架"><a href="#目前的多进程框架" class="headerlink" title="目前的多进程框架"></a>目前的多进程框架</h2><img src="http://www.plantuml.com/plantuml/svg/RLBDJXfH6Dtp53Vn4PeqDJ4kQfEcNJKnTYDTZ3Wg1MR83DP5qmJ5o21_8sYa2WfMscahOXl4SOQHTwdtk_UowYlq3eCKr6GoY-_ddFETU-Q9-PiS5rdta1ffz2U-opz4gYPq4zYsORj6Iasus48hiKZuDhuUK5N-Vozy4DI04ep6a5zYpXd9dc3Jehi6qQuWtyHs7PivV9t6rYcs2lHWapexlThbRNp3Bv5SWQOqwEoHOWuz3mUb48921ht-3pdelNs6UWc7qxEkpcePA1kiMVTqOhFn3arDAQAqA2eegiW1KLMdfttp95_0Tdly6DOwPgqlTnqNwcyduvTmjyAQwzZCuiu175QzFhI-4oi1pGvBjiXbddtJuBF1vN7nlSe9vFV1-GN5h4iU3Qyk1wLHSduajSkFaGywbvl4qc6xoXp7at2TXbIMNuYTClSFct5i_Y163Ihxmvk7AeQNzrT9ESwwEpHzHd-c8McHIfsNYQOFORmMjzxRSnLBOcnDLaAZab--cHlNomk8Bu5MORKhz-dFZsZk0ZrvWMPcPn7PqyXHcJC5LXGv8hgJQEuLediPxaulcUG9w2DmETGkWTPsQTt2w1FT7OHDUvoR6y9BNzS7dlL1IUc6dbeySdx9YvSNgNu16he7GCzhLD_g-m9wXkotILx7DuVGAC66GHifs3vc2SVLig38Q-fOP7ngA2X51KM8e80SYSgIACNGHnz22q8WjAp8gzBYZ1oMbOTfGnDBavEF3TvF1ffuAWYF3JvGmo6NbdoV_W40">
+
+<p>因为每个进程都会包含基本框架副本，多进程浏览器会 <strong>占用更高资源</strong>，这就意味着浏览器会消耗更多内存资源。更复杂的体系架构，模块之间会有耦合高，扩展性差。现在的框架难适应新的需求。</p>
+<h2 id="面向服务的架构-Services-Oriented-Architecture-SOA"><a href="#面向服务的架构-Services-Oriented-Architecture-SOA" class="headerlink" title="面向服务的架构(Services Oriented Architecture,SOA)"></a>面向服务的架构(Services Oriented Architecture,SOA)</h2><p>也就是说 Chrome 会朝向现代操作系统所采用的“面向服务的架构”方向发展，原来的各种模块会被重构成独立的服务（Service），每个服务都在独立的进程中运行。访问服务必须采用接口，通过 ipc 来通信，从而构建一个更内聚，松耦合、易于维护和扩展的系统，更好的实现 Chrome 简单、稳定、高速、安全的目标。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckhmqx4ds0051eo9ixur7fqx8"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            浏览器工作原理——从输入URL 到页面展示，这中间发生了什么
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/12/浏览器工作原理——http/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">浏览器工作原理——http</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

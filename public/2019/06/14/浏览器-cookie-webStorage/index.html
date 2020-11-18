@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    cookie 与 Web Storage |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cookie 与 Web Storage
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-date">
+  <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>先了解下浏览器缓存存储过程的序列图：</p>
+<div id="sequence-0"></div>
+`If-None-Match:"4f80f-13c-3a1xb12a"` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
+
+<p>Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。</p>
+<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">'undefined'</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code></p>
+<ul>
+<li>由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。</li>
+</ul>
+<a id="more"></a>
+
+
+<h2 id="window-localStorage"><a href="#window-localStorage" class="headerlink" title="window.localStorage"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage" target="_blank" rel="noopener">window.localStorage</a></h2><p>只读的 localStorage 属性<code>允许你访问一个 Document 源（origin）的对象 Storage</code>；其存储的数据能在跨浏览器会话保留，不会随浏览器关闭而消失，数据可分页、跨窗口访问。</p>
+<p>localStorage 类似 sessionStorage<br>但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束——也就是说，当页面被关闭时，存储在 sessionStorage 的数据会被清除 。</p>
+<p><code>注意:</code></p>
+<ul>
+<li>无论数据存储在 localStorage 还是 sessionStorage ，它们都特定于页面的协议。</li>
+<li>localStorage 中的键值对总是以字符串的形式存储。 (需要注意, 和 javascript 对象相比, 键值对总是以字符串的形式存储意味着数值类型会自动转化为字符串类型。</li>
+<li>localStorage API 与 javascript 一样基于同源策略（Same-Origin Policy），网页之间的相互调用仅限于相同的网站，同源才能获取同一个 localStorage。（同源策略：相同协议，相同域名IP，相同端口）</li>
+</ul>
+<h3 id="window-localStorage-存取的三种方式"><a href="#window-localStorage-存取的三种方式" class="headerlink" title="window.localStorage 存取的三种方式"></a>window.localStorage 存取的三种方式</h3><ol>
+<li><p>window.localStorage 的对象方法 setItem 与 getItem</p>
+<blockquote>
+<p>window.localStorage.setItem(key, value)<br>var value = window.localStorage.getItem(key)</p>
+</blockquote>
+</li>
+<li><p>数组索引</p>
+<blockquote>
+<p>window.localStorage[‘key’] = value<br>var value = window.localStorage[‘key’]</p>
+</blockquote>
+</li>
+<li><p>属性</p>
+<blockquote>
+<p>window.localStorage.key = value<br>var value = window.localStorage.key</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="window-localStorage-清除的几种方式"><a href="#window-localStorage-清除的几种方式" class="headerlink" title="window.localStorage 清除的几种方式"></a>window.localStorage 清除的几种方式</h3><ol>
+<li>浏览器开发者工具 - application - localStorage - 选中删除项，点击管理工具上的删除</li>
+<li><code>window.localStorage.removeItem(key)</code></li>
+<li><code>delete window.localStorage.key</code></li>
+<li><code>delete window.localStorage[key]</code></li>
+<li>清除全部数据 <code>window.localStorage.clear()</code></li>
+</ol>
+<h2 id="window-sessionStorage"><a href="#window-sessionStorage" class="headerlink" title="window.sessionStorage"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage" target="_blank" rel="noopener">window.sessionStorage</a></h2><p>用于保存临时数据，防止用户不小心刷新数据丢失，如大的表单提交。<br>sessionStorage 属性<code>允许你访问一个 session Storage 对象</code>。它与 localStorage 相似，不同之处在于 localStorage 里面存储的数据没有过期时间设置，而存储在 sessionStorage 里面的数据在页面会话结束时会被清除。页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。在新标签或窗口打开一个页面时会在顶级浏览上下文中初始化一个新的会话，这点和 session cookies 的运行方式不同。</p>
+<blockquote>
+<p>存储在 sessionStorage 或 localStorage 中的数据特定于该页面的协议。</p>
+</blockquote>
+<h3 id="window-sessionStorage-存取的三种方式"><a href="#window-sessionStorage-存取的三种方式" class="headerlink" title="window.sessionStorage 存取的三种方式"></a>window.sessionStorage 存取的三种方式</h3><ol>
+<li><p>window.sessionStorage 的对象方法 setItem 与 getItem</p>
+<blockquote>
+<p>window.sessionStorage.setItem(key, value)<br>var value = window.sessionStorage.getItem(key)</p>
+</blockquote>
+</li>
+<li><p>数组索引</p>
+<blockquote>
+<p>window.sessionStorage[‘key’] = value<br>var value = window.sessionStorage[‘key’]</p>
+</blockquote>
+</li>
+<li><p>属性</p>
+<blockquote>
+<p>window.sessionStorage.key = value<br>var value = window.sessionStorage.key</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="window-sessionStorage-清除的几种方式"><a href="#window-sessionStorage-清除的几种方式" class="headerlink" title="window.sessionStorage 清除的几种方式()"></a>window.sessionStorage 清除的几种方式()</h3><ol>
+<li>浏览器开发者工具 - application - sessionStorage - 选中删除项，点击管理工具上的删除</li>
+<li><code>window.sessionStorage.removeItem(key)</code></li>
+<li><code>delete window.sessionStorage.key</code></li>
+<li><code>delete window.sessionStorage[key]</code></li>
+<li>清除全部数据 <code>window.sessionStorage.clear()</code></li>
+<li>关闭浏览器或当前窗口</li>
+</ol>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cookie" target="_blank" rel="noopener">Cookie</a></h2><p>Cookie 是一个请求首部，其中含有先前由服务器通过 Set-Cookie 首部投放并存储到客户端的 HTTP cookies。<br>这个首部可能会被完全移除，例如在浏览器的隐私设置里面设置为禁用cookie。</p>
+<blockquote>
+<ul>
+<li>Cookie 数据始终在同源的http请求中携带（即使不需要），就会在浏览器和服务器间来回传递，安全性低。而 Web Storage 不会把数据发给服务器，仅存在本地</li>
+<li>以键值对应组合保存数据</li>
+</ul>
+</blockquote>
+<h2 id="Web-Storage-与-Cookie-对比表"><a href="#Web-Storage-与-Cookie-对比表" class="headerlink" title="Web Storage 与 Cookie 对比表"></a>Web Storage 与 Cookie 对比表</h2><table class="table table-striped">
+<thead>
+<tr>
+<th></th>
+<th>属性</th>
+<th>访问对象</th>
+<th>过期时间</th>
+<th>存储大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>window.localStorage</td>
+<td>/</td>
+<td>Document 源（origin）的对象 Storage(local storage)</td>
+<td>永久存储数据，浏览器关闭后数据不丢失，除非主动执行删除指令删除</td>
+<td>HTML5 规范中，容量由客户端程序（浏览器）决定，通常 1mb~5mb</td>
+</tr>
+<tr>
+<td>window.sessionStorage</td>
+<td>/</td>
+<td>session storage 对象</td>
+<td>页面关闭，会话结束，session 清除</td>
+<td>HTML5 规范中，容量由客户端程序（浏览器）决定，通常 1mb~5mb</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>标识用户用户身份而存储在用户本地终端上的数据（通常经过加密）</td>
+<td>/</td>
+<td>Expires/Max-Age 之前有效</td>
+<td>4kb</td>
+</tr>
+</tbody></table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">title: 浏览器缓存序列图
+Note left of 浏览器:发起 http 请求
+浏览器->Cache: GET /index HTTP/1.1
+Note right of Cache: 缓存是空的，\n继续请求 web 服务器
+Cache->Web 服务器:GET /index HTTP/1.1
+Note left of Web 服务器: 缓存本地
+Web 服务器->Cache: HTTP/1.1 200 OK \n Cache-Control: \n Max-age=2000
+Cache->浏览器: HTTP/1.1 200 OK \n Cache-Control: \n Max-age=2000 \n Age:0
+Note left of 浏览器: 1000 秒后再次发起请求
+浏览器->Cache: GET /index HTTP/1.1
+Cache->Cache: /index.html \n Max-age=2000 \n Age=1000
+Note right of Cache: 缓存生命周期内的
+Cache->浏览器: HTTP/1.1 200 OK \n Cache-Control: \n Max-age=2000 \n Age:1000
+Note left of 浏览器: 2100 秒后再次发起请求
+浏览器->Cache: GET /index HTTP/1.1
+Note right of Cache: /index.html \n Max-age=2000 \n Age=2100 \n 缓存过期，向服务器请求
+Cache->Web 服务器: GET /index HTTP/1.1 \n If-None-Match
+Web 服务器->Cache: HTTP/1.1 304 Not Modified
+Note left of Web 服务器:服务器 304，\n 缓存内容没有改动
+Cache->浏览器: HTTP/1.1 304 \n Not Modified \n Cache-Control: \n Max-age=2000 \n Age:0</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple"}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhmqx4do004veo9i6kolsdt1"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/07/22/vue-config-js/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            vue.config.js
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/12/http-请求状态码/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">http 请求状态码</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
