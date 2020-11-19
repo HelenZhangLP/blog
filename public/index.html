@@ -52,6 +52,91 @@
 
     
       
+        <article id="post-浏览器工作原理——页面渲染" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/18/浏览器工作原理——页面渲染/">浏览器工作原理——页面渲染</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/18/浏览器工作原理——页面渲染/" class="article-date">
+  <time datetime="2020-11-18T03:37:58.000Z" itemprop="datePublished">2020-11-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>按照渲染的时间顺序，流水线可分为如下几个阶段：构建 DOM 树、样式计算、布局阶段、分层、绘制、分块、光栅化和合成。</p>
+<ol>
+<li>将 HTML 转换为浏览器能够理解的结构 —— DOM 树<pre class="mermaid">graph TD
+document[document] --> html[html]
+html-->head[head]
+html-->body[body]
+head-->link[link]
+body-->p[p]
+body-->div[div]
+p-->span[span]
+p-->渲染流程(渲染流程)
+span-->重点介绍(重点介绍)
+div-->p1[p]
+p1-->green(green)</pre></li>
+<li>样式计算（Recalculate Style）<br>计算出 DOM 节点中每个元素的具体样式，分三步完成：</li>
+</ol>
+<ul>
+<li>渲染引擎接收到 css 文本时，会执行一个转换操作，将 CSS 文本转换为浏览器可以理解的结构 —— styleSheets。document.styleSheets 可以查看样式 表包含的多种样式。</li>
+<li>属性值的标准化操作。将属性值 2em/blue/bold 转换为渲染引擎容易理解的、标准化的计算值。</li>
+<li>根据 css 的继承规则和层叠规则，计算出 Dom 树每个节点的具体样式。css 继承每个 dom 节点都包含父节点样式。<br><img src="https://static001.geekbang.org/resource/image/88/b2/88a3aac427cc7c09361eac01a85fc7b2.png" alt="chrome开发者工具-styleSheets"><br>图中，可以看出，样式表的继承关系， user agent styleSheets 是浏览器内置的默认样式<br>可以在 chrome 开发者工具 ——&gt; 选择 element，再选择 computed 子标签</li>
+</ul>
+<ol start="3">
+<li>布局<br>计算出 DOM 树中可见元素的几何位置，<strong>布局</strong>。额外构建一棵只包含可见元素布局树。<img src="http://www.plantuml.com/plantuml/svg/AqfDBadCIyz9LKXFpKijIYn9zKcip2yj2IbAJLMmiNa-PVwpZWbFTpG_tTZmRC54Epk5QYu5XIAu9XT_Nw2gbFnSEpiKSUVyt8BIajIKu9BA790voL2-GZ580AYubWkBVRfs2j59-IcLiLnv-IMf2ZcfQIKA-MamiRJyl1BTuiogL2i58uE22gxKl1G5a3ekYBokhbrq0RhE0anjoVav-KLMHUb96WOw1Zf6fgQQs4nAoIo3cbMKcPu1CGmiXcuSc5-U2b9afM1kO81aFj1ie0q6oEONW0n_jcFJi_cJdsrjVBwYcmjiAjH6GtJdGyGein9i1j22ejGK0000">
+布局树中忽略 head,display:none 的隐藏元素。</li>
+</ol>
+<p><strong>总结：</strong> html 页面内容被提交给渲染引擎，渲染引擎首先将 html 解析为浏览器可以理解的 DOM，接着根据 css 样式表计算出 DOM 树的所有节点的样式；最后计算出元素的几何坐标，将信息保存在 dom 树中。</p>
+<ol start="4">
+<li>图层<br>渲染引擎还需要为特定的节点生成专用的图层，并生成一查对应的图层树（LayerTree），chrome 开发者工具，选择 layer 标签，可查看页面分层情况。</li>
+</ol>
+<ul>
+<li>拥有层叠上下文的元素会被提升为单独的一层。<br>z-index/position:fixed/filter/opacity</li>
+<li>需要剪裁（clip）的地方也会被创建为图层 overflow: auto</li>
+</ul>
+<ol start="5">
+<li>图层绘制<br>渲染引擎实现图层绘制，会把一个图层的绘制拆分成很多小的 <strong>绘制指令</strong>，然后再把这些指令按照顺序组成一个待绘制列表</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckhnbct7o00561n9i4d2yyf1v"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-hexo-插件系列" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -90,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckhmrzazl003hj99iayhn6xqb"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckhnbct6g003l1n9ilk7cbhpv"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -148,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckhmrzb1h004yj99ifygh6nyk"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckhnbct7t00591n9irk8dvwuz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -205,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckhmrzb0v004kj99iv9pjmj65"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckhnbct7e004p1n9i0if5m2on"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -258,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckhmrzb1b004vj99ib91fyfvp"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckhnbct7m00511n9imq6ub33d"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -313,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckhmrzb1t0053j99imsd9w19n"
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckhnbct7n00541n9ioseorqby"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -378,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckhmrzb1o0051j99if14ubnnd"
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckhnbct7l00501n9iqikior0m"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -453,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckhmrzay6001oj99i4in86hxg"
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckhnbct5b001m1n9ix8ws65bm"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -518,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckhmrzaxi000qj99ilrrim9gq"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckhnbct4u000v1n9i1uhmrl9j"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -570,66 +655,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckhmrzaxx001aj99i33tnqg0c"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckhnbct57001f1n9if415h9pt"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-bash" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/bash/">macos 常用命令</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/bash/" class="article-date">
-  <time datetime="2020-10-22T03:59:39.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="macos-解压文件-rar"><a href="#macos-解压文件-rar" class="headerlink" title="macos 解压文件 .rar"></a>macos 解压文件 .rar</h3><p>commands 参数</p>
-<blockquote>
-<p><code>e</code>             Extract files without archived paths # 解压缩文件到当前目录<br>  <code>l[t[a],b]</code>     List archive contents [technical[all], bare]  # 列出压缩文件<br>  <code>p</code>             Print file to stdout #打印文件标准输出设备<br>  <code>t</code>             Test archive files # 测试压缩文件<br>  <code>v[t[a],b]</code>     Verbosely list archive contents [technical[all],bare] # 详细列出压缩文件信息<br>  <code>x</code>             Extract files with full path # 用绝对路径解压缩文件</p>
-</blockquote>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unrar x x.rar</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/10/22/bash/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckhmrzaz90031j99imuvdi1d2"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
 
     </footer>
 

@@ -52,6 +52,58 @@
 
     
       
+        <article id="post-async-await-promise" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/24/async-await-promise/">async await promise</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/24/async-await-promise/" class="article-date">
+  <time datetime="2019-07-24T06:06:56.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'async1 start'</span> )</span><br><span class="line">    <span class="keyword">await</span> async2()</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'async1 end'</span> )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'async2'</span> )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'script start'</span> )</span><br><span class="line"></span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'setTimeout'</span> )</span><br><span class="line">&#125;, <span class="number">0</span> )</span><br><span class="line"></span><br><span class="line">async1();</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span> (<span class="params"> resolve </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'promise1'</span> )</span><br><span class="line">    resolve();</span><br><span class="line">&#125; ).then( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">'promise2'</span> )</span><br><span class="line">&#125; )</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'script end'</span> )</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/07/24/async-await-promise/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckhnbct5y002t1n9icu0klnjk"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-axios-源码解读" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -87,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckhmrzaz7002yj99ip4w1urpk"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckhnbct61002x1n9ixbsdk06q"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -142,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhmrzb00003xj99igr6cafk5"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhnbct6w00441n9ie1xt8zu9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -204,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhmrzb15004tj99iza5c5omk"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhnbct7f004r1n9ix2w82iwx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -267,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckhmrzazh003dj99iovkp0m99"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckhnbct6e003j1n9ic4swmmgw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
@@ -322,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckhmrzb0a0044j99ilo6whfvn"
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckhnbct75004e1n9inmxisrde"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -377,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckhmrzayq002kj99id6smlvzm"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckhnbct5u002l1n9iz6a62zc5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -429,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckhmrzb0f0049j99i7pbpbfs9"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckhnbct77004h1n9i8mw0ysgo"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -483,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckhmrzaxk000sj99ix3ph6tbf"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckhnbct4s000s1n9iopf7ip37"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -567,71 +619,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckhmrzb1w0055j99iu0pnj2hv"
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckhnbct7r00581n9i3daavml8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-居中" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/05/05/CSS-居中/">CSS 居中</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/05/05/CSS-居中/" class="article-date">
-  <time datetime="2019-05-05T09:24:39.000Z" itemprop="datePublished">2019-05-05</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>居中分为两种：一是水平居中，二是垂直居中。可借用不同的布局方式做多种实现。</p>
-<h2 id="水平布局-Normal-flow"><a href="#水平布局-Normal-flow" class="headerlink" title="水平布局 + Normal flow"></a>水平布局 + Normal flow</h2><p>不进行任何布局，采用 html 默认布局方式</p>
-<ol>
-<li>行内元素，父容器设置 text-align: center;</li>
-<li>块级元素：margin: 0 auto;</li>
-</ol>
-        
-          <a class="article-more-link" href="/2019/05/05/CSS-居中/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckhmrzaxr0011j99i2v90a0us"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
 
     </footer>
 
