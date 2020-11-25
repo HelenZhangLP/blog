@@ -52,6 +52,65 @@
 
     
       
+        <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/Javascript-箭头函数/">箭头函数</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/Javascript-箭头函数/" class="article-date">
+  <time datetime="2019-03-18T05:40:26.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">Arrow Functions</a></p>
+<blockquote>
+<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
+</blockquote>
+<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="keyword">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckhpt11wy00250q9iagjaeqyk"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-immutableJS" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -95,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckhnbct6j003q1n9i0sydhffh"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckhpt11y7003k0q9iwf9nxk0u"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
@@ -159,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckhnbct6s00421n9izczwxf2p"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckhpt11yj003y0q9ijkeqn6jg"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
@@ -306,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckhnbct5o00271n9i5k3mva7i"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckhpt11x000270q9ii00qgr3h"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
@@ -366,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckhnbct5v002n1n9ieqsgxmhf"
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckhpt11x8002i0q9ig7pg5802"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
@@ -456,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckhnbct5p002b1n9ian9756kx"
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckhpt11xc002l0q9iyfvaxboq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -515,7 +574,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckhnbct6y00471n9iv3bofbv3"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckhpt11yu00470q9i3cd08oq3"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -605,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckhnbct7i004x1n9iaslopw0i"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckhpt11z6004k0q9ict0hhdh7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -669,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckhnbct7w005b1n9iw94u0gnc"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckhpt11zx005d0q9i5p59bkv2"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -755,69 +814,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckhnbct4r000q1n9ipkkct9i8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-盒模型" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/20/CSS-盒模型/">CSS 盒模型</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/20/CSS-盒模型/" class="article-date">
-  <time datetime="2019-02-20T02:21:14.000Z" itemprop="datePublished">2019-02-20</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>该文档整理基于<a href="https://www.ibm.com/developerworks/cn/web/1310_shatao_quirks/#N101C3" target="_blank" rel="noopener">怪异模式（Quirks Mode）对 HTML 页面的影响</a></p>
-<p>切入正题，说说盒模型。通过上面那篇文章，我意识到了盒模型的差异源于浏览器的渲染解析差异。最突出的代表要数IE浏览器，在 IE 中，有四种标准模式（Standards Mode）- IE7/8/9/10 Standards Mode；两种怪异模式（Quirks Mode）IE5 Quirks 和 IE10 Quirks。这两类文档模式在盒模型的渲染上有所差异。</p>
-<h3 id="话不多说，先上图"><a href="#话不多说，先上图" class="headerlink" title="话不多说，先上图"></a>话不多说，先上图</h3><p><img src="https://bkimg.cdn.bcebos.com/pic/a9d3fd1f4134970a37cf81a69fcad1c8a6865dfe?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5" alt="W3C标准盒模型">;<br><strong><center>【W3C标准盒模型】</center></strong><br><img src="https://www.ibm.com/developerworks/cn/web/1310_shatao_quirks/image005.jpg" alt="IE盒模型"><br><strong><center>【IE盒模型】</center></strong></p>
-<p>由上图可以看出：</p>
-<blockquote>
-<p>IE Quirks 怪异模式 盒模型  width = border + padding + content<br>  W3C 盒模型 width = content width</p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/02/20/CSS-盒模型/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckhnbct5000141n9i6t4qn11d"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckhpt11vs000o0q9ih6bjia9k"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>

@@ -52,6 +52,62 @@
 
     
       
+        <article id="post-我所见过的-npm-库" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/24/我所见过的-npm-库/">我所见过的 npm 库</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/24/我所见过的-npm-库/" class="article-date">
+  <time datetime="2019-07-24T07:55:16.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="postcss-pxtorem"><a href="#postcss-pxtorem" class="headerlink" title="postcss-pxtorem"></a>postcss-pxtorem</h1><h1 id="dotenv"><a href="#dotenv" class="headerlink" title="dotenv"></a>dotenv</h1><p>NodeJs 运行时加载不同的配置，<code>process.env.DB_HOST</code> 获取环境变量，程序启动时，从文件加载环境变量时就需要用到 dotenv 库。</p>
+<h2 id="用法-创建-env"><a href="#用法-创建-env" class="headerlink" title="用法 创建 .env"></a>用法 创建 .env</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> .env</span></span><br><span class="line">DB_HOST = localhost</span><br><span class="line">DB_USER = root</span><br><span class="line">DB_PASS = 123456</span><br></pre></td></tr></table></figure>
+
+<p>NODE 中运行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dotenv = <span class="built_in">require</span>(<span class="string">'dotenv'</span>)</span><br><span class="line">dotenv.config()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序中使用环境变量</span></span><br><span class="line"><span class="keyword">const</span> db = <span class="built_in">require</span>(<span class="string">'db'</span>)</span><br><span class="line">db.connect(&#123;</span><br><span class="line">  host: process.env.DB_HOST,</span><br><span class="line">  username: process.env.DB_USER,</span><br><span class="line">  password: process.env.DB_PASS</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="debug-专门控制日志输出的库"><a href="#debug-专门控制日志输出的库" class="headerlink" title="debug 专门控制日志输出的库"></a>debug 专门控制日志输出的库</h1><p>判断 DEBUG 环境变量，调整运行环境控制日志是否输出。DEBUG 对环境变量进行解析，允许我们选择性的控制输出哪些日志模块，解决控制台日志堆积的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckhpt11zd004p0q9ig8cmj8g9"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-async-await-promise" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -88,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckhnbct5y002t1n9icu0klnjk"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckhpt11xt00330q9iwpil6vnl"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
@@ -139,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckhnbct61002x1n9ixbsdk06q"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckhpt11xm002w0q9iwnrbis61"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -194,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhnbct6w00441n9ie1xt8zu9"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckhpt11yq00440q9i95hf3ym2"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -256,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhnbct7f004r1n9ix2w82iwx"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckhpt11zm00520q9i5rx3a8xr"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -319,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckhnbct6e003j1n9ic4swmmgw"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckhpt11y4003i0q9igzm8dspq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
@@ -374,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckhnbct75004e1n9inmxisrde"
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckhpt11yy004a0q9ilauidezz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -429,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckhnbct5u002l1n9iz6a62zc5"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckhpt11x5002e0q9ighgipd1d"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -481,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckhnbct77004h1n9i8mw0ysgo"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckhpt11z2004e0q9ivmynos8t"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -535,94 +591,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckhnbct4s000s1n9iopf7ip37"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckhpt11vw000v0q9ik5gascr6"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-随笔" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/05/09/随笔/">随笔</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/05/09/随笔/" class="article-date">
-  <time datetime="2019-05-09T07:57:19.000Z" itemprop="datePublished">2019-05-09</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="本地服务器"><a href="#本地服务器" class="headerlink" title="本地服务器"></a>本地服务器</h3><ul>
-<li>liveServer</li>
-<li>httpServer</li>
-<li>WampServer</li>
-</ul>
-<h3 id="familiar-essay"><a href="#familiar-essay" class="headerlink" title="familiar essay"></a>familiar essay</h3><p>text-align 行内元素水平居中<br>inline-block 行内元素，没有宽高，用 padding + 文本撑开<br>inline-block 行内元素，设置 padding 会从父元素溢出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://app.zslb.xyz/api/order/add_refund?orderId=289&amp;amount=1</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 405</span><br><span class="line">Remote Address: 118.25.170.213:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
-
-<p>服务器端请求为 post，与当前 request method get 冲突</p>
-<blockquote>
-<p>请求行中指定的请求方法不能被用于请求相应的资源。<br>  该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>  鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
-</blockquote>
-<p>元素设置 position: absolute 或 float: left 会脱离文档流</p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="tip-浏览器缓存功能"><a href="#tip-浏览器缓存功能" class="headerlink" title="tip: 浏览器缓存功能"></a><code>tip:</code> 浏览器缓存功能</h3><p>浏览网页时，浏览器会暂存网页静态资源，包括外部的 css、javascript、图片、影像等。当用户在同一浏览器浏览同一网页时，不会重新加载静态资源。优点是加快网页加载速度，减少服务器负担。缺点是当静态资源修改，缓存未到期，那么浏览器会显示缓存的旧数据。除非用户清缓存或 ctrl+f5 强制刷新重新加载。</p>
-<blockquote>
-<p><code>解决办法：</code>修改静态资源后，在外部链接的文件名后加上 ？+任意字符串，可以是版本号或日期，不同于旧片酬就可以。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...html</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;script src=&quot;./t.js?v20120929&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。"><a href="#tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。" class="headerlink" title="tip: JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。"></a><code>tip:</code> JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span></span><br><span class="line"><span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>解决办法：</code></p>
-</blockquote>
-<ol>
-<li><p>将小数运算转换成整数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>)/<span class="number">10</span></span><br><span class="line"><span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用内建函数强制转换为指定位数的小数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "0.30"</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="tip：-null-amp-amp-undefined"><a href="#tip：-null-amp-amp-undefined" class="headerlink" title="tip： null &amp;&amp; undefined"></a><code>tip：</code> null &amp;&amp; undefined</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存"><a href="#tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存" class="headerlink" title="tip： Garbage Collection 会在变量超出作用域时回收，释放其占用的内存"></a><code>tip：</code> Garbage Collection 会在变量超出作用域时回收，释放其占用的内存</h3><h3 id="tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。"><a href="#tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。" class="headerlink" title="tip： ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。"></a><code>tip：</code> ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。</h3><h3 id="tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。"><a href="#tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。" class="headerlink" title="tip： for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。"></a><code>tip：</code> for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。</h3><h3 id="tip：-forEach-不能使用-break-指令中断循环。"><a href="#tip：-forEach-不能使用-break-指令中断循环。" class="headerlink" title="tip： forEach 不能使用 break 指令中断循环。"></a><code>tip：</code> forEach 不能使用 break 指令中断循环。</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckhnbct7r00581n9i3daavml8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
 
     </footer>
 

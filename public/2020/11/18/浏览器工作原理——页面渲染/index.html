@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    浏览器工作原理——页面渲染 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器工作原理——页面渲染" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器工作原理——页面渲染
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/18/浏览器工作原理——页面渲染/" class="article-date">
+  <time datetime="2020-11-18T03:37:58.000Z" itemprop="datePublished">2020-11-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>按照渲染的时间顺序，流水线可分为如下几个阶段：</p>
+<ul>
+<li>构建 DOM 树</li>
+<li>样式计算</li>
+<li>布局阶段</li>
+<li>分层</li>
+<li>绘制</li>
+<li>分块</li>
+<li>光栅化</li>
+<li>合成。</li>
+</ul>
+<a id="more"></a>
+
+<ol>
+<li>将 HTML 转换为浏览器能够理解的结构 —— DOM 树<pre class="mermaid">graph TD
+document[document] --> html[html]
+html-->head[head]
+html-->body[body]
+head-->link[link]
+body-->p[p]
+body-->div[div]
+p-->span[span]
+p-->渲染流程(渲染流程)
+span-->重点介绍(重点介绍)
+div-->p1[p]
+p1-->green(green)</pre></li>
+<li>样式计算（Recalculate Style）<br>计算出 DOM 节点中每个元素的具体样式，分三步完成：</li>
+</ol>
+<ul>
+<li>渲染引擎接收到 css 文本时，会执行一个转换操作，将 CSS 文本转换为浏览器可以理解的结构 —— styleSheets。document.styleSheets 可以查看样式 表包含的多种样式。</li>
+<li>属性值的标准化操作。将属性值 2em/blue/bold 转换为渲染引擎容易理解的、标准化的计算值。</li>
+<li>根据 css 的继承规则和层叠规则，计算出 Dom 树每个节点的具体样式。css 继承每个 dom 节点都包含父节点样式。<br><img src="https://static001.geekbang.org/resource/image/88/b2/88a3aac427cc7c09361eac01a85fc7b2.png" alt="chrome开发者工具-styleSheets"><br>图中，可以看出，样式表的继承关系， user agent styleSheets 是浏览器内置的默认样式<br>可以在 chrome 开发者工具 ——&gt; 选择 element，再选择 computed 子标签</li>
+</ul>
+<ol start="3">
+<li>布局<br>计算出 DOM 树中可见元素的几何位置，<strong>布局</strong>。额外构建一棵只包含可见元素布局树。<img src="http://www.plantuml.com/plantuml/svg/AqfDBadCIyz9LKXFpKijIYn9zKcip2yj2IbAJLMmiNa-PVwpZWbFTpG_tTZmRC54Epk5QYu5XIAu9XT_Nw2gbFnSEpiKSUVyt8BIajIKu9BA790voL2-GZ580AYubWkBVRfs2j59-IcLiLnv-IMf2ZcfQIKA-MamiRJyl1BTuiogL2i58uE22gxKl1G5a3ekYBokhbrq0RhE0anjoVav-KLMHUb96WOw1Zf6fgQQs4nAoIo3cbMKcPu1CGmiXcuSc5-U2b9afM1kO81aFj1ie0q6oEONW0n_jcFJi_cJdsrjVBwYcmjiAjH6GtJdGyGein9i1j22ejGK0000">
+布局树中忽略 head,display:none 的隐藏元素。</li>
+</ol>
+<p><strong>总结：</strong> html 页面内容被提交给渲染引擎，渲染引擎首先将 html 解析为浏览器可以理解的 DOM，接着根据 css 样式表计算出 DOM 树的所有节点的样式；最后计算出元素的几何坐标，将信息保存在 dom 树中。</p>
+<ol start="4">
+<li>图层<br>渲染引擎还需要为特定的节点生成专用的图层，并生成一查对应的图层树（LayerTree），chrome 开发者工具，选择 layer 标签，可查看页面分层情况。</li>
+</ol>
+<ul>
+<li>拥有层叠上下文的元素会被提升为单独的一层。其中包含明确的定位属性元素，透明和滤境属性。<br>z-index/position:fixed/filter/opacity</li>
+<li>需要剪裁（clip）的地方也会被创建为图层 overflow: auto</li>
+</ul>
+<ol start="5">
+<li><p>图层绘制<br>渲染引擎实现图层绘制，会把一个图层的绘制拆分成很多小的 <strong>绘制指令</strong>，然后再把这些指令按照顺序组成一个待绘制列表，最终输出的是一个绘制列表。<br>绘制列表用来记录绘制的顺序和绘制指令的列表。<br>可以打开 chrome 开发者工具 -&gt; Layers 标签 -&gt; Document 查看绘制列表，拖动绘制列表，可以查看绘制过程。如下图：<br><img src="https://static001.geekbang.org/resource/image/30/70/303515c26fcd4eaa9b9966ad7f190370.png" alt="chrome 开发者工具查看layers绘制点"></p>
+</li>
+<li><p>栅格化（raster）操作<br>绘制列表用来记录绘制只是用来记录绘制顺序和绘制指令的列表，实际绘制操作由渲染引擎中的合成线程来完成。<strong>合成线程会将图层划分为图块（tile)</strong><br>合成线程会将视口（viewport）附近的图块来优先生成位图，实际生成位图的操作由栅格化来执行。栅格化，将图块生成位图。<br>渲染进程把生成图块的指令发送给GPU，然后在GPU中执行生成图块的位图，并保存在 GPU 内存中。</p>
+</li>
+<li><p>合成和显示<br>所有图块都被光栅化后，合成线程会生成一个绘制图块的命令 —— DrawQuad，DrawQuad 命令提交给浏览器进程。<br>浏览器进程中有一个叫 viz 的组件，用来接收合成线程发过来的 DrawQuad 命令，然后根据 DrawQuad 命令，将其页面绘制到内存中，最后再将内存显示在屏幕上。现在接收到的 html、css、JavaScript 就完美的显示在页面上了。</p>
+</li>
+</ol>
+<h2 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h2><img src="http://www.plantuml.com/plantuml/svg/PL5DJy905BptLsou4w973fv8l6Z4g2VImz9kPAKVctqBf1gF618rOZH60mPkSk6WYGaHaJ_J3tw6svPgIszl9xCpyzumh3NnAK65O74Vp8UhvI2ON1VGXO9GZHDWjWK4rMtTKVD8iRY3EB5qmglSrWX06JM4QPGqWD8PRcFGE6L2kLGKbhZuimz_z92uOCZ-ZsmjMvT4TpOFlfO9oyJKEcvmWlM88fDK3lRLU3eIZa7Mynvsx9RuVn2-dfaKY70P9h7m-Zs_rq-vW6E91W4AwJWeRIuNhZ5E6EO42MeGKCj8iqsJYgoqF-xwus_lvYdUr7yVnyjY47_BaaI_5iD8O6XkgJbeEuwTlk9kzGIbczhK3MC6ZoEvdRkuzGO_KNSP84Tnbw_UzDaRJb0exbrrvSkTJTLiUvztgxUUzp995LZdTWUo3URk69grwRayLeNZpc4Bww7inaz9qYam0plABm00">
+
+<h2 id="重排、重绘、合成"><a href="#重排、重绘、合成" class="headerlink" title="重排、重绘、合成"></a>重排、重绘、合成</h2><h3 id="重排-——-更新元素的几何属性"><a href="#重排-——-更新元素的几何属性" class="headerlink" title="重排 —— 更新元素的几何属性"></a>重排 —— 更新元素的几何属性</h3><p>通过 JavaScript 或者 CSS 修改元素的几何位置属性（改变宽高）那么浏览器会触发重新布局并解析之后的几个子阶段，这个过程叫 <strong>重排</strong>，<code>重排需要更新完整的渲染流水线，开销也是最大的</code></p>
+<h3 id="重绘-——-更新元素的绘制属性"><a href="#重绘-——-更新元素的绘制属性" class="headerlink" title="重绘 —— 更新元素的绘制属性"></a>重绘 —— 更新元素的绘制属性</h3><p>像修改 background 等属性，未改变元素的几何属性，不会触发布局阶段，直接进入绘制阶段，执行之后的子阶段，这个过程叫 <strong>重绘</strong>，<code>省去了布局和分层阶段，比重排执行效率高</code></p>
+<p>减少重排重绘, 方法很多：</p>
+<ol>
+<li>使用 class 操作样式，而不是频繁操作 style</li>
+<li>避免使用 table 布局</li>
+<li>批量dom 操作，例如 createDocumentFragment，或者使用框架，例如 React</li>
+<li>Debounce window resize 事件</li>
+<li>对 dom 属性的读写要分离</li>
+<li>will-change: transform 做优化</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckhpt11zw005b0q9ir03l3agr"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/11/18/浏览器中的Javascript执行机制——执行上下文/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            浏览器中的Javascript执行机制——执行上下文
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/17/hexo-插件系列/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">hexo-插件系列</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
