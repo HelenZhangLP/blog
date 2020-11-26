@@ -7,9 +7,10 @@ tags:
 ---
 
 > 1.  JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。
-## 执行上下文
+> 2.  为什么 JavaScript 代码会出现栈溢出
 
-## 变量提升
+
+## 1. 变量提升
 ```Javascript
 console.log(name)
 fn();
@@ -47,7 +48,7 @@ name 和 函数 fn 正确打印出结果，Javascript 代码执行过程中，Ja
   编译 --> 执行;
 ```
 
-### 分析以下代码(1)
+### 1-1-demo 分析以下代码
 ```JavaScript
 var name = "variable promotion";
 function showName(){ console.log(name); if(0){ var name = "variable promotion case" } console.log(name);}
@@ -93,7 +94,7 @@ js --> callStack: 编译（compile）
 {%endplantuml%}
 `函数执行上下文压入栈后，JavaScript 引擎再执行showName函数代码。`最终打印出结果 undefined
 
-### 分析以下代码(2)
+### 1-2-demo.  分析以下代码
 ```javascript
 showName();
 var showName = function() {
@@ -129,6 +130,81 @@ variableDestruction();
 ```
 JavaScript 编译以上代码，生成全局上下文(环境变量 function variableDestruction(){...})，然后压入栈内存中。JavaScript 执行可执行代码 `variableDestruction()`，创建函数执行上下文(环境变量 i=undefined)，再将函数执行上下文 压入栈内存。javascript 引擎继续执行可执行代码 i 赋值、遍历、打印结果是 6。**因为没有块级作用域，导致遍历结果后没有销毁变量i,所以打印结果是 6**
 
+## 2. 执行上下文与调用栈
+代码执行之前进行编译创建执行上下文的三种情况：
+1.  当 JavaScript 执行全局代码的时候，会编译全局代码并创建 **全局执行上下文**。整个页面的生命周期内，全局执行上下文只有一份；
+2.  当调用一个函数时，函数体内的代码会被编译，并创建 **函数执行上下文**，一般情况下，函数执行结束后，创建的函数执行上下文被销毁；
+3.  当使用 eval 函数的时候，eval 代码也会被编译，并创建执行上下文。
+
+**`调用栈用来管理函数调用关系的一种数据结构。`**
+
+### 2-1-demo. 分析代码
+```JavaScript
+var name = 'helen zhang';
+function showName() {
+  console.log(name)
+}
+showName();
+```
+1.  JavaScript 引擎编译代码时创建 **全局执行上下文**，执行第一行代码时声明变量name，并赋初值 undefined，执行第二行代码时，声明 function showName，将变量 name 和 函数 showName 放入变量环境。showName() 放入执行代码
+2.  执行代码 showName()，创建 **函数执行上下文**。console.log(name) 放入执行代码。
+
+以上创建的两个执行上下文是通过 **栈数据结构** 来管理的。
+
+### JavaScript 调用栈
+栈容器、入栈、出栈、栈中元素后进先出。
+JavaScript 引擎创建执行上下文，然后压入 **调用栈**
+{% plantuml %}
+<style>
+arrow {
+    LineColor transparent
+}
+</style>
+stack callStack {
+  rectangle "函数执行上下文" {
+    rectangle "函数变量环境"
+    rectangle "函数词法环境"
+  }
+  rectangle "全局执行上下文" {
+    rectangle "全局变量环境"
+    rectangle "全局词法环境"
+  }
+  函数执行上下文 .. 全局执行上下文
+
+}
+{% endplantuml %}
+
+调用栈是 JavaScript 引擎追踪函数执行的一个机制。多个函数被调用时，通过调用栈可以追踪到哪个函数正在被执行以及各个函数之间的调用关系
+
+#### chrome 开发者工具查看调用栈
+1. javascript 代码打断点（debugger）
+2. 执行时进入断点
+3. 开发者工具右侧 call stack 查看调用栈
+
+![chrome 调用栈](https://static001.geekbang.org/resource/image/c0/a2/c0d303a289a535b87a6c445ba7f34fa2.png)
+anonymous 全局函数入口
+runStack 当前调用函数
+
+
+#### console.trace() 输出函数调用关系
+![console.trace](https://static001.geekbang.org/resource/image/ab/ceabfba06cd23a7704a6eb148cff443ece.png)
+
+### 栈溢出（stack overflow)
+`调用栈有大小的`，超出后 JavaScript 引擎会报错——超出最大栈调用大小（Maximum call stack size exceeded），栈溢出
+递归没有任何终止条件的函数，会一直创建执行上下文，并反复压入栈中，栈容量有限，超过最大数量后会出现 Maximum call stack size exceeded
+
+递归调用的形式改造成其他形式，或者使用加入定时器的方法来把当前任务拆分为其他很多小任务来解决栈溢出
+```JavaScript
+function runStack (n) {
+  if (n === 0) return 100;
+  return setTimeout(function(){
+    runStack( n- 2)
+  },0);
+}
+runStack(50000)
+```
+
+
 ## 认识JavaScript块级作用域，通过块级作用域解决变量提升的问题
 **作用域** 程序中定义变量的区域，该位置决定了变量的生命周期。通俗的理解，作用域是变量与函数的可访问范围，即作用域控制着变量和函数的可见性和生命周期。
 ES6 之前两种作用域：
@@ -146,14 +222,6 @@ function variableDestruction() {
 variableDestruction();
 ```
 > Uncaught ReferenceError: i is not defined 说明块级作用域生效，i 在 块级作用域以外不能访问。也就是在函数作用域内没有变量提升。
-
-
-代码执行之前进行编译创建执行上下文的三种情况：
-1.  当 JavaScript 执行全局代码的时候，会编译全局代码并创建 **全局执行上下文**。整个页面的生命周期内，全局执行上下文只有一份；
-2.  当调用一个函数时，函数体内的代码会被编译，并创建 **函数执行上下文**，一般情况下，函数执行结束后，创建的函数执行上下文被销毁；
-3.  当使用 eval 函数的时候，eval 代码也会被编译，并创建执行上下文。
-
-> 调用栈用来管理函数调用关系的一种数据结构。
 
 ## 函数调用
 ## 栈结构 —— 后进先出
