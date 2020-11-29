@@ -38,6 +38,29 @@ tags:
 ## 水平布局 + 定位 position: relative
 需要居中的 block 元素上设置样式： position: relative; margin: auto;
 
+## 水平布局 + table-cell
+### demo 垂直布局 imgIcon + 文案
+```html
+<div className="vote">
+ <span><img src={voteImg} onClick={this.handleVote} /></span>
+ <span className="ml5">{vote}</span>
+</div>
+```
+```CSS
+.item img {
+  width: auto;
+  height: 20px;
+  cursor: pointer;
+}
+
+.item span,
+.item img {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+```
+>
 ---
 
 ## 垂直居中 + Normal Flow

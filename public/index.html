@@ -84,16 +84,17 @@
         <blockquote>
 <ol>
 <li>JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。</li>
+<li>为什么 JavaScript 代码会出现栈溢出</li>
 </ol>
 </blockquote>
-<h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(name)</span><br><span class="line">fn();</span><br><span class="line">fn_var();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// 声明</span></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// 赋值部分</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完整的函数声明'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn_var = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'匿名函数赋值给变量'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// VM791:1</span></span><br><span class="line"><span class="comment">// VM791:8 完整的函数声明</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">VM791:3 Uncaught TypeError: fn_var is not a function</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:3:1</span></span><br><span class="line"><span class="comment">(anonymous) @ VM791:3 */</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-变量提升"><a href="#1-变量提升" class="headerlink" title="1. 变量提升"></a>1. 变量提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(name)</span><br><span class="line">fn();</span><br><span class="line">fn_var();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// 声明</span></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// 赋值部分</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完整的函数声明'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn_var = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'匿名函数赋值给变量'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// VM791:1</span></span><br><span class="line"><span class="comment">// VM791:8 完整的函数声明</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">VM791:3 Uncaught TypeError: fn_var is not a function</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:3:1</span></span><br><span class="line"><span class="comment">(anonymous) @ VM791:3 */</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-link" href="/2020/11/18/浏览器中的Javascript执行机制——执行上下文/">更多...</a>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制——执行上下文/" data-id="ckhwyqalq005byl9i8zyjka28"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制——执行上下文/" data-id="ckhyovk260058339iha99g1x4"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -155,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckhwyqalv005lyl9i0t3flbui"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckhyovk2e005l339i5p2nywmu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -209,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckhwyqakj003lyl9ifdd545nt"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckhyovk14003u339iw00k1hmt"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -267,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckhwyqalr005eyl9iqwgt1dd5"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckhyovk2c005h339izpp8f7rp"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -324,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckhwyqalj0051yl9i1wwu9xoj"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckhyovk220053339itgbdy8bh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -377,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckhwyqalp0059yl9ifqj2qeu1"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckhyovk2a005e339iqgokivlu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -432,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckhwyqals005gyl9i7amodfxh"
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckhyovk2d005j339iew22t9am"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -497,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckhwyqaln0056yl9inoykoo9j"
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckhyovk29005c339i4llclyjl"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -572,7 +573,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckhwyqajg001pyl9inm1tki1n"
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckhyovk01001s339iqlh8tf7i"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -637,7 +638,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckhwyqaiy000vyl9ihrxj1n31"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckhyovjzi000y339in41895hd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>

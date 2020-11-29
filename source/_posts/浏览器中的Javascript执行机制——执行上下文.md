@@ -204,7 +204,6 @@ function runStack (n) {
 runStack(50000)
 ```
 
-
 ## 认识JavaScript块级作用域，通过块级作用域解决变量提升的问题
 **作用域** 程序中定义变量的区域，该位置决定了变量的生命周期。通俗的理解，作用域是变量与函数的可访问范围，即作用域控制着变量和函数的可见性和生命周期。
 ES6 之前两种作用域：
@@ -222,6 +221,68 @@ function variableDestruction() {
 variableDestruction();
 ```
 > Uncaught ReferenceError: i is not defined 说明块级作用域生效，i 在 块级作用域以外不能访问。也就是在函数作用域内没有变量提升。
+
+### ES6 怎么兼容变量提升和块级作用域的
+从上下文的角度分析：
+```JavaScript
+function foo(){
+  var a = 1;
+  let b = 2;
+  {
+    let b = 3, d = 5;
+    var c = 4;
+    console.log(a)
+    console.log(b)
+  }
+  console.log(b)
+  console.log(c)
+  console.log(d)
+}
+foo()
+```
+1.  编译并创建执行上下文
+{%plantuml%}
+rectangle fnContext as "foo 函数执行上下文" {
+  rectangle variableEnvironment as "变量环境" {
+    card "a=undefined \n c=undefined"
+  }
+
+  rectangle lexicalEnvironment as "词法环境" {
+    card "b=undefined"
+  }
+}
+{%endplantuml%}
+解析上图
+* 函数内部 var 声明的变量，编译时存入 **变量环境**
+* let 声明的变量，编译时存入 **记法环境（Lexical Environment）**
+* 函数内部的块级作用域内部，通过 let 声明的变量编译阶段未放到词法环境中
+
+2.  执行代码
+{%plantuml%}
+rectangle fnContext as "foo 函数执行上下文" {
+  rectangle variableEnvironment as "变量环境" {
+    card "a=1 \n c=undefined"
+  }
+
+  rectangle lexicalEnvironment as "词法环境" {
+    card "b=2"
+    card "b=undefined \n d=undefined"
+  }
+}
+{%endplantuml%}
+
+3. 创建完词法块级作用域后，继续执行可执行代码 `console.log(a)`，具体是延着词法环境栈向下查找，有就返回给 JavaScript 引擎，如果词法环境中没有继续在变量环境中找。结果打印 1；`console.log(b)` 打印词法环境中的 `b=3`;块级词法环境出栈。`console.log(b)`, 打印块级词法环境 `b=2`;`console.log(c)`打印变量环境中`c=4`;`console.log(d)` 打印 undefined。因为吧，定义 d 的作用域已经出栈了。
+
+### Uncaught ReferenceError: Cannot access 'myname' before initialization
+```javascript
+let myname= '极客时间';
+{
+  console.log(myname);
+  let myname= '极客邦';
+}
+```
+**`分析：`** 块级作用域中，myname 声明提升到了 console.log(myname) 之前，但赋初值 undefined 未初提升。所以 `can not access myname before initialization`。**所以 let 声明的变量，声明会被提升，但赋初值不被提升。var 声明的变量，赋默认值都会被提升。function 声明、赋值都会被提升。**
+
 
 ## 函数调用
 ## 栈结构 —— 后进先出
