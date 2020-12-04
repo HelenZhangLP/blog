@@ -1,5 +1,5 @@
 ---
-title: 浏览器中的Javascript执行机制——执行上下文
+title: 浏览器中的Javascript执行机制
 date: 2020-11-18 19:21:21
 tags:
 - browser
@@ -8,6 +8,8 @@ tags:
 
 > 1.  JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。
 > 2.  为什么 JavaScript 代码会出现栈溢出
+> 3.  var 与 let 和 const，var 缺陷是什么
+> 4.  作用域链与闭包
 
 
 ## 1. 变量提升
@@ -275,22 +277,145 @@ rectangle fnContext as "foo 函数执行上下文" {
 
 ### Uncaught ReferenceError: Cannot access 'myname' before initialization
 ```javascript
-let myname= '极客时间';
+let myname= 'helen';
 {
   console.log(myname);
-  let myname= '极客邦';
+  let myname= 'zhang';
 }
 ```
 **`分析：`** 块级作用域中，myname 声明提升到了 console.log(myname) 之前，但赋初值 undefined 未初提升。所以 `can not access myname before initialization`。**所以 let 声明的变量，声明会被提升，但赋初值不被提升。var 声明的变量，赋默认值都会被提升。function 声明、赋值都会被提升。**
 
-
-## 函数调用
-## 栈结构 —— 后进先出
-通过栈来管理执行上下文。
-## 什么是 JavaScript 的栈调用
 ## 作用域链
+outer 用于指向外部的执行上下文的变量。每个执行上下文变量环境中，都包含这样一个引用。
+```javascript
+var name = 'helen';
+function foo() {
+  var name = 'zhang';
+  bar();
+}
+function bar() {
+  console.log(name)
+}
+```
+{%plantuml%}
+rectangle callStack {
+  rectangle globalContext as "全局上下文环境" {
+    card globalEnvironment as "变量环境\nname='helen'" {
+      rectangle "outer = null" as globalOuter
+    }
+    card "词法环境"
+  }
+  rectangle fooContext as "foo 函数执行上下文" {
+    card "变量环境\nname='zhang'" {
+      rectangle "outer" as fooOuter
+      fooOuter --> globalEnvironment
+    }
+    card "foo词法环境"
+  }
+  rectangle barContext as "bar 函数执行上下文" {
+    card "变量环境" {
+      rectangle "outer" as barOuter
+      barOuter --> globalEnvironment
+    }
+    card "bar词法环境"
+  }
+}
+{%endplantuml%}
+> 函数调用时，使用了外部变量，通过 function 关键字声明的函数，会延着执行上下文环境向上查找变量，这个路径就是叫做作用域链
+JavaScript 执行过程中，其作用域链是由词法作用域决定的。
+
 ## 词法作用域
 Javascript 执行过程中其作用域链是由词法作用域决定的。
 **词法作用域** 是指作用域是由代码中函数声明的位置来决定的，所以词法作用域是静态的作用域，通过它就能预测代码在执行过程中如何查找标识。
+词法作用域是代码编译阶段就决定好的，和函数是怎么调用没有关系
+
+## 块级作用域的变量查找
+```javascript
+function bar() {
+  var myName = "极客世界"
+  let test1 = 100
+  if (1) {
+    let myName = "Chrome浏览器"
+    console.log(test)
+  }
+}
+function foo() {
+  var myName = "极客邦"
+  let test = 2
+  {
+    let test = 3
+    bar()
+  }
+}
+var myName = "极客时间"
+let myAge = 10
+let test = 1
+foo() // 1
+```
+{%plantuml%}
+rectangle callStack {
+  rectangle 全局执行上下文环境 as globalContext {
+    card "变量环境\nfunction bar\nfunction foo\nmyName='极客时间'" as globalVariableEnvironment {
+      rectangle outer
+    }
+    card "词法环境\nmyAge=10;\ntest=1" as globalLexicalEnvironment
+    globalLexicalEnvironment -> globalVariableEnvironment
+  }
+  rectangle foo函数执行上下文环境 as fooFunctionContext {
+    card "变量环境\nmyName='极客邦'" {
+      rectangle fooOuter
+    }
+    card "词法环境\ntest=2" {
+      card "foo 块级作用域\ntest = 3" {
+        actor "bar()" as start
+      }
+    }
+  }
+  rectangle bar函数执行上下文环境 as barFunctionContext {
+    card "变量环境\nmyName='极客世界'" as barVariableEnvironment {
+      rectangle "barOuter"
+      barOuter -> globalLexicalEnvironment
+    }
+    card "词法环境\ntest1=100" as barLexicalEnvironment {
+      card "myName='chrome浏览器'" as barBlockLexicalEnvironment
+    }
+    start -> barBlockLexicalEnvironment
+    barBlockLexicalEnvironment -> barLexicalEnvironment
+    barLexicalEnvironment -> barVariableEnvironment
+  }
+}
+{%endplantuml%}
+
 ## 闭包
 在 JavaScript 中，根据词法作用域的规则，内部函数总是可以访问其外部函数中声明的变量，当通过调用一个外部函数返回一个内部函数后，即使该函数已经执行结束了，但是内部函数引用外部函数的变量依然保存在内存中，我们把这些变量的集合称为闭包。
+```javascript
+function foo() {
+  var myName = '极客时间'
+  let test1 = 1
+  const test2 = 2
+  var innerBar = {
+    getName: function() {
+      console.log(test1)
+      return myName
+    }
+    setName: function(newName) {
+      myName = newName
+    }
+  }
+  return innerBar
+}
+var bar = foo()
+bar.setName('极客邦')
+bar.getName()
+console.log(bar.getName)
+```
+![img](https://static001.geekbang.org/resource/image/40/a8/40b8840480a5df4f43ad5f4e7907e3a8.png)
+函数内部方法包含外部引用，函数无法完全退栈，内部方法引用外部函数的变量依然保存在内存中，就形成了一个闭包
+```javascript
+closure(foo)
+  name: '极客邦'
+  test1: 1
+```
+
+## 闭包怎么回收
+闭包使用不正确会造成内存泄漏，如果引用闭包的函数是个全局变量，闭包会一直存在直到页面关闭；如果不在使用就会造成内存泄漏。引用闭包的函数是个局部变量，等函数销毁后，在下次 JavaScript 引擎执行垃圾回收时，判断闭包这块内容不被使用，那么 Javascript 引擎垃圾回收器会回收这块内存。使用闭包原则 **如果闭包会一直使用，那么它可以作为全局变量存在；如果使用频率不高，占用内存又大，就尽量让它成为一个局部变量**
