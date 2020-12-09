@@ -52,6 +52,211 @@
 
     
       
+        <article id="_post-浏览器兼容问题" class="article article-type-_post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/10/浏览器兼容问题/">浏览器兼容问题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/10/浏览器兼容问题/" class="article-date">
+  <time datetime="2020-11-10T02:33:13.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。"><a href="#windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。" class="headerlink" title="windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。"></a>windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="comment">// Tue Nov 10 2020 11:58:59 GMT+0800 (China Standard Time)</span></span><br></pre></td></tr></table></figure>
+
+<p>GMT(Greenwich Mean Time) 格林尼治标准时间<br>GMT+0800(China Standard Time) 北京时间</p>
+<p>UTC(Universal Time Coordinated)协调世界时。当前的世界标准时间。<br>UTC 标准时间格式 <code>2019-11-11T00:00:00.000Z</code></p>
+<ol>
+<li><code>T</code>代表使用 UTC 时间。</li>
+<li><code>Z</code>是 UTC 的偏移量，表示 UTC 时间与本地时间的差别，即时差。<ul>
+<li>Z 表示 0 时区，写 Z 或不写时表示不偏移。即 GMT/0 时区。</li>
+<li>需要偏移时，将Z替换为真实的偏移量。偏移量可用以下形式表示: ±[hh]:[mm]、±[hh][mm]、±[hh]。</li>
+<li>目前有39个UTC偏移量（当伊朗试行夏令时时只有38个）</li>
+</ul>
+</li>
+<li>时间数值表示在限定 UTC 格式和偏移量的情况下，偏移时区的本地时间。</li>
+</ol>
+<p>UNIX TIME，也叫做 POSIX 时间或纪元时间（Epoch Time)，记录时间流逝，也叫时间戳。定义为从1970-01-01T00:00:00开始流逝的秒数，不考虑闰秒。之后的时间是正数，之前的是负数。</p>
+<p>需要补充，转换方法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="cki9obglw005j4tc9i27els5p"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="_post-Javascript-数组" class="article article-type-_post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/06/Javascript-数组/">Javascript 数组</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/06/Javascript-数组/" class="article-date">
+  <time datetime="2020-11-06T03:22:46.000Z" itemprop="datePublished">2020-11-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="数组重组方法"><a href="#数组重组方法" class="headerlink" title="数组重组方法"></a>数组重组方法</h2><h3 id="1-数组转换成字符串"><a href="#1-数组转换成字符串" class="headerlink" title="1.  数组转换成字符串"></a>1.  数组转换成字符串</h3><ul>
+<li><p>Array.prototype.toString() 将数组转换成 <strong>以逗号分隔的字符串</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"cookie"</span>, <span class="string">"local storage"</span>, <span class="string">"session storage"</span>, <span class="string">"web storage"</span>];</span><br><span class="line">arr.toString();</span><br><span class="line"><span class="comment">// "cookie,local storage,session storage,web storage"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array.prototype.join([separator]) 将数组转换成 <strong>指定分隔符的字符串</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.join(<span class="string">'/'</span>)</span><br><span class="line"><span class="comment">// "cookie/local storage/session storage/web storage"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>注意：</code> 如果数组只有一个元素，则该连接字符不显示<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'category'</span>]</span><br><span class="line">arr1.join(<span class="string">'/'</span>)</span><br><span class="line"><span class="comment">// "category"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-创建新数组"><a href="#2-创建新数组" class="headerlink" title="2.  创建新数组"></a>2.  创建新数组</h3><ul>
+<li>Array.prototype.concat() 合并两个以上数组，最终拿到生成后的新数组，生成的新数组是需要合并的数组的浅拷贝。<ul>
+<li><code>注意：</code>如果将引用类型复制到数组中,引用类型改变，新的数组数组发生改变，反之一样。因为他们指向同一个引用对象。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr_reference_type = [[<span class="string">'concat'</span>],<span class="string">'array prototype function'</span>];</span><br><span class="line"><span class="keyword">var</span> arr_concat = arr.concat(arr_reference_type);</span><br><span class="line"><span class="built_in">console</span>.log(arr_concat);</span><br><span class="line"><span class="comment">// ["cookie", "local storage", "session storage", "web storage", ["concat"], "array prototype function"]</span></span><br><span class="line"><span class="comment">// 修改 arr_reference_type</span></span><br><span class="line">arr_reference_type[<span class="number">0</span>].push(<span class="string">'slice'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr_concat);</span><br><span class="line"><span class="comment">// ["cookie", "local storage", "session storage", "web storage", ["concat", "slice"], "array prototype function"]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="cki9obgj3001q4tc967gz3u8u"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-css3-单位" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/10/22/CSS-css3-单位/">CSS3 单位</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/10/22/CSS-css3-单位/" class="article-date">
+  <time datetime="2020-10-22T08:31:44.000Z" itemprop="datePublished">2020-10-22</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="CSS3-中新增的单位"><a href="#CSS3-中新增的单位" class="headerlink" title="CSS3 中新增的单位"></a>CSS3 中新增的单位</h3><ul>
+<li>ch 字符 0（零的宽度）；</li>
+<li>rem 根元素（html元素）的 font-size；<blockquote>
+<p>font size of the root element<br>Equal to the computed value of ‘font-size’ on the root element. when specified on the font-size property of the root element, the rem units refer to the property’s initial value.<br>This means that 1rem equals the the font-size html element (which for most browsers has a default value of 16px)</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>字体或宽、高等单位，值根据 html 元素 font-size 计算得出</li>
+<li>动态修改 html 的 font-size，实现适配</li>
+<li>IOS6 和 Android 2.1 以上基本适配</li>
+<li>1rem = html’s font size(大多数浏览器是 16px)</li>
+</ol>
+<ul>
+<li>em 是一个相对单位，非固定值。相对于其父 font-size 计算</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="cki9obgim000y4tc9s16u1ru4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-EN-words" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -88,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckhyovjzt001h339iixs7loja"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="cki9obgiy001h4tc90yewd0g0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
@@ -144,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckhyovk0s0039339isjtqemmy"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="cki9obgjy00384tc9spqb2nrr"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -218,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckhyovk0l002y339iif8qfjpx"
+      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="cki9obgjr002w4tc9dzjq8j7p"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -271,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="ckhyovjzh000x339iyhxokg2x"
+      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="cki9obgik000v4tc9g5aeorap"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -328,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/" data-id="ckhyovjzk0012339itl3decyk"
+      <a data-url="https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/" data-id="cki9obgio00114tc966m2zja9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -399,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/09/21/CSS-你不知道的百分比/" data-id="ckhyovjzl0014339ifxrrcf3a"
+      <a data-url="https://helenzhanglp.github.io/2020/09/21/CSS-你不知道的百分比/" data-id="cki9obgiq00144tc9wekfj7uj"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -453,166 +658,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/23/CSS-实体滚动/" data-id="ckhyovjzn0016339i8fdfcqbq"
+      <a data-url="https://helenzhanglp.github.io/2020/04/23/CSS-实体滚动/" data-id="cki9obgis00164tc9v9bbavwg"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-android-问题" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/21/android-问题/">android 问题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/21/android-问题/" class="article-date">
-  <time datetime="2020-04-21T07:11:06.000Z" itemprop="datePublished">2020-04-21</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><blockquote>
-<p>安卓启动 10.0.2.2 =&gt; localhost</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/21/android-问题/" data-id="ckhyovk0n0030339ia5lusxnj"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/疑难/">疑难</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-package-json" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/17/package-json/">package.json</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/17/package-json/" class="article-date">
-  <time datetime="2020-04-17T03:20:44.000Z" itemprop="datePublished">2020-04-17</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>###　browserslist <a href="https://cli.vuejs.org/zh/guide/browser-compatibility.html#browserslist" target="_blank" rel="noopener">参考文档</a></p>
-<h4 id="browserlist-具体描述-参考文档"><a href="#browserlist-具体描述-参考文档" class="headerlink" title="browserlist 具体描述 参考文档"></a>browserlist 具体描述 <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">参考文档</a></h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"browserslist": [</span><br><span class="line">  "&gt; 1%",</span><br><span class="line">  <span class="string">"last 2 versions"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/17/package-json/" data-id="ckhyovk16003w339ilbqiqcqi"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-正则-常用正则case" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/03/10/Javascript-正则-常用正则case/">Javascript-正则-常用正则case</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/03/10/Javascript-正则-常用正则case/" class="article-date">
-  <time datetime="2020-03-10T05:47:53.000Z" itemprop="datePublished">2020-03-10</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="1、-Demo-1-——-身份证验证"><a href="#1、-Demo-1-——-身份证验证" class="headerlink" title="1、 Demo(1) —— 身份证验证"></a>1、 Demo(1) —— 身份证验证</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 15 位数字/18 位数字/17 位数字 + （X|x）</span></span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/03/10/Javascript-正则-常用正则case/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/03/10/Javascript-正则-常用正则case/" data-id="ckhyovk080025339icd12144v"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
 
     </footer>
 
@@ -630,7 +679,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 </section>

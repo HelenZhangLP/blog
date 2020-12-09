@@ -419,3 +419,151 @@ closure(foo)
 
 ## 闭包怎么回收
 闭包使用不正确会造成内存泄漏，如果引用闭包的函数是个全局变量，闭包会一直存在直到页面关闭；如果不在使用就会造成内存泄漏。引用闭包的函数是个局部变量，等函数销毁后，在下次 JavaScript 引擎执行垃圾回收时，判断闭包这块内容不被使用，那么 Javascript 引擎垃圾回收器会回收这块内存。使用闭包原则 **如果闭包会一直使用，那么它可以作为全局变量存在；如果使用频率不高，占用内存又大，就尽量让它成为一个局部变量**
+
+## JavaScript 中的 this 是什么
+this 是和执行上下文绑定的
+{%plantuml%}
+rectangle '执行上下文' {
+  card 变量环境
+  card '词法环境'
+  card 'outer';
+  card 'this';
+}
+{%endplantuml%}
+
+### 全局执行上下文 this
+浏览器环境，全局执行上下文 this 指向 window 对象
+### 函数执行上下文 this
+设置执行上下文 this 的几种方式
+1. 通过函数的 call 方法设置
+```JavaScript
+var bar = {
+  name: 'helen'
+}
+function foo() {
+  this.name = 'zhang'
+}
+foo()
+console.log(name) //zhang
+foo.call(bar)
+console.log(bar) //{name: zhang}
+```
+执行 foo() 相当于 window 在调用，给 `window.name = 'zhang'`, 所以 console.log(name) 是 'zhang'，`foo.call(bar)`，相当于 bar 对象调用，所以修改了 bar.name = 'zhang'
+2. 通过对象调用方法设置
+```javascript
+var myObj = {
+  name: 'helen',
+  showName: function() {
+    console.log(this)
+  }
+}
+myObj.showName() // {name: 'helen', showName: fn}
+```
+**`使用对象调用对象内部方法，该方法 this 指向对象本身`** 也可以理解为 `myObj.showName.call(myObj)`
+this 指向取决于调用者，全局环境调用 this 指向 window，对象调用，this 指向调用对象
+
+3. 通过构造函数中设置
+```javascript
+function ConstructorObj() {
+  this.name = 'helen';
+  console.log(this)
+}
+var obj = new ConstructorObj() // ConstructorObj {name: "helen"}
+```
+new ConstructorObj() 时，JavaScript 引擎执行了以下几件事：
+* 首先创建了一个临时空对象 temporaryObject
+* 调用 ConstructorObj.call(temporaryObject) 方法，目的是让 this 指向 ConstructorObj 的执行上下文
+* 执行 ConstructorObj 函数，ConstructorObj 执行上下文中的 this 指向 temporaryObject
+* return temporaryObject
+
+### this 的设计缺陷及应对方案
+1. 嵌套函数中的 this 不会从外层函数中继承
+```JavaScript
+let userInfo = {
+  name:"jack.ma",
+  age:13,
+  sex:'male',
+  updateInfo:function(){
+    //模拟xmlhttprequest请求延时
+    setTimeout(function(){
+      this.name = "pony.ma"
+      this.age = 39
+      this.sex = 'female'
+    },100)
+  }
+}
+userInfo.updateInfo()
+```
+如上，bar 函数的 this 指向全局 window, 而 showThis 指向 myobj。this 之间没有继承。解决办法：
+* 增加变量 `_this` 保存父级 this，这种方式会产生一个闭包
+```javascript
+let userInfo = {
+  name:"jack.ma",
+  age:13,
+  sex:'male',
+  updateInfo:function(){
+    var _this = this
+    //模拟xmlhttprequest请求延时
+    setTimeout(function(){
+      _this.name = "pony.ma"
+      _this.age = 39
+      _this.sex = 'female'
+    },100)
+  }
+}
+userInfo.updateInfo()
+```
+* call/apply/bind 对象冒充
+```javascript
+let userInfo = {
+  name:"jack.ma",
+  age:13,
+  sex:'male',
+  updateInfo:function(){
+    //模拟xmlhttprequest请求延时
+    setTimeout(function(){
+      this.name = "pony.ma"
+      this.age = 40
+      this.sex = 'female'
+    }.call(this),100)
+  }
+}
+userInfo.updateInfo()
+```
+* 箭头函数，箭头函数不会自己创建 this，可以从自己的作用域上层继承 this
+```javascript
+let userInfo = {
+  name:"jack.ma",
+  age:13,
+  sex:'male',
+  updateInfo:function(){
+    //模拟xmlhttprequest请求延时
+    setTimeout(() => {
+      this.name = "pony.ma"
+      this.age = 41
+      this.sex = 'female'
+    },100)
+  }
+}
+userInfo.updateInfo()
+```
+* 传参
+```javascript
+let userInfo = {
+  name:"jack.ma",
+  age:13,
+  sex:'male',
+  updateInfo:function(){
+    //模拟xmlhttprequest请求延时
+    setTimeout(function(_this){
+      _this.name = "pony.ma"
+      _this.age = 42
+      _this.sex = 'female'
+    }(this),100)
+  }
+}
+userInfo.updateInfo()
+```
+
+2. 普通函数中的 this 默认指向全局对象 window
+JavaScript 严格模式下，全局调用一个函数 this 指向 undefined

@@ -52,6 +52,238 @@
 
     
       
+        <article id="post-react-整理" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/19/react-整理/">react 整理</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/19/react-整理/" class="article-date">
+  <time datetime="2019-03-19T10:06:55.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="React-列表渲染"><a href="#React-列表渲染" class="headerlink" title="React 列表渲染"></a>React 列表渲染</h3><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><p>React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  &lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &#123;/</span>* <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item.text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span> 没有 id 用索引赋 key *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code>最好不要用索引（index）作 key 值，因为一旦有新增、删除或移动等变化，会导致大量元素失效。进而造成不必要的重新渲染，损耗性能。可以使用 item.id 作为 key 值</p>
+<h3 id="React-state"><a href="#React-state" class="headerlink" title="React state"></a>React state</h3><p>React 中把组件看成一个状态机（state machines）。React 中，constructor 是最先执行，且执行一次。state 在 constructor 构造函数中初始化。其它地方采用 <code>this.setState()</code> 更新组件状态。<br>React 里，通过更新组件 state 重新渲染用户界面，不需要操作 DOM，类组件使用 props 调用基础构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(super) &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="comment">// 初始化 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre class="mermaid">graph LR;
+    用户界面交互-->状态;
+    状态-->UI渲染;
+    UI渲染-->|用户界面与数据保持一致|数据;</pre>
+<p>this.setState 之后发生了什么？<br>调用 setState 函数后，React 将 setState 参数与组件当前状态合并，触发调和过程（Reconciliation）. 经过调和过程，React 会以相对高效的方式构建 React Dom 树，得到 Dom 树后，React 会将新树与老树进行对比，找出差异节点，从而根据差异最小化渲染。</p>
+<p>重新构造 dom ，并将新老状态进行对比，最小化渲染。</p>
+<h3 id="React-生命周期渲染"><a href="#React-生命周期渲染" class="headerlink" title="React 生命周期渲染"></a>React 生命周期渲染</h3><pre class="mermaid">graph TM;
+  componentWillMount-->render;
+  render-->componentDidMount;
+  componentDidMount-->render</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="cki9obgkr00474tc948ou336n"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-prototype-proto" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/19/prototype-proto/">javascript prototype &amp;&amp; __proto__</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/19/prototype-proto/" class="article-date">
+  <time datetime="2019-03-19T04:20:05.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><p>Javascript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 <code>__proto__</code> 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。</p>
+<p><a href="https://segmentfault.com/a/1190000015727237" target="_blank" rel="noopener">继承</a></p>
+<h3 id="Javascript-继承"><a href="#Javascript-继承" class="headerlink" title="Javascript 继承"></a>Javascript 继承</h3><ul>
+<li>原型链继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Super()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>只要把子类的原型指向父类的实例就可以了，再演示一个更丰满的例子</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(Audery.friends)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>引用类型会出现数组引用多实例因共享导致的相互污染的问题，考虑使用 ** 构造函数继承 ** 实现</p>
+</blockquote>
+<ul>
+<li>构造函数继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params">female</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.sex = female</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age, female</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  Base.call(<span class="keyword">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(Audery.friends)</span><br><span class="line"><span class="built_in">console</span>.log(Gulu.friends)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>上面说了，通过对象冒充调用父类构造方法，其实就是复制父类构造函数中的属性、方法，到子类构造函数中，原型方法无法继承</p>
+</blockquote>
+<ul>
+<li>组合继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params">female</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.sex = female</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Base.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'I have some friends, they are '</span> + <span class="keyword">this</span>.friends.join(<span class="string">'、'</span>)+<span class="string">' respectively!'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age, female</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  Base.call(<span class="keyword">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原型继承父类实例指向子类原型</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>组合继承实现了：</p>
+</blockquote>
+<ul>
+<li><input disabled type="checkbox"> 属性私有化、方法共享、引用数组间不相互污染</li>
+</ul>
+<p>** 以上是原型链继承的周边，不使用 Object.create， 以下是使用 Object.create 方法相关继承的演生 **</p>
+<ul>
+<li><p>原型式继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">base</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseObj = &#123;</span><br><span class="line">  name: <span class="string">'基类'</span>,</span><br><span class="line">  arr: [<span class="string">'array1'</span>,<span class="string">'array2'</span>,<span class="string">'array3'</span>],</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.arr)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseInstance1 = base(baseObj)</span><br><span class="line"><span class="keyword">var</span> baseInstance2 = base(baseObj)</span><br><span class="line">baseInstance2.name = <span class="string">'修改属性值'</span></span><br><span class="line">baseInstance1.arr.push(<span class="string">'array4'</span>)</span><br><span class="line"><span class="comment">/* === baseInstance2 添加了一个实例属性 === */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>寄生式继承</p>
+</li>
+<li><p>寄生组合继承</p>
+</li>
+<li><p>Class extends</p>
+<blockquote>
+<p>如果子类中存在构造函数，则需要在使用 this 之前首先调用 super。 与寄生组合继承不同的是，ES6 先将父类实例对象的属性和方法加到 this 上，必须先调用 super 方法，然后再用的子类构造函数修改 this</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">babel.min.js:<span class="number">2</span> Uncaught <span class="built_in">SyntaxError</span>: Inline Babel script: <span class="string">'this'</span> is not allowed before <span class="keyword">super</span>()</span><br><span class="line">  <span class="number">3</span> |   <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="number">4</span> |     <span class="comment">// super(props);</span></span><br><span class="line">&gt; <span class="number">5</span> |     <span class="keyword">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">    |     ^</span><br><span class="line">  <span class="number">6</span> |   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现原理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null。</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf = <span class="function"><span class="keyword">function</span> (<span class="params">obj, proto</span>) </span>&#123;</span><br><span class="line">  obj.__proto__ = proto;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 的实例继承 A 的实例</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B.prototype, A.prototype);</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 继承 A 的静态属性</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B, A);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="cki9obgkp00444tc95i5fcukg"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-函数-bind-call-apply" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/函数-bind-call-apply/">函数 bind call apply</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/函数-bind-call-apply/" class="article-date">
+  <time datetime="2019-03-18T06:17:37.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="bind、call、apply"><a href="#bind、call、apply" class="headerlink" title="bind、call、apply"></a>bind、call、apply</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">call</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">apply</a></p>
+<h4 id="从定义上对比看"><a href="#从定义上对比看" class="headerlink" title="从定义上对比看"></a>从定义上对比看</h4><ul>
+<li>bind - 创建一个新的函数</li>
+<li>call - call 与 apply 相似，仅传参不同</li>
+<li>apply - 调用一个具有给定 this 值的函数<blockquote>
+<p>func.apply(thisArg, [argsArray])</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用一个具有给定 this 的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TempObj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.tempArray = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tempObj = <span class="keyword">new</span> TempObj()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定作用域为 tempObj</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.apply(tempObj, tempObj.tempArray))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.call(tempObj, ...tempObj.tempArray))</span><br></pre></td></tr></table></figure>
+
+<p>** DEMO **</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组合并</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>], b = [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">a.push(b) <span class="comment">// 3，返回数组 length</span></span><br><span class="line">a.concat(b) <span class="comment">// [1, 2, 3, 4] 创建了一个新数组</span></span><br><span class="line">a.push.apply(a, b) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">a.push.call(a, ...b) <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="cki9obgl5004s4tc9xn2lfjzf"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -95,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckhyovk0b002b339i2qpbd4bk"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="cki9obgjd00254tc9ogapcxbw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -154,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckhyovk12003s339id6nmgnb2"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="cki9obgke003r4tc9rz2cys4b"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
@@ -218,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckhyovk1c0041339i57jmtksf"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="cki9obgku004c4tc95rgmodvs"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
@@ -365,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckhyovk0d002f339ixbndyviq"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="cki9obgjg002b4tc94y03q8s5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
@@ -425,7 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckhyovk0k002u339i9c4ejx8k"
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="cki9obgjo002s4tc96brmaey9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
@@ -515,7 +747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckhyovk0e002h339iaz3dxt7g"
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="cki9obgjj002h4tc9rznosq0o"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -574,250 +806,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckhyovk1j004e339ik5y15pkb"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="cki9obgl1004k4tc9x7kk3kbn"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/25/前端构建工具/">前端构建工具</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/25/前端构建工具/" class="article-date">
-  <time datetime="2019-02-25T02:14:25.000Z" itemprop="datePublished">2019-02-25</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>公司之前的项目用的 grunt 构建项目的</p>
-<h3 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h3><p>Grunt 首页中可用的 Grunt 插件列表吸引到了我</p>
-<ul>
-<li>coffeeScript</li>
-<li>handlebas</li>
-<li>jade</li>
-<li>JShint</li>
-<li>less</li>
-<li>sass</li>
-<li>require.js</li>
-<li>stylus</li>
-</ul>
-<h4 id="Grunt-目前项目中使用到的插件"><a href="#Grunt-目前项目中使用到的插件" class="headerlink" title="Grunt - 目前项目中使用到的插件"></a>Grunt - 目前项目中使用到的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line"><span class="string">"grunt-autoprefixer"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line"><span class="string">"grunt-concurrent"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="comment">// 清除打包生成的文件，删除 dist 目录下的文件</span></span><br><span class="line"><span class="string">"grunt-contrib-clean"</span>: <span class="string">"^0.6.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-compress"</span>: <span class="string">"^0.13.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-concat"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-connect"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-copy"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-cssmin"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-htmlmin"</span>: <span class="string">"^0.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-imagemin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-jshint"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-rename"</span>: <span class="string">"0.0.3"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span>,</span><br><span class="line"><span class="comment">// 单元测试框架 Test-Driven Development</span></span><br><span class="line"><span class="string">"grunt-mocha"</span>: <span class="string">"^0.4.10"</span>,</span><br><span class="line"><span class="string">"grunt-newer"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line"><span class="string">"grunt-rev"</span>: <span class="string">"^0.1.0"</span>,</span><br><span class="line"><span class="string">"grunt-svgmin"</span>: <span class="string">"^0.4.0"</span>,</span><br><span class="line"><span class="string">"grunt-usemin"</span>: <span class="string">"^2.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-wiredep"</span>: <span class="string">"^1.7.0"</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Grunt-API"><a href="#Grunt-API" class="headerlink" title="Grunt API"></a>Grunt API</h4><ul>
-<li>grunt.task</li>
-</ul>
-<ul>
-<li><input disabled type="checkbox"> 注册任务 - 别名任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>注册任务列表</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'qunit'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><input disabled type="checkbox"> 注册任务 - 任务函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, --allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    grunt.task.run([</span><br><span class="line">      <span class="string">'clean:server'</span>,</span><br><span class="line">      <span class="string">'wiredep'</span>,</span><br><span class="line">      <span class="string">'concurrent:server'</span>,</span><br><span class="line">      <span class="string">'autoprefixer'</span>,</span><br><span class="line">      <span class="string">'connect:livereload'</span>,</span><br><span class="line">      <span class="string">'watch'</span></span><br><span class="line">    ]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>grunt.util<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="bower-包管理工具"><a href="#bower-包管理工具" class="headerlink" title="bower 包管理工具"></a>bower 包管理工具</h4><h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>proxy 解决跨域问题</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckhyovk1r004r339ibzujjytp"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-跨域" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/22/跨域/">跨域</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/22/跨域/" class="article-date">
-  <time datetime="2019-02-22T10:14:44.000Z" itemprop="datePublished">2019-02-22</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p><code>同源，相同的协议 + 相同的域名 + 相同的端口号</code></p>
-<p>不由的觉得很开心，“跨域”，百度输入“跨域”两个字，一大堆类标题“别再问我什么跨域”，哈哈，这是一种什么样的情感。me too.<br>我的对它的感情也很复杂，可不管怎么样，总想找个时间整理，有一定的体系。<br>切入正题</p>
-<p>在页面中用 about:blank 或 Javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有明确包含有关原始服务器的信息。</p>
-<p>例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  机制）。 如果此弹出窗口也包含代码，则该代码将继承与创建它的脚本相同的源。</p>
-<h3 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">浏览器的同源策略</a></h3><blockquote>
-<ul>
-<li><code>同源</code>策略是一种隔离恶意文件的安全机制。<br>* 对不同源之间的文档或脚本交互进行了限制。<br>* <code>不同源</code>是指两个页面的协议、端口、域名有一个不同</li>
-</ul>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/02/22/跨域/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckhyovk2g005o339ifv1pyqsk"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-BFC" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/20/CSS-BFC/">CSS BFC</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/20/CSS-BFC/" class="article-date">
-  <time datetime="2019-02-20T07:27:42.000Z" itemprop="datePublished">2019-02-20</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">个人的官方是 MDN 文档，信得过，值得依赖</a><br>[同时借鉴 前端精选文摘：BFC 神奇背后的原理]（<a href="https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解" target="_blank" rel="noopener">https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解</a> BFC 不仅仅要清楚创建块级格式化上下文的方式，还要清楚一些它布局的规则。</p>
-<p><strong>BFC - Block Formatting Context Web</strong> 页面可视化css渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其它元素交互的区域。</p>
-<h3 id="创建块级格式化上下文的方式（Block-Formatting-Context）"><a href="#创建块级格式化上下文的方式（Block-Formatting-Context）" class="headerlink" title="创建块级格式化上下文的方式（Block Formatting Context）"></a>创建块级格式化上下文的方式（Block Formatting Context）</h3><ul>
-<li><code>绝对定位元素</code><strong>position: absolute/position: fixed</strong> 会创建块级上下文<blockquote>
-<p>图标居定位右上角 <a href="https://github.com/HelenZhangLP/demo/blob/master/postionAbsoluteFixedBlock/index.html" target="_blank" rel="noopener">以下 demo 代码</a></p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator3<span class="tag">&lt;<span class="name">i</span>&gt;</span>vip icon<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">i</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">2px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f90</span>;</span><br><span class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">28px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(http://img.mukewang.com/<span class="number">545304730001307300280011</span>.gif) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg" alt="position-absolute-block-1"><br>上图是一个注释掉<code>position: absolute</code>后的错误示例，如 <code>&lt;i&gt;</code> 非块级元素，<code>text-indent: -9999px</code> 不生效，<code>margin: -2px 0 0 1px</code>在垂直方向同样不生效。注释文本撑开，显示vip图片，若无<code>vip icon</code>，背影图同样不显示，因为 <code>width/height</code> 对非块级元素不生效。<code>放开position: absolute 注释后，BFC 化后，实现效果如下图</code></p>
-<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg" alt="position-absolute-block-2"></p>
-<hr>
-<ul>
-<li>overflow 值不为 visible（default/visible）</li>
-<li>浮动元素（float 不为 none）<blockquote>
-<p>浮动实现两列表布局<br>盒子 .bfc1 与 盒子 .bfc2，左右布局，左侧盒子宽 100，左侧盒子根据父元素高自适应</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc1'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc2'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-1.png">
-<blockquote>
-<p>由图可以看出，块状元素布局是由上自下，每个元素与父元素左边框接触<br>左浮动实现两列表布局</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">  float: left;  // 左浮动实现两列表布局</span><br><span class="line">	<span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">height</span>: 150<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">background</span>: <span class="selector-id">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-2.png">
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckhyovjze000s339ixnaknb8j"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
 
     </footer>
 
@@ -835,7 +827,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
     </nav>
   
 </section>

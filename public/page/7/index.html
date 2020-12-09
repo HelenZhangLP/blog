@@ -52,6 +52,246 @@
 
     
       
+        <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/25/前端构建工具/">前端构建工具</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/25/前端构建工具/" class="article-date">
+  <time datetime="2019-02-25T02:14:25.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>公司之前的项目用的 grunt 构建项目的</p>
+<h3 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h3><p>Grunt 首页中可用的 Grunt 插件列表吸引到了我</p>
+<ul>
+<li>coffeeScript</li>
+<li>handlebas</li>
+<li>jade</li>
+<li>JShint</li>
+<li>less</li>
+<li>sass</li>
+<li>require.js</li>
+<li>stylus</li>
+</ul>
+<h4 id="Grunt-目前项目中使用到的插件"><a href="#Grunt-目前项目中使用到的插件" class="headerlink" title="Grunt - 目前项目中使用到的插件"></a>Grunt - 目前项目中使用到的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line"><span class="string">"grunt-autoprefixer"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line"><span class="string">"grunt-concurrent"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="comment">// 清除打包生成的文件，删除 dist 目录下的文件</span></span><br><span class="line"><span class="string">"grunt-contrib-clean"</span>: <span class="string">"^0.6.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-compress"</span>: <span class="string">"^0.13.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-concat"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-connect"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-copy"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-cssmin"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-htmlmin"</span>: <span class="string">"^0.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-imagemin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-jshint"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-rename"</span>: <span class="string">"0.0.3"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span>,</span><br><span class="line"><span class="comment">// 单元测试框架 Test-Driven Development</span></span><br><span class="line"><span class="string">"grunt-mocha"</span>: <span class="string">"^0.4.10"</span>,</span><br><span class="line"><span class="string">"grunt-newer"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line"><span class="string">"grunt-rev"</span>: <span class="string">"^0.1.0"</span>,</span><br><span class="line"><span class="string">"grunt-svgmin"</span>: <span class="string">"^0.4.0"</span>,</span><br><span class="line"><span class="string">"grunt-usemin"</span>: <span class="string">"^2.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-wiredep"</span>: <span class="string">"^1.7.0"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Grunt-API"><a href="#Grunt-API" class="headerlink" title="Grunt API"></a>Grunt API</h4><ul>
+<li>grunt.task</li>
+</ul>
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 别名任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>注册任务列表</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'qunit'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 任务函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, --allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    grunt.task.run([</span><br><span class="line">      <span class="string">'clean:server'</span>,</span><br><span class="line">      <span class="string">'wiredep'</span>,</span><br><span class="line">      <span class="string">'concurrent:server'</span>,</span><br><span class="line">      <span class="string">'autoprefixer'</span>,</span><br><span class="line">      <span class="string">'connect:livereload'</span>,</span><br><span class="line">      <span class="string">'watch'</span></span><br><span class="line">    ]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>grunt.util<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="bower-包管理工具"><a href="#bower-包管理工具" class="headerlink" title="bower 包管理工具"></a>bower 包管理工具</h4><h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>proxy 解决跨域问题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="cki9obgl8004x4tc9f97o4o5p"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-跨域" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/22/跨域/">跨域</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/22/跨域/" class="article-date">
+  <time datetime="2019-02-22T10:14:44.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><code>同源，相同的协议 + 相同的域名 + 相同的端口号</code></p>
+<p>不由的觉得很开心，“跨域”，百度输入“跨域”两个字，一大堆类标题“别再问我什么跨域”，哈哈，这是一种什么样的情感。me too.<br>我的对它的感情也很复杂，可不管怎么样，总想找个时间整理，有一定的体系。<br>切入正题</p>
+<p>在页面中用 about:blank 或 Javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有明确包含有关原始服务器的信息。</p>
+<p>例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  机制）。 如果此弹出窗口也包含代码，则该代码将继承与创建它的脚本相同的源。</p>
+<h3 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">浏览器的同源策略</a></h3><blockquote>
+<ul>
+<li><code>同源</code>策略是一种隔离恶意文件的安全机制。<br>* 对不同源之间的文档或脚本交互进行了限制。<br>* <code>不同源</code>是指两个页面的协议、端口、域名有一个不同</li>
+</ul>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/02/22/跨域/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="cki9obgm7005y4tc975lgzb9e"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-BFC" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/20/CSS-BFC/">CSS BFC</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/20/CSS-BFC/" class="article-date">
+  <time datetime="2019-02-20T07:27:42.000Z" itemprop="datePublished">2019-02-20</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">个人的官方是 MDN 文档，信得过，值得依赖</a><br>[同时借鉴 前端精选文摘：BFC 神奇背后的原理]（<a href="https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解" target="_blank" rel="noopener">https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解</a> BFC 不仅仅要清楚创建块级格式化上下文的方式，还要清楚一些它布局的规则。</p>
+<p><strong>BFC - Block Formatting Context Web</strong> 页面可视化css渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其它元素交互的区域。</p>
+<h3 id="创建块级格式化上下文的方式（Block-Formatting-Context）"><a href="#创建块级格式化上下文的方式（Block-Formatting-Context）" class="headerlink" title="创建块级格式化上下文的方式（Block Formatting Context）"></a>创建块级格式化上下文的方式（Block Formatting Context）</h3><ul>
+<li><code>绝对定位元素</code><strong>position: absolute/position: fixed</strong> 会创建块级上下文<blockquote>
+<p>图标居定位右上角 <a href="https://github.com/HelenZhangLP/demo/blob/master/postionAbsoluteFixedBlock/index.html" target="_blank" rel="noopener">以下 demo 代码</a></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator3<span class="tag">&lt;<span class="name">i</span>&gt;</span>vip icon<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">i</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">2px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f90</span>;</span><br><span class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">28px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(http://img.mukewang.com/<span class="number">545304730001307300280011</span>.gif) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg" alt="position-absolute-block-1"><br>上图是一个注释掉<code>position: absolute</code>后的错误示例，如 <code>&lt;i&gt;</code> 非块级元素，<code>text-indent: -9999px</code> 不生效，<code>margin: -2px 0 0 1px</code>在垂直方向同样不生效。注释文本撑开，显示vip图片，若无<code>vip icon</code>，背影图同样不显示，因为 <code>width/height</code> 对非块级元素不生效。<code>放开position: absolute 注释后，BFC 化后，实现效果如下图</code></p>
+<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg" alt="position-absolute-block-2"></p>
+<hr>
+<ul>
+<li>overflow 值不为 visible（default/visible）</li>
+<li>浮动元素（float 不为 none）<blockquote>
+<p>浮动实现两列表布局<br>盒子 .bfc1 与 盒子 .bfc2，左右布局，左侧盒子宽 100，左侧盒子根据父元素高自适应</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc1'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc2'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-1.png">
+<blockquote>
+<p>由图可以看出，块状元素布局是由上自下，每个元素与父元素左边框接触<br>左浮动实现两列表布局</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">  float: left;  // 左浮动实现两列表布局</span><br><span class="line">	<span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">height</span>: 150<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">background</span>: <span class="selector-id">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-2.png">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="cki9obgil000x4tc90gmsxn3e"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-CSS-盒模型" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -98,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckhyovjzq001b339ihjej6jut"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="cki9obgiu00194tc99ouvzmig"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -157,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckhyovjzy001o339is1c2hqqy"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="cki9obgj2001o4tc9g26gfv5e"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -221,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckhyovk0g002l339igv2w9dt3"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="cki9obgjl002l4tc9s1nvwuxx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -282,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckhyovk0t003b339ik9g3tmh8"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="cki9obgjz00394tc92j8m5m4x"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -340,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckhyovk0v003g339iwawwvdws"
+      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="cki9obgk2003e4tc9031woppe"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -399,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckhyovk0z003m339ib0ql2z04"
+      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="cki9obgk7003k4tc93rvehyxf"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
@@ -461,193 +701,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/01/EN-Dash/" data-id="ckhyovjzs001e339imhrudgp3"
+      <a data-url="https://helenzhanglp.github.io/2019/02/01/EN-Dash/" data-id="cki9obgix001e4tc9ae4v02bq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/English/">English</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词法/">词法</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-atom-插件" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/01/31/atom-插件/">atom 插件</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/01/31/atom-插件/" class="article-date">
-  <time datetime="2019-01-31T08:44:42.000Z" itemprop="datePublished">2019-01-31</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h4 id="markdown-preview-plus"><a href="#markdown-preview-plus" class="headerlink" title="markdown-preview-plus"></a>markdown-preview-plus</h4><ol>
-<li>command + shift + p</li>
-<li>markdown preview toggle</li>
-</ol>
-<h4 id="platformio-ide-terminal"><a href="#platformio-ide-terminal" class="headerlink" title="platformio-ide-terminal"></a>platformio-ide-terminal</h4><ol>
-<li>command + shift + p</li>
-<li>terminal new / terminal close</li>
-</ol>
-<h4 id="docblockr"><a href="#docblockr" class="headerlink" title="docblockr"></a><a href="https://atom.io/packages/docblockr" target="_blank" rel="noopener">docblockr</a></h4><p>用于自动生成注释（annotation）</p>
-<h4 id="authcompletePaths"><a href="#authcompletePaths" class="headerlink" title="authcompletePaths"></a>authcompletePaths</h4><p>自动补全 path</p>
-        
-          <a class="article-more-link" href="/2019/01/31/atom-插件/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/01/31/atom-插件/" data-id="ckhyovk0o0032339isuutamjt"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">atom</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-hexo-坑" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/01/31/hexo-坑/">Hexo 坑</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/01/31/hexo-坑/" class="article-date">
-  <time datetime="2019-01-31T08:44:18.000Z" itemprop="datePublished">2019-01-31</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="hexo-deploy-没有反应"><a href="#hexo-deploy-没有反应" class="headerlink" title="hexo deploy 没有反应"></a>hexo deploy 没有反应</h2><p><code>检查</code> _config.yml 中 deploy 配置</p>
-<h2 id="访问页面空白"><a href="#访问页面空白" class="headerlink" title="访问页面空白"></a>访问页面空白</h2><p><code>检查</code> themes</p>
-<h2 id="断行，在首页展示缩略信息，该方法能被-hexo-更好识别"><a href="#断行，在首页展示缩略信息，该方法能被-hexo-更好识别" class="headerlink" title="断行，在首页展示缩略信息，该方法能被 hexo 更好识别"></a>断行，在首页展示缩略信息，该方法能被 hexo 更好识别</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
-
-<h2 id="ERROR-No-layout-index-html"><a href="#ERROR-No-layout-index-html" class="headerlink" title="ERROR - No layout: index.html"></a>ERROR - No layout: index.html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br><span class="line">WARN  No layout: index.html</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2019/01/31/hexo-坑/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/01/31/hexo-坑/" data-id="ckhyovk0x003k339iztvnfkaf"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-taro" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/01/25/taro/">taro 坑系列</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/01/25/taro/" class="article-date">
-  <time datetime="2019-01-25T07:52:09.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="taro-坑"><a href="#taro-坑" class="headerlink" title="taro 坑"></a>taro 坑</h3><h4 id="坑-1"><a href="#坑-1" class="headerlink" title="坑 - 1"></a>坑 - 1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/Users/lipingzhang/Project<span class="comment">/**/**/</span>src/pages/order/detail/index编译失败！</span><br><span class="line"><span class="built_in">TypeError</span> [ERR_INVALID_ARG_TYPE]: The <span class="string">"path"</span> argument must be <span class="keyword">of</span> type string</span><br><span class="line">    at assertPath (path.js:<span class="number">28</span>:<span class="number">11</span>)</span><br><span class="line">    at <span class="built_in">Object</span>.relative (path.js:<span class="number">1265</span>:<span class="number">5</span>)</span><br><span class="line">    at pageDepComponents.forEach.depComponent (<span class="regexp">/Users/</span>lipingzhang/.nvm/versions/node/v9<span class="number">.2</span><span class="number">.0</span>/lib/node_modules/@tarojs/cli/src/weapp.js:<span class="number">1326</span>:<span class="number">64</span>)</span><br><span class="line">    at <span class="built_in">Array</span>.forEach (<span class="xml"><span class="tag">&lt;<span class="name">anonymous</span>&gt;</span>)</span></span><br><span class="line"><span class="xml">    at componentMap.forEach.component (/Users/lipingzhang/.nvm/versions/node/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1320:31)</span></span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at realComponentsPathList.forEach.component (/Users/lipingzhang/.nvm/versions/node/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1319:24)</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at buildSinglePage (/Users/jo32/.nvm/versions/lipingzhang/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1316:30)</span><br><span class="line">    at &lt;anonymous&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2019/01/25/taro/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/01/25/taro/" data-id="ckhyovk1g0048339i2y6481zc"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/taro/">taro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
 
     </footer>
 
@@ -665,7 +722,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+      <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
     </nav>
   
 </section>

@@ -23,6 +23,7 @@ DOM 是对结构化广西的抽象表达，web 环境中，DOM 是对 html 文�
   }
 }
 ```
+<!--More-->
 ## diff 算法
 react 的调合过程（Reconciliation）react 采用声明式的 API 描述 UI 结构，组件状态或属性更新，组件的 react 方法会返回一个新的虚拟 DOM 对象表述新的 ui 结构。 Diff 算法中，比较新的虚拟 DOM 和 旧的虚拟 DOM，再将 diff 的结果更新到真实 DOM 上。
 React 基于两个假设，降低算法的时间复杂度，进行比较：

@@ -11,3 +11,5 @@ rest 参数
 扩展运算符
 class
 import/export
+
+`hello ${name}` 模板字符串
