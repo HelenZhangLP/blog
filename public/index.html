@@ -86,47 +86,13 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">'foo'</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: <span class="string">'div'</span>,</span><br><span class="line">  props: &#123;</span><br><span class="line">    className: <span class="string">'foo'</span>,</span><br><span class="line">    children: <span class="string">'hello'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h2><p>react 的调合过程（Reconciliation）react 采用声明式的 API 描述 UI 结构，组件状态或属性更新，组件的 react 方法会返回一个新的虚拟 DOM 对象表述新的 ui 结构。 Diff 算法中，比较新的虚拟 DOM 和 旧的虚拟 DOM，再将 diff 的结果更新到真实 DOM 上。<br>React 基于两个假设，降低算法的时间复杂度，进行比较：</p>
-<ol>
-<li>如果两个元素的类型不同，那么它们将生成两个不同的树</li>
-<li>为列表中元素设置 key 属性，key 标识对应元素在多次 render 过程中是否发生变化<br>react 从根结点比较两棵树的差异，根结点不同，两棵树不同，具体如下：<h3 id="当根结点是不同类型时"><a href="#当根结点是不同类型时" class="headerlink" title="当根结点是不同类型时"></a>当根结点是不同类型时</h3>根结点变化，react 会认为新的树和旧的树完全不同，不会继续比较其它属性和子节点，直接拆掉整个树重建。重建后的 DOM 树会整体更新到真实的 DOM 树中。需要操作大量 DOM 更新效率低。<br>虚拟 DOM 结点类型分为两类：</li>
-<li>像 <code>div/p</code> 等 DOM 元素类型；</li>
-<li>react 组件类型，如 react 自定义组件。<br>旧的 react 组件实例在 componentWillUnMount 中调用，新的组件实例在 componentWillMount 和 componentDidMount 中调用。<br>包裹组件的 dom 元素变量，a 组件改变 b 组件，或组件中的元素变化，都是结点类型发生变化。<h3 id="当根结点相同的-DOM-类型时"><a href="#当根结点相同的-DOM-类型时" class="headerlink" title="当根结点相同的 DOM 类型时"></a>当根结点相同的 DOM 类型时</h3>根节点相同，属性不同，react 只更新需拟 DOM 树和真实 DOM 树对应的节点。<h3 id="当根结点是相同组件类型时"><a href="#当根结点是相同组件类型时" class="headerlink" title="当根结点是相同组件类型时"></a>当根结点是相同组件类型时</h3>如果两个根节点是相同类型的组件，对应的组件实例不会被销毁，只会执行更新操作。并且在 componentWillReceiveProps 和 componentWillUpdate 中调用组件，更新变化的属性。<br>比较完根节点，react 会以同样的方式递归比较子节点，当然子节点又是它子节点的根节点。如此递归，走到比较完两棵树上的所有节点，计算出差异更新到 DOM 树。<br>对于列表，react 提供了 key 的属性，key 是为了帮助 react 提高 diff 算法效率的。每次渲染后，只要 key 不变，react 认为是只一节点。如下 code，<code>&lt;li key=&#39;first&#39;&gt;first&lt;/li&gt;</code> 与 <code>&lt;li key=&#39;second&#39;&gt;second&lt;/li&gt;</code> 两个元素 key 值没有变，只是位置变化，react 判断出为新增节点。从而避免了大量渲染。<strong>不要用 index 索引做 key 值，一旦数组开头新增，大量 key 失败，从而引用大量重新渲染</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'third'</span>&gt;</span>third<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'first'</span>&gt;</span>first<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'second'</span>&gt;</span>second<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ol>
-<li><p>使用生产环境版本库<br><code>npm run start</code> 使用的是开发环境版本的 react 库<br><code>npm run build</code> 构建生产环境 react 库，其它第三方也执行生产环境版本构建(生产环境 NODE_ENV = ‘production’)<br>一般第三方库都会根据 process.env.NODE_ENV 这个变量决定开发环境和生产环境执行<br>如果是自己编写 Webpack 的构建配置，在生产环境构建时，需要在 Webpack 的配置项中包含以下插件配置：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">    <span class="string">'process.env'</span>: &#123;</span><br><span class="line">      NODE_ENV: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="keyword">new</span> UglifyJSPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>避免不必要的组件渲染<br>重写 shouldComponentUpdate 方法避免不必要的组件渲染</p>
-<img src="http://www.plantuml.com/plantuml/svg/KoekIIn9LSWlKYWeoYyeLaZEICnBJrLIKD3LjLDGAahDIqajKkA2CL14hHIUhftmV7VBaztRe9gVpLdrj7_6qvvfQ1eGwfBpSmloyrBpIi8pStA2KfDJCyjI0q1waKrxFgi5QY3CD68CGBSAwW80"></li>
-<li><p>使用 key</p>
-</li>
-</ol>
-<h2 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h2><ol>
-<li>React Develop Tools for Chrome 检测页面使用的 react 代码版本是生产环境版本，如果地址栏 react icon 是黑色，代表当前为生产版本 react，红色则为开发环境 react</li>
-<li>chrome performance tab 观察组件挂载、更新、卸载过程及各阶段的时间<ul>
-<li>确保运行在开发模式下</li>
-<li>打开 Chrome 开发者工具，切换到 performance 窗口，单击 Record 按钮开始统计。</li>
-<li>在页面执行需要分析的操作，最好不要超过 20 秒，否则导致 chrome 卡死。</li>
-<li>单击 stop 按钮结束统计，user timing 查看统计结果</li>
-</ul>
-</li>
-<li>why-did-you-update<br>用来比较 state 和 props 的变化，从而发现组件 render 方法不必要的调用<ul>
-<li>安装 <code>npm i why-did-you-update --save-dev</code></li>
-<li>使用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">if</span>(process.env_NODE_ENV !== <span class="string">'production'</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; whyDidYouUpdate &#125; = <span class="built_in">require</span>(<span class="string">'why-did-you-update'</span>)</span><br><span class="line">  whyDidYouUpdate(React)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-
+        
+          <a class="article-more-link" href="/2020/12/02/react-虚拟DOM和性能优化/">更多...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="cki9obgkt004a4tc973nqa56e"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckih1dh02004910c94k577pzv"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -193,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="cki9obgkg003u4tc90gbwhz13"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckih1dgzv003w10c9jiwjq9ud"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -250,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="cki9obgkn00404tc9ag2mzg9i"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckih1dh01004610c90f9jnwjt"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -310,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="cki9obglu005h4tc9ywu3ap40"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckih1dh11005i10c9ggtbv8u0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -372,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="cki9obgm5005t4tc92enadmwz"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckih1dh15005p10c9d2ptuto9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -426,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="cki9obgkj003w4tc9y8doj6nb"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckih1dgzr003r10c930g9x7oh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -484,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="cki9obglz005m4tc9w3ih8q7t"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckih1dh12005k10c9lgvyirrr"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -541,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="cki9obglm00584tc9s1k64jtr"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckih1dh0v005810c9f24yqnrj"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -594,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="cki9obgm2005o4tc9zzx58e3t"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckih1dh14005n10c9eqvz2rbh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -649,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="cki9obgm4005q4tc9c268pd3v"
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckih1dh17005s10c9bd22i73l"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>

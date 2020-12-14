@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    react + fetch + mockjs |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-mock数据" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react + fetch + mockjs
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/12/02/mock数据/" class="article-date">
+  <time datetime="2020-12-02T05:23:44.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li><p><code>mockjs</code> 生成随机数据、拦截 Ajax 请求。<a href="https://github.com/nuysoft/Mock/wiki/Getting-Started" target="_blank" rel="noopener">文档见</a></p>
+<ul>
+<li>安装<blockquote>
+<p>npm install –save-dev mockjs</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><code>fetch</code> http 请求方式，是 XMLHttpRequest 的一种替代方案，它的 api 是基于 Promise 设计的 nodejs 中使用需要引入 node-fetch.</p>
+</li>
+<li><p><code>fetch-mock</code> 拦截 fetch 请求</p>
+<ul>
+<li>安装<blockquote>
+<p>npm install –save-dev fetch-mock</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2></li>
+</ul>
+</li>
+<li><p>目录结构</p>
+<img src="http://www.plantuml.com/plantuml/svg/AqxCAU6gvb9Gg0u14WeAsWgPUIcf5NfPnL1kOa41CYSJp0AoCHJcvYTduv04Yu3aKGHI4aiIeJmG7sXwUcfUYKzcSGb4MIrNBG00">
+<p>按照以上目录结构整理代码，以下是 demo</p>
+</li>
+</ol>
+<ul>
+<li><p><code>/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mock <span class="keyword">from</span> <span class="string">'./mock/index'</span></span><br><span class="line">mock.start();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/mock/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mock <span class="keyword">from</span> <span class="string">'./mock'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> mock</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/mock/mock.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fetchMock <span class="keyword">from</span> <span class="string">'fetch-mock'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;agents&#125; <span class="keyword">from</span> <span class="string">'./data/agentList'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  start() &#123;</span><br><span class="line">    fetch.get(<span class="string">'/agentList'</span>, ()=&gt;&#123;</span><br><span class="line">      <span class="keyword">return</span> agents</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>data 中 mock 假数据 <code>/mock/data/index.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mock <span class="keyword">from</span> <span class="string">'mockjs'</span>;</span><br><span class="line"><span class="keyword">const</span> Random = mock.Random;</span><br><span class="line"><span class="keyword">let</span> agents = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">  agents.push(Mock.mock&#123;</span><br><span class="line">    key: Random.guid()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; agents &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fetch 调用 api <code>/api/agentList.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getAgentList = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> fetch(<span class="string">'/agentList'</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组件中调用 <code>/app.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 省略其它代码</span></span><br><span class="line">componentDitMount() &#123;</span><br><span class="line">  getAgentList().then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      data</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckih1dgzv003w10c9jiwjq9ud"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/12/02/react-虚拟DOM和性能优化/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            虚拟DOM和性能优化
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/29/react-component/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">react 组件</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2020 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
