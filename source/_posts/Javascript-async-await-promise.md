@@ -2,6 +2,7 @@
 title: async await promise
 date: 2019-07-24T14:06:56.000Z
 tags:
+  - JavaScript
   - 语法糖
 ---
 
@@ -36,7 +37,10 @@ console.log( 'script end' )
 
 <!-- more -->
 
- # async/await 异步编程的终级解决方案
+## Promise
+解决采用 callback 机制产生的如回调地狱一样的潜在问题，允许采用近乎同步的逻辑写异步代码
+
+## async/await 异步编程的终级解决方案
 
 > JavaScript 的 async/await 实现，也离不开 Promise，async 用于申明一个方法是异步的，await 用于等待一个异步方法执行完成。await 只能出现在 async 函数中。
 
@@ -71,3 +75,5 @@ Promise {<resolved>: undefined}__proto__: Promise[[PromiseStatus]]: "resolved"[[
 ## await
 
 > async 函数返回 Promise, await 可以用于等待 async 的返回值。await 等待任意表达式的结果，
+
+[更多案例](https://github.com/HelenZhangLP/demo/tree/master/node/node-demo/demo-1)

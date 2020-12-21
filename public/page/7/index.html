@@ -52,6 +52,65 @@
 
     
       
+        <article id="post-vue-use-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/25/vue-use-vue-component/">vue.use 与 vue.component</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/25/vue-use-vue-component/" class="article-date">
+  <time datetime="2019-02-25T07:54:14.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Error - 1 弹层对象取自列表，列表数据在弹层编辑修改，编辑部分数据后，取消或关闭弹层，列表数据修改。<br>产生原因：vue 双向绑定<br>解决办法：copy Object, 对象重新 copy 一份</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">handlerUpdate(item) &#123;</span><br><span class="line">  <span class="comment">// 更新 item</span></span><br><span class="line">  <span class="keyword">this</span>.dialogVisible = !<span class="keyword">this</span>.dialogVisible</span><br><span class="line">  <span class="keyword">this</span>.dialogStatus = <span class="string">'edit'</span></span><br><span class="line">  <span class="keyword">this</span>.temp = <span class="built_in">Object</span>.assign(&#123;&#125;, item) <span class="comment">// copy obj</span></span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs[<span class="string">'dataForm'</span>].clearValidate()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm: Component = <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
+
+<p>以上写是不是有点奇怪，是的。我没见过，它是 <a href="https://flow.org/" target="_blank" rel="noopener">flow.js</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckio8bsbk004nric9yo4m92vw"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -126,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckih1dh0j004x10c9p9iuree6"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckio8bsbv0051ric99j1y0gfu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -190,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckih1dh1a005x10c9k3du0aq9"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckio8bscj005yric96lsf0szi"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -276,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckih1dgy5000u10c91nfqn37a"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckio8bs8a000yric9x8n58p79"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -338,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckih1dgyh001d10c92uojtb3f"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckio8bs8p001cric993ze0cye"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -397,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckih1dgyl001k10c9ku1r6dbn"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckio8bs8z001nric91uvw99aw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -461,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckih1dgz4002o10c9ut39ug36"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckio8bs9s002eric9f5d1ax1f"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -522,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckih1dgzg003910c9lpvw6f4d"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckio8bsad003aric9ippioa7o"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -580,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckih1dgzj003d10c9d9ic4nsf"
+      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckio8bsah003gric9lt3xddcs"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -639,72 +698,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckih1dgzn003j10c9ltay13m7"
+      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckio8bsaj003hric9cp7mte8d"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-EN-Dash" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/01/EN-Dash/">EN Dash</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/01/EN-Dash/" class="article-date">
-  <time datetime="2019-02-01T10:03:50.000Z" itemprop="datePublished">2019-02-01</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/English/">English</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="EN-Dash-破折号、连字符"><a href="#EN-Dash-破折号、连字符" class="headerlink" title="EN Dash - 破折号、连字符"></a>EN Dash - 破折号、连字符</h2><blockquote>
-<p>英语中连字符的两大功能</p>
-</blockquote>
-<ol>
-<li><p>用于移行，把不在同一行的某个单词连接起来；</p>
-</li>
-<li><p>把两个或两个以上的单词连接起来，构成新的形容词</p>
-        
-          <a class="article-more-link" href="/2019/02/01/EN-Dash/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/01/EN-Dash/" data-id="ckih1dgyj001i10c96251mkhh"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/English/">English</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词法/">词法</a></li></ul>
 
     </footer>
 

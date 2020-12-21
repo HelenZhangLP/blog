@@ -52,6 +52,59 @@
 
     
       
+        <article id="post-Array sort 源码解析" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/01/08/Array sort 源码解析/">Array sort 源码解析</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/08/Array sort 源码解析/" class="article-date">
+  <time datetime="2020-01-08T02:07:22.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><blockquote>
+<p>ToUint32 将指定的值转换为 32 位，不带正负号的整数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArraySort</span>(<span class="params">comparefn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> custom_compare = IS_FUNCTION(comparefn);</span><br><span class="line">  <span class="keyword">var</span> length = ToUint32(<span class="keyword">this</span>.length);</span><br><span class="line">  QuickSort(<span class="keyword">this</span>, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/01/08/Array sort 源码解析/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/08/Array sort 源码解析/" data-id="ckio8bs85000rric9sa487d6j"
+         class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-日记-2019-12-25" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -97,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckih1dh0q005210c966i7xz5e"
+      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckio8bsc20059ric91zammkhx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -156,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckih1dh0t005610c917d8upjr"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckio8bsc3005aric9kafbx8jd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -212,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckih1dgyo001q10c97di3w0i2"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckio8bs91001pric9kk2fcgid"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -268,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckih1dh0l004y10c9jzpo282r"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckio8bsc10057ric9dlve4v66"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -320,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckih1dgz8002v10c9oybtcesb"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckio8bsaa0034ric9ghdgkcet"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
@@ -371,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckih1dgzf003810c9kli0uc7m"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckio8bsam003kric9n3m68l87"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -426,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckih1dh04004b10c9mbg26td0"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckio8bsbi004kric9sky3uf83"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -488,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckih1dh0w005a10c9k7a0t1mx"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckio8bsc6005dric9uh7sen28"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -551,65 +604,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckih1dgzp003o10c9i42bfo43"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckio8bsb10041ric91e5oj27j"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-代码管理工具-git坑" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/03/代码管理工具-git坑/">git 坑</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/03/代码管理工具-git坑/" class="article-date">
-  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
-<p>.gitignore 中添加 .idea/ 没用</p>
-</blockquote>
-<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckih1dh0e004s10c9xqrk8b37"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </footer>
 
