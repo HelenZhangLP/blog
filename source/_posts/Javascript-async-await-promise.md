@@ -74,6 +74,6 @@ Promise {<resolved>: undefined}__proto__: Promise[[PromiseStatus]]: "resolved"[[
 
 ## await
 
-> async 函数返回 Promise, await 可以用于等待 async 的返回值。await 等待任意表达式的结果，
+> async 函数返回 Promise, await 可以用于等待 async 异步的完成，异步操作返回的都是 promise, await 按顺序执行。
 
 [更多案例](https://github.com/HelenZhangLP/demo/tree/master/node/node-demo/demo-1)
