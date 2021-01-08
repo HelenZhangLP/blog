@@ -52,6 +52,177 @@
 
     
       
+        <article id="post-Javascript-正则" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/01/13/Javascript-正则/">Javascript-正则</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/13/Javascript-正则/" class="article-date">
+  <time datetime="2020-01-13T07:35:23.000Z" itemprop="datePublished">2020-01-13</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[\u4e00-\u9fa5]/</span></span><br><span class="line"><span class="built_in">console</span>.dir(reg)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * /[\u4e00-\u9fa5]/</span></span><br><span class="line"><span class="comment">    dotAll: false</span></span><br><span class="line"><span class="comment">    flags: ""</span></span><br><span class="line"><span class="comment">    global: false</span></span><br><span class="line"><span class="comment">    ignoreCase: false</span></span><br><span class="line"><span class="comment">    lastIndex: 0</span></span><br><span class="line"><span class="comment">    multiline: false</span></span><br><span class="line"><span class="comment">    source: "[\u4e00-\u9fa5]"</span></span><br><span class="line"><span class="comment">    sticky: false</span></span><br><span class="line"><span class="comment">    unicode: false</span></span><br><span class="line"><span class="comment"> * /</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/01/13/Javascript-正则/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/13/Javascript-正则/" data-id="ckjnr8j1g0029zd9i47ajngww"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-字符串" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/01/09/Javascript-字符串/">Javascript 字符串</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/09/Javascript-字符串/" class="article-date">
+  <time datetime="2020-01-09T02:14:03.000Z" itemprop="datePublished">2020-01-09</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <blockquote>
+<p><code>需求删除最后一个为 &amp; 的字符</code></p>
+</blockquote>
+<h3 id="String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。"><a href="#String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。" class="headerlink" title="String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。"></a>String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。</h3><blockquote>
+<p>str.replace(regexp|substr, newSubStr|function)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// regexp = /&amp;$/</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/</span>, <span class="string">""</span>) <span class="comment">// zhangliping</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * --- 引申 ---</span></span><br><span class="line"><span class="comment"> * 删除字符串全部的 &amp;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/g</span>, <span class="string">""</span>) <span class="comment">// 全局替换</span></span><br><span class="line">str.replace(<span class="regexp">/^&amp;/</span>,<span class="string">""</span>) <span class="comment">// 替换开头</span></span><br><span class="line">str.replace(<span class="regexp">/[?&amp;]$/</span>, <span class="string">""</span>) <span class="comment">//替换结尾的 ? 或 &amp;</span></span><br><span class="line"></span><br><span class="line">formatParamets() &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="built_in">window</span>.location.href; <span class="comment">// 获取当前浏览器的URL</span></span><br><span class="line">  <span class="keyword">const</span> params = &#123;&#125;; <span class="comment">// 存储最终JSON结果对象</span></span><br><span class="line">  url.replace(<span class="regexp">/([^?&amp;]+)=([^?&amp;]+)/g</span>, (match, p1, p2) =&gt; &#123;</span><br><span class="line">    params[p1] = <span class="built_in">decodeURIComponent</span>(p2); <span class="comment">// 解析字符为中文</span></span><br><span class="line">    <span class="keyword">return</span> p2 + <span class="string">'='</span> + p1;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/01/09/Javascript-字符串/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/09/Javascript-字符串/" data-id="ckjnr8j17001wzd9ipavcomz6"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Array sort 源码解析" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/01/08/Array sort 源码解析/">Array sort 源码解析</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/08/Array sort 源码解析/" class="article-date">
+  <time datetime="2020-01-08T02:07:22.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><blockquote>
+<p>ToUint32 将指定的值转换为 32 位，不带正负号的整数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArraySort</span>(<span class="params">comparefn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> custom_compare = IS_FUNCTION(comparefn);</span><br><span class="line">  <span class="keyword">var</span> length = ToUint32(<span class="keyword">this</span>.length);</span><br><span class="line">  QuickSort(<span class="keyword">this</span>, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/01/08/Array sort 源码解析/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/08/Array sort 源码解析/" data-id="ckjnr8j04000uzd9i2dxr9nus"
+         class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-日记-2019-12-25" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -97,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckih1dh0q005210c966i7xz5e"
+      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckjnr8j4g005azd9iacfrfnnc"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -156,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckih1dh0t005610c917d8upjr"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckjnr8j4i005czd9ijtcibdnd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -212,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckih1dgyo001q10c97di3w0i2"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckjnr8j14001tzd9iqo4p8x42"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -268,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckih1dh0l004y10c9jzpo282r"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckjnr8j4e0057zd9ipfaazd4a"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -320,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckih1dgz8002v10c9oybtcesb"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/async-await-promise/" data-id="ckjnr8j220034zd9i6qmqak7d"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
@@ -371,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckih1dgzf003810c9kli0uc7m"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckjnr8j280039zd9ihqigqcc5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -426,190 +597,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckih1dh04004b10c9mbg26td0"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckjnr8j3y004nzd9i4cj1m9dm"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/14/浏览器-cookie-webStorage/">cookie 与 Web Storage</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-date">
-  <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>先了解下浏览器缓存存储过程的序列图：</p>
-<div id="sequence-0"></div>
-`If-None-Match:"4f80f-13c-3a1xb12a"` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
-
-<p>Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。</p>
-<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">'undefined'</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
-
-<p><code>注意：</code></p>
-<ul>
-<li>由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。</li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/06/14/浏览器-cookie-webStorage/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckih1dh0w005a10c9k7a0t1mx"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/12/http-请求状态码/">http 请求状态码</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/12/http-请求状态码/" class="article-date">
-  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
-<p>请求成功，默认状态下 200 响应可以被缓存</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
-<li>HEAD: 响应的消息体为头部信息。</li>
-<li>POST: 响应的消息体中包含此次请求的结果。</li>
-<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
-<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
-</ul>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/06/12/http-请求状态码/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckih1dgzp003o10c9i42bfo43"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-代码管理工具-git坑" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/03/代码管理工具-git坑/">git 坑</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/03/代码管理工具-git坑/" class="article-date">
-  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
-<p>.gitignore 中添加 .idea/ 没用</p>
-</blockquote>
-<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckih1dh0e004s10c9xqrk8b37"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </footer>
 
@@ -646,7 +637,7 @@
 
   <div class="outer">
     <ul class="list-inline">
-      <li>&copy; 2020 女魔头</li>
+      <li>&copy; 2021 女魔头</li>
       <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
       <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
       <!--

@@ -52,6 +52,186 @@
 
     
       
+        <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/14/浏览器-cookie-webStorage/">cookie 与 Web Storage</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-date">
+  <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>先了解下浏览器缓存存储过程的序列图：</p>
+<div id="sequence-0"></div>
+`If-None-Match:"4f80f-13c-3a1xb12a"` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
+
+<p>Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。</p>
+<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">'undefined'</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code></p>
+<ul>
+<li>由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。</li>
+</ul>
+        
+          <a class="article-more-link" href="/2019/06/14/浏览器-cookie-webStorage/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckjnr8j4m005jzd9i7t4z0qk4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/12/http-请求状态码/">http 请求状态码</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/12/http-请求状态码/" class="article-date">
+  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
+<p>请求成功，默认状态下 200 响应可以被缓存</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
+<li>HEAD: 响应的消息体为头部信息。</li>
+<li>POST: 响应的消息体中包含此次请求的结果。</li>
+<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
+<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
+</ul>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/06/12/http-请求状态码/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckjnr8j2y003szd9il51tf0o2"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-代码管理工具-git坑" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/03/代码管理工具-git坑/">git 坑</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/03/代码管理工具-git坑/" class="article-date">
+  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
+<p>.gitignore 中添加 .idea/ 没用</p>
+</blockquote>
+<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckjnr8j42004tzd9isek4jwv4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-NodeJs-学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -91,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckih1dgz6002s10c9hhfnkhcb"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckjnr8j1u002uzd9im95fgzm1"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -143,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckih1dh0g004v10c9v3pa5cao"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjnr8j49004zzd9ijkqawbln"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -197,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckih1dgya001210c9w612zdfx"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckjnr8j0e0013zd9ivk8l7nsn"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -281,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckih1dh18005u10c9rqi7f6tm"
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjnr8j500062zd9iq0542967"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -342,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckih1dgyg001b10c9isn9do0e"
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckjnr8j0p001bzd9iag94d7m7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
@@ -407,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckih1dgyz002e10c9oq4vy82q"
+      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjnr8j1k002fzd9i22m5g0cb"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -467,203 +647,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckih1dgzi003b10c9ph4cow64"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckjnr8j2j003fzd9i7w36vuoc"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-模块化/">ES6 模块化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-模块化" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/26/Javascript-模块化/">Javascript 模块化</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/26/Javascript-模块化/" class="article-date">
-  <time datetime="2019-03-26T02:04:17.000Z" itemprop="datePublished">2019-03-26</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 <code>&lt;script&gt;&lt;/script&gt;</code> 标签即可。随着前端复杂度的提高，对于前端代码的<code>可读性、可扩展性</code>有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：</p>
-<h3 id="一、无模块化"><a href="#一、无模块化" class="headerlink" title="一、无模块化"></a>一、无模块化</h3><p>无模块化阶段代码如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery_scroller.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<ol>
-<li>变量、对象、函数均绑在全局，<code>污染全局作用域</code> 会出现命名冲突的问题。</li>
-<li><code>依赖关系不明显</code>，开发手动处理各模块依赖，维护成本加大。</li>
-</ol>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/03/26/Javascript-模块化/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckih1dgys001y10c9b3zaz583"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/25/CSS-面试题/">CSS 面试题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/25/CSS-面试题/" class="article-date">
-  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <ul>
-<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
-</li>
-<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
-</li>
-<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
-<blockquote>
-<ul>
-<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
-<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
-</ul>
-</blockquote>
-</li>
-<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
-</li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/03/25/CSS-面试题/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckih1dgyi001f10c9ykx9g99u"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-Class" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/20/Javascript-Class/">Javascript Class</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/20/Javascript-Class/" class="article-date">
-  <time datetime="2019-03-20T09:06:19.000Z" itemprop="datePublished">2019-03-20</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><h4 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h4><p>用带有 class 关键字的类名声明一个类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Mermaid();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught ReferenceError: Mermaid is not defined</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 匿名类 */</span></span><br><span class="line"><span class="keyword">let</span> Mermaid = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 命名类 */</span></span><br><span class="line"><span class="keyword">let</span> Everything = <span class="class"><span class="keyword">class</span> <span class="title">Everything</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Everything is posible'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>super 关键字调用父类构造函数</p>
-</blockquote>
-<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
-<p><code>static</code> 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckih1dh1b005z10c9jnzm55ap"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
 
     </footer>
 
@@ -700,7 +687,7 @@
 
   <div class="outer">
     <ul class="list-inline">
-      <li>&copy; 2020 女魔头</li>
+      <li>&copy; 2021 女魔头</li>
       <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
       <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
       <!--

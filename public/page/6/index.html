@@ -52,6 +52,199 @@
 
     
       
+        <article id="post-Javascript-模块化" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/26/Javascript-模块化/">Javascript 模块化</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/26/Javascript-模块化/" class="article-date">
+  <time datetime="2019-03-26T02:04:17.000Z" itemprop="datePublished">2019-03-26</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 <code>&lt;script&gt;&lt;/script&gt;</code> 标签即可。随着前端复杂度的提高，对于前端代码的<code>可读性、可扩展性</code>有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：</p>
+<h3 id="一、无模块化"><a href="#一、无模块化" class="headerlink" title="一、无模块化"></a>一、无模块化</h3><p>无模块化阶段代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery_scroller.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>变量、对象、函数均绑在全局，<code>污染全局作用域</code> 会出现命名冲突的问题。</li>
+<li><code>依赖关系不明显</code>，开发手动处理各模块依赖，维护成本加大。</li>
+</ol>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/03/26/Javascript-模块化/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckjnr8j1e0025zd9i064uzmti"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/25/CSS-面试题/">CSS 面试题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/25/CSS-面试题/" class="article-date">
+  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <ul>
+<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
+</li>
+<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
+<blockquote>
+<ul>
+<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
+<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
+</ul>
+</blockquote>
+</li>
+<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
+</li>
+</ul>
+        
+          <a class="article-more-link" href="/2019/03/25/CSS-面试题/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjnr8j0u001hzd9ihmbqlgf4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-Class" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/20/Javascript-Class/">Javascript Class</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/20/Javascript-Class/" class="article-date">
+  <time datetime="2019-03-20T09:06:19.000Z" itemprop="datePublished">2019-03-20</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><h4 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h4><p>用带有 class 关键字的类名声明一个类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Mermaid();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught ReferenceError: Mermaid is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 匿名类 */</span></span><br><span class="line"><span class="keyword">let</span> Mermaid = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 命名类 */</span></span><br><span class="line"><span class="keyword">let</span> Everything = <span class="class"><span class="keyword">class</span> <span class="title">Everything</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Everything is posible'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>super 关键字调用父类构造函数</p>
+</blockquote>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
+<p><code>static</code> 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckjnr8j0y001ozd9icg1ojbpt"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-react-整理" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -102,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckih1dgzy004010c9pr43efqu"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckjnr8j3n004bzd9irxc9uyrh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -205,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckih1dh00004310c9yj1rd1g9"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckjnr8j3k0044zd9ipqycf9dw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
@@ -268,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="ckih1dh0c004p10c9qlkkw7is"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="ckjnr8j45004wzd9imiaacgig"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
@@ -327,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckih1dgyw002810c9gfgswf6e"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjnr8j1i002czd9i2h8jqi3a"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -386,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckih1dgzt003t10c9g1939t4h"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckjnr8j3b003xzd9ieoiq8or9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
@@ -450,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckih1dh05004e10c959opxvco"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckjnr8j3q004gzd9ikvxyomfy"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
@@ -597,219 +790,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckih1dgyy002a10c9ciqoci4f"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckjnr8j1m002hzd9i0xg2ikbo"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Vue-单向绑定-与-双向绑定" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/03/Vue-单向绑定-与-双向绑定/">Vue 单向绑定 与 双向绑定</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/03/Vue-单向绑定-与-双向绑定/" class="article-date">
-  <time datetime="2019-03-03T13:32:19.000Z" itemprop="datePublished">2019-03-03</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>在数据绑定这里纠结了有断日子了，一直想把这块好好梳理一下。则日不如撞日，就今天了！<br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001475449022563a6591e6373324d1abd93e0e3fa04397f000" target="_blank" rel="noopener">参考文档不能丢</a></p>
-<h3 id="认识下-MVVM"><a href="#认识下-MVVM" class="headerlink" title="认识下 MVVM"></a>认识下 MVVM</h3><p>很讨论的一个概念，在它之前我只认识 MVC，曾经有一经面试就在它这里卡壳。那个时候我只认识 MVC.<br><a href="https://docs.microsoft.com/zh-cn/windows/uwp/data-binding/data-binding-and-mvvm" target="_blank" rel="noopener">哎呀，妈呀，不易啊，终于找到正主啦</a>文档中说的很清楚，mvvm 指的模型层（model）、视图层（View)及视图模型层（ViewModel)<br>正文还是有些枯燥的。其实廖老师的文档里其实已经很好的将jQuery 操作 Dom 与 MVVM 作了很好的对比，给出的实际案例，说明了<code>MVVM 是通过操作对象，从而自动更新 DOM 状态</code><br>以下是两个案例对比：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Homer'</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">51</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回忆下原生 js</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'#name'</span>).innerText(<span class="string">'HTML'</span>)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'#age'</span>).innerText(<span class="string">'51'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//jQuery</span></span><br><span class="line">$(<span class="string">'#name'</span>).text(name);</span><br><span class="line">$(<span class="string">'#age'</span>).text(age);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MVVM 中通过对象自动更新 DOM</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Bart'</span>,</span><br><span class="line">    age: <span class="number">12</span></span><br><span class="line">&#125;;</span><br><span class="line">person.name = <span class="string">'HTML'</span></span><br><span class="line">person.age = <span class="number">51</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><p>模模糊糊中认为小程序是属于单向数据绑定，别人的博客中有说是双向绑定，为些还特意百度找盟友，结果发现我并不孤独。接下来分析分析数据绑定。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckih1dgz2002k10c9hf3am12w"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Node-再看-node" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/02/Node-再看-node/">再看 node</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/02/Node-再看-node/" class="article-date">
-  <time datetime="2019-03-02T02:37:10.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p><a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/" target="_blank" rel="noopener">Node.js 究竟是什么？</a><br>Node 旨在提供一种简单构建可伸缩的网络程序方法</p>
-<h3 id="认识-Node-交个朋友"><a href="#认识-Node-交个朋友" class="headerlink" title="认识 Node 交个朋友"></a>认识 Node 交个朋友</h3><p>Node 是服务器程序，特色就是处理多并发，处理方式则是每个连接会发射一个 Node 引擎进程中的运行事件，不使用锁，所以也不会有死锁的情况，也不生成 os 进程，它的服务器能支持上万并发。<br>Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrome 浏览器的底层 Javascript 引擎。</p>
-<h3 id="Node-事件驱动编程"><a href="#Node-事件驱动编程" class="headerlink" title="Node 事件驱动编程"></a>Node 事件驱动编程</h3><p>没有过度设计，没有面向对象、没有接口，Javascript 是驱动编程语言。有闭包、可以使用匿名函数。它只需要监听事件，调用匿名函数回调，其它由系统处理。</p>
-<h3 id="Node-的包管理工具-NPM"><a href="#Node-的包管理工具-NPM" class="headerlink" title="Node 的包管理工具 NPM"></a>Node 的包管理工具 NPM</h3><p>开发过程中通常需要依赖第三方框架，如 Jquery/element-ui 等一系列的第三方框架。这些第三方框架之间或许也是在相互依赖，直接下载、解压、处理相互间的引用似乎非常繁锁，顺应天意，包管理工具应用而生。而 Node 的包管理工具就是 NPM。</p>
-<h3 id="简单说说-Node-安装"><a href="#简单说说-Node-安装" class="headerlink" title="简单说说 Node 安装"></a>简单说说 Node 安装</h3><p>两种方式：</p>
-<ol>
-<li><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node 官网</a>下载自己系统相应的包，通过图型界面安装。</li>
-<li><code>brew install node</code> 通过命令安装，但前题是你安装过 <code>HomeBrew</code></li>
-</ol>
-<p>检查是否安装成功：<code>node -v</code> &amp;&amp; <code>npm -v</code></p>
-<h3 id="NODE-版本切换-n"><a href="#NODE-版本切换-n" class="headerlink" title="NODE 版本切换 n"></a>NODE 版本切换 n</h3><ol>
-<li><p>n 的安装 <code>npm install -g n</code><br>查看 n 是否安装成功 <code>n -V</code></p>
-</li>
-<li><p>用 n 切换 node 版本时遇到的问题及解决办法</p>
-<ul>
-<li><p>问题描述</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pna.nextTick is not a function</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决办法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ n lts <span class="comment"># Install or activate the latest LTS node release</span></span><br><span class="line">$ npm install -g npm</span><br><span class="line">$ n stable <span class="comment"># Install or activate the latest stable  node release</span></span><br><span class="line">$ npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="NODE-npm-install-报错"><a href="#NODE-npm-install-报错" class="headerlink" title="NODE npm install 报错"></a>NODE npm install 报错</h3><p><img src="/images/node/node_error_decies.png" alt="alt"></p>
-<blockquote>
-<p>关于这个报错，网络分析最多的原因是镜像引起的</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm config get registry # 获取当前系统设置的镜像</span><br><span class="line">https://registry.npmjs.com/</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查看当前镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry http://registry.npm.taobao.org/ # 设置当前系统的镜像为淘宝镜像</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>重置镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -rf package.lock.json（或 yarn.lock） # 删除 lock 文件</span><br><span class="line">npm cache clean --force # 清除缓存</span><br><span class="line">npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。</span><br><span class="line">npm i # 重新安装</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckih1dgz1002h10c9ctzhali1"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-vue-use-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/25/vue-use-vue-component/">vue.use 与 vue.component</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/25/vue-use-vue-component/" class="article-date">
-  <time datetime="2019-02-25T07:54:14.000Z" itemprop="datePublished">2019-02-25</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>Error - 1 弹层对象取自列表，列表数据在弹层编辑修改，编辑部分数据后，取消或关闭弹层，列表数据修改。<br>产生原因：vue 双向绑定<br>解决办法：copy Object, 对象重新 copy 一份</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">handlerUpdate(item) &#123;</span><br><span class="line">  <span class="comment">// 更新 item</span></span><br><span class="line">  <span class="keyword">this</span>.dialogVisible = !<span class="keyword">this</span>.dialogVisible</span><br><span class="line">  <span class="keyword">this</span>.dialogStatus = <span class="string">'edit'</span></span><br><span class="line">  <span class="keyword">this</span>.temp = <span class="built_in">Object</span>.assign(&#123;&#125;, item) <span class="comment">// copy obj</span></span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs[<span class="string">'dataForm'</span>].clearValidate()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm: Component = <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
-
-<p>以上写是不是有点奇怪，是的。我没见过，它是 <a href="https://flow.org/" target="_blank" rel="noopener">flow.js</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckih1dh09004j10c9up7cciqh"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
 
     </footer>
 
@@ -846,7 +830,7 @@
 
   <div class="outer">
     <ul class="list-inline">
-      <li>&copy; 2020 女魔头</li>
+      <li>&copy; 2021 女魔头</li>
       <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
       <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
       <!--
