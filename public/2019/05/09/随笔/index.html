@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    随笔 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-随笔" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      随笔
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/09/随笔/" class="article-date">
+  <time datetime="2019-05-09T07:57:19.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="本地服务器"><a href="#本地服务器" class="headerlink" title="本地服务器"></a>本地服务器</h3><ul>
+<li>liveServer</li>
+<li>httpServer</li>
+<li>WampServer</li>
+</ul>
+<h3 id="familiar-essay"><a href="#familiar-essay" class="headerlink" title="familiar essay"></a>familiar essay</h3><p>text-align 行内元素水平居中<br>inline-block 行内元素，没有宽高，用 padding + 文本撑开<br>inline-block 行内元素，设置 padding 会从父元素溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://app.zslb.xyz/api/order/add_refund?orderId=289&amp;amount=1</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 405</span><br><span class="line">Remote Address: 118.25.170.213:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+
+<p>服务器端请求为 post，与当前 request method get 冲突</p>
+<blockquote>
+<p>请求行中指定的请求方法不能被用于请求相应的资源。<br>  该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>  鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
+</blockquote>
+<p>元素设置 position: absolute 或 float: left 会脱离文档流</p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="tip-浏览器缓存功能"><a href="#tip-浏览器缓存功能" class="headerlink" title="tip: 浏览器缓存功能"></a><code>tip:</code> 浏览器缓存功能</h3><p>浏览网页时，浏览器会暂存网页静态资源，包括外部的 css、javascript、图片、影像等。当用户在同一浏览器浏览同一网页时，不会重新加载静态资源。优点是加快网页加载速度，减少服务器负担。缺点是当静态资源修改，缓存未到期，那么浏览器会显示缓存的旧数据。除非用户清缓存或 ctrl+f5 强制刷新重新加载。</p>
+<blockquote>
+<p><code>解决办法：</code>修改静态资源后，在外部链接的文件名后加上 ？+任意字符串，可以是版本号或日期，不同于旧片酬就可以。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...html</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;script src=&quot;./t.js?v20120929&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。"><a href="#tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。" class="headerlink" title="tip: JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。"></a><code>tip:</code> JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span></span><br><span class="line"><span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>解决办法：</code></p>
+</blockquote>
+<ol>
+<li><p>将小数运算转换成整数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>)/<span class="number">10</span></span><br><span class="line"><span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用内建函数强制转换为指定位数的小数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "0.30"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="tip：-null-amp-amp-undefined"><a href="#tip：-null-amp-amp-undefined" class="headerlink" title="tip： null &amp;&amp; undefined"></a><code>tip：</code> null &amp;&amp; undefined</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存"><a href="#tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存" class="headerlink" title="tip： Garbage Collection 会在变量超出作用域时回收，释放其占用的内存"></a><code>tip：</code> Garbage Collection 会在变量超出作用域时回收，释放其占用的内存</h3><h3 id="tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。"><a href="#tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。" class="headerlink" title="tip： ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。"></a><code>tip：</code> ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。</h3><h3 id="tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。"><a href="#tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。" class="headerlink" title="tip： for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。"></a><code>tip：</code> for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。</h3><h3 id="tip：-forEach-不能使用-break-指令中断循环。"><a href="#tip：-forEach-不能使用-break-指令中断循环。" class="headerlink" title="tip： forEach 不能使用 break 指令中断循环。"></a><code>tip：</code> forEach 不能使用 break 指令中断循环。</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjtv54tu0066yg9ii6uudeik"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/05/13/CSS-display-none-vs-visibility-hidden/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            CSS display: none vs visibility: hidden
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/05/05/CSS-居中/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS 居中</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

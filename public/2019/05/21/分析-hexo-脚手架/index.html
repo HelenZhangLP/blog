@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    分析 hexo 脚手架 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-分析-hexo-脚手架" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分析 hexo 脚手架
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/21/分析-hexo-脚手架/" class="article-date">
+  <time datetime="2019-05-21T02:36:49.000Z" itemprop="datePublished">2019-05-21</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$: hexo</span><br><span class="line"></span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  <span class="built_in">help</span>     Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init     Create a new Hexo folder.</span><br><span class="line">  version  Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">'hexo help [command]'</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<ol>
+<li>help</li>
+<li>init</li>
+<li>version</li>
+</ol>
+<h3 id="引入依赖包"><a href="#引入依赖包" class="headerlink" title="引入依赖包"></a>引入依赖包</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>); <span class="comment">// chalk 粉笔  "chalk": "^1.1.3",</span></span><br><span class="line"><span class="keyword">var</span> tildify = <span class="built_in">require</span>(<span class="string">'tildify'</span>); <span class="comment">// tildify 使变薄 "tildify": "^1.2.0" convert an absolute path to a tilde path 将绝对路径转换为 ~/路径</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'bluebird'</span>); <span class="comment">// bluebird 知更鸟 "bluebird": "^3.4.0",</span></span><br><span class="line"><span class="keyword">var</span> Context = <span class="built_in">require</span>(<span class="string">'./context'</span>);</span><br><span class="line"><span class="keyword">var</span> findPkg = <span class="built_in">require</span>(<span class="string">'./find_pkg'</span>);</span><br><span class="line"><span class="keyword">var</span> goodbye = <span class="built_in">require</span>(<span class="string">'./goodbye'</span>);</span><br><span class="line"><span class="keyword">var</span> minimist = <span class="built_in">require</span>(<span class="string">'minimist'</span>); <span class="comment">//minimist 参数解析</span></span><br><span class="line"><span class="keyword">var</span> resolve = <span class="built_in">require</span>(<span class="string">'resolve'</span>); <span class="comment">// 同步或异步解决方案</span></span><br><span class="line"><span class="keyword">var</span> camelCaseKeys = <span class="built_in">require</span>(<span class="string">'hexo-util/lib/camel_case_keys'</span>); <span class="comment">// 参数对象转换为驼峰命名 (?)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lib-hexo-js"><a href="#lib-hexo-js" class="headerlink" title="./lib/hexo.js"></a>./lib/hexo.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">entry</span>(<span class="params">cwd, args</span>) </span>&#123;</span><br><span class="line">  cwd = cwd || process.cwd();</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 返回 node 进程工作的当前目录    </span></span><br><span class="line"><span class="comment">   * '/Users/lipingzhang/Desktop/hexo-cli的副本'</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * process.argv</span></span><br><span class="line"><span class="comment">   * [ '/usr/local/bin/node', '/Users/lipingzhang/Desktop/hexo-cli的副本/bin/hexo', 'init' ]</span></span><br><span class="line"><span class="comment">   * 返回一个包含 node process 命令行启动时传入的参数数组</span></span><br><span class="line"><span class="comment">   * 第一个参数 process.execPath 启动 node 进程的可执行文件绝对路径</span></span><br><span class="line"><span class="comment">   * 第二个参数是将要执行的文件路径</span></span><br><span class="line"><span class="comment">   * 其它为所有其余命令行参数</span></span><br><span class="line"><span class="comment">   * process.argv.slice(2) [ 'init' ]</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * minimist minimist(process.argv.slice(2))</span></span><br><span class="line"><span class="comment">    * &#123; _: Array(1) &#125; &#123; _: [ 'init' ]&#125;</span></span><br><span class="line"><span class="comment">    * camelCaseKeys 参数对象转换为驼峰命名</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  args = camelCaseKeys(args || minimist(process.argv.slice(<span class="number">2</span>)));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> hexo = <span class="keyword">new</span> Context(cwd, args);</span><br><span class="line">  <span class="keyword">var</span> log = hexo.log;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Change the title in console</span></span><br><span class="line">  process.title = <span class="string">'hexo'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pathFn = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPkg</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> pkgPath = pathFn.join(path, <span class="string">'package.json'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fs.readFile(pkgPath).then(<span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(content);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> json.hexo === <span class="string">'object'</span>) <span class="keyword">return</span> path;</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err &amp;&amp; err.cause.code === <span class="string">'ENOENT'</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> parent = pathFn.dirname(path);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (parent === path) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">return</span> checkPkg(parent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="context-js"><a href="#context-js" class="headerlink" title="./context.js"></a>./context.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'hexo-log'</span>);</span><br><span class="line"><span class="keyword">var</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'bluebird'</span>);</span><br><span class="line"><span class="keyword">var</span> ConsoleExtend = <span class="built_in">require</span>(<span class="string">'./extend/console'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Context</span>(<span class="params">base, args</span>) </span>&#123;</span><br><span class="line">  base = base || process.cwd();</span><br><span class="line">  args = args || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  EventEmitter.call(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.base_dir = base;</span><br><span class="line">  <span class="keyword">this</span>.log = logger(args);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.extend = &#123;</span><br><span class="line">    <span class="built_in">console</span>: <span class="keyword">new</span> ConsoleExtend()</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="extend-console-js"><a href="#extend-console-js" class="headerlink" title="./extend/console.js"></a>./extend/console.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abbrev = <span class="built_in">require</span>(<span class="string">'abbrev'</span>); <span class="comment">// 速记短别名</span></span><br><span class="line"><span class="comment">// constructor Console  --&gt; Initialization parameters store &amp;&amp; alias</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Console</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.store = &#123;&#125;;</span><br><span class="line">  <span class="keyword">this</span>.alias = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Console.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  name = name.toLowerCase(); <span class="comment">// 入参转换为小写</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.store[<span class="keyword">this</span>.alias[name]];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Console.prototype.list = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.store;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Console.prototype.register = <span class="function"><span class="keyword">function</span>(<span class="params">name, desc, options, fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!name) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'name is required'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (options) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> options === <span class="string">'function'</span>) &#123;</span><br><span class="line">        fn = options;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> desc === <span class="string">'object'</span>) &#123; <span class="comment">// name, options, fn</span></span><br><span class="line">          options = desc;</span><br><span class="line">          desc = <span class="string">''</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// name, desc, fn</span></span><br><span class="line">          options = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'fn must be a function'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// name, fn</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> desc === <span class="string">'function'</span>) &#123;</span><br><span class="line">        fn = desc;</span><br><span class="line">        options = &#123;&#125;;</span><br><span class="line">        desc = <span class="string">''</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'fn must be a function'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fn.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">      fn = <span class="built_in">Promise</span>.promisify(fn);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      fn = <span class="built_in">Promise</span>.method(fn);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> c = <span class="keyword">this</span>.store[name.toLowerCase()] = fn;</span><br><span class="line">    c.options = options;</span><br><span class="line">    c.desc = desc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.alias = abbrev(<span class="built_in">Object</span>.keys(<span class="keyword">this</span>.store));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="console-init"><a href="#console-init" class="headerlink" title="./console/init"></a>./console/init</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> assign = <span class="built_in">require</span>(<span class="string">'object-assign'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initConsole</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">  args = assign(&#123;</span><br><span class="line">    install: <span class="literal">true</span>,</span><br><span class="line">    clone: <span class="literal">true</span></span><br><span class="line">  &#125;, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjtv54t9004yyg9ie8kry9is"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/05/31/NodeJs-学习笔记/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            NodeJs 学习笔记
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/05/13/CSS-display-none-vs-visibility-hidden/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS display: none vs visibility: hidden</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    Javascript 模块化 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript-模块化" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript 模块化
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/26/Javascript-模块化/" class="article-date">
+  <time datetime="2019-03-26T02:04:17.000Z" itemprop="datePublished">2019-03-26</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 <code>&lt;script&gt;&lt;/script&gt;</code> 标签即可。随着前端复杂度的提高，对于前端代码的<code>可读性、可扩展性</code>有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：</p>
+<h3 id="一、无模块化"><a href="#一、无模块化" class="headerlink" title="一、无模块化"></a>一、无模块化</h3><p>无模块化阶段代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery_scroller.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>变量、对象、函数均绑在全局，<code>污染全局作用域</code> 会出现命名冲突的问题。</li>
+<li><code>依赖关系不明显</code>，开发手动处理各模块依赖，维护成本加大。</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="二、CommonJS规范"><a href="#二、CommonJS规范" class="headerlink" title="二、CommonJS规范"></a>二、CommonJS规范</h3><p>CommonJS 由 Javascript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。<br><a href="http://Javascript.ruanyifeng.com/nodejs/module.html#toc0" target="_blank" rel="noopener">参考 CommonJS 规范</a></p>
+<h4 id="1-概述认识-module-对象"><a href="#1-概述认识-module-对象" class="headerlink" title="1. 概述认识 module 对象"></a>1. 概述认识 <code>module</code> 对象</h4><blockquote>
+<ol>
+<li>每个文件为一个模块，每个模块有自己的作用域。该模块定义的变量、函数、类均为私有，其它模块不可见。不会污染全局作用域</li>
+<li>CommonJS 规范规定，每个模块内部， <code>module</code> 代表当前模块。<code>module</code> 是一个对象，属性 <code>exports</code> 是对外接口。加载模块，则是加载 <code>module.exports</code> 属性。</li>
+</ol>
+</blockquote>
+<p><code>Node</code> 内部提供一个 <code>Module</code> 构造函数，所有模块都是 <code>Module</code> 的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Module</span>(<span class="params">id, parent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id; <span class="comment">// 模块识别符，即带有绝对路径的模块文件</span></span><br><span class="line">    <span class="keyword">this</span>.parent = parent; <span class="comment">// 返回是一个对象，为调用该模块的模块</span></span><br><span class="line">    <span class="keyword">this</span>.children = []; <span class="comment">// 返回一个数组，表示该模块需要调用哪些模块</span></span><br><span class="line">    <span class="keyword">this</span>.filename = <span class="string">'/filename'</span>; <span class="comment">// 带有绝对路径模块的文件名</span></span><br><span class="line">    <span class="keyword">this</span>.loaded = <span class="literal">true</span>; <span class="comment">// 返回一个布尔值，表示模块是否已经完成加载</span></span><br><span class="line">    <span class="keyword">this</span>.exports = &#123;&#125;; <span class="comment">// 表示该模块输出的值</span></span><br><span class="line">    <span class="keyword">this</span>.paths = [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Node 环境中 <code>console.log(module)</code> 会看到以下结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Module &#123;</span><br><span class="line">  id: &apos;.&apos;,</span><br><span class="line">  path: &apos;/Users/zhangliping/Desktop/demo/demo/commonJs&apos;,</span><br><span class="line">  exports: &#123;&#125;,</span><br><span class="line">  parent: null,</span><br><span class="line">  filename: &apos;/Users/zhangliping/Desktop/demo/demo/commonJs/index.js&apos;,</span><br><span class="line">  loaded: false,</span><br><span class="line">  children: [],</span><br><span class="line">  paths: [</span><br><span class="line">    &apos;/Users/zhangliping/Desktop/demo/demo/commonJs/node_modules&apos;,</span><br><span class="line">    &apos;/Users/zhangliping/Desktop/demo/demo/node_modules&apos;,</span><br><span class="line">    &apos;/Users/zhangliping/Desktop/demo/node_modules&apos;,</span><br><span class="line">    &apos;/Users/zhangliping/Desktop/node_modules&apos;,</span><br><span class="line">    &apos;/Users/zhangliping/node_modules&apos;,</span><br><span class="line">    &apos;/Users/node_modules&apos;,</span><br><span class="line">    &apos;/node_modules&apos;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-导出"><a href="#2-导出" class="headerlink" title="2. 导出"></a>2. 导出</h4><p>CommonJS 中，通过 <code>module.exports</code> 导出模块中的内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="keyword">const</span> variable = <span class="string">'this is a variable'</span></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">'this is a function'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将以上变量、函数、对象，对过 module.exports 暴露出去</span></span><br><span class="line"><span class="built_in">module</span>.exports.variable = variable</span><br><span class="line">exports.fn = fn</span><br><span class="line"><span class="built_in">module</span>.exports.obj = obj</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123; variable: 'this is a varialbe', fn: [Function: fn], obj: &#123;&#125; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  variable: <span class="string">'this is a variable'</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">'this is a function'</span>&#125;,</span><br><span class="line">  obj: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// &#123; variable: 'this is a variable', fn: [Function: fn], obj: &#123;&#125; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong><em><code>错误案例 demo 1</code></em></strong></p>
+<blockquote>
+<p>以下写法错误，会导致 exports 指向新的对象引用，module.exports 还是原对象引用，是个空对象，所以 name 属性并不会导出。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exports = &#123;</span><br><span class="line">  name: <span class="string">'new object'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em><code>错误案例 demo 2</code></em></strong></p>
+<blockquote>
+<p>以下 demo 将 <code>exports</code> 和 <code>module.exports</code> 混合使用，原因在于先导出了一个函数，然后 <code>module.exports</code> 重新赋值为另一个对象，之前的对象属性丢失。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exports.fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'this. is a function'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  variable: <span class="string">'this is a variable'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// &#123; variable: 'this is a variable' &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em><code>错误案例 demo 3</code></em></strong></p>
+<blockquote>
+<p>先打印出 end, 再打印出 <code>exports</code> 的内容，说明这个 exports 之后的内容也会被执行，为提高代码可读性，<code>module.exports</code> 写在文件尾部</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">exports.fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'this. is a function'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>)</span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// &#123; fn: [Function] &#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3-导入"><a href="#3-导入" class="headerlink" title="3. 导入"></a>3. 导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'test the number of times the export file is executed'</span>)</span><br><span class="line">exports.hello = <span class="string">'instruction: export the function of hello'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> example = <span class="built_in">require</span>(<span class="string">'./example'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'wait a moment..., require the js file of example again'</span>)</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./example'</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[@zhangliingdembp:demo (master)]$ node ./commonJs/index.js</span><br><span class="line">test the number of times the export file is executed</span><br><span class="line">wait a moment..., require the js file of export again</span><br><span class="line">[@zhangliingdembp:demo (master)]$ node ./commonJs/index.js</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><em>error-1 Error: Cannot find module ‘export’</em></strong><blockquote>
+<p><code>require(&#39;example&#39;)</code> 导致以上报错，导致入的文件要给出文件路径 <code>require(&#39;./example&#39;)</code></p>
+</blockquote>
+</li>
+</ul>
+<p><code>结论：</code></p>
+<blockquote>
+<ol>
+<li>所有代码都运行在模块作用域，不会污染全局作用域。</li>
+<li>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。<code>module.loaded</code> 默认为 false，如果加载过的话，该值会被设置为 true，模块代码将不再执行。</li>
+<li>模块加载的顺序，按照其在代码中出现的顺序。</li>
+</ol>
+</blockquote>
+<p>require 函数接收表达式，可以利用该特性将动态加载模块到全局</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> needModules = [<span class="string">'moduleA'</span>,<span class="string">'moduleB'</span>,<span class="string">'moduleC'</span>,...]</span><br><span class="line">needModules.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">'./'</span>+item);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、AMD规范"><a href="#三、AMD规范" class="headerlink" title="三、AMD规范"></a>三、AMD规范</h3><h3 id="四、CMD规范"><a href="#四、CMD规范" class="headerlink" title="四、CMD规范"></a>四、CMD规范</h3><h3 id="五、ES6模块化"><a href="#五、ES6模块化" class="headerlink" title="五、ES6模块化"></a>五、ES6模块化</h3><p>2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，Javascript 有了 <code>模块</code> 的概念。</p>
+<ul>
+<li>与 CommonJS 一样，ES6 Module 每个模块都有自身的作用域；</li>
+<li>在 ES6 版本中，<code>import</code> 和 <code>export</code> 是保留关键字；</li>
+<li>ES6 Module 自动采用严格模式（<code>use strict</code>）;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">'this is a variable'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'this is a arrow function'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;a,fn&#125; <span class="keyword">from</span> <span class="string">'./example'</span>;</span><br><span class="line"><span class="keyword">let</span> b = fn();</span><br><span class="line"><span class="built_in">console</span>.log(a, b);</span><br></pre></td></tr></table></figure>
+
+<h4 id="node-index-js"><a href="#node-index-js" class="headerlink" title="node index.js"></a>node index.js</h4><blockquote>
+<p><code>SyntaxError: Cannot use import statement outside a module</code><br>不支持 import，需要 babel 转义</p>
+</blockquote>
+<ol>
+<li><p>浏览器环境解决办法（目前没有运行起来）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/@babel/standalone/babel.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="comment">// Your ES6 code</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入依赖包处理<a href="https://wangdoc.com/es6/intro.html" target="_blank" rel="noopener">参考解决</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckjtv54rj002ayg9i0pdhtkbr"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/26/exports-and-module-exports/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            exports and module.exports
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/25/CSS-面试题/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS 面试题</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

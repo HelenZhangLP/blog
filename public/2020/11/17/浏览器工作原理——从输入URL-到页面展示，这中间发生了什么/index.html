@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    浏览器工作原理——从输入URL 到页面展示，这中间发生了什么 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器工作原理——从输入URL-到页面展示，这中间发生了什么" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器工作原理——从输入URL 到页面展示，这中间发生了什么
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" class="article-date">
+  <time datetime="2020-11-17T02:19:15.000Z" itemprop="datePublished">2020-11-17</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="1-用户输入"><a href="#1-用户输入" class="headerlink" title="1. 用户输入"></a>1. 用户输入</h2><pre class="mermaid">graph TD;
+    A[用户输入] --> B{判断用户输入关键字}
+    B --> C[用户搜索]
+    B --> D[加协议合成完整的 URL]
+    D --> |用户可以在beforeunload事件上取消导航 或 执行退出来的数据清理|E{beforeunload<br>询问用户是否离开页面}
+    E --> |用户同意继续后续流程|F[等待提交文档页面进入加载状态]
+    E --> |beforeunload取消导航|G[留在当前页面]</pre>
+<a id="more"></a>
+<h2 id="2-URL-请求过程"><a href="#2-URL-请求过程" class="headerlink" title="2. URL 请求过程"></a>2. URL 请求过程</h2><p>浏览器会通过进程间通信（IPC) 把 url 请求发送至网络进程。接下来网络进程发起真正的 url 请求流程。</p>
+<pre class="mermaid">graph TD;
+  A[网络进程] --> B{本地缓存}
+  B --> C[缓存]
+  B --> D[网络请求]
+  C --> browser[浏览器主进程]
+  D --> |1.获取服务品IP端口号<br>2.如果是https协议需要建立TLS链接|DNS[DNS解析]
+  DNS --> TCP[建立 tcp 连接]
+  TCP --> |浏览器构建请求头请求行cookie等数据|b[向服务器发起构建请求]
+  b --> |响应头响应行响应体|s[服务端解析请求生成响应数据]
+  s --> D</pre>
+<p>1.网络进程首先要找缓存，如果有缓存，直接返回资源给浏览器进程；<br>2.没有缓存资源，则进程 dns 解析，拿到 ip 和 端口。若 https 请求，还需要建立 TLS 连接；<br>3.建立 tcp 链接，浏览器构建请求行、请求头，并把和该域名相关的 cookie 等数据加入请求头；</p>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>接收到服务器的响应头后，网络进程开始解析响应头，如果发现返回的状态码 301 或 302，说明需要浏览器重定向到其它 url, 这里网络进程会从响应头的 location 字段中读取重定向的地址，再次发起请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 302 Found</span><br><span class="line">Server: Tengine</span><br><span class="line">Date: Tue, 17 Nov 2020 09:05:14 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 258</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Location: http://www.taobao.com/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 307 Internal Redirect</span><br><span class="line">Location: https://www.taobao.com/</span><br><span class="line">Non-Authoritative-Reason: HSTS</span><br></pre></td></tr></table></figure>
+
+<p><code>content-type</code> 返回的数据类型，<code>text/html</code> 返回的是 html 类型，浏览器会继续渲染。如果 <code>content-type: application/octet-stream</code> 类型，那么显示的数据是字节流类型的。请求会被提交给<strong>浏览器的下载管理器，同时 url 结束导航</strong></p>
+<h2 id="3-准备渲染进程"><a href="#3-准备渲染进程" class="headerlink" title="3. 准备渲染进程"></a>3. 准备渲染进程</h2><h3 id="同一站点（same-site）"><a href="#同一站点（same-site）" class="headerlink" title="同一站点（same-site）"></a>同一站点（same-site）</h3><p>根域名加上协议，还包括根域名下的所有子域名和不同端口。都为<strong>同一站点</strong></p>
+<h3 id="process-per-site-instance"><a href="#process-per-site-instance" class="headerlink" title="process-per-site-instance"></a>process-per-site-instance</h3><p>默认一个标签对应一个渲染进程，如果从一个页面打开另一个新页面，而新页面和当前页面属于同一站点的话，那么新页面复用父页面的渲染进程。</p>
+<h2 id="4-提交文档"><a href="#4-提交文档" class="headerlink" title="4. 提交文档"></a>4. 提交文档</h2><p>提交文档是指浏览器进程将网络进程接收到的 HTML 数据提交给渲染进程。</p>
+<pre class="mermaid">graph TD
+networtProcess[网络进程] --> |数据管道<br>提交文档|renderProcess[渲染进程]
+renderProcess-->|确认提交|browserProcess[浏览器进程<br>更新包括安全状态<br>地址栏的 url<br>前进后退的历史状态<br>更新 web 页面]</pre>
+
+<h2 id="5-渲染阶段"><a href="#5-渲染阶段" class="headerlink" title="5. 渲染阶段"></a>5. 渲染阶段</h2><h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><img src="http://www.plantuml.com/plantuml/svg/TLFTIXj15BwVfnYy5zfw8UH2QEj51P6muWFCxfx6GJEpdPrjx5rI1DEVg86sf3484R6XKAEGOgbA7gRkxEGjEhjfR2VTNCsUl--SxtndNRw3vrp1Ao48N2QKuK1m3y9m3WL4IEhHW3298nDUOK4aBUycOVusPFvb8ebT8RRNo4jQ8f8BA-20JmLuDb8Wm9ZW0FD15CSJM0aUPy-fA2zpBoe3a-kHMwOIV2kd0cwHb62L4zz431Hs-Gv2RagHWQnmiPNFBZIv6ywg0oyY2Et1113VWJ3WB8HdvXl4pF0Jxh-QwYeoFZEQPXGcXEnj4152IkKnyrCswpmI7lp5lbS3pozDYr30gjLFFlHK_KeTTfB1YHwsZ2VL0yVz6rt_YgOgyBn1iUJwryYYze8AU5Hjw-4UNYa-nNS_zfFRPdBTqSEZfFVEHEw6NSIu12neQLCYzVr0Vwd7dtlgU3U-_gdxL-hoTNmw-5MjeR6Xk-zJ8pvigauZVjirkV51SrIj9UrT8ppVee2IRs_KnmlLEC-saCAZ_wN9PftSLm4lF7Y8LVsJUH_zUHVnVGVT7wZM_gXJrMUrqLuZFc-R_cXIdCDwLh_yqyrnZZ5jrMqpovXrwTEdDcwUVodvxgp2-ab-0m00">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjtv54tn005uyg9i9rooha6l"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/11/17/hexo-插件系列/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            hexo-插件系列
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">浏览器 chrome 打开一个页面执行的进程</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

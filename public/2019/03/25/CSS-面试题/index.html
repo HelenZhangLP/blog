@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    CSS 面试题 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS 面试题
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/25/CSS-面试题/" class="article-date">
+  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <ul>
+<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
+</li>
+<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
+<blockquote>
+<ul>
+<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
+<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
+</ul>
+</blockquote>
+</li>
+<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  width: 100%; // 根据父元素计算</span><br><span class="line">  padding: 25% 0; // 高度根据父元素的宽计算</span><br><span class="line">  <span class="selector-tag">background-color</span>: <span class="selector-id">#f90</span>;</span><br><span class="line">  <span class="selector-tag">box-sizing</span>: <span class="selector-tag">border-box</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="supports、cacl-、-media-的用法和含义"><a href="#supports、cacl-、-media-的用法和含义" class="headerlink" title="@supports、cacl()、@media 的用法和含义"></a>@supports、cacl()、@media 的用法和含义</h3><hr>
+<blockquote>
+<ul>
+<li>@supports 在这里卡了许久，想要找出当红 ui 框架中使用的案例，但最终一无所获。但是吧，既然有这样一道面试题，那就看看文档，整理整理<br>  <code>兼容性：移动端浏览器兼容较好，pc 端 IE 不兼容</code><br>  声明语法，如下 demo，包含 not, and, or 三种操作符  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">@supports</span> (<span class="attribute">transform-origin:</span> <span class="number">5%</span> <span class="number">5%</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<pre><code>**总结一下**，@supports 是用来检验某个 css 属性是否支持。是一个判断条件。</code></pre><hr>
+<blockquote>
+<ul>
+<li>@media 以下 demo 源自 bootstrap  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>, <span class="selector-class">.h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="built_in">calc</span>(<span class="number">1.375rem</span> + <span class="number">1.5vw</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">1200px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">h1</span>, <span class="selector-class">.h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2.5rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span>, <span class="selector-class">.h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="built_in">calc</span>(<span class="number">1.325rem</span> + <span class="number">0.9vw</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">1200px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">h2</span>, <span class="selector-class">.h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<pre><code>**总结一下**：根据不同的媒体类型，定义不同的样式，作响应式处理</code></pre><hr>
+<blockquote>
+<ul>
+<li>cacl() 函数允许对 css 属性值进行一些 + - * / 的运算，如上例</li>
+</ul>
+</blockquote>
+<ul>
+<li><input disabled type="checkbox"> <p><a href="https://helenzhanglp.github.io/2019/05/05/%E5%B1%85%E4%B8%AD/">水平垂直居中</a></p>
+</li>
+<li><input checked disabled type="checkbox"> <p>使用 vw 为单位</p>
+<blockquote>
+<ul>
+<li>vw: viewport width, 1vw = 视窗宽度的 1%</li>
+<li>vh: viewport height, 1vh = 视窗高度的 1%</li>
+<li>vmin: vh 与 vw 哪个小取哪个</li>
+<li>vmax: vh 与 vw 哪个大取哪个</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.warp</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50vw</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f90</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjtv54r4001fyg9ic61kirwm"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/26/Javascript-模块化/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            Javascript 模块化
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/20/Javascript-Class/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Javascript Class</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

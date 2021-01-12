@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    Javascript 字符串 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript-字符串" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript 字符串
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/09/Javascript-字符串/" class="article-date">
+  <time datetime="2020-01-09T02:14:03.000Z" itemprop="datePublished">2020-01-09</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <blockquote>
+<p><code>需求删除最后一个为 &amp; 的字符</code></p>
+</blockquote>
+<h3 id="String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。"><a href="#String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。" class="headerlink" title="String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。"></a>String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。</h3><blockquote>
+<p>str.replace(regexp|substr, newSubStr|function)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// regexp = /&amp;$/</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/</span>, <span class="string">""</span>) <span class="comment">// zhangliping</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * --- 引申 ---</span></span><br><span class="line"><span class="comment"> * 删除字符串全部的 &amp;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/g</span>, <span class="string">""</span>) <span class="comment">// 全局替换</span></span><br><span class="line">str.replace(<span class="regexp">/^&amp;/</span>,<span class="string">""</span>) <span class="comment">// 替换开头</span></span><br><span class="line">str.replace(<span class="regexp">/[?&amp;]$/</span>, <span class="string">""</span>) <span class="comment">//替换结尾的 ? 或 &amp;</span></span><br><span class="line"></span><br><span class="line">formatParamets() &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="built_in">window</span>.location.href; <span class="comment">// 获取当前浏览器的URL</span></span><br><span class="line">  <span class="keyword">const</span> params = &#123;&#125;; <span class="comment">// 存储最终JSON结果对象</span></span><br><span class="line">  url.replace(<span class="regexp">/([^?&amp;]+)=([^?&amp;]+)/g</span>, (match, p1, p2) =&gt; &#123;</span><br><span class="line">    params[p1] = <span class="built_in">decodeURIComponent</span>(p2); <span class="comment">// 解析字符为中文</span></span><br><span class="line">    <span class="keyword">return</span> p2 + <span class="string">'='</span> + p1;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<h2 id="分割字符串"><a href="#分割字符串" class="headerlink" title="分割字符串"></a>分割字符串</h2><h3 id="String-prototype-slice-方法取字符串的一部分，返回新字符串，原字符串不动"><a href="#String-prototype-slice-方法取字符串的一部分，返回新字符串，原字符串不动" class="headerlink" title="String.prototype.slice() 方法取字符串的一部分，返回新字符串，原字符串不动"></a>String.prototype.slice() 方法取字符串的一部分，返回新字符串，原字符串不动</h3><blockquote>
+<p>str.slice(beginIndex[, endIndex])</p>
+</blockquote>
+<ul>
+<li>beginIndex 从该索引（以 0 这基数）处开始提取原字符串。如果为负数，会被当做 strlength + beginLength</li>
+<li>endIndex 可选，以 0 基数，endIndex 处结束提取字符串。省略则视为默认 strlength。或为负数，endIndex = strlength - endIndex</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// 取默认值，str.slice() 不传参</span></span><br><span class="line">str.slice() <span class="comment">// zhangliping&amp; beginIndex 默认值 0， endIndex 默认值 strlength</span></span><br><span class="line"><span class="comment">// beginIndex &gt;= strlength, endIndex 取默认值</span></span><br><span class="line">str.slice(<span class="number">-1</span>) <span class="comment">// '&amp;' beginIndex = strlength - 1，截取到字符串长度</span></span><br><span class="line"><span class="comment">// start &lt; 0 &amp;&amp; abs(start) &gt; strlength, length 取默认值</span></span><br><span class="line">str.slice(<span class="number">-100</span>) <span class="comment">// 'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// beginIndex 取默认值 0，endIndex &gt;= strlength</span></span><br><span class="line">str.slice(<span class="number">13</span>) <span class="comment">// ''</span></span><br><span class="line"><span class="comment">// beginIndex &lt; 0，endIndex 取默认值</span></span><br><span class="line">str.slice(<span class="number">0</span>, <span class="number">12</span>) <span class="comment">// zhangliping&amp;</span></span><br><span class="line"><span class="comment">// beginIndex 取默认值 0，endIndex &lt; 0</span></span><br><span class="line">str.slice(<span class="number">0</span>, <span class="number">-1</span>) <span class="comment">// 'zhangliping' endIndex = strlength - 1 截取最后一位</span></span><br><span class="line"><span class="comment">// beginIndex 取默认值 0，endIndex == 0</span></span><br><span class="line">str.slice(<span class="number">0</span>, <span class="number">0</span>) <span class="comment">// ''</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="String-prototype-substring-返回从开始位置到结束位置的一个子集。"><a href="#String-prototype-substring-返回从开始位置到结束位置的一个子集。" class="headerlink" title="String.prototype.substring() 返回从开始位置到结束位置的一个子集。"></a>String.prototype.substring() 返回从开始位置到结束位置的一个子集。</h3><blockquote>
+<p>str.substring(indexStart[, indexEnd])</p>
+</blockquote>
+<ul>
+<li>indexStart 需要截取的第一个字符的索引，该索引位置的字符作为返回字符串的首字母</li>
+<li>indexEnd 0 到字符串长度之间的整数，以该数字为索引的字符不包含截取位置内</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping&amp;'</span>;</span><br><span class="line"><span class="comment">// str.substring() indexStart 默认值 0； indexEnd 默认值 strlength</span></span><br><span class="line">str.substring() <span class="comment">// 'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// indexStart &gt; strlength</span></span><br><span class="line">str.substring(<span class="number">5</span>) <span class="comment">// ''</span></span><br><span class="line"><span class="comment">// indexStart &lt; 0 &amp;&amp; abs(indexStart) &gt; strlength</span></span><br><span class="line">str.substring(<span class="number">-15</span>) <span class="comment">// indexStart = 0</span></span><br><span class="line"><span class="comment">// indexStart &lt; 0 &amp;&amp; abs(indexStart) &lt; strlength</span></span><br><span class="line">str.substring(<span class="number">-1</span>) <span class="comment">// indexStart = 0</span></span><br><span class="line"><span class="comment">// indexStart = 0 indexEnd &gt; strlength</span></span><br><span class="line">str.substring(<span class="number">0</span>, <span class="number">15</span>) <span class="comment">// 'zhangliping&amp;'</span></span><br><span class="line">str.substring(<span class="number">0</span>, str.length<span class="number">-1</span>);<span class="comment">// zhangliping</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="String-proptotype-substr-返回一个字符串从指定位置开始"><a href="#String-proptotype-substr-返回一个字符串从指定位置开始" class="headerlink" title="String.proptotype.substr() 返回一个字符串从指定位置开始"></a>String.proptotype.substr() 返回一个字符串从指定位置开始</h3><blockquote>
+<p>被认作是遗留的函数，非 Javascript 核心语言的一部分。目前没有严格被废弃。但将来可能被移除<br>str.substr(start[, length])</p>
+</blockquote>
+<ul>
+<li>不会改变原字符串</li>
+<li>start 与 slice 的第一个参数相同从该索引（以 0 这基数）处开始提取原字符串，若为负数，看作 strlength（字符串长度） + start。</li>
+<li><ul>
+<li>Microsoft’ JScript 不支持负 start 索引 **</li>
+</ul>
+</li>
+<li>length 提取的字符数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping'</span>;</span><br><span class="line"><span class="comment">// str.substr() 不传参</span></span><br><span class="line">str.substr() <span class="comment">// 'zhangliping' start 默认值 0， length 默认值字符串长度</span></span><br><span class="line"><span class="comment">// start &gt;= strlength length 取默认值</span></span><br><span class="line">str.substr(<span class="number">13</span>) <span class="comment">// ''</span></span><br><span class="line"><span class="comment">// start &lt; 0 length 取默认值</span></span><br><span class="line">str.substr(<span class="number">-14</span>) <span class="comment">// 'zhangliping' 取出全部字符串</span></span><br><span class="line"><span class="comment">// start 取默认值 0，length &gt;= strlength</span></span><br><span class="line">str.substr(<span class="number">-4</span>) <span class="comment">// start = strlength - 4 从 index = 8 开始截取</span></span><br><span class="line"><span class="comment">// start &lt; 0 &amp;&amp; abs(start) &gt; strlength, length 取默认值</span></span><br><span class="line">str.substr(<span class="number">0</span>, <span class="number">14</span>) <span class="comment">// 'zhangliping'</span></span><br><span class="line"><span class="comment">// start 取默认值 0， length &lt;= strlength</span></span><br><span class="line">str.substr(<span class="number">0</span>, <span class="number">-1</span>) <span class="comment">// ''</span></span><br><span class="line"><span class="comment">// 截取字符串最后一位</span></span><br><span class="line">str.substr(<span class="number">0</span>, strlength - <span class="number">1</span>) <span class="comment">// 'zhangliping'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="slice-substr-substring-对比"><a href="#slice-substr-substring-对比" class="headerlink" title="slice/substr/substring 对比"></a>slice/substr/substring 对比</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数一</th>
+<th>参数二</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>slice</td>
+<td>beginIndex — 开始位置索引，以 0 为基数</td>
+<td>endIndex — 截取至 endIndex - 1 位置</td>
+</tr>
+<tr>
+<td>substr</td>
+<td>start — 同上</td>
+<td>length - 截取字符长度</td>
+</tr>
+<tr>
+<td>substring</td>
+<td>indexStart — 同上</td>
+<td>indexEnd — 截取至 indexEnd - 1 的位置</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数一abs(负数)并大于等于字符串长度</th>
+<th>参数一负数并小于字符串长度</th>
+<th>参数一大于 strlength</th>
+<th>参数二abs(负数)并大于等于字符串长度</th>
+<th>参数一负数并小于字符串长度</th>
+<th>参数二大于 strlength</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>slice</td>
+<td>beginIndex = 0</td>
+<td>beginIndex = strlength - beginIndex</td>
+<td>返回空串</td>
+<td>endIndex = 0</td>
+<td>endIndex = strlength - endIndex</td>
+<td>endIndex = strlength</td>
+</tr>
+<tr>
+<td>substr</td>
+<td>同上</td>
+<td>同上</td>
+<td>同上</td>
+<td>同上</td>
+<td></td>
+<td>length = strlength</td>
+</tr>
+<tr>
+<td>substring</td>
+<td>indexStart = 0</td>
+<td>indexStart = 0</td>
+<td>同上</td>
+<td>indexEnd = 0</td>
+<td>indexEnd = 0</td>
+<td>indexEnd = strlength</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol>
+<li>slice、substring、sub 都是字符串截取方法；<ol start="2">
+<li>substring 参数不能为负数，如果有负数，则视为 0；</li>
+<li>substr 与 slice 同参数可以为负数。当为负数时，实际取的值是当前参数与字符串相加的和，第一个参数相加之和大于 0，时结果为 0；第二个参数相加之和大于 0 时，取字符串长度。substring 与 slice 两个参数都为索引，substr 第二个参数为截取字符串长度。 substr 在淘汰的过程中，慎用。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="查找字符串方法"><a href="#查找字符串方法" class="headerlink" title="查找字符串方法"></a>查找字符串方法</h2><h3 id="includes-区分大小写查找字符串，返回-Boolean-值。（ES6-新增方法）"><a href="#includes-区分大小写查找字符串，返回-Boolean-值。（ES6-新增方法）" class="headerlink" title="includes() 区分大小写查找字符串，返回 Boolean 值。（ES6 新增方法）"></a>includes() 区分大小写查找字符串，返回 Boolean 值。（ES6 新增方法）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Mr Brownlow, fortunately, was able to persuade him to abandon this wild idea'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.includes(<span class="string">'persuade'</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="indexOf-和-lastIndexOf-同样是区分大小写匹配字符串，存在返回索引值，否则返回-1。"><a href="#indexOf-和-lastIndexOf-同样是区分大小写匹配字符串，存在返回索引值，否则返回-1。" class="headerlink" title="indexOf() 和 lastIndexOf() 同样是区分大小写匹配字符串，存在返回索引值，否则返回 -1。"></a>indexOf() 和 lastIndexOf() 同样是区分大小写匹配字符串，存在返回索引值，否则返回 -1。</h3><h3 id="match-检索返回一个匹配正则表达式的结果"><a href="#match-检索返回一个匹配正则表达式的结果" class="headerlink" title="match() 检索返回一个匹配正则表达式的结果"></a>match() 检索返回一个匹配正则表达式的结果</h3><blockquote>
+<p>str.match(regexp)<br><code>参数</code>：一个正则表达式对象。<br>若参数为非正则表达式对象，会隐式地使用 <code>new RegExp(obj)</code> 转换为 RegExp<br>若没给参数，参数默认为包含空字符串数组，如 <code>[&quot;&quot;]</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'abc abc'</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(\w+)/g</span></span><br><span class="line">str.match(reg)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  [ 'abc', 'abc' ]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">reg = <span class="regexp">/(\w+)/</span></span><br><span class="line">str.match(reg)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> [ 'abc', 'abc', index: 0, input: 'abc abc', groups: undefined ]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>返回值：</code><br>使用 g 标志，返回表达式匹配的所有结果，不返回匹配捕获组(<code>[ &#39;abc&#39;, &#39;abc&#39; ]</code>)<br>不使用 g 标志，返回第一个完整匹配及其相关的捕获组（input 搜索字符串；groups 捕获数组或 <code>undefined</code>; index 匹配结果开始位置）。</p>
+</blockquote>
+<h2 id="字符串补齐方法"><a href="#字符串补齐方法" class="headerlink" title="字符串补齐方法"></a>字符串补齐方法</h2><h3 id="padStart-targetLength-padString-在字符串前面加入指定字符padString，达到-targetLength-指定长度"><a href="#padStart-targetLength-padString-在字符串前面加入指定字符padString，达到-targetLength-指定长度" class="headerlink" title="padStart(targetLength[,padString]) 在字符串前面加入指定字符padString，达到 targetLength 指定长度"></a>padStart(targetLength[,padString]) 在字符串前面加入指定字符padString，达到 targetLength 指定长度</h3><h3 id="padEnd-targetLength-padString-在字符串后面加入指定字符-padString，达到-targetLength-指定长度"><a href="#padEnd-targetLength-padString-在字符串后面加入指定字符-padString，达到-targetLength-指定长度" class="headerlink" title="padEnd(targetLength,[,padString]) 在字符串后面加入指定字符 padString，达到 targetLength 指定长度"></a>padEnd(targetLength,[,padString]) 在字符串后面加入指定字符 padString，达到 targetLength 指定长度</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 隐藏电话号码后四位</span></span><br><span class="line"><span class="keyword">var</span> tel = <span class="string">'13381892220'</span>;</span><br><span class="line"><span class="keyword">var</span> secretTel = tel.substr(<span class="number">3</span>, tel.length - <span class="number">8</span>).padEnd(tel.length<span class="number">-4</span>, <span class="string">'*'</span>).padStart(tel.length, <span class="string">'*'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(secretTel) <span class="comment">// ****189****</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/09/Javascript-字符串/" data-id="ckjtv54rh0025yg9ifkfu0t1m"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2020/01/13/Javascript-正则/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            Javascript-正则
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/01/08/Array sort 源码解析/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Array sort 源码解析</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

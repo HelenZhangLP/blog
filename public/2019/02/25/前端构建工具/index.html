@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    前端构建工具 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端构建工具
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/25/前端构建工具/" class="article-date">
+  <time datetime="2019-02-25T02:14:25.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>公司之前的项目用的 grunt 构建项目的</p>
+<h3 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h3><p>Grunt 首页中可用的 Grunt 插件列表吸引到了我</p>
+<ul>
+<li>coffeeScript</li>
+<li>handlebas</li>
+<li>jade</li>
+<li>JShint</li>
+<li>less</li>
+<li>sass</li>
+<li>require.js</li>
+<li>stylus</li>
+</ul>
+<h4 id="Grunt-目前项目中使用到的插件"><a href="#Grunt-目前项目中使用到的插件" class="headerlink" title="Grunt - 目前项目中使用到的插件"></a>Grunt - 目前项目中使用到的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line"><span class="string">"grunt-autoprefixer"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line"><span class="string">"grunt-concurrent"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="comment">// 清除打包生成的文件，删除 dist 目录下的文件</span></span><br><span class="line"><span class="string">"grunt-contrib-clean"</span>: <span class="string">"^0.6.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-compress"</span>: <span class="string">"^0.13.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-concat"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-connect"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-copy"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-cssmin"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-htmlmin"</span>: <span class="string">"^0.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-imagemin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-jshint"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-rename"</span>: <span class="string">"0.0.3"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span>,</span><br><span class="line"><span class="comment">// 单元测试框架 Test-Driven Development</span></span><br><span class="line"><span class="string">"grunt-mocha"</span>: <span class="string">"^0.4.10"</span>,</span><br><span class="line"><span class="string">"grunt-newer"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line"><span class="string">"grunt-rev"</span>: <span class="string">"^0.1.0"</span>,</span><br><span class="line"><span class="string">"grunt-svgmin"</span>: <span class="string">"^0.4.0"</span>,</span><br><span class="line"><span class="string">"grunt-usemin"</span>: <span class="string">"^2.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-wiredep"</span>: <span class="string">"^1.7.0"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Grunt-API"><a href="#Grunt-API" class="headerlink" title="Grunt API"></a>Grunt API</h4><ul>
+<li>grunt.task</li>
+</ul>
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 别名任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>注册任务列表</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'qunit'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 任务函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, --allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    grunt.task.run([</span><br><span class="line">      <span class="string">'clean:server'</span>,</span><br><span class="line">      <span class="string">'wiredep'</span>,</span><br><span class="line">      <span class="string">'concurrent:server'</span>,</span><br><span class="line">      <span class="string">'autoprefixer'</span>,</span><br><span class="line">      <span class="string">'connect:livereload'</span>,</span><br><span class="line">      <span class="string">'watch'</span></span><br><span class="line">    ]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>grunt.util<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="bower-包管理工具"><a href="#bower-包管理工具" class="headerlink" title="bower 包管理工具"></a>bower 包管理工具</h4><h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>proxy 解决跨域问题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckjtv54tb0052yg9in3k7gjj1"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/25/vue-use-vue-component/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            vue.use 与 vue.component
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/22/跨域/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">跨域</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

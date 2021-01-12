@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-浏览器工作原理——setTimeout是怎么实现的" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" class="article-date">
+  <time datetime="2021-01-08T01:27:04.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="浏览器中的-setTimeout-是怎么实现的"><a href="#浏览器中的-setTimeout-是怎么实现的" class="headerlink" title="浏览器中的 setTimeout 是怎么实现的"></a>浏览器中的 setTimeout 是怎么实现的</h2><p>浏览器页面是由消息队列和事件循环系统来驱动的。<br>渲染进程中所有运行在主线程上的任务都需要先添加到消息队列中，事件循环系统再按照顺序执行消息队列中的任务。如下：</p>
+<ul>
+<li>接收到 html 文档数据时，渲染引擎会将 <code>解析 DOM 事件</code> 添加到消息队列；</li>
+<li>用户改变窗口大小时，渲染引擎会将 <code>重新布局</code> 事件添加到消息队列中；</li>
+<li>触发 JavaScript 垃圾回收机制时，渲染引擎会将 <code>垃圾回收任务</code> 添加到消息队列；</li>
+<li>执行一段异步 JavaScript 代码时，也会将<code>执行任务</code>添加到消息队列</li>
+</ul>
+<a id="more"></a>
+
+<p>setTimeout 定时器，用来指定回调函数参数多少毫秒后执行。返回一个整数，作为定时器编号。同时可以通过这个编号取消定时器。<br><code>** setTimeout 需要在指定时间执行回调函数，而消息队列中任务是按顺序先进先出。Chrome 的解决办法是维护了另外一个需要延迟的执行任务的消息队列。这个消息队列中包括了定时器和 Chromium 内部一些需要延迟的任务 **</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// chrominum 中延迟代码的定义</span><br><span class="line">DelayedIncomingQueue delayed_incoming_queue;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模拟代码 —— 创建回调任务，并添加至延迟队列中<br>创建回调任务 delayTask<br>回调函数、发起时间、延迟时间</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct DelayTask &#123;</span><br><span class="line">  int64 id;</span><br><span class="line">  CallBackFunction cbf;</span><br><span class="line">  int start_time; // 发起时间</span><br><span class="line">  int delay_time; // 迟延时间</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DelayTask timerTask;</span><br><span class="line">timerTask.cbf = showName;</span><br><span class="line">timerTask.start_time = getCurrentTime(); // 获取当前时间</span><br><span class="line">timerTask.delay_time = 200;  // 设置延迟时间</span><br><span class="line"></span><br><span class="line">// 将任务添加到延迟执行队列中</span><br><span class="line">delay_incoming_queue.push(timerTask)</span><br></pre></td></tr></table></figure>
+
+<p>如上通过定时器发起的任务就添加至了延迟队列，那么事件循环系统如何触发延迟队列？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">void ProcessDelayTask() &#123;</span><br><span class="line">  // 从 delay_incoming_queue 中取出到期的任务</span><br><span class="line">  // 今次执行任务</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 主线程从任务队列中读取任务</span><br><span class="line">TaskQueue task_queue;</span><br><span class="line">void ProcessTask();</span><br><span class="line">bool keep_running = true;</span><br><span class="line">void MainThread() &#123;</span><br><span class="line">  for(;;)&#123;</span><br><span class="line">    Task task = task_queue.takeTask(); // 队列中取出任务</span><br><span class="line">    processTask(task); //执行任务</span><br><span class="line"></span><br><span class="line">    ProcessDelayTask(); // 执行延迟队列中的任务</span><br><span class="line"></span><br><span class="line">    if (!keep_running) break; // 如果设置了退出标志，直接退出线程循环</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ProcessDelayTask 函数根据发起时间和延迟时间计算出到期任务，然后依次执行这些任务。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 清除定时器</span></span><br><span class="line">clearTimeout(timer_id)</span><br></pre></td></tr></table></figure>
+
+<p>取消定时器浏览器实现方式是从 delayed_incoming_queue 延迟队列中，通过 ID 查找对应任务，然后删除。</p>
+<h3 id="使用-setTimeout-的注意事项"><a href="#使用-setTimeout-的注意事项" class="headerlink" title="使用 setTimeout 的注意事项"></a>使用 setTimeout 的注意事项</h3><ol>
+<li>如果当前任务执行时间过久，会影响定时器任务的执行<br>很多因素会导致回调函数执行比设定的预期值要久<br>当前任务执行时间过久从而导致定时器设置的任务被延后执行<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) <span class="title">console</span>.<span class="title">log</span>(<span class="params"><span class="string">'bar'</span></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(bar, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">5000</span>; i++) <span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>执行 foo 函数所消耗的时长是 500 毫秒，这也就意味着通过 setTimeout 设置的任务会被推迟到 500 毫秒以后再去执行，而设置 setTimeout 的回调延迟时间是 0。</p>
+<ol start="2">
+<li>如果 setTimeout 存在嵌套调用，那么系统会设置最短时间间隔为 4 毫秒<br>也就是说在定时器函数里面嵌套调用定时器，也会延长定时器的执行时间<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb</span>(<span class="params"></span>) </span>&#123;setTimeout(cb, <span class="number">0</span>);&#125;</span><br><span class="line">setTimeout(cb, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">static const int kMaxTimerNestingLevel = 5;</span><br><span class="line">static constexpr base::TimeDelta kMinimumInterval = base::TimeDelta::FromMilliseconds(4);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">base::TimeDelta interval_milliseconds =</span><br><span class="line">      std::max(base::TimeDelta::FromMilliseconds(1), interval);</span><br><span class="line"></span><br><span class="line">  if (interval_milliseconds &lt; kMinimumInterval &amp;&amp;</span><br><span class="line">      nesting_level_ &gt;= kMaxTimerNestingLevel)</span><br><span class="line">    interval_milliseconds = kMinimumInterval;</span><br><span class="line"></span><br><span class="line">  if (single_shot)</span><br><span class="line">    StartOneShot(interval_milliseconds, FROM_HERE);</span><br><span class="line">  else</span><br><span class="line">    StartRepeating(interval_milliseconds, FROM_HERE);</span><br></pre></td></tr></table></figure>
+
+<p>定时器被嵌套调用 5 次以上，系统会判断该函数方法被阻塞了，如果定时器的调用时间间隔小于 4 毫秒，那么浏览器会将每次调用的时间间隔设置为 4 毫秒.所以，一些实时性较高的需求就不太适合使用 setTimeout 了</p>
+<ol start="3">
+<li><p>未激活的页面，setTimeout 执行最小间隔是 1000 毫秒<br>未被激活的页面中定时器最小值大于 1000 毫秒，也就是说，如果标签不是当前的激活标签，那么定时器最小的时间间隔是 1000 毫秒，目的是为了优化后台页面的加载损耗以及降低耗电量</p>
+</li>
+<li><p>延时执行时间有最大值<br>Chrome、Safari、Firefox 都是以 32 个 bit 来存储延时值的，32bit 最大只能存放的数字是 2147483647 毫秒，这就意味着，如果 setTimeout 设置的延迟值大于 2                                                                         147483647 毫秒（大约 24.8 天）时就会溢出，那么相当于延时值被设置为 0 了，这导致定时器会被立即执行。如果将延时值修改为小于 2147483647 毫秒的某个值，那么执行时就没有问题了。</p>
+</li>
+<li><p>使用 setTimeout 设置的回调函数中的 this 不符合直觉</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name= <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> MyObj = &#123;</span><br><span class="line">  name: <span class="number">2</span>,</span><br><span class="line">  showName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(MyObj.showName,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>这段代码在编译的时候，执行上下文中的 this 会被设置为全局 window，如果是严格模式，会被设置为 undefined。</p>
+<h2 id="浏览器中的-XMLHttpRequest-是怎么实现的"><a href="#浏览器中的-XMLHttpRequest-是怎么实现的" class="headerlink" title="浏览器中的 XMLHttpRequest 是怎么实现的"></a>浏览器中的 XMLHttpRequest 是怎么实现的</h2><p>XMLHttpRequest 提供了从 Web 服务器获取数据的能力，如果你想要更新某条数据，只需要通过 XMLHttpRequest 请求服务器提供的接口，便可以获取到服务器的数据，然后操作 DOM 更新页面内容，整个过程只需要更新见面的一部分就可以了，不用刷新整个页面，这样既有效率又不会打扰用户。</p>
+<h3 id="同步回调、异步调用"><a href="#同步回调、异步调用" class="headerlink" title="同步回调、异步调用"></a>同步回调、异步调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is a callback function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doWork</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'start do work'</span>)</span><br><span class="line">  cb()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'end do work'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doWork(callback)</span><br></pre></td></tr></table></figure>
+
+<p>如上，将函数 callback 作为参数传递给函数 doWork，那么作为参数的函数 callback 就是 <strong>回调函数</strong>。<br>如上，回调函数 callback 是在主函数 doWork 返回之前执行的，这个回调过程称为 <strong>同步回调</strong>。</p>
+<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'fingers crossed'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doWork</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'to do homework'</span>)</span><br><span class="line">  setTimeout(cb, <span class="number">1000</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'end do homework'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doWork(callback)</span><br></pre></td></tr></table></figure>
+
+<p>如上，doWork 函数中使用了 setTimeout 函数让 cb 在主函数 doWork 执行完后延迟 1 秒执行。callback 没有在函数内部调用。回调函数在主函数外部执行的过程称为 <strong>异步回调</strong></p>
+<h3 id="系统调用栈"><a href="#系统调用栈" class="headerlink" title="系统调用栈"></a>系统调用栈</h3><p>消息队列与主线程循环机制保证了页面有条不紊地运行<br>当循环系统在执行一个任务的时候，都要为这个任务维护一个 <strong>系统调用栈</strong><br>系统调用栈的信息可以通过 <code>chrome://tracing/</code> 抓取<br>也可以通过 Performance 来抓取它的核心调用信息。<br><a href="https://static001.geekbang.org/resource/image/d3/77/d3d66afb1a103103e5c3f86c823efb77.png" target="_blank" rel="noopener">img</a></p>
+<h2 id="XMLHttpRequest-运作机制"><a href="#XMLHttpRequest-运作机制" class="headerlink" title="XMLHttpRequest 运作机制"></a>XMLHttpRequest 运作机制</h2><img src="http://www.plantuml.com/plantuml/svg/RL9DJrD15DtFhxWfctR1IrYsH3ScZIGGyMDXqh1ulZVzY31JvqsjXZInYjg0H0p4Bnh0kEcEQYAGLksVOUOzLlu5xymyj50MxoLppxdtddDoIS1NwfnH9a6VVDVxsybeD-vjW1-1e2oaOb7mW4OHJ1MBHLWb084lmfHxUZAC1wCBz0M_nivR31lvd4d1bo5JvY8xEvlB679GjfXXtwiAweSmFNtTLLluFMhG1WLzrD7jmxEF-whpmJIju52_GczRq0qldGw7QlqBMx8lnYK5KQjK9V0of9150FGnlWvSpPPGhk6d6iz3o3Y6vtcPIuW3PjpULYhKXZ5towL0i92oh9s9H0gWthvNhmUfYXOXfVZNktZOTQ4l6PECoYON3__57kRpnFgIl6vSJU1-Y6kNgOGdLG7N46_2_ONvcrBMxr3CCPBP718Gz3WpIJ-Df2zfKFLPXIA_t621h76MpS4gkZQcF2zjYD00TkFVHajAJVf0TpTHk_hKisgnS9UAnxM0mbG-7n8oUGKcYOkY2tEBDyWb7uRrVrW1aiDZ_UrvycDD3xR8s9Ohfe7QtbI3dPHxnTpq40g0UxFZWQl-gsIqetRtuizhyVgHVjPM_NRozQNkRBcUFp_VkBjHtTxuDQh-xxCNlTnV">
+
+<p>** XMLHttpRequest 的用法 ** 使用 XMLHttpRequest 来请求数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWebData</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 新建 XMLHttpRequest 请求对象</span></span><br><span class="line">  <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册相关事件回调函数</span></span><br><span class="line">  <span class="comment">// onreadystatechange 监控请求过程中的状态</span></span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (xhr.readyState) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'请求初始化'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'OPENED'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'HEADERS_RECEIVED'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'LOADING'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.state == <span class="number">200</span> || <span class="keyword">this</span>.state == <span class="number">304</span>) <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'DONE'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 注册回调函数 ontimeout 用来监控后台请求是否超时</span></span><br><span class="line">  xhr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'ontimeout'</span>)&#125;</span><br><span class="line">  xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'onerror'</span>)&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 打开请求</span></span><br><span class="line">  xhr.open(<span class="string">'Get'</span>, URL, <span class="literal">true</span>) <span class="comment">// 创建一个 Get 请求，异步</span></span><br><span class="line">  xhr.timeout = <span class="number">3000</span> <span class="comment">// 3000 毫秒后还没有响应则判断为请求失败</span></span><br><span class="line">  xhr.responseText = <span class="string">"text"</span> <span class="comment">// 配置服务器返回的格式，将服务器数据转换为自己想要的格式，这里为 utf-16 的字符串</span></span><br><span class="line">  xhr.setRequestHeader(<span class="string">"X_TEST"</span>,<span class="string">'helen_tests'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发送请求</span></span><br><span class="line">  xhr.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>创建 XMLHttpRequest 对象，来执行实际的网络请求操作 <code>let xhr = new XMLHttpRequest()</code></li>
+<li>为 xhr 对象注册回调函数<br>后台执行任务可以通过回调函数来告诉执行结果<br>XMLHttpRequest 的回调函数主要有以下几种：<ul>
+<li>ontimeout 监控超时请求，如果后台请求超时了，调用该函数</li>
+<li>onerror 监控出错信息，如果后台请求出错，调用该函数</li>
+<li>onreadystatechange 监控后台请求过程中的状态。如：监控 http 头加载完成的信息、http 响应体消息、数据加载完成消息等。</li>
+</ul>
+</li>
+<li>配置基本的请求信息<br><code>xhr.open</code> 配置基础的请求信息，包括：请求地址、请求方法、请求方式<br>配置其它可选信息 xhr.timeout = 3000 配置超时信息<br>其它可选配置信息 xhr.responseText = “text” 下表为返回数据类型<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“”</td>
+<td>将 responseText 设置为空字符串，默认类型 UTF-16 字符串</td>
+</tr>
+<tr>
+<td>“text”</td>
+<td>返回 UTF-16字符串文本</td>
+</tr>
+<tr>
+<td>“json”</td>
+<td>response 是一个 JavaScript 对象</td>
+</tr>
+<tr>
+<td>“document”</td>
+<td>response 是一个 DOM 对象</td>
+</tr>
+<tr>
+<td>“blob”</td>
+<td>response 是一个包含二进制数据的 Blob 对象</td>
+</tr>
+<tr>
+<td>“arraybuffer”</td>
+<td>response 是一个包含二进制数据的 JavaScript ArrayBuffer</td>
+</tr>
+<tr>
+<td>如果 xhr.responseText = json 那么系统会自动将服务器返回的数据转换为 JavaScript 对象格式</td>
+<td></td>
+</tr>
+<tr>
+<td>其它可选配置 xhr.setRequestHeader 来添加自己专用的请求头属性</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li>发起请求<br>经过 2、3 步，一切准备就绪后 xhr.send() 发起请求<br>渲染进程会将请求发送给网络进程，然后网络进程负责资源下载，等网络进程接收到数据之后，就会利用 IPC 来通知渲染进程；渲染进程接收到消息之后，会将 xhr 的回调函数封装成任务并添加到消息队列中，等主线程循环系统执行到该任务的时候，会根据相关状态调用回调函数。<ul>
+<li>网络请求超时：xhr.ontimeout</li>
+<li>请求出错：xhr.onerror</li>
+<li>正常接收： xhr.onreadystatechange 返馈相应状态</li>
+</ul>
+</li>
+</ol>
+<h3 id="XMLHttpRequest-使用过程中的“坑”"><a href="#XMLHttpRequest-使用过程中的“坑”" class="headerlink" title="XMLHttpRequest 使用过程中的“坑”"></a>XMLHttpRequest 使用过程中的“坑”</h3><ol>
+<li>跨域问题<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest(); <span class="comment">//  1.  新建 XMLHttpRequest 网络请求对象</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://img-ads.csdn.net/2018/201811150919211586.jpg '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理请求过程中的状态(onreadystatechange 监控后台请求过程中的状态)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (xhr.readyState) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'请求初始化'</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'OPENED'</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'HEADERS_RECEIVED'</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'LOADING'</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.state === <span class="number">200</span> || <span class="keyword">this</span>.state === <span class="number">304</span>) <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'DONE'</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callOtherDomain</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (xhr) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2. 注册相关回调</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    xhr.onreadystatechange = handler</span><br><span class="line">    xhr.ontimeout = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'request timeout'</span>)&#125;</span><br><span class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'error'</span>)&#125;</span><br><span class="line">    <span class="comment">// 3. 配置基础请求信息</span></span><br><span class="line">    xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>)</span><br><span class="line">    xhr.timeout = <span class="number">3000</span></span><br><span class="line">    xhr.responseText = <span class="string">'json'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 发送请求</span></span><br><span class="line">    xhr.send()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">callOtherDomain()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>Access to XMLHttpRequest at ‘<a href="https://time.geekbang.org/&#39;" target="_blank" rel="noopener">https://time.geekbang.org/&#39;</a> from origin ‘<a href="http://localhost:4000&#39;" target="_blank" rel="noopener">http://localhost:4000&#39;</a> has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.<br>由于跨域导致访问失败</p>
+</blockquote>
+<ol start="2">
+<li>HTTPS 混合内容的问题<br>HTTPS 混合内容是 HTTPS 页面中包含了不符合 HTTPS 安全要求的内容，比如包含了 HTTP 资源，通过 HTTP 加载的图像、视频、样式表、脚本等，都属于混合内容。<blockquote>
+<p>Mixed Content: The page at ‘<a href="https://www.ximalaya.com/waiyu/18797993/243864198&#39;" target="_blank" rel="noopener">https://www.ximalaya.com/waiyu/18797993/243864198&#39;</a> was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint ‘<a href="http://img-ads.csdn.net/2018/201811150919211586.jpg&#39;" target="_blank" rel="noopener">http://img-ads.csdn.net/2018/201811150919211586.jpg&#39;</a>. This request has been blocked; the content must be served over HTTPS.<br>通过 HTML 文件加载的混合资源，虽然给出警告，但大部分类型还是能加载的。而使用 XMLHttpRequest 请求时，浏览器认为这种请求可能是攻击者发起的，会阻止此类危险的请求。</p>
+</blockquote>
+</li>
+</ol>
+<p>XMLHttpRequest 发起请求，是由浏览器的其他进程或者线程去执行，然后再将执行结果利用 IPC 的方式通知渲染进程，之后渲染进程再将对应的消息添加到消息队列中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckjtv54tm005syg9irisb7pgh"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2021/01/08/浏览器工作原理——消息队列与事件循环/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            浏览器工作原理——消息队列与事件循环
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/12/10/浏览器工作原理——数据存储/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">浏览器工作原理——数据存储</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="jumbotron">
+  <div class="video">
+    
+    <div class="video-media">
+      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
+      
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">女魔头</a></h1>
+      <p>咕噜的程序员妈妈</p>
+      
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    
+
+    
+      
+        <article id="post-express" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/06/express/">express</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/06/express/" class="article-date">
+  <time datetime="2019-02-06T03:27:34.000Z" itemprop="datePublished">2019-02-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">'_partial/ocean'</span>) %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ejs 引发的一系列问题<br><code>partial()</code> 是 express 框架方法，先了解下 express。<br><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">expressjs 官网</a>是这样介绍的，它是 Web 应用程序<br>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。<br>在官网中没有找到 <code>partial()</code> 方法，只能看看野史了。<br>百度找到了<a href="http://yijiebuyi.com/blog/e503a402ffac43ca1cbaba9d4317b54d.html" target="_blank" rel="noopener">NodeJS - Express 3.0下ejs模板使用 partial展现 片段视图</a></p>
+        
+          <a class="article-more-link" href="/2019/02/06/express/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckjtv54sa003lyg9ikael9m4j"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-hexo-安装图片插件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/03/hexo-安装图片插件/">hexo 安装图片插件 ~ hexo + 七牛云</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/03/hexo-安装图片插件/" class="article-date">
+  <time datetime="2019-02-03T03:49:08.000Z" itemprop="datePublished">2019-02-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>想要一块地盘，想要保存宝宝的照片，点点滴<br>想要宝宝成长开辟地盘<br>于是。。。<br>七牛云<br>hexo</p>
+<img title="龙猫" alt="七牛云" src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/longmao.jpeg?imageView2/2/w/225">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 语法</span></span><br><span class="line">&#123;% qnimg longmao.jpeg title:龙猫 at 七牛云 logo alt:七牛云 <span class="string">'class:'</span> extend:?imageView2/2/w/550 %&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/02/03/hexo-安装图片插件/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckjtv54se003ryg9iywipjhez"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-EN-Dash" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/01/EN-Dash/">EN Dash</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/01/EN-Dash/" class="article-date">
+  <time datetime="2019-02-01T10:03:50.000Z" itemprop="datePublished">2019-02-01</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="EN-Dash-破折号、连字符"><a href="#EN-Dash-破折号、连字符" class="headerlink" title="EN Dash - 破折号、连字符"></a>EN Dash - 破折号、连字符</h2><blockquote>
+<p>英语中连字符的两大功能</p>
+</blockquote>
+<ol>
+<li><p>用于移行，把不在同一行的某个单词连接起来；</p>
+</li>
+<li><p>把两个或两个以上的单词连接起来，构成新的形容词</p>
+        
+          <a class="article-more-link" href="/2019/02/01/EN-Dash/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/01/EN-Dash/" data-id="ckjtv54r6001iyg9ib3zuqf4l"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/English/">English</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词法/">词法</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-atom-插件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/31/atom-插件/">atom 插件</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/31/atom-插件/" class="article-date">
+  <time datetime="2019-01-31T08:44:42.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h4 id="markdown-preview-plus"><a href="#markdown-preview-plus" class="headerlink" title="markdown-preview-plus"></a>markdown-preview-plus</h4><ol>
+<li>command + shift + p</li>
+<li>markdown preview toggle</li>
+</ol>
+<h4 id="platformio-ide-terminal"><a href="#platformio-ide-terminal" class="headerlink" title="platformio-ide-terminal"></a>platformio-ide-terminal</h4><ol>
+<li>command + shift + p</li>
+<li>terminal new / terminal close</li>
+</ol>
+<h4 id="docblockr"><a href="#docblockr" class="headerlink" title="docblockr"></a><a href="https://atom.io/packages/docblockr" target="_blank" rel="noopener">docblockr</a></h4><p>用于自动生成注释（annotation）</p>
+<h4 id="authcompletePaths"><a href="#authcompletePaths" class="headerlink" title="authcompletePaths"></a>authcompletePaths</h4><p>自动补全 path</p>
+        
+          <a class="article-more-link" href="/2019/01/31/atom-插件/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/01/31/atom-插件/" data-id="ckjtv54s20039yg9iv2ixfqx5"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">atom</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-hexo-坑" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/31/hexo-坑/">Hexo 坑</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/31/hexo-坑/" class="article-date">
+  <time datetime="2019-01-31T08:44:18.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="hexo-deploy-没有反应"><a href="#hexo-deploy-没有反应" class="headerlink" title="hexo deploy 没有反应"></a>hexo deploy 没有反应</h2><p><code>检查</code> _config.yml 中 deploy 配置</p>
+<h2 id="访问页面空白"><a href="#访问页面空白" class="headerlink" title="访问页面空白"></a>访问页面空白</h2><p><code>检查</code> themes</p>
+<h2 id="断行，在首页展示缩略信息，该方法能被-hexo-更好识别"><a href="#断行，在首页展示缩略信息，该方法能被-hexo-更好识别" class="headerlink" title="断行，在首页展示缩略信息，该方法能被 hexo 更好识别"></a>断行，在首页展示缩略信息，该方法能被 hexo 更好识别</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-No-layout-index-html"><a href="#ERROR-No-layout-index-html" class="headerlink" title="ERROR - No layout: index.html"></a>ERROR - No layout: index.html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br><span class="line">WARN  No layout: index.html</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/01/31/hexo-坑/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/01/31/hexo-坑/" data-id="ckjtv54sc003nyg9iu4qj3aez"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-taro" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/25/taro/">taro 坑系列</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/25/taro/" class="article-date">
+  <time datetime="2019-01-25T07:52:09.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="taro-坑"><a href="#taro-坑" class="headerlink" title="taro 坑"></a>taro 坑</h3><h4 id="坑-1"><a href="#坑-1" class="headerlink" title="坑 - 1"></a>坑 - 1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/Users/lipingzhang/Project<span class="comment">/**/**/</span>src/pages/order/detail/index编译失败！</span><br><span class="line"><span class="built_in">TypeError</span> [ERR_INVALID_ARG_TYPE]: The <span class="string">"path"</span> argument must be <span class="keyword">of</span> type string</span><br><span class="line">    at assertPath (path.js:<span class="number">28</span>:<span class="number">11</span>)</span><br><span class="line">    at <span class="built_in">Object</span>.relative (path.js:<span class="number">1265</span>:<span class="number">5</span>)</span><br><span class="line">    at pageDepComponents.forEach.depComponent (<span class="regexp">/Users/</span>lipingzhang/.nvm/versions/node/v9<span class="number">.2</span><span class="number">.0</span>/lib/node_modules/@tarojs/cli/src/weapp.js:<span class="number">1326</span>:<span class="number">64</span>)</span><br><span class="line">    at <span class="built_in">Array</span>.forEach (<span class="xml"><span class="tag">&lt;<span class="name">anonymous</span>&gt;</span>)</span></span><br><span class="line"><span class="xml">    at componentMap.forEach.component (/Users/lipingzhang/.nvm/versions/node/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1320:31)</span></span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at realComponentsPathList.forEach.component (/Users/lipingzhang/.nvm/versions/node/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1319:24)</span><br><span class="line">    at Array.forEach (&lt;anonymous&gt;)</span><br><span class="line">    at buildSinglePage (/Users/jo32/.nvm/versions/lipingzhang/v9.2.0/lib/node_modules/@tarojs/cli/src/weapp.js:1316:30)</span><br><span class="line">    at &lt;anonymous&gt;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/01/25/taro/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/01/25/taro/" data-id="ckjtv54t1004kyg9irillkeep"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/taro/">taro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/框架/">框架</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+  </article>
+  
+  
+    <nav class="page-nav">
+      
+      <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    </nav>
+  
+</section>
+
+</div>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

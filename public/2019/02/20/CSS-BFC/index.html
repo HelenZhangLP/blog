@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    CSS BFC |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-CSS-BFC" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS BFC
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/20/CSS-BFC/" class="article-date">
+  <time datetime="2019-02-20T07:27:42.000Z" itemprop="datePublished">2019-02-20</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">个人的官方是 MDN 文档，信得过，值得依赖</a><br>[同时借鉴 前端精选文摘：BFC 神奇背后的原理]（<a href="https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解" target="_blank" rel="noopener">https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解</a> BFC 不仅仅要清楚创建块级格式化上下文的方式，还要清楚一些它布局的规则。</p>
+<p><strong>BFC - Block Formatting Context Web</strong> 页面可视化css渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其它元素交互的区域。</p>
+<h3 id="创建块级格式化上下文的方式（Block-Formatting-Context）"><a href="#创建块级格式化上下文的方式（Block-Formatting-Context）" class="headerlink" title="创建块级格式化上下文的方式（Block Formatting Context）"></a>创建块级格式化上下文的方式（Block Formatting Context）</h3><ul>
+<li><code>绝对定位元素</code><strong>position: absolute/position: fixed</strong> 会创建块级上下文<blockquote>
+<p>图标居定位右上角 <a href="https://github.com/HelenZhangLP/demo/blob/master/postionAbsoluteFixedBlock/index.html" target="_blank" rel="noopener">以下 demo 代码</a></p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator3<span class="tag">&lt;<span class="name">i</span>&gt;</span>vip icon<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">i</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">2px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f90</span>;</span><br><span class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">28px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(http://img.mukewang.com/<span class="number">545304730001307300280011</span>.gif) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg" alt="position-absolute-block-1"><br>上图是一个注释掉<code>position: absolute</code>后的错误示例，如 <code>&lt;i&gt;</code> 非块级元素，<code>text-indent: -9999px</code> 不生效，<code>margin: -2px 0 0 1px</code>在垂直方向同样不生效。注释文本撑开，显示vip图片，若无<code>vip icon</code>，背影图同样不显示，因为 <code>width/height</code> 对非块级元素不生效。<code>放开position: absolute 注释后，BFC 化后，实现效果如下图</code></p>
+<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg" alt="position-absolute-block-2"></p>
+<hr>
+<ul>
+<li>overflow 值不为 visible（default/visible）</li>
+<li>浮动元素（float 不为 none）<blockquote>
+<p>浮动实现两列表布局<br>盒子 .bfc1 与 盒子 .bfc2，左右布局，左侧盒子宽 100，左侧盒子根据父元素高自适应</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc1'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc2'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-1.png">
+<blockquote>
+<p>由图可以看出，块状元素布局是由上自下，每个元素与父元素左边框接触<br>左浮动实现两列表布局</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">  float: left;  // 左浮动实现两列表布局</span><br><span class="line">	<span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">height</span>: 150<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">background</span>: <span class="selector-id">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-2.png">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckjtv54qq000xyg9i2u16oc5m"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/22/跨域/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            跨域
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/20/CSS-盒模型/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">CSS 盒模型</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
