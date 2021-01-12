@@ -82,18 +82,19 @@
       
       
         <h2 id="线程模型（一）"><a href="#线程模型（一）" class="headerlink" title="线程模型（一）"></a>线程模型（一）</h2><p>有确定好的任务，使用一个单线程来按顺序处理任务</p>
-<img src="http://www.plantuml.com/plantuml/svg/IyqhoIofL7Y-Q__p5TrS9Od5sGeWmX31D48mZH5C4owbufB4eX8bNLqxfTIy52Kk0000">
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="number">2</span>; <span class="comment">// task1</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span> + <span class="number">3</span>; <span class="comment">// task2</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">3</span> + <span class="number">4</span>; <span class="comment">// task3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a, b, c) <span class="comment">// task4</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="线程模型（二）"><a href="#线程模型（二）" class="headerlink" title="线程模型（二）"></a>线程模型（二）</h2><p>引入 <strong>循环语句</strong> 和 <strong>事件系统</strong>，在线程执行过程中接收并处理新任务。</p>
-<h2 id="线程模型（三）"><a href="#线程模型（三）" class="headerlink" title="线程模型（三）"></a>线程模型（三）</h2><p>引入 <strong>消息队列</strong> 接收其它线程发送过来的任务。</p>
-<h2 id="线程模型（四）"><a href="#线程模型（四）" class="headerlink" title="线程模型（四）"></a>线程模型（四）</h2><p>如果其它线程想要发送任务给页面主线程，那么需要先通过 IPC 把任务发送给渲染进程的 IO 线程，IO 线程再把任务发送给页面主线程。</p>
-<h2 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h2><p>处理队列机制不太灵活的问题，适应效率和实时性</p>
-<p>使用单线程处理已知任务<br>在线程运行过程中处理新任务<br>要想在线程运行过程中，能够接收并执行新的任务，就要采用事件循环机制</p>
-
+<blockquote>
+<p>使用单线程处理已知任务 task1 task2 task3 task4</p>
+</blockquote>
+<img src="http://www.plantuml.com/plantuml/svg/AyaioKbLUBvh__CLtLmPcIcf2cdv-IL9-HLSN4dvfNafYKML2a_tD3nTtWrHev1Oh51SabXKmbK093AJCmiIyqeKIXABimqnH8mmH8mnH4mGra0iUDdGyBHz5yYQrBmKBh1Lkhfs40l099Hd1EOPGNd6O9unb6S2vfa0UI0p0000">
+        
+          <a class="article-more-link" href="/2021/01/08/浏览器工作原理——消息队列与事件循环/">更多...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjnr8j4w005yzd9i0cl31gud"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjtl106v005uyh9iy5g7y3id"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
@@ -144,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/25/单页应用与多页应用/" data-id="ckjnr8j4d0054zd9i4p96yzj0"
+      <a data-url="https://helenzhanglp.github.io/2020/12/25/单页应用与多页应用/" data-id="ckjtl10690052yh9i01351bp0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
@@ -231,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjnr8j4v005vzd9ieox9fvv2"
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjtl106t005syh9ivtzb2gqr"
          class="article-share-link">Share</a>
       
     </footer>
@@ -285,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjnr8j3p004dzd9isqlnjl1f"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjtl105m004byh9ibclcqjos"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -352,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjnr8j3f0040zd9iruzjwoov"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjtl1050003wyh9ixptfeqpz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -409,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjnr8j3l0047zd9ilb8qqwfn"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjtl105k0049yh9ipbnz1h27"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -469,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjnr8j4p005ozd9i91nj9zxs"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjtl106r005oyh9iy71k1od0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -531,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjnr8j560067zd9iqn2as3y2"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjtl10720065yh9i7286dey9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -585,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjnr8j34003vzd9i6lnud332"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjtl1055003zyh9ia42p9wp6"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -643,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjnr8j4u005tzd9i78aa83n9"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjtl106x005xyh9iw4eqew5c"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
