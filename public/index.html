@@ -52,6 +52,63 @@
 
     
       
+        <article id="post-浏览器工作原理——宏任务与微任务" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/12/浏览器工作原理——宏任务与微任务/">浏览器工作原理——宏任务与微任务</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/12/浏览器工作原理——宏任务与微任务/" class="article-date">
+  <time datetime="2021-01-12T10:48:11.000Z" itemprop="datePublished">2021-01-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>微任务——实时性和效率之间一个有效的权衡<br>Promise 以及以 Promise 为基础开发出来的其它技术是基于微任务的。<br>主线程上的任务包括了渲染事件（如解析 DOM、计算布局、绘制）、用户交互事件（如鼠标、滚动、放大缩小等）、JavaScript 脚本执行、网络请求、文件读写等。<br>消息队列和事件循环机制协调主线程上的任务执行，渲染进程内部会维护多个消息队列。如延迟队列、普通消息队列等。<br>消息队列中的任务称为 <strong>宏任务</strong><br>WHATWG 规范中对于事件循环机制的定义：</p>
+<ul>
+<li>先从消息队列中选出一个最老的任务，<code>oldestTask</code>；</li>
+<li>事件循环系统记录任务开始执行的时间，并把 <code>oldestTask</code> 设置为当前正在执行的任务；</li>
+<li>任务完成之后，删除当前正在执行的任务，并从对应的消息队列中删除 <code>oldestTask</code>;</li>
+<li>统计执行完成的时长</li>
+</ul>
+<p>宏任务无法处理对时间精度要求较高的任务</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="ckjuyo624005xs6i479im8nwk"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器工作原理——消息队列与事件循环" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -94,10 +151,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjtl106v005uyh9iy5g7y3id"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjuyo62b006bs6i4mmcbgn7j"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
 
     </footer>
 
@@ -110,7 +167,7 @@
 </article>
 
       
-        <article id="post-单页应用与多页应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-浏览器工作原理——setTimeout是怎么实现的" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -118,7 +175,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2020/12/25/单页应用与多页应用/">单页应用与多页应用</a>
+      <a class="article-title" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的</a>
     </h2>
   
 
@@ -128,8 +185,8 @@
 
     
       <div class="article-meta">
-        <a href="/2020/12/25/单页应用与多页应用/" class="article-date">
-  <time datetime="2020-12-25T08:03:56.000Z" itemprop="datePublished">2020-12-25</time>
+        <a href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" class="article-date">
+  <time datetime="2021-01-08T01:27:04.000Z" itemprop="datePublished">2021-01-08</time>
 </a>
         
       </div>
@@ -139,16 +196,23 @@
       
       
       
-        <h2 id="多页-Web-应用（MPA）"><a href="#多页-Web-应用（MPA）" class="headerlink" title="多页 Web 应用（MPA）"></a>多页 Web 应用（MPA）</h2><p>Multiple Page Web Application，服务端主导，前后端混合。每次一次页面跳转，服务端返回一个新的 HTML 文档。</p>
-<h2 id="单页-Web-应用（SPA）"><a href="#单页-Web-应用（SPA）" class="headerlink" title="单页 Web 应用（SPA）"></a>单页 Web 应用（SPA）</h2><p>Single Page Web Application，加截单个 HTML 页面，在用户与应用程序交互时，动态更新该页面的 web 应用程序。浏览器会从一开始加截必须的 HTML、CSS、JAVASCRIPT，所有的操作都在这个页面完成，由 JAVASCRIPT 控制。<br>前后端分离，服务端处理数据，前端处理页面，两者通过接口交互</p>
-
+        <h2 id="浏览器中的-setTimeout-是怎么实现的"><a href="#浏览器中的-setTimeout-是怎么实现的" class="headerlink" title="浏览器中的 setTimeout 是怎么实现的"></a>浏览器中的 setTimeout 是怎么实现的</h2><p>浏览器页面是由消息队列和事件循环系统来驱动的。<br>渲染进程中所有运行在主线程上的任务都需要先添加到消息队列中，事件循环系统再按照顺序执行消息队列中的任务。如下：</p>
+<ul>
+<li>接收到 html 文档数据时，渲染引擎会将 <code>解析 DOM 事件</code> 添加到消息队列；</li>
+<li>用户改变窗口大小时，渲染引擎会将 <code>重新布局</code> 事件添加到消息队列中；</li>
+<li>触发 JavaScript 垃圾回收机制时，渲染引擎会将 <code>垃圾回收任务</code> 添加到消息队列；</li>
+<li>执行一段异步 JavaScript 代码时，也会将<code>执行任务</code>添加到消息队列</li>
+</ul>
+        
+          <a class="article-more-link" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">更多...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/25/单页应用与多页应用/" data-id="ckjtl10690052yh9i01351bp0"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckjuyo621005ps6i4av9onu7g"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
 
     </footer>
 
@@ -232,9 +296,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjtl106t005syh9ivtzb2gqr"
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjuyo6260061s6i45pn225d0"
          class="article-share-link">Share</a>
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
     </footer>
 
   </div>
@@ -286,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjtl105m004byh9ibclcqjos"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjuyo614004es6i4soq68mgg"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -353,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjtl1050003wyh9ixptfeqpz"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjuyo60t003zs6i4fxy9ug37"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -410,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjtl105k0049yh9ipbnz1h27"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjuyo60z0049s6i4c2dugrts"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -470,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjtl106r005oyh9iy71k1od0"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjuyo61z005ns6i4m0chgowz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -532,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjtl10720065yh9i7286dey9"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjuyo6290066s6i4lk5ezuel"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -586,68 +652,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjtl1055003zyh9ia42p9wp6"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjuyo60u0041s6i4jo3t25dl"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-浏览器工作原理——从输入URL-到页面展示，这中间发生了什么" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/">浏览器工作原理——从输入URL 到页面展示，这中间发生了什么</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" class="article-date">
-  <time datetime="2020-11-17T02:19:15.000Z" itemprop="datePublished">2020-11-17</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="1-用户输入"><a href="#1-用户输入" class="headerlink" title="1. 用户输入"></a>1. 用户输入</h2><pre class="mermaid">graph TD;
-    A[用户输入] --> B{判断用户输入关键字}
-    B --> C[用户搜索]
-    B --> D[加协议合成完整的 URL]
-    D --> |用户可以在beforeunload事件上取消导航 或 执行退出来的数据清理|E{beforeunload<br>询问用户是否离开页面}
-    E --> |用户同意继续后续流程|F[等待提交文档页面进入加载状态]
-    E --> |beforeunload取消导航|G[留在当前页面]</pre>
-        
-          <a class="article-more-link" href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjtl106x005xyh9iw4eqew5c"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
 
     </footer>
 

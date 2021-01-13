@@ -52,6 +52,61 @@
 
     
       
+        <article id="post-vue-config-js" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/22/vue-config-js/">vue.config.js</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/22/vue-config-js/" class="article-date">
+  <time datetime="2019-07-22T03:12:36.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="全面解读-vue-config-js"><a href="#全面解读-vue-config-js" class="headerlink" title="全面解读 vue.config.js"></a>全面解读 <code>vue.config.js</code></h1><blockquote>
+<p><a href="https://cli.vuejs.org/zh/config/" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line">&gt; <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">&gt;   <span class="comment">// 基本路径，默认被部署在根路径，如果需要部署在子路径，publicPath 设置为 /example/</span></span><br><span class="line">&gt;   publicPath: process.env.NODE_ENV === <span class="string">"development"</span> ? <span class="string">"/"</span> : <span class="string">"/mallActivity/"</span>,</span><br><span class="line">&gt;   outputDir: <span class="string">'dist'</span>, <span class="comment">// 运行 vue-cli-service build 时生成生产环境构建文件的目录</span></span><br><span class="line">&gt;   assetsDir: <span class="string">'assets'</span>, <span class="comment">//生成文件的静态资源目录</span></span><br><span class="line">&gt;   <span class="comment">// productionSourceMap：&#123; type:Bollean,default:true &#125; 生产源映射</span></span><br><span class="line">&gt;   <span class="comment">// 如果您不需要生产时的源映射，那么将此设置为false可以加速生产构建</span></span><br><span class="line">&gt;   productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">&gt;   css: &#123;</span><br><span class="line">&gt;     loaderOptions: &#123; <span class="comment">// CSS 加载器</span></span><br><span class="line">&gt;       stylus: &#123;</span><br><span class="line">&gt;         javascriptEnabled: <span class="literal">true</span></span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">&gt;     <span class="keyword">const</span> types = [<span class="string">'vue-modules'</span>, <span class="string">'vue'</span>, <span class="string">'normal-modules'</span>, <span class="string">'normal'</span>]</span><br><span class="line">&gt;     types.forEach(<span class="function"><span class="params">type</span> =&gt;</span> addStyleResource(config.module.rule(<span class="string">'stylus'</span>).oneOf(type)))</span><br><span class="line">&gt;   &#125;,</span><br><span class="line">&gt;   devServer: &#123;</span><br><span class="line">&gt;     proxy: &#123; <span class="comment">// 在开发环境下将 API 请求代理到 API 服务器</span></span><br><span class="line">&gt;       <span class="string">'/mock'</span>: &#123;</span><br><span class="line">&gt;         target: <span class="string">'http://10.8.5.180:80'</span>,</span><br><span class="line">&gt;         pathRewrite: &#123;</span><br><span class="line">&gt;           <span class="string">'^/mock'</span>: <span class="string">'/mock'</span></span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">addStyleResource</span> (<span class="params">rule</span>) </span>&#123;</span><br><span class="line">&gt;   rule.use(<span class="string">'style-resource'</span>)</span><br><span class="line">&gt;     .loader(<span class="string">'style-resources-loader'</span>)</span><br><span class="line">&gt;     .options(&#123;</span><br><span class="line">&gt;       patterns: [</span><br><span class="line">&gt;         path.resolve(__dirname, <span class="string">'./src/assets/stylus/golbal.styl'</span>)</span><br><span class="line">&gt;       ]</span><br><span class="line">&gt;     &#125;)</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckjuyo61a004ms6i4fnzzq1rd"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -98,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckjtl106o005iyh9i4r9kc8di"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckjuyo61v005hs6i4sq3f6m29"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -161,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckjtl104x003ryh9in7ouygl1"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckjuyo60q003us6i4c8aqd5m9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
@@ -216,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckjtl105z004syh9iwhrwuojy"
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckjuyo61e004vs6i48nwnxgil"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -271,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckjtl1040002tyh9i4jihjn67"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckjuyo5zy002vs6i4mbd6ower"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -323,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjtl10650050yh9ixa01s5li"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjuyo61m0053s6i45tki3vlw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -377,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckjtl10300011yh9iusncknl4"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckjuyo5z20016s6i4o50dzovx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -461,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjtl10710063yh9ilggd9ogu"
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjuyo62a0069s6i4hzo3cdr9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -522,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckjtl1036001ayh9imiqbz5kx"
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckjuyo5z5001as6i4i7be95i2"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
@@ -587,70 +642,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjtl103s002dyh9i9vtgsast"
+      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjuyo5zm0028s6i4570phenb"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-exports-and-module-exports" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/26/exports-and-module-exports/">exports and module.exports</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/26/exports-and-module-exports/" class="article-date">
-  <time datetime="2019-03-26T06:30:43.000Z" itemprop="datePublished">2019-03-26</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="exports-和-module-exports"><a href="#exports-和-module-exports" class="headerlink" title="exports 和 module.exports"></a>exports 和 module.exports</h3><p><a href="http://nodejs.cn/api/modules.html#modules_exports_shortcut" target="_blank" rel="noopener">参考文档</a><br>nodeJS 官网中对 require() 有一段假设实现，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  (<span class="function">(<span class="params"><span class="built_in">module</span>, exports</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sFn</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    exports = sFn</span><br><span class="line">    <span class="built_in">module</span>.exports = sFn</span><br><span class="line">  &#125;)(<span class="built_in">module</span>, <span class="built_in">module</span>.exports);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="回过头来看定义"><a href="#回过头来看定义" class="headerlink" title="回过头来看定义"></a>回过头来看定义</h4><ol>
-<li>exports<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utils.js</span></span><br><span class="line">exports.cssLoaders = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">  options = options || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> cssLoader = &#123;</span><br><span class="line">    loader: <span class="string">'css-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      minimize: process.env.NODE_ENV === <span class="string">'production'</span>,</span><br><span class="line">      sourceMap: options.sourceMap</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vue.loader.config.js</span></span><br><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'../config'</span>)</span><br><span class="line"><span class="keyword">var</span> isProduction = process.env.NODE_ENV === <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  loaders: utils.cssLoaders(&#123;</span><br><span class="line">    sourceMap: isProduction</span><br><span class="line">      ? config.build.productionSourceMap</span><br><span class="line">      : config.dev.cssSourceMap,</span><br><span class="line">    extract: isProduction</span><br><span class="line">  &#125;),</span><br><span class="line">  postcss: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)(&#123;</span><br><span class="line">      browsers: [<span class="string">'iOS &gt;= 7'</span>, <span class="string">'Android &gt;= 4.1'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<blockquote>
-<p>exports 导出的是函数，引入文件 require() 之后直接调用<br>module.exports 导出的是一个对象</p>
-</blockquote>
-<h3 id="export-amp-amp-export-default"><a href="#export-amp-amp-export-default" class="headerlink" title="export &amp;&amp; export default"></a>export &amp;&amp; export default</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckjtl104l003eyh9iky500nvv"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-模块化/">ES6 模块化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
 
     </footer>
 

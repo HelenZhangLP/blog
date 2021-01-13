@@ -52,6 +52,64 @@
 
     
       
+        <article id="post-浏览器工作原理——从输入URL-到页面展示，这中间发生了什么" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/">浏览器工作原理——从输入URL 到页面展示，这中间发生了什么</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" class="article-date">
+  <time datetime="2020-11-17T02:19:15.000Z" itemprop="datePublished">2020-11-17</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="1-用户输入"><a href="#1-用户输入" class="headerlink" title="1. 用户输入"></a>1. 用户输入</h2><pre class="mermaid">graph TD;
+    A[用户输入] --> B{判断用户输入关键字}
+    B --> C[用户搜索]
+    B --> D[加协议合成完整的 URL]
+    D --> |用户可以在beforeunload事件上取消导航 或 执行退出来的数据清理|E{beforeunload<br>询问用户是否离开页面}
+    E --> |用户同意继续后续流程|F[等待提交文档页面进入加载状态]
+    E --> |beforeunload取消导航|G[留在当前页面]</pre>
+        
+          <a class="article-more-link" href="/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjuyo623005us6i4rrfiap3l"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器-chrome-打开一个页面执行的进程" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -93,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckjtl106j005dyh9ifpwe3uyl"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckjuyo61u005fs6i43htr4col"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -146,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckjtl106s005pyh9irsb3zhy0"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckjuyo622005ss6i4qsfia3uf"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -201,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckjtl106y005yyh9i8t2w18bk"
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckjuyo625005zs6i419tx7j79"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -266,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckjtl106p005lyh9igjnas4t3"
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckjuyo61w005ks6i4egr3jo04"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -341,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckjtl103j001uyh9ihfuyz6c1"
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckjuyo5zi0020s6i4aq2pucly"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -406,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckjtl102z0010yh9ijatmvr9f"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckjuyo5z10014s6i4amzmtqft"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -458,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckjtl103c001jyh9ids39p8xz"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckjuyo5ze001rs6i4phhdb4e9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
@@ -514,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckjtl104i003byh9ix43psdw9"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckjuyo60e003es6i4x5xjswbq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -588,63 +646,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckjtl1045002yyh9iivdr7uzi"
+      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckjuyo6020031s6i4d3usoa8s"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-Margin-auto" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/19/CSS-Margin-auto/">CSS Margin auto</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/19/CSS-Margin-auto/" class="article-date">
-  <time datetime="2020-10-19T06:06:30.000Z" itemprop="datePublished">2020-10-19</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>众所周知，margin: auto 可以使<code>块级元素</code>水平居中。这里要探讨的是为什么会居中，原理是什么？翻看了<a href="https://wiki.developer.mozilla.org/zh-CN/docs/Web/CSS/margin" target="_blank" rel="noopener">MDN</a>，相关描述只有一句，“让浏览器自己选择一个外边距”。</p>
-<p>自动占满可用空间，可用空间平均分配，占满后元素居中，如下图。<br><img src="/images/css/margin-auto-1.jpg" alt="margin:auto"></p>
-        
-          <a class="article-more-link" href="/2020/10/19/CSS-Margin-auto/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="ckjtl102x000yyh9iisfkhkee"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
 
     </footer>
 

@@ -1,5 +1,5 @@
 ---
-title: 浏览器中的 setTimeout 是怎么实现的
+title: 浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的
 date: 2021-01-08 09:27:04
 tags:
 - browser
