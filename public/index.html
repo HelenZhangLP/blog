@@ -52,6 +52,57 @@
 
     
       
+        <article id="post-浏览器工作原理——使用Promise，告别回调函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/">浏览器工作原理——使用Promise，告别回调函数</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" class="article-date">
+  <time datetime="2021-01-13T08:18:53.000Z" itemprop="datePublished">2021-01-13</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="JavaScript-引入-Promise-的动机"><a href="#JavaScript-引入-Promise-的动机" class="headerlink" title="JavaScript 引入 Promise 的动机"></a>JavaScript 引入 Promise 的动机</h2><p>Promise 解决了异步编码风格的问题</p>
+<img src="http://www.plantuml.com/plantuml/svg/IquiIb5GLrUevb9GY3QC1PAwkY2c4O9f7CjL2m00">
+<h3 id="异步编程的问题——代码逻辑不连接"><a href="#异步编程的问题——代码逻辑不连接" class="headerlink" title="异步编程的问题——代码逻辑不连接"></a>异步编程的问题——代码逻辑不连接</h3><h2 id="Promise-解决的几个核心关键点"><a href="#Promise-解决的几个核心关键点" class="headerlink" title="Promise 解决的几个核心关键点"></a>Promise 解决的几个核心关键点</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" data-id="ckjv6czsa005okwi42if9o18i"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器工作原理——宏任务与微任务" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -81,7 +132,8 @@
       
       
       
-        <p>微任务——实时性和效率之间一个有效的权衡<br>Promise 以及以 Promise 为基础开发出来的其它技术是基于微任务的。<br>主线程上的任务包括了渲染事件（如解析 DOM、计算布局、绘制）、用户交互事件（如鼠标、滚动、放大缩小等）、JavaScript 脚本执行、网络请求、文件读写等。<br>消息队列和事件循环机制协调主线程上的任务执行，渲染进程内部会维护多个消息队列。如延迟队列、普通消息队列等。<br>消息队列中的任务称为 <strong>宏任务</strong><br>WHATWG 规范中对于事件循环机制的定义：</p>
+        <p>微任务——实时性和效率之间一个有效的权衡<br>Promise 以及以 Promise 为基础开发出来的其它技术是基于微任务的。</p>
+<h2 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h2><p>主线程上的任务包括了渲染事件（如解析 DOM、计算布局、绘制）、用户交互事件（如鼠标、滚动、放大缩小等）、JavaScript 脚本执行、网络请求、文件读写等。<br>消息队列和事件循环机制协调主线程上的任务执行，渲染进程内部会维护多个消息队列。如延迟队列、普通消息队列等。<br>消息队列中的任务称为 <strong>宏任务</strong><br>WHATWG 规范中对于事件循环机制的定义：</p>
 <ul>
 <li>先从消息队列中选出一个最老的任务，<code>oldestTask</code>；</li>
 <li>事件循环系统记录任务开始执行的时间，并把 <code>oldestTask</code> 设置为当前正在执行的任务；</li>
@@ -89,11 +141,13 @@
 <li>统计执行完成的时长</li>
 </ul>
 <p>宏任务无法处理对时间精度要求较高的任务</p>
-
+        
+          <a class="article-more-link" href="/2021/01/12/浏览器工作原理——宏任务与微任务/">更多...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="ckjuyo624005xs6i479im8nwk"
+      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="ckjv6czsi005ykwi4i129jgk8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -151,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjuyo62b006bs6i4mmcbgn7j"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjv6czso0065kwi4llun9pko"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -209,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckjuyo621005ps6i4av9onu7g"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckjv6czse005wkwi428xp44af"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -296,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjuyo6260061s6i45pn225d0"
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjv6czsm0063kwi434bft24b"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -352,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjuyo614004es6i4soq68mgg"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjv6czrg004ekwi44so2nt3m"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -419,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjuyo60t003zs6i4fxy9ug37"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjv6czr60041kwi49rx9jgmb"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -476,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjuyo60z0049s6i4c2dugrts"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjv6czre004bkwi43x8u1zqp"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -536,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjuyo61z005ns6i4m0chgowz"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjv6czs8005nkwi4gfagwdzz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -598,64 +652,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjuyo6290066s6i4lk5ezuel"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjv6czsp0068kwi4kc7lo2oh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-hexo-插件系列" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/17/hexo-插件系列/">hexo-插件系列</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/17/hexo-插件系列/" class="article-date">
-  <time datetime="2020-11-17T02:34:51.000Z" itemprop="datePublished">2020-11-17</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="hexo-filter-sequence"><a href="#hexo-filter-sequence" class="headerlink" title="hexo-filter-sequence"></a>hexo-filter-sequence</h2><p>用于画时序图的，使用比较麻烦，<a href="https://github.com/bubkoo/hexo-filter-sequence" target="_blank" rel="noopener">参考1</a><a href="https://helenzhanglp.github.io/2019/01/31/hexo-%E5%9D%91/">参考2</a> 如果要画时序图，可以采用下面两种插件替换</p>
-<h2 id="hexo-tag-plantuml"><a href="#hexo-tag-plantuml" class="headerlink" title="hexo-tag-plantuml"></a>hexo-tag-plantuml</h2><p>画各种图形，种类多。<a href="https://plantuml.com/zh/sequence-diagram" target="_blank" rel="noopener">使用方法具体参考文档</a><br>安装方法，<a href="https://github.com/two/hexo-tag-plantuml" target="_blank" rel="noopener">见 github</a></p>
-<h2 id="hexo-filter-mermaid-diagrams"><a href="#hexo-filter-mermaid-diagrams" class="headerlink" title="hexo-filter-mermaid-diagrams"></a>hexo-filter-mermaid-diagrams</h2><p>可以用来画流程图、时序图等，但文档不全。<a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams" target="_blank" rel="noopener">安装参考</a><br>使用方法见以下 demo.</p>
-        
-          <a class="article-more-link" href="/2020/11/17/hexo-插件系列/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjuyo60u0041s6i4jo3t25dl"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
     </footer>
 

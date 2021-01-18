@@ -52,6 +52,70 @@
 
     
       
+        <article id="post-redux" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/11/redux/">redux</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/11/redux/" class="article-date">
+  <time datetime="2019-03-11T02:16:53.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>哈哈，请问你是要闹哪样？<br><code>import { connect } from &#39;@tarojs/redux&#39;;</code><br>redux 文档里查了没找着，原来是 tarojs 的方法，借机认识下这哥们。</p>
+<h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><blockquote>
+<p>tarojs/redux 提供的 connect 方法将 redux 与我们的页面进行连接<br>connect 方法接受两个参数<br><code>mapStateToProps</code> 与 <code>mapDispatchToProps</code></p>
+</blockquote>
+<ul>
+<li>mapStateToProps，函数类型，接受最新的 state 作为参数，用于将 state 映射到组件的 props</li>
+<li>mapDispatchToProps，函数类型，接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法</li>
+</ul>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'@tarojs/redux'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    reducer: state.bindphoneReducer,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@connect(mapStateToProps)</span><br></pre></td></tr></table></figure>
+
+<p>Javascript 状态容器</p>
+<h3 id="connect-1"><a href="#connect-1" class="headerlink" title="connect"></a>connect</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckjv6czrj004gkwi4in5k5kzx"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-Javascript-面试题" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -183,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckjuyo5zr002hs6i4o8hegpl2"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckjv6czpz002hkwi4jlowi1he"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
@@ -243,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckjuyo601002ys6i4lowzo5r9"
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckjv6czq7002xkwi4sumygkgl"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
@@ -333,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckjuyo5zt002ls6i4ybagwekq"
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckjv6czq0002kkwi4chtv2m7s"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -392,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckjuyo61b004os6i489s8dha0"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckjv6czro004okwi48ev83fd8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -482,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckjuyo61k0051s6i4c99j6s4n"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckjv6czru0051kwi4nmapxqfw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -546,7 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckjuyo6280064s6i4nuhalv0o"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckjv6czsq006akwi455bhc8ke"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -632,7 +696,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckjuyo5yw000ws6i4gtyymcw9"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckjv6czoy000xkwi4zlb3w3zx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -694,7 +758,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckjuyo5z9001hs6i4eshp9zxb"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckjv6czpa001ckwi4fwdqc9z1"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -753,74 +817,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckjuyo5zb001ks6i4xamw9ys5"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckjv6czpl001pkwi4hovkpds0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Node-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/08/Node-常用命令/">Node 常用命令</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/08/Node-常用命令/" class="article-date">
-  <time datetime="2019-02-08T02:16:39.000Z" itemprop="datePublished">2019-02-08</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h4 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Usage: npm &lt;command&gt;</span><br><span class="line"></span><br><span class="line">where &lt;command&gt; is one of:</span><br><span class="line">    access, adduser, audit, bin, bugs, c, cache, ci, cit,</span><br><span class="line">    clean-install, clean-install-test, completion, config,</span><br><span class="line">    create, ddp, dedupe, deprecate, dist-tag, docs, doctor,</span><br><span class="line">    edit, explore, get, help, help-search, hook, i, init,</span><br><span class="line">    install, install-ci-test, install-test, it, link, list, ln,</span><br><span class="line">    login, logout, ls, org, outdated, owner, pack, ping, prefix,</span><br><span class="line">    profile, prune, publish, rb, rebuild, repo, restart, root,</span><br><span class="line">    run, run-script, s, se, search, set, shrinkwrap, star,</span><br><span class="line">    stars, start, stop, t, team, test, token, tst, un,</span><br><span class="line">    uninstall, unpublish, unstar, up, update, v, version, view,</span><br><span class="line"></span><br><span class="line">    whoami</span><br><span class="line">    npm &lt;command&gt; -h  quick help on &lt;command&gt;</span><br><span class="line">    npm -l            display full usage info</span><br><span class="line">    npm help &lt;term&gt;   search for help on &lt;term&gt;</span><br><span class="line">    npm help npm      involved overview</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Specify configs in the ini-formatted file:</span><br><span class="line">    /Users/lipingzhang/.npmrc</span><br><span class="line">or on the command line via: npm &lt;command&gt; --key value</span><br><span class="line">Config info can be viewed via: npm help config</span><br><span class="line"></span><br><span class="line">npm@6.8.0 /usr/local/lib/node_modules/npm</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>退出 node 环境</p>
-</blockquote>
-<ol>
-<li>两次ctrl+C</li>
-<li>一次ctrl+D</li>
-<li><code>process.exit()</code></li>
-<li>.exit</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckjuyo5zv002os6i4othg7uav"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
 
     </footer>
 

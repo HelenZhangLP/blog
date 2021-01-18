@@ -52,6 +52,71 @@
 
     
       
+        <article id="post-Javascript-面试题-2" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/04/Javascript-面试题-2/">由一个面试题引发的一系列事故</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/04/Javascript-面试题-2/" class="article-date">
+  <time datetime="2019-04-04T06:28:09.000Z" itemprop="datePublished">2019-04-04</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;)</span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">2</span>)&#125;)</span><br><span class="line">promise.then(<span class="built_in">console</span>.log(<span class="number">3</span>))</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">4</span>)&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Javascript-异步编程"><a href="#Javascript-异步编程" class="headerlink" title="Javascript 异步编程"></a>Javascript 异步编程</h3><p>Javascript 是单线程，同步方式运行代码。会出现阻塞进程的问题。</p>
+<h4 id="Javascript-异步编程的实现"><a href="#Javascript-异步编程的实现" class="headerlink" title="Javascript 异步编程的实现"></a>Javascript 异步编程的实现</h4><p>主要分三类：回调函数、发布订阅、Promise 对象</p>
+<p>** 回调函数 **</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 5, 5, 5, 5, 5</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      fn();</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">&#125;</span><br><span class="line">a(b);</span><br><span class="line"><span class="comment">// a b function a 相当于异步执行</span></span><br></pre></td></tr></table></figure>
+
+<p>** PubSub Publish/Subscribe ** 发布、订阅模式，用以分发事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> PubSub = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.handlers = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">PubSub.prototype.subscribe = <span class="function"><span class="keyword">function</span>(<span class="params">eventType, handler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!(eventType <span class="keyword">in</span> <span class="keyword">this</span>.handlers)) &#123;</span><br><span class="line">    <span class="keyword">this</span>.handlers[eventType] = []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.handlers[eventType].push(handler); <span class="comment">// 添加事件监听器</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>; <span class="comment">// 返回上下文环境，实现链式调用</span></span><br><span class="line">&#125;</span><br><span class="line">PubSub.prototype.publish = <span class="function"><span class="keyword">function</span>(<span class="params">eventType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjv6czpx002ekwi4qxa4oc50"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-exports-and-module-exports" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -96,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckjuyo60h003is6i4zonga9qi"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckjv6czqn003gkwi47r2gedqu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-模块化/">ES6 模块化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -157,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckjuyo5zj0023s6i40l4zvmvn"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckjv6czpq001zkwi4hd5m5i8e"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
@@ -224,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjuyo5z6001cs6i4m75k431w"
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjv6czpb001ekwi4wgnq5bko"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -289,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckjuyo5zd001os6i4y0jomb39"
+      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckjv6czpi001okwi4o0finwh3"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -355,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckjuyo611004cs6i4cn687n5q"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckjv6czrc0049kwi460styj9j"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -458,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckjuyo60x0046s6i47jc9bqfj"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckjv6czrb0046kwi462c6vu7l"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
@@ -521,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="ckjuyo61g004ys6i4le4vs7y9"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="ckjv6czrq004ukwi4zdfdeo8s"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
@@ -580,7 +645,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjuyo5zn002cs6i41nzi8rbc"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjv6czpw002bkwi4138byr5f"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -639,74 +704,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckjuyo60s003xs6i4t5bc89b6"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckjv6czr0003wkwi47bir4xc7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-redux" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/11/redux/">redux</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/11/redux/" class="article-date">
-  <time datetime="2019-03-11T02:16:53.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>哈哈，请问你是要闹哪样？<br><code>import { connect } from &#39;@tarojs/redux&#39;;</code><br>redux 文档里查了没找着，原来是 tarojs 的方法，借机认识下这哥们。</p>
-<h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><blockquote>
-<p>tarojs/redux 提供的 connect 方法将 redux 与我们的页面进行连接<br>connect 方法接受两个参数<br><code>mapStateToProps</code> 与 <code>mapDispatchToProps</code></p>
-</blockquote>
-<ul>
-<li>mapStateToProps，函数类型，接受最新的 state 作为参数，用于将 state 映射到组件的 props</li>
-<li>mapDispatchToProps，函数类型，接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法</li>
-</ul>
-<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'@tarojs/redux'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    reducer: state.bindphoneReducer,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@connect(mapStateToProps)</span><br></pre></td></tr></table></figure>
-
-<p>Javascript 状态容器</p>
-<h3 id="connect-1"><a href="#connect-1" class="headerlink" title="connect"></a>connect</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckjuyo617004hs6i4lq2yxe8v"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
 
     </footer>
 

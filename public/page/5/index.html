@@ -52,6 +52,57 @@
 
     
       
+        <article id="post-axios-源码解读" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/23/axios-源码解读/">axios 源码解读</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/23/axios-源码解读/" class="article-date">
+  <time datetime="2019-07-23T08:20:03.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── /dist/                     # 项目输出目录</span><br><span class="line">├── /lib/                      # 项目源码目录</span><br><span class="line">│ ├── /cancel/                 # 定义取消功能</span><br><span class="line">│ ├── /core/                   # 一些核心功能</span><br><span class="line">│ │ ├── Axios.js               # axios的核心主类</span><br><span class="line">│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求</span><br><span class="line">│ │ ├── InterceptorManager.js  # 拦截器构造函数</span><br><span class="line">│ │ └── settle.js              # 根据http响应状态，改变Promise的状态</span><br><span class="line">│ ├── /helpers/                # 一些辅助方法</span><br><span class="line">│ ├── /adapters/               # 定义请求的适配器 xhr、http</span><br><span class="line">│ │ ├── http.js                # 实现http适配器</span><br><span class="line">│ │ └── xhr.js                 # 实现xhr适配器</span><br><span class="line">│ ├── axios.js                 # 对外暴露接口</span><br><span class="line">│ ├── defaults.js              # 默认配置</span><br><span class="line">│ └── utils.js                 # 公用工具</span><br><span class="line">├── package.json               # 项目信息</span><br><span class="line">├── index.d.ts                 # 配置TypeScript的声明文件</span><br><span class="line">└── index.js                   # 入口文件</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckjv6czqj003akwi453q1mh5b"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-vue-config-js" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -91,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckjuyo61a004ms6i4fnzzq1rd"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckjv6czrm004lkwi4e1a35vn4"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -153,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckjuyo61v005hs6i4sq3f6m29"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckjv6czs6005gkwi4edd7a5qd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -216,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckjuyo60q003us6i4c8aqd5m9"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckjv6czqy003tkwi42sfufefc"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
@@ -271,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckjuyo61e004vs6i48nwnxgil"
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/代码管理工具-git坑/" data-id="ckjv6czrs004xkwi4vf1jy4aq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -326,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckjuyo5zy002vs6i4mbd6ower"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckjv6czq5002ukwi42ditmbp2"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -378,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjuyo61m0053s6i45tki3vlw"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckjv6czrt004zkwi4lybkyoy9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -432,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckjuyo5z20016s6i4o50dzovx"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckjv6czp20011kwi4mblg4w69"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -516,7 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjuyo62a0069s6i4hzo3cdr9"
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckjv6czss006dkwi4hjic1f75"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -577,75 +628,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckjuyo5z5001as6i4i7be95i2"
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckjv6czpg001mkwi4pg8k0p13"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-面试题-2" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/04/04/Javascript-面试题-2/">由一个面试题引发的一系列事故</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/04/04/Javascript-面试题-2/" class="article-date">
-  <time datetime="2019-04-04T06:28:09.000Z" itemprop="datePublished">2019-04-04</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;)</span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">2</span>)&#125;)</span><br><span class="line">promise.then(<span class="built_in">console</span>.log(<span class="number">3</span>))</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">4</span>)&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Javascript-异步编程"><a href="#Javascript-异步编程" class="headerlink" title="Javascript 异步编程"></a>Javascript 异步编程</h3><p>Javascript 是单线程，同步方式运行代码。会出现阻塞进程的问题。</p>
-<h4 id="Javascript-异步编程的实现"><a href="#Javascript-异步编程的实现" class="headerlink" title="Javascript 异步编程的实现"></a>Javascript 异步编程的实现</h4><p>主要分三类：回调函数、发布订阅、Promise 对象</p>
-<p>** 回调函数 **</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 5, 5, 5, 5, 5</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      fn();</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">&#125;</span><br><span class="line">a(b);</span><br><span class="line"><span class="comment">// a b function a 相当于异步执行</span></span><br></pre></td></tr></table></figure>
-
-<p>** PubSub Publish/Subscribe ** 发布、订阅模式，用以分发事件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> PubSub = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.handlers = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">PubSub.prototype.subscribe = <span class="function"><span class="keyword">function</span>(<span class="params">eventType, handler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!(eventType <span class="keyword">in</span> <span class="keyword">this</span>.handlers)) &#123;</span><br><span class="line">    <span class="keyword">this</span>.handlers[eventType] = []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.handlers[eventType].push(handler); <span class="comment">// 添加事件监听器</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>; <span class="comment">// 返回上下文环境，实现链式调用</span></span><br><span class="line">&#125;</span><br><span class="line">PubSub.prototype.publish = <span class="function"><span class="keyword">function</span>(<span class="params">eventType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjuyo5zm0028s6i4570phenb"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
 
     </footer>
 
