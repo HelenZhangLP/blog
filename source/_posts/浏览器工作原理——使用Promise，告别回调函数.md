@@ -3,6 +3,7 @@ title: 浏览器工作原理——使用Promise，告别回调函数
 date: 2021-01-13 16:18:53
 tags:
 - browser
+- 浏览器工作原理
 ---
 
 ## JavaScript 引入 Promise 的动机
@@ -47,6 +48,7 @@ note on link
 endnote
 主线程上处理任务 --> 处理结果
 {%endplantuml%}
+<!--more-->
 上图为一个异步编程编程模型，页面主线程发起一个耗时的任务，并将任务交给另一个进程处理，页面主线程继续执行消息队列中的任务。anotherProcess 处理完这个任务后，会将任务添加渲染进程的消息队列中，并排队等待循环系统处理。排队结束后，循环系统会取出消息队列中的任务进行处理，并触发相关回调操作。
 
 如上是页面编程的一大特点 **异步回调**
@@ -220,6 +222,7 @@ function XFetch(request){
 * 在 executor 函数中调用 resolve 函数时，会触发 promise.then 设置的回调函数；而调用 reject 函数时，会触发 promise.catch 设置的回调函数
 
 **使用 Promise 封装后的 XFetch，来解决嵌套调用和多次异常处理的问题**
+产生嵌套函数的主要原因是在发起任务请求时会带上回调函数，任务结束后，下个任务是在回调函数中处理的。
 ```javaScript
 var x1 = XFetch(makeRequest('http://request1.com'))
 var x2 = x1.then(value => {
@@ -238,15 +241,39 @@ x3.catch(error => {
 **Promise 解决嵌套回调的方式**
 1.  Promise 实现了回调函数的延时绑定。
 2.  需要将回调函数 onResolve 的返回值穿透到最外层
+```javaScript
+// executor 执行业务逻辑
+function executor(resolve, reject) {
+  resolve()
+}
+// 创建 Promise 对象
+var promiseObj1 = new Promise(executor)
 
-Promise 通过回调函数延迟绑定和回调函数返回值穿透的技术解决循环嵌套的问题
+// 回调函数
+function onResolve(value) {
+  // 回调中可以执行下个异步请求，返回 promise 对象
+  return new Promise((resolve, reject) => {
+    resolve(value + 1)
+  })
+}
 
-### promise 是怎么处理异常的
+//promiseObj1.then(onResolve) 延迟执行回调函数，不存在嵌套
+var promiseObj2 = promiseObj1.then(onResolve)
+// 取出上个回调返回的 promise
+promiseObj2.then(res => {
+  console.log(res)
+})
+```
+
+Promise 通过 **回调函数延迟绑定** 和 **回调函数返回值穿透的技术** 解决`循环嵌套`的问题
+
+**promise 是怎么处理异常的**
 ```javaScript
 // 业务处理代码
 function executor(resolve, reject) {
   let rand = Math.random();
   console.log(1)
+  console.log(rand)
   if (rand < 0.5) {
     resolve()
   } else {
@@ -267,10 +294,53 @@ var p3 = p2.then(value => {
   return new Promise(executor)
 })
 p3.catch(error => {
-  console.log(error)
+  console.log('catch error');
 })
 console.log(2)
 ```
 Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被 onReject 函数处理或 catch 语句捕获为止
 
 ## Promise 与 微任务
+```javaScript
+function executor(resolve, reject) {
+  resolve(100)
+}
+let demo = new Promise(executor)
+function onResolve(value) {
+  console.log(value)
+}
+demo.then(onResolve)
+```
+代码执行顺序：
+1.  首先执行 new Promise 时，Promise 的构造函数会被执行
+2.  Promise 构造函数会调用参数 executor 函数。executor 中执行 resolve, resolve 内部调用 demo.then 设置的函数 onResolve
+
+**browmise**
+```javaScript
+function Bromise() {
+  var onResolve_ = null
+  var onReject_ = null
+
+  this.then = function(onResolve, onReject) {
+    onResolve_ = onResolve
+  }
+
+  function resolve(value) {
+    // 定时器推迟 onResolve_ 执行
+    setTimeout(()=>{
+      onResolve_(value)
+    },0)
+  }
+
+  executor(resolve, null)
+}
+
+function executor(resolve, reject) { resolve(100)}  //将Promise改成我们自己的Bromsielet
+demo = new Bromise(executor)
+function onResolve(value){
+  console.log(value)
+}
+demo.then(onResolve)
+```
+> onResolve_ is not a function 加入定时器让 onResolve 延迟执行
+上面采用了定时器来推迟 onResolve 的执行，不过使用定时器的效率并不是太高，好在我们有微任务，所以 Promise 又把这个定时器改造成了微任务了，这样既可以让 onResolve_ 延时被调用，又提升了代码的执行效率

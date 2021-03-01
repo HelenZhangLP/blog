@@ -4,7 +4,7 @@ date: 2019-01-31 16:44:42
 categories:
 - 工具
 tags:
-- atom
+- develop tools
 ---
 
 ## 使用
@@ -26,3 +26,6 @@ tags:
 
 #### emmet
 高效编写 html/css，按约定编写代码，自动扩展补全，[具体见文档](https://emmet.io/)
+
+### Codeigniter Atom
+代码补全、高亮

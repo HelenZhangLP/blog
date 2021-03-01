@@ -52,6 +52,186 @@
 
     
       
+        <article id="post-工具-sublime" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/03/01/工具-sublime/">工具-sublime</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/03/01/工具-sublime/" class="article-date">
+  <time datetime="2021-03-01T01:35:29.000Z" itemprop="datePublished">2021-03-01</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>sublime 可以配置编译系统<br>自带代码高亮<br>没有自动补全<br>代码格式化</p>
+<h2 id="sublime-Text-插件管理器-packageControl"><a href="#sublime-Text-插件管理器-packageControl" class="headerlink" title="sublime Text 插件管理器 packageControl"></a>sublime Text 插件管理器 packageControl</h2><p>安装方式：<br>Control+`打开控制台 写入 <code>import urllib.request,os;pf=&#39;Package Control.sublime-package&#39;;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),&#39;wb&#39;).write(urllib.request.urlopen(&#39;http://sublime.wbond.net/&#39;+pf.replace(&#39;&#39;,&#39;%20&#39;)).read())</code></p>
+<h2 id="packageControl-中安装-JavaScript-代码提示插件-SublimeCodeIntel"><a href="#packageControl-中安装-JavaScript-代码提示插件-SublimeCodeIntel" class="headerlink" title="packageControl 中安装 JavaScript 代码提示插件 SublimeCodeIntel"></a>packageControl 中安装 JavaScript 代码提示插件 SublimeCodeIntel</h2><p>command+shift+p 打开 packageControl -&gt; install package -&gt; SublimeCodeIntel</p>
+<h2 id="Node-js-JavaScript-运行时编译环境"><a href="#Node-js-JavaScript-运行时编译环境" class="headerlink" title="Node.js JavaScript 运行时编译环境"></a>Node.js JavaScript 运行时编译环境</h2><p>$ which node<br>Tools-&gt;Build System-&gt;New Build System<br>{<br>  ‘cmd’: [which node, ‘$file’],<br>  ‘selector’: ‘source.js’<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/03/01/工具-sublime/" data-id="cklq5lw8o003xnmw95dlnp38v"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop-tools/">develop tools</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——chrome开发者工具" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/02/23/浏览器工作原理——chrome开发者工具/">浏览器工作原理——chrome开发工具</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/02/23/浏览器工作原理——chrome开发者工具/" class="article-date">
+  <time datetime="2021-02-23T12:59:57.000Z" itemprop="datePublished">2021-02-23</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Elements 面板</td>
+<td>可以查看DOM结构、编辑CSS样式、用于测试页面布局和设计页面</td>
+</tr>
+<tr>
+<td>Console 面板</td>
+<td>可以查看 JavaScript 脚本、通过 Console 还能和页面中的 JavaScript 对象交互</td>
+</tr>
+<tr>
+<td>Sources 面板</td>
+<td>1.查看 Web 应用加载的所有文件；<br> 2.编辑CSS和Javascript文件内容；<br>3.将打乱的CSS文件或者Javascript 文件格式化；<br>4.支持 JavaScript 的调试功能；<br>5.设置工作区，将更改的文件保存到本地文件夹中</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/02/23/浏览器工作原理——chrome开发者工具/" data-id="cklq5lw91004onmw9goa3xkqe"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devTools/">devTools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——async-await（用同步的方式写异步代码）" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/">浏览器工作原理——async/await（用同步的方式写异步代码）</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/" class="article-date">
+  <time datetime="2021-01-18T06:25:46.000Z" itemprop="datePublished">2021-01-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>fetch 定义在 window 对象中，用来发起远程资源请求，返回一个 Promise 对象，浏览器原生支持。</p>
+<p><em>接口嵌套请求需求：request1 请求成功后再做 request2请求，运用 fetch 实现如下：</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'http://request1.com'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(<span class="string">'http://request2.com'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response)</span><br><span class="line">  &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/" data-id="cklq5lw91004rnmw92n1v68bs"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器工作原理——使用Promise，告别回调函数" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -81,16 +261,19 @@
       
       
       
-        <h2 id="JavaScript-引入-Promise-的动机"><a href="#JavaScript-引入-Promise-的动机" class="headerlink" title="JavaScript 引入 Promise 的动机"></a>JavaScript 引入 Promise 的动机</h2><p>Promise 解决了异步编码风格的问题</p>
-<img src="http://www.plantuml.com/plantuml/svg/IquiIb5GLrUevb9GY3QC1PAwkY2c4O9f7CjL2m00">
-<h3 id="异步编程的问题——代码逻辑不连接"><a href="#异步编程的问题——代码逻辑不连接" class="headerlink" title="异步编程的问题——代码逻辑不连接"></a>异步编程的问题——代码逻辑不连接</h3><h2 id="Promise-解决的几个核心关键点"><a href="#Promise-解决的几个核心关键点" class="headerlink" title="Promise 解决的几个核心关键点"></a>Promise 解决的几个核心关键点</h2>
+        <h2 id="JavaScript-引入-Promise-的动机"><a href="#JavaScript-引入-Promise-的动机" class="headerlink" title="JavaScript 引入 Promise 的动机"></a>JavaScript 引入 Promise 的动机</h2><p><strong><code>Promise 解决了异步编码风格的问题</code></strong></p>
+<h3 id="异步编程问题：代码逻辑不连续"><a href="#异步编程问题：代码逻辑不连续" class="headerlink" title="异步编程问题：代码逻辑不连续"></a>异步编程问题：代码逻辑不连续</h3><p>页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进程或线程中去执行，避免耗时任务霸占页面主线程。</p>
+<img src="http://www.plantuml.com/plantuml/svg/XLB1RjD04BtlLuoKAv4QKAySaNe22MuLXssyJgmuwxBU712g54IX8LGDK2b11PfMgX2gL8fQaPeQaP_nxhedVe5nRJMkLQS77xnlvhqtyyPlENoL2jg6kjTUzJZZyh5yxZ8Gh2ufRxYC49VP4gG7mcaq9LXE0ZaU9rSbe8CJFTwEfv_DztVmWW2KjS1C1g8WDEVJf8FwqAOEVz8KZ5fGMLoqBqbkB8w2VjmTwT543Jx4lywYC5JzVQZOjZsdGnsic_TlocjJt8JRUlSBLEZ20k9h-3thi0vED-dfbySNdyQgDqAqLilSbG-9t5HOrsbnIC7yZYjp-Ek9-l4giuMuf7whDX--En--bncVZRRqC5de0tpBhRYwt7GiY_6drVkpLx96Sf6gmJTrC8o2RXGSfi7gtd2M5-MUR3BnI7XrvllfJc_9gBfSMN4xxCwAvreeNA0W-CV0u-0wl8LkRzJFSWoEpCvwoaeOjo1f9GL7gDOGZF4hkMpv1PcBxauytKYsfFlzV5xw3EdtLEzdFdrK_lTdK_sUwAsF-6AEtgg_XsRhs9o69XodxOcZIqFNpgQA3iekikWf8qSRNyU9N5vYC5GRvsaRRYNUtoo8bbvzOY0_tty0">
+        
+          <a class="article-more-link" href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/">更多...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" data-id="ckjv6czsa005okwi42if9o18i"
+      <a data-url="https://helenzhanglp.github.io/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" data-id="cklq5lw95004wnmw92a7fn0on"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -147,10 +330,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="ckjv6czsi005ykwi4i129jgk8"
+      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="cklq5lw9i005bnmw97y6x22ln"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -205,10 +388,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckjv6czso0065kwi4llun9pko"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="cklq5lw9p005unmw9afrqsfp6"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -263,10 +446,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckjv6czse005wkwi428xp44af"
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="cklq5lw94004unmw9bcwinn5p"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -350,10 +533,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="ckjv6czsm0063kwi434bft24b"
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——数据存储/" data-id="cklq5lw9a0055nmw904wlmimk"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -406,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckjv6czrg004ekwi44so2nt3m"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="cklq5lw870035nmw9aez5m1z5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -473,189 +656,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckjv6czr60041kwi49rx9jgmb"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="cklq5lw83002xnmw96a82lb5a"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-react-component" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/29/react-component/">react 组件</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/29/react-component/" class="article-date">
-  <time datetime="2020-11-29T11:43:42.000Z" itemprop="datePublished">2020-11-29</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="组件的-state"><a href="#组件的-state" class="headerlink" title="组件的 state"></a>组件的 state</h2><ol>
-<li>state 设计的几点原则；</li>
-<li>正确修改 state;<h2 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h2></li>
-<li>组件在 componentDidMount 中与服务器通信</li>
-<li>父子组件与兄弟组件通信</li>
-</ol>
-        
-          <a class="article-more-link" href="/2020/11/29/react-component/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckjv6czre004bkwi43x8u1zqp"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-浏览器中的Javascript执行机制" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/18/浏览器中的Javascript执行机制/">浏览器中的Javascript执行机制</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/18/浏览器中的Javascript执行机制/" class="article-date">
-  <time datetime="2020-11-18T11:21:21.000Z" itemprop="datePublished">2020-11-18</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <blockquote>
-<ol>
-<li>JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。</li>
-<li>为什么 JavaScript 代码会出现栈溢出</li>
-<li>var 与 let 和 const，var 缺陷是什么</li>
-<li>作用域链与闭包</li>
-</ol>
-</blockquote>
-<h2 id="1-变量提升"><a href="#1-变量提升" class="headerlink" title="1. 变量提升"></a>1. 变量提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(name)</span><br><span class="line">fn();</span><br><span class="line">fn_var();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// 声明</span></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// 赋值部分</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完整的函数声明'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn_var = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'匿名函数赋值给变量'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// VM791:1</span></span><br><span class="line"><span class="comment">// VM791:8 完整的函数声明</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">VM791:3 Uncaught TypeError: fn_var is not a function</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:3:1</span></span><br><span class="line"><span class="comment">(anonymous) @ VM791:3 */</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/11/18/浏览器中的Javascript执行机制/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器中的Javascript执行机制/" data-id="ckjv6czs8005nkwi4gfagwdzz"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-浏览器工作原理——页面渲染" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/18/浏览器工作原理——页面渲染/">浏览器工作原理——页面渲染</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/18/浏览器工作原理——页面渲染/" class="article-date">
-  <time datetime="2020-11-18T03:37:58.000Z" itemprop="datePublished">2020-11-18</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>按照渲染的时间顺序，流水线可分为如下几个阶段：</p>
-<ul>
-<li>构建 DOM 树</li>
-<li>样式计算</li>
-<li>布局阶段</li>
-<li>分层</li>
-<li>绘制</li>
-<li>分块</li>
-<li>光栅化</li>
-<li>合成。</li>
-</ul>
-        
-          <a class="article-more-link" href="/2020/11/18/浏览器工作原理——页面渲染/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckjv6czsp0068kwi4kc7lo2oh"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
 
     </footer>
 
@@ -673,7 +677,7 @@
   
     <nav class="page-nav">
       
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 </section>

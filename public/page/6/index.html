@@ -52,6 +52,230 @@
 
     
       
+        <article id="post-CSS-display-none-vs-visibility-hidden" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/13/CSS-display-none-vs-visibility-hidden/">CSS display: none vs visibility: hidden</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/13/CSS-display-none-vs-visibility-hidden/" class="article-date">
+  <time datetime="2019-05-13T06:58:59.000Z" itemprop="datePublished">2019-05-13</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="display-none-与-visibility-hidden-区别"><a href="#display-none-与-visibility-hidden-区别" class="headerlink" title="display:none 与 visibility:hidden 区别"></a>display:none 与 visibility:hidden 区别</h3><blockquote>
+<p>display 指定元素显示框架的类型，none 隐藏不占文档流，不会影响布局<br>visibility 显示或隐藏元素而不更改文档的布局，hidden 相当于此元素变成透明并且 text-indent: -9999px，会影响布局</p>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/05/13/CSS-display-none-vs-visibility-hidden/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="cklq5lw6m0008nmw9qsqkhyzy"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-随笔" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/09/随笔/">随笔</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/09/随笔/" class="article-date">
+  <time datetime="2019-05-09T07:57:19.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="New-Question"><a href="#New-Question" class="headerlink" title="New Question"></a>New Question</h3><p>javaScript 中 function 与 object 的关系</p>
+<h3 id="本地服务器"><a href="#本地服务器" class="headerlink" title="本地服务器"></a>本地服务器</h3><ul>
+<li>liveServer</li>
+<li>httpServer</li>
+<li>WampServer</li>
+</ul>
+<h3 id="familiar-essay"><a href="#familiar-essay" class="headerlink" title="familiar essay"></a>familiar essay</h3><p>text-align 行内元素水平居中<br>inline-block 行内元素，没有宽高，用 padding + 文本撑开<br>inline-block 行内元素，设置 padding 会从父元素溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://app.zslb.xyz/api/order/add_refund?orderId=289&amp;amount=1</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 405</span><br><span class="line">Remote Address: 118.25.170.213:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+
+<p>服务器端请求为 post，与当前 request method get 冲突</p>
+<blockquote>
+<p>请求行中指定的请求方法不能被用于请求相应的资源。<br>  该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>  鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
+</blockquote>
+<p>元素设置 position: absolute 或 float: left 会脱离文档流</p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="tip-浏览器缓存功能"><a href="#tip-浏览器缓存功能" class="headerlink" title="tip: 浏览器缓存功能"></a><code>tip:</code> 浏览器缓存功能</h3><p>浏览网页时，浏览器会暂存网页静态资源，包括外部的 css、javascript、图片、影像等。当用户在同一浏览器浏览同一网页时，不会重新加载静态资源。优点是加快网页加载速度，减少服务器负担。缺点是当静态资源修改，缓存未到期，那么浏览器会显示缓存的旧数据。除非用户清缓存或 ctrl+f5 强制刷新重新加载。</p>
+<blockquote>
+<p><code>解决办法：</code>修改静态资源后，在外部链接的文件名后加上 ？+任意字符串，可以是版本号或日期，不同于旧片酬就可以。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...html</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;script src=&quot;./t.js?v20120929&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。"><a href="#tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。" class="headerlink" title="tip: JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。"></a><code>tip:</code> JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span></span><br><span class="line"><span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>解决办法：</code></p>
+</blockquote>
+<ol>
+<li><p>将小数运算转换成整数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>)/<span class="number">10</span></span><br><span class="line"><span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用内建函数强制转换为指定位数的小数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "0.30"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="tip：-null-amp-amp-undefined"><a href="#tip：-null-amp-amp-undefined" class="headerlink" title="tip： null &amp;&amp; undefined"></a><code>tip：</code> null &amp;&amp; undefined</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存"><a href="#tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存" class="headerlink" title="tip： Garbage Collection 会在变量超出作用域时回收，释放其占用的内存"></a><code>tip：</code> Garbage Collection 会在变量超出作用域时回收，释放其占用的内存</h3><h3 id="tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。"><a href="#tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。" class="headerlink" title="tip： ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。"></a><code>tip：</code> ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。</h3><h3 id="tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。"><a href="#tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。" class="headerlink" title="tip： for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。"></a><code>tip：</code> for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。</h3><h3 id="tip：-forEach-不能使用-break-指令中断循环。"><a href="#tip：-forEach-不能使用-break-指令中断循环。" class="headerlink" title="tip： forEach 不能使用 break 指令中断循环。"></a><code>tip：</code> forEach 不能使用 break 指令中断循环。</h3><p>JavaScript 为满足动态语言而诞生，由 Netscape 开发，嵌入 HTML 文件，基于对象和事件驱动的脚本语言<br>一 JavaScript 入门<br>sun 和 Netscape LiveScript -&gt; javascript<br>Microsoft JScript<br>1997 年 ECMA(Netscape, sun, Microsoft, Borland) 制定规范 ECMA-262 -&gt; ECMAScript</p>
+<p>JavaScript 的组成</p>
+<img src="http://www.plantuml.com/plantuml/svg/AyxEp2j8B4hCLKZEpot8pqlDAmakgSn9LIXAJIv9p4lFIUNYWZCLl1BB4eEJYp8BIXIgkHGKebsTVHqX_5WGryNV5qmxWUXQ0000">
+
+<p>ECMAScript 脚本语言的核心内容，定义了脚本语言的基本语法、基本语言<br>DOM（Document Object Model) 文档对象模型。HTML 和 XML 的编程接口。浏览器中的 DOM 把整个网页规划成由节点层级构成的树状结构文档<br>BOM(Browser Object Model)浏览器对象模型，描述了对浏览器窗口进行访问和操作的方法和接口</p>
+<p>JavaScript 特点</p>
+<ol>
+<li>解释型：不需要编译，直接在浏览器中运行时进行解释</li>
+<li>动态性：基于事件驱动的脚本语言，不需要通过 web 服务器就可以对用户的输入直接做出响应</li>
+<li>跨平台：只要具有浏览器 JavaScript 引擎，就可以执行 JavaScript 代码</li>
+<li>安全性，只能通过浏览器实现信息浏览器、交互</li>
+<li>基于对象：许多功能可以来自于脚本环境中对象的方法与脚本相互作用</li>
+</ol>
+<p>JavaScript 应用场景</p>
+<ol>
+<li>开发各种动态交互效果</li>
+<li>使用 Ajax 等技术与后端进行数据交互</li>
+</ol>
+<p>JavaScript 动态变化的原理以及执行顺序</p>
+<ol>
+<li>JavaScript 实现网页变化原理</li>
+<li>JavaScript 执行顺序</li>
+<li>JavaScript 调试</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="cklq5lw9e0059nmw9xot4uaj7"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-居中" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/05/05/CSS-居中/">CSS 居中</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/05/05/CSS-居中/" class="article-date">
+  <time datetime="2019-05-05T09:24:39.000Z" itemprop="datePublished">2019-05-05</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>居中分为两种：一是水平居中，二是垂直居中。可借用不同的布局方式做多种实现。</p>
+<h2 id="水平布局-Normal-flow"><a href="#水平布局-Normal-flow" class="headerlink" title="水平布局 + Normal flow"></a>水平布局 + Normal flow</h2><p>不进行任何布局，采用 html 默认布局方式</p>
+<ol>
+<li>行内元素，父容器设置 text-align: center;</li>
+<li>块级元素：margin: 0 auto;</li>
+</ol>
+        
+          <a class="article-more-link" href="/2019/05/05/CSS-居中/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="cklq5lw6t000fnmw9tqam4oua"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-Javascript-面试题-2" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -101,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckjv6czpx002ekwi4qxa4oc50"
+      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="cklq5lw7b001jnmw9aeox55ip"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -161,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckjv6czqn003gkwi47r2gedqu"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="cklq5lw7r002enmw9gdas1h72"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-模块化/">ES6 模块化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -222,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckjv6czpq001zkwi4hd5m5i8e"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="cklq5lw740016nmw97qz2fr1n"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
@@ -289,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjv6czpb001ekwi4wgnq5bko"
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="cklq5lw6v000knmw9mtl3xzev"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -354,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckjv6czpi001okwi4o0finwh3"
+      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="cklq5lw70000unmw9jbsqrsec"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -420,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckjv6czrc0049kwi460styj9j"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="cklq5lw890039nmw9gwmvnvq8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -523,191 +747,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckjv6czrb0046kwi462c6vu7l"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="cklq5lw860032nmw97vkszr4a"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-函数-bind-call-apply" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/18/函数-bind-call-apply/">函数 bind call apply</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/18/函数-bind-call-apply/" class="article-date">
-  <time datetime="2019-03-18T06:17:37.000Z" itemprop="datePublished">2019-03-18</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="bind、call、apply"><a href="#bind、call、apply" class="headerlink" title="bind、call、apply"></a>bind、call、apply</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">call</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">apply</a></p>
-<h4 id="从定义上对比看"><a href="#从定义上对比看" class="headerlink" title="从定义上对比看"></a>从定义上对比看</h4><ul>
-<li>bind - 创建一个新的函数</li>
-<li>call - call 与 apply 相似，仅传参不同</li>
-<li>apply - 调用一个具有给定 this 值的函数<blockquote>
-<p>func.apply(thisArg, [argsArray])</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用一个具有给定 this 的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TempObj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.tempArray = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tempObj = <span class="keyword">new</span> TempObj()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定作用域为 tempObj</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.apply(tempObj, tempObj.tempArray))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.call(tempObj, ...tempObj.tempArray))</span><br></pre></td></tr></table></figure>
-
-<p>** DEMO **</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组合并</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>], b = [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">a.push(b) <span class="comment">// 3，返回数组 length</span></span><br><span class="line">a.concat(b) <span class="comment">// [1, 2, 3, 4] 创建了一个新数组</span></span><br><span class="line">a.push.apply(a, b) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">a.push.call(a, ...b) <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4, 3, 4]</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="ckjv6czrq004ukwi4zdfdeo8s"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/18/Javascript-箭头函数/">箭头函数</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/18/Javascript-箭头函数/" class="article-date">
-  <time datetime="2019-03-18T05:40:26.000Z" itemprop="datePublished">2019-03-18</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">Arrow Functions</a></p>
-<blockquote>
-<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
-</blockquote>
-<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="keyword">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjv6czpw002bkwi4138byr5f"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-immutableJS" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/11/immutableJS/">immutableJS</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/11/immutableJS/" class="article-date">
-  <time datetime="2019-03-11T03:21:52.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）</p>
-<h3 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h3><p>Record() 可以创建一个新的 Record 类，类似于Javascript的Object，但是只接收特定字符串为key，具有默认值:</p>
-<h3 id="setIn"><a href="#setIn" class="headerlink" title="setIn()"></a>setIn()</h3><p>setIn 设置深层结构中的某些属性</p>
-<blockquote>
-<p>setIn(keyPath: Iterable<any>, value: any): this</any></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckjv6czr0003wkwi47bir4xc7"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
 
     </footer>
 
@@ -725,7 +768,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
     </nav>
   
 </section>

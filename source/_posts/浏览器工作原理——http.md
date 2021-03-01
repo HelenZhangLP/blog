@@ -3,6 +3,7 @@ title: 浏览器工作原理——http
 date: 2020-11-12 16:19:06
 tags:
 - browser
+- 浏览器工作原理
 ---
 
 XHR -> Request Headers -> view source

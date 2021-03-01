@@ -52,6 +52,199 @@
 
     
       
+        <article id="post-react-component" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/29/react-component/">react 组件</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/29/react-component/" class="article-date">
+  <time datetime="2020-11-29T11:43:42.000Z" itemprop="datePublished">2020-11-29</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="组件的-state"><a href="#组件的-state" class="headerlink" title="组件的 state"></a>组件的 state</h2><ol>
+<li>state 设计的几点原则；</li>
+<li>正确修改 state;<h2 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h2></li>
+<li>组件在 componentDidMount 中与服务器通信</li>
+<li>父子组件与兄弟组件通信</li>
+</ol>
+        
+          <a class="article-more-link" href="/2020/11/29/react-component/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="cklq5lw880038nmw91dbkvcon"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——浏览器中的Javascript执行机制" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/18/浏览器工作原理——浏览器中的Javascript执行机制/">浏览器工作原理——浏览器中的Javascript执行机制</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/18/浏览器工作原理——浏览器中的Javascript执行机制/" class="article-date">
+  <time datetime="2020-11-18T11:21:21.000Z" itemprop="datePublished">2020-11-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <ul>
+<li><input disabled type="checkbox"> JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。<ul>
+<li>变量提升</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> 为什么 JavaScript 代码会出现栈溢出<ul>
+<li>调用栈 —— 用来管理函数调用关系的一种数据结构。<code>Maximum call stack size exceeded</code></li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> var 与 let 和 const，var 缺陷是什么<ul>
+<li>var 会引起变量提升，变量提升产生变量污染、消耗一部分无用的内存。可以通过 let 和 const 解决，ECMAScript6 中，提出的 let 和 const 有块级作用域的概念。很好的解决了变量提升的问题</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> 作用域链与闭包</li>
+</ul>
+<h2 id="1-变量提升（Hoisting）"><a href="#1-变量提升（Hoisting）" class="headerlink" title="1. 变量提升（Hoisting）"></a>1. 变量提升（Hoisting）</h2><blockquote>
+<p><del>Javascript 代码执行过程中，Javascript 引擎把变量声明部分和函数声明部分提升到代码开头的行为</del><code>JavaScript 代码在编译过程中，被 JavaScript 引擎放入内存的行为</code>，叫做 <strong>变量提升</strong>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(name)</span><br><span class="line">fn();</span><br><span class="line">fn_var();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name; <span class="comment">// 声明</span></span><br><span class="line">name = <span class="number">123</span>; <span class="comment">// 赋值部分</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'完整的函数声明'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn_var = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'匿名函数赋值给变量'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 完整的函数声明</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    VM791:3 Uncaught TypeError: fn_var is not a function</span></span><br><span class="line"><span class="comment">    at &lt;anonymous&gt;:3:1</span></span><br><span class="line"><span class="comment">    (anonymous) @ VM791:3</span></span><br><span class="line"><span class="comment">  */</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>分析：<br>  console.log(name) 打印出 undefined 变量提升后，会给变量设置默认值 undefined。<br>  fn() 执行后打印 完整的函数声明<br>  fn_var() <code>Uncaught TypeError: fn_var is not a function</code> 因为 fn_var 是变量，提升后相当于 <code>fn_var = undefined</code>，所以报错，fn_var 不是一个函数。</p>
+</blockquote>
+        
+          <a class="article-more-link" href="/2020/11/18/浏览器工作原理——浏览器中的Javascript执行机制/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——浏览器中的Javascript执行机制/" data-id="cklq5lw990054nmw9lnqqcdfx"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——页面渲染" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/18/浏览器工作原理——页面渲染/">浏览器工作原理——页面渲染</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/18/浏览器工作原理——页面渲染/" class="article-date">
+  <time datetime="2020-11-18T03:37:58.000Z" itemprop="datePublished">2020-11-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>按照渲染的时间顺序，流水线可分为如下几个阶段：</p>
+<ul>
+<li>构建 DOM 树</li>
+<li>样式计算</li>
+<li>布局阶段</li>
+<li>分层</li>
+<li>绘制</li>
+<li>分块</li>
+<li>光栅化</li>
+<li>合成。</li>
+</ul>
+        
+          <a class="article-more-link" href="/2020/11/18/浏览器工作原理——页面渲染/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="cklq5lw9u0064nmw9twnohnf6"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-hexo-插件系列" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -90,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckjv6czr3003ykwi4cuebvwc2"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="cklq5lw7z002rnmw9b13z67xa"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -148,10 +341,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckjv6czsd005tkwi4syc9rg11"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="cklq5lw980051nmw9giici8vh"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -205,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="ckjv6czs5005ekwi4bl6e4h1j"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器-chrome-打开一个页面执行的进程/" data-id="cklq5lw8x004enmw99hp8teyz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
@@ -258,10 +451,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckjv6czsc005rkwi4dloe8s0q"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="cklq5lw97004znmw9hhp8kadr"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -313,10 +506,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckjv6czsj0061kwi4z9nnkr9h"
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="cklq5lw9b0056nmw9l780to4d"
          class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
 
     </footer>
 
@@ -378,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckjv6czs7005jkwi48qho7sjw"
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="cklq5lw90004knmw98cj82bw9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
@@ -453,183 +646,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckjv6czpo001vkwi4ua31py7q"
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="cklq5lw730013nmw9y7z6rmm3"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-css3-单位" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/CSS-css3-单位/">CSS3 单位</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/CSS-css3-单位/" class="article-date">
-  <time datetime="2020-10-22T08:31:44.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="CSS3-中新增的单位"><a href="#CSS3-中新增的单位" class="headerlink" title="CSS3 中新增的单位"></a>CSS3 中新增的单位</h3><ul>
-<li>ch 字符 0（零的宽度）；</li>
-<li>rem 根元素（html元素）的 font-size；<blockquote>
-<p>font size of the root element<br>Equal to the computed value of ‘font-size’ on the root element. when specified on the font-size property of the root element, the rem units refer to the property’s initial value.<br>This means that 1rem equals the the font-size html element (which for most browsers has a default value of 16px)</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li>字体或宽、高等单位，值根据 html 元素 font-size 计算得出</li>
-<li>动态修改 html 的 font-size，实现适配</li>
-<li>IOS6 和 Android 2.1 以上基本适配</li>
-<li>1rem = html’s font size(大多数浏览器是 16px)</li>
-</ol>
-<ul>
-<li>em 是一个相对单位，非固定值。相对于其父 font-size 计算</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckjv6czp40014kwi4sfmjjguz"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-EN-words" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/EN-words/">每天 30 词</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/EN-words/" class="article-date">
-  <time datetime="2020-10-22T05:06:41.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>词根 deep<br>deep adj.深的、低沉的、深奥的<br>deepen vt.使加深；使强烈；使低沉/vi.变沉；更低沉<br>deepen the reform 深化改革<br>the need to conceal the mourning deepened grief<br>掩盖悲痛的需要加深了痛楚</p>
-        
-          <a class="article-more-link" href="/2020/10/22/EN-words/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckjv6czpf001jkwi48ss1t0vq"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-bash" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/bash/">macos 常用命令</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/bash/" class="article-date">
-  <time datetime="2020-10-22T03:59:39.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="macos-解压文件-rar"><a href="#macos-解压文件-rar" class="headerlink" title="macos 解压文件 .rar"></a>macos 解压文件 .rar</h3><p>commands 参数</p>
-<blockquote>
-<p><code>e</code>             Extract files without archived paths # 解压缩文件到当前目录<br>  <code>l[t[a],b]</code>     List archive contents [technical[all], bare]  # 列出压缩文件<br>  <code>p</code>             Print file to stdout #打印文件标准输出设备<br>  <code>t</code>             Test archive files # 测试压缩文件<br>  <code>v[t[a],b]</code>     Verbosely list archive contents [technical[all],bare] # 详细列出压缩文件信息<br>  <code>x</code>             Extract files with full path # 用绝对路径解压缩文件</p>
-</blockquote>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unrar x x.rar</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/10/22/bash/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckjv6czqk003dkwi4arty4iyj"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
 
     </footer>
 
@@ -647,7 +667,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 </section>

@@ -52,6 +52,187 @@
 
     
       
+        <article id="post-函数-bind-call-apply" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/函数-bind-call-apply/">函数 bind call apply</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/函数-bind-call-apply/" class="article-date">
+  <time datetime="2019-03-18T06:17:37.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="bind、call、apply"><a href="#bind、call、apply" class="headerlink" title="bind、call、apply"></a>bind、call、apply</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">call</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">apply</a></p>
+<h4 id="从定义上对比看"><a href="#从定义上对比看" class="headerlink" title="从定义上对比看"></a>从定义上对比看</h4><ul>
+<li>bind - 创建一个新的函数</li>
+<li>call - call 与 apply 相似，仅传参不同</li>
+<li>apply - 调用一个具有给定 this 值的函数<blockquote>
+<p>func.apply(thisArg, [argsArray])</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用一个具有给定 this 的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TempObj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.tempArray = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tempObj = <span class="keyword">new</span> TempObj()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定作用域为 tempObj</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.apply(tempObj, tempObj.tempArray))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.call(tempObj, ...tempObj.tempArray))</span><br></pre></td></tr></table></figure>
+
+<p>** DEMO **</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组合并</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>], b = [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">a.push(b) <span class="comment">// 3，返回数组 length</span></span><br><span class="line">a.concat(b) <span class="comment">// [1, 2, 3, 4] 创建了一个新数组</span></span><br><span class="line">a.push.apply(a, b) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">a.push.call(a, ...b) <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/函数-bind-call-apply/" data-id="cklq5lw8e003hnmw9vugtsspp"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/Javascript-箭头函数/">箭头函数</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/Javascript-箭头函数/" class="article-date">
+  <time datetime="2019-03-18T05:40:26.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">Arrow Functions</a></p>
+<blockquote>
+<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
+</blockquote>
+<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="keyword">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="cklq5lw7a001gnmw9tx5eiisw"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-immutableJS" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/11/immutableJS/">immutableJS</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/11/immutableJS/" class="article-date">
+  <time datetime="2019-03-11T03:21:52.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）</p>
+<h3 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h3><p>Record() 可以创建一个新的 Record 类，类似于Javascript的Object，但是只接收特定字符串为key，具有默认值:</p>
+<h3 id="setIn"><a href="#setIn" class="headerlink" title="setIn()"></a>setIn()</h3><p>setIn 设置深层结构中的某些属性</p>
+<blockquote>
+<p>setIn(keyPath: Iterable<any>, value: any): this</any></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="cklq5lw80002tnmw9pnkwylpa"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-redux" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -100,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckjv6czrj004gkwi4in5k5kzx"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="cklq5lw8a003bnmw934nsji2r"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
@@ -247,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckjv6czpz002hkwi4jlowi1he"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="cklq5lw7c001mnmw9qgy7shxd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
@@ -307,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckjv6czq7002xkwi4sumygkgl"
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="cklq5lw7j001ynmw9fdxpxsyu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
@@ -397,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckjv6czq0002kkwi4chtv2m7s"
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="cklq5lw7e001onmw9t3i2pnit"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -456,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckjv6czro004okwi48ev83fd8"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="cklq5lw8d003fnmw9q0zud3hx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -546,7 +727,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckjv6czru0051kwi4nmapxqfw"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="cklq5lw8h003lnmw9jfo2nxby"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -610,217 +791,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckjv6czsq006akwi455bhc8ke"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="cklq5lw9d0058nmw991klw1gr"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-BFC" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/20/CSS-BFC/">CSS BFC</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/20/CSS-BFC/" class="article-date">
-  <time datetime="2019-02-20T07:27:42.000Z" itemprop="datePublished">2019-02-20</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="noopener">个人的官方是 MDN 文档，信得过，值得依赖</a><br>[同时借鉴 前端精选文摘：BFC 神奇背后的原理]（<a href="https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解" target="_blank" rel="noopener">https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解</a> BFC 不仅仅要清楚创建块级格式化上下文的方式，还要清楚一些它布局的规则。</p>
-<p><strong>BFC - Block Formatting Context Web</strong> 页面可视化css渲染的一部分，是布局过程中生成块级盒子的区域，也是浮动元素与其它元素交互的区域。</p>
-<h3 id="创建块级格式化上下文的方式（Block-Formatting-Context）"><a href="#创建块级格式化上下文的方式（Block-Formatting-Context）" class="headerlink" title="创建块级格式化上下文的方式（Block Formatting Context）"></a>创建块级格式化上下文的方式（Block Formatting Context）</h3><ul>
-<li><code>绝对定位元素</code><strong>position: absolute/position: fixed</strong> 会创建块级上下文<blockquote>
-<p>图标居定位右上角 <a href="https://github.com/HelenZhangLP/demo/blob/master/postionAbsoluteFixedBlock/index.html" target="_blank" rel="noopener">以下 demo 代码</a></p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>navigator3<span class="tag">&lt;<span class="name">i</span>&gt;</span>vip icon<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">i</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">2px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#f90</span>;</span><br><span class="line">  <span class="attribute">text-indent</span>: -<span class="number">9999px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">28px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(http://img.mukewang.com/<span class="number">545304730001307300280011</span>.gif) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-1.jpg" alt="position-absolute-block-1"><br>上图是一个注释掉<code>position: absolute</code>后的错误示例，如 <code>&lt;i&gt;</code> 非块级元素，<code>text-indent: -9999px</code> 不生效，<code>margin: -2px 0 0 1px</code>在垂直方向同样不生效。注释文本撑开，显示vip图片，若无<code>vip icon</code>，背影图同样不显示，因为 <code>width/height</code> 对非块级元素不生效。<code>放开position: absolute 注释后，BFC 化后，实现效果如下图</code></p>
-<p><img src="/images/demo/positionAbsoluteFixedBlock/position-absolute-block-2.jpg" alt="position-absolute-block-2"></p>
-<hr>
-<ul>
-<li>overflow 值不为 visible（default/visible）</li>
-<li>浮动元素（float 不为 none）<blockquote>
-<p>浮动实现两列表布局<br>盒子 .bfc1 与 盒子 .bfc2，左右布局，左侧盒子宽 100，左侧盒子根据父元素高自适应</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc1'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'bfc2'</span>&gt;</span>bfc<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-1.png">
-<blockquote>
-<p>由图可以看出，块状元素布局是由上自下，每个元素与父元素左边框接触<br>左浮动实现两列表布局</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">	<span class="attribute">border</span>: solid <span class="number">3px</span> <span class="number">#dd9</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc1</span> &#123;</span><br><span class="line">  float: left;  // 左浮动实现两列表布局</span><br><span class="line">	<span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">height</span>: 150<span class="selector-tag">px</span>;</span><br><span class="line">	<span class="selector-tag">background</span>: <span class="selector-id">#f99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.bfc2</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/bfc-float-overflow-2.png">
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckjv6czoy000xkwi4zlb3w3zx"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-盒模型" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/20/CSS-盒模型/">CSS 盒模型</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/20/CSS-盒模型/" class="article-date">
-  <time datetime="2019-02-20T02:21:14.000Z" itemprop="datePublished">2019-02-20</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>该文档整理基于<a href="https://www.ibm.com/developerworks/cn/web/1310_shatao_quirks/#N101C3" target="_blank" rel="noopener">怪异模式（Quirks Mode）对 HTML 页面的影响</a></p>
-<p>切入正题，说说盒模型。通过上面那篇文章，我意识到了盒模型的差异源于浏览器的渲染解析差异。最突出的代表要数IE浏览器，在 IE 中，有四种标准模式（Standards Mode）- IE7/8/9/10 Standards Mode；两种怪异模式（Quirks Mode）IE5 Quirks 和 IE10 Quirks。这两类文档模式在盒模型的渲染上有所差异。</p>
-<h3 id="话不多说，先上图"><a href="#话不多说，先上图" class="headerlink" title="话不多说，先上图"></a>话不多说，先上图</h3><p><img src="https://bkimg.cdn.bcebos.com/pic/a9d3fd1f4134970a37cf81a69fcad1c8a6865dfe?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5" alt="W3C标准盒模型">;<br><strong><center>【W3C标准盒模型】</center></strong><br><img src="https://www.ibm.com/developerworks/cn/web/1310_shatao_quirks/image005.jpg" alt="IE盒模型"><br><strong><center>【IE盒模型】</center></strong></p>
-<p>由上图可以看出：</p>
-<blockquote>
-<p>IE Quirks 怪异模式 盒模型  width = border + padding + content<br>  W3C 盒模型 width = content width</p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/02/20/CSS-盒模型/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckjv6czpa001ckwi4fwdqc9z1"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-中的实例属性与原型属性" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/08/Javascript-中的实例属性与原型属性/">Javascript 之数据类型</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/08/Javascript-中的实例属性与原型属性/" class="article-date">
-  <time datetime="2019-02-08T02:38:30.000Z" itemprop="datePublished">2019-02-08</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>想对 Promise 作一个深入了解，<code>console.dir(Promise)</code>，得出以下结果。</p>
-<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/Javascript-property-instance.png?imageView2/2/w/500">
-
-<p>上图可以看到 Promise 即有实例属性、方法，又有原型属性方法。接下来，我要归整归整，Javascript 中的实例属性方法与原型属性方法。</p>
-        
-          <a class="article-more-link" href="/2019/02/08/Javascript-中的实例属性与原型属性/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckjv6czpl001pkwi4hovkpds0"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
 
     </footer>
 
@@ -838,7 +812,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
     </nav>
   
 </section>
