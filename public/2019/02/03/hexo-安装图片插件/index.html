@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    hexo 安装图片插件 ~ hexo + 七牛云 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-hexo-安装图片插件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo 安装图片插件 ~ hexo + 七牛云
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/03/hexo-安装图片插件/" class="article-date">
+  <time datetime="2019-02-03T03:49:08.000Z" itemprop="datePublished">2019-02-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>想要一块地盘，想要保存宝宝的照片，点点滴<br>想要宝宝成长开辟地盘<br>于是。。。<br>七牛云<br>hexo</p>
+<img title="龙猫" alt="七牛云" src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/longmao.jpeg?imageView2/2/w/225">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 语法</span></span><br><span class="line">&#123;% qnimg longmao.jpeg title:龙猫 at 七牛云 logo alt:七牛云 <span class="string">'class:'</span> extend:?imageView2/2/w/550 %&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="hexo-中安装七年云插件"><a href="#hexo-中安装七年云插件" class="headerlink" title="hexo 中安装七年云插件"></a>hexo 中安装七年云插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-qiniu-sync --save</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hexo 七牛同步插件 hexo-qiniu-sync<br>git 地址（<a href="https://github.com/gyk001/hexo-qiniu-sync.git）" target="_blank" rel="noopener">https://github.com/gyk001/hexo-qiniu-sync.git）</a><br>赞挖井人</p>
+</blockquote>
+<h2 id="hexo-中配置七牛云"><a href="#hexo-中配置七牛云" class="headerlink" title="hexo 中配置七牛云"></a>hexo 中配置七牛云</h2><p>在 <code>_config.yml</code> 中配置 qiniu 插件，具体每个参数怎么配置、代表什么在（<a href="https://github.com/gyk001/hexo-qiniu-sync.git）中有详细说明，以下是个人配置的" target="_blank" rel="noopener">https://github.com/gyk001/hexo-qiniu-sync.git）中有详细说明，以下是个人配置的</a> demo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">qiniu:</span><br><span class="line">  offline: <span class="literal">false</span></span><br><span class="line">  sync: <span class="literal">true</span></span><br><span class="line">  bucket: audreyzhang</span><br><span class="line">  secret_file: a/qn.json <span class="comment"># 该配置与 access_key &amp;&amp; secret_key 取其一即可</span></span><br><span class="line">  <span class="comment"># access_key: 3***i</span></span><br><span class="line">  <span class="comment"># secret_key: s**d</span></span><br><span class="line">  dirPrefix: static</span><br><span class="line">  <span class="comment"># 外链前缀</span></span><br><span class="line">  urlPrefix: http://***.bkt.clouddn.com/static</span><br><span class="line">  <span class="comment"># 使用默认配置即可</span></span><br><span class="line">  up_host: http://upload.qiniu.com</span><br><span class="line">  <span class="comment"># 本地目录</span></span><br><span class="line">  local_dir: static</span><br><span class="line">  <span class="comment"># 是否更新已经上传过的文件(仅文件大小不同或在上次上传后进行更新的才会重新上传)</span></span><br><span class="line">  update_exist: <span class="literal">true</span></span><br><span class="line">  image:</span><br><span class="line">    folder: images</span><br><span class="line">    extend:</span><br><span class="line">  js:</span><br><span class="line">    folder: js</span><br><span class="line">  css:</span><br><span class="line">    folder: css</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo-中配置七牛插件-ERROR"><a href="#hexo-中配置七牛插件-ERROR" class="headerlink" title="hexo 中配置七牛插件 - ERROR"></a>hexo 中配置七牛插件 - ERROR</h3><h4 id="ERROR-1-port-has-been-used"><a href="#ERROR-1-port-has-been-used" class="headerlink" title="ERROR - 1 - port has been used"></a>ERROR - 1 - port has been used</h4><blockquote>
+<p>每次新增图片，不会自动上传到七牛云服务器，需要重新执行 <code>hexo s</code>，于是遇见以下错误</p>
+</blockquote>
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/portHasBeenUsed.png">
+<p><strong>这个很明显，就是端口被占用了。找出启服务的 terminal <code>ctrl + c</code> 停止当前服务，<code>hexo s</code> 重新启动</strong></p>
+<h4 id="ERROR-2-get-file-stat-err"><a href="#ERROR-2-get-file-stat-err" class="headerlink" title="ERROR - 2 - get file stat err"></a>ERROR - 2 - get file stat err</h4><blockquote>
+<p>添加图片，执行 <code>hexo g</code> 报错： <em>get file stat err</em> 如下图</p>
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/getFileStatErr.png">
+<p>逐一排查，发现是 secret_key &amp;&amp; access_key 未设置导致的，排查结果如下图</p>
+<img src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/getFileStatErr-badToken401.png">
+<p>*<em><code>_config.yml</code> 中添加 access_key &amp;&amp; secret_key，有两种方式： *</em></p>
+</blockquote>
+<ol>
+<li>直接添加<br>access_key: 3<strong>*i<br>secret_key: s</strong>d</li>
+<li>新增加 <code>sec.json</code>，将 <code>access_key: 3***i &amp;&amp; secret_key: s**d</code> 写入 json 文件，然后 <code>_config.yml，qiniu</code> 插件中，添加 <code>secret_file: a/qn.json</code></li>
+</ol>
+<p><strong>(具体如上 demo，选其一即可。AccessKey/SecretKey 可至 七牛云 个人中心 -&gt; 密钥管理 中查看)</strong></p>
+<h4 id="ERROR-3-token-not-specified-图片不展示"><a href="#ERROR-3-token-not-specified-图片不展示" class="headerlink" title="ERROR - 3 - token not specified 图片不展示"></a>ERROR - 3 - token not specified 图片不展示</h4><blockquote>
+<p>可能是因为当前空间是私有空间造成的，具体原因可看文档<br>  <a href="https://developer.qiniu.com/fusion/kb/3885/through-the-http-status-code-download-failure-reason" target="_blank" rel="noopener">https://developer.qiniu.com/fusion/kb/3885/through-the-http-status-code-download-failure-reason</a><br>  <a href="https://developer.qiniu.com/kodo/kb/4054/matters-needing-attention-of-private-space" target="_blank" rel="noopener">https://developer.qiniu.com/kodo/kb/4054/matters-needing-attention-of-private-space</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckmg30lxn003pdaw94wv6t0jd"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/06/express/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            express
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/01/EN-Dash/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">EN Dash</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    Hexo 坑 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-hexo-坑" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexo 坑
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/31/hexo-坑/" class="article-date">
+  <time datetime="2019-01-31T08:44:18.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="hexo-deploy-没有反应"><a href="#hexo-deploy-没有反应" class="headerlink" title="hexo deploy 没有反应"></a>hexo deploy 没有反应</h2><p><code>检查</code> _config.yml 中 deploy 配置</p>
+<h2 id="访问页面空白"><a href="#访问页面空白" class="headerlink" title="访问页面空白"></a>访问页面空白</h2><p><code>检查</code> themes</p>
+<h2 id="断行，在首页展示缩略信息，该方法能被-hexo-更好识别"><a href="#断行，在首页展示缩略信息，该方法能被-hexo-更好识别" class="headerlink" title="断行，在首页展示缩略信息，该方法能被 hexo 更好识别"></a>断行，在首页展示缩略信息，该方法能被 hexo 更好识别</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-No-layout-index-html"><a href="#ERROR-No-layout-index-html" class="headerlink" title="ERROR - No layout: index.html"></a>ERROR - No layout: index.html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br><span class="line">WARN  No layout: index.html</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p><code>解决办法：</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/zhwangart/hexo-theme-ocean.git themes/ocean</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Modify theme setting in _config.yml to ocean<br><code>theme: ocean</code></p>
+</blockquote>
+<h2 id="ERROR-发布到-git-服务器访问出现空白页或无主题样式"><a href="#ERROR-发布到-git-服务器访问出现空白页或无主题样式" class="headerlink" title="ERROR - 发布到 git 服务器访问出现空白页或无主题样式"></a>ERROR - 发布到 git 服务器访问出现空白页或无主题样式</h2><blockquote>
+<p>原因是发布到 github 上的项目名称要与个人github的用户名一致，且加后缀 .github.io，如 ‘helenzhanglp.github.io’</p>
+</blockquote>
+<h2 id="ERROR-博客中添加-gitalk"><a href="#ERROR-博客中添加-gitalk" class="headerlink" title="ERROR - 博客中添加 gitalk"></a>ERROR - 博客中添加 gitalk</h2><blockquote>
+<p><em>## Error Error: Not Found. ##</em><br><code>解决办法：</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  clientID: 8e7e6dda81936172806e # GitHub Application Client ID</span><br><span class="line">  clientSecret: 97f71b6bbdf731bc650ec39212061882b8f36e71 # Client Secret</span><br><span class="line">  repo: &apos;blog&apos; # Repository name 仓库不能为私有仓库 Private Repository</span><br><span class="line">  owner: HelenZhangLP  # GitHub ID</span><br><span class="line">  admin: HelenZhangLP # GitHub ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-theme-样式修改，先需要先提交至-github，再-deploy"><a href="#ERROR-theme-样式修改，先需要先提交至-github，再-deploy" class="headerlink" title="ERROR - theme 样式修改，先需要先提交至 github，再 deploy"></a>ERROR - theme 样式修改，先需要先提交至 github，再 deploy</h2><h2 id="Error-Spawn-failed"><a href="#Error-Spawn-failed" class="headerlink" title="Error: Spawn failed"></a>Error: Spawn failed</h2><blockquote>
+<p>fatal: unable to access ‘<a href="https://github.com/HelenZhangLP/helenzhanglp.github.io.git/&#39;" target="_blank" rel="noopener">https://github.com/HelenZhangLP/helenzhanglp.github.io.git/&#39;</a>: Received HTTP code 502 from<br> proxy after CONNECT<br>FATAL Something’s wrong. Maybe you can find the solution here: <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">https://hexo.io/docs/troubleshooting.html</a></p>
+</blockquote>
+<p><code>解决办法：</code><br>_config.yml 中 修改 deploy，https 链接换成 ssh<br>deploy:<br>  type: git<br>  repo: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<em>/</em>.github.io.git</p>
+<h2 id="hexo-中加入-sequence-diagram，安装-hexo-filter-sequence-后不显示"><a href="#hexo-中加入-sequence-diagram，安装-hexo-filter-sequence-后不显示" class="headerlink" title="hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示"></a>hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sequence-diagram.js:792 Uncaught ReferenceError: Raphael is not defined</span><br><span class="line">    at sequence-diagram.js:792</span><br><span class="line">    at sequence-diagram.js:1468</span><br><span class="line">(anonymous) @ sequence-diagram.js:792</span><br><span class="line">(anonymous) @ sequence-diagram.js:1468</span><br><span class="line">(index):93 Uncaught ReferenceError: Diagram is not defined</span><br><span class="line">    at (index):93</span><br><span class="line">(anonymous) @ (index):93</span><br></pre></td></tr></table></figure>
+
+<p><code>解决办法：</code><br>临时在头部加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(config.sequence) &#123;%&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/01/31/hexo-坑/" data-id="ckmg30lxm003ndaw9frastz3g"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/01/31/工具-atom-插件/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            atom 插件
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/01/25/taro/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">taro 坑系列</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

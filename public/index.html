@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="jumbotron">
+  <div class="video">
+    
+    <div class="video-media">
+      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
+      
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">女魔头</a></h1>
+      <p>咕噜的程序员妈妈</p>
+      
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    
+
+    
+      
+        <article id="post-react-state与生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/03/09/react-state与生命周期/">react-state与生命周期</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/03/09/react-state与生命周期/" class="article-date">
+  <time datetime="2021-03-09T01:21:31.000Z" itemprop="datePublished">2021-03-09</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>React 组件可以看成一个状态机<br>React 定义框架的目的是权权通过更新 React 组件状态，实现重新沉浸用户界面操作</p>
+<p>状态机 —— 组件通过与用户交互，实现不同的状态，然后通过渲染 UI 保证用户界面和数据的一致性</p>
+<p>React 状态初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReactStateCom</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>(props)  <span class="comment">// 将 Props 参数添加到构造方法</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">params</span>: <span class="string">'状态机'</span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.state.params&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 setState() 方法来更新状态（state）<br>setState() 两个参数， prevState 和 props 分别用于传递前一个 state 和 props 参数</p>
+<p>生命周期<br>React 组件中，生命周期可基本分为三个状态：<br>Mounting：已开始挂载 DOM<br>Updating：重新渲染组件 DOM<br>UnMounting：已卸载真实的 DOM</p>
+<p>关于生命周期的方法<br>ComponentWillMount()：在渲染前调用，可以在客户端，也可以在服务端<br>ComponentDidMount()：第一次渲染后调用，只作用于客户端<br>ComponentWillUpdate()：在组件接收到新的 props 参数或者 State 状态，但没有渲染时被调用。<strong>该方法初始化时不会被调用</strong><br>ComponentDidUpdate()：组件完成更新后会立即调用，另外该方法。<strong>该方法初始化时不会被调用</strong><br>ComponentWillMount()：在组件从 Dom 中移除之前会被立刻调用。</p>
+<p>自顶向下数据流<br>React 组件是被定义为具有状态（state）的</p>
+<p>react 条件渲染<br>设计人员创建不同的组件来封装各种业务需求，然后依据需求的不同状态，渲染对应状态下的局部内容</p>
+<ol>
+<li>使用 if 条件判断，分别渲染两种状态下的组件</li>
+<li>逻辑与运算符条件渲染</li>
+</ol>
+<p>react 创建、转换、使用列表<br>React 列表中使用 key 帮助 react 框架识别元素的改变，识别一个元素 key 最好是在其所在列表中独一无二<br>React 特取有效性，key 值权权会传递信息给 React 框架，用户的自定义组件无法读取<br>React 表单与HTML表单默认行为相同，在 React 环境中执行 HTML 代码仍然有效</p>
+<p>HTML 表单是自己管理自己的状态，根据用户输入修改状态。而 React 组件属于受控组件，它的状态由 state 管理，需要改变时，通过 setState 修改其状态</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/03/09/react-state与生命周期/" data-id="ckmg30ly5004tdaw9wruer1po"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器网络" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/03/05/浏览器网络/">浏览器网络</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/03/05/浏览器网络/" class="article-date">
+  <time datetime="2021-03-05T06:36:48.000Z" itemprop="datePublished">2021-03-05</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Error-ERR-TUNNEL-CONNECTION-FAILED"><a href="#Error-ERR-TUNNEL-CONNECTION-FAILED" class="headerlink" title="Error - ERR_TUNNEL_CONNECTION_FAILED"></a>Error - ERR_TUNNEL_CONNECTION_FAILED</h2><p><code>This site can’t be reached.The webpage at https://www.baidu.com/ might be temporarily down or it may have moved permanently to a new web address.</code></p>
+<blockquote>
+<p>解决：<br>  网络代理引起的<br>  wifi -&gt; open network preferences -&gt; advanced -&gt; proxies -&gt; Automatic Proxy Configuration 勾掉</p>
+</blockquote>
+        
+          <a class="article-more-link" href="/2021/03/05/浏览器网络/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/03/05/浏览器网络/" data-id="ckmg30lzg006wdaw9o947b37i"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-react-组件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/03/05/react-组件/">react组件</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/03/05/react-组件/" class="article-date">
+  <time datetime="2021-03-05T02:22:34.000Z" itemprop="datePublished">2021-03-05</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="1-函数组件"><a href="#1-函数组件" class="headerlink" title="1. 函数组件"></a>1. 函数组件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reactComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello, React Component<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>react 组件与 jsx 实现功能基本一致，但从设计角度上为时过早还是推荐使用 React 组件方式。</p>
+<blockquote>
+<p>原因是：React 组件与 Props 结合使用可以实现更灵活的功能。</p>
+</blockquote>
+<h2 id="2-类组件"><a href="#2-类组件" class="headerlink" title="2. 类组件"></a>2. 类组件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReactComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello, React Component<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2021/03/05/react-组件/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/03/05/react-组件/" data-id="ckmg30lxz004edaw98msojjon"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-react-jsx" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/03/03/react-jsx/">react-jsx</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/03/03/react-jsx/" class="article-date">
+  <time datetime="2021-03-03T05:06:14.000Z" itemprop="datePublished">2021-03-03</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="JSX-介绍"><a href="#JSX-介绍" class="headerlink" title="JSX 介绍"></a>JSX 介绍</h2><p>JavaScript XML 缩写为 JSX<br>JSX 作为 JavaScript 语法扩展，支持自定义属性，并具有很强的扩展性<br>React 中使用 JSX 语法，必须引用 ‘babel.js’ 解析 JSX<br><code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code> 浏览器内置的 JavaScript 解释器不解析标签里的脚本代码，由 <code>babel</code> 解析，避免 react 与原生 javascript 代码混淆</p>
+        
+          <a class="article-more-link" href="/2021/03/03/react-jsx/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/03/03/react-jsx/" data-id="ckmg30ly4004rdaw9zzsnmvwi"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——chrome开发者工具" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/02/23/浏览器工作原理——chrome开发者工具/">浏览器工作原理——chrome开发工具</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/02/23/浏览器工作原理——chrome开发者工具/" class="article-date">
+  <time datetime="2021-02-23T12:59:57.000Z" itemprop="datePublished">2021-02-23</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Elements 面板</td>
+<td>可以查看DOM结构、编辑CSS样式、用于测试页面布局和设计页面</td>
+</tr>
+<tr>
+<td>Console 面板</td>
+<td>可以查看 JavaScript 脚本、通过 Console 还能和页面中的 JavaScript 对象交互</td>
+</tr>
+<tr>
+<td>Sources 面板</td>
+<td>1.查看 Web 应用加载的所有文件；<br> 2.编辑CSS和Javascript文件内容；<br>3.将打乱的CSS文件或者Javascript 文件格式化；<br>4.支持 JavaScript 的调试功能；<br>5.设置工作区，将更改的文件保存到本地文件夹中</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/02/23/浏览器工作原理——chrome开发者工具/" data-id="ckmg30lz10065daw9tprcnfls"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devTools/">devTools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——async-await（用同步的方式写异步代码）" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/">浏览器工作原理——async/await（用同步的方式写异步代码）</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/" class="article-date">
+  <time datetime="2021-01-18T06:25:46.000Z" itemprop="datePublished">2021-01-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>fetch 定义在 window 对象中，用来发起远程资源请求，返回一个 Promise 对象，浏览器原生支持。</p>
+<p><em>接口嵌套请求需求：request1 请求成功后再做 request2请求，运用 fetch 实现如下：</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'http://request1.com'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fetch(<span class="string">'http://request2.com'</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response)</span><br><span class="line">  &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/18/浏览器工作原理——async-await（用同步的方式写异步代码）/" data-id="ckmg30lz20067daw95p5x3p8d"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——使用Promise，告别回调函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/">浏览器工作原理——使用Promise，告别回调函数</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" class="article-date">
+  <time datetime="2021-01-13T08:18:53.000Z" itemprop="datePublished">2021-01-13</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="JavaScript-引入-Promise-的动机"><a href="#JavaScript-引入-Promise-的动机" class="headerlink" title="JavaScript 引入 Promise 的动机"></a>JavaScript 引入 Promise 的动机</h2><p><strong><code>Promise 解决了异步编码风格的问题</code></strong></p>
+<h3 id="异步编程问题：代码逻辑不连续"><a href="#异步编程问题：代码逻辑不连续" class="headerlink" title="异步编程问题：代码逻辑不连续"></a>异步编程问题：代码逻辑不连续</h3><p>页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进程或线程中去执行，避免耗时任务霸占页面主线程。</p>
+<img src="http://www.plantuml.com/plantuml/svg/XLB1RjD04BtlLuoKAv4QKAySaNe22MuLXssyJgmuwxBU712g54IX8LGDK2b11PfMgX2gL8fQaPeQaP_nxhedVe5nRJMkLQS77xnlvhqtyyPlENoL2jg6kjTUzJZZyh5yxZ8Gh2ufRxYC49VP4gG7mcaq9LXE0ZaU9rSbe8CJFTwEfv_DztVmWW2KjS1C1g8WDEVJf8FwqAOEVz8KZ5fGMLoqBqbkB8w2VjmTwT543Jx4lywYC5JzVQZOjZsdGnsic_TlocjJt8JRUlSBLEZ20k9h-3thi0vED-dfbySNdyQgDqAqLilSbG-9t5HOrsbnIC7yZYjp-Ek9-l4giuMuf7whDX--En--bncVZRRqC5de0tpBhRYwt7GiY_6drVkpLx96Sf6gmJTrC8o2RXGSfi7gtd2M5-MUR3BnI7XrvllfJc_9gBfSMN4xxCwAvreeNA0W-CV0u-0wl8LkRzJFSWoEpCvwoaeOjo1f9GL7gDOGZF4hkMpv1PcBxauytKYsfFlzV5xw3EdtLEzdFdrK_lTdK_sUwAsF-6AEtgg_XsRhs9o69XodxOcZIqFNpgQA3iekikWf8qSRNyU9N5vYC5GRvsaRRYNUtoo8bbvzOY0_tty0">
+        
+          <a class="article-more-link" href="/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/13/浏览器工作原理——使用Promise，告别回调函数/" data-id="ckmg30lz8006fdaw9obor8g16"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——宏任务与微任务" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/12/浏览器工作原理——宏任务与微任务/">浏览器工作原理——宏任务与微任务</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/12/浏览器工作原理——宏任务与微任务/" class="article-date">
+  <time datetime="2021-01-12T10:48:11.000Z" itemprop="datePublished">2021-01-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>微任务——实时性和效率之间一个有效的权衡<br>Promise 以及以 Promise 为基础开发出来的其它技术是基于微任务的。</p>
+<h2 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h2><p>主线程上的任务包括了渲染事件（如解析 DOM、计算布局、绘制）、用户交互事件（如鼠标、滚动、放大缩小等）、JavaScript 脚本执行、网络请求、文件读写等。<br>消息队列和事件循环机制协调主线程上的任务执行，渲染进程内部会维护多个消息队列。如延迟队列、普通消息队列等。<br>消息队列中的任务称为 <strong>宏任务</strong><br>WHATWG 规范中对于事件循环机制的定义：</p>
+<ul>
+<li>先从消息队列中选出一个最老的任务，<code>oldestTask</code>；</li>
+<li>事件循环系统记录任务开始执行的时间，并把 <code>oldestTask</code> 设置为当前正在执行的任务；</li>
+<li>任务完成之后，删除当前正在执行的任务，并从对应的消息队列中删除 <code>oldestTask</code>;</li>
+<li>统计执行完成的时长</li>
+</ul>
+<p>宏任务无法处理对时间精度要求较高的任务</p>
+        
+          <a class="article-more-link" href="/2021/01/12/浏览器工作原理——宏任务与微任务/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/12/浏览器工作原理——宏任务与微任务/" data-id="ckmg30lz9006hdaw96i0omw96"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——消息队列与事件循环" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/08/浏览器工作原理——消息队列与事件循环/">浏览器工作原理——消息队列与事件循环</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/08/浏览器工作原理——消息队列与事件循环/" class="article-date">
+  <time datetime="2021-01-08T02:39:50.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="线程模型（一）"><a href="#线程模型（一）" class="headerlink" title="线程模型（一）"></a>线程模型（一）</h2><p>有确定好的任务，使用一个单线程来按顺序处理任务</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="number">2</span>; <span class="comment">// task1</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span> + <span class="number">3</span>; <span class="comment">// task2</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">3</span> + <span class="number">4</span>; <span class="comment">// task3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a, b, c) <span class="comment">// task4</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用单线程处理已知任务 task1 task2 task3 task4</p>
+</blockquote>
+<img src="http://www.plantuml.com/plantuml/svg/AyaioKbLUBvh__CLtLmPcIcf2cdv-IL9-HLSN4dvfNafYKML2a_tD3nTtWrHev1Oh51SabXKmbK093AJCmiIyqeKIXABimqnH8mmH8mnH4mGra0iUDdGyBHz5yYQrBmKBh1Lkhfs40l099Hd1EOPGNd6O9unb6S2vfa0UI0p0000">
+        
+          <a class="article-more-link" href="/2021/01/08/浏览器工作原理——消息队列与事件循环/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——消息队列与事件循环/" data-id="ckmg30lza006kdaw9m0rc73go"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-浏览器工作原理——setTimeout是怎么实现的" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" class="article-date">
+  <time datetime="2021-01-08T01:27:04.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="浏览器中的-setTimeout-是怎么实现的"><a href="#浏览器中的-setTimeout-是怎么实现的" class="headerlink" title="浏览器中的 setTimeout 是怎么实现的"></a>浏览器中的 setTimeout 是怎么实现的</h2><p>浏览器页面是由消息队列和事件循环系统来驱动的。<br>渲染进程中所有运行在主线程上的任务都需要先添加到消息队列中，事件循环系统再按照顺序执行消息队列中的任务。如下：</p>
+<ul>
+<li>接收到 html 文档数据时，渲染引擎会将 <code>解析 DOM 事件</code> 添加到消息队列；</li>
+<li>用户改变窗口大小时，渲染引擎会将 <code>重新布局</code> 事件添加到消息队列中；</li>
+<li>触发 JavaScript 垃圾回收机制时，渲染引擎会将 <code>垃圾回收任务</code> 添加到消息队列；</li>
+<li>执行一段异步 JavaScript 代码时，也会将<code>执行任务</code>添加到消息队列</li>
+</ul>
+        
+          <a class="article-more-link" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckmg30lz4006adaw9estp1sl0"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+  </article>
+  
+  
+    <nav class="page-nav">
+      
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </nav>
+  
+</section>
+
+</div>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

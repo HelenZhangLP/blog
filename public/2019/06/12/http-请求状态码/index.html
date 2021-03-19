@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    http 请求状态码 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http 请求状态码
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/12/http-请求状态码/" class="article-date">
+  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
+<p>请求成功，默认状态下 200 响应可以被缓存</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
+<li>HEAD: 响应的消息体为头部信息。</li>
+<li>POST: 响应的消息体中包含此次请求的结果。</li>
+<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
+<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="http-请求状态码-206"><a href="#http-请求状态码-206" class="headerlink" title="http 请求状态码 206"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206" target="_blank" rel="noopener">http 请求状态码 206</a></h1><blockquote>
+<p>HTTP 206 Partial Content 成功状态响应代码表示请求已成功，并且主体包含所请求的数据区间，该数据区间是在请求的 Range 首部指定的。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; Response Headers</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt; Accept-Encoding: identity;q=1, *;q=0</span><br><span class="line">&gt; Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">&gt; If-Range: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; **`Range: bytes=9895936-170855393`**</span><br><span class="line">&gt; Referer: https://cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com/gaokeyan1.mp4</span><br><span class="line">&gt; User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>如果只包含一个数据区间，那么整个响应的 Content-Type 首部的值为所请求的文件的类型，同时包含 Content-Range 首部。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; Response Headers(10)</span><br><span class="line">&gt; Accept-Ranges: bytes</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Content-Length: 170855394</span><br><span class="line">&gt; ** Content-Range: bytes 0-170855393/170855394</span><br><span class="line">&gt; ** Content-Type: video/mp4</span><br><span class="line">&gt; Date: Wed, 12 Jun 2019 02:34:48 GMT</span><br><span class="line">&gt; ETag: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; Last-Modified: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">&gt; Server: tencent-cos</span><br><span class="line">&gt; x-cos-request-id: NWQwMDY0YzhfMWNiMjk0MGFfNThlZl83YTg5NWY=</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="http-请求状态响应码-304"><a href="#http-请求状态响应码-304" class="headerlink" title="http 请求状态响应码 304"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304" target="_blank" rel="noopener">http 请求状态响应码 304</a></h1><blockquote>
+<p>无需再次传输请求的内容，也就是说可以使用缓存的内容。这通常是在一些安全的方法（safe），例如 GET 或 HEAD 或 在请求中附带了头部信息： If-None-Match 或 If-Modified-Since。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</span><br><span class="line">&gt; Accept-Encoding: gzip, deflate, br</span><br><span class="line">&gt; Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">&gt; Cache-Control: max-age=0</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">&gt; ** If-Modified-Since: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">&gt; ** If-None-Match: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; Range: bytes=0-1048575</span><br><span class="line">&gt; Upgrade-Insecure-Requests: 1</span><br><span class="line">&gt; User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="http-请求响应码-401"><a href="#http-请求响应码-401" class="headerlink" title="http 请求响应码 401"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401" target="_blank" rel="noopener">http 请求响应码 401</a></h1><blockquote>
+<p>状态码 401 Unauthorized(未授权)代表客户端错误，指的是由于缺乏目标资源要求的身份验证凭证，发送的请求未得到满足。 这个状态码会与 WWW-Authenticate 首部一起发送，其中包含有如何进行验证的信息。 这个状态类似于 403， 但是在该情况下，依然可以进行身份验证。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Request URL: https://api.github.com/user</span><br><span class="line">&gt; Request Method: GET</span><br><span class="line">&gt; Status Code: 401 Unauthorized</span><br><span class="line">&gt; Remote Address: 54.169.195.247:443</span><br><span class="line">&gt; Referrer Policy: no-referrer-when-downgrade</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="http-请求响应码-404"><a href="#http-请求响应码-404" class="headerlink" title="http 请求响应码 404"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/404" target="_blank" rel="noopener">http 请求响应码 404</a></h1><blockquote>
+<p>状态码 404 Not Found 代表客户端错误，指的是服务器端无法找到所请求的资源。返回该响应的链接通常称为坏链（broken link）或死链（dead link），它们会导向链接出错处理(link rot)页面。 404 状态码并不能说明请求的资源是临时还是永久丢失。如果服务器知道该资源是永久丢失，那么应该返回 410 (Gone) 而不是 404 。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Request URL: https://api.github.com/repos/helenzhanglp/blog/issues?client_id=8e7e6dda81936172806e&amp;client_secret=97f71b6bbdf731bc650ec39212061882b8f36e71&amp;labels=Gitalk,1863e4a8c0596ce3dfb3ee2f0c838431&amp;t=1560407734937</span><br><span class="line">&gt; Request Method: GET</span><br><span class="line">&gt; Status Code: 404 Not Found</span><br><span class="line">&gt; Remote Address: 54.169.195.247:443</span><br><span class="line">&gt; Referrer Policy: no-referrer-when-downgrade</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="http-请求响应码-500"><a href="#http-请求响应码-500" class="headerlink" title="http 请求响应码 500"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/500" target="_blank" rel="noopener">http 请求响应码 500</a></h1><blockquote>
+<p>服务器内部错误，是一个通用的全方位响应，有可能是权限或数据库链接错误。设置代理了，也会返回 500 错误</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckmg30lxr003ydaw9dognsepi"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            cookie 与 Web Storage
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/03/工具-代码管理-git坑/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">git 坑</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

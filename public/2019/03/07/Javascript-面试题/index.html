@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    Javascript 面试题 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript 面试题
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/07/Javascript-面试题/" class="article-date">
+  <time datetime="2019-03-07T06:33:19.000Z" itemprop="datePublished">2019-03-07</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="变量声明-let-const-var"><a href="#变量声明-let-const-var" class="headerlink" title="变量声明 let const var"></a>变量声明 let const var</h2><table class="table table-striped">
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">定义</th>
+<th align="left">作用域</th>
+<th align="left">赋初值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">let</td>
+<td align="left">声明变量</td>
+<td align="left">块级作用域</td>
+<td align="left">可以不赋初值<br>编译时声明并初始化为初值为 undefined</td>
+</tr>
+<tr>
+<td align="left">const</td>
+<td align="left">声明常量</td>
+<td align="left">块级作用域</td>
+<td align="left">必须赋初值</td>
+</tr>
+<tr>
+<td align="left">var</td>
+<td align="left">声明变量</td>
+<td align="left">局部变量是函数作用域；<br>全局变量作用域为该程序</td>
+<td align="left">不赋初值时，<br>变量提升，代码执行前创建 js 环境，声明变量，变量赋初值为 undefined</td>
+</tr>
+</tbody></table>
+
+
+<p><em><code>notice:</code></em></p>
+<ol>
+<li>let 和 var 都是用来声明变量的，但作用域不同。</li>
+<li>let 和 const 都是 ES6 开始正式加入 JavaScript 规范的</li>
+<li>let 编译时执行声明初始化，未编译时处于 temporal dead zone，此时变量 is not defined;</li>
+<li>const 声明常量必须赋初值(Uncaught SyntaxError: Missing initializer in const declaration)；</li>
+<li>const 声明的常量值不能修改。</li>
+</ol>
+<h2 id="1-let"><a href="#1-let" class="headerlink" title="1.    let"></a>1.    let</h2><blockquote>
+<p>   声明一个块级作用域的本地变量</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">const</span> C = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br><span class="line"><span class="built_in">console</span>.log(C) <span class="comment">// Uncaught ReferenceError: C is not defined</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>let 声明变量可以不赋初值，默认值为 undefined</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">let</span> b; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">const</span> c; <span class="comment">// Uncaught SyntaxError: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>let 声明的变量在定义编译执行时初始化。变量未声明之前不会初始化。这一时段称为暂存死区（Temporal Dead Zone, TDZ）。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">let</span> b; <span class="comment">// Uncaught ReferenceError: b1 is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-const"><a href="#2-const" class="headerlink" title="2.    const"></a>2.    const</h2><blockquote>
+<p><code>Uncaught SyntaxError: Missing initializer in const declaration</code> const 声明的变量必须赋初值<br>    <code>Uncaught ReferenceError: C is not defined</code> const 声明块级作用域变量</p>
+</blockquote>
+<h3 id="const-声明的变量值不能修改"><a href="#const-声明的变量值不能修改" class="headerlink" title="const 声明的变量值不能修改"></a>const 声明的变量值不能修改</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> variableTemplate = <span class="number">30</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  variableTemplate = <span class="number">22</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error) <span class="comment">// TypeError: Assignment to constant variable.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(variableTemplate)</span><br></pre></td></tr></table></figure>
+
+<h3 id="const-只读引用，只是变量的标识符不能重新分配"><a href="#const-只读引用，只是变量的标识符不能重新分配" class="headerlink" title="const 只读引用，只是变量的标识符不能重新分配"></a>const 只读引用，只是变量的标识符不能重新分配</h3><blockquote>
+<p>只是变量标识符不能重新分配</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VARIABLE = <span class="string">'assignment value'</span></span><br><span class="line">VARIABLE = <span class="string">'assignment value'</span> <span class="comment">// TypeError: Assignment to constant variable</span></span><br><span class="line"><span class="keyword">const</span> VARIABLE = <span class="string">'Assignment to constant variable'</span> <span class="comment">// Uncaught SyntaxError: Identifier 'VARIABLE' has alreay been declared</span></span><br><span class="line"><span class="keyword">const</span> EN_OBJECT = &#123;&#125;</span><br><span class="line">EN_OBJECT.ATTRIBUTE = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-var"><a href="#3-var" class="headerlink" title="3.    var"></a>3.    var</h2><p>JavaScript 根据赋值自动转换数据类型;<br>JavaScript 中 <code>+</code> 可用来链接字符串，如果运算中涉及字符串，结果为字符串链接。其它运算符（-、*、/）正确计算数字字符串;<br>JavaScript 中，null 乘任何数为 0;<br>JavaScript 代码程序执行前会先创建执行环境，变量、函数等被创建。代码运行时赋初值。这就是 JavaScript 的提升机制（hoisting）。</p>
+<blockquote>
+<p>var 声明变量可以不赋初值，默认值为 undefined；<br>    var 声明的变量没有块级作用域</p>
+</blockquote>
+<h3 id="与-var-不同-let-与-const-在全局声明定义的变量不会绑定到全局对象上（如-浏览器的全局对象-window"><a href="#与-var-不同-let-与-const-在全局声明定义的变量不会绑定到全局对象上（如-浏览器的全局对象-window" class="headerlink" title="与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 window)"></a>与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 <code>window</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a, <span class="built_in">window</span>.b, <span class="built_in">window</span>.c) <span class="comment">// 1 undefined undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="let-和-var-定义的变量作用域不同"><a href="#let-和-var-定义的变量作用域不同" class="headerlink" title="let 和 var 定义的变量作用域不同"></a>let 和 var 定义的变量作用域不同</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testVarScope</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a, <span class="string">'var'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testVarScope(); <span class="comment">// 2 "var"</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	var 声明的变量在同一函数作用域中为同一变量，所以值会修改</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testLetScope</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a, <span class="string">'let'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testLetScope(); <span class="comment">// 1 "let"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	&#123;&#125; 为一个作用域，&#123;&#125; 中的 a 变量与 函数中首先声明的 a 为两个变量，值不会相互修改</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、-作用域-promise-amp-amp-promise-then"><a href="#三、-作用域-promise-amp-amp-promise-then" class="headerlink" title="三、 作用域 + promise &amp;&amp; promise.then"></a>三、 作用域 + promise &amp;&amp; promise.then</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="number">1</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">let</span> msg = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(msg)</span><br><span class="line"><span class="keyword">var</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">	msg = <span class="number">3</span></span><br><span class="line">	resolve(msg)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">var</span> p2 = p1.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p1 === p2)</span><br><span class="line"><span class="comment">// 1 4 5 false 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* p1 gng p2 不相等的原因 */</span></span><br><span class="line"><span class="comment">// [[PromiseStatus]]: "resolved"</span></span><br><span class="line"><span class="comment">// [[PromiseValue]]: 3</span></span><br><span class="line"><span class="built_in">console</span>.log(p2)</span><br><span class="line"><span class="built_in">console</span>.log(p1)</span><br><span class="line"><span class="comment">// [[PromiseStatus]]: "resolved"</span></span><br><span class="line"><span class="comment">// [[PromiseValue]]: undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、-箭头函数作用域"><a href="#四、-箭头函数作用域" class="headerlink" title="四、 箭头函数作用域"></a>四、 箭头函数作用域</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'fn'</span>,</span><br><span class="line">		show: <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'fun'</span></span><br><span class="line">fun().show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、正则相关-题目如下"><a href="#五、正则相关-题目如下" class="headerlink" title="五、正则相关 - 题目如下"></a>五、正则相关 - 题目如下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str=<span class="string">'version2.1 version2.2'</span>;</span><br><span class="line"><span class="keyword">const</span> regx = <span class="regexp">/(\w+)(\d)\.(\d)/g</span>;</span><br><span class="line"></span><br><span class="line">str.match(regx)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> [ 'version2.1', 'version2.2' ]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">regx.exec(str)</span><br><span class="line"><span class="comment">/** [ 'version2.1',</span></span><br><span class="line"><span class="comment">  'version',</span></span><br><span class="line"><span class="comment">  '2',</span></span><br><span class="line"><span class="comment">  '1',</span></span><br><span class="line"><span class="comment">  index: 0,</span></span><br><span class="line"><span class="comment">  input: 'version2.1 version2.2',</span></span><br><span class="line"><span class="comment">  groups: undefined ]</span></span><br><span class="line"><span class="comment">	*/</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>console.log(str.match(regx)) 结果如上，因为有正则中有 <code>g</code> 全局搜索标识符。 所以结果如上代码。</li>
+<li>console.log(regx.exec(str)) 结果如上。</li>
+<li>match 和 exec 的区别：<ul>
+<li>match 是 String(String.prototype.match()) 的原型方法；exec 是 RegExp（RegExp.prototype.exec()） 的原型方法。</li>
+<li>在 regx 不加 <code>g</code> 标识符（global）时，他们的结果是相同的，返回一个数组。数组元素包括匹配字符串、匹配组、index 匹配的位置， input 原始字符串， groups;</li>
+<li>在 regx 加 <code>g</code> 标识符（global)）时，结果如上。<code>str.match(regx)</code> 返回的是所有匹配的字符串数组；<code>regx.exec(str)</code> 返回的第一组匹配的数组，并记录 <code>lastIndex</code> 在 regx 中，再次执行 <code>regx.exec(str)</code> 会返回下一组匹配结果。以此类推，直到最后结果为 null。</li>
+</ul>
+</li>
+</ol>
+<h3 id="六、-数组排序"><a href="#六、-数组排序" class="headerlink" title="六、 数组排序"></a>六、 数组排序</h3><blockquote>
+<p>对数组 [10, 20, 1, 2] 进行排序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">10</span>, <span class="number">20</span>, <span class="number">1</span>, <span class="number">2</span>].sort(); <span class="comment">// [ 1, 10, 2, 20 ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="六、-在一个构造方法中可以使用super关键字来调用一个父类的构造方法。"><a href="#六、-在一个构造方法中可以使用super关键字来调用一个父类的构造方法。" class="headerlink" title="六、 在一个构造方法中可以使用super关键字来调用一个父类的构造方法。"></a>六、 在一个构造方法中可以使用super关键字来调用一个父类的构造方法。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckmg30lx7002pdaw93t4koq66"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/11/redux/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            redux
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/03/Vue-单向绑定-与-双向绑定/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">Vue 单向绑定 与 双向绑定</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
