@@ -34,3 +34,18 @@ const regCn = /[·#￥（——）：；“”‘、|《》？、【】[]]/g;
 name = name.replace(regEn, '');
 name = name.replace(regCn, '');
 ```
+
+### 3、  Demo(3) —— 手机号中间四位替换为 ****
+```javascript
+var str = '13381895220'
+str.replace(/^(.{3})(.{4})(.{4})$/, "$1****$3") // "133****5220"
+```
+
+### 4、  Demo(4) —— 首字母大写
+```javascript
+var value = 'front-end development engineer'
+value.replace(/^./,value[0].toUpperCase()) // "Front-end development engineer"
+
+value.split(' ').map(item => item.replace(/^./, item[0].toUpperCase())).join(" ")
+// "Front-end Development Engineer"
+```

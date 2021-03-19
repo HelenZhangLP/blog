@@ -6,6 +6,28 @@ tags:
 - mockjs
 ---
 
+## 浏览器使用 mockjss
+```html
+<head>
+  <script src="http://mockjs.com/dist/mock.js" charset="utf-8"></script>
+</head>
+
+<script type="text/javascript">
+Mock.mock({
+  'list|1-10': [{
+      'id|+1': 1,
+      'name': '@string',
+      'age|1-100': 100,
+      'skill|1-2':[
+        'Soccer',
+        'Volleyball',
+        'Swimming',
+        'Hiking'
+      ]
+  }]
+});
+</script>
+```
 ## 环境准备
 1. `mockjs` 生成随机数据、拦截 Ajax 请求。[文档见](https://github.com/nuysoft/Mock/wiki/Getting-Started)
   * 安装

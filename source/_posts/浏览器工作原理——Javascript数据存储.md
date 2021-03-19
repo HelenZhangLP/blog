@@ -1,12 +1,27 @@
 ---
-title: 浏览器工作原理——数据存储
+title: 浏览器工作原理——JavaScript数据存储
 date: 2020-12-10 14:09:28
 tags:
 - browser
 - 浏览器工作原理
 ---
 
-## JavaScript 7 种数据类型
+JavaScript 内存机制
+- [ ] JavaScript 内存中的存储
+- [ ] 处理垃圾回收
+- [ ] v8 中执行
+
+## 1. JavaScript 是什么类型的语言
+**静态语言** 在使用之前就需要确认其变量数据类型。如 C 语言
+**动态语言** 在运行过程中需要检查数据类型的语言。如 JavaScript
+**弱类型语言** 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言
+**强类型语言** 运行过程中不支持隐式转换的语言。如 Ruby
+【具体可参考以下象限图】
+![img](https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png)
+<!--more-->
+
+## 2. JavaScript 7 种数据类型
+> JavaScript 是弱类型动态语言，不需要在使用前定义变量类型，运行过程中同一变量可以存不同数据类型
 
 |类型|描述|
 |---|---|
@@ -18,7 +33,6 @@ tags:
 |Object|Function,Array,Date 等，都为对象类型。JavaScript 中的对象可以看作是属性的集合|
 |Symbol|符号类型，是唯一的并且不可修改，常作为 Object 的 key。通过 Symbol() 函数产生|
 
-<!--more-->
 几点注意事项：
 * typeof Null 返回 Object，这个是 JavaScript bug，为兼容老代码一直未修复；
 * isNaN(Number('hello')) // true 检查无意义的运算，NaN 无效的数字。
@@ -26,8 +40,17 @@ tags:
 * isFinite(2/0) 检查是 2/0 否为有限数
 * Object 是引用类型，其它为原始类型。
 
-## 内存空间
+## 3. 内存空间
 JavaScript 执行过程中，主要有三种内存空间，分别是代码空间、栈空间、堆空间。
+{%plantuml%}
+card 内存模型 #fff [
+<b><color:blue>代码空间——可执行代码</color></b>
+----
+<b><color:green>栈空间（调用栈）—— 存储执行上下文</color></b>
+----
+<b><color:red>堆空间</color></b>
+]
+{%endplantuml%}
 
 ```JavaScript
 function foo() {
@@ -46,23 +69,42 @@ map heap {
  1104 => {name: 'helen'}
 }
 
-stack callStack {
-  map fooContext {
-    变量名 => 变量值
-    a => 1
-    b => memory space
-    c *-> heap
-    c => 1104
-    d *-> heap
-    d => 1104(**)
+stack 调用栈 {
+  card "foo 函数执行上下文" #66f {
+    map foo变量环境 #fff {
+      变量名 => 变量值
+      a => 1
+      b => memory space
+      c *-> heap
+      c => 1104
+      d *-> heap
+      d => 1104
+    }
+
+    map foo词法环境 #fff {
+      变量名 => 变量值
+    }
   }
-  map globalContext {
-   变量名 => 变量值
+  card "全局执行上下文" #66f {
+    map 变量环境 #fff {
+     变量名 => 变量值
+     function foo => function() {...}
+    }
+    map 词法环境 #fff {
+     变量名 => 变量值
+    }
   }
-  fooContext -- globalContext
+  foo变量环境 -[#transparent]-> 变量环境
 }
 {%endplantuml%}
+**
 对象类型是存储在 heap，stack 中保存对象引用地址，JavaScript 通过栈中的引用地址访问。
+> 原始类型保存的栈中，对象类型保存在堆中。堆中只保存对象类型的引用地址，JavaScript引擎通过栈的引用地址进行访问
+
+JavaScript 引擎是需要用栈来维护程序执行期间上下文的状态，如果栈空间太大，所有的数据都存放在栈里，会影响上下文的切换效率，进而影响到整个程序的执行效率。
+如上 demo，foo 函数结束后，foo 函数执行上下文会被回收，指针移动到全局执行上下文。
+所以通常情况下 **栈如果设置过大，会影响切换效率，所以栈是用存放一些原始类型的小数据**，引用类型数据占用空间较大，故这类数据会存在在堆中，**堆空间大，存放数据多。但分配内存和回收内存占时间长**
+JavaScript 中，`原始类型的赋值会完全复制变量的值，而引用类型的赋值是复制引用地址`
 
 ```JavaScript
 function foo() {
@@ -90,15 +132,30 @@ console.log(bar.getName())
 2.  编译内部函数 setName 时，由于内部函数引用外部函数变量，于是堆内存空间创建一个 “closure(foo)” 保存变量 name;
 3.  编译内部函数 getName 时，函数内部引用了外部函数变量 test1，于堆内存中的 “closure(foo)” 保存变量 test1
 4.  foo 函数执行结束后，返回的 getName, setName 与 closure(foo) 存在引用关系。
+> 产生闭包的核心有两步：一是需要预扫描内部函数；二是把内部函数引用 的外部变量保存在堆内存中
 
-## 几个概念
-使用前定义变量数据类型的语言称为`静态语言`
-运行过程中需要检查数据类型的语言称为`动态语言`
-支持隐匿转换的语言称为`弱类型语言`
-不支持类型转换的是`强类型语言`
+JavaScript 中变量没有数据类型，只有值有数据类型
 
-**JavaScript 是弱类型动态语言**，`typeof`查看数据类型
+## 4. 垃圾回收
+### 4-1. 垃圾回收策略 —— **手动回收**
+C/C++ 是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制
+```C
+//在堆中分配内存
+char* p = (char*)malloc(2048);  //在堆空间中分配2048字节的空间，并将分配后的引用地址保存到p中
+//使用p指向的内存
+{
+  //....
+}
+//使用结束后，销毁这段内存
+free(p)；
+p = NULL；
+```
+C 语言，使用 malloc 函数分配内存，然后再使用。如果不再需要这块数据，使用 free 函数来释放内存。如果这段数据不再需要，又没有主动调用 free 函数销毁，就会发生 **内存泄漏**
 
+### 4-2. 垃圾回收策略 —— **自动回收**
+Java、JavaScript、Python 等语言，产生的垃圾数据是由垃圾回收器来释放的，不需要手动释放。
+
+### 4-2-1. 调用栈中的数据是如何回收的
 
 ## 编译器和解释器
 执行程序前，需要将代码翻译成机器能的语言。根据语言的执行流程，可分为编译型语言和解释型语言。

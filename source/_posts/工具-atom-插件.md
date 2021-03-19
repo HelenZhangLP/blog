@@ -7,7 +7,10 @@ tags:
 - develop tools
 ---
 
-## 使用
+### [快捷键](https://blog.csdn.net/qq_40963664/article/details/79250424)
+|keyName|description|
+|--|--|
+|ctrl+G|快速跳转到某一行|
 
 #### markdown-preview-plus
 1. command + shift + p
@@ -16,6 +19,8 @@ tags:
 #### platformio-ide-terminal
 1. command + shift + p
 2. terminal new / terminal close
+> 安装 Installation Failure platformio-atom-ide-terminal #925
+install "terminus" it is a fork of platformio-ide-terminal
 
 #### [docblockr](https://atom.io/packages/docblockr)
 用于自动生成注释（annotation）
