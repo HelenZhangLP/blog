@@ -11,7 +11,12 @@ tags:
 Redux 设计之初是为了更好的维护 Web 状态，React 框架实现了 State。React + Redux
 Redux 设计的核心是 store 的概念。store 将 State/Action/Reducer 联系在一起。<font color="#911" face="黑体" size="3">`redux 中有且只有一个 store，store 是唯一的`</font>
 Action 是负责把数据从应用传到 Store 的载体，是 Store 数据的唯一来源，通过 store 的 dispatch() 方法实现
-Reduce 将 State 的变化和相应的 Action 发送到 store，然后返回新的 state 给 store
+Reducer 将 State 的变化和相应的 Action 发送到 store，然后返回新的 state 给 store
+Reducer 本质上一个纯函数，接收 state and action，执行相应操作后，返回新的 state。但切忌做以下操作：
+* 修改传入参数；
+* 执行有副作用的操作，如请求 API 和 路由跳转等；
+* 调用非纯函数，如 Date.now()、Math.random() 等不确定值操作
+
 > Redux 负责状态管理、React 负责视图渲染，Redux 中 store 是核心对象，在管理 Reducer 与 State 的同时，还要处理 Dispath 存入的 Action，最终订阅 React 视图更新。
 
 {%plantuml%}

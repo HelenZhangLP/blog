@@ -6,7 +6,13 @@ tags:
 - react
 ---
 
-### React 列表渲染
+## problem
+### react 渲染实体字体 &#247; &#215;
+```Javascript
+{key: String.fromCharCode(215), id: 'times'},
+```
+
+## React 列表渲染
 
 #### keys
 React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。
