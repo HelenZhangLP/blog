@@ -52,6 +52,120 @@
 
     
       
+        <article id="post-Array sort 源码解析" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/01/08/Array sort 源码解析/">Array sort 源码解析</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/01/08/Array sort 源码解析/" class="article-date">
+  <time datetime="2020-01-08T02:07:22.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><blockquote>
+<p>ToUint32 将指定的值转换为 32 位，不带正负号的整数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArraySort</span>(<span class="params">comparefn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> custom_compare = IS_FUNCTION(comparefn);</span><br><span class="line">  <span class="keyword">var</span> length = ToUint32(<span class="keyword">this</span>.length);</span><br><span class="line">  QuickSort(<span class="keyword">this</span>, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/01/08/Array sort 源码解析/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/01/08/Array sort 源码解析/" data-id="ckmvmbnfw0012r1w9cyy9off3"
+         class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-日记-2019-12-25" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/12/25/日记-2019-12-25/">日记-2019-12-25</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/12/25/日记-2019-12-25/" class="article-date">
+  <time datetime="2019-12-25T02:42:57.000Z" itemprop="datePublished">2019-12-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><blockquote>
+<p>/deep/ 使用时，一定在 scoped 域中使用</p>
+</blockquote>
+<h2 id="http-options"><a href="#http-options" class="headerlink" title="http options"></a>http options</h2><blockquote>
+<p>OPTIONS 发起预检请求，用于获取目标资源所支持的通信选项，使用 OPTIONS 方法对服务器发起请求，检测服务器支持哪些 HTTP 方法， 以下响应报文中， allow-methods 表明服务器支持 POST 方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Allow-Headers: business-type, content-type</span><br><span class="line">Access-Control-Allow-Methods: POST</span><br><span class="line">Access-Control-Allow-Origin: http://localhost</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Length: 0</span><br><span class="line">Date: Wed, 25 Dec 2019 07:11:38 GMT</span><br><span class="line">Server: openresty/1.15.8.1</span><br><span class="line">Vary: Origin</span><br><span class="line">Vary: Access-Control-Request-Method</span><br><span class="line">Vary: Access-Control-Request-Headers</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckmvmbnhk005rr1w921g0j7ib"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-模式-发布订阅者模式" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -95,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckmllzquo006x0aid0995a6sf"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckmvmbnhl005tr1w9l0840c87"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -151,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckmllzqse00100aidukwqlh5s"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckmvmbnga0024r1w91g7eg0e2"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -207,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckmllzqul006t0aid3tqw0kwr"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckmvmbnhj005nr1w9746nodzb"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -259,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/Javascript-async-await-promise/" data-id="ckmllzqsg00160aidrggrpwx2"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/Javascript-async-await-promise/" data-id="ckmvmbngh002kr1w97ha4e6vr"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
@@ -310,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckmllzqss002f0aidiww252fm"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckmvmbngs003lr1w9gb0u07e8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -365,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckmllzqt6003i0aidcchjckoy"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckmvmbnha004wr1w988i0hjuk"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -427,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckmllzquw007g0aidntgvptfn"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckmvmbnhp0065r1w95mq2mvcq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
@@ -490,133 +604,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckmllzqsz002x0aid6jnyi3nt"
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckmvmbnh1004br1w91cn352lx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-工具-代码管理-git坑" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/03/工具-代码管理-git坑/">git 坑</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/03/工具-代码管理-git坑/" class="article-date">
-  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
-<p>.gitignore 中添加 .idea/ 没用</p>
-</blockquote>
-<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
-
-<h3 id="macos-升级后-git-编译错误"><a href="#macos-升级后-git-编译错误" class="headerlink" title="macos 升级后 git 编译错误"></a>macos 升级后 git 编译错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$&gt; git</span><br><span class="line">dyld: Symbol not found: _OBJC_IVAR_$_NSFont._fFlags</span><br><span class="line">  Referenced from: /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">  Expected in: /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit</span><br><span class="line"> in /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">gcc: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</span><br><span class="line">gcc: error: You can set the path to the Xcode folder using /usr/bin/xcode-select -switch</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>git: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</p>
-</blockquote>
-<p><strong>解决办法</strong></p>
-<blockquote>
-<p>xcode-select –install<br>sudo /usr/bin/xcode-select –switch /Library/Developer/CommandLineTools/</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/工具-代码管理-git坑/" data-id="ckmllzqut00770aideo860ctl"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-NodeJs-学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/05/31/NodeJs-学习笔记/">NodeJs 学习笔记</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/05/31/NodeJs-学习笔记/" class="article-date">
-  <time datetime="2019-05-31T06:32:44.000Z" itemprop="datePublished">2019-05-31</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><blockquote>
-<p>提供用于处理文件路径和目录路径的实用工具</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2019/05/31/NodeJs-学习笔记/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckmllzqsn001w0aiduszmi4ez"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
 
     </footer>
 

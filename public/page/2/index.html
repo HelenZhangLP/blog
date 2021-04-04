@@ -52,6 +52,120 @@
 
     
       
+        <article id="post-浏览器工作原理——Javascript数据存储" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/12/10/浏览器工作原理——Javascript数据存储/">浏览器工作原理——JavaScript数据存储</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/12/10/浏览器工作原理——Javascript数据存储/" class="article-date">
+  <time datetime="2020-12-10T06:09:28.000Z" itemprop="datePublished">2020-12-10</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>JavaScript 内存机制</p>
+<ul>
+<li><input disabled type="checkbox"> JavaScript 内存中的存储</li>
+<li><input disabled type="checkbox"> 处理垃圾回收</li>
+<li><input disabled type="checkbox"> v8 中执行</li>
+</ul>
+<h2 id="1-JavaScript-是什么类型的语言"><a href="#1-JavaScript-是什么类型的语言" class="headerlink" title="1. JavaScript 是什么类型的语言"></a>1. JavaScript 是什么类型的语言</h2><p><strong>静态语言</strong> 在使用之前就需要确认其变量数据类型。如 C 语言<br><strong>动态语言</strong> 在运行过程中需要检查数据类型的语言。如 JavaScript<br><strong>弱类型语言</strong> 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言<br><strong>强类型语言</strong> 运行过程中不支持隐式转换的语言。如 Ruby<br>【具体可参考以下象限图】<br><img src="https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png" alt="img"></p>
+        
+          <a class="article-more-link" href="/2020/12/10/浏览器工作原理——Javascript数据存储/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——Javascript数据存储/" data-id="ckmvmbnho0062r1w98dlgl2xf"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-react-虚拟DOM和性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/12/02/react-虚拟DOM和性能优化/">虚拟DOM和性能优化</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/12/02/react-虚拟DOM和性能优化/" class="article-date">
+  <time datetime="2020-12-02T09:32:56.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>React 执行效率高的原因在于它的<code>虚拟DOM机制</code></p>
+<h2 id="虚拟-DOM"><a href="#虚拟-DOM" class="headerlink" title="虚拟 DOM"></a>虚拟 DOM</h2><p>前端性能优化的重要一条：<strong>尽量减少对DOM操作</strong><br>DOM 是对结构化广西的抽象表达，web 环境中，DOM 是对 html 文本的抽象描述，每个 html 元素对应一个 DOM 节点，html 元素的层级关系也体现在了 DOM 树上。在 DOM 进行增删改操作，都会引起浏览器对网页的重新布局和重新渲染，这个过程很耗时。<br><strong>软件开发中遇到的所有问题都可以通过增加一层抽象解决</strong> 虚拟 DOM 是 DOM 效率低下的抽象。虚拟 DOM 是用 javascript 描述的DOM 元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">'foo'</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: <span class="string">'div'</span>,</span><br><span class="line">  props: &#123;</span><br><span class="line">    className: <span class="string">'foo'</span>,</span><br><span class="line">    children: <span class="string">'hello'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2020/12/02/react-虚拟DOM和性能优化/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckmvmbnh6004nr1w9vafwqbvo"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-mock数据" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -105,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckmllzqt100350aidjetyi29g"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckmvmbnh00049r1w93jrn6zh6"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -162,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckmllzqt3003b0aid9zunhxb3"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckmvmbnh6004lr1w9l4j6jipd"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -234,7 +348,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——Javascript执行机制/" data-id="ckmllzquv007c0aidxnawjdou"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——Javascript执行机制/" data-id="ckmvmbnho0060r1w9sj3fvf7j"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -296,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckmllzqv800840aidq9crgaip"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckmvmbni0006xr1w9bk14plcp"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -350,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckmllzqsy002u0aid0j2ug5c3"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckmvmbngz0044r1w9w2tmyim9"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -408,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckmllzqv2007t0aidbtkd372t"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckmvmbnht006hr1w9bksompvw"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -467,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器工作原理——chrome打开一个页面执行的进程/" data-id="ckmllzqv0007n0aidryfmws7o"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器工作原理——chrome打开一个页面执行的进程/" data-id="ckmvmbnhs006cr1w9mzx4qeky"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -520,130 +634,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckmllzqv0007p0aid5p2y2cq7"
+      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckmvmbnhs006er1w98mvils4f"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="_post-浏览器工作原理——数据的传输过程" class="article article-type-_post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/11/浏览器工作原理——数据的传输过程/">浏览器工作原理——数据的传输过程</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/11/浏览器工作原理——数据的传输过程/" class="article-date">
-  <time datetime="2020-11-11T05:32:59.000Z" itemprop="datePublished">2020-11-11</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>First Print 简称 FP，是指页面加载到首次开始绘制的时长。网络的加载速度是影响 FP 的重要因素。网络协议 HTTP、WebSocket 都是基于 TCP/IP 的。那么 web 世界中，TCP/IP 是如何工作的呢？</p>
-<h2 id="数据的传输过程"><a href="#数据的传输过程" class="headerlink" title="数据的传输过程"></a>数据的传输过程</h2><p>互联网中数据是通过数据包传递。如果数据量很大时会拆成很多小的数据包传输。</p>
-<h3 id="1-数据包如何送达主机"><a href="#1-数据包如何送达主机" class="headerlink" title="1.  数据包如何送达主机"></a>1.  数据包如何送达主机</h3><p>数据包在互联网上进行传输需要符合网际协议（Internet Protocol, IP）标准。</p>
-<div id="sequence-0"></div>
-        
-          <a class="article-more-link" href="/2020/11/11/浏览器工作原理——数据的传输过程/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckmllzqv600800aid7m28m8w8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="_post-浏览器兼容问题" class="article article-type-_post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/10/浏览器兼容问题/">浏览器兼容问题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/10/浏览器兼容问题/" class="article-date">
-  <time datetime="2020-11-10T02:33:13.000Z" itemprop="datePublished">2020-11-10</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。"><a href="#windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。" class="headerlink" title="windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。"></a>windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="comment">// Tue Nov 10 2020 11:58:59 GMT+0800 (China Standard Time)</span></span><br></pre></td></tr></table></figure>
-
-<p>GMT(Greenwich Mean Time) 格林尼治标准时间<br>GMT+0800(China Standard Time) 北京时间</p>
-<p>UTC(Universal Time Coordinated)协调世界时。当前的世界标准时间。<br>UTC 标准时间格式 <code>2019-11-11T00:00:00.000Z</code></p>
-<ol>
-<li><code>T</code>代表使用 UTC 时间。</li>
-<li><code>Z</code>是 UTC 的偏移量，表示 UTC 时间与本地时间的差别，即时差。<ul>
-<li>Z 表示 0 时区，写 Z 或不写时表示不偏移。即 GMT/0 时区。</li>
-<li>需要偏移时，将Z替换为真实的偏移量。偏移量可用以下形式表示: ±[hh]:[mm]、±[hh][mm]、±[hh]。</li>
-<li>目前有39个UTC偏移量（当伊朗试行夏令时时只有38个）</li>
-</ul>
-</li>
-<li>时间数值表示在限定 UTC 格式和偏移量的情况下，偏移时区的本地时间。</li>
-</ol>
-<p>UNIX TIME，也叫做 POSIX 时间或纪元时间（Epoch Time)，记录时间流逝，也叫时间戳。定义为从1970-01-01T00:00:00开始流逝的秒数，不考虑闰秒。之后的时间是正数，之前的是负数。</p>
-<p>需要补充，转换方法</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckmllzqus00730aid1xbitcir"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
 
     </footer>
 

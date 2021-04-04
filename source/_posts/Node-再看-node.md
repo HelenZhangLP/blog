@@ -6,6 +6,9 @@ tags:
 ---
 [Node.js 究竟是什么？](https://www.ibm.com/developerworks/cn/opensource/os-nodejs/)
 Node 旨在提供一种简单构建可伸缩的网络程序方法
+Node.js 是前端工程化的主要工具
+Node.js 是一个基于 Chrome V8 引擎的 Javascript 运行环境，它使 Javascript 能够脱离浏览器直接运行。
+Node.js 的开源命令行工具，可以让 Javascript 运行在本地。
 ### 认识 Node 交个朋友
 Node 是服务器程序，特色就是处理多并发，处理方式则是每个连接会发射一个 Node 引擎进程中的运行事件，不使用锁，所以也不会有死锁的情况，也不生成 os 进程，它的服务器能支持上万并发。
 Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrome 浏览器的底层 Javascript 引擎。

@@ -7,7 +7,13 @@ tags:
 - Node
 ---
 
-#### npm
+#### NPM - Node Package Manager
+node 包管理工具，是全球最大的开源库生态系统。
+网络环境，node 包安装或下载速度慢时，可使用淘宝 npm 镜像 cnpm
+```bash
+# npm install -g cnpm --registry=https://registry.npm.taobao.org
+# cnpm install <package_name>
+```
 ```
 Usage: npm <command>
 

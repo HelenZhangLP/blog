@@ -52,6 +52,126 @@
 
     
       
+        <article id="_post-浏览器工作原理——数据的传输过程" class="article article-type-_post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/11/浏览器工作原理——数据的传输过程/">浏览器工作原理——数据的传输过程</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/11/浏览器工作原理——数据的传输过程/" class="article-date">
+  <time datetime="2020-11-11T05:32:59.000Z" itemprop="datePublished">2020-11-11</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>First Print 简称 FP，是指页面加载到首次开始绘制的时长。网络的加载速度是影响 FP 的重要因素。网络协议 HTTP、WebSocket 都是基于 TCP/IP 的。那么 web 世界中，TCP/IP 是如何工作的呢？</p>
+<h2 id="数据的传输过程"><a href="#数据的传输过程" class="headerlink" title="数据的传输过程"></a>数据的传输过程</h2><p>互联网中数据是通过数据包传递。如果数据量很大时会拆成很多小的数据包传输。</p>
+<h3 id="1-数据包如何送达主机"><a href="#1-数据包如何送达主机" class="headerlink" title="1.  数据包如何送达主机"></a>1.  数据包如何送达主机</h3><p>数据包在互联网上进行传输需要符合网际协议（Internet Protocol, IP）标准。</p>
+<div id="sequence-0"></div>
+        
+          <a class="article-more-link" href="/2020/11/11/浏览器工作原理——数据的传输过程/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckmvmbnhx006or1w96hffrotx"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="_post-浏览器兼容问题" class="article article-type-_post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/11/10/浏览器兼容问题/">浏览器兼容问题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2020/11/10/浏览器兼容问题/" class="article-date">
+  <time datetime="2020-11-10T02:33:13.000Z" itemprop="datePublished">2020-11-10</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。"><a href="#windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。" class="headerlink" title="windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。"></a>windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="comment">// Tue Nov 10 2020 11:58:59 GMT+0800 (China Standard Time)</span></span><br></pre></td></tr></table></figure>
+
+<p>GMT(Greenwich Mean Time) 格林尼治标准时间<br>GMT+0800(China Standard Time) 北京时间</p>
+<p>UTC(Universal Time Coordinated)协调世界时。当前的世界标准时间。<br>UTC 标准时间格式 <code>2019-11-11T00:00:00.000Z</code></p>
+<ol>
+<li><code>T</code>代表使用 UTC 时间。</li>
+<li><code>Z</code>是 UTC 的偏移量，表示 UTC 时间与本地时间的差别，即时差。<ul>
+<li>Z 表示 0 时区，写 Z 或不写时表示不偏移。即 GMT/0 时区。</li>
+<li>需要偏移时，将Z替换为真实的偏移量。偏移量可用以下形式表示: ±[hh]:[mm]、±[hh][mm]、±[hh]。</li>
+<li>目前有39个UTC偏移量（当伊朗试行夏令时时只有38个）</li>
+</ul>
+</li>
+<li>时间数值表示在限定 UTC 格式和偏移量的情况下，偏移时区的本地时间。</li>
+</ol>
+<p>UNIX TIME，也叫做 POSIX 时间或纪元时间（Epoch Time)，记录时间流逝，也叫时间戳。定义为从1970-01-01T00:00:00开始流逝的秒数，不考虑闰秒。之后的时间是正数，之前的是负数。</p>
+<p>需要补充，转换方法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckmvmbnhn005xr1w9bl2ho7si"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="_post-Javascript-数组" class="article article-type-_post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -111,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckmllzqsf00120aidmwd1nr75"
+      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckmvmbngd0027r1w9joa0hppz"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -176,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckmllzqrw00050aidtnknxqes"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckmvmbnfz0019r1w9c5gsgp6h"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -228,7 +348,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckmllzqsc000s0aidpog9d29a"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckmvmbng8001zr1w9sj6f2dr7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
@@ -284,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckmllzqsr002b0aide2houbhy"
+      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckmvmbngt003or1w98il4jy3e"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -358,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckmllzqsp00260aidojs8rl1e"
+      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckmvmbngs003jr1w9jmk51e29"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -411,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="ckmllzqry00060aid2pn37y1y"
+      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="ckmvmbnfx0016r1w9m11gac07"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -468,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/" data-id="ckmllzqrz00080aid3rc63bju"
+      <a data-url="https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/" data-id="ckmvmbng2001jr1w9207o2iv5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -539,116 +659,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/09/21/CSS-你不知道的百分比/" data-id="ckmllzqs500090aidl6oupbyx"
+      <a data-url="https://helenzhanglp.github.io/2020/09/21/CSS-你不知道的百分比/" data-id="ckmvmbng1001hr1w9mu65gr9x"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-实体滚动" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/23/CSS-实体滚动/">CSS 动画实现滚动</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/23/CSS-实体滚动/" class="article-date">
-  <time datetime="2020-04-23T05:04:18.000Z" itemprop="datePublished">2020-04-23</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="CSS-动画实现滚动"><a href="#CSS-动画实现滚动" class="headerlink" title="CSS 动画实现滚动"></a>CSS 动画实现滚动</h3><blockquote>
-<p>animation: animation-name（动画名称） animation-duration（动画完成一个周期花费的秒、毫秒）</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.marquee</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1070px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">animation</span>: roll-animation <span class="number">50s</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 规定动画</span><br><span class="line"><span class="keyword">@keyframes</span> animation-roll &#123;</span><br><span class="line">  <span class="selector-tag">from</span>: &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">to</span>: &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/23/CSS-实体滚动/" data-id="ckmllzqsh00190aidn76u92eu"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-android-问题" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/21/android-问题/">android 问题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/21/android-问题/" class="article-date">
-  <time datetime="2020-04-21T07:11:06.000Z" itemprop="datePublished">2020-04-21</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><blockquote>
-<p>安卓启动 10.0.2.2 =&gt; localhost</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/21/android-问题/" data-id="ckmllzqsq00290aidl06is3hg"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/疑难/">疑难</a></li></ul>
 
     </footer>
 

@@ -21,9 +21,9 @@ Reducer 本质上一个纯函数，接收 state and action，执行相应操作�
 
 {%plantuml%}
 component “React 组件” as ReactComponent #7e9;line.dashed;line:green
-rectangle " " as outer #fff;line.dashed {
+rectangle "Redux" as outer #fff;line.dashed {
   card Action #aliceblue;line.dashed;line:blue;text:blue;
-  rectangle " " as inner #fff;line.dashed {
+  rectangle "Store" as inner #fff;line.dashed {
     card Reducer #aliceblue;line.dashed;line:blue;text:blue;
     card State #aliceblue;line.dashed;line:blue;text:blue;
   }
@@ -98,6 +98,24 @@ State --> ReactComponent #black;text:red : Update
   })
 </script>
 ```
+
+## React-Redux 中的 Provider 容器组件
+传递参数多的时采用 React-Redux 库的 Provider 组件容器解决，传递太多参数造成的性能问题，同时还提供了一个 connect 方法来连接与 Store 对象
+{%plantuml%}
+component "React 组件" as ReactComponent #7e9;line.dashed;line:green
+rectangle "Redux" as outer #fff;line.dashed {
+  card "Action" #aliceblue;line.dashed;line:blue;text:blue
+  rectangle "Store" as inner #fff;line.dashed {
+    card "Reducer" #aliceblue;line.dashed;line:blue;text:blue
+    card "State" #aliceblue;line.dashed;line:blue;text:blue
+  }
+  Action --> Reducer #black;text:red : action.type
+  Reducer --> State #black;text:red : return new state
+}
+ReactComponent --> Action #black;text:red : mapDispatchToProps
+State --> ReactComponent #black;text:red : mapStateToProps
+{%endplantuml%}
+Provider 组件将 Store 对象包装在顶层容器中，就可以被其子组件继承。
 
 哈哈，请问你是要闹哪样？
 `import { connect } from '@tarojs/redux';`
