@@ -52,6 +52,64 @@
 
     
       
+        <article id="post-浏览器工作原理——setTimeout是怎么实现的" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">浏览器工作原理——浏览器中的 setTimeout和XMLHttpRequest 是怎么实现的</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" class="article-date">
+  <time datetime="2021-01-08T01:27:04.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="浏览器中的-setTimeout-是怎么实现的"><a href="#浏览器中的-setTimeout-是怎么实现的" class="headerlink" title="浏览器中的 setTimeout 是怎么实现的"></a>浏览器中的 setTimeout 是怎么实现的</h2><p>浏览器页面是由消息队列和事件循环系统来驱动的。<br>渲染进程中所有运行在主线程上的任务都需要先添加到消息队列中，事件循环系统再按照顺序执行消息队列中的任务。如下：</p>
+<ul>
+<li>接收到 html 文档数据时，渲染引擎会将 <code>解析 DOM 事件</code> 添加到消息队列；</li>
+<li>用户改变窗口大小时，渲染引擎会将 <code>重新布局</code> 事件添加到消息队列中；</li>
+<li>触发 JavaScript 垃圾回收机制时，渲染引擎会将 <code>垃圾回收任务</code> 添加到消息队列；</li>
+<li>执行一段异步 JavaScript 代码时，也会将<code>执行任务</code>添加到消息队列</li>
+</ul>
+        
+          <a class="article-more-link" href="/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2021/01/08/浏览器工作原理——setTimeout是怎么实现的/" data-id="ckn31tsb4006f88w9wsy37ukd"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-浏览器工作原理——Javascript数据存储" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -94,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——Javascript数据存储/" data-id="ckmvmbnho0062r1w98dlgl2xf"
+      <a data-url="https://helenzhanglp.github.io/2020/12/10/浏览器工作原理——Javascript数据存储/" data-id="ckn31tsaw006188w9m7t856od"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -150,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckmvmbnh6004nr1w9vafwqbvo"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/react-虚拟DOM和性能优化/" data-id="ckn31tsab004p88w9evosehto"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -219,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckmvmbnh00049r1w93jrn6zh6"
+      <a data-url="https://helenzhanglp.github.io/2020/12/02/mock数据/" data-id="ckn31tsa2004688w94h1lvakc"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mockjs/">mockjs</a></li></ul>
@@ -276,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckmvmbnh6004lr1w9l4j6jipd"
+      <a data-url="https://helenzhanglp.github.io/2020/11/29/react-component/" data-id="ckn31tsa8004g88w9rpr3io13"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
@@ -348,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——Javascript执行机制/" data-id="ckmvmbnho0060r1w9sj3fvf7j"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——Javascript执行机制/" data-id="ckn31tsav005y88w9y4w3pqj3"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -410,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckmvmbni0006xr1w9bk14plcp"
+      <a data-url="https://helenzhanglp.github.io/2020/11/18/浏览器工作原理——页面渲染/" data-id="ckn31tsbc006r88w9lgf3if7m"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -464,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckmvmbngz0044r1w9w2tmyim9"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/hexo-插件系列/" data-id="ckn31ts9z004088w9uw15wqks"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -522,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckmvmbnht006hr1w9bksompvw"
+      <a data-url="https://helenzhanglp.github.io/2020/11/17/浏览器工作原理——从输入URL-到页面展示，这中间发生了什么/" data-id="ckn31tsb4006i88w9f5hnjso0"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
@@ -567,13 +625,15 @@
       
       
       
-        <blockquote>
+        <p>浏览器网络进程<br>浏览器页面渲染过程<br>JavaScript 执行流程<br>Web 安全理论</p>
+<p>Chrome 浏览器多进程架构<br>国内大部分主流浏览器都是基于 Chromium 二次开发<br>Chrome 是目前世界上使用率最高的浏览器</p>
+<blockquote>
 <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><blockquote>
 <h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a><a href="#进程和线程">进程和线程</a></h3><pre><code>进程和线程相关以及合并处理</code></pre><h3 id="单进程浏览器时代"><a href="#单进程浏览器时代" class="headerlink" title="单进程浏览器时代"></a><a href="#单进程浏览器时代">单进程浏览器时代</a></h3><pre><code>单进程浏览器时代的问题在于插件、渲染进程、主线程都处于同一进程，会引发安全、稳定性和流畅性的问题</code></pre><h3 id="多进程浏览器时代"><a href="#多进程浏览器时代" class="headerlink" title="多进程浏览器时代"></a><a href="多进程浏览器时代">多进程浏览器时代</a></h3></blockquote>
 </blockquote>
 <p>浏览器多进程架构<br>基于 Chrome 分析浏览器多进程架构<br><strong>Chrome 启动一个页面需要启动多少进程——<code>启动 Chrome 任务管理器查看</code></strong></p>
 <blockquote>
-<p>chrome 选项 -&gt; more tools -&gt; task manager<br><img src="https://static001.geekbang.org/resource/image/ce/9e/ce7f8cfe212bec0f53360422e3b03a9e.png" alt="img"></p>
+<p>chrome 选项 -&gt; more tools -&gt; task manager<br><img src="/images/browser/taskmanage.jpg" alt="img"></p>
 </blockquote>
         
           <a class="article-more-link" href="/2020/11/13/浏览器工作原理——chrome打开一个页面执行的进程/">更多...</a>
@@ -581,60 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器工作原理——chrome打开一个页面执行的进程/" data-id="ckmvmbnhs006cr1w9mzx4qeky"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-浏览器工作原理——http" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/12/浏览器工作原理——http/">浏览器工作原理——http</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/12/浏览器工作原理——http/" class="article-date">
-  <time datetime="2020-11-12T08:19:06.000Z" itemprop="datePublished">2020-11-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>XHR -&gt; Request Headers -&gt; view source</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET /shakespeare/jsd/exchange_rates/current HTTP/1.1</span><br><span class="line">Host: www.jianshu.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Accept: application/json</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36</span><br><span class="line">Sec-Fetch-Site: same-origin</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.jianshu.com/p/6dbcc3aff98b</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8</span><br><span class="line">Cookie: __yadk_uid=b5C1W8FTbvn2CMErMOWLRvRBfqtcfZyR; _ga=GA1.2.1361763253.1581860875; __gads=ID=e22e0402239bcdd8-22e9450047c200f4:T=1593494469:RT=1593494469:S=ALNI_MbgAdC1pDH1wBUKwaWC6teLb00cyg; read_mode=day; default_font=font2; locale=zh-CN; UM_distinctid=175537082be1a1-08e93312a69e19-4d112a29-38400-175537082bf1b5; CNZZDATA1278917561=2017572215-1603418142-https%253A%252F%252Fwww.jianshu.com%252F%7C1603447023; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22%24device_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22props%22%3A%7B%22%24latest_referrer%22%3A%22https%3A%2F%2Fwww.baidu.com%2Flink%22%2C%22%24latest_traffic_source_type%22%3A%22%E8%87%AA%E7%84%B6%E6%90%9C%E7%B4%A2%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC%22%7D%7D; _gid=GA1.2.1053313438.1605150552; _m7e_session_core=559108e9b8dcd6adff1770cd4662ce96; signin_redirect=https://www.jianshu.com/p/6dbcc3aff98b; Hm_lvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1604707994,1604975982,1605150555,1605156601; _gat=1; Hm_lpvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1605170209</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/11/12/浏览器工作原理——http/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckmvmbnhs006er1w98mvils4f"
+      <a data-url="https://helenzhanglp.github.io/2020/11/13/浏览器工作原理——chrome打开一个页面执行的进程/" data-id="ckn31tsax006588w9qntkjo3y"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器工作原理/">浏览器工作原理</a></li></ul>

@@ -52,6 +52,96 @@
 
     
       
+        <article id="post-Node-再看-node" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/02/Node-再看-node/">再看 node</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/02/Node-再看-node/" class="article-date">
+  <time datetime="2019-03-02T02:37:10.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/" target="_blank" rel="noopener">Node.js 究竟是什么？</a><br>Node 旨在提供一种简单构建可伸缩的网络程序方法<br>Node.js 是前端工程化的主要工具<br>Node.js 是一个基于 Chrome V8 引擎的 Javascript 运行环境，它使 Javascript 能够脱离浏览器直接运行。<br>Node.js 的开源命令行工具，可以让 Javascript 运行在本地。</p>
+<h3 id="认识-Node-交个朋友"><a href="#认识-Node-交个朋友" class="headerlink" title="认识 Node 交个朋友"></a>认识 Node 交个朋友</h3><p>Node 是服务器程序，特色就是处理多并发，处理方式则是每个连接会发射一个 Node 引擎进程中的运行事件，不使用锁，所以也不会有死锁的情况，也不生成 os 进程，它的服务器能支持上万并发。<br>Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrome 浏览器的底层 Javascript 引擎。</p>
+<h3 id="Node-事件驱动编程"><a href="#Node-事件驱动编程" class="headerlink" title="Node 事件驱动编程"></a>Node 事件驱动编程</h3><p>没有过度设计，没有面向对象、没有接口，Javascript 是驱动编程语言。有闭包、可以使用匿名函数。它只需要监听事件，调用匿名函数回调，其它由系统处理。</p>
+<h3 id="Node-的包管理工具-NPM"><a href="#Node-的包管理工具-NPM" class="headerlink" title="Node 的包管理工具 NPM"></a>Node 的包管理工具 NPM</h3><p>开发过程中通常需要依赖第三方框架，如 Jquery/element-ui 等一系列的第三方框架。这些第三方框架之间或许也是在相互依赖，直接下载、解压、处理相互间的引用似乎非常繁锁，顺应天意，包管理工具应用而生。而 Node 的包管理工具就是 NPM。</p>
+<h3 id="简单说说-Node-安装"><a href="#简单说说-Node-安装" class="headerlink" title="简单说说 Node 安装"></a>简单说说 Node 安装</h3><p>两种方式：</p>
+<ol>
+<li><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node 官网</a>下载自己系统相应的包，通过图型界面安装。</li>
+<li><code>brew install node</code> 通过命令安装，但前题是你安装过 <code>HomeBrew</code></li>
+</ol>
+<p>检查是否安装成功：<code>node -v</code> &amp;&amp; <code>npm -v</code></p>
+<h3 id="NODE-版本切换-n"><a href="#NODE-版本切换-n" class="headerlink" title="NODE 版本切换 n"></a>NODE 版本切换 n</h3><ol>
+<li><p>n 的安装 <code>npm install -g n</code><br>查看 n 是否安装成功 <code>n -V</code></p>
+</li>
+<li><p>用 n 切换 node 版本时遇到的问题及解决办法</p>
+<ul>
+<li><p>问题描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pna.nextTick is not a function</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决办法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ n lts <span class="comment"># Install or activate the latest LTS node release</span></span><br><span class="line">$ npm install -g npm</span><br><span class="line">$ n stable <span class="comment"># Install or activate the latest stable  node release</span></span><br><span class="line">$ npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="NODE-npm-install-报错"><a href="#NODE-npm-install-报错" class="headerlink" title="NODE npm install 报错"></a>NODE npm install 报错</h3><p><img src="/images/node/node_error_decies.png" alt="alt"></p>
+<blockquote>
+<p>关于这个报错，网络分析最多的原因是镜像引起的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm config get registry # 获取当前系统设置的镜像</span><br><span class="line">https://registry.npmjs.com/</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看当前镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry http://registry.npm.taobao.org/ # 设置当前系统的镜像为淘宝镜像</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重置镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -rf package.lock.json（或 yarn.lock） # 删除 lock 文件</span><br><span class="line">npm cache clean --force # 清除缓存</span><br><span class="line">npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。</span><br><span class="line">npm i # 重新安装</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckn31ts9f002p88w9tmh67h5q"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
         <article id="post-vue-use-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -95,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckmvmbnhe0057r1w9yoqfobyo"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckn31tsai005288w9h2h8zjl4"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
@@ -185,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckmvmbnhg005cr1w9w2uvo6ah"
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckn31tsak005588w95rsashj7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -249,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckmvmbni1006zr1w96aktklvm"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckn31tsbe006t88w9w6gdx6a7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -335,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckmvmbnfy0017r1w9m2q6ynvp"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckn31ts8s001688w9jfrxqdj3"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -397,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckmvmbng3001mr1w93z62k76b"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckn31ts8y001l88w9ovx9t6r7"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -456,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckmvmbng90022r1w9gi3u6422"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckn31ts94002088w9fec8mh5i"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -523,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckmvmbngl0030r1w9putw7dw3"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckn31ts9g002t88w906ngy1v5"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -584,7 +674,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckmvmbngu003qr1w96rjp576w"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckn31ts9r003i88w9ffwgnjlc"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -642,69 +732,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckmvmbngw003vr1w96pudpdtn"
+      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckn31ts9x003t88w9e2liglib"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-hexo-安装图片插件" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/03/hexo-安装图片插件/">hexo 安装图片插件 ~ hexo + 七牛云</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/03/hexo-安装图片插件/" class="article-date">
-  <time datetime="2019-02-03T03:49:08.000Z" itemprop="datePublished">2019-02-03</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>想要一块地盘，想要保存宝宝的照片，点点滴<br>想要宝宝成长开辟地盘<br>于是。。。<br>七牛云<br>hexo</p>
-<img title="龙猫" alt="七牛云" src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/longmao.jpeg?imageView2/2/w/225">
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 语法</span></span><br><span class="line">&#123;% qnimg longmao.jpeg title:龙猫 at 七牛云 logo alt:七牛云 <span class="string">'class:'</span> extend:?imageView2/2/w/550 %&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2019/02/03/hexo-安装图片插件/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckmvmbngy0041r1w9wakp1sm1"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
 
     </footer>
 
