@@ -11,6 +11,12 @@ tags:
 ```Javascript
 {key: String.fromCharCode(215), id: 'times'},
 ```
+### react Error
+<font color="red">Warning: render(): Rendering components directly into document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try rendering into a container element created for your app</font>
+> 是在创建ReactDOM.render()时,放置的容器使用了document.body || document.getElementsByTagName('body')[0]等引起的错误，这样写会把第三方其他js给覆盖掉。
+**public/index.html 里面加入一个 div, 给出唯一的 id，避免覆盖，webpack 中 htmlWebpackPlugin 中加入这个模板**
+
+
 
 ## React 列表渲染
 
@@ -39,6 +45,7 @@ export default class Test extends Component {
   }
 }
 ```
+
 ```mermaid
 graph LR;
     用户界面交互-->状态;

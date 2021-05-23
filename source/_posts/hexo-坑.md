@@ -7,6 +7,11 @@ tags:
 - hexo
 ---
 
+## hexo 启动草稿服务
+```
+$ hexo g && hexo s --drafts
+```
+
 ## hexo deploy 没有反应
 `检查` \_config.yml 中 deploy 配置
 

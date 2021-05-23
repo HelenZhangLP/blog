@@ -52,245 +52,6 @@
 
     
       
-        <article id="post-Node-再看-node" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/02/Node-再看-node/">再看 node</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/02/Node-再看-node/" class="article-date">
-  <time datetime="2019-03-02T02:37:10.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p><a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/" target="_blank" rel="noopener">Node.js 究竟是什么？</a><br>Node 旨在提供一种简单构建可伸缩的网络程序方法<br>Node.js 是前端工程化的主要工具<br>Node.js 是一个基于 Chrome V8 引擎的 Javascript 运行环境，它使 Javascript 能够脱离浏览器直接运行。<br>Node.js 的开源命令行工具，可以让 Javascript 运行在本地。</p>
-<h3 id="认识-Node-交个朋友"><a href="#认识-Node-交个朋友" class="headerlink" title="认识 Node 交个朋友"></a>认识 Node 交个朋友</h3><p>Node 是服务器程序，特色就是处理多并发，处理方式则是每个连接会发射一个 Node 引擎进程中的运行事件，不使用锁，所以也不会有死锁的情况，也不生成 os 进程，它的服务器能支持上万并发。<br>Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrome 浏览器的底层 Javascript 引擎。</p>
-<h3 id="Node-事件驱动编程"><a href="#Node-事件驱动编程" class="headerlink" title="Node 事件驱动编程"></a>Node 事件驱动编程</h3><p>没有过度设计，没有面向对象、没有接口，Javascript 是驱动编程语言。有闭包、可以使用匿名函数。它只需要监听事件，调用匿名函数回调，其它由系统处理。</p>
-<h3 id="Node-的包管理工具-NPM"><a href="#Node-的包管理工具-NPM" class="headerlink" title="Node 的包管理工具 NPM"></a>Node 的包管理工具 NPM</h3><p>开发过程中通常需要依赖第三方框架，如 Jquery/element-ui 等一系列的第三方框架。这些第三方框架之间或许也是在相互依赖，直接下载、解压、处理相互间的引用似乎非常繁锁，顺应天意，包管理工具应用而生。而 Node 的包管理工具就是 NPM。</p>
-<h3 id="简单说说-Node-安装"><a href="#简单说说-Node-安装" class="headerlink" title="简单说说 Node 安装"></a>简单说说 Node 安装</h3><p>两种方式：</p>
-<ol>
-<li><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node 官网</a>下载自己系统相应的包，通过图型界面安装。</li>
-<li><code>brew install node</code> 通过命令安装，但前题是你安装过 <code>HomeBrew</code></li>
-</ol>
-<p>检查是否安装成功：<code>node -v</code> &amp;&amp; <code>npm -v</code></p>
-<h3 id="NODE-版本切换-n"><a href="#NODE-版本切换-n" class="headerlink" title="NODE 版本切换 n"></a>NODE 版本切换 n</h3><ol>
-<li><p>n 的安装 <code>npm install -g n</code><br>查看 n 是否安装成功 <code>n -V</code></p>
-</li>
-<li><p>用 n 切换 node 版本时遇到的问题及解决办法</p>
-<ul>
-<li><p>问题描述</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pna.nextTick is not a function</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决办法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ n lts <span class="comment"># Install or activate the latest LTS node release</span></span><br><span class="line">$ npm install -g npm</span><br><span class="line">$ n stable <span class="comment"># Install or activate the latest stable  node release</span></span><br><span class="line">$ npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="NODE-npm-install-报错"><a href="#NODE-npm-install-报错" class="headerlink" title="NODE npm install 报错"></a>NODE npm install 报错</h3><p><img src="/images/node/node_error_decies.png" alt="alt"></p>
-<blockquote>
-<p>关于这个报错，网络分析最多的原因是镜像引起的</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm config get registry # 获取当前系统设置的镜像</span><br><span class="line">https://registry.npmjs.com/</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查看当前镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry http://registry.npm.taobao.org/ # 设置当前系统的镜像为淘宝镜像</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>重置镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -rf package.lock.json（或 yarn.lock） # 删除 lock 文件</span><br><span class="line">npm cache clean --force # 清除缓存</span><br><span class="line">npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。</span><br><span class="line">npm i # 重新安装</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckn31ts9f002p88w9tmh67h5q"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-vue-use-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/25/vue-use-vue-component/">vue.use 与 vue.component</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/25/vue-use-vue-component/" class="article-date">
-  <time datetime="2019-02-25T07:54:14.000Z" itemprop="datePublished">2019-02-25</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>Error - 1 弹层对象取自列表，列表数据在弹层编辑修改，编辑部分数据后，取消或关闭弹层，列表数据修改。<br>产生原因：vue 双向绑定<br>解决办法：copy Object, 对象重新 copy 一份</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">handlerUpdate(item) &#123;</span><br><span class="line">  <span class="comment">// 更新 item</span></span><br><span class="line">  <span class="keyword">this</span>.dialogVisible = !<span class="keyword">this</span>.dialogVisible</span><br><span class="line">  <span class="keyword">this</span>.dialogStatus = <span class="string">'edit'</span></span><br><span class="line">  <span class="keyword">this</span>.temp = <span class="built_in">Object</span>.assign(&#123;&#125;, item) <span class="comment">// copy obj</span></span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs[<span class="string">'dataForm'</span>].clearValidate()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm: Component = <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
-
-<p>以上写是不是有点奇怪，是的。我没见过，它是 <a href="https://flow.org/" target="_blank" rel="noopener">flow.js</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckn31tsai005288w9h2h8zjl4"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/02/25/前端构建工具/">前端构建工具</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/25/前端构建工具/" class="article-date">
-  <time datetime="2019-02-25T02:14:25.000Z" itemprop="datePublished">2019-02-25</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>公司之前的项目用的 grunt 构建项目的</p>
-<h3 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h3><p>Grunt 首页中可用的 Grunt 插件列表吸引到了我</p>
-<ul>
-<li>coffeeScript</li>
-<li>handlebas</li>
-<li>jade</li>
-<li>JShint</li>
-<li>less</li>
-<li>sass</li>
-<li>require.js</li>
-<li>stylus</li>
-</ul>
-<h4 id="Grunt-目前项目中使用到的插件"><a href="#Grunt-目前项目中使用到的插件" class="headerlink" title="Grunt - 目前项目中使用到的插件"></a>Grunt - 目前项目中使用到的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line"><span class="string">"grunt-autoprefixer"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line"><span class="string">"grunt-concurrent"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="comment">// 清除打包生成的文件，删除 dist 目录下的文件</span></span><br><span class="line"><span class="string">"grunt-contrib-clean"</span>: <span class="string">"^0.6.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-compress"</span>: <span class="string">"^0.13.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-concat"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-connect"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-copy"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-cssmin"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-htmlmin"</span>: <span class="string">"^0.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-imagemin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-jshint"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-rename"</span>: <span class="string">"0.0.3"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span>,</span><br><span class="line"><span class="comment">// 单元测试框架 Test-Driven Development</span></span><br><span class="line"><span class="string">"grunt-mocha"</span>: <span class="string">"^0.4.10"</span>,</span><br><span class="line"><span class="string">"grunt-newer"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line"><span class="string">"grunt-rev"</span>: <span class="string">"^0.1.0"</span>,</span><br><span class="line"><span class="string">"grunt-svgmin"</span>: <span class="string">"^0.4.0"</span>,</span><br><span class="line"><span class="string">"grunt-usemin"</span>: <span class="string">"^2.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-wiredep"</span>: <span class="string">"^1.7.0"</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Grunt-API"><a href="#Grunt-API" class="headerlink" title="Grunt API"></a>Grunt API</h4><ul>
-<li>grunt.task</li>
-</ul>
-<ul>
-<li><input disabled type="checkbox"> 注册任务 - 别名任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>注册任务列表</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'qunit'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><input disabled type="checkbox"> 注册任务 - 任务函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, --allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    grunt.task.run([</span><br><span class="line">      <span class="string">'clean:server'</span>,</span><br><span class="line">      <span class="string">'wiredep'</span>,</span><br><span class="line">      <span class="string">'concurrent:server'</span>,</span><br><span class="line">      <span class="string">'autoprefixer'</span>,</span><br><span class="line">      <span class="string">'connect:livereload'</span>,</span><br><span class="line">      <span class="string">'watch'</span></span><br><span class="line">    ]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>grunt.util<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="bower-包管理工具"><a href="#bower-包管理工具" class="headerlink" title="bower 包管理工具"></a>bower 包管理工具</h4><h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>proxy 解决跨域问题</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckn31tsak005588w95rsashj7"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
         <article id="post-跨域" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -339,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckn31tsbe006t88w9w6gdx6a7"
+      <a data-url="https://helenzhanglp.github.io/2019/02/22/跨域/" data-id="ckocjcpbr007njiw90lqy4u6n"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源策略/">同源策略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
@@ -425,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckn31ts8s001688w9jfrxqdj3"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-BFC/" data-id="ckocjcp8w001pjiw9vmn33s11"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -487,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckn31ts8y001l88w9ovx9t6r7"
+      <a data-url="https://helenzhanglp.github.io/2019/02/20/CSS-盒模型/" data-id="ckocjcp950025jiw9zmvlcm3k"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -546,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckn31ts94002088w9fec8mh5i"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Javascript-中的实例属性与原型属性/" data-id="ckocjcp9f002qjiw9j78wth51"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -613,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckn31ts9g002t88w906ngy1v5"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/Node-常用命令/" data-id="ckocjcpa10040jiw9xald1lla"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -674,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckn31ts9r003i88w9ffwgnjlc"
+      <a data-url="https://helenzhanglp.github.io/2019/02/08/bluebird-Promise/" data-id="ckocjcpa40048jiw9x0uxqxbx"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -732,10 +493,211 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckn31ts9x003t88w9e2liglib"
+      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckocjcpa8004jjiw9bv13pjvo"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-hexo-安装图片插件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/03/hexo-安装图片插件/">hexo 安装图片插件 ~ hexo + 七牛云</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/03/hexo-安装图片插件/" class="article-date">
+  <time datetime="2019-02-03T03:49:08.000Z" itemprop="datePublished">2019-02-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>想要一块地盘，想要保存宝宝的照片，点点滴<br>想要宝宝成长开辟地盘<br>于是。。。<br>七牛云<br>hexo</p>
+<img title="龙猫" alt="七牛云" src="http://audreyzhang.s3-cn-east-1.qiniucs.com/static/images/longmao.jpeg?imageView2/2/w/225">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 语法</span></span><br><span class="line">&#123;% qnimg longmao.jpeg title:龙猫 at 七牛云 logo alt:七牛云 <span class="string">'class:'</span> extend:?imageView2/2/w/550 %&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/2019/02/03/hexo-安装图片插件/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/03/hexo-安装图片插件/" data-id="ckocjcpab004ojiw90pcspj49"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/七牛云/">七牛云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-EN-Dash" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/01/EN-Dash/">EN Dash</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/01/EN-Dash/" class="article-date">
+  <time datetime="2019-02-01T10:03:50.000Z" itemprop="datePublished">2019-02-01</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="EN-Dash-破折号、连字符"><a href="#EN-Dash-破折号、连字符" class="headerlink" title="EN Dash - 破折号、连字符"></a>EN Dash - 破折号、连字符</h2><blockquote>
+<p>英语中连字符的两大功能</p>
+</blockquote>
+<ol>
+<li><p>用于移行，把不在同一行的某个单词连接起来；</p>
+</li>
+<li><p>把两个或两个以上的单词连接起来，构成新的形容词</p>
+        
+          <a class="article-more-link" href="/2019/02/01/EN-Dash/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/01/EN-Dash/" data-id="ckocjcp98002ejiw9t05xtlo0"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/English/">English</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/词法/">词法</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-工具-atom-插件" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/31/工具-atom-插件/">atom 插件</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/31/工具-atom-插件/" class="article-date">
+  <time datetime="2019-01-31T08:44:42.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a><a href="https://blog.csdn.net/qq_40963664/article/details/79250424" target="_blank" rel="noopener">快捷键</a></h3><table>
+<thead>
+<tr>
+<th>keyName</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+G</td>
+<td>快速跳转到某一行</td>
+</tr>
+</tbody></table>
+<h4 id="markdown-preview-plus"><a href="#markdown-preview-plus" class="headerlink" title="markdown-preview-plus"></a>markdown-preview-plus</h4><ol>
+<li>command + shift + p</li>
+<li>markdown preview toggle</li>
+</ol>
+<h4 id="platformio-ide-terminal"><a href="#platformio-ide-terminal" class="headerlink" title="platformio-ide-terminal"></a>platformio-ide-terminal</h4><ol>
+<li>command + shift + p</li>
+<li>terminal new / terminal close<blockquote>
+<p>安装 Installation Failure platformio-atom-ide-terminal #925<br>install “terminus” it is a fork of platformio-ide-terminal</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="docblockr"><a href="#docblockr" class="headerlink" title="docblockr"></a><a href="https://atom.io/packages/docblockr" target="_blank" rel="noopener">docblockr</a></h4><p>用于自动生成注释（annotation）</p>
+<h4 id="authcompletePaths"><a href="#authcompletePaths" class="headerlink" title="authcompletePaths"></a>authcompletePaths</h4><p>自动补全 path</p>
+        
+          <a class="article-more-link" href="/2019/01/31/工具-atom-插件/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/01/31/工具-atom-插件/" data-id="ckocjcpb30064jiw93iwc9x0a"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop-tools/">develop tools</a></li></ul>
 
     </footer>
 

@@ -52,137 +52,6 @@
 
     
       
-        <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/12/http-请求状态码/">http 请求状态码</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/12/http-请求状态码/" class="article-date">
-  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
-<p>请求成功，默认状态下 200 响应可以被缓存</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
-<li>HEAD: 响应的消息体为头部信息。</li>
-<li>POST: 响应的消息体中包含此次请求的结果。</li>
-<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
-<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
-</ul>
-</blockquote>
-        
-          <a class="article-more-link" href="/2019/06/12/http-请求状态码/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckn31tsa4004988w9u12pyp6m"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-工具-代码管理-git坑" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/06/03/工具-代码管理-git坑/">git 坑</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/03/工具-代码管理-git坑/" class="article-date">
-  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
-<p>.gitignore 中添加 .idea/ 没用</p>
-</blockquote>
-<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
-
-<h3 id="macos-升级后-git-编译错误"><a href="#macos-升级后-git-编译错误" class="headerlink" title="macos 升级后 git 编译错误"></a>macos 升级后 git 编译错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$&gt; git</span><br><span class="line">dyld: Symbol not found: _OBJC_IVAR_$_NSFont._fFlags</span><br><span class="line">  Referenced from: /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">  Expected in: /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit</span><br><span class="line"> in /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">gcc: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</span><br><span class="line">gcc: error: You can set the path to the Xcode folder using /usr/bin/xcode-select -switch</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>git: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</p>
-</blockquote>
-<p><strong>解决办法</strong></p>
-<blockquote>
-<p>xcode-select –install<br>sudo /usr/bin/xcode-select –switch /Library/Developer/CommandLineTools/</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/03/工具-代码管理-git坑/" data-id="ckn31tsan005c88w9eedjr5s8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
         <article id="post-NodeJs-学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -222,7 +91,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckn31ts9i002y88w9ncfmpqoc"
+      <a data-url="https://helenzhanglp.github.io/2019/05/31/NodeJs-学习笔记/" data-id="ckocjcpa0003wjiw9d0ewi9qv"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -274,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckn31tsal005788w9x5pre4jc"
+      <a data-url="https://helenzhanglp.github.io/2019/05/21/分析-hexo-脚手架/" data-id="ckocjcpb0005xjiw9yljdq3vf"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -328,120 +197,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckn31ts8u001a88w97mn6yzv4"
+      <a data-url="https://helenzhanglp.github.io/2019/05/13/CSS-display-none-vs-visibility-hidden/" data-id="ckocjcp910020jiw9lmyrqggh"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-随笔" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/05/09/随笔/">随笔</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/05/09/随笔/" class="article-date">
-  <time datetime="2019-05-09T07:57:19.000Z" itemprop="datePublished">2019-05-09</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="模块打包工具-Browserify"><a href="#模块打包工具-Browserify" class="headerlink" title="模块打包工具 Browserify"></a>模块打包工具 Browserify</h3><p>模块化工具 require.js sea.js<br>模块化实现了项目的高内聚低耦合，降低模块与模块之间的依赖关系<br>Browserify 是一个浏览器端代码模块化的 JavaScript 打包工具</p>
-<h3 id="New-Question"><a href="#New-Question" class="headerlink" title="New Question"></a>New Question</h3><p>javaScript 中 function 与 object 的关系</p>
-<h3 id="本地服务器"><a href="#本地服务器" class="headerlink" title="本地服务器"></a>本地服务器</h3><ul>
-<li>liveServer</li>
-<li>httpServer</li>
-<li>WampServer</li>
-</ul>
-<h3 id="familiar-essay"><a href="#familiar-essay" class="headerlink" title="familiar essay"></a>familiar essay</h3><p>text-align 行内元素水平居中<br>inline-block 行内元素，没有宽高，用 padding + 文本撑开<br>inline-block 行内元素，设置 padding 会从父元素溢出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://app.zslb.xyz/api/order/add_refund?orderId=289&amp;amount=1</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 405</span><br><span class="line">Remote Address: 118.25.170.213:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
-
-<p>服务器端请求为 post，与当前 request method get 冲突</p>
-<blockquote>
-<p>请求行中指定的请求方法不能被用于请求相应的资源。<br>  该响应必须返回一个Allow 头信息用以表示出当前资源能够接受的请求方法的列表。<br>  鉴于 PUT，DELETE 方法会对服务器上的资源进行写操作，因而绝大部分的网页服务器都不支持或者在默认配置下不允许上述请求方法，对于此类请求均会返回405错误。</p>
-</blockquote>
-<p>元素设置 position: absolute 或 float: left 会脱离文档流</p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="tip-浏览器缓存功能"><a href="#tip-浏览器缓存功能" class="headerlink" title="tip: 浏览器缓存功能"></a><code>tip:</code> 浏览器缓存功能</h3><p>浏览网页时，浏览器会暂存网页静态资源，包括外部的 css、javascript、图片、影像等。当用户在同一浏览器浏览同一网页时，不会重新加载静态资源。优点是加快网页加载速度，减少服务器负担。缺点是当静态资源修改，缓存未到期，那么浏览器会显示缓存的旧数据。除非用户清缓存或 ctrl+f5 强制刷新重新加载。</p>
-<blockquote>
-<p><code>解决办法：</code>修改静态资源后，在外部链接的文件名后加上 ？+任意字符串，可以是版本号或日期，不同于旧片酬就可以。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...html</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;script src=&quot;./t.js?v20120929&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。"><a href="#tip-JavaScript-数值是采用-IEEE-754-双精度-64-位格式存储，IEEE-754-标准的浮点数并不能精确地表示小数，小数运算时需要小心。" class="headerlink" title="tip: JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。"></a><code>tip:</code> JavaScript 数值是采用 IEEE 754 双精度 64 位格式存储，IEEE 754 标准的浮点数并不能精确地表示小数，小数运算时需要小心。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span></span><br><span class="line"><span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>解决办法：</code></p>
-</blockquote>
-<ol>
-<li><p>将小数运算转换成整数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>)/<span class="number">10</span></span><br><span class="line"><span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用内建函数强制转换为指定位数的小数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// "0.30"</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="tip：-null-amp-amp-undefined"><a href="#tip：-null-amp-amp-undefined" class="headerlink" title="tip： null &amp;&amp; undefined"></a><code>tip：</code> null &amp;&amp; undefined</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存"><a href="#tip：-Garbage-Collection-会在变量超出作用域时回收，释放其占用的内存" class="headerlink" title="tip： Garbage Collection 会在变量超出作用域时回收，释放其占用的内存"></a><code>tip：</code> Garbage Collection 会在变量超出作用域时回收，释放其占用的内存</h3><h3 id="tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。"><a href="#tip：-ECMAScript5-标准之后允许开发者通过属性描述器接口-PropertyDescriptor-来修改属性并且可以定义新属性。可设置-value-writable-enumerable-configurable-set-get-等。若-enumerable-设为-false，则不可枚举，for-in-时该属性不会显示。" class="headerlink" title="tip： ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。"></a><code>tip：</code> ECMAScript5 标准之后允许开发者通过属性描述器接口 PropertyDescriptor 来修改属性并且可以定义新属性。可设置 value, writable, enumerable, configurable, set, get 等。若 enumerable 设为 false，则不可枚举，for in 时该属性不会显示。</h3><h3 id="tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。"><a href="#tip：-for…in-不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6-规范中，for…of-兼容性有些问题-IE-不支持。使用时多加考虑。" class="headerlink" title="tip： for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。"></a><code>tip：</code> for…in 不仅遍历对象的实例属性，也包括原型属性。不同的浏览器遍历的顺序不同。ES6 规范中，for…of 兼容性有些问题 IE 不支持。使用时多加考虑。</h3><h3 id="tip：-forEach-不能使用-break-指令中断循环。"><a href="#tip：-forEach-不能使用-break-指令中断循环。" class="headerlink" title="tip： forEach 不能使用 break 指令中断循环。"></a><code>tip：</code> forEach 不能使用 break 指令中断循环。</h3><p>JavaScript 为满足动态语言而诞生，由 Netscape 开发，嵌入 HTML 文件，基于对象和事件驱动的脚本语言<br>一 JavaScript 入门<br>sun 和 Netscape LiveScript -&gt; javascript<br>Microsoft JScript<br>1997 年 ECMA(Netscape, sun, Microsoft, Borland) 制定规范 ECMA-262 -&gt; ECMAScript</p>
-<p>JavaScript 的组成</p>
-<img src="http://www.plantuml.com/plantuml/svg/AyxEp2j8B4hCLKZEpot8pqlDAmakgSn9LIXAJIv9p4lFIUNYWZCLl1BB4eEJYp8BIXIgkHGKebsTVHqX_5WGryNV5qmxWUXQ0000">
-
-<p>ECMAScript 脚本语言的核心内容，定义了脚本语言的基本语法、基本语言<br>DOM（Document Object Model) 文档对象模型。HTML 和 XML 的编程接口。浏览器中的 DOM 把整个网页规划成由节点层级构成的树状结构文档<br>BOM(Browser Object Model)浏览器对象模型，描述了对浏览器窗口进行访问和操作的方法和接口</p>
-<p>JavaScript 特点</p>
-<ol>
-<li>解释型：不需要编译，直接在浏览器中运行时进行解释</li>
-<li>动态性：基于事件驱动的脚本语言，不需要通过 web 服务器就可以对用户的输入直接做出响应</li>
-<li>跨平台：只要具有浏览器 JavaScript 引擎，就可以执行 JavaScript 代码</li>
-<li>安全性，只能通过浏览器实现信息浏览器、交互</li>
-<li>基于对象：许多功能可以来自于脚本环境中对象的方法与脚本相互作用</li>
-</ol>
-<p>JavaScript 应用场景</p>
-<ol>
-<li>开发各种动态交互效果</li>
-<li>使用 Ajax 等技术与后端进行数据交互</li>
-</ol>
-<p>JavaScript 动态变化的原理以及执行顺序</p>
-<ol>
-<li>JavaScript 实现网页变化原理</li>
-<li>JavaScript 执行顺序</li>
-<li>JavaScript 调试</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/09/随笔/" data-id="ckn31tsbf006y88w9aogwsvu8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
 
     </footer>
 
@@ -499,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckn31ts8x001k88w97zk3kyzi"
+      <a data-url="https://helenzhanglp.github.io/2019/05/05/CSS-居中/" data-id="ckocjcp9c002jjiw9se9qleqq"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试系列/">面试系列</a></li></ul>
@@ -564,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckn31ts9l003588w9tdv9o7tx"
+      <a data-url="https://helenzhanglp.github.io/2019/04/04/Javascript-面试题-2/" data-id="ckocjcp9u003jjiw930no1gpt"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
@@ -624,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckn31ts9w003q88w9efgigeuc"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/exports-and-module-exports/" data-id="ckocjcpa7004gjiw9bstsdh3u"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6-模块化/">ES6 模块化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -685,10 +444,210 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckn31ts9b002f88w9cim2x3q4"
+      <a data-url="https://helenzhanglp.github.io/2019/03/26/Javascript-模块化/" data-id="ckocjcp9n0038jiw9ba1ll253"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/">es6 modules</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/25/CSS-面试题/">CSS 面试题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/25/CSS-面试题/" class="article-date">
+  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <ul>
+<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
+</li>
+<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
+<blockquote>
+<ul>
+<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
+<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
+</ul>
+</blockquote>
+</li>
+<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
+</li>
+</ul>
+        
+          <a class="article-more-link" href="/2019/03/25/CSS-面试题/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckocjcp97002bjiw9opglyysu"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-Class" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/20/Javascript-Class/">Javascript Class</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/20/Javascript-Class/" class="article-date">
+  <time datetime="2019-03-20T09:06:19.000Z" itemprop="datePublished">2019-03-20</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><h4 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h4><p>用带有 class 关键字的类名声明一个类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Mermaid();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught ReferenceError: Mermaid is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 匿名类 */</span></span><br><span class="line"><span class="keyword">let</span> Mermaid = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 命名类 */</span></span><br><span class="line"><span class="keyword">let</span> Everything = <span class="class"><span class="keyword">class</span> <span class="title">Everything</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Everything is posible'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>super 关键字调用父类构造函数</p>
+</blockquote>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
+<p><code>static</code> 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckocjcp9e002ojiw9aqpffy32"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-react-整理" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/19/react-整理/">react 整理</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/19/react-整理/" class="article-date">
+  <time datetime="2019-03-19T10:06:55.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><h3 id="react-渲染实体字体-247-215"><a href="#react-渲染实体字体-247-215" class="headerlink" title="react 渲染实体字体 &#247; &#215;"></a>react 渲染实体字体 &#247; &#215;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">key</span>: <span class="built_in">String</span>.fromCharCode(<span class="number">215</span>), <span class="attr">id</span>: <span class="string">'times'</span>&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="React-列表渲染"><a href="#React-列表渲染" class="headerlink" title="React 列表渲染"></a>React 列表渲染</h2><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><p>React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  &lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &#123;/</span>* <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item.text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span> 没有 id 用索引赋 key *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code>最好不要用索引（index）作 key 值，因为一旦有新增、删除或移动等变化，会导致大量元素失效。进而造成不必要的重新渲染，损耗性能。可以使用 item.id 作为 key 值</p>
+<h3 id="React-state"><a href="#React-state" class="headerlink" title="React state"></a>React state</h3><p>React 中把组件看成一个状态机（state machines）。React 中，constructor 是最先执行，且执行一次。state 在 constructor 构造函数中初始化。其它地方采用 <code>this.setState()</code> 更新组件状态。<br>React 里，通过更新组件 state 重新渲染用户界面，不需要操作 DOM，类组件使用 props 调用基础构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(super) &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="comment">// 初始化 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre class="mermaid">graph LR;
+    用户界面交互-->状态;
+    状态-->UI渲染;
+    UI渲染-->|用户界面与数据保持一致|数据;</pre>
+<p>this.setState 之后发生了什么？<br>调用 setState 函数后，React 将 setState 参数与组件当前状态合并，触发调和过程（Reconciliation）. 经过调和过程，React 会以相对高效的方式构建 React Dom 树，得到 Dom 树后，React 会将新树与老树进行对比，找出差异节点，从而根据差异最小化渲染。</p>
+<p>重新构造 dom ，并将新老状态进行对比，最小化渲染。</p>
+<h3 id="React-生命周期渲染"><a href="#React-生命周期渲染" class="headerlink" title="React 生命周期渲染"></a>React 生命周期渲染</h3><pre class="mermaid">graph TM;
+  componentWillMount-->render;
+  render-->componentDidMount;
+  componentDidMount-->render</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckocjcpaq0056jiw9nqp8nlwh"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
 
     </footer>
 

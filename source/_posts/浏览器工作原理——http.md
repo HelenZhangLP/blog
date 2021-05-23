@@ -6,6 +6,11 @@ tags:
 - 浏览器工作原理
 ---
 
+为什么很多站点第二次打开速度会很快？
+http(Hyper text transfer protocol) 与 tcp（transmission control protocol） 的区别
+
+HTTP 是一种<u>允许浏览器向服务器发起资源的请求</u>的**协议**，是 Web 的基础。
+
 XHR -> Request Headers -> view source
 ```
 GET /shakespeare/jsd/exchange_rates/current HTTP/1.1
@@ -26,7 +31,7 @@ Cookie: __yadk_uid=b5C1W8FTbvn2CMErMOWLRvRBfqtcfZyR; _ga=GA1.2.1361763253.158186
 
 <!--more-->
 
-HTTP 是一种允许浏览器向服务器发起资源的请求的协议，是 Web 的基础。
+
 
 ## 浏览器发起 HTTP 请求流程
 1.  构建请求

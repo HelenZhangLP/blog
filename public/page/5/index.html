@@ -52,121 +52,6 @@
 
     
       
-        <article id="post-Javascript-字符串" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/01/09/Javascript-字符串/">Javascript 字符串</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/01/09/Javascript-字符串/" class="article-date">
-  <time datetime="2020-01-09T02:14:03.000Z" itemprop="datePublished">2020-01-09</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <blockquote>
-<p><code>需求删除最后一个为 &amp; 的字符</code></p>
-</blockquote>
-<h3 id="String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。"><a href="#String-prototype-replace-返回一个部分或全部匹配由替代模式所取代的新的字符串。" class="headerlink" title="String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。"></a>String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。</h3><blockquote>
-<p>str.replace(regexp|substr, newSubStr|function)</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'zhangliping&amp;'</span></span><br><span class="line"><span class="comment">// regexp = /&amp;$/</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/</span>, <span class="string">""</span>) <span class="comment">// zhangliping</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * --- 引申 ---</span></span><br><span class="line"><span class="comment"> * 删除字符串全部的 &amp;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">str.replace(<span class="regexp">/&amp;$/g</span>, <span class="string">""</span>) <span class="comment">// 全局替换</span></span><br><span class="line">str.replace(<span class="regexp">/^&amp;/</span>,<span class="string">""</span>) <span class="comment">// 替换开头</span></span><br><span class="line">str.replace(<span class="regexp">/[?&amp;]$/</span>, <span class="string">""</span>) <span class="comment">//替换结尾的 ? 或 &amp;</span></span><br><span class="line"></span><br><span class="line">formatParamets() &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="built_in">window</span>.location.href; <span class="comment">// 获取当前浏览器的URL</span></span><br><span class="line">  <span class="keyword">const</span> params = &#123;&#125;; <span class="comment">// 存储最终JSON结果对象</span></span><br><span class="line">  url.replace(<span class="regexp">/([^?&amp;]+)=([^?&amp;]+)/g</span>, (match, p1, p2) =&gt; &#123;</span><br><span class="line">    params[p1] = <span class="built_in">decodeURIComponent</span>(p2); <span class="comment">// 解析字符为中文</span></span><br><span class="line">    <span class="keyword">return</span> p2 + <span class="string">'='</span> + p1;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/01/09/Javascript-字符串/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/01/09/Javascript-字符串/" data-id="ckn31ts95002288w925x2qhzg"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Array sort 源码解析" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/01/08/Array sort 源码解析/">Array sort 源码解析</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/01/08/Array sort 源码解析/" class="article-date">
-  <time datetime="2020-01-08T02:07:22.000Z" itemprop="datePublished">2020-01-08</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><blockquote>
-<p>ToUint32 将指定的值转换为 32 位，不带正负号的整数</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArraySort</span>(<span class="params">comparefn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> custom_compare = IS_FUNCTION(comparefn);</span><br><span class="line">  <span class="keyword">var</span> length = ToUint32(<span class="keyword">this</span>.length);</span><br><span class="line">  QuickSort(<span class="keyword">this</span>, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/01/08/Array sort 源码解析/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/01/08/Array sort 源码解析/" data-id="ckn31ts8q001188w9vo3iptrj"
-         class="article-share-link">Share</a>
-      
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
         <article id="post-日记-2019-12-25" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -212,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckn31tsao005h88w9okltegvg"
+      <a data-url="https://helenzhanglp.github.io/2019/12/25/日记-2019-12-25/" data-id="ckocjcpb6006bjiw9szln74oo"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
@@ -271,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckn31tsap005k88w9pf5kcpdx"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/模式-发布订阅者模式/" data-id="ckocjcpb9006ijiw9klsbfvvt"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -327,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckn31ts96002588w9014u4w1w"
+      <a data-url="https://helenzhanglp.github.io/2019/08/28/Javascript-对象/" data-id="ckocjcp9k0032jiw932yaqtdl"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -383,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckn31tsao005f88w9pclvbtjp"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckocjcpb8006fjiw9otc83f3f"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -435,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/24/Javascript-async-await-promise/" data-id="ckn31ts9d002l88w9pvlpxiab"
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/Javascript-async-await-promise/" data-id="ckocjcp9i002zjiw9riiqbaef"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法糖/">语法糖</a></li></ul>
@@ -486,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckn31ts9q003h88w9pryy0ifx"
+      <a data-url="https://helenzhanglp.github.io/2019/07/23/axios-源码解读/" data-id="ckocjcpa5004ajiw90exguyfj"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -541,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckn31tsae004w88w9esar2wlr"
+      <a data-url="https://helenzhanglp.github.io/2019/07/22/vue-config-js/" data-id="ckocjcpaw005mjiw9efhs619j"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
@@ -603,10 +488,141 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckn31tsay006788w92wk9y7tp"
+      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckocjcpbd006rjiw9r5oe9xpg"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/12/http-请求状态码/">http 请求状态码</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/12/http-请求状态码/" class="article-date">
+  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
+<p>请求成功，默认状态下 200 响应可以被缓存</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>GET: 已经取得资源，并将资源添加到响应的消息体中。</li>
+<li>HEAD: 响应的消息体为头部信息。</li>
+<li>POST: 响应的消息体中包含此次请求的结果。</li>
+<li>TRACE: 响应的消息体中包含服务器接收到的请求信息。</li>
+<li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
+</ul>
+</blockquote>
+        
+          <a class="article-more-link" href="/2019/06/12/http-请求状态码/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckocjcpad004sjiw99o75cz4f"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-工具-代码管理-git坑" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/06/03/工具-代码管理-git坑/">git 坑</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/06/03/工具-代码管理-git坑/" class="article-date">
+  <time datetime="2019-06-03T08:21:53.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="idea-gitignore-忽略问题"><a href="#idea-gitignore-忽略问题" class="headerlink" title=".idea gitignore 忽略问题"></a>.idea gitignore 忽略问题</h3><blockquote>
+<p>.gitignore 中添加 .idea/ 没用</p>
+</blockquote>
+<p><a href="https://help.github.com/en/articles/ignoring-files" target="_blank" rel="noopener">原因参照 - 1</a><br><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">原因参照 - 2</a><br>忽略所有目录下的 .idea -&gt; **/.idea/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached FILENAME</span><br></pre></td></tr></table></figure>
+
+<h3 id="macos-升级后-git-编译错误"><a href="#macos-升级后-git-编译错误" class="headerlink" title="macos 升级后 git 编译错误"></a>macos 升级后 git 编译错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$&gt; git</span><br><span class="line">dyld: Symbol not found: _OBJC_IVAR_$_NSFont._fFlags</span><br><span class="line">  Referenced from: /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">  Expected in: /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit</span><br><span class="line"> in /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/../../../../SharedFrameworks/DVTKit.framework/Versions/A/DVTKit</span><br><span class="line">gcc: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</span><br><span class="line">gcc: error: You can set the path to the Xcode folder using /usr/bin/xcode-select -switch</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>git: error: unable to locate xcodebuild, please make sure the path to the Xcode folder is set correctly!</p>
+</blockquote>
+<p><strong>解决办法</strong></p>
+<blockquote>
+<p>xcode-select –install<br>sudo /usr/bin/xcode-select –switch /Library/Developer/CommandLineTools/</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/06/03/工具-代码管理-git坑/" data-id="ckocjcpba006mjiw9onct8rh8"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </footer>
 

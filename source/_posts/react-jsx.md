@@ -145,3 +145,10 @@ const ol = (
 
 ReactDOM.render(ol, rootDiv)
 ```
+
+### JSX 引入多个样式类表达式
+```javaScript
+const Demo = (props) => (
+  <div className={`btn` `btn-${props.theme}`}>className</div>
+)
+```

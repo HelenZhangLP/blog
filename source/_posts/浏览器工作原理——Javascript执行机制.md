@@ -7,12 +7,16 @@ tags:
 - 浏览器工作原理
 ---
 
-- [ ] JavaScript 代码是按顺序执行吗？先编译、后执行。编译出执行上下文与可执行代码。
-  * 变量提升
-- [ ] 为什么 JavaScript 代码会出现栈溢出
-  * 调用栈 —— 用来管理函数调用关系的一种数据结构。`Maximum call stack size exceeded`
-- [ ] var 与 let 和 const，var 缺陷是什么
-  * var 会引起变量提升，变量提升产生变量污染、消耗一部分无用的内存。可以通过 let 和 const 解决，ECMAScript6 中，提出的 let 和 const 有块级作用域的概念。很好的解决了变量提升的问题
+> ### <a href="#codeExecutionOrder">JavaScript代码执行顺序</a>
+  >> 先编译（<u>编译出**执行上下文（Execution context）**与可执行代码</u>）、后执行
+     代码编译阶段 var 声明的变量会产生 **变量提升**
+> ### <a href="#callStack">JavaScript 执行上下文与调用栈</a>
+  >> <u>调用栈是用来管理函数调用关系的一种**数据结构**`Maximum call stack exceeded`</u>
+> ### <a href="#letAndConst">ES6 let 和 const 声明变量</a>
+  >> var 会引起变量提升，变量提升产生变量污染、消耗一部分无用的内存。
+     var 声明变量引起变量提升——容易在无意识的情况下变量覆盖
+  * 通过 let 和 const 解决变量提升，ECMAScript6 中，提出的 let 和 const 有块级作用域的概念。很好的解决了变量提升的问题
+
 - [ ] 作用域链与闭包
   * 作用域变量的有效性和生命周期
   * 闭包嵌套函数，内部引用外出变量，外部函数执行结束后，不能完全退栈。内部函数存在外部函数的变量引用
@@ -23,8 +27,26 @@ tags:
     4. 传参
 <!--more-->
 
+## <a name="codeExecutionOrder">1. JavaScript 代码的执行顺序</a>
+JavaScript 代码是**按顺序执行**的
+> 分析以下代码
 
-## 1. 变量提升（Hoisting）
+```Javascript
+console.log(name)
+console.log(undefinedvariable)
+
+var name; // 声明
+name = 123; // 赋值部分
+/*
+  undefined
+  Uncaught ReferenceError: undefinedvariable is not defined
+    at <anonymous>:2:13
+*/
+```
+变量 name 后定义，提前使用打印或undefined，未声明变量 undefinedvariable 报错 is not defined，怎么理解
+
+
+### 1-1. 认识变量提升（Hoisting）
 > ~~Javascript 代码执行过程中，Javascript 引擎把变量声明部分和函数声明部分提升到代码开头的行为~~`JavaScript 代码在编译过程中，被 JavaScript 引擎放入内存的行为`，叫做 **变量提升**。
 
 ```Javascript
@@ -56,7 +78,7 @@ var fn_var = function() {
   fn() 执行后打印 完整的函数声明
   fn_var() `Uncaught TypeError: fn_var is not a function` 因为 fn_var 是变量，提升后相当于 `fn_var = undefined`，所以报错，fn_var 不是一个函数。
 
-### 1-1.  JavaScript 代码的执行流程
+<font color="red">**JavaScript 代码的执行流程**</font>
 ```mermaid
   graph LR;
   JavaScriptCode --> 编译;
@@ -84,15 +106,21 @@ showName()
 
 如上代码，`编译后会将会将提升的变量 name=undefined; function showName(){...}保存在变量环境中`，如下图
 {% plantuml %}
-rectangle " " as compileResult {
-  stack 全局执行上下文 as executionContextOfGlobal {
-    rectangle "变量环境"
-    note right of "变量环境": name=undefined;\n function showName(){...}
-    rectangle "词法环境" #6f3
+rectangle " " #line.dotted {
+  card "执行上下文" #line.dashed;line:blue;text:blue; {
+    rectangle 变量环境 #aliceBlue;line:LightSkyBlue;text:indigo [
+      <b>变量环境</b>
+      ....
+      name=undefined;
+      function showName(){...}
+    ]
   }
-  rectangle "可执行代码" as test #f90
-    note right of test: showName();
-  executionContextOfGlobal -[#transparent]-> test
+  card executionCode #Honeydew;line:LightGreen;text:green [
+    <b>可执行代码</b>
+    ....
+    showName();                                
+  ]
+  变量环境 -[#transparent]-> executionCode
 }
 {% endplantuml %}
 
@@ -122,63 +150,75 @@ function showName() {
   console.log(1)
 }`的引用。下次再执行 showName() 打印结果是 1
 
-## 2. 执行上下文与调用栈
-代码执行之前进行编译创建执行上下文的三种情况：
-1.  当 JavaScript 执行全局代码的时候，会编译全局代码并创建 **全局执行上下文**。整个页面的生命周期内，全局执行上下文只有一份；
-2.  当调用一个函数时，函数体内的代码会被编译，并创建 **函数执行上下文**，一般情况下，函数执行结束后，创建的函数执行上下文被销毁；
+## <a name="callStack">2. JavaScript 执行上下文与调用栈</a>
+代码编译阶段可创建三种执行上下文：
+1.  当 JavaScript 执行全局代码的时候，会编译全局代码并创建 **全局执行上下文**。<font color="red">整个页面的生命周期内，全局执行上下文只有一份</font>；
+2.  当调用一个函数时，函数体内的代码会被编译，并创建 **函数执行上下文**，<font color="red">一般情况下，函数执行结束后，创建的函数执行上下文被销毁</font>；
 3.  当使用 eval 函数的时候，eval 代码也会被编译，并创建执行上下文。
 
-**`调用栈用来管理函数调用关系的一种数据结构。`**
+### 2-1. 调用栈
+> **`调用栈用来管理函数调用关系的一种数据结构。`**
 
-### JavaScript 调用栈
-栈容器、入栈、出栈、栈中元素后进先出。
-JavaScript 引擎创建执行上下文，然后压入 **调用栈**
+栈容器、入栈、出栈
+栈中元素后进先出。
+JavaScript 引擎创建执行上下文，然后压入**调用栈**
 {% plantuml %}
-<style>
-arrow {
-    LineColor transparent
-}
-</style>
-stack callStack {
-  rectangle "函数执行上下文" {
-    rectangle "函数变量环境"
-    rectangle "函数词法环境"
+stack 调用栈 {
+  rectangle "函数执行上下文" #line.dotted {
+    rectangle "函数变量环境" #aliceBlue;text:indigo;line:LightSkyBlue
+    rectangle "函数词法环境" #MistyRose;text:indigo;line:Salmon
   }
-  rectangle "全局执行上下文" {
-    rectangle "全局变量环境"
-    rectangle "全局词法环境"
+  rectangle "全局执行上下文" #line.dotted {
+    rectangle "全局变量环境" #aliceBlue;text:indigo;line:LightSkyBlue;
+    rectangle "全局词法环境" #mistyrose;text:indigo;line:salmon
   }
-  函数执行上下文 .. 全局执行上下文
+  函数执行上下文 ..[#transparent] 全局执行上下文
 
 }
 {% endplantuml %}
 
-**`调用栈是 JavaScript 引擎追踪函数执行的一个机制。多个函数被调用时，通过调用栈可以追踪到哪个函数正在被执行以及各个函数之间的调用关系`**
+**调用栈是 JavaScript 引擎追踪函数执行的一个机制。<font color="red">多个函数被调用时，通过调用栈可以追踪到哪个函数正在被执行以及各个函数之间的调用关系</font>**
 
 ### 2-1-demo. 分析代码
 ```JavaScript
 var name = 'helen zhang';
-function showName(callName) {
-  console.log(callName)
+function showName() {
+  console.log(name)
 }
 function callShowName() {
-  var callName = 'call ' + name
-  showName(callName)
+  var name = 'call helen zhang'
+
+  showName()
 }
 callShowName();
+
 ```
 {%plantuml%}
-stack " " {
-  rectangle "函数showName执行上下文" as showName {
-    card "console.log(callShowName)"
+stack "调用栈" {
+  rectangle "函数showName执行上下文" as showName #line.dotted {
+    card variableEnvironmentForShowName #aliceBlue;line:LightSkyBlue;text:indigo [
+      <b>showName 变量环境
+      ....
+      console.log(callShowName)
+    ]
   }
-  rectangle "函数callShowName执行上下文" as callShowName {
-    card "name='call helen zhang';"
+  rectangle "函数callShowName执行上下文" as callShowName #line.dotted {
+    card variableEnvironmentForCallShowName #aliceBlue;line:lightSkyBlue;text:indigo [
+      <b>callShowName 变量环境
+      ....
+      name='call helen zhang'<color:red><u>（编译阶段： name 值为 undefined）</u></color>
+    ]
   }
-  rectangle "全局执行上下文" as globalExecutorContext {
-    card "变量环境" as variableEnvironment {
-      card "name='helen zhang';\nfunction showName(){...};\nfunction callShowName(){...}"
-    }
+  rectangle "全局执行上下文" as globalExecutorContext #line.dotted {
+    card variableEnvironment #aliceblue;line:lightSkyBlue;text:indigo; [
+      **环境变量**
+      ....
+      name='helen zhang';<u><color:red>(编译阶段 name=undefined; 执行阶段 name='helen zhang')</color></u>
+      ....
+      function showName(){...};
+      ....
+      function callShowName(){...}
+    ]
   }
 
   showName -[#transparent]->callShowName
@@ -186,14 +226,20 @@ stack " " {
 }
 {%endplantuml%}
 > 分析：
-1.  JavaScript 引擎编译代码时创建 **全局执行上下文**；
-    执行第一行代码时声明变量 name，并赋初值 undefined；
-    执行第二行代码时，声明 function showName，将变量 name 和 函数 showName 放入变量环境。
-    callShowName() 放入执行代码
-2.  执行代码 callShowName()，创建 **函数执行上下文**。
+1.  **编译**
+    JavaScript 引擎编译代码创建变量name=undefined, 声明函数 callShowName，声明函数showName, **全局执行上下文** 压入栈；
+    **执行**
+    name 赋值 helen zhang
+    执行调用 callShowName 函数
+2.  **编译**
+    声明变量 name 赋值 undefined，创建 **callShowName函数执行上下文**，并压入栈：
     执行 callName 赋值 ‘undefined’
     showName() 放入执行代码
-3.  执行 showName(), 创建 **函数执行上下文**
+    **执行**
+    调用 showName()
+3.  **编译**
+    创建 **showName函数执行上下文**
+    **执行**
     console.log(callShowName) 打印 callShowName
 
 以上创建的两个执行上下文是通过 **栈数据结构** 来管理的。
@@ -214,11 +260,11 @@ runStack 当前调用函数
 **`console.trace() 输出函数调用关系`**
 ![console.trace](https://static001.geekbang.org/resource/image/ab/ce/abfba06cd23a7704a6eb148cff443ece.png)
 
-## 3. 栈溢出（stack overflow)
+### 3. 栈溢出（stack overflow)
 `调用栈有大小的`，超出后 JavaScript 引擎会报错`超出最大栈调用大小（Maximum call stack size exceeded）`，**栈溢出**
 > 递归没有任何终止条件的函数，会一直创建执行上下文，并反复压入栈中，栈容量有限，超过最大数量后会出现 `Maximum call stack size exceeded`
 
-### 解决栈溢出
+#### 解决栈溢出
 递归调用的形式改造成其他形式，或者使用加入定时器的方法来把当前任务拆分为其他很多小任务来解决栈溢出
 ```JavaScript
 function runStack (n) {
@@ -230,34 +276,11 @@ function runStack (n) {
 runStack(50000)
 ```
 
----
----
-var 声明的变量会有 **变量提升** 的特性，与直觉不否。是 JavaScript 的一个重要的设计缺陷。
-  由于 JavaScript 需要保持向下兼容，所以变量提升特性还会继续存在
+## <a name="letAndConst">4. JavaScript let const 变量声明</a>
+var 声明的变量会有 **变量提升** 的特性，与直觉不否。javaScript 语言最初用最快速、最简单的方式设计，所以没有块级作用域，把块级作用域内部的变量提升。变量提升后，在编译阶段都会被提取到执行上下文的变量环境中，所以亦是可以在声明前调用。这是 JavaScript 的一个重要的设计缺陷。由于 JavaScript 需要保持向下兼容，所以变量提升特性还会继续存在
 
-> 下文中 探讨
-  * 为什么在 JavaScript 中会存在变量提升
-    javaScript 语言最初用最快速、最简单的方式设计，所以没有块级作用域，把块级作用域内部的变量提升。
-  * 变量提升所带来的问题
-  * 作用域配合 let 和 const 关键字修复变量提升带来的问题
----
----
-
-## 4. 通过 `let/const + JavaScript块级作用域` 解决变量提升的问题
-### 4-1.  作用域（scope）
-> **作用域** 程序中定义变量的区域，该位置决定了变量的生命周期。通俗的理解，作用域是变量与函数的可访问范围，即作用域控制着变量和函数的可见性和生命周期。
-
-ES6 之前两种作用域：
-1.  **全局作用域** 中的对象在代码中任何地方都能访问，其生命周期为整个页面的生命周期；
-2.  **函数作用域** 函数内部定义的变量或者函数，只能在函数内部访问。
-                 其生命周期从函数调用到函数执行结束。
-                 函数执行结束，函数内部定义的变量销毁。
-
-`ES6 之后引入了 let/const 声明关键字，使得 JavaScript 也能像其它语言一样拥有块级作用域了。`
-**块级作用域** —— 即使用一对大括号包裹的代码，如：函数、判断语句、循环语句等
-
-### 4-2.  变量提升存在问题 —— 容易在无意识的情况下变量覆盖
-第一部分变量提升中说了经过编译，提升变量会存入变量环境（存入内容），现在借 demo-1-1 代码继续分析，变量提升带来的问题
+### 4-1 变量提升带来的问题
+#### <font color="red">4-1-1. 容易在无意识的情况下变量覆盖</font>
 ```JavaScript
 var name = "variable promotion";
 function showName(){
@@ -270,31 +293,44 @@ function showName(){
 showName()
 
 // undefined
-// undefined
+// variable promotion case
 ```
+以上代码执行结果，打印 undefined 和 variable promotion case，结合下图继续分析
 {%plantuml%}
-stack " " {
-  rectangle "execution context of global" as globalContext {
-    rectangle "变量环境" {
-      card "name="variable promotion";\n showName();"
-    }
-    rectangle "词法环境"
+stack "call stack" {
+  rectangle "execution context of global" as globalContext #line.dotted {
+    card 变量环境 #aliceBlue;line:lightSkyBlue;text:indigo [
+      <b>变量环境
+      ....
+      name=undefined;<color:red>代码执行阶段赋值：variable promotion</color>
+      ....
+      showName();<color:red>可执行代码</color>
+    ]
+    rectangle 词法环境 #MistyRose;text:indigo;line:Salmon [
+      <b>词法环境
+    ]
   }
-  rectangle "execution context of function showName" as functionContext {
-    rectangle "showName变量环境" {
-      card "name=undefined"
-    }
-    rectangle "showName词法环境"
+  rectangle "execution context of function showName" as functionContext #line.dotted {
+    card showName变量环境 #aliceBlue;line:lightSkyBlue;text:indigo [
+      <b>showName变量环境
+      ....
+      name=undefined<color:red>代码执行阶段赋值variable promotion case</color>
+    ]
+    rectangle showName词法环境 #mistyrose;text:indigo;line:Salmon [
+      <b>showName词法环境
+    ]
   }
   functionContext -[#transparent]-> globalContext
 }
 {%endplantuml%}
 
-`全局执行上下文压入栈以后，JavaScript 引擎开始执行全局代码。先给 name 变量赋值，再调用函数showName`
+> 分析
+  1.  全局执行上下文压入栈以后，JavaScript 引擎开始执行全局代码。
+  2.  name 变量赋值 variable promotion，再调用函数showName`
 **调用函数时，javascript 引擎编译该函数，为其创建执行上下文，再将执行上下文压入栈**
-函数执行上下文压入栈后，JavaScript 引擎再从上到下执行showName函数代码，执行到第一个 console.log(name)取编译时的初值 undefined 打印出 undefined，第二个 console.log(name) 时，因没有块级作用域，所以打印出 variable promotion case
+函数执行上下文压入栈后，JavaScript 引擎再从上到下执行showName函数代码，执行到第一个 console.log(name)取编译时的初值 undefined 打印出 undefined，（<font color="red">与目标打印出 variable promotion 不同，原因是变量提升，导致变量覆盖</font>）第二个 console.log(name) 时，因没有块级作用域，所以打印出 variable promotion case
 
-### 4-3.  变量提升存在问题 —— 变量未能及时销毁
+#### <font color="red">4-1-2. 变量未能及时销毁</font>
 ```JavaScript
 function variableDestruction() {
   for (var i=0; i<5; i++){}
@@ -302,11 +338,24 @@ function variableDestruction() {
 }
 variableDestruction();
 ```
-JavaScript 编译以上代码，生成全局上下文(环境变量 function variableDestruction(){...})，然后压入栈内存中。JavaScript 执行可执行代码 `variableDestruction()`，创建函数执行上下文(环境变量 i=undefined)，再将函数执行上下文 压入栈内存。javascript 引擎继续执行可执行代码 i 赋值、遍历、打印结果是 5。**因为没有块级作用域，导致遍历结果后没有销毁变量i,所以打印结果是 5**
+> 分析
+  1.  JavaScript 编译以上代码，生成全局上下文(环境变量 function variableDestruction(){...})，压入栈内存中。
+  2.  JavaScript 执行可执行代码 `variableDestruction()`，创建函数执行上下文(环境变量 i=undefined)，再将函数执行上下文 压入栈内存。
+  3.  javascript 引擎继续执行可执行代码 i 赋值、遍历、打印结果是 5。
+  <font color="red">**因为没有块级作用域，导致遍历结果后没有销毁变量i,所以打印结果是 5**</font>
 
-### 4-4.  用`let/const + JavaScript块级作用域`解决变量提升的问题
-ECMAScript6 以前没有如{}，判断语句，循环语句的块级作用域，**ES6 引入 let 和 const 关键字**，用 let 和 const 声明的变量是有块级作用的概念的
-let 声明的变量可以被修改，const 声明的变量不可以。
+### 4-2. 通过 `let/const + JavaScript块级作用域` 解决变量提升的问题
+#### 4-2-1.  作用域（scope）
+> <font color="red">作用域</font>程序中定义变量的区域，该<u>位置决定了变量的生命周期</u>。作用域是变量与函数的可访问范围，<u>作用域控制着变量和函数的**可见性**和**生命周期**</u>。
+
+1.  **全局作用域** 中的对象在代码中任何地方都能访问，<u>其生命周期为整个页面的生命周期</u>；
+2.  **函数作用域** 函数内部定义的变量或者函数，**只能在函数内部访问**。<u>其生命周期从函数调用到函数执行结束。</u>函数执行结束，函数内部定义的变量销毁。
+3.  **块级作用域** —— 即使用一对大括号包裹的代码，如：函数、判断语句、循环语句等。 <font color="red">`ES6 之后引入了 let/const 声明关键字，使得 JavaScript 也能像其它语言一样拥有块级作用域了。`</font>
+
+#### 4-2-2. 解决变量提升的问题
+ECMAScript6 以前<u>没有如{}，判断语句，循环语句的块级作用域，</u>**ES6 引入 let 和 const 关键字**，因为 let 和 const 声明的变量是有块级作用的概念的
+
+>let 声明的变量可以被修改，const 声明的变量不可以。
 
 ```javascript
 function variableDestruction() {
@@ -315,9 +364,10 @@ function variableDestruction() {
 }
 variableDestruction();
 ```
-> Uncaught ReferenceError: i is not defined 说明块级作用域生效，i 在 块级作用域以外不能访问。也就是在函数作用域内没有变量提升。
+> <font color="red">Uncaught ReferenceError: i is not defined</font> 说明块级作用域生效，i 在 块级作用域以外不能访问。也就是在函数作用域内没有变量提升。
 
-## 5. ES6 怎么兼容变量提升和块级作用域的
+## 4-3. ES6 怎么兼容变量提升和块级作用域的
+块级作用域是通过词法环境的栈结构实现的，变量提升是通过变量环境实现的，两者结合，JavaScript 引擎就同时支持了变量提升和块级作用域
 从上下文的角度分析：
 ```javaScript
 function foo(){
@@ -337,13 +387,19 @@ foo()
 ```
 **1.  编译并创建执行上下文**
 {%plantuml%}
-rectangle fnContext as "foo 函数执行上下文" {
-  rectangle lexicalEnvironment as "词法环境" {
-    card "b=undefined"
-  }
-  rectangle variableEnvironment as "变量环境" {
-    card "a=undefined;\nc=undefined"
-  }
+rectangle fnContext as "foo 函数执行上下文" #line.dotted {
+  rectangle lexicalEnvironment #MistyRose;text:indigo;line:Salmon [
+    <b>词法环境
+    ....
+    b=undefined
+  ]
+  rectangle variableEnvironment #aliceBlue;line:LightSkyBlue;text:indigo [
+    **变量环境**
+    .....
+    a=undefined;
+    ....
+    c=undefined;
+  ]
 }
 {%endplantuml%}
 >解析
@@ -353,30 +409,44 @@ rectangle fnContext as "foo 函数执行上下文" {
 
 **2.  执行代码**
 {%plantuml%}
-rectangle fnContext as "foo 函数执行上下文" {
-  rectangle lexicalEnvironment as "词法环境" {
-    card "b=2" as lexical
-    card "块级作用域\nb=undefined\nd=undefined" as lexicalBlock
-    lexicalBlock -[#transparent]-> lexical
-
-    lexicalBlock-->lexical
-  }
-  rectangle variableEnvironment as "变量环境" {
-    card "a=1;\nc=undefined;"
-  }
-
-  lexicalEnvironment --> variableEnvironment
+rectangle fnContext as "foo 函数执行上下文" #line.dotted {
+  rectangle lexicalEnvironment #mistyrose;text:indigo;line:salmon [
+    **词法环境<color:red>2</color>**
+    ====
+    <color:red>块级作用域**1**</color>
+    ....
+    b=undefined;
+    ....
+    d=undefined;
+    ====
+    b=2
+  ]
+  rectangle variableEnvironment #aliceBlue;text:indigo;line:LightSkyBlue [
+    **变量环境<color:red>3</color>**
+    ====
+    a=1;
+    ....
+    c=undefined;
+  ]
 }
 {%endplantuml%}
+```mermaid
+graph LR
+A["console.log(a)"] --> B(词法环境块级作用域);
+B --> C(函数词法环境);
+C --> D(变量环境);
+D --> E((END));
 
-创建完词法块级作用域后，
-继续执行可执行代码 `console.log(a)`，具体是延着词法环境栈向下查找，有就返回给 JavaScript 引擎，如果词法环境中没有继续在变量环境中找(如上图箭头)。结果打印 1；
-`console.log(b)` 打印词法环境中的 `b=3`;块级词法环境出栈。
-`console.log(b)`, 打印块级词法环境 `b=2`;
-`console.log(c)`打印变量环境中`c=4`;
-`console.log(d)` 打印 undefined **因为吧，定义d的作用域已经出栈了**
+```
+> 分析
+执行可执行代码 `console.log(a)`
+具体如上流程图延着词法环境栈向下查找，有就返回给 JavaScript 引擎，如果词法环境中没有继续在变量环境中找。结果在变量环境中找到变量 a，打印结果 1；
+执行可执行代码 `console.log(b)` b 在词法环境块级作用域中， `b=3`，打印出 3，块级词法环境出栈。
+执行函数块中可执行代码 `console.log(b)`, 打印块级词法环境中 `b=2`;
+执行函数块中可执行代码 `console.log(c)` 打印变量环境中`c=4`;
+<font color="red">执行函数块中可执行代码 `console.log(d)` 打印 undefined **因为吧，定义d的作用域已经出栈了**</font>
 
-### Uncaught ReferenceError: Cannot access 'myname' before initialization
+#### <font color="red">Uncaught ReferenceError: Cannot access 'myname' before initialization</font>
 ```javascript
 let myname= 'helen';
 {
@@ -387,7 +457,7 @@ let myname= 'helen';
 **`分析：`** 块级作用域中，myname 声明提升到了 console.log(myname) 之前，但赋初值 undefined 未初提升。所以 `can not access myname before initialization`。**所以 let 声明的变量，声明会被提升，但赋初值不被提升。var 声明的变量，赋默认值都会被提升。function 声明、赋值都会被提升。**
 > 变量提升是在变量环境中完成的，而块级作用域是通过词法环境的栈结构实现的，两个结合，JavaScript 就实现了 变量提升与块级作用域了
 
-## 6. 作用域链
+## 5. 作用域链
 > 作用域是程序中定义变量的位置，这个位置决定了变量的可见性或说生命周期
   作用域链可以理解为变量的查找路径
 

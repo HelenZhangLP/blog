@@ -32,7 +32,7 @@ absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存
 ```
 ![position-absolute-3](/images/css/position-absolute-3.jpg)
 
-### 3. **`创建 [BFC(Block_formatting_context)](https://helenzhanglp.github.io/2019/02/20/CSS-BFC/)`** 使用 position: absolute，会形成块级作用域，行内元素可使用 width/height 等属性。
+### 3. **创建[BFC(Block_formatting_context)](https://helenzhanglp.github.io/2019/02/20/CSS-BFC/)** 使用 position: absolute，会形成块级作用域，行内元素可使用 width/height 等属性。
 [以下 demo 代码](https://github.com/HelenZhangLP/demo/blob/master/postionAbsoluteFixedBlock/index.html)
 
 ```html

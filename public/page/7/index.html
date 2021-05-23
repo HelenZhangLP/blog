@@ -52,206 +52,6 @@
 
     
       
-        <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/25/CSS-面试题/">CSS 面试题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/25/CSS-面试题/" class="article-date">
-  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <ul>
-<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
-</li>
-<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
-</li>
-<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
-<blockquote>
-<ul>
-<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
-<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
-</ul>
-</blockquote>
-</li>
-<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
-</li>
-</ul>
-        
-          <a class="article-more-link" href="/2019/03/25/CSS-面试题/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckn31ts90001q88w9euibkj1v"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-Class" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/20/Javascript-Class/">Javascript Class</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/20/Javascript-Class/" class="article-date">
-  <time datetime="2019-03-20T09:06:19.000Z" itemprop="datePublished">2019-03-20</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><h4 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h4><p>用带有 class 关键字的类名声明一个类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Mermaid();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught ReferenceError: Mermaid is not defined</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 匿名类 */</span></span><br><span class="line"><span class="keyword">let</span> Mermaid = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 命名类 */</span></span><br><span class="line"><span class="keyword">let</span> Everything = <span class="class"><span class="keyword">class</span> <span class="title">Everything</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Everything is posible'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>super 关键字调用父类构造函数</p>
-</blockquote>
-<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
-<p><code>static</code> 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckn31ts93001x88w9cnz8pua9"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-react-整理" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/03/19/react-整理/">react 整理</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/03/19/react-整理/" class="article-date">
-  <time datetime="2019-03-19T10:06:55.000Z" itemprop="datePublished">2019-03-19</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><h3 id="react-渲染实体字体-247-215"><a href="#react-渲染实体字体-247-215" class="headerlink" title="react 渲染实体字体 &#247; &#215;"></a>react 渲染实体字体 &#247; &#215;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">key</span>: <span class="built_in">String</span>.fromCharCode(<span class="number">215</span>), <span class="attr">id</span>: <span class="string">'times'</span>&#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-列表渲染"><a href="#React-列表渲染" class="headerlink" title="React 列表渲染"></a>React 列表渲染</h2><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><p>React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  &lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &#123;/</span>* <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item.text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span> 没有 id 用索引赋 key *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
-
-<p><code>注意：</code>最好不要用索引（index）作 key 值，因为一旦有新增、删除或移动等变化，会导致大量元素失效。进而造成不必要的重新渲染，损耗性能。可以使用 item.id 作为 key 值</p>
-<h3 id="React-state"><a href="#React-state" class="headerlink" title="React state"></a>React state</h3><p>React 中把组件看成一个状态机（state machines）。React 中，constructor 是最先执行，且执行一次。state 在 constructor 构造函数中初始化。其它地方采用 <code>this.setState()</code> 更新组件状态。<br>React 里，通过更新组件 state 重新渲染用户界面，不需要操作 DOM，类组件使用 props 调用基础构造函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(super) &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="comment">// 初始化 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">graph LR;
-    用户界面交互-->状态;
-    状态-->UI渲染;
-    UI渲染-->|用户界面与数据保持一致|数据;</pre>
-<p>this.setState 之后发生了什么？<br>调用 setState 函数后，React 将 setState 参数与组件当前状态合并，触发调和过程（Reconciliation）. 经过调和过程，React 会以相对高效的方式构建 React Dom 树，得到 Dom 树后，React 会将新树与老树进行对比，找出差异节点，从而根据差异最小化渲染。</p>
-<p>重新构造 dom ，并将新老状态进行对比，最小化渲染。</p>
-<h3 id="React-生命周期渲染"><a href="#React-生命周期渲染" class="headerlink" title="React 生命周期渲染"></a>React 生命周期渲染</h3><pre class="mermaid">graph TM;
-  componentWillMount-->render;
-  render-->componentDidMount;
-  componentDidMount-->render</pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckn31tsaa004n88w93ygfath4"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
         <article id="post-prototype-proto" class="article article-type-post" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -339,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckn31tsa9004j88w9ax42j1ns"
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckocjcpat005fjiw9ra79haa4"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
@@ -402,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-函数-bind-call-apply/" data-id="ckn31ts9e002n88w9isovedjy"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-函数-bind-call-apply/" data-id="ckocjcp9h002xjiw9eq5wkelu"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
@@ -461,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckn31ts9j003088w91rlud8kq"
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckocjcp9r003hjiw9rj0tg6rf"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -520,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckn31tsa5004b88w9adv7rbik"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckocjcpaj004xjiw9657vbdrf"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
@@ -585,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckn31tsah004z88w9ak1w7aaw"
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckocjcpax005pjiw9c02dya5n"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
@@ -732,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckn31ts9k003288w9wjg1p90l"
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckocjcp9w003njiw9xos9i13f"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
@@ -792,10 +592,249 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckn31ts9n003b88w94q64xiqr"
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckocjcpa20044jiw9lc8rs5z8"
          class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Node-再看-node" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/02/Node-再看-node/">再看 node</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/02/Node-再看-node/" class="article-date">
+  <time datetime="2019-03-02T02:37:10.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/" target="_blank" rel="noopener">Node.js 究竟是什么？</a><br>Node 旨在提供一种简单构建可伸缩的网络程序方法<br>Node.js 是前端工程化的主要工具<br>Node.js 是一个基于 Chrome V8 引擎的 Javascript 运行环境，它使 Javascript 能够脱离浏览器直接运行。<br>Node.js 的开源命令行工具，可以让 Javascript 运行在本地。</p>
+<h3 id="认识-Node-交个朋友"><a href="#认识-Node-交个朋友" class="headerlink" title="认识 Node 交个朋友"></a>认识 Node 交个朋友</h3><p>Node 是服务器程序，特色就是处理多并发，处理方式则是每个连接会发射一个 Node 引擎进程中的运行事件，不使用锁，所以也不会有死锁的情况，也不生成 os 进程，它的服务器能支持上万并发。<br>Node 本身运行 V8 Javascript。V8 Javascript 引擎是 Google 用于其 Chrome 浏览器的底层 Javascript 引擎。</p>
+<h3 id="Node-事件驱动编程"><a href="#Node-事件驱动编程" class="headerlink" title="Node 事件驱动编程"></a>Node 事件驱动编程</h3><p>没有过度设计，没有面向对象、没有接口，Javascript 是驱动编程语言。有闭包、可以使用匿名函数。它只需要监听事件，调用匿名函数回调，其它由系统处理。</p>
+<h3 id="Node-的包管理工具-NPM"><a href="#Node-的包管理工具-NPM" class="headerlink" title="Node 的包管理工具 NPM"></a>Node 的包管理工具 NPM</h3><p>开发过程中通常需要依赖第三方框架，如 Jquery/element-ui 等一系列的第三方框架。这些第三方框架之间或许也是在相互依赖，直接下载、解压、处理相互间的引用似乎非常繁锁，顺应天意，包管理工具应用而生。而 Node 的包管理工具就是 NPM。</p>
+<h3 id="简单说说-Node-安装"><a href="#简单说说-Node-安装" class="headerlink" title="简单说说 Node 安装"></a>简单说说 Node 安装</h3><p>两种方式：</p>
+<ol>
+<li><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node 官网</a>下载自己系统相应的包，通过图型界面安装。</li>
+<li><code>brew install node</code> 通过命令安装，但前题是你安装过 <code>HomeBrew</code></li>
+</ol>
+<p>检查是否安装成功：<code>node -v</code> &amp;&amp; <code>npm -v</code></p>
+<h3 id="NODE-版本切换-n"><a href="#NODE-版本切换-n" class="headerlink" title="NODE 版本切换 n"></a>NODE 版本切换 n</h3><ol>
+<li><p>n 的安装 <code>npm install -g n</code><br>查看 n 是否安装成功 <code>n -V</code></p>
+</li>
+<li><p>用 n 切换 node 版本时遇到的问题及解决办法</p>
+<ul>
+<li><p>问题描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pna.nextTick is not a function</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决办法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ n lts <span class="comment"># Install or activate the latest LTS node release</span></span><br><span class="line">$ npm install -g npm</span><br><span class="line">$ n stable <span class="comment"># Install or activate the latest stable  node release</span></span><br><span class="line">$ npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="NODE-npm-install-报错"><a href="#NODE-npm-install-报错" class="headerlink" title="NODE npm install 报错"></a>NODE npm install 报错</h3><p><img src="/images/node/node_error_decies.png" alt="alt"></p>
+<blockquote>
+<p>关于这个报错，网络分析最多的原因是镜像引起的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm config get registry # 获取当前系统设置的镜像</span><br><span class="line">https://registry.npmjs.com/</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看当前镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry http://registry.npm.taobao.org/ # 设置当前系统的镜像为淘宝镜像</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重置镜像 <a href="https://registry.npmjs.com/，可以换成" target="_blank" rel="noopener">https://registry.npmjs.com/，可以换成</a> <a href="http://registry.npm.taobao.org/；反之，亦然" target="_blank" rel="noopener">http://registry.npm.taobao.org/；反之，亦然</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -rf package.lock.json（或 yarn.lock） # 删除 lock 文件</span><br><span class="line">npm cache clean --force # 清除缓存</span><br><span class="line">npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。</span><br><span class="line">npm i # 重新安装</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/02/Node-再看-node/" data-id="ckocjcp9z003tjiw9icac8915"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-vue-use-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/25/vue-use-vue-component/">vue.use 与 vue.component</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/25/vue-use-vue-component/" class="article-date">
+  <time datetime="2019-02-25T07:54:14.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Error - 1 弹层对象取自列表，列表数据在弹层编辑修改，编辑部分数据后，取消或关闭弹层，列表数据修改。<br>产生原因：vue 双向绑定<br>解决办法：copy Object, 对象重新 copy 一份</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">handlerUpdate(item) &#123;</span><br><span class="line">  <span class="comment">// 更新 item</span></span><br><span class="line">  <span class="keyword">this</span>.dialogVisible = !<span class="keyword">this</span>.dialogVisible</span><br><span class="line">  <span class="keyword">this</span>.dialogStatus = <span class="string">'edit'</span></span><br><span class="line">  <span class="keyword">this</span>.temp = <span class="built_in">Object</span>.assign(&#123;&#125;, item) <span class="comment">// copy obj</span></span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs[<span class="string">'dataForm'</span>].clearValidate()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm: Component = <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
+
+<p>以上写是不是有点奇怪，是的。我没见过，它是 <a href="https://flow.org/" target="_blank" rel="noopener">flow.js</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/vue-use-vue-component/" data-id="ckocjcpay005rjiw9bo878awp"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端框架/">前端框架</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-前端构建工具" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/02/25/前端构建工具/">前端构建工具</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/25/前端构建工具/" class="article-date">
+  <time datetime="2019-02-25T02:14:25.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>公司之前的项目用的 grunt 构建项目的</p>
+<h3 id="Grunt"><a href="#Grunt" class="headerlink" title="Grunt"></a>Grunt</h3><p>Grunt 首页中可用的 Grunt 插件列表吸引到了我</p>
+<ul>
+<li>coffeeScript</li>
+<li>handlebas</li>
+<li>jade</li>
+<li>JShint</li>
+<li>less</li>
+<li>sass</li>
+<li>require.js</li>
+<li>stylus</li>
+</ul>
+<h4 id="Grunt-目前项目中使用到的插件"><a href="#Grunt-目前项目中使用到的插件" class="headerlink" title="Grunt - 目前项目中使用到的插件"></a>Grunt - 目前项目中使用到的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line"><span class="string">"grunt-autoprefixer"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line"><span class="string">"grunt-concurrent"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="comment">// 清除打包生成的文件，删除 dist 目录下的文件</span></span><br><span class="line"><span class="string">"grunt-contrib-clean"</span>: <span class="string">"^0.6.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-compress"</span>: <span class="string">"^0.13.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-concat"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-connect"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-copy"</span>: <span class="string">"^0.5.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-cssmin"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-htmlmin"</span>: <span class="string">"^0.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-imagemin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-jshint"</span>: <span class="string">"^0.10.0"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-rename"</span>: <span class="string">"0.0.3"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span>,</span><br><span class="line"><span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span>,</span><br><span class="line"><span class="comment">// 单元测试框架 Test-Driven Development</span></span><br><span class="line"><span class="string">"grunt-mocha"</span>: <span class="string">"^0.4.10"</span>,</span><br><span class="line"><span class="string">"grunt-newer"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line"><span class="string">"grunt-rev"</span>: <span class="string">"^0.1.0"</span>,</span><br><span class="line"><span class="string">"grunt-svgmin"</span>: <span class="string">"^0.4.0"</span>,</span><br><span class="line"><span class="string">"grunt-usemin"</span>: <span class="string">"^2.3.0"</span>,</span><br><span class="line"><span class="string">"grunt-wiredep"</span>: <span class="string">"^1.7.0"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Grunt-API"><a href="#Grunt-API" class="headerlink" title="Grunt API"></a>Grunt API</h4><ul>
+<li>grunt.task</li>
+</ul>
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 别名任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>注册任务列表</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'qunit'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 注册任务 - 任务函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, --allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    grunt.task.run([</span><br><span class="line">      <span class="string">'clean:server'</span>,</span><br><span class="line">      <span class="string">'wiredep'</span>,</span><br><span class="line">      <span class="string">'concurrent:server'</span>,</span><br><span class="line">      <span class="string">'autoprefixer'</span>,</span><br><span class="line">      <span class="string">'connect:livereload'</span>,</span><br><span class="line">      <span class="string">'watch'</span></span><br><span class="line">    ]);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>grunt.util<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> done = <span class="keyword">this</span>.async();</span><br><span class="line">  generator.autogen(grunt, done);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="bower-包管理工具"><a href="#bower-包管理工具" class="headerlink" title="bower 包管理工具"></a>bower 包管理工具</h4><h3 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h3><h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>proxy 解决跨域问题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/02/25/前端构建工具/" data-id="ckocjcpaz005ujiw9hekxx8t4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
 
     </footer>
 

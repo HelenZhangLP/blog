@@ -27,7 +27,7 @@ tags:
 这里有三种实现(假设 元素 width: 100px)：
 1. position: absolute; margin-left: 50%; transform: translateX(-50%);
 2. position: absolute; margin-left: 50%; transform: translateX(-50px);
-3. position: absolute; left: 50%; margin-left: 50px;
+3. position: absolute; left: 50%; margin-left: 50%;
 4. position: absolute; left: 0; right: 0; margin: auto;
 
 >`注意：`
@@ -84,7 +84,7 @@ tags:
 }
 ```
 
-## 块级元素垂直居中 - `display: block; position: absolute; margin: auto;`
+## 块级元素垂直居中 - `position: absolute; margin: auto;`
 > position: absolute; 脱离文档流
   margin-left + left + width + margin-right + right = view width
   margin: auto 浏览器计算 margin

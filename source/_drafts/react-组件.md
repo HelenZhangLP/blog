@@ -1,29 +1,114 @@
 ---
-title: react组件
+title: react component
 date: 2021-03-05 10:22:34
 tags:
 - react
 ---
 
-## 1. 函数组件
+##  react 中创建组件的三种方式
+### 1.  ES5 写法：React.createClass()
+> React.createClass() 创建一个组件类，该类**接收一个对象参数**
+  <u>对象参数中声明 render() 方法</u>
+  render() 方法返回一个组件实例
+
+```javascript
+  // React.createClass 是一个工厂函数
+  var Component = React.createClass({
+    propTypes: {
+      initialValue: React.PropTypes.string
+    },
+    defaultProps: {
+      initialValue: ''
+    },
+    getInitialState: function() {
+      return {
+        text: 'ES5 创建 react 组件'
+      }
+    },
+    onModify: function() {
+      thi.setState({
+        text: '正确绑定 this 到 React 实例，会导致一定的性能开销'
+      })
+    },
+    render: function() {
+      return <div onClick={this.onModify}>this.state.text</div>
+    }
+  })
+```
+<font color="red">**createClass 内的方法会正确绑定 this 到 React 类的实例上，会导致一定的性能开销**</font>
+
+<!--more-->
+### 2.  ES6 写法：React.Component
+创建有状态组件，能更好的实现代码利用
+
+```javascript
+import React from 'react';
+class Test extends React.component {
+  constructor(props) {
+    super(props)
+    this.initialState = {
+      text: 'initial state'
+    }
+    // 手动绑定 this 方法 一
+    this.onModify = this.onModify.bind(this)
+  }
+
+  onModify() {
+    this.setState({
+      text: 'ES6 需要手动绑定 this'
+    })
+  }
+
+  render() {
+    return (
+      {/*
+        手动绑定 this 之方法二
+        <div onClick={this.onModify.bind(this)}>this.state.text</div>
+        手动绑定 this 之方法三
+        <div onClick={() => {
+          this.onModify()
+        }}>this.state.text</div>
+        */}
+      <div onClick={this.onModify}>this.state.text</div>
+    )
+  }
+}
+```
+<font color="red">**需要手动绑定 this**</font>
+
+### 3.  无状态函数写法，又称线组件 SFC
+> 可读性好，大大减少代码代码量
+  无状态函数式组件搭配箭头函数，更简洁，它没有 state 和生命周期
+  无状态函数组件需要生命周期时，**搭配高阶组件（HOC）**实现
+  无状态组件作为高阶组件的参数，高阶组件内放需要的生命周期和状态
+  无状态函数式组件负责展示
+
+```javascript
+// 无状态函数组件
+const Test = (props) => (<div>{props.name}</div>)
+
+import React from 'react'
+export const Test = (ComponentTest) => {
+  return class extends React.Component {
+    constructor(props) {
+      super(props)
+    }
+    componentDidMount() {}
+    render() {
+      return (<ComponentTest {...this.props}) />
+    }
+  }
+}
+```
+
+## ~函数组件(摘自 reactjs 16，该观点个人不赞成)~
 ```javascript
 function reactComponent() {
   return <div>Hello, React Component</div>
 }
 ```
-react 组件与 jsx 实现功能基本一致，但从设计角度上为时过早还是推荐使用 React 组件方式。
-> 原因是：React 组件与 Props 结合使用可以实现更灵活的功能。
-
-## 2. 类组件
-```javascript
-class ReactComponent extends React.Component {
-  render() {
-    return <div>Hello, React Component</div>
-  }
-}
-```
-
-<!-- more -->
+~react 组件与 jsx 实现功能基本一致，但从设计角度上为时过早，还是推荐使用 React 组件方式。~
+> ~原因是：React 组件与 Props 结合使用可以实现更灵活的功能。~
 
 ## 3. 组合组件
 React 可以在自身定义中引用其它组件，构成组合组件。好处是使用同一组件来抽象出任意层次的细节。
@@ -79,96 +164,6 @@ React 可以在自身定义中引用其它组件，构成组合组件。好处�
 </html>
 ```
 
-## 4. React Props
-```html
-<script type="text/babel">
-  let root = document.querySelector('#root');
-  const {Input, Button} = antd
-
-  function FormTitle() {
-    return <h1>UserLogin</h1>
-  }
-
-  function Test(props) {
-    return <input type="text" value={props.test} readOnly />
-  }
-
-  function UserID(props) {
-    return <Input placeholder="UserID" value={props.userId} />
-  }
-
-  function UserName(props) {
-    return <Input placeholder="UserName" value={props.userName} />
-  }
-
-  function Submit() {
-    return <Button type="primary" block>Submit</Button>
-  }
-
-  function FormLogin() {
-    return (
-      <div>
-        <FormTitle />
-        <UserID userId="001" />
-        <UserName userName="Audery" />
-        <Submit />
-        <Test test="1" />
-      </div>
-    )
-  }
-
-  ReactDOM.render(<FormLogin />, root)
-</script>
-```
-### 4-1.  React Props 只读
-> props 只读属性，需要添加 readOnly，或通过 onChange 属性修改 state，或将从 props 中取出的属性设置为 defaultValue
-
-将上面示例代码中的 readOnly 属性去掉，代码如下：
-```javascript
-...
-function Test(props) {
-  return <input type="text" value={props.test} />
-}
-...
-function FormLogin() {
-  return (
-    <div>
-      <FormTitle />
-      <UserID userId="001" />
-      <UserName userName="Audery" />
-      <Submit />
-      <Test test="1" />
-    </div>
-  )
-}
-```
-`Warning: Failed prop type: You provided a 'value' prop to a form field without an 'onChange' handler. This will render a read-only field. If the field should be mutable use 'defaultValue'. Otherwise, set either 'onChange' or 'readOnly'.
-    in input (created by Test)
-    in Test (created by FormLogin)
-    in div (created by FormLogin)
-    in FormLogin`
-属性类型错误，给没有 onchange 事件的表单提供了 value 属性，如果字段可变的使用 defaultValue，否则，设置 onChange 或 readOnly
-
-### 4-2.  React Props 默认值
-> 在 react 类组件中定义一个默认 props——defaultProps（函数组件可以通过 参数传递 props），使用 defaultProps 默认值来实现 React Props 应用
-
-```javascript
-class ImgTest extends React.Component {
-  render() {
-    return <img src={this.props.src} alt="" style={this.props.style}/>
-  }
-}
-
-ImgTest.defaultProps = {
-  src: "https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png",
-  style: {
-    margin: "0 auto",
-    width: "270px",
-    height: "129px"
-  }
-}
-```
-
 ### 4-3.  React 切分提取
 切分提取出逻辑清晰、高度复用的小组件，利于代码修改并且便于维护
 
@@ -192,10 +187,3 @@ webpack 通过 loader 转换文件，plugin 注入勾子，最终输出由多个
 webpack 对于 web 服务支持
 > npm i webpack-dev-server --save
 package.json add "start: webapck-dev-server --open --mode development"
-
-## React Router 与单页应用
-React 框架路由解决方案
-React Router 路由用来保持页面 UI 与 URL 地址的同步
-单页应用的基础
-单页应用——将视图和数据设计在一个页面中显示，且不同视图的切换也在唯一一个页面完成。用户看不到页面发生跳转
-React Router 是基于 React 框架开发的库，因此使用时需要通过 npm 包管理来安装开发包 react-router-dom，安装成功后就可以在应用中添加视图和数据流
