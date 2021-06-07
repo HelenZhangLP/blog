@@ -1,219 +1,299 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  
-  <title>
-    express |
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1&lt;%- partial(&amp;#x27;_partial&#x2F;ocean&amp;#x27;) %&gt; ejs 引发的一系列问题partial() 是 express 框架方法，先了解下 express。expressjs 官网是这样介绍的，它是 Web 应用程序Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。在官网中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/02/06/express/index.html">
+<meta property="og:site_name" content="女魔头">
+<meta property="og:description" content="1&lt;%- partial(&amp;#x27;_partial&#x2F;ocean&amp;#x27;) %&gt; ejs 引发的一系列问题partial() 是 express 框架方法，先了解下 express。expressjs 官网是这样介绍的，它是 Web 应用程序Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。在官网中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-06T03:27:34.000Z">
+<meta property="article:modified_time" content="2020-02-17T05:46:06.509Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="express">
+<meta name="twitter:card" content="summary">
     
-    女魔头</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
-</head>
-</html>
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>express</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
-<main class="content">
-  <section class="outer">
-  <article id="post-express" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      express
-    </h1>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/02/06/express/" class="article-date">
-  <time datetime="2019-02-06T03:27:34.000Z" itemprop="datePublished">2019-02-06</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">女魔头</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
   </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
 
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
+    <div class="background">
       
-      
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">'_partial/ocean'</span>) %&gt;</span><br></pre></td></tr></table></figure>
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/08/bluebird-Promise/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/03/hexo-%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%87%E6%8F%92%E4%BB%B6/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/02/06/express/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/02/06/express/&text=express"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/02/06/express/&is_video=false&description=express"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=express&body=Check out this article: https://helenzhanglp.github.io/2019/02/06/express/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/02/06/express/&name=express&description=&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- partial(&lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt;) %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ejs 引发的一系列问题&lt;br&gt;&lt;code&gt;partial()&lt;/code&gt; 是 express 框架方法，先了解下 express。&lt;br&gt;&lt;a href=&#34;http://www.expressjs.com.cn/&#34;&gt;expressjs 官网&lt;/a&gt;是这样介绍的，它是 Web 应用程序&lt;br&gt;Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。&lt;br&gt;在官网中没有找到 &lt;code&gt;partial()&lt;/code&gt; 方法，只能看看野史了。&lt;br&gt;百度找到了&lt;a href=&#34;http://yijiebuyi.com/blog/e503a402ffac43ca1cbaba9d4317b54d.html&#34;&gt;NodeJS - Express 3.0下ejs模板使用 partial展现 片段视图&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/expressjs/express/wiki/Migrating-from-2.x-to-3.x&#34;&gt;github 发现&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- partial(&lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt;) %&amp;gt; &lt;span class=&#34;comment&#34;&gt;// 在 3.x 中该方法已经移除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- include &lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt; %&amp;gt; &lt;span class=&#34;comment&#34;&gt;// 用 include 替代&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-<p>ejs 引发的一系列问题<br><code>partial()</code> 是 express 框架方法，先了解下 express。<br><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">expressjs 官网</a>是这样介绍的，它是 Web 应用程序<br>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。<br>在官网中没有找到 <code>partial()</code> 方法，只能看看野史了。<br>百度找到了<a href="http://yijiebuyi.com/blog/e503a402ffac43ca1cbaba9d4317b54d.html" target="_blank" rel="noopener">NodeJS - Express 3.0下ejs模板使用 partial展现 片段视图</a></p>
-<a id="more"></a>
-<p><a href="https://github.com/expressjs/express/wiki/Migrating-from-2.x-to-3.x" target="_blank" rel="noopener">github 发现</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">'_partial/ocean'</span>) %&gt; <span class="comment">// 在 3.x 中该方法已经移除</span></span><br><span class="line">&lt;%- include <span class="string">'_partial/ocean'</span> %&gt; <span class="comment">// 用 include 替代</span></span><br></pre></td></tr></table></figure>
-
-
+    </div>
+    <div id="toc">
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/02/06/express/" data-id="ckocjcpa8004jjiw9bv13pjvo"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+  </span>
+</div>
 
-    </footer>
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        express
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">女魔头</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-02-06T03:27:34.000Z" itemprop="datePublished">2019-02-06</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/express/" rel="tag">express</a>, <a class="tag-link-link" href="/tags/node/" rel="tag">node</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">&#x27;_partial/ocean&#x27;</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<p>ejs 引发的一系列问题<br><code>partial()</code> 是 express 框架方法，先了解下 express。<br><a target="_blank" rel="noopener" href="http://www.expressjs.com.cn/">expressjs 官网</a>是这样介绍的，它是 Web 应用程序<br>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。<br>在官网中没有找到 <code>partial()</code> 方法，只能看看野史了。<br>百度找到了<a target="_blank" rel="noopener" href="http://yijiebuyi.com/blog/e503a402ffac43ca1cbaba9d4317b54d.html">NodeJS - Express 3.0下ejs模板使用 partial展现 片段视图</a></p>
+<span id="more"></span>
+<p><a target="_blank" rel="noopener" href="https://github.com/expressjs/express/wiki/Migrating-from-2.x-to-3.x">github 发现</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">&#x27;_partial/ocean&#x27;</span>) %&gt; <span class="comment">// 在 3.x 中该方法已经移除</span></span><br><span class="line">&lt;%- include <span class="string">&#x27;_partial/ocean&#x27;</span> %&gt; <span class="comment">// 用 include 替代</span></span><br></pre></td></tr></table></figure>
 
   </div>
-
-  
-    
-  <nav class="article-nav">
-    
-      <a href="/2019/02/08/bluebird-Promise/" class="article-nav-link">
-        <strong class="article-nav-caption">上一页</strong>
-        <div class="article-nav-title">
-          
-            bluebird &amp;&amp; Promise
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/02/03/hexo-安装图片插件/" class="article-nav-link">
-        <strong class="article-nav-caption">下一页</strong>
-        <div class="article-nav-title">hexo 安装图片插件 ~ hexo + 七牛云</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-    
-  <div class="gitalk" id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-  <script type="text/Javascript">
-      var gitalk = new Gitalk({
-        clientID: '8e7e6dda81936172806e',
-        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
-        repo: 'blog',
-        owner: 'HelenZhangLP',
-        admin: ['HelenZhangLP'],
-        // id: location.pathname,      // Ensure uniqueness and length less than 50
-        id: md5(location.pathname),
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-  gitalk.render('gitalk-container')
-  </script>
-
-  
-
 </article>
 
-</section>
 
-  <footer class="footer">
-  
-  
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
-  <div class="outer">
-    <ul class="list-inline">
-      <li>&copy; 2021 女魔头</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
-      <!--
-      <li><a href="/">Helen Zhang</a></li>
-      -->
-    </ul>
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/02/06/express/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/02/06/express/&text=express"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/02/06/express/&is_video=false&description=express"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=express&body=Check out this article: https://helenzhanglp.github.io/2019/02/06/express/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/02/06/express/&title=express"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/02/06/express/&name=express&description=&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- partial(&lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt;) %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ejs 引发的一系列问题&lt;br&gt;&lt;code&gt;partial()&lt;/code&gt; 是 express 框架方法，先了解下 express。&lt;br&gt;&lt;a href=&#34;http://www.expressjs.com.cn/&#34;&gt;expressjs 官网&lt;/a&gt;是这样介绍的，它是 Web 应用程序&lt;br&gt;Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。&lt;br&gt;在官网中没有找到 &lt;code&gt;partial()&lt;/code&gt; 方法，只能看看野史了。&lt;br&gt;百度找到了&lt;a href=&#34;http://yijiebuyi.com/blog/e503a402ffac43ca1cbaba9d4317b54d.html&#34;&gt;NodeJS - Express 3.0下ejs模板使用 partial展现 片段视图&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/expressjs/express/wiki/Migrating-from-2.x-to-3.x&#34;&gt;github 发现&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- partial(&lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt;) %&amp;gt; &lt;span class=&#34;comment&#34;&gt;// 在 3.x 中该方法已经移除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;%- include &lt;span class=&#34;string&#34;&gt;&amp;#x27;_partial/ocean&amp;#x27;&lt;/span&gt; %&amp;gt; &lt;span class=&#34;comment&#34;&gt;// 用 include 替代&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
 
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
-
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">主页</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">档案</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">关于我</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="搜索">
-        <i class="fe fe-search"></i>
-        搜索
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
       
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-
-</aside>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
+    </div>
 </body>
 </html>

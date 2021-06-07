@@ -1,62 +1,216 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  
-  <title>
-    http 请求状态码 |
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="http 请求状态码 200 请求成功，默认状态下 200 响应可以被缓存    GET: 已经取得资源，并将资源添加到响应的消息体中。 HEAD: 响应的消息体为头部信息。 POST: 响应的消息体中包含此次请求的结果。 TRACE: 响应的消息体中包含服务器接收到的请求信息。 PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http 请求状态码">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/index.html">
+<meta property="og:site_name" content="女魔头">
+<meta property="og:description" content="http 请求状态码 200 请求成功，默认状态下 200 响应可以被缓存    GET: 已经取得资源，并将资源添加到响应的消息体中。 HEAD: 响应的消息体为头部信息。 POST: 响应的消息体中包含此次请求的结果。 TRACE: 响应的消息体中包含服务器接收到的请求信息。 PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-12T02:38:02.000Z">
+<meta property="article:modified_time" content="2020-02-17T05:46:06.511Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="网络请求">
+<meta name="twitter:card" content="summary">
     
-    女魔头</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
-</head>
-</html>
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>http 请求状态码</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
-<main class="content">
-  <section class="outer">
-  <article id="post-http-请求状态码" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">女魔头</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
 
-  <div class="article-inner">
-    
-      <header class="article-header">
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
-  
-    <h1 class="article-title" itemprop="name">
-      http 请求状态码
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/03/%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86-git%E5%9D%91/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&text=http 请求状态码"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&is_video=false&description=http 请求状态码"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=http 请求状态码&body=Check out this article: https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&name=http 请求状态码&description=&lt;h1 id=&#34;http-请求状态码-200&#34;&gt;&lt;a href=&#34;#http-请求状态码-200&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 200&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200&#34;&gt;http 请求状态码 200&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;请求成功，默认状态下 200 响应可以被缓存&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;GET: 已经取得资源，并将资源添加到响应的消息体中。&lt;/li&gt;
+&lt;li&gt;HEAD: 响应的消息体为头部信息。&lt;/li&gt;
+&lt;li&gt;POST: 响应的消息体中包含此次请求的结果。&lt;/li&gt;
+&lt;li&gt;TRACE: 响应的消息体中包含服务器接收到的请求信息。&lt;/li&gt;
+&lt;li&gt;PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h1 id=&#34;http-请求状态码-206&#34;&gt;&lt;a href=&#34;#http-请求状态码-206&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 206&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206&#34;&gt;http 请求状态码 206&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;HTTP 206 Partial Content 成功状态响应代码表示请求已成功，并且主体包含所请求的数据区间，该数据区间是在请求的 Range 首部指定的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Response Headers&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept: */*&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Encoding: identity;q=1, *;q=0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Language: zh-CN,zh;q=0.9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;If-Range: &amp;quot;640f0886f386c9c253a95c5d1c01ca16-163&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;**`Range: bytes=9895936-170855393`**&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Referer: https://cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com/gaokeyan1.mp4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果只包含一个数据区间，那么整个响应的 Content-Type 首部的值为所请求的文件的类型，同时包含 Content-Range 首部。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Response Headers(10)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Ranges: bytes&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Length: 170855394&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;** Content-Range: bytes 0-170855393/170855394&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;** Content-Type: video/mp4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Date: Wed, 12 Jun 2019 02:34:48 GMT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ETag: &amp;quot;640f0886f386c9c253a95c5d1c01ca16-163&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Last-Modified: Sun, 30 Dec 2018 17:44:16 GMT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Server: tencent-cos&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;x-cos-request-id: NWQwMDY0YzhfMWNiMjk0MGFfNThlZl83YTg5NWY=&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;http-请求状态响应码-304&#34;&gt;&lt;a href=&#34;#http-请求状态响应码-304&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态响应码 304&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304&#34;&gt;http 请求状态响应码 304&lt;/a&gt;&lt;/h1&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81-200"><span class="toc-number">1.</span> <span class="toc-text">http 请求状态码 200</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81-206"><span class="toc-number">2.</span> <span class="toc-text">http 请求状态码 206</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E5%93%8D%E5%BA%94%E7%A0%81-304"><span class="toc-number">3.</span> <span class="toc-text">http 请求状态响应码 304</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-401"><span class="toc-number">4.</span> <span class="toc-text">http 请求响应码 401</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-404"><span class="toc-number">5.</span> <span class="toc-text">http 请求响应码 404</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-500"><span class="toc-number">6.</span> <span class="toc-text">http 请求响应码 500</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        http 请求状态码
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">女魔头</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" rel="tag">网络请求</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/12/http-请求状态码/" class="article-date">
-  <time datetime="2019-06-12T02:38:02.000Z" itemprop="datePublished">2019-06-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener">http 请求状态码 200</a></h1><blockquote>
+  <div class="content" itemprop="articleBody">
+    <h1 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200">http 请求状态码 200</a></h1><blockquote>
 <p>请求成功，默认状态下 200 响应可以被缓存</p>
 </blockquote>
 <blockquote>
@@ -68,188 +222,161 @@
 <li>PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。</li>
 </ul>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 
-<h1 id="http-请求状态码-206"><a href="#http-请求状态码-206" class="headerlink" title="http 请求状态码 206"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206" target="_blank" rel="noopener">http 请求状态码 206</a></h1><blockquote>
+<h1 id="http-请求状态码-206"><a href="#http-请求状态码-206" class="headerlink" title="http 请求状态码 206"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206">http 请求状态码 206</a></h1><blockquote>
 <p>HTTP 206 Partial Content 成功状态响应代码表示请求已成功，并且主体包含所请求的数据区间，该数据区间是在请求的 Range 首部指定的。</p>
 </blockquote>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; Response Headers</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt; Accept-Encoding: identity;q=1, *;q=0</span><br><span class="line">&gt; Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">&gt; If-Range: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; **`Range: bytes=9895936-170855393`**</span><br><span class="line">&gt; Referer: https://cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com/gaokeyan1.mp4</span><br><span class="line">&gt; User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Response Headers</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: identity;q=1, *;q=0</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">If-Range: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">**`Range: bytes=9895936-170855393`**</span><br><span class="line">Referer: https://cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com/gaokeyan1.mp4</span><br><span class="line">User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>如果只包含一个数据区间，那么整个响应的 Content-Type 首部的值为所请求的文件的类型，同时包含 Content-Range 首部。</p>
 </blockquote>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; Response Headers(10)</span><br><span class="line">&gt; Accept-Ranges: bytes</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Content-Length: 170855394</span><br><span class="line">&gt; ** Content-Range: bytes 0-170855393/170855394</span><br><span class="line">&gt; ** Content-Type: video/mp4</span><br><span class="line">&gt; Date: Wed, 12 Jun 2019 02:34:48 GMT</span><br><span class="line">&gt; ETag: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; Last-Modified: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">&gt; Server: tencent-cos</span><br><span class="line">&gt; x-cos-request-id: NWQwMDY0YzhfMWNiMjk0MGFfNThlZl83YTg5NWY=</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Response Headers(10)</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Length: 170855394</span><br><span class="line">** Content-Range: bytes 0-170855393/170855394</span><br><span class="line">** Content-Type: video/mp4</span><br><span class="line">Date: Wed, 12 Jun 2019 02:34:48 GMT</span><br><span class="line">ETag: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">Last-Modified: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">Server: tencent-cos</span><br><span class="line">x-cos-request-id: NWQwMDY0YzhfMWNiMjk0MGFfNThlZl83YTg5NWY=</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="http-请求状态响应码-304"><a href="#http-请求状态响应码-304" class="headerlink" title="http 请求状态响应码 304"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304" target="_blank" rel="noopener">http 请求状态响应码 304</a></h1><blockquote>
+<h1 id="http-请求状态响应码-304"><a href="#http-请求状态响应码-304" class="headerlink" title="http 请求状态响应码 304"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304">http 请求状态响应码 304</a></h1><blockquote>
 <p>无需再次传输请求的内容，也就是说可以使用缓存的内容。这通常是在一些安全的方法（safe），例如 GET 或 HEAD 或 在请求中附带了头部信息： If-None-Match 或 If-Modified-Since。</p>
 </blockquote>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</span><br><span class="line">&gt; Accept-Encoding: gzip, deflate, br</span><br><span class="line">&gt; Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">&gt; Cache-Control: max-age=0</span><br><span class="line">&gt; Connection: keep-alive</span><br><span class="line">&gt; Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">&gt; ** If-Modified-Since: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">&gt; ** If-None-Match: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">&gt; Range: bytes=0-1048575</span><br><span class="line">&gt; Upgrade-Insecure-Requests: 1</span><br><span class="line">&gt; User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com</span><br><span class="line">** If-Modified-Since: Sun, 30 Dec 2018 17:44:16 GMT</span><br><span class="line">** If-None-Match: &quot;640f0886f386c9c253a95c5d1c01ca16-163&quot;</span><br><span class="line">Range: bytes=0-1048575</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="http-请求响应码-401"><a href="#http-请求响应码-401" class="headerlink" title="http 请求响应码 401"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401" target="_blank" rel="noopener">http 请求响应码 401</a></h1><blockquote>
+<h1 id="http-请求响应码-401"><a href="#http-请求响应码-401" class="headerlink" title="http 请求响应码 401"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401">http 请求响应码 401</a></h1><blockquote>
 <p>状态码 401 Unauthorized(未授权)代表客户端错误，指的是由于缺乏目标资源要求的身份验证凭证，发送的请求未得到满足。 这个状态码会与 WWW-Authenticate 首部一起发送，其中包含有如何进行验证的信息。 这个状态类似于 403， 但是在该情况下，依然可以进行身份验证。</p>
 </blockquote>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Request URL: https://api.github.com/user</span><br><span class="line">&gt; Request Method: GET</span><br><span class="line">&gt; Status Code: 401 Unauthorized</span><br><span class="line">&gt; Remote Address: 54.169.195.247:443</span><br><span class="line">&gt; Referrer Policy: no-referrer-when-downgrade</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://api.github.com/user</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 401 Unauthorized</span><br><span class="line">Remote Address: 54.169.195.247:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="http-请求响应码-404"><a href="#http-请求响应码-404" class="headerlink" title="http 请求响应码 404"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/404" target="_blank" rel="noopener">http 请求响应码 404</a></h1><blockquote>
+<h1 id="http-请求响应码-404"><a href="#http-请求响应码-404" class="headerlink" title="http 请求响应码 404"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/404">http 请求响应码 404</a></h1><blockquote>
 <p>状态码 404 Not Found 代表客户端错误，指的是服务器端无法找到所请求的资源。返回该响应的链接通常称为坏链（broken link）或死链（dead link），它们会导向链接出错处理(link rot)页面。 404 状态码并不能说明请求的资源是临时还是永久丢失。如果服务器知道该资源是永久丢失，那么应该返回 410 (Gone) 而不是 404 。</p>
 </blockquote>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Request URL: https://api.github.com/repos/helenzhanglp/blog/issues?client_id=8e7e6dda81936172806e&amp;client_secret=97f71b6bbdf731bc650ec39212061882b8f36e71&amp;labels=Gitalk,1863e4a8c0596ce3dfb3ee2f0c838431&amp;t=1560407734937</span><br><span class="line">&gt; Request Method: GET</span><br><span class="line">&gt; Status Code: 404 Not Found</span><br><span class="line">&gt; Remote Address: 54.169.195.247:443</span><br><span class="line">&gt; Referrer Policy: no-referrer-when-downgrade</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://api.github.com/repos/helenzhanglp/blog/issues?client_id=8e7e6dda81936172806e&amp;client_secret=97f71b6bbdf731bc650ec39212061882b8f36e71&amp;labels=Gitalk,1863e4a8c0596ce3dfb3ee2f0c838431&amp;t=1560407734937</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 404 Not Found</span><br><span class="line">Remote Address: 54.169.195.247:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="http-请求响应码-500"><a href="#http-请求响应码-500" class="headerlink" title="http 请求响应码 500"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/500" target="_blank" rel="noopener">http 请求响应码 500</a></h1><blockquote>
+<h1 id="http-请求响应码-500"><a href="#http-请求响应码-500" class="headerlink" title="http 请求响应码 500"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/500">http 请求响应码 500</a></h1><blockquote>
 <p>服务器内部错误，是一个通用的全方位响应，有可能是权限或数据库链接错误。设置代理了，也会返回 500 错误</p>
 </blockquote>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/12/http-请求状态码/" data-id="ckocjcpad004sjiw99o75cz4f"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络请求/">网络请求</a></li></ul>
-
-    </footer>
-
   </div>
-
-  
-    
-  <nav class="article-nav">
-    
-      <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-nav-link">
-        <strong class="article-nav-caption">上一页</strong>
-        <div class="article-nav-title">
-          
-            cookie 与 Web Storage
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/06/03/工具-代码管理-git坑/" class="article-nav-link">
-        <strong class="article-nav-caption">下一页</strong>
-        <div class="article-nav-title">git 坑</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-    
-  <div class="gitalk" id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-  <script type="text/Javascript">
-      var gitalk = new Gitalk({
-        clientID: '8e7e6dda81936172806e',
-        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
-        repo: 'blog',
-        owner: 'HelenZhangLP',
-        admin: ['HelenZhangLP'],
-        // id: location.pathname,      // Ensure uniqueness and length less than 50
-        id: md5(location.pathname),
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-  gitalk.render('gitalk-container')
-  </script>
-
-  
-
 </article>
 
-</section>
 
-  <footer class="footer">
-  
-  
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
-  <div class="outer">
-    <ul class="list-inline">
-      <li>&copy; 2021 女魔头</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
-      <!--
-      <li><a href="/">Helen Zhang</a></li>
-      -->
-    </ul>
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81-200"><span class="toc-number">1.</span> <span class="toc-text">http 请求状态码 200</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81-206"><span class="toc-number">2.</span> <span class="toc-text">http 请求状态码 206</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E5%93%8D%E5%BA%94%E7%A0%81-304"><span class="toc-number">3.</span> <span class="toc-text">http 请求状态响应码 304</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-401"><span class="toc-number">4.</span> <span class="toc-text">http 请求响应码 401</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-404"><span class="toc-number">5.</span> <span class="toc-text">http 请求响应码 404</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E7%A0%81-500"><span class="toc-number">6.</span> <span class="toc-text">http 请求响应码 500</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&text=http 请求状态码"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&is_video=false&description=http 请求状态码"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=http 请求状态码&body=Check out this article: https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&title=http 请求状态码"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/&name=http 请求状态码&description=&lt;h1 id=&#34;http-请求状态码-200&#34;&gt;&lt;a href=&#34;#http-请求状态码-200&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 200&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200&#34;&gt;http 请求状态码 200&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;请求成功，默认状态下 200 响应可以被缓存&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;GET: 已经取得资源，并将资源添加到响应的消息体中。&lt;/li&gt;
+&lt;li&gt;HEAD: 响应的消息体为头部信息。&lt;/li&gt;
+&lt;li&gt;POST: 响应的消息体中包含此次请求的结果。&lt;/li&gt;
+&lt;li&gt;TRACE: 响应的消息体中包含服务器接收到的请求信息。&lt;/li&gt;
+&lt;li&gt;PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h1 id=&#34;http-请求状态码-206&#34;&gt;&lt;a href=&#34;#http-请求状态码-206&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 206&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206&#34;&gt;http 请求状态码 206&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;HTTP 206 Partial Content 成功状态响应代码表示请求已成功，并且主体包含所请求的数据区间，该数据区间是在请求的 Range 首部指定的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Response Headers&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept: */*&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Encoding: identity;q=1, *;q=0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Language: zh-CN,zh;q=0.9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Host: cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;If-Range: &amp;quot;640f0886f386c9c253a95c5d1c01ca16-163&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;**`Range: bytes=9895936-170855393`**&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Referer: https://cktvideo-1252817906.cos.ap-guangzhou.myqcloud.com/gaokeyan1.mp4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果只包含一个数据区间，那么整个响应的 Content-Type 首部的值为所请求的文件的类型，同时包含 Content-Range 首部。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Response Headers(10)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Ranges: bytes&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Length: 170855394&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;** Content-Range: bytes 0-170855393/170855394&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;** Content-Type: video/mp4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Date: Wed, 12 Jun 2019 02:34:48 GMT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ETag: &amp;quot;640f0886f386c9c253a95c5d1c01ca16-163&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Last-Modified: Sun, 30 Dec 2018 17:44:16 GMT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Server: tencent-cos&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;x-cos-request-id: NWQwMDY0YzhfMWNiMjk0MGFfNThlZl83YTg5NWY=&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;http-请求状态响应码-304&#34;&gt;&lt;a href=&#34;#http-请求状态响应码-304&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态响应码 304&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304&#34;&gt;http 请求状态响应码 304&lt;/a&gt;&lt;/h1&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
 
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
-
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">主页</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">档案</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">关于我</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="搜索">
-        <i class="fe fe-search"></i>
-        搜索
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
       
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-
-</aside>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
+    </div>
 </body>
 </html>

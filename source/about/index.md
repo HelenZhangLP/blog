@@ -1,6 +1,7 @@
 ---
 title: 我
 date: 2019-01-31 16:44:42
+type: "about"
 ---
 ### Helen.ZhangLP
 #### 修炼千年，只为成精

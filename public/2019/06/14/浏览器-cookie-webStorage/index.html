@@ -1,76 +1,220 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  
-  <title>
-    cookie 与 Web Storage |
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="先了解下浏览器缓存存储过程的序列图：  &#96;If-None-Match:&quot;4f80f-13c-3a1xb12a&quot;&#96; 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。  Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie 与 Web Storage">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/index.html">
+<meta property="og:site_name" content="女魔头">
+<meta property="og:description" content="先了解下浏览器缓存存储过程的序列图：  &#96;If-None-Match:&quot;4f80f-13c-3a1xb12a&quot;&#96; 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。  Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-14T03:41:10.000Z">
+<meta property="article:modified_time" content="2020-11-18T02:00:14.444Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="browser">
+<meta property="article:tag" content="window">
+<meta property="article:tag" content="web storage">
+<meta name="twitter:card" content="summary">
     
-    女魔头</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
-</head>
-</html>
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>cookie 与 Web Storage</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
-<main class="content">
-  <section class="outer">
-  <article id="post-浏览器-cookie-webStorage" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">女魔头</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
 
-  <div class="article-inner">
-    
-      <header class="article-header">
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
-  
-    <h1 class="article-title" itemprop="name">
-      cookie 与 Web Storage
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/07/22/vue-config-js/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/12/http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&text=cookie 与 Web Storage"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&is_video=false&description=cookie 与 Web Storage"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=cookie 与 Web Storage&body=Check out this article: https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&name=cookie 与 Web Storage&description=&lt;p&gt;先了解下浏览器缓存存储过程的序列图：&lt;/p&gt;
+&lt;div id=&#34;sequence-0&#34;&gt;&lt;/div&gt;
+`If-None-Match:&#34;4f80f-13c-3a1xb12a&#34;` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
+
+&lt;p&gt;Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。&lt;/p&gt;
+&lt;h2 id=&#34;Web-Storage-使用前验证兼容性&#34;&gt;&lt;a href=&#34;#Web-Storage-使用前验证兼容性&#34; class=&#34;headerlink&#34; title=&#34;Web Storage 使用前验证兼容性&#34;&gt;&lt;/a&gt;Web Storage 使用前验证兼容性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; ((&lt;span class=&#34;keyword&#34;&gt;typeof&lt;/span&gt; Storage) == &lt;span class=&#34;string&#34;&gt;&amp;#x27;undefined&amp;#x27;&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// localStorage || sessionStorage 程序代码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code&gt;注意：&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+
+&lt;h2 id=&#34;window-localStorage&#34;&gt;&lt;a href=&#34;#window-localStorage&#34; class=&#34;headerlink&#34; title=&#34;window.localStorage&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage&#34;&gt;window.localStorage&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;只读的 localStorage 属性&lt;code&gt;允许你访问一个 Document 源（origin）的对象 Storage&lt;/code&gt;；其存储的数据能在跨浏览器会话保留，不会随浏览器关闭而消失，数据可分页、跨窗口访问。&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage-%E4%BD%BF%E7%94%A8%E5%89%8D%E9%AA%8C%E8%AF%81%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">Web Storage 使用前验证兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-localStorage"><span class="toc-number">2.</span> <span class="toc-text">window.localStorage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-localStorage-%E5%AD%98%E5%8F%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">window.localStorage 存取的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-localStorage-%E6%B8%85%E9%99%A4%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">window.localStorage 清除的几种方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-sessionStorage"><span class="toc-number">3.</span> <span class="toc-text">window.sessionStorage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-sessionStorage-%E5%AD%98%E5%8F%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">window.sessionStorage 存取的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-sessionStorage-%E6%B8%85%E9%99%A4%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">window.sessionStorage 清除的几种方式()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">4.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage-%E4%B8%8E-Cookie-%E5%AF%B9%E6%AF%94%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">Web Storage 与 Cookie 对比表</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        cookie 与 Web Storage
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">女魔头</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/browser/" rel="tag">browser</a>, <a class="tag-link-link" href="/tags/web-storage/" rel="tag">web storage</a>, <a class="tag-link-link" href="/tags/window/" rel="tag">window</a>
+    </div>
+
+
+    </div>
+  </header>
   
 
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/06/14/浏览器-cookie-webStorage/" class="article-date">
-  <time datetime="2019-06-14T03:41:10.000Z" itemprop="datePublished">2019-06-14</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>先了解下浏览器缓存存储过程的序列图：</p>
+  <div class="content" itemprop="articleBody">
+    <p>先了解下浏览器缓存存储过程的序列图：</p>
 <div id="sequence-0"></div>
 `If-None-Match:"4f80f-13c-3a1xb12a"` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
 
 <p>Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。</p>
-<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">'undefined'</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
+<h2 id="Web-Storage-使用前验证兼容性"><a href="#Web-Storage-使用前验证兼容性" class="headerlink" title="Web Storage 使用前验证兼容性"></a>Web Storage 使用前验证兼容性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">typeof</span> Storage) == <span class="string">&#x27;undefined&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">// localStorage || sessionStorage 程序代码</span></span><br></pre></td></tr></table></figure>
 
 <p><code>注意：</code></p>
 <ul>
 <li>由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 
-<h2 id="window-localStorage"><a href="#window-localStorage" class="headerlink" title="window.localStorage"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage" target="_blank" rel="noopener">window.localStorage</a></h2><p>只读的 localStorage 属性<code>允许你访问一个 Document 源（origin）的对象 Storage</code>；其存储的数据能在跨浏览器会话保留，不会随浏览器关闭而消失，数据可分页、跨窗口访问。</p>
+<h2 id="window-localStorage"><a href="#window-localStorage" class="headerlink" title="window.localStorage"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage">window.localStorage</a></h2><p>只读的 localStorage 属性<code>允许你访问一个 Document 源（origin）的对象 Storage</code>；其存储的数据能在跨浏览器会话保留，不会随浏览器关闭而消失，数据可分页、跨窗口访问。</p>
 <p>localStorage 类似 sessionStorage<br>但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束——也就是说，当页面被关闭时，存储在 sessionStorage 的数据会被清除 。</p>
 <p><code>注意:</code></p>
 <ul>
@@ -102,7 +246,7 @@
 <li><code>delete window.localStorage[key]</code></li>
 <li>清除全部数据 <code>window.localStorage.clear()</code></li>
 </ol>
-<h2 id="window-sessionStorage"><a href="#window-sessionStorage" class="headerlink" title="window.sessionStorage"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage" target="_blank" rel="noopener">window.sessionStorage</a></h2><p>用于保存临时数据，防止用户不小心刷新数据丢失，如大的表单提交。<br>sessionStorage 属性<code>允许你访问一个 session Storage 对象</code>。它与 localStorage 相似，不同之处在于 localStorage 里面存储的数据没有过期时间设置，而存储在 sessionStorage 里面的数据在页面会话结束时会被清除。页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。在新标签或窗口打开一个页面时会在顶级浏览上下文中初始化一个新的会话，这点和 session cookies 的运行方式不同。</p>
+<h2 id="window-sessionStorage"><a href="#window-sessionStorage" class="headerlink" title="window.sessionStorage"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/sessionStorage">window.sessionStorage</a></h2><p>用于保存临时数据，防止用户不小心刷新数据丢失，如大的表单提交。<br>sessionStorage 属性<code>允许你访问一个 session Storage 对象</code>。它与 localStorage 相似，不同之处在于 localStorage 里面存储的数据没有过期时间设置，而存储在 sessionStorage 里面的数据在页面会话结束时会被清除。页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。在新标签或窗口打开一个页面时会在顶级浏览上下文中初始化一个新的会话，这点和 session cookies 的运行方式不同。</p>
 <blockquote>
 <p>存储在 sessionStorage 或 localStorage 中的数据特定于该页面的协议。</p>
 </blockquote>
@@ -131,7 +275,7 @@
 <li>清除全部数据 <code>window.sessionStorage.clear()</code></li>
 <li>关闭浏览器或当前窗口</li>
 </ol>
-<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cookie" target="_blank" rel="noopener">Cookie</a></h2><p>Cookie 是一个请求首部，其中含有先前由服务器通过 Set-Cookie 首部投放并存储到客户端的 HTTP cookies。<br>这个首部可能会被完全移除，例如在浏览器的隐私设置里面设置为禁用cookie。</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cookie">Cookie</a></h2><p>Cookie 是一个请求首部，其中含有先前由服务器通过 Set-Cookie 首部投放并存储到客户端的 HTTP cookies。<br>这个首部可能会被完全移除，例如在浏览器的隐私设置里面设置为禁用cookie。</p>
 <blockquote>
 <ul>
 <li>Cookie 数据始终在同源的http请求中携带（即使不需要），就会在浏览器和服务器间来回传递，安全性低。而 Web Storage 不会把数据发给服务器，仅存在本地</li>
@@ -191,152 +335,113 @@ Cache->Web 服务器: GET /index HTTP/1.1 \n If-None-Match
 Web 服务器->Cache: HTTP/1.1 304 Not Modified
 Note left of Web 服务器:服务器 304，\n 缓存内容没有改动
 Cache->浏览器: HTTP/1.1 304 \n Not Modified \n Cache-Control: \n Max-age=2000 \n Age:0</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple"}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2019/06/14/浏览器-cookie-webStorage/" data-id="ckocjcpbd006rjiw9r5oe9xpg"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-storage/">web storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/window/">window</a></li></ul>
-
-    </footer>
-
   </div>
-
-  
-    
-  <nav class="article-nav">
-    
-      <a href="/2019/07/22/vue-config-js/" class="article-nav-link">
-        <strong class="article-nav-caption">上一页</strong>
-        <div class="article-nav-title">
-          
-            vue.config.js
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/06/12/http-请求状态码/" class="article-nav-link">
-        <strong class="article-nav-caption">下一页</strong>
-        <div class="article-nav-title">http 请求状态码</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-    
-  <div class="gitalk" id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-  <script type="text/Javascript">
-      var gitalk = new Gitalk({
-        clientID: '8e7e6dda81936172806e',
-        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
-        repo: 'blog',
-        owner: 'HelenZhangLP',
-        admin: ['HelenZhangLP'],
-        // id: location.pathname,      // Ensure uniqueness and length less than 50
-        id: md5(location.pathname),
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-  gitalk.render('gitalk-container')
-  </script>
-
-  
-
 </article>
 
-</section>
 
-  <footer class="footer">
-  
-  
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
-  <div class="outer">
-    <ul class="list-inline">
-      <li>&copy; 2021 女魔头</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
-      <!--
-      <li><a href="/">Helen Zhang</a></li>
-      -->
-    </ul>
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage-%E4%BD%BF%E7%94%A8%E5%89%8D%E9%AA%8C%E8%AF%81%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">Web Storage 使用前验证兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-localStorage"><span class="toc-number">2.</span> <span class="toc-text">window.localStorage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-localStorage-%E5%AD%98%E5%8F%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">window.localStorage 存取的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-localStorage-%E6%B8%85%E9%99%A4%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">window.localStorage 清除的几种方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-sessionStorage"><span class="toc-number">3.</span> <span class="toc-text">window.sessionStorage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-sessionStorage-%E5%AD%98%E5%8F%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">window.sessionStorage 存取的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-sessionStorage-%E6%B8%85%E9%99%A4%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">window.sessionStorage 清除的几种方式()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">4.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage-%E4%B8%8E-Cookie-%E5%AF%B9%E6%AF%94%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">Web Storage 与 Cookie 对比表</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&text=cookie 与 Web Storage"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&is_video=false&description=cookie 与 Web Storage"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=cookie 与 Web Storage&body=Check out this article: https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&title=cookie 与 Web Storage"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/06/14/%E6%B5%8F%E8%A7%88%E5%99%A8-cookie-webStorage/&name=cookie 与 Web Storage&description=&lt;p&gt;先了解下浏览器缓存存储过程的序列图：&lt;/p&gt;
+&lt;div id=&#34;sequence-0&#34;&gt;&lt;/div&gt;
+`If-None-Match:&#34;4f80f-13c-3a1xb12a&#34;` 服务器用来判断请求资源是否有更新，如果没有更新就返回 304 状态码，浏览器继续使用缓存数据。如有更新，服务器直接返回资源给浏览器。
+
+&lt;p&gt;Web Storage 将少量数据存储于客户端磁盘的技术。实际业务中将不希望从数据库的少量数据通过 web storage 存储，如：用户登录态、用户当前的部分操作如购物车数量增加等。&lt;/p&gt;
+&lt;h2 id=&#34;Web-Storage-使用前验证兼容性&#34;&gt;&lt;a href=&#34;#Web-Storage-使用前验证兼容性&#34; class=&#34;headerlink&#34; title=&#34;Web Storage 使用前验证兼容性&#34;&gt;&lt;/a&gt;Web Storage 使用前验证兼容性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; ((&lt;span class=&#34;keyword&#34;&gt;typeof&lt;/span&gt; Storage) == &lt;span class=&#34;string&#34;&gt;&amp;#x27;undefined&amp;#x27;&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// localStorage || sessionStorage 程序代码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code&gt;注意：&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由于部分 IE 和 Firefox 浏览器在测试的时候需要上传到服务器或 localhost 上执行，建议本地安装 http-server 测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+
+&lt;h2 id=&#34;window-localStorage&#34;&gt;&lt;a href=&#34;#window-localStorage&#34; class=&#34;headerlink&#34; title=&#34;window.localStorage&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage&#34;&gt;window.localStorage&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;只读的 localStorage 属性&lt;code&gt;允许你访问一个 Document 源（origin）的对象 Storage&lt;/code&gt;；其存储的数据能在跨浏览器会话保留，不会随浏览器关闭而消失，数据可分页、跨窗口访问。&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
 
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
-
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">主页</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">档案</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">关于我</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="搜索">
-        <i class="fe fe-search"></i>
-        搜索
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
       
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-
-</aside>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
+    </div>
 </body>
 </html>
