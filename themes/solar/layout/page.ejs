@@ -1,0 +1,10 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <%- partial('_partial/post/gallery') %>
+  <div class="content" itemprop="articleBody">
+    <% if(page.type === 'about') { %>
+      <%- page.content %>
+    <% } else { %>
+      <%- partial('tags', {site: site}) %>
+    <% } %>
+  </div>
+</article>
