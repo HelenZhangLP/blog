@@ -7,6 +7,9 @@ tags:
 - hexo
 ---
 
+## hexo db.json
+> db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 `hexo g`
+
 ## hexo 启动草稿服务
 ```
 $ hexo g && hexo s --drafts
