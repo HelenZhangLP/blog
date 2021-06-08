@@ -36,7 +36,7 @@ State --> ReactComponent #black;text:red : Update
 {%endplantuml%}
 <!--more-->
 
-> 1. Redux 其实是一个 `Javascript 状态容器`，可预测状态管理
+> 1. Redux 其实是一个 `JavaScript 状态容器`，可预测状态管理
   2. Redux 并不属于 React 框架，完全独立。可与大多数前端框架完美结合
   3. /**
        * reducer(state, action){}
@@ -128,7 +128,7 @@ connect 方法接受两个参数
 * mapDispatchToProps，函数类型，接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法
 
 #### Demo
-```Javascript
+```JavaScript
 import { connect } from '@tarojs/redux';
 function mapStateToProps(state) {
   return {

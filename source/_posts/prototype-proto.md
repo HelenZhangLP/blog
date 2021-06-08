@@ -2,18 +2,18 @@
 title: javascript prototype && __proto__
 date: 2019-03-19 12:20:05
 tags:
-- Javascript
+- JavaScript
 - object
 - 对象继承
 ---
 
 ## 原型和原型链
-Javascript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 `__proto__` 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。
+JavaScript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 `__proto__` 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。
 
 [继承](https://segmentfault.com/a/1190000015727237)
-### Javascript 继承
+### JavaScript 继承
 * 原型链继承
-```Javascript
+```JavaScript
 function Super() {}
 function Son() {}
 // 实现继承
@@ -21,7 +21,7 @@ Son.prototype = new Super()
 ```
 > 只要把子类的原型指向父类的实例就可以了，再演示一个更丰满的例子
 
-```Javascript
+```JavaScript
 function Base() {
   this.friends = ['lily', 'lucy', 'coco']
 }
@@ -41,7 +41,7 @@ console.log(Audery.friends)
 > 引用类型会出现数组引用多实例因共享导致的相互污染的问题，考虑使用 ** 构造函数继承 ** 实现
 
 * 构造函数继承
-```Javascript
+```JavaScript
 function Base(female) {
   this.sex = female
   this.friends = ['lily', 'lucy', 'coco']
@@ -62,7 +62,7 @@ console.log(Gulu.friends)
 > 上面说了，通过对象冒充调用父类构造方法，其实就是复制父类构造函数中的属性、方法，到子类构造函数中，原型方法无法继承
 
 * 组合继承
-```Javascript
+```JavaScript
 function Base(female) {
   this.sex = female
   this.friends = ['lily', 'lucy', 'coco']
@@ -93,7 +93,7 @@ Gulu.friends.push('emily')
 ** 以上是原型链继承的周边，不使用 Object.create， 以下是使用 Object.create 方法相关继承的演生 **
 
 * 原型式继承
-```Javascript
+```JavaScript
 function base(o) {
   function F(){}
   F.prototype = o;
@@ -118,7 +118,7 @@ baseInstance1.arr.push('array4')
 * Class extends
 > 如果子类中存在构造函数，则需要在使用 this 之前首先调用 super。 与寄生组合继承不同的是，ES6 先将父类实例对象的属性和方法加到 this 上，必须先调用 super 方法，然后再用的子类构造函数修改 this
 
-```Javascript
+```JavaScript
 babel.min.js:2 Uncaught SyntaxError: Inline Babel script: 'this' is not allowed before super()
   3 |   constructor(props) {
   4 |     // super(props);
@@ -127,7 +127,7 @@ babel.min.js:2 Uncaught SyntaxError: Inline Babel script: 'this' is not allowed 
   6 |   }
 ```
 实现原理
-```Javascript
+```JavaScript
 class A {}
 class B {}
 

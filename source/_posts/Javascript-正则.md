@@ -1,9 +1,9 @@
 ---
-title: 'Javascript-正则'
+title: 'JavaScript-正则'
 date: 2020-01-13 15:35:23
 category: 技术
 tags:
-- Javascript
+- JavaScript
 - RegExp
 ---
 

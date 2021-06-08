@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;script&gt;&lt;&#x2F;script&gt; 标签即可。随着前端复杂度的提高，对于前端代码的可读性、可扩展性有较高的要求，就需要分多模块。这一阶段就是无模块化阶段： 一、无模块化无模块化阶段代码如下： 1234&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;">
+    <meta name="description" content="JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;script&gt;&lt;&#x2F;script&gt; 标签即可。随着前端复杂度的提高，对于前端代码的可读性、可扩展性有较高的要求，就需要分多模块。这一阶段就是无模块化阶段： 一、无模块化无模块化阶段代码如下： 1234&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript 模块化">
+<meta property="og:title" content="JavaScript 模块化">
 <meta property="og:url" content="https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="女魔头">
-<meta property="og:description" content="Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;script&gt;&lt;&#x2F;script&gt; 标签即可。随着前端复杂度的提高，对于前端代码的可读性、可扩展性有较高的要求，就需要分多模块。这一阶段就是无模块化阶段： 一、无模块化无模块化阶段代码如下： 1234&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;">
+<meta property="og:description" content="JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;script&gt;&lt;&#x2F;script&gt; 标签即可。随着前端复杂度的提高，对于前端代码的可读性、可扩展性有较高的要求，就需要分多模块。这一阶段就是无模块化阶段： 一、无模块化无模块化阶段代码如下： 1234&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-26T02:04:17.000Z">
-<meta property="article:modified_time" content="2020-11-18T02:00:14.425Z">
+<meta property="article:modified_time" content="2021-06-08T03:26:02.996Z">
 <meta property="article:author" content="Helen Zhang">
-<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="commonjs">
 <meta property="article:tag" content="amd">
 <meta property="article:tag" content="cmd">
@@ -41,7 +41,7 @@
         
     
     <!-- title -->
-    <title>Javascript 模块化</title>
+    <title>JavaScript 模块化</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
@@ -136,15 +136,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&text=Javascript 模块化"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&is_video=false&description=Javascript 模块化"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Javascript 模块化&body=Check out this article: https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&name=Javascript 模块化&description=&lt;p&gt;Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签即可。随着前端复杂度的提高，对于前端代码的&lt;code&gt;可读性、可扩展性&lt;/code&gt;有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&text=JavaScript 模块化"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&is_video=false&description=JavaScript 模块化"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript 模块化&body=Check out this article: https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&name=JavaScript 模块化&description=&lt;p&gt;JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签即可。随着前端复杂度的提高，对于前端代码的&lt;code&gt;可读性、可扩展性&lt;/code&gt;有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：&lt;/p&gt;
 &lt;h3 id=&#34;一、无模块化&#34;&gt;&lt;a href=&#34;#一、无模块化&#34; class=&#34;headerlink&#34; title=&#34;一、无模块化&#34;&gt;&lt;/a&gt;一、无模块化&lt;/h3&gt;&lt;p&gt;无模块化阶段代码如下：&lt;/p&gt;
 &lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;jquery.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;jquery_scroller.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;main.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;blockquote&gt;
@@ -155,7 +155,7 @@
 &lt;/blockquote&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 
-&lt;h3 id=&#34;二、CommonJS规范&#34;&gt;&lt;a href=&#34;#二、CommonJS规范&#34; class=&#34;headerlink&#34; title=&#34;二、CommonJS规范&#34;&gt;&lt;/a&gt;二、CommonJS规范&lt;/h3&gt;&lt;p&gt;CommonJS 由 Javascript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。&lt;br&gt;&lt;a href=&#34;http://Javascript.ruanyifeng.com/nodejs/module.html#toc0&#34;&gt;参考 CommonJS 规范&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;二、CommonJS规范&#34;&gt;&lt;a href=&#34;#二、CommonJS规范&#34; class=&#34;headerlink&#34; title=&#34;二、CommonJS规范&#34;&gt;&lt;/a&gt;二、CommonJS规范&lt;/h3&gt;&lt;p&gt;CommonJS 由 JavaScript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。&lt;br&gt;&lt;a href=&#34;http://JavaScript.ruanyifeng.com/nodejs/module.html#toc0&#34;&gt;参考 CommonJS 规范&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;1-概述认识-module-对象&#34;&gt;&lt;a href=&#34;#1-概述认识-module-对象&#34; class=&#34;headerlink&#34; title=&#34;1. 概述认识 module 对象&#34;&gt;&lt;/a&gt;1. 概述认识 &lt;code&gt;module&lt;/code&gt; 对象&lt;/h4&gt;&lt;blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;每个文件为一个模块，每个模块有自己的作用域。该模块定义的变量、函数、类均为私有，其它模块不可见。不会污染全局作用域&lt;/li&gt;
@@ -178,7 +178,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Javascript 模块化
+        JavaScript 模块化
     </h1>
 
 
@@ -194,18 +194,14 @@
 
 
       
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/amd/" rel="tag">amd</a>, <a class="tag-link-link" href="/tags/cmd/" rel="tag">cmd</a>, <a class="tag-link-link" href="/tags/commonjs/" rel="tag">commonjs</a>, <a class="tag-link-link" href="/tags/es6-modules/" rel="tag">es6 modules</a>
-    </div>
-
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/amd/" rel="tag">amd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/" rel="tag">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commonjs/" rel="tag">commonjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-modules/" rel="tag">es6 modules</a></li></ul>
 
     </div>
   </header>
   
 
   <div class="content" itemprop="articleBody">
-    <p>Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 <code>&lt;script&gt;&lt;/script&gt;</code> 标签即可。随着前端复杂度的提高，对于前端代码的<code>可读性、可扩展性</code>有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：</p>
+    <p>JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 <code>&lt;script&gt;&lt;/script&gt;</code> 标签即可。随着前端复杂度的提高，对于前端代码的<code>可读性、可扩展性</code>有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：</p>
 <h3 id="一、无模块化"><a href="#一、无模块化" class="headerlink" title="一、无模块化"></a>一、无模块化</h3><p>无模块化阶段代码如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;jquery_scroller.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -216,7 +212,7 @@
 </blockquote>
 <span id="more"></span>
 
-<h3 id="二、CommonJS规范"><a href="#二、CommonJS规范" class="headerlink" title="二、CommonJS规范"></a>二、CommonJS规范</h3><p>CommonJS 由 Javascript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。<br><a target="_blank" rel="noopener" href="http://Javascript.ruanyifeng.com/nodejs/module.html#toc0">参考 CommonJS 规范</a></p>
+<h3 id="二、CommonJS规范"><a href="#二、CommonJS规范" class="headerlink" title="二、CommonJS规范"></a>二、CommonJS规范</h3><p>CommonJS 由 JavaScript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。<br><a target="_blank" rel="noopener" href="http://JavaScript.ruanyifeng.com/nodejs/module.html#toc0">参考 CommonJS 规范</a></p>
 <h4 id="1-概述认识-module-对象"><a href="#1-概述认识-module-对象" class="headerlink" title="1. 概述认识 module 对象"></a>1. 概述认识 <code>module</code> 对象</h4><blockquote>
 <ol>
 <li>每个文件为一个模块，每个模块有自己的作用域。该模块定义的变量、函数、类均为私有，其它模块不可见。不会污染全局作用域</li>
@@ -269,7 +265,7 @@
 <p>require 函数接收表达式，可以利用该特性将动态加载模块到全局</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> needModules = [<span class="string">&#x27;moduleA&#x27;</span>,<span class="string">&#x27;moduleB&#x27;</span>,<span class="string">&#x27;moduleC&#x27;</span>,...]</span><br><span class="line">needModules.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">&#x27;./&#x27;</span>+item);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h3 id="三、AMD规范"><a href="#三、AMD规范" class="headerlink" title="三、AMD规范"></a>三、AMD规范</h3><h3 id="四、CMD规范"><a href="#四、CMD规范" class="headerlink" title="四、CMD规范"></a>四、CMD规范</h3><h3 id="五、ES6模块化"><a href="#五、ES6模块化" class="headerlink" title="五、ES6模块化"></a>五、ES6模块化</h3><p>2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，Javascript 有了 <code>模块</code> 的概念。</p>
+<h3 id="三、AMD规范"><a href="#三、AMD规范" class="headerlink" title="三、AMD规范"></a>三、AMD规范</h3><h3 id="四、CMD规范"><a href="#四、CMD规范" class="headerlink" title="四、CMD规范"></a>四、CMD规范</h3><h3 id="五、ES6模块化"><a href="#五、ES6模块化" class="headerlink" title="五、ES6模块化"></a>五、ES6模块化</h3><p>2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，JavaScript 有了 <code>模块</code> 的概念。</p>
 <ul>
 <li>与 CommonJS 一样，ES6 Module 每个模块都有自身的作用域；</li>
 <li>在 ES6 版本中，<code>import</code> 和 <code>export</code> 是保留关键字；</li>
@@ -319,15 +315,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&text=Javascript 模块化"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&is_video=false&description=Javascript 模块化"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Javascript 模块化&body=Check out this article: https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=Javascript 模块化"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&name=Javascript 模块化&description=&lt;p&gt;Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签即可。随着前端复杂度的提高，对于前端代码的&lt;code&gt;可读性、可扩展性&lt;/code&gt;有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&text=JavaScript 模块化"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&is_video=false&description=JavaScript 模块化"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript 模块化&body=Check out this article: https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&title=JavaScript 模块化"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/26/Javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/&name=JavaScript 模块化&description=&lt;p&gt;JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 &lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签即可。随着前端复杂度的提高，对于前端代码的&lt;code&gt;可读性、可扩展性&lt;/code&gt;有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：&lt;/p&gt;
 &lt;h3 id=&#34;一、无模块化&#34;&gt;&lt;a href=&#34;#一、无模块化&#34; class=&#34;headerlink&#34; title=&#34;一、无模块化&#34;&gt;&lt;/a&gt;一、无模块化&lt;/h3&gt;&lt;p&gt;无模块化阶段代码如下：&lt;/p&gt;
 &lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;jquery.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;jquery_scroller.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;main.js&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;blockquote&gt;
@@ -338,7 +334,7 @@
 &lt;/blockquote&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 
-&lt;h3 id=&#34;二、CommonJS规范&#34;&gt;&lt;a href=&#34;#二、CommonJS规范&#34; class=&#34;headerlink&#34; title=&#34;二、CommonJS规范&#34;&gt;&lt;/a&gt;二、CommonJS规范&lt;/h3&gt;&lt;p&gt;CommonJS 由 Javascript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。&lt;br&gt;&lt;a href=&#34;http://Javascript.ruanyifeng.com/nodejs/module.html#toc0&#34;&gt;参考 CommonJS 规范&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;二、CommonJS规范&#34;&gt;&lt;a href=&#34;#二、CommonJS规范&#34; class=&#34;headerlink&#34; title=&#34;二、CommonJS规范&#34;&gt;&lt;/a&gt;二、CommonJS规范&lt;/h3&gt;&lt;p&gt;CommonJS 由 JavaScript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。&lt;br&gt;&lt;a href=&#34;http://JavaScript.ruanyifeng.com/nodejs/module.html#toc0&#34;&gt;参考 CommonJS 规范&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;1-概述认识-module-对象&#34;&gt;&lt;a href=&#34;#1-概述认识-module-对象&#34; class=&#34;headerlink&#34; title=&#34;1. 概述认识 module 对象&#34;&gt;&lt;/a&gt;1. 概述认识 &lt;code&gt;module&lt;/code&gt; 对象&lt;/h4&gt;&lt;blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;每个文件为一个模块，每个模块有自己的作用域。该模块定义的变量、函数、类均为私有，其它模块不可见。不会污染全局作用域&lt;/li&gt;

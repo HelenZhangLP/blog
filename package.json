@@ -10,7 +10,7 @@
     "hexo-asset-image": "^1.0.0",
     "hexo-codepen-v2": "^0.2.3",
     "hexo-deployer-git": "^3.0.0",
-    "hexo-excerpt": "^1.1.6",
+    "hexo-excerpt": "^1.1.2",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
     "hexo-filter-sequence": "^1.0.3",
     "hexo-generator-archive": "^0.1.5",
@@ -25,5 +25,8 @@
     "hexo-server": "^0.3.1",
     "hexo-tag-plantuml": "^1.0.0",
     "hexo-tag-table-bootstrap": "^1.0.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.1"
   }
 }

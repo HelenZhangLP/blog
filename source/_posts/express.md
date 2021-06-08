@@ -7,7 +7,7 @@ tags:
 - express
 ---
 
-```Javascript
+```JavaScript
 <%- partial('_partial/ocean') %>
 ```
 ejs 引发的一系列问题
@@ -19,7 +19,7 @@ Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发�
 <!-- more -->
 [github 发现](https://github.com/expressjs/express/wiki/Migrating-from-2.x-to-3.x)
 
-```Javascript
+```JavaScript
 <%- partial('_partial/ocean') %> // 在 3.x 中该方法已经移除
 <%- include '_partial/ocean' %> // 用 include 替代
 ```

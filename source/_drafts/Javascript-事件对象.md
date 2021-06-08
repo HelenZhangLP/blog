@@ -1,8 +1,8 @@
 ---
-title: Javascript-事件对象
+title: JavaScript-事件对象
 date: 2021-01-19 16:52:04
 tags:
-- Javascript
+- JavaScript
 ---
 
 事件流描述从页面中接受事件的顺序

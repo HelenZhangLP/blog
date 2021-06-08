@@ -1,9 +1,9 @@
 ---
-title: Javascript-正则-常用正则case
+title: JavaScript-正则-常用正则case
 date: 2020-03-10 13:47:53
 tags:
 - 技术
-- Javascript
+- JavaScript
 - RegExp
 ---
 

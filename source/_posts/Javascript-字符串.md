@@ -1,9 +1,9 @@
 ---
-title: Javascript 字符串
+title: JavaScript 字符串
 date: 2020-01-09 10:14:03
 categories: 技术
 tags:
-- Javascript
+- JavaScript
 - String
 ---
 
@@ -79,7 +79,7 @@ str.substring(0, str.length-1);// zhangliping
 ```
 
 ### String.proptotype.substr() 返回一个字符串从指定位置开始
-> 被认作是遗留的函数，非 Javascript 核心语言的一部分。目前没有严格被废弃。但将来可能被移除
+> 被认作是遗留的函数，非 JavaScript 核心语言的一部分。目前没有严格被废弃。但将来可能被移除
 str.substr(start[, length])
 * 不会改变原字符串
 * start 与 slice 的第一个参数相同从该索引（以 0 这基数）处开始提取原字符串，若为负数，看作 strlength（字符串长度） + start。

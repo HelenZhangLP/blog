@@ -1,15 +1,15 @@
 ---
-title: Javascript 模块化
+title: JavaScript 模块化
 date: 2019-03-26 10:04:17
 tags:
-- Javascript
+- JavaScript
 - commonjs
 - amd
 - cmd
 - es6 modules
 ---
 
-Javascript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 `<script></script>` 标签即可。随着前端复杂度的提高，对于前端代码的`可读性、可扩展性`有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：
+JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 `<script></script>` 标签即可。随着前端复杂度的提高，对于前端代码的`可读性、可扩展性`有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：
 
 ### 一、无模块化
 无模块化阶段代码如下：
@@ -25,8 +25,8 @@ Javascript 起初只为了验证表单，后来加入了动画等。只需要在
 <!-- more -->
 
 ### 二、CommonJS规范
-CommonJS 由 Javascript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。
-[参考 CommonJS 规范](http://Javascript.ruanyifeng.com/nodejs/module.html#toc0)
+CommonJS 由 JavaScript 社区 2009 年提出的包含模块、文件、IO、控制台在内的一系列标准。Node.js 的实现中采用了 CommonJS 标准的一部分，并在其基础上作了一些调整。
+[参考 CommonJS 规范](http://JavaScript.ruanyifeng.com/nodejs/module.html#toc0)
 
 
 ####  1. 概述认识 `module` 对象
@@ -69,7 +69,7 @@ Module {
 
 ####  2. 导出
 CommonJS 中，通过 `module.exports` 导出模块中的内容
-```Javascript
+```JavaScript
 // example.js
 const variable = 'this is a variable'
 const fn = function() { return 'this is a function' }
@@ -127,7 +127,7 @@ console.log('end')
 console.log('test the number of times the export file is executed')
 exports.hello = 'instruction: export the function of hello'
 ```
-```Javascript
+```JavaScript
 // index.js
 const example = require('./example')
 console.log('wait a moment..., require the js file of example again')
@@ -159,7 +159,7 @@ needModules.map(item => {
 ### 三、AMD规范
 ### 四、CMD规范
 ### 五、ES6模块化
-2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，Javascript 有了 `模块` 的概念。
+2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，JavaScript 有了 `模块` 的概念。
 * 与 CommonJS 一样，ES6 Module 每个模块都有自身的作用域；
 * 在 ES6 版本中，`import` 和 `export` 是保留关键字；
 * ES6 Module 自动采用严格模式（`use strict`）;

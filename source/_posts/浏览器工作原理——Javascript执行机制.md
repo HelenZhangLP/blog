@@ -1,9 +1,9 @@
 ---
-title: 浏览器工作原理——浏览器中的Javascript执行机制
+title: 浏览器工作原理——浏览器中的JavaScript执行机制
 date: 2020-11-18 19:21:21
 tags:
 - browser
-- Javascript
+- JavaScript
 - 浏览器工作原理
 ---
 
@@ -31,7 +31,7 @@ tags:
 JavaScript 代码是**按顺序执行**的
 > 分析以下代码
 
-```Javascript
+```JavaScript
 console.log(name)
 console.log(undefinedvariable)
 
@@ -47,9 +47,9 @@ name = 123; // 赋值部分
 
 
 ### 1-1. 认识变量提升（Hoisting）
-> ~~Javascript 代码执行过程中，Javascript 引擎把变量声明部分和函数声明部分提升到代码开头的行为~~`JavaScript 代码在编译过程中，被 JavaScript 引擎放入内存的行为`，叫做 **变量提升**。
+> ~~JavaScript 代码执行过程中，JavaScript 引擎把变量声明部分和函数声明部分提升到代码开头的行为~~`JavaScript 代码在编译过程中，被 JavaScript 引擎放入内存的行为`，叫做 **变量提升**。
 
-```Javascript
+```JavaScript
 console.log(name)
 fn();
 fn_var();
@@ -649,7 +649,7 @@ closure(foo)
 ```
 
 ### 7-1.  闭包怎么回收
-闭包使用不正确会造成内存泄漏，如果引用闭包的函数是个全局变量，闭包会一直存在直到页面关闭；如果不在使用就会造成内存泄漏。引用闭包的函数是个局部变量，等函数销毁后，在下次 JavaScript 引擎执行垃圾回收时，判断闭包这块内容不被使用，那么 Javascript 引擎垃圾回收器会回收这块内存。使用闭包原则 **如果闭包会一直使用，那么它可以作为全局变量存在；如果使用频率不高，占用内存又大，就尽量让它成为一个局部变量**
+闭包使用不正确会造成内存泄漏，如果引用闭包的函数是个全局变量，闭包会一直存在直到页面关闭；如果不在使用就会造成内存泄漏。引用闭包的函数是个局部变量，等函数销毁后，在下次 JavaScript 引擎执行垃圾回收时，判断闭包这块内容不被使用，那么 JavaScript 引擎垃圾回收器会回收这块内存。使用闭包原则 **如果闭包会一直使用，那么它可以作为全局变量存在；如果使用频率不高，占用内存又大，就尽量让它成为一个局部变量**
 
 ## 8. JavaScript 中的 this 是什么
 ```javaScript

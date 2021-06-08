@@ -1,5 +1,5 @@
 ---
-title: Javascript 引用类型
+title: JavaScript 引用类型
 tags:
-- Javascript
+- JavaScript
 ---

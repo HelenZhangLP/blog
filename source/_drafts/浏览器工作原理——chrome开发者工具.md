@@ -21,7 +21,7 @@ chrome 工具是调试页面的核心工具
 |---|----|
 |Elements 面板|1.可以查看DOM结构<br/>2.编辑CSS样式<br/>3.测试页面布局<br/>4.设计页面|
 |Console 面板|1.可以执行 JavaScript 脚本（JavaScript Shell）<br/>2.通过 Console 和页面中的 JavaScript 对象交互|
-|Sources 面板|1.查看 Web 应用加载的所有文件；<br/> 2.编辑CSS和Javascript文件内容；<br/>3.将打乱的CSS文件或者Javascript 文件格式化；<br/>4.支持 JavaScript 的调试功能；<br/>5.设置工作区，将更改的文件保存到本地文件夹中|
+|Sources 面板|1.查看 Web 应用加载的所有文件；<br/> 2.编辑CSS和JavaScript文件内容；<br/>3.将打乱的CSS文件或者JavaScript 文件格式化；<br/>4.支持 JavaScript 的调试功能；<br/>5.设置工作区，将更改的文件保存到本地文件夹中|
 |NetWork 面板|展示了页面中所有的请求内容列表，可以查看请求行、请求头、请求体、时间线以及网络请求瀑布图等信息|
 |Performance 面板|记录和查看 Web 应用生命周期内的各种事件，并用来分析在执行过程中一些影响性能的要点|
 |Memory 面板|用来查看运行过程中的JavaScript 占用内存情况，追踪是否存在内存泄漏的情况等|

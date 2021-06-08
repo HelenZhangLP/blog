@@ -1,14 +1,14 @@
 ---
-title: Javascript Class
+title: JavaScript Class
 date: 2019-03-20 17:06:19
 tags:
-- Javascript
+- JavaScript
 - es6
 ---
 ### 定义类
 #### 类声明
 用带有 class 关键字的类名声明一个类
-```Javascript
+```JavaScript
 class Mermaid {
   constructor(name, age) {
     this.name = name
@@ -18,7 +18,7 @@ class Mermaid {
 ```
 > 类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：
 
-```Javascript
+```JavaScript
 new Mermaid();
 
 class Mermaid {
@@ -30,7 +30,7 @@ class Mermaid {
 // Uncaught ReferenceError: Mermaid is not defined
 ```
 #### 类表达式
-```Javascript
+```JavaScript
 /* 匿名类 */
 let Mermaid = class {
   constructor() {}

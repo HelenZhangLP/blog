@@ -10,7 +10,7 @@ tags:
 ---
 ### taro 坑
 #### 坑 - 1
-```Javascript
+```JavaScript
 /Users/lipingzhang/Project/**/**/src/pages/order/detail/index编译失败！
 TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string
     at assertPath (path.js:28:11)

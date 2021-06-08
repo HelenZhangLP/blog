@@ -2,13 +2,13 @@
 title: react 整理
 date: 2019-03-19 18:06:55
 tags:
-- Javascript
+- JavaScript
 - react
 ---
 
 ## problem
 ### react 渲染实体字体 &#247; &#215;
-```Javascript
+```JavaScript
 {key: String.fromCharCode(215), id: 'times'},
 ```
 ### react Error
@@ -23,7 +23,7 @@ tags:
 #### keys
 React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。
 
-```Javascript
+```JavaScript
   items.map((item, index) => {
     <li key={item.id}>{item.text}</li>
     {/* <li key={index}>{item.text}</li> 没有 id 用索引赋 key */}
@@ -34,7 +34,7 @@ React 中使用 keys 标识列表中元素的删除、添加或移除。React Di
 ### React state
 React 中把组件看成一个状态机（state machines）。React 中，constructor 是最先执行，且执行一次。state 在 constructor 构造函数中初始化。其它地方采用 `this.setState()` 更新组件状态。
 React 里，通过更新组件 state 重新渲染用户界面，不需要操作 DOM，类组件使用 props 调用基础构造函数。
-```Javascript
+```JavaScript
 import React, {Component} from 'react';
 
 export default class Test extends Component {

@@ -1,11 +1,11 @@
 ---
 layout: _post
-title: 'Javascript 数组'
+title: 'JavaScript 数组'
 date: 2020-11-06 11:22:46
 category:
 - 技术
 tags:
-- Javascript
+- JavaScript
 ---
 
 ## 数组重组方法

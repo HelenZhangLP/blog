@@ -2,14 +2,14 @@
 title: exports and module.exports
 date: 2019-03-26 14:30:43
 tags:
-- Javascript
+- JavaScript
 - ES6 模块化
 - node
 ---
 ### exports 和 module.exports
 [参考文档](http://nodejs.cn/api/modules.html#modules_exports_shortcut)
 nodeJS 官网中对 require() 有一段假设实现，如下：
-```Javascript
+```JavaScript
 function require() {
   const module = { exports: {} };
   ((module, exports) => {
@@ -22,7 +22,7 @@ function require() {
 ```
 #### 回过头来看定义
 1.  exports
-```Javascript
+```JavaScript
 // utils.js
 exports.cssLoaders = function (options) {
   options = options || {}

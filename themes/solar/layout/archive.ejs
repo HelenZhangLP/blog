@@ -1,9 +1,36 @@
-<ul class="post-list">
-  <% page.posts.sort('date', 'desc').each(function(post) { %>
-    <li class="post-item">
-      <%- partial('_partial/post/date', { post: post, class_name: 'meta' }) %>
-      <span><%- partial('_partial/post/title', { post: post, index: true, class_name: '' }) %><span>
-    </li>
-  <% }); %>
-</ul>
+  <% if(is_tag()) { %>
+    <% site.tags.map(function(tag){  %>
+      <% if(tag.name === page.tag) { %>
+        <div class="tag-list">
+          <h2 class="tags" id="<%= tag.name %>">
+            <span class="tag-text">#&nbsp;<%= tag.name %></span>
+          </h2>
+          <% tag.posts.map(function(post) {  %>
+            <div class="post-preview">
+              <a href="<%- url_for(post.path) %>">
+                <h4 class="post-title">
+                  <%- post.title || __('untitled') %>
+                </h4>
+                <% if (post.subtitle && post.subtitle.length) { %>
+                  <h5 class="post-subtitle">
+                    <%- post.subtitle %>
+                  </h5>
+                <% } %>
+              </a>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    <% }) %>
+  <% } else { %>
+    <ul class="post-list">
+      <% page.posts.sort('date', 'desc').each(function(post) { %>
+        <li class="post-item">
+          <%- partial('_partial/post/date', { post: post, class_name: 'meta' }) %>
+          <span><%- partial('_partial/post/title', { post: post, index: true, class_name: '' }) %><span>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+
 

@@ -1,10 +1,10 @@
 ---
-title: Javascript 面试题
+title: JavaScript 面试题
 date: 2019-03-07 14:33:19
 categories:
 - 技术
 tags:
-- Javascript
+- JavaScript
 - interview questions
 - ES6
 ---
