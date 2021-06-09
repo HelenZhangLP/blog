@@ -2,7 +2,7 @@
 title: 每天 30 词
 date: 2020-10-22 13:06:41
 tags:
-- 英文
+- English
 ---
 
 词根 deep

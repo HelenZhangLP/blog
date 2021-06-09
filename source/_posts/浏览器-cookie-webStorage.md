@@ -2,7 +2,7 @@
 title: cookie 与 Web Storage
 tags:
 - window
-- web storage
+- web-storage
 - browser
 date: 2019-06-14 11:41:10
 ---

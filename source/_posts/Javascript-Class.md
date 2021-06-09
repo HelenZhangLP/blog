@@ -3,7 +3,7 @@ title: JavaScript Class
 date: 2019-03-20 17:06:19
 tags:
 - JavaScript
-- es6
+- ES6
 ---
 ### 定义类
 #### 类声明

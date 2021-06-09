@@ -3,7 +3,7 @@ title: exports and module.exports
 date: 2019-03-26 14:30:43
 tags:
 - JavaScript
-- ES6 模块化
+- es6-modules
 - node
 ---
 ### exports 和 module.exports
