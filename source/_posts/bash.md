@@ -2,7 +2,7 @@
 title: macos 常用命令
 date: 2020-10-22 11:59:39
 tags:
-- 杂货
+- grocery
 ---
 
 ### macos 解压文件 .rar

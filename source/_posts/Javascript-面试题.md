@@ -5,7 +5,7 @@ categories:
 - 技术
 tags:
 - JavaScript
-- interview questions
+- 面试题
 - ES6
 ---
 

@@ -1,5 +1,4 @@
 ---
-layout: _post
 title: 'JavaScript 数组'
 date: 2020-11-06 11:22:46
 category:

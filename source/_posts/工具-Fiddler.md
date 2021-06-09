@@ -4,7 +4,7 @@ date: 2020-03-06 16:53:53
 categories:
 - 工具
 tags:
-- develop tools
+- develop-tools
 ---
 
 ### [安装教程推荐](https://www.cnblogs.com/yyhh/p/5140852.html)

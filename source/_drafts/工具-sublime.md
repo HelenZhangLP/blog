@@ -4,7 +4,7 @@ date: 2021-03-01 09:35:29
 categories:
 - 工具
 tags:
-- develop tools
+- develop-tools
 ---
 
 sublime 可以配置编译系统
