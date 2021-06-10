@@ -3,7 +3,7 @@ title: Handwriting Webpack
 date: 2021-03-29 14:36:25
 tags:
 - 打包工具
-- Webpack
+- webpack
 ---
 
 ## 认识 webpack

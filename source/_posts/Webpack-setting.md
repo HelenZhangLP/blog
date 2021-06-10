@@ -1,7 +1,7 @@
 ---
 title: webpack 配置
 tags:
-- Webpack
+- webpack
 ---
 四个核心概念
 * entry(入口)
