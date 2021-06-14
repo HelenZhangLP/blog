@@ -135,4 +135,21 @@ HTML DOM API 是核心 DOM API 的延伸，专门用于操作 HTML
 
 > 如果卷标间只有文字，想要获取文件，使用 `textContent`
 
-[comment]: <> (### attributes 特性)
+### attributes 特性
+卷标设置的属性，在 DOM 对象的 attributes 特性中记录。attributes 类型为 NamedNodeMap，为类数组。
+> getAttribute() 取 attribute 记录的属性值，取 attributes 中不存在指定属性时，返回 null,指的是 DOM 上没有对应的特性，该值为默认值。
+> setAttribute() 设定属性
+> removeAttribute() 来移除 attributes 属性。操作后**只是回到默认值**，不是直接将特性移除。<u>没有任何操作可以将 DOM 对应于属性的特性移除</u>
+
+```JavaScript
+var dom = document.getElementsByName('input')
+dom.getAttribute('readonly')
+
+var imgDom = document.getElementById('img')
+img.removeAttribute('src') // src = ''
+
+dom.setAttribute('value', 'helenZhang') // 修改 input 的 defaultValue
+```
+
+<font color="#f33">基于安全考虑，input type 为 file 时，defaultValue、value 属性的设置会被忽略，无法通过程序代码取得 DOM 的 defaultValue、value 
+特性，使用程序代码设置 DOM 的 defaultValue、value 或通过 setAttribute() 设值会影响 DOM 相对应的特性，但对浏览器窗体或文件上传行为没有影响，只能由使用者亲自选取文件。</font>
