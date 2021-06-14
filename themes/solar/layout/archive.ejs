@@ -31,6 +31,17 @@
         </li>
       <% }); %>
     </ul>
+    <nav class="nav-list">
+      <%
+        var prev_text = theme.pagination.nav_prev_text;
+        var next_text = theme.pagination.nav_next_text;
+      %>
+      <%-
+        paginator({
+          prev_text: prev_text,
+          next_text: next_text
+        })
+      %>
+    </nav>
   <% } %>
-
 

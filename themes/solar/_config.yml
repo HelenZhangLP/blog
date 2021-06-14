@@ -71,3 +71,8 @@ miscellaneous:
         fb_admins:
         twitter_id:
         google_plus:
+
+# pagination or paging
+pagination:
+  nav_prev_text: '<'
+  nav_next_text: '>'
