@@ -2,7 +2,7 @@
 title: react-jsx
 date: 2021-03-03 13:06:14
 tags:
-- react
+- React
 ---
 
 ## JSX 介绍

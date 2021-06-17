@@ -2,7 +2,7 @@
 title: CSS 你不知道的百分比
 date: 2020-09-21 15:33:02
 tags:
-- css
+- CSS
 ---
 
 ```javascript

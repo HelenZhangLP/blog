@@ -14,7 +14,7 @@ customize:
         enabled: true
         width: 50
         height: 50
-        url: /images/logo.png
+        url: /images/logo.jpeg
         gravatar: false
     favicon: 
       # eg. generate with http://realfavicongenerator.net/
@@ -49,6 +49,7 @@ solar:
     mercury_image: /images/mercury.png
     shadow_image: /images/shadow.png
     venus_image: /images/venus.png
+    space_flight_image: /images/space_flight.jpeg
 
 # RSS
 rss: false

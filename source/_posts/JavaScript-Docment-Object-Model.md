@@ -153,3 +153,24 @@ dom.setAttribute('value', 'helenZhang') // 修改 input 的 defaultValue
 
 <font color="#f33">基于安全考虑，input type 为 file 时，defaultValue、value 属性的设置会被忽略，无法通过程序代码取得 DOM 的 defaultValue、value 
 特性，使用程序代码设置 DOM 的 defaultValue、value 或通过 setAttribute() 设值会影响 DOM 相对应的特性，但对浏览器窗体或文件上传行为没有影响，只能由使用者亲自选取文件。</font>
+
+## 修改 DOM 树
+浏览器解析 HTML，生成 DOM 树。根据 DOM 树绘制浏览器中的画面，改变 DOM 树，浏览器重绘画面。如此构成修改文件的基本原理。
+### 修改 DOM 的几个 API
+|API name|API description|
+|----|----|
+|createElement|建立卷标对应的元素|
+|createTextNode|建立文本节点|
+|appendChild|添加子节点|
+|removeChild|删除子节点|
+
+<font color="#f99">**操作多DOM的几种方式**</font>
+1.  **createDocumentFragment，建立 DocumentFragment 实例，利用它作为容器在背景建立 DOM 结构，最后将 DocumentFragment 实例通过 appendChild() 附加至 DOM 树**
+2.  组织 html 片段字符串，最后再设定给 innerHTML 
+```javascript
+let frag = ''
+for (let i=0; i<10; i++) {
+    frag += '<img src={imgs[i]} />'
+}
+document.body.innerHTML = frag
+```

@@ -4,6 +4,12 @@ date: 2020-11-25 15:56:00
 tags:
 - react
 ---
+
+React 核心 API
+*   CreateElement
+*   render
+*   Component
+
 引入虚拟 DOM、状态、单向数据流
 以组件为核心，用组件搭建 UI
 

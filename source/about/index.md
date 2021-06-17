@@ -6,5 +6,3 @@ type: "about"
 
 it's me, Helen.Zhang
 本人修炼千年，只为成精
-
-<font color="yellow">Helen Keller 我的偶像</font>

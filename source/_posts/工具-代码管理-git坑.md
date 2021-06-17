@@ -7,6 +7,10 @@ tags:
 - git
 ---
 
+### orgin/Head -> origin/master 分支
+> orgin/HEAD 像一个指针，表示默认分支。origin/Head -> origin/master 代表 origin/master 是默认分支
+> `git remote set-haed origin -d` 可以删除这个分支
+
 ### .idea gitignore 忽略问题
 > .gitignore 中添加 .idea/ 没用
 

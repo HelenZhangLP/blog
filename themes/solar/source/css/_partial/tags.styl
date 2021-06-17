@@ -6,10 +6,19 @@
 .tags li
   margin-right 5px;
   margin-bottom: 10px;
-  width 25%
+  width 20%
 
-  border-radius 20px;
   padding-left 5px;
+  //background #e3b54c
+  border solid 1px #fff
+
+  &:nth-of-type(2n)
+    //background transparent
+    //border-color #e3b54c
+    border: solid 1px #e3b54c
+
+    a
+      color #e3b54c
 
   &:hover
     border-color $color-link
@@ -20,6 +29,7 @@
     background-image none
     display block
     color #fff
+    text-align center
 
     &:hover
       text-decoration none
