@@ -19,10 +19,10 @@ customize:
     favicon: 
       # eg. generate with http://realfavicongenerator.net/
       desktop:
-        url: /images/favicon.ico
+        url: /images/logo.jpeg
         gravatar: false
       android:
-        url: /images/favicon-192x192.png
+        url: /images/logo.jpeg
         gravator: false
       apple:
         url: /images/apple-touch-icon.png
