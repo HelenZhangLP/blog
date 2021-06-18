@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Docment Object Model
+title: JavaScript-Document Object Model
 date: 2019-02-11 16:57:10
 tags:
 - JavaScript
@@ -84,33 +84,67 @@ HTML DOM API 是核心 DOM API 的延伸，专门用于操作 HTML
 
 ## 使用 JavaScript 取 HTML 中的信息
 ### 文件结构
-核心 DOM API 取出 HTML 中某个节点，再取其以下节点
-*   parentNode: 取得父节点
-*   previousSibling: 前邻节点
-*   nextSibling: 后邻节点
-*   firstChild: 首个子节点
-*   lastChild: 最后一个子节点
-*   childNodes: 所有子节点
-`doucment.body.parentNode` 得到 text
+#### 核心 DOM API 取出 HTML 中某个节点，再取其以下节点
+|API|描述|
+|---|---|
+|parentNode|获取当前节点的父节点|
+|previousSibling|获取当前节点的前临节点|
+|nextSibling|获取当前节点的后邻节点|
+|firstChild|获取当前节点的首个子节点|
+|lastChild|获取当前节点的最后一个子节点|
+|childNodes|获取当前节点的所有子节点|
+
+```JavaScript
+document.body.lastChild
+/*#text
+    assignedSlot: null
+    baseURI: "http://localhost:4000/2019/02/11/JavaScript-Docment-Object-Model/"
+    childNodes: NodeList []
+    data: "\n\n\n"
+    firstChild: null
+    isConnected: true
+    lastChild: null
+    ...*/
+```
+
+> `doucment.body.parentNode` 得到 text，header 的最后一个子节点是文本节点
     
-可以通过以下特性获取元素
-*   parentElement 取父元素
-*   previousElementSibling 取前邻接元素
-*   nextElementSibling 取后邻接元素
-*   firstElementChild 第一个子元素
-*   lastElementChild 最后一个子元素
-*   children 所有直接子元素
-### id 属性、卷标名称、class 属性
-取 Element 类型的节点
+### 通过以下特性获取元素
+|API|描述|
+|---|---|
+|parentElement|获取当前元素的父元素|
+|previousElementSibling|获取当前元素的前邻接元素|
+|nextElementSibling|获取当前元素的后邻接元素|
+|firstElementChild|获取当前元素的第一个子元素|
+|lastElementChild|获取当前元素的最后一个子元素|
+|children|获取当前元素的所有子元素|
+
+```JavaScript
+document.body.lastElementChild
+// <div class="banner">...</div>
+```
+
+#### id 属性、卷标名称、class 属性(取 Element 类型的节点)
+
 |name|description|return|
 |----|-----------|------|
 |getElementsByTagName|顺序是子树中的顺序，使用索引取对应节点|HTMLCollection|
 |getElementsById|卷标对应 id 属性，独一无二，重复时取子树中第一个符合的元素|/|
 |getElementsByName|HTML 卷标定义 name 属性，name 属性值可以重复|HTMLCollection|
 |getElementsByClassName|HTML 卷标上定义有 class 属性|HTMLCollection|
+
+```JavaScript
+document.getElementById('nav')
+/*
+<span id="nav" style="display: none;">
+    ...
+</span>
+*/
+```
+
 > innerHTML 取卷标内的 HTML，**HTML5 正式将 innerHTML 纳入标准**
 
-### 选择器语法
+#### 选择器语法
 通过 `querySelector()`、`querySelectorAll()` + CSS 选择器取元素
 
 |id|选择器|
@@ -118,11 +152,20 @@ HTML DOM API 是核心 DOM API 的延伸，专门用于操作 HTML
 |document.getElementById('test')|document.querySelector('#test')|
 |document.getElementsByTagName('div')|document.querySelectorAll('div')|
 
+```JavaScript
+document.querySelector('#nav')
+/*
+<span id="nav" style="display: none;">
+    ...
+</span>
+*/
+```
+
 ## 卷标属性与DOM特性
 **这里稍做个理解上的区分，方便理解**
 > 通过 JavaScript 获取 DOM，继续取 DOM 具有的特性（Property）
 > HTML 卷标上设置的为属性（attribute）
-<font color="#f33">通常情况下，JavaScript 特性与 HTML 卷标上的属性是对应的，<u>也有因保留或关键字原因造成的不一致</u>如下表</font>
+<font color="#f33">通常情况下，JavaScript 特性与 HTML 卷标上的属性是对应的，<u>也有因保留字或关键字原因造成的不一致</u>如下表</font>
 
 |html 属性|DOM特性|
 |----|----|
@@ -130,17 +173,36 @@ HTML DOM API 是核心 DOM API 的延伸，专门用于操作 HTML
 |&lt;label class="label" for="radio"&gt;demo&lt;/&gt;<br/> **class 为保留字**<br/>**for 为关键字**|let label = document.getElementsByTagName('label')[0]; <br/> let className=label.className;<br/> let labelFor = label.htmlFor|
 
 <font color="#f33">特别说明：文本也是一个 DOM 节点</font>
-用 `document.body.lastChild.data` body 中最后一个子节点的内容
-
-<font color="#f33">innerHTML 设定 HTML 片段给 innerHTML，标签会被解析、建立对应的 DOM 对象，**script 卷标被忽略，避免 XSS 的问题**</font>
-
+取 body 中最后一个子节点的内容
+```JavaScript
+document.body.lastChild
+/**
+ * text
+     assignedSlot: null
+     baseURI: "http://localhost:4000/2019/02/11/JavaScript-Docment-Object-Model/"
+     childNodes: NodeList []
+     data: "\n\n\n"
+     ...
+ */
+document.body.lastChild.data
+// "\n\n\n"
+```
+<font color="#f33">innerHTML 设定 HTML 片段给 innerHTML，标签会被解析、建立对应的 DOM 对象，**script 卷标被忽略，避免 XSS（Cross Site Script）的问题**</font>
 > 如果卷标间只有文字，想要获取文件，使用 `textContent`
+```JavaScript
+document.body.innerHTML = "<div id = 'a'>12</div>"
+document.querySelector('#a').textContent
+// "12"
+```
 
 ### attributes 特性
 卷标设置的属性，在 DOM 对象的 attributes 特性中记录。attributes 类型为 NamedNodeMap，为类数组。
-> getAttribute() 取 attribute 记录的属性值，取 attributes 中不存在指定属性时，返回 null,指的是 DOM 上没有对应的特性，该值为默认值。
-> setAttribute() 设定属性
-> removeAttribute() 来移除 attributes 属性。操作后**只是回到默认值**，不是直接将特性移除。<u>没有任何操作可以将 DOM 对应于属性的特性移除</u>
+
+|API|描述|
+|---|----|
+|getAttribute()|取 attribute 记录的属性值，取 attribute 中不存在指定属性时，返回 null。指的是 DOM 上没有对应的特性，该值为默认值。|
+|setAttribute()|设定属性|
+|removeAttribute()|来移除 attributes 属性。操作后**只是回到默认值**，不是直接将特性移除。<u>没有任何操作可以将 DOM 对应于属性的特性移除</u>|
 
 ```JavaScript
 var dom = document.getElementsByName('input')
@@ -152,8 +214,7 @@ img.removeAttribute('src') // src = ''
 dom.setAttribute('value', 'helenZhang') // 修改 input 的 defaultValue
 ```
 
-<font color="#f33">基于安全考虑，input type 为 file 时，defaultValue、value 属性的设置会被忽略，无法通过程序代码取得 DOM 的 defaultValue、value 
-特性，使用程序代码设置 DOM 的 defaultValue、value 或通过 setAttribute() 设值会影响 DOM 相对应的特性，但对浏览器窗体或文件上传行为没有影响，只能由使用者亲自选取文件。</font>
+<font color="#f33">基于安全考虑，input type 为 file 时，defaultValue、value 属性的设置会被忽略，无法通过程序代码取得 DOM 的 defaultValue、value 特性，使用程序代码设置 DOM 的 defaultValue、value 或通过 setAttribute() 设值会影响 DOM 相对应的特性，但对浏览器窗体或文件上传行为没有影响，只能由使用者亲自选取文件。</font>
 
 ## 修改 DOM 树
 浏览器解析 HTML，生成 DOM 树。根据 DOM 树绘制浏览器中的画面，改变 DOM 树，浏览器重绘画面。如此构成修改文件的基本原理。
@@ -164,10 +225,16 @@ dom.setAttribute('value', 'helenZhang') // 修改 input 的 defaultValue
 |createTextNode|建立文本节点|
 |appendChild|添加子节点|
 |removeChild|删除子节点|
+|cloneNode(true)|节点复制，默认不进行深层复制，即不复制子节点。加参数 true，则是指复制子节点|
 
-<font color="#f99">**操作多DOM的几种方式**</font>
-1.  **createDocumentFragment，建立 DocumentFragment 实例，利用它作为容器在背景建立 DOM 结构，最后将 DocumentFragment 实例通过 appendChild() 附加至 DOM 树**
-2.  组织 html 片段字符串，最后再设定给 innerHTML 
+[有关节点处理的 demo]()
+
+### <font color="#f99">**操作多DOM的几种方式**</font>
+- [ ]  **createDocumentFragment，建立 DocumentFragment 实例，利用它作为容器在背景建立 DOM 结构，最后将 DocumentFragment 实例通过 appendChild() 附加至 
+   DOM 树**
+  [有关节点处理的 demo](https://github.com/HelenZhangLP/demo/blob/draft/js/DOM/DomOption/demo-2.html)
+    
+- [ ] html 片段字符串，最后再设定给 innerHTML 
 ```javascript
 let frag = ''
 for (let i=0; i<10; i++) {
@@ -175,3 +242,5 @@ for (let i=0; i<10; i++) {
 }
 document.body.innerHTML = frag
 ```
+
+[comment]: <> (## 封装 DOM 操作)

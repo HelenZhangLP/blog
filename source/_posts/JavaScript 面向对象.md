@@ -199,7 +199,7 @@ for(let i in account) {
 VM2619:2 toString () => `${this.name}, ${this.balance}` */}
 ```
 <u>**Object.defineProperty 或 Object.defineProperties 定义的属性，默认 writable: false, enumerable: false, configurable: false 所以，只有方法可枚举**</u>
-[利用 writable 属性写一个不可枚举数组，具体代码见 gitHub](https://github.com/HelenZhangLP/demo/blob/draft/js/Base/index.html)
+[利用 writable 属性写一个不可枚举数组，具体代码见 gitHub](https://github.com/HelenZhangLP/demo/blob/draft/js/Object/index.html)
 
 ### 扩充、弥封、冻结
 |API|Description|
@@ -240,7 +240,7 @@ A.__proto__ === a.prototype // true
 A.__proto__ === Object.getPrototypeOf(A) // true
 A.__proto__ === a.prototype // true
 ```
-[参考实例，符合内建 API 惯例的实例](https://github.com/HelenZhangLP/demo/blob/draft/js/Base/standObjectModule.js)
+[参考实例，符合内建 API 惯例的实例](https://github.com/HelenZhangLP/demo/blob/draft/js/Object/standObjectModule.js)
 > hasOwnProperty() 判断实例本身是否具有某个属性
 
 [comment]: <> (### __proto__ 与 Object.create&#40;&#41;)

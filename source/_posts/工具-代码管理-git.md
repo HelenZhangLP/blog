@@ -7,6 +7,9 @@ tags:
 - git
 ---
 
+### gitHub 项目内搜索
+> 输入 t
+
 ### Generating Your SSH Public Key
 > $ ssh-keygen
 
