@@ -7,6 +7,11 @@ tags:
 - hexo
 ---
 
+## 浏览器样式缓存问题
+这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：
+> 浏览器端 ctrl(command) + shift + r
+> 手机浏览器同样要清除缓存，如 safari history -> clear all 
+
 ## hexo db.json
 > db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 `hexo g`
 

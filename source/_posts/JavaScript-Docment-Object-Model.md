@@ -1,5 +1,6 @@
 ---
 title: JavaScript-Docment Object Model
+date: 2019-02-11 16:57:10
 tags:
 - JavaScript
 ---

@@ -3,7 +3,7 @@ title: javascript prototype && __proto__
 date: 2019-03-19 12:20:05
 tags:
 - JavaScript
-- object
+- Object
 - 对象继承
 ---
 

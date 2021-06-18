@@ -1,8 +1,8 @@
 ---
-title: JavaScript-对象
+title: Vue - 坑
 date: 2019-08-28T10:42:54.000Z
 tags:
-  - JavaScript
+  - Vue
 ---
 
 今天遇到了一个小问题，'blur' 事件失焦时，vue 并没有把接口请求回来的data回填到页面。 现在来分析分析：
