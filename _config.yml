@@ -11,6 +11,8 @@ author: Helen Zhang
 language: zh-CN
 timezone:
 
+testurl: https://github.com/HelenZhangLP/demo/blob/draft/js/Array/index.html
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://helenzhanglp.github.io/

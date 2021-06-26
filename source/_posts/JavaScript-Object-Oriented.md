@@ -1,12 +1,41 @@
 ---
-title: JavaScript 面向对象
+title: JavaScript - Object Oriented
 date: 2019-03-21 10:02:40
 tags:
 - JavaScript
 - Object
+- 对象
+- 构造函数
 ---
 
-## JavaScript 创建对象
+## JavaScript 对象与对象属性
+```javascript
+let obj = {v: 1}
+```
+> JavaScript 通过一些属性时都会带有一些特征值，ECMA-262 定义的，只有内部使用的，外部不能访问的特性，初期是为了实现 JavaScript 引擎使用的。具体如下表
+
+### 数据属性
+
+|characteristic|description|
+|----|----|
+|[[Configurable]]|能否通过 delete 删除属性，然后重新定义属性，能否修改属性的特性，能否把属性修改为访问器属性|
+|[[Enumerable]]|是否可以通过 for-in 循环枚举属性|
+|[[Writable]]|能否修改属性的值|
+|[[Value]]|包含这个属性的数据值|
+
+<a href="#useDefineProperty"><font color="#f33">**使用 Object.defineProperty 定义属性特性**</font></a>
+
+### 访问器属性
+访问器属性不包含数据，只有 getter,setter 函数。读取访问器属性时会调用 getter 函数，这个函数负责返回有效的值，setter 负责写入，处理新数据
+
+|characteristic|description|
+|---|----|
+|[[Configurable]]|能否通过 delete 删除属性，或修改为数据属性|
+|[[Enumerable]]|是否能通过 for-in 枚举属性|
+|[[Get]]|读取属性时调用|
+|[[Set]]|设置属性时调用|
+
+## 创建对象
 ### 创建字面量(Literal)对象
 ```JavaScript
 let myBaby = {
@@ -14,15 +43,17 @@ let myBaby = {
   name: 'Audrey'
 }
 ```
+
 ### 创建实例对象
 ```JavaScript
 let baby = new Object()
 baby.name = 'Audrey',
 baby.age = 2
 ```
-> 开发过程中实际多采用字面量形式创建对象，<u>字面量对象避端是<font color="#FFD700">无法复用</font>**</u>
 
-## 工厂模式<font color="#f99">解决复用</font>
+> 开发过程中实际多采用字面量形式创建对象，<u>字面量对象避端是<font color="#FFD700">产生大量重复代码</font>**</u>
+
+## <a id="factoryPattern" href="#factoryPattern">工厂模式——<font color="#f99">解决复用</font></a>
 ```JavaScript
 function baby(name, age) {
   return {
@@ -42,18 +73,48 @@ Object.prototype.toString.call(Audrey)
 // {}__proto__: Object
 ```
 
-## 构造函数 + new<font color="#f99">解决对象识别问题</font>
-解决对象识别问题**`Audrey instanceof object` 结果 true，使得 `Audrey instanceof baby` 为 true
-### 封装对象建构流程
+## 构造函数 + new——<font color="#f99">解决对象识别问题</font>
+> 解决对象识别问题 `Audrey instanceof object` 结果 true，使得 `Audrey instanceof baby` 为 true
+
+ECMASript 中的构造函数可以用来创建指定类型的对象
+#### 构建构造函数的理解
+对比工厂模式，按以下方式创建一个构造函数：
+1.  依照(Object oriented)思想，区别普通函数，方法名首字母大写。如 `Baby`;
+2.  不需要 `new object()` 或 声明 `{}`
+3.  将**属性和方法**赋值给 `this`。从这里可以看出，`this` 首先是一个对象。[关于 this 的理解，可从 JavaScript 执行上下文的视角看](https://helenzhanglp.github.
+    io/2020/11/18/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/)
+    
+4.  不需要 `return` 语句
+
 ```JavaScript
 function Baby(name, age) {
-  this.name = name;
-  this.age = age
+    this.name = name;
+    this.age = age
 }
+```
+#### 构造函数调用 —— 普通调用
+```javascript
+// 普通调用
+Baby('Audery',4)
+window.name // Aduery
+window.age // 4
+```
+<font color="#f33">构造函数当普通函数调用时，在 window 环境中调用，this 指向 window 对象，属性绑定在 window 上</font>
+#### 构造函数调用 —— call/apply 在部分
+```javascript
+var Cat = new Object()
+Baby.call(Cat, 'Cat', '0.5')
+Cat.name // Cat
+Cat.age // 0.5
+```
+<font color="#f33">在局部范围内调用</font>
+
+构造函数调用 —— new 实例
+```javascript
 // new 关键字实例化构造函数
 let Audrey = new Baby('Audrey', 2)
-Audrey instanceof Baby
-// true
+Audrey instanceof Baby // true
+Audery instanceof Object // true
 /* Baby {name: "Audrey", age: 2}
   age: 2
   name: "Audrey"
@@ -64,11 +125,26 @@ Audrey instanceof Baby
 > new 关键字 + 函数（函数名以大写字母开头），为封装对象建构的流程的函数称为 **构造函数**
 > this 是 new 关键字的实例，构造函数执行结束后，作为结果 return
 
-#### 关于构造函数的 return
+![test](/images/1.gif)
+
 构造函数不需要写 return 语句，**如果有写，就返回 return 的值**
 像 JavaScript 标准 API 中，像 `Number` 即可以当普通函数 `Number('OxFF')` 调用。
 又可以使用构造函数方式调用 `new Number(OXFF)`。
 ES6 中，可以使用 **`new. target`** 检测构造函数中是否明确撰写 return <u>使用 new 构建的实例，new.target 代表了构造函数或类本身；否则就是 undefined</u>
+
+<font color="#f33">构造函数的每一个方法都要在新的实例上创建一次</font>
+
+```mermaid
+graph TD
+obj[Object] --> |`工厂模式 + 入参解决利用问题`| FP[工厂模式 factoryPattern]
+FP --> |对象识别| CF[new + Constructor Function]
+CF --> |`同样功能的函数&#44;需要在不同实例中构建 &#44; 同一个功能函数&#44;封装在构造函数中`| Proto[prototype]
+```
+
+[comment]: <> (## 原型模式)
+
+#### Audery.constructor === Baby
+对象 constructor 是用来标识对象类型
 
 ### 模拟 static
 常量需要仿 static，如 `Math.PI`
@@ -91,8 +167,9 @@ console.log(account.getName) // helen
 console.log(name in account)    // false
 ```
 
-<font color="#f99">**2. 用 `Object.defineProperty()` 定义属性**</font>
+<a id="useDefineProperty" color="#f99">**2. 用 `Object.defineProperty()` 定义属性**</a>
 > `Object.defineProperty()` 参数一，接收一个对象；参数二，接收想设定的特性名称；参数三是属性描述，采用选项对象的方式来指定属性
+> __defineGetter__() 和 __defineSetter__() 兼容 safari3, chrome 1
 
 ```JavaScript
 function Account(name,balance) {
@@ -164,7 +241,6 @@ account.toString()
 <br/>
 
 #### 详解对象定义与属性描述器
-
 <font color="#f99">1.   直接对对象新增特性</font>
 ```JavaScript
 let obj = {name: 'helen'}
@@ -184,7 +260,7 @@ Object.getOwnPropertyDescriptor(obj, 'name')
 
 <font color="#f33">
 `use strict`+`writable:false` 时，修改变量，引发 TypeError。<br />
-`use strict`+`configurabel:false`时，删除或使用 Object.defineProperty 等修改时，引发 TypeError。<br /></font>
+`use strict`+`configurable:false`时，删除或使用 Object.defineProperty 等修改时，引发 TypeError。<br /></font>
  
 ```JavaScript
 // Account demo

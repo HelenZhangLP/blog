@@ -1,9 +1,21 @@
 ---
-title: mackdown 使用小技巧
+title: markdown 使用小技巧
 date: 2021-06-11 11:58:36
 tags:
 - Markdown
 ---
 
+## markdown 中编辑一些代码动图
+[keynote 制作代码编辑动图](https://juejin.cn/post/6909481718156099597#heading-0 )
+
+## markdown 中插入图片，需要重启服务
+
 ## table 中 换行
 > 使用 `<br />` 标签
+
+## markdown 中怎么定义变量并累加其实字符串，如下：
+```md
+// 定义变量
+[url]: https://baidu.com
+[url测试][url]+/a/b/index.html
+```

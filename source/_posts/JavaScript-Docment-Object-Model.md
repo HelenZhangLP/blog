@@ -244,3 +244,11 @@ document.body.innerHTML = frag
 ```
 
 [comment]: <> (## 封装 DOM 操作)
+
+[comment]: <> (## 事件处理)
+
+[comment]: <> (网页应用程序的任务多半借助事件驱动。用户或操作系统事件发生时执行任务)
+
+[comment]: <> (Basic Event Model)
+
+[comment]: <> (DOM Level 2 对事件进行了标准化)

@@ -1,11 +1,16 @@
 ---
-title: javascript prototype && __proto__
+title: JavaScript prototype && __proto__
 date: 2019-03-19 12:20:05
 tags:
 - JavaScript
 - Object
 - 对象继承
 ---
+
+
+
+对象内置属性
+`__proto__` [[prototype]] 对象属性，对象创建时生成
 
 ## 原型和原型链
 JavaScript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 `__proto__` 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。
@@ -119,12 +124,14 @@ baseInstance1.arr.push('array4')
 > 如果子类中存在构造函数，则需要在使用 this 之前首先调用 super。 与寄生组合继承不同的是，ES6 先将父类实例对象的属性和方法加到 this 上，必须先调用 super 方法，然后再用的子类构造函数修改 this
 
 ```JavaScript
-babel.min.js:2 Uncaught SyntaxError: Inline Babel script: 'this' is not allowed before super()
-  3 |   constructor(props) {
-  4 |     // super(props);
-> 5 |     this.state = {date: new Date()};
-    |     ^
-  6 |   }
+/**
+ * babel.min.js:2 Uncaught SyntaxError: Inline Babel script: 'this' is not allowed before super()
+     3 |   constructor(props) {
+      4 |     // super(props);
+    > 5 |     this.state = {date: new Date()};
+        |     ^
+      6 |   }
+ */
 ```
 实现原理
 ```JavaScript
