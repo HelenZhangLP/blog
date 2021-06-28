@@ -8,6 +8,8 @@ tags:
 - 构造函数
 ---
 
+[comment]: <> (constructor 不指向原构造函数的坏处)
+
 ## JavaScript 对象与对象属性
 ```javascript
 let obj = {v: 1}
@@ -138,14 +140,99 @@ ES6 中，可以使用 **`new. target`** 检测构造函数中是否明确撰写
 graph TD
 obj[Object] --> |`工厂模式 + 入参解决利用问题`| FP[工厂模式 factoryPattern]
 FP --> |对象识别| CF[new + Constructor Function]
-CF --> |`同样功能的函数&#44;需要在不同实例中构建 &#44; 同一个功能函数&#44;封装在构造函数中`| Proto[prototype]
+CF --> |`需要解决方法或属性共享的问题`| Proto[prototype]
 ```
 
-[comment]: <> (## 原型模式)
+## 原型模式
+每个函数都有一个 prototype，它是一个指针，指向一个对象（由特定类型的所有实例**共享**的属性和方法），即函数的原型对象
+所有原型对象都会自动获取一个 constructor，constructor 包含一个指向 prototype 属性所在函数的指针
+`Audery.constructor === Baby` 对象 constructor 是用来标识对象类型
 
-#### Audery.constructor === Baby
-对象 constructor 是用来标识对象类型
+```mermaid
+graph TD
+function[function] --> prototype[function.proptotype]
+prototype --> object[objectPrototype.constructor]
+object --> function
 
+instance["(new function())[__proto__||[[prototype]]]"]--> object
+style instance fill:#f99,stroke:#333,stroke-width:4px
+```
+
+### 原型相关方法
+|API|description|
+|---|---|
+|Fn.prototype.isPrototypeOf(fn1)|实例 fn1 的原型是不是 Fn.prototype|
+|Object.getPrototypeOf(fn1)|返回 Fn.prototype 原型对象|
+|fn1.hasOwnProperty('attribute')|检测属性是否存在于实例中，返回 true 表示该属性存在于实例中|
+|Object.getOwnPropertyDescriptor()|获取实例属性操作符|
+|Object.keys()|返回对象所有可枚举的属性的字符串数组|
+|Object.getOwnPropertyNames()|获取所有实例属性，无论是否可枚举|
+
+
+> 实例和原型中均定义相同属性，实例属性会覆盖原型属性。搜索某个值是先搜索实例属性再搜索原型属性。<u>确实需要访问原型属性，可以用 delete 删除实例属性</u>
+
+### in 操作符
+对象能够访问指定属性时返回 true。不管是实例属性还是原理对象属性
+```javascript
+name in audery // true
+```
+
+<font color="#f33">in + fn1.hasOwnProperty 判断属性存在于原型</font>
+```javascript
+hasOwnProperty(property, newInstance) {
+    return property in newInstance && !newInstance.hasOwnProperty(property)
+}
+```
+
+### for-in 操作符
+for-in 操作符，返回所有能够通过对象访问的、可枚举的实例属性和原型属性。<u>覆盖了原型中可枚举的原型属性的实例属性可枚举，可用 for-in 遍历<font color="#f33">IE 早期存在 bug</font></u>
+
+### 构造函数原型的几种写法
+```javascript
+function Person(){}
+Person.prototype.name = 'hel'
+Person.prototype.age = 30
+
+console.log((new Person()).__proto__.constructor) // f Person(){}
+
+function Cat(){
+    this.gender = 'female'
+    let b = '123'
+}
+Cat.prototype = {
+    name: 'hel',
+    age: 30
+}
+let gumi = new Cat()
+console.log(gumi.__proto__.constructor) // ƒ Object() { [native code] }
+console.log(gumi.gender) //undefined
+```
+> Cat 实例的写法，导致 constructor 不指向 function Cat()
+
+```javascript
+function Cat(){
+    this.gender = 'female'
+    let b = '123'
+}
+Cat.prototype = {
+    name: 'hel',
+    age: 30
+}
+
+Object.defineProperty(Cat.prototype,'constructor', {
+    emumerable: false,
+    value: Cat
+})
+
+let gumi = new Cat()
+console.log(gumi.__proto__.constructor) 
+/* ƒ ƒ Cat(){
+this.gender = 'female'
+}*/
+console.log(gumi.gender) // female
+```
+
+## ES6 类模拟
 ### 模拟 static
 常量需要仿 static，如 `Math.PI`
 
