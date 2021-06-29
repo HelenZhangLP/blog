@@ -5,6 +5,12 @@ tags:
 - Markdown
 ---
 
+## markdown 显示部分，省略其余
+> <!-- more -->
+
+## markdown 中使用 mermaid 编制流程图
+> graph TD <font color="#f33">td 要大写</font>
+
 ## markdown 中编辑一些代码动图
 [keynote 制作代码编辑动图](https://juejin.cn/post/6909481718156099597#heading-0 )
 

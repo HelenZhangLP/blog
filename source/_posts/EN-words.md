@@ -5,6 +5,14 @@ tags:
 - English
 ---
 
+|词根|意思|造词|
+|---|---|---|
+|syn|同时||
+|chron|时间||
+|ous|...的|synchronous 同步的<br/>asynchronous 非同时、异步|
+
+
+
 词根 deep
 deep adj.深的、低沉的、深奥的
 deepen vt.使加深；使强烈；使低沉/vi.变沉；更低沉

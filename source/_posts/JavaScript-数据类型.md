@@ -60,4 +60,24 @@ Function,Array,Date,RegExp,Error
 
 > 引用类型，用 `instanceof` 判断引用类型
 
+## JavaScript 所有数据类型取反运算
+`Boolean Number String Object Function Array Date RegExp Error Symbol`
 
+```javascript
+!null // true
+!undefined // true
+!NaN //true
+
+!0 // true
+!'' // true
+!false // true
+```
+> 除几上几种取反为 true，其它均为 false。二种情况</br>
+> 1.  基础数据类型中，数字大于 0，非空字符串，取返回为 true
+> 2.  其它可归为对象类型，字面量 [],{} 与基本类型的包装类型以及其它如 Date,Error 返回值都为对象，对对象取反，返回值为 false
+
+## JavaScript 数据类型的 length 属性
+### Uncaught SyntaxError: Invalid or unexpected token
+`1.length` 基本数据类型，number 没有 length
+### Uncaught SyntaxError: Unexpected token '.'
+`{}.length` 把字面量对象赋值给一个变量，再取 length
