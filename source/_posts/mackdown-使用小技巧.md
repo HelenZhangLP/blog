@@ -5,6 +5,11 @@ tags:
 - Markdown
 ---
 
+## 个人 markdown 编写规则
+* \#f33 特别注意的问题
+* &gt; 知识点
+* \#f99 弱提醒
+
 ## markdown 显示部分，省略其余
 > <!-- more -->
 

@@ -6,15 +6,77 @@ tags:
 - 浏览器工作原理
 ---
 
+## 关于 setTimeout
+`setTimeout` 不是由 ECMAScript 维护，而是由 host environment 提供，具体遵循的规范由 whatwg 维护
+### 关于 setTimeout 的几点描述
+*   If timeout is less than 0, than timeout to 0
+*   If nesting(嵌套) level is greater than 5, and timeout is less than 4, than set timeout to 4
+    **嵌套层级5级 + timeout 小于 4ms，设置 timeout 4ms**
+    ```javascript
+        setTimeout(()=>{
+          // level 1
+          setTimeout(()=>{
+            // level 2
+            setTimeout(()=>{
+              // level 3
+              setTimeout(()=>{
+                // level 4
+                setTimeout(()=>{
+                  // level 5
+                },0) 
+              },0) 
+            },0)  
+          },0)
+        },0)
+    ```
+*   Increment nesting level by one
+*   let task's timer nesting level be nesting level
+
+## setTimeout 的使用
+
 ## 浏览器中的 setTimeout 是怎么实现的
+### chromium 中 setTimeout 的实现
+```c++
+// 用户转发的最大间隔时间
+static const int maxIntervalForUserGestureForwarding = 1000;
+static const int maxTimerNestingLevel = 5;
+static const double oneMillisecond = 0.001; //s
+static const double minimumInterval = 0.004; //s
+double intervalMilliseconds = std::max(oneMillisecond, interval * oneMillisecond)
+if (intervalMilliseconds < minimumInterval && m_nestingLevel >= maxTimerNestingLevel) intervalMilliseconds = 
+minimumInverval
+/**
+  * chromium uses a minimum timers interval of 4ms. we'd like to go lower. however, there are poorly coded websites 
+  out there which do create CPU-spnning loops. using 4ms prevents the CPU from spinning too busily and provides a 
+  balance between CPU spinning and the smallest possible interval timer
+  */
+```
+#### 分析 chromium 中 setTimeout 的实现
+三个常量
+*   `maxTimerNestingLevel = 5` 嵌套层级最多是 5
+*   `minimumInterval=0.004` 最小延迟
+*   `std::max(oneMillisecond, interval * oneMillisecond)` 在 1ms 和 延尽时间之间取一个最大值。<u>也就是说，在不满足嵌套层级的情况下，最小延迟时间是 1ms</u>
+    ```javascript
+        // Version 91.0.4472.114 (Official Build) (x86_64)
+        setTimeout(console.log, 3, 3)
+        setTimeout(console.log, 2, 2)
+        setTimeout(console.log, 1, 1)
+        setTimeout(console.log, 0, 0)
+        
+        /**
+          1
+          0
+          2
+          3
+        **/
+    ```
+
 浏览器页面是由消息队列和事件循环系统来驱动的。
 渲染进程中所有运行在主线程上的任务都需要先添加到消息队列中，事件循环系统再按照顺序执行消息队列中的任务。如下：
 * 接收到 html 文档数据时，渲染引擎会将 `解析 DOM 事件` 添加到消息队列；
 * 用户改变窗口大小时，渲染引擎会将 `重新布局` 事件添加到消息队列中；
 * 触发 JavaScript 垃圾回收机制时，渲染引擎会将 `垃圾回收任务` 添加到消息队列；
 * 执行一段异步 JavaScript 代码时，也会将`执行任务`添加到消息队列
-
-<!--more-->
 
 setTimeout 定时器，用来指定回调函数参数多少毫秒后执行。返回一个整数，作为定时器编号。同时可以通过这个编号取消定时器。
 `** setTimeout 需要在指定时间执行回调函数，而消息队列中任务是按顺序先进先出。Chrome 的解决办法是维护了另外一个需要延迟的执行任务的消息队列。这个消息队列中包括了定时器和 Chromium 内部一些需要延迟的任务 **`
@@ -77,7 +139,7 @@ clearTimeout(timer_id)
 很多因素会导致回调函数执行比设定的预期值要久
 当前任务执行时间过久从而导致定时器设置的任务被延后执行
 ```JavaScript
-function bar() console.log('bar')
+function bar() {console.log('bar')}
 
 function foo() {
   setTimeout(bar, 0);

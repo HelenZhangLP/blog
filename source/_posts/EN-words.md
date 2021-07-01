@@ -10,8 +10,24 @@ tags:
 |syn|同时||
 |chron|时间||
 |ous|...的|synchronous 同步的<br/>asynchronous 非同时、异步|
+|iion|表名词||
+|gest|带来||
+|ure|表行为|gesture n.手势/v.做手势，用手势表示|
+|milli|千||
+|second|秒|millisecond n.毫秒，千分之一|
+|re|不||
+|solut|松开|resolution n.决议，再次决定，有决心|
+|pro|向前||
+|file|纱线|profile n.概述、印象、简介 <br/> profiling n.资料搜集/v.概述|
 
 
+
+nest 鸟巢，鸟窝/v.筑巢
+tradeoff n.权衡、协调，交易，交换
+interval n.间隔，间隙
+forwarding 转发，货运代理
+gecko n.壁虎
+minimum adj. 最小的/n.最小值
 
 词根 deep
 deep adj.深的、低沉的、深奥的
