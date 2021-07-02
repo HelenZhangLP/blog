@@ -6,6 +6,8 @@ tags:
 - 浏览器工作原理
 ---
 
+setTimeout + XMLHttpRequest 浏览器循环系统是怎么工作的
+
 ## 关于 setTimeout
 `setTimeout` 不是由 ECMAScript 维护，而是由 host environment 提供，具体遵循的规范由 whatwg 维护
 ### 关于 setTimeout 的几点描述

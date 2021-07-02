@@ -28,6 +28,8 @@ interval n.间隔，间隙
 forwarding 转发，货运代理
 gecko n.壁虎
 minimum adj. 最小的/n.最小值
+mutation n.突变、变异
+observer n.观察者模式
 
 词根 deep
 deep adj.深的、低沉的、深奥的
