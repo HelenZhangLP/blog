@@ -19,7 +19,8 @@ tags:
 |solut|松开|resolution n.决议，再次决定，有决心|
 |pro|向前||
 |file|纱线|profile n.概述、印象、简介 <br/> profiling n.资料搜集/v.概述|
-
+|cell|小房子||
+|ar|物|cellar n.地窖，地下室|
 
 
 nest 鸟巢，鸟窝/v.筑巢
@@ -30,6 +31,9 @@ gecko n.壁虎
 minimum adj. 最小的/n.最小值
 mutation n.突变、变异
 observer n.观察者模式
+raw adj.生的，未经烹制的
+brew n.冲泡、沏、煮
+prune n.干梅子/v.打权、裁减
 
 词根 deep
 deep adj.深的、低沉的、深奥的
