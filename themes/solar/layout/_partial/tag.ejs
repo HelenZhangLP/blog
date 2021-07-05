@@ -1,5 +1,36 @@
 <ul id='tags' class="tags">
-  <% site.tags.map(function(tag){  %>
-  <li><a href="<%= tag.name %>" title="<%= tag.name %>" rel="<%= tag.length %>"><%= tag.name %>（<%= tag.length %>）</a></li>
-  <% }) %>
+    <% site.tags.map(function(tag){  %>
+      <a href="<%- tag.name%>" class="tag-list">
+        <h2 class="tags" id="<%= tag.name %>(<%- tag.length %>>)">
+          <span class="tag-text">#&nbsp;<%= tag.name %></span>
+        </h2>
+        <% tag.posts.map(function(post) {  %>
+          <div class="post-preview">
+            <a href="<%- url_for(post.path) %>">
+              <h4 class="post-title">
+                <%- post.title || __('untitled') %>
+              </h4>
+              <% if (post.subtitle && post.subtitle.length) { %>
+                <h5 class="post-subtitle">
+                  <%- post.subtitle %>
+                </h5>
+              <% } %>
+            </a>
+          </div>
+        <% }) %>
+      </a>
+        <nav class="nav-list">
+            <%
+                var prev_text = theme.pagination.nav_prev_text;
+                var next_text = theme.pagination.nav_next_text;
+            %>
+            <%-
+                paginator({
+                    prev_text: prev_text,
+                    next_text: next_text
+                })
+            %>
+        </nav>
+    <% }) %>
+
 </ul>
