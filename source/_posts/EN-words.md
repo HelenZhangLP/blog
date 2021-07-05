@@ -10,7 +10,7 @@ tags:
 |syn|同时||
 |chron|时间||
 |ous|...的|synchronous 同步的<br/>asynchronous 非同时、异步|
-|iion|表名词||
+|ion|表名词||
 |gest|带来||
 |ure|表行为|gesture n.手势/v.做手势，用手势表示|
 |milli|千||
@@ -21,7 +21,15 @@ tags:
 |file|纱线|profile n.概述、印象、简介 <br/> profiling n.资料搜集/v.概述|
 |cell|小房子||
 |ar|物|cellar n.地窖，地下室|
-
+|e|出||
+|valu|价值||
+|ate|表动词|evaluate v.评估；评价|
+|book|书||
+|let|小|booklet n.小册子|
+|chemist|化学家||
+|ry|...学|chemistry n.化学|
+|depend|依靠||
+|able|...的|dependable adj.可靠的|
 
 nest 鸟巢，鸟窝/v.筑巢
 tradeoff n.权衡、协调，交易，交换
@@ -34,6 +42,11 @@ observer n.观察者模式
 raw adj.生的，未经烹制的
 brew n.冲泡、沏、煮
 prune n.干梅子/v.打权、裁减
+material n.材料、实际的
+accompany v.陪同
+clerk n.职员
+conductor n.指挥、列车长、售票员
+owe v.欠债
 
 词根 deep
 deep adj.深的、低沉的、深奥的

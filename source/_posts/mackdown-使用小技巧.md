@@ -10,6 +10,8 @@ tags:
 * &gt; 知识点
 * \#f99 弱提醒
 
+## <font color="#f33">markdown mermaid graph 不能用 `end` 标签</font>
+
 ## markdown 显示部分，省略其余
 > <!-- more -->
 
