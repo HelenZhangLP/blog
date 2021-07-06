@@ -67,3 +67,16 @@ zsh mac 下最好用的终端，新建 `~/.zshrc`，添加 `source ~/.bash_profi
 # zshrc 下配置
 source ~/.bash_profile 
 ```
+
+## <font color="#f33">ERROR 切换分支后，分支号没有实时更新</font>
+```shell
+## ~/.zshrc
+source ~/.bashrc
+
+find_git_branch() {
+        git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+setopt PROMPT_SUBST
+export PROMPT='%9F%n@%10F%M%f %13F%~%f %F{green}$(find_git_branch)%f %F{normal}$%f '
+```
