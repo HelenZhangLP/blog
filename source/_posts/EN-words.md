@@ -47,6 +47,8 @@ accompany v.陪同
 clerk n.职员
 conductor n.指挥、列车长、售票员
 owe v.欠债
+semester n.学期
+
 
 词根 deep
 deep adj.深的、低沉的、深奥的

@@ -3,6 +3,7 @@ title: macos 常用命令
 date: 2020-10-22 11:59:39
 tags:
 - grocery
+- macos
 ---
 
 空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。
@@ -15,7 +16,7 @@ tags:
 ### <font color="#f33">curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题</font>
 > DNS 污染造成的
 1.  使用 `https://www.ipaddress.com/` 查询 `raw.githubbusercontent.com` 的正确 IP
-![img.png](/images/img.png)    
+![img.png](/images/macos/ipaddress.png)    
 2.  
 ```shell
 $ vim /etc/hosts
