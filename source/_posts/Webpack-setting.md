@@ -1,8 +1,22 @@
 ---
 title: webpack 配置
+date: 2018-05-21 10:36:49
 tags:
 - webpack
 ---
+
+webpack 建议本地安装，可以在引入重大更新（breaking change）版本时，更容易分别升级项目。通常会通过运行一个或多个 `npm scripts` 以在本地 `node_modules` 目录中查找安装的 webpack。
+
+<font color="#f33">npm v5.2.0 或更高版本，要运行 npx webapck 执行</font>
+
+## 安装 wepack
+```bash
+npm i webpack webpack-cli webpack-dev-server --save-dev
+```
+* webpack webpack 的核心文件，必须
+* webpack-cli 如果你使用 webpack v4+ 版本，并且想要在命令行调用 webpack 安装 webpack-cli
+* webpack-dev-server dev 环境启动服务
+
 四个核心概念
 * entry(入口)
 * output(输出)

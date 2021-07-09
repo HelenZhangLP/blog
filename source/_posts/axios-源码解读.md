@@ -25,3 +25,10 @@ tags:
 ├── index.d.ts                 # 配置TypeScript的声明文件
 └── index.js                   # 入口文件
 ```
+
+```mermaid
+graph TD
+a["index.js/require('./lib/axios')"] --> b["createInstance(defaults)"]
+b --> c["new Axios(defaults)"]
+c --> d["Constructor Axios"]
+```

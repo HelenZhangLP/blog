@@ -1,5 +1,5 @@
 ---
-title: .bash_profile
+title: .bash_profile/.bashrc/.zshrc
 date: 2021-07-06 13:41:14
 tags:
 - macos

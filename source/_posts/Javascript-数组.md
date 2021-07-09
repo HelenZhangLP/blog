@@ -1,13 +1,39 @@
 ---
 title: 'JavaScript 数组'
 date: 2020-11-06 11:22:46
-category:
+categories:
 - 技术
 tags:
 - JavaScript
 ---
 
 对于需要收集的 **有序、具有索引的数据** 的需求，可以使用数组
+
+## 数组使用过程中要注意的细节
+数组的索引其实是数字为名称的特性，空项目则是连数字特性都不存在。
+```javascript
+var array1 = [undefined, undefined]
+var array2 = []
+array2.length = 2
+// array2 // [empty x 2]
+
+'0' in array1 //true
+'0' in array2 // false
+array2[0] // undefined ，属性不存在，为 undefined
+```
+
+> <font color="#f33s">建议不要修改数组的 length, 也不要让数组产生空项目，<u> JavaScript 中的数组 API 对数组空项处理方式不同</u></font>
+
+map/filter/forEach 都会跳过空项，回调函数不会执行。但返回结果不一样，filter 不保留空项，map 会保留空项
+
+### 过滤除 undefined ，除 0，false,null,'' 等
+undefined 不是保留字，避免 undefined 被拿来当变量名称设定了其他的值，所以使用 typeof 确认值的类型名称
+```javascript
+function ifUndefined(obj, name) {
+  return typeof obj[name] === 'undefined'
+}
+```
+
 
 ## 数组的静态方法
 是以 Array 为命名空间的方法，包括以下几个：

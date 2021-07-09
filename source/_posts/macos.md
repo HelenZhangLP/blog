@@ -7,7 +7,6 @@ tags:
 ---
 
 空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。
-
 ## homebrew 安装
 ### 安装
 ```shell
@@ -38,7 +37,7 @@ $ vim /etc/hosts
 brew install node
 ```
 
-### macos 解压文件 .rar
+## macos 解压文件 .rar
 commands 参数
 ```shell
 `e`             Extract files without archived paths # 解压缩文件到当前目录
@@ -52,13 +51,25 @@ commands 参数
 $ unrar x x.rar
 ```
 
-  ### macos 文件重命名 [更多相关](https://www.cnblogs.com/liujiacai/p/8313548.html)
+## macos 文件重命名 [更多相关](https://www.cnblogs.com/liujiacai/p/8313548.html)
 
-  ```bash
-  $ mv 切图图片资源/ static
-  ```
+```bash
+$ mv 切图图片资源/ static
+```
 
-  ### macos 复制文件
-  ```bash
-  $ cp webpack.config.js webpack.dev.config.js
-  ```
+## macos 复制文件
+```bash
+$ cp webpack.config.js webpack.dev.config.js
+```
+
+## macos 安装 tree 命令
+### 方法一
+* `cd $home`
+* `vim .bashrc`
+* `alias tree = "find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"`
+* `source .bashrc`
+
+### 方法二
+也可以使用 homebrew 安装 tree 命令行：
+`1 $ brew install tree`
+

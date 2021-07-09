@@ -12,12 +12,15 @@ tags:
 
 ## JavaScript 对象与对象属性
 ```javascript
-let obj = {v: 1}
+let obj = {v: 1, o: undefined}
+console.log('o' in obj, obj.o) // true undefined
+console.log('b' in obj, obj.b) // false undefined
 ```
+<font color="#f33">虽然，属性值都是 undefined，但 **特性名不存在与特性值赋为 undefined 是不同的，** 可以用 `in` 运算符，查看对象是否有某个属性</font>
+
 > JavaScript 通过一些属性时都会带有一些特征值，ECMA-262 定义的，只有内部使用的，外部不能访问的特性，初期是为了实现 JavaScript 引擎使用的。具体如下表
 
 ### 数据属性
-
 |characteristic|description|
 |----|----|
 |[[Configurable]]|能否通过 delete 删除属性，然后重新定义属性，能否修改属性的特性，能否把属性修改为访问器属性|

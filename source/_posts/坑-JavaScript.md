@@ -24,3 +24,5 @@ try {
     [1,2,3,4,5,6].map(i => {if(i==3) throw Error(); console.log(i)})
 } catch {} // 1,2
 ```
+
+<font color="#f33">未解决疑问，在定义之前调用原型方法无效</font>

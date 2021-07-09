@@ -32,6 +32,7 @@ Prototype(原型上定义共有属性)
 style Prototype fill: aliceblue
 ```
 <font color="#f99">2.   流程图中标点符号使用转义字符</font>
+<font color="#f33">2-1. 流程图中特殊符号可以采用`""`包裹</font>
 
 |名称|转义字符|描述|
 |---|-------|---|

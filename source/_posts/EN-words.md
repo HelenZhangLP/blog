@@ -30,6 +30,11 @@ tags:
 |ry|...学|chemistry n.化学|
 |depend|依靠||
 |able|...的|dependable adj.可靠的|
+|de|加强||
+|termin|界限||
+|e|加强界限|determine v.查明、限定|
+|para|辅助||
+|meter|计量|parameter n.参数，范围，决定因素|
 
 nest 鸟巢，鸟窝/v.筑巢
 tradeoff n.权衡、协调，交易，交换
