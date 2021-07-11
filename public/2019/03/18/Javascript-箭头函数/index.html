@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    箭头函数 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      箭头函数
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/Javascript-箭头函数/" class="article-date">
+  <time datetime="2019-03-18T05:40:26.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">Arrow Functions</a></p>
+<blockquote>
+<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
+</blockquote>
+<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="keyword">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjnr8j1i002czd9i2h8jqi3a"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/18/Javascript-函数-bind-call-apply/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            函数 bind call apply
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/11/immutableJS/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">immutableJS</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

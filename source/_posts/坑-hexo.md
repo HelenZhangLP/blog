@@ -12,6 +12,8 @@ tags:
 > 浏览器端 ctrl(command) + shift + r
 > 手机浏览器同样要清除缓存，如 safari history -> clear all 
 
+## master 分支中修改样式，然后发布，不是必须提交远程
+
 ## hexo db.json
 > db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 `hexo g`
 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    我所见过的 npm 库 |
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-我所见过的-npm-库" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我所见过的 npm 库
+    </h1>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/24/我所见过的-npm-库/" class="article-date">
+  <time datetime="2019-07-24T07:55:16.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1 id="postcss-pxtorem"><a href="#postcss-pxtorem" class="headerlink" title="postcss-pxtorem"></a>postcss-pxtorem</h1><h1 id="dotenv"><a href="#dotenv" class="headerlink" title="dotenv"></a>dotenv</h1><p>NodeJs 运行时加载不同的配置，<code>process.env.DB_HOST</code> 获取环境变量，程序启动时，从文件加载环境变量时就需要用到 dotenv 库。</p>
+<h2 id="用法-创建-env"><a href="#用法-创建-env" class="headerlink" title="用法 创建 .env"></a>用法 创建 .env</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> .env</span></span><br><span class="line">DB_HOST = localhost</span><br><span class="line">DB_USER = root</span><br><span class="line">DB_PASS = 123456</span><br></pre></td></tr></table></figure>
+
+<p>NODE 中运行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dotenv = <span class="built_in">require</span>(<span class="string">'dotenv'</span>)</span><br><span class="line">dotenv.config()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序中使用环境变量</span></span><br><span class="line"><span class="keyword">const</span> db = <span class="built_in">require</span>(<span class="string">'db'</span>)</span><br><span class="line">db.connect(&#123;</span><br><span class="line">  host: process.env.DB_HOST,</span><br><span class="line">  username: process.env.DB_USER,</span><br><span class="line">  password: process.env.DB_PASS</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="debug-专门控制日志输出的库"><a href="#debug-专门控制日志输出的库" class="headerlink" title="debug 专门控制日志输出的库"></a>debug 专门控制日志输出的库</h1><p>判断 DEBUG 环境变量，调整运行环境控制日志是否输出。DEBUG 对环境变量进行解析，允许我们选择性的控制输出哪些日志模块，解决控制台日志堆积的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/07/24/我所见过的-npm-库/" data-id="ckjnr8j4e0057zd9ipfaazd4a"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/08/28/Javascript-对象/" class="article-nav-link">
+        <strong class="article-nav-caption">上一页</strong>
+        <div class="article-nav-title">
+          
+            Javascript-对象
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/07/24/Javascript-async-await-promise/" class="article-nav-link">
+        <strong class="article-nav-caption">下一页</strong>
+        <div class="article-nav-title">async await promise</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/Javascript">
+      var gitalk = new Gitalk({
+        clientID: '8e7e6dda81936172806e',
+        clientSecret: '97f71b6bbdf731bc650ec39212061882b8f36e71',
+        repo: 'blog',
+        owner: 'HelenZhangLP',
+        admin: ['HelenZhangLP'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+
+</article>
+
+</section>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  
+  <title>
+    
+    女魔头</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="jumbotron">
+  <div class="video">
+    
+    <div class="video-media">
+      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
+      
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">女魔头</a></h1>
+      <p>咕噜的程序员妈妈</p>
+      
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    
+
+    
+      
+        <article id="post-CSS-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/25/CSS-面试题/">CSS 面试题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/25/CSS-面试题/" class="article-date">
+  <time datetime="2019-03-25T07:35:18.000Z" itemprop="datePublished">2019-03-25</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <ul>
+<li><input checked disabled type="checkbox"> <p>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位。该定位方式脱离文档流，同样脱离文档流的还是 float</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>margin/padding 设置百比时，根据父元素宽运算</p>
+</li>
+<li><input disabled type="checkbox"> <p>使用css实现一个自适应浏览器大小并且宽和高的比是2:1，有几种实现方法？</p>
+<blockquote>
+<ul>
+<li>width 与 height 百分比是根据父元素计算的，<code>&lt;body&gt;</code> 是根据宽一般是浏览器的宽，高一般为 0，不同浏览器有所差异，这里不细说。</li>
+<li>padding 百分比是相对于包含块的宽度,指定一个值时 该值指定四个边的内边距</li>
+</ul>
+</blockquote>
+</li>
+<li><input checked disabled type="checkbox"> <p>用 padding 撑 50% 的高</p>
+</li>
+</ul>
+        
+          <a class="article-more-link" href="/2019/03/25/CSS-面试题/">更多...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/25/CSS-面试题/" data-id="ckjnr8j0u001hzd9ihmbqlgf4"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-Class" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/20/Javascript-Class/">Javascript Class</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/20/Javascript-Class/" class="article-date">
+  <time datetime="2019-03-20T09:06:19.000Z" itemprop="datePublished">2019-03-20</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><h4 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h4><p>用带有 class 关键字的类名声明一个类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>类声明不会像函数声明一样会提升，需要先声明之后才可以访问。否则，报错：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Mermaid();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mermaid</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught ReferenceError: Mermaid is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 匿名类 */</span></span><br><span class="line"><span class="keyword">let</span> Mermaid = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 命名类 */</span></span><br><span class="line"><span class="keyword">let</span> Everything = <span class="class"><span class="keyword">class</span> <span class="title">Everything</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Everything is posible'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>super 关键字调用父类构造函数</p>
+</blockquote>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
+<p><code>static</code> 定义一个类的静态方法，静态方法通常用于为一个应用程序创建工具函数。调用静态方法不需要实例化，不能通过类实例调用静态方法。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/20/Javascript-Class/" data-id="ckjnr8j0y001ozd9icg1ojbpt"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-react-整理" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/19/react-整理/">react 整理</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/19/react-整理/" class="article-date">
+  <time datetime="2019-03-19T10:06:55.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="React-列表渲染"><a href="#React-列表渲染" class="headerlink" title="React 列表渲染"></a>React 列表渲染</h3><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><p>React 中使用 keys 标识列表中元素的删除、添加或移除。React Diff 算法中借助 key 标识同级元素是新增还是移动，避免不必要的渲染。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  &lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &#123;/</span>* <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;item.text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span> 没有 id 用索引赋 key *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：</code>最好不要用索引（index）作 key 值，因为一旦有新增、删除或移动等变化，会导致大量元素失效。进而造成不必要的重新渲染，损耗性能。可以使用 item.id 作为 key 值</p>
+<h3 id="React-state"><a href="#React-state" class="headerlink" title="React state"></a>React state</h3><p>React 中把组件看成一个状态机（state machines）。React 中，constructor 是最先执行，且执行一次。state 在 constructor 构造函数中初始化。其它地方采用 <code>this.setState()</code> 更新组件状态。<br>React 里，通过更新组件 state 重新渲染用户界面，不需要操作 DOM，类组件使用 props 调用基础构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(super) &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="comment">// 初始化 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre class="mermaid">graph LR;
+    用户界面交互-->状态;
+    状态-->UI渲染;
+    UI渲染-->|用户界面与数据保持一致|数据;</pre>
+<p>this.setState 之后发生了什么？<br>调用 setState 函数后，React 将 setState 参数与组件当前状态合并，触发调和过程（Reconciliation）. 经过调和过程，React 会以相对高效的方式构建 React Dom 树，得到 Dom 树后，React 会将新树与老树进行对比，找出差异节点，从而根据差异最小化渲染。</p>
+<p>重新构造 dom ，并将新老状态进行对比，最小化渲染。</p>
+<h3 id="React-生命周期渲染"><a href="#React-生命周期渲染" class="headerlink" title="React 生命周期渲染"></a>React 生命周期渲染</h3><pre class="mermaid">graph TM;
+  componentWillMount-->render;
+  render-->componentDidMount;
+  componentDidMount-->render</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/react-整理/" data-id="ckjnr8j3n004bzd9irxc9uyrh"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-prototype-proto" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/19/prototype-proto/">javascript prototype &amp;&amp; __proto__</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/19/prototype-proto/" class="article-date">
+  <time datetime="2019-03-19T04:20:05.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><p>Javascript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 <code>__proto__</code> 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。</p>
+<p><a href="https://segmentfault.com/a/1190000015727237" target="_blank" rel="noopener">继承</a></p>
+<h3 id="Javascript-继承"><a href="#Javascript-继承" class="headerlink" title="Javascript 继承"></a>Javascript 继承</h3><ul>
+<li>原型链继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Super()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>只要把子类的原型指向父类的实例就可以了，再演示一个更丰满的例子</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(Audery.friends)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>引用类型会出现数组引用多实例因共享导致的相互污染的问题，考虑使用 ** 构造函数继承 ** 实现</p>
+</blockquote>
+<ul>
+<li>构造函数继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params">female</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.sex = female</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age, female</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  Base.call(<span class="keyword">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(Audery.friends)</span><br><span class="line"><span class="built_in">console</span>.log(Gulu.friends)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>上面说了，通过对象冒充调用父类构造方法，其实就是复制父类构造函数中的属性、方法，到子类构造函数中，原型方法无法继承</p>
+</blockquote>
+<ul>
+<li>组合继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Base</span>(<span class="params">female</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.sex = female</span><br><span class="line">  <span class="keyword">this</span>.friends = [<span class="string">'lily'</span>, <span class="string">'lucy'</span>, <span class="string">'coco'</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Base.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'I have some friends, they are '</span> + <span class="keyword">this</span>.friends.join(<span class="string">'、'</span>)+<span class="string">' respectively!'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age, female</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  Base.call(<span class="keyword">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原型继承父类实例指向子类原型</span></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Audery = <span class="keyword">new</span> Son(<span class="string">'Audery'</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> Gulu = <span class="keyword">new</span> Son(<span class="string">'Gulu'</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">Gulu.friends.push(<span class="string">'emily'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>组合继承实现了：</p>
+</blockquote>
+<ul>
+<li><input disabled type="checkbox"> 属性私有化、方法共享、引用数组间不相互污染</li>
+</ul>
+<p>** 以上是原型链继承的周边，不使用 Object.create， 以下是使用 Object.create 方法相关继承的演生 **</p>
+<ul>
+<li><p>原型式继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">base</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseObj = &#123;</span><br><span class="line">  name: <span class="string">'基类'</span>,</span><br><span class="line">  arr: [<span class="string">'array1'</span>,<span class="string">'array2'</span>,<span class="string">'array3'</span>],</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, <span class="keyword">this</span>.arr)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseInstance1 = base(baseObj)</span><br><span class="line"><span class="keyword">var</span> baseInstance2 = base(baseObj)</span><br><span class="line">baseInstance2.name = <span class="string">'修改属性值'</span></span><br><span class="line">baseInstance1.arr.push(<span class="string">'array4'</span>)</span><br><span class="line"><span class="comment">/* === baseInstance2 添加了一个实例属性 === */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>寄生式继承</p>
+</li>
+<li><p>寄生组合继承</p>
+</li>
+<li><p>Class extends</p>
+<blockquote>
+<p>如果子类中存在构造函数，则需要在使用 this 之前首先调用 super。 与寄生组合继承不同的是，ES6 先将父类实例对象的属性和方法加到 this 上，必须先调用 super 方法，然后再用的子类构造函数修改 this</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">babel.min.js:<span class="number">2</span> Uncaught <span class="built_in">SyntaxError</span>: Inline Babel script: <span class="string">'this'</span> is not allowed before <span class="keyword">super</span>()</span><br><span class="line">  <span class="number">3</span> |   <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="number">4</span> |     <span class="comment">// super(props);</span></span><br><span class="line">&gt; <span class="number">5</span> |     <span class="keyword">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">    |     ^</span><br><span class="line">  <span class="number">6</span> |   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现原理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null。</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf = <span class="function"><span class="keyword">function</span> (<span class="params">obj, proto</span>) </span>&#123;</span><br><span class="line">  obj.__proto__ = proto;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 的实例继承 A 的实例</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B.prototype, A.prototype);</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 继承 A 的静态属性</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B, A);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/19/prototype-proto/" data-id="ckjnr8j3k0044zd9ipqycf9dw"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object/">object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象继承/">对象继承</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-函数-bind-call-apply" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/Javascript-函数-bind-call-apply/">函数 bind call apply</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/Javascript-函数-bind-call-apply/" class="article-date">
+  <time datetime="2019-03-18T06:17:37.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="bind、call、apply"><a href="#bind、call、apply" class="headerlink" title="bind、call、apply"></a>bind、call、apply</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">call</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">apply</a></p>
+<h4 id="从定义上对比看"><a href="#从定义上对比看" class="headerlink" title="从定义上对比看"></a>从定义上对比看</h4><ul>
+<li>bind - 创建一个新的函数</li>
+<li>call - call 与 apply 相似，仅传参不同</li>
+<li>apply - 调用一个具有给定 this 值的函数<blockquote>
+<p>func.apply(thisArg, [argsArray])</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用一个具有给定 this 的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TempObj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.tempArray = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tempObj = <span class="keyword">new</span> TempObj()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定作用域为 tempObj</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.apply(tempObj, tempObj.tempArray))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max.call(tempObj, ...tempObj.tempArray))</span><br></pre></td></tr></table></figure>
+
+<p>** DEMO **</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组合并</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>], b = [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">a.push(b) <span class="comment">// 3，返回数组 length</span></span><br><span class="line">a.concat(b) <span class="comment">// [1, 2, 3, 4] 创建了一个新数组</span></span><br><span class="line">a.push.apply(a, b) <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">a.push.call(a, ...b) <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// [1, 2, 3, 4, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-函数-bind-call-apply/" data-id="ckjo7r3uk00038i9izbcopqzy"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数作用域/">函数作用域</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-箭头函数" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/18/Javascript-箭头函数/">箭头函数</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/18/Javascript-箭头函数/" class="article-date">
+  <time datetime="2019-03-18T05:40:26.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Javascript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">Arrow Functions</a></p>
+<blockquote>
+<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
+</blockquote>
+<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="keyword">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.prop, <span class="keyword">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/18/Javascript-箭头函数/" data-id="ckjnr8j1i002czd9i2h8jqi3a"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-immutableJS" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/11/immutableJS/">immutableJS</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/11/immutableJS/" class="article-date">
+  <time datetime="2019-03-11T03:21:52.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现，但没有被默认放到 React 工具集里（React 提供了简化的 Helper）</p>
+<h3 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h3><p>Record() 可以创建一个新的 Record 类，类似于Javascript的Object，但是只接收特定字符串为key，具有默认值:</p>
+<h3 id="setIn"><a href="#setIn" class="headerlink" title="setIn()"></a>setIn()</h3><p>setIn 设置深层结构中的某些属性</p>
+<blockquote>
+<p>setIn(keyPath: Iterable<any>, value: any): this</any></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/immutableJS/" data-id="ckjnr8j3b003xzd9ieoiq8or9"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/immutable/">immutable</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-redux" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/11/redux/">redux</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/11/redux/" class="article-date">
+  <time datetime="2019-03-11T02:16:53.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>哈哈，请问你是要闹哪样？<br><code>import { connect } from &#39;@tarojs/redux&#39;;</code><br>redux 文档里查了没找着，原来是 tarojs 的方法，借机认识下这哥们。</p>
+<h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><blockquote>
+<p>tarojs/redux 提供的 connect 方法将 redux 与我们的页面进行连接<br>connect 方法接受两个参数<br><code>mapStateToProps</code> 与 <code>mapDispatchToProps</code></p>
+</blockquote>
+<ul>
+<li>mapStateToProps，函数类型，接受最新的 state 作为参数，用于将 state 映射到组件的 props</li>
+<li>mapDispatchToProps，函数类型，接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法</li>
+</ul>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'@tarojs/redux'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    reducer: state.bindphoneReducer,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@connect(mapStateToProps)</span><br></pre></td></tr></table></figure>
+
+<p>Javascript 状态容器</p>
+<h3 id="connect-1"><a href="#connect-1" class="headerlink" title="connect"></a>connect</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/11/redux/" data-id="ckjnr8j3q004gzd9ikvxyomfy"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Javascript-面试题" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/07/Javascript-面试题/">Javascript 面试题</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/07/Javascript-面试题/" class="article-date">
+  <time datetime="2019-03-07T06:33:19.000Z" itemprop="datePublished">2019-03-07</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="变量声明-let-const-var"><a href="#变量声明-let-const-var" class="headerlink" title="变量声明 let const var"></a>变量声明 let const var</h2><table class="table table-striped">
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">定义</th>
+<th align="left">作用域</th>
+<th align="left">赋初值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">let</td>
+<td align="left">声明变量</td>
+<td align="left">块级作用域</td>
+<td align="left">可以不赋初值<br>编译时声明并初始化为初值为 undefined</td>
+</tr>
+<tr>
+<td align="left">const</td>
+<td align="left">声明常量</td>
+<td align="left">块级作用域</td>
+<td align="left">必须赋初值</td>
+</tr>
+<tr>
+<td align="left">var</td>
+<td align="left">声明变量</td>
+<td align="left">局部变量是函数作用域；<br>全局变量作用域为该程序</td>
+<td align="left">不赋初值时，<br>变量提升，代码执行前创建 js 环境，声明变量，变量赋初值为 undefined</td>
+</tr>
+</tbody></table>
+
+
+<p><em><code>notice:</code></em></p>
+<ol>
+<li>let 和 var 都是用来声明变量的，但作用域不同。</li>
+<li>let 和 const 都是 ES6 开始正式加入 JavaScript 规范的</li>
+<li>let 编译时执行声明初始化，未编译时处于 temporal dead zone，此时变量 is not defined;</li>
+<li>const 声明常量必须赋初值(Uncaught SyntaxError: Missing initializer in const declaration)；</li>
+<li>const 声明的常量值不能修改。</li>
+</ol>
+<h2 id="1-let"><a href="#1-let" class="headerlink" title="1.    let"></a>1.    let</h2><blockquote>
+<p>   声明一个块级作用域的本地变量</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">const</span> C = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// Uncaught ReferenceError: b is not defined</span></span><br><span class="line"><span class="built_in">console</span>.log(C) <span class="comment">// Uncaught ReferenceError: C is not defined</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>let 声明变量可以不赋初值，默认值为 undefined</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">let</span> b; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">const</span> c; <span class="comment">// Uncaught SyntaxError: Missing initializer in const declaration</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>let 声明的变量在定义编译执行时初始化。变量未声明之前不会初始化。这一时段称为暂存死区（Temporal Dead Zone, TDZ）。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">let</span> b; <span class="comment">// Uncaught ReferenceError: b1 is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-const"><a href="#2-const" class="headerlink" title="2.    const"></a>2.    const</h2><blockquote>
+<p><code>Uncaught SyntaxError: Missing initializer in const declaration</code> const 声明的变量必须赋初值<br>    <code>Uncaught ReferenceError: C is not defined</code> const 声明块级作用域变量</p>
+</blockquote>
+<h3 id="const-声明的变量值不能修改"><a href="#const-声明的变量值不能修改" class="headerlink" title="const 声明的变量值不能修改"></a>const 声明的变量值不能修改</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> variableTemplate = <span class="number">30</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  variableTemplate = <span class="number">22</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error) <span class="comment">// TypeError: Assignment to constant variable.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(variableTemplate)</span><br></pre></td></tr></table></figure>
+
+<h3 id="const-只读引用，只是变量的标识符不能重新分配"><a href="#const-只读引用，只是变量的标识符不能重新分配" class="headerlink" title="const 只读引用，只是变量的标识符不能重新分配"></a>const 只读引用，只是变量的标识符不能重新分配</h3><blockquote>
+<p>只是变量标识符不能重新分配</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VARIABLE = <span class="string">'assignment value'</span></span><br><span class="line">VARIABLE = <span class="string">'assignment value'</span> <span class="comment">// TypeError: Assignment to constant variable</span></span><br><span class="line"><span class="keyword">const</span> VARIABLE = <span class="string">'Assignment to constant variable'</span> <span class="comment">// Uncaught SyntaxError: Identifier 'VARIABLE' has alreay been declared</span></span><br><span class="line"><span class="keyword">const</span> EN_OBJECT = &#123;&#125;</span><br><span class="line">EN_OBJECT.ATTRIBUTE = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-var"><a href="#3-var" class="headerlink" title="3.    var"></a>3.    var</h2><p>JavaScript 根据赋值自动转换数据类型;<br>JavaScript 中 <code>+</code> 可用来链接字符串，如果运算中涉及字符串，结果为字符串链接。其它运算符（-、*、/）正确计算数字字符串;<br>JavaScript 中，null 乘任何数为 0;<br>JavaScript 代码程序执行前会先创建执行环境，变量、函数等被创建。代码运行时赋初值。这就是 JavaScript 的提升机制（hoisting）。</p>
+<blockquote>
+<p>var 声明变量可以不赋初值，默认值为 undefined；<br>    var 声明的变量没有块级作用域</p>
+</blockquote>
+<h3 id="与-var-不同-let-与-const-在全局声明定义的变量不会绑定到全局对象上（如-浏览器的全局对象-window"><a href="#与-var-不同-let-与-const-在全局声明定义的变量不会绑定到全局对象上（如-浏览器的全局对象-window" class="headerlink" title="与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 window)"></a>与 var 不同 let 与 const 在全局声明定义的变量不会绑定到全局对象上（如 浏览器的全局对象 <code>window</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a, <span class="built_in">window</span>.b, <span class="built_in">window</span>.c) <span class="comment">// 1 undefined undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="let-和-var-定义的变量作用域不同"><a href="#let-和-var-定义的变量作用域不同" class="headerlink" title="let 和 var 定义的变量作用域不同"></a>let 和 var 定义的变量作用域不同</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testVarScope</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a, <span class="string">'var'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testVarScope(); <span class="comment">// 2 "var"</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	var 声明的变量在同一函数作用域中为同一变量，所以值会修改</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testLetScope</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a, <span class="string">'let'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testLetScope(); <span class="comment">// 1 "let"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	&#123;&#125; 为一个作用域，&#123;&#125; 中的 a 变量与 函数中首先声明的 a 为两个变量，值不会相互修改</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、-作用域-promise-amp-amp-promise-then"><a href="#三、-作用域-promise-amp-amp-promise-then" class="headerlink" title="三、 作用域 + promise &amp;&amp; promise.then"></a>三、 作用域 + promise &amp;&amp; promise.then</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="number">1</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">let</span> msg = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(msg)</span><br><span class="line"><span class="keyword">var</span> p1 =  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">	msg = <span class="number">3</span></span><br><span class="line">	resolve(msg)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">var</span> p2 = p1.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p1 === p2)</span><br><span class="line"><span class="comment">// 1 4 5 false 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* p1 gng p2 不相等的原因 */</span></span><br><span class="line"><span class="comment">// [[PromiseStatus]]: "resolved"</span></span><br><span class="line"><span class="comment">// [[PromiseValue]]: 3</span></span><br><span class="line"><span class="built_in">console</span>.log(p2)</span><br><span class="line"><span class="built_in">console</span>.log(p1)</span><br><span class="line"><span class="comment">// [[PromiseStatus]]: "resolved"</span></span><br><span class="line"><span class="comment">// [[PromiseValue]]: undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、-箭头函数作用域"><a href="#四、-箭头函数作用域" class="headerlink" title="四、 箭头函数作用域"></a>四、 箭头函数作用域</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		name: <span class="string">'fn'</span>,</span><br><span class="line">		show: <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'fun'</span></span><br><span class="line">fun().show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、正则相关-题目如下"><a href="#五、正则相关-题目如下" class="headerlink" title="五、正则相关 - 题目如下"></a>五、正则相关 - 题目如下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str=<span class="string">'version2.1 version2.2'</span>;</span><br><span class="line"><span class="keyword">const</span> regx = <span class="regexp">/(\w+)(\d)\.(\d)/g</span>;</span><br><span class="line"></span><br><span class="line">str.match(regx)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> [ 'version2.1', 'version2.2' ]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">regx.exec(str)</span><br><span class="line"><span class="comment">/** [ 'version2.1',</span></span><br><span class="line"><span class="comment">  'version',</span></span><br><span class="line"><span class="comment">  '2',</span></span><br><span class="line"><span class="comment">  '1',</span></span><br><span class="line"><span class="comment">  index: 0,</span></span><br><span class="line"><span class="comment">  input: 'version2.1 version2.2',</span></span><br><span class="line"><span class="comment">  groups: undefined ]</span></span><br><span class="line"><span class="comment">	*/</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>console.log(str.match(regx)) 结果如上，因为有正则中有 <code>g</code> 全局搜索标识符。 所以结果如上代码。</li>
+<li>console.log(regx.exec(str)) 结果如上。</li>
+<li>match 和 exec 的区别：<ul>
+<li>match 是 String(String.prototype.match()) 的原型方法；exec 是 RegExp（RegExp.prototype.exec()） 的原型方法。</li>
+<li>在 regx 不加 <code>g</code> 标识符（global）时，他们的结果是相同的，返回一个数组。数组元素包括匹配字符串、匹配组、index 匹配的位置， input 原始字符串， groups;</li>
+<li>在 regx 加 <code>g</code> 标识符（global)）时，结果如上。<code>str.match(regx)</code> 返回的是所有匹配的字符串数组；<code>regx.exec(str)</code> 返回的第一组匹配的数组，并记录 <code>lastIndex</code> 在 regx 中，再次执行 <code>regx.exec(str)</code> 会返回下一组匹配结果。以此类推，直到最后结果为 null。</li>
+</ul>
+</li>
+</ol>
+<h3 id="六、-数组排序"><a href="#六、-数组排序" class="headerlink" title="六、 数组排序"></a>六、 数组排序</h3><blockquote>
+<p>对数组 [10, 20, 1, 2] 进行排序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">10</span>, <span class="number">20</span>, <span class="number">1</span>, <span class="number">2</span>].sort(); <span class="comment">// [ 1, 10, 2, 20 ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="六、-在一个构造方法中可以使用super关键字来调用一个父类的构造方法。"><a href="#六、-在一个构造方法中可以使用super关键字来调用一个父类的构造方法。" class="headerlink" title="六、 在一个构造方法中可以使用super关键字来调用一个父类的构造方法。"></a>六、 在一个构造方法中可以使用super关键字来调用一个父类的构造方法。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/07/Javascript-面试题/" data-id="ckjnr8j1m002hzd9i0xg2ikbo"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interview-questions/">interview questions</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+        <article id="post-Vue-单向绑定-与-双向绑定" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/03/03/Vue-单向绑定-与-双向绑定/">Vue 单向绑定 与 双向绑定</a>
+    </h2>
+  
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/03/Vue-单向绑定-与-双向绑定/" class="article-date">
+  <time datetime="2019-03-03T13:32:19.000Z" itemprop="datePublished">2019-03-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>在数据绑定这里纠结了有断日子了，一直想把这块好好梳理一下。则日不如撞日，就今天了！<br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001475449022563a6591e6373324d1abd93e0e3fa04397f000" target="_blank" rel="noopener">参考文档不能丢</a></p>
+<h3 id="认识下-MVVM"><a href="#认识下-MVVM" class="headerlink" title="认识下 MVVM"></a>认识下 MVVM</h3><p>很讨论的一个概念，在它之前我只认识 MVC，曾经有一经面试就在它这里卡壳。那个时候我只认识 MVC.<br><a href="https://docs.microsoft.com/zh-cn/windows/uwp/data-binding/data-binding-and-mvvm" target="_blank" rel="noopener">哎呀，妈呀，不易啊，终于找到正主啦</a>文档中说的很清楚，mvvm 指的模型层（model）、视图层（View)及视图模型层（ViewModel)<br>正文还是有些枯燥的。其实廖老师的文档里其实已经很好的将jQuery 操作 Dom 与 MVVM 作了很好的对比，给出的实际案例，说明了<code>MVVM 是通过操作对象，从而自动更新 DOM 状态</code><br>以下是两个案例对比：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Homer'</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">51</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回忆下原生 js</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'#name'</span>).innerText(<span class="string">'HTML'</span>)</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'#age'</span>).innerText(<span class="string">'51'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//jQuery</span></span><br><span class="line">$(<span class="string">'#name'</span>).text(name);</span><br><span class="line">$(<span class="string">'#age'</span>).text(age);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MVVM 中通过对象自动更新 DOM</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Bart'</span>,</span><br><span class="line">    age: <span class="number">12</span></span><br><span class="line">&#125;;</span><br><span class="line">person.name = <span class="string">'HTML'</span></span><br><span class="line">person.age = <span class="number">51</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><p>模模糊糊中认为小程序是属于单向数据绑定，别人的博客中有说是双向绑定，为些还特意百度找盟友，结果发现我并不孤独。接下来分析分析数据绑定。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://helenzhanglp.github.io/2019/03/03/Vue-单向绑定-与-双向绑定/" data-id="ckjnr8j1w002wzd9icv8rbeo8"
+         class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据绑定/">数据绑定</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+      
+  </article>
+  
+  
+    <nav class="page-nav">
+      
+      <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+    </nav>
+  
+</section>
+
+</div>
+
+  <footer class="footer">
+  
+  
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2021 女魔头</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
+      <!--
+      <li><a href="/">Helen Zhang</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">档案</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
