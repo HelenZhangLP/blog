@@ -1,757 +1,278 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  
-  <title>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="代码是我的圣经，程序使我快乐。&amp;#9829; 爱编程 爱工作 &amp;#9829;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="魔女">
+<meta property="og:url" content="https://helenzhanglp.github.io/page/2/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="代码是我的圣经，程序使我快乐。&amp;#9829; 爱编程 爱工作 &amp;#9829;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Helen Zhang">
+<meta name="twitter:card" content="summary">
     
-    女魔头</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
-</head>
-</html>
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>魔女</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
-<main class="content">
-  <section class="jumbotron">
-  <div class="video">
-    
-    <div class="video-media">
-      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
-      
-      <div class="video-overlay"></div>
-    </div>
-    <div class="video-inner text-center text-white">
-      <h1><a href="/">女魔头</a></h1>
-      <p>咕噜的程序员妈妈</p>
-      
-    </div>
-    <div class="video-learn-more">
-      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
   </div>
-</section>
-
-<div id="landingpage">
-  <section class="outer">
-  <article class="articles">
-    
-    
-
-    
-      
-        <article id="post-浏览器工作原理——http" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/12/浏览器工作原理——http/">浏览器工作原理——http</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/12/浏览器工作原理——http/" class="article-date">
-  <time datetime="2020-11-12T08:19:06.000Z" itemprop="datePublished">2020-11-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>XHR -&gt; Request Headers -&gt; view source</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET /shakespeare/jsd/exchange_rates/current HTTP/1.1</span><br><span class="line">Host: www.jianshu.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Accept: application/json</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36</span><br><span class="line">Sec-Fetch-Site: same-origin</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.jianshu.com/p/6dbcc3aff98b</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8</span><br><span class="line">Cookie: __yadk_uid=b5C1W8FTbvn2CMErMOWLRvRBfqtcfZyR; _ga=GA1.2.1361763253.1581860875; __gads=ID=e22e0402239bcdd8-22e9450047c200f4:T=1593494469:RT=1593494469:S=ALNI_MbgAdC1pDH1wBUKwaWC6teLb00cyg; read_mode=day; default_font=font2; locale=zh-CN; UM_distinctid=175537082be1a1-08e93312a69e19-4d112a29-38400-175537082bf1b5; CNZZDATA1278917561=2017572215-1603418142-https%253A%252F%252Fwww.jianshu.com%252F%7C1603447023; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22%24device_id%22%3A%2216e7305e1e716c-046300c902b66b-123b6a5d-1024000-16e7305e1e881a%22%2C%22props%22%3A%7B%22%24latest_referrer%22%3A%22https%3A%2F%2Fwww.baidu.com%2Flink%22%2C%22%24latest_traffic_source_type%22%3A%22%E8%87%AA%E7%84%B6%E6%90%9C%E7%B4%A2%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC%22%7D%7D; _gid=GA1.2.1053313438.1605150552; _m7e_session_core=559108e9b8dcd6adff1770cd4662ce96; signin_redirect=https://www.jianshu.com/p/6dbcc3aff98b; Hm_lvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1604707994,1604975982,1605150555,1605156601; _gat=1; Hm_lpvt_0c0e9d9b1e7d617b3e6842e85b9fb068=1605170209</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/11/12/浏览器工作原理——http/">更多...</a>
-        
-      
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/12/浏览器工作原理——http/" data-id="ckjnr8j4q005qzd9izqnvbupi"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
-
-    </footer>
-
   </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="_post-浏览器工作原理——数据的传输过程" class="article article-type-_post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/11/浏览器工作原理——数据的传输过程/">浏览器工作原理——数据的传输过程</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/11/浏览器工作原理——数据的传输过程/" class="article-date">
-  <time datetime="2020-11-11T05:32:59.000Z" itemprop="datePublished">2020-11-11</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>First Print 简称 FP，是指页面加载到首次开始绘制的时长。网络的加载速度是影响 FP 的重要因素。网络协议 HTTP、WebSocket 都是基于 TCP/IP 的。那么 web 世界中，tcp/ip 是如何工作的呢？</p>
-<h2 id="数据的传输过程"><a href="#数据的传输过程" class="headerlink" title="数据的传输过程"></a>数据的传输过程</h2><p>互联网中数据是通过数据包传递。如果数据量很大时会拆成很多小的数据包传输。</p>
-<h3 id="1-数据包如何送达主机"><a href="#1-数据包如何送达主机" class="headerlink" title="1.  数据包如何送达主机"></a>1.  数据包如何送达主机</h3><p>数据包在互联网上进行传输需要符合网际协议（Internet Protocol, IP）标准。</p>
-<div id="sequence-0"></div>
-        
-          <a class="article-more-link" href="/2020/11/11/浏览器工作原理——数据的传输过程/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/11/浏览器工作原理——数据的传输过程/" data-id="ckjnr8j4x0060zd9iuhr486rp"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li></ul>
-
-    </footer>
-
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
   </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="_post-浏览器兼容问题" class="article article-type-_post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/10/浏览器兼容问题/">浏览器兼容问题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/10/浏览器兼容问题/" class="article-date">
-  <time datetime="2020-11-10T02:33:13.000Z" itemprop="datePublished">2020-11-10</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。"><a href="#windows-safari-浏览器对于-UTC-amp-amp-GMT-时间转换存在兼容性问题。" class="headerlink" title="windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。"></a>windows safari 浏览器对于 UTC &amp;&amp; GMT 时间转换存在兼容性问题。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="comment">// Tue Nov 10 2020 11:58:59 GMT+0800 (China Standard Time)</span></span><br></pre></td></tr></table></figure>
-
-<p>GMT(Greenwich Mean Time) 格林尼治标准时间<br>GMT+0800(China Standard Time) 北京时间</p>
-<p>UTC(Universal Time Coordinated)协调世界时。当前的世界标准时间。<br>UTC 标准时间格式 <code>2019-11-11T00:00:00.000Z</code></p>
-<ol>
-<li><code>T</code>代表使用 UTC 时间。</li>
-<li><code>Z</code>是 UTC 的偏移量，表示 UTC 时间与本地时间的差别，即时差。<ul>
-<li>Z 表示 0 时区，写 Z 或不写时表示不偏移。即 GMT/0 时区。</li>
-<li>需要偏移时，将Z替换为真实的偏移量。偏移量可用以下形式表示: ±[hh]:[mm]、±[hh][mm]、±[hh]。</li>
-<li>目前有39个UTC偏移量（当伊朗试行夏令时时只有38个）</li>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
 </ul>
-</li>
-<li>时间数值表示在限定 UTC 格式和偏移量的情况下，偏移时区的本地时间。</li>
-</ol>
-<p>UNIX TIME，也叫做 POSIX 时间或纪元时间（Epoch Time)，记录时间流逝，也叫时间戳。定义为从1970-01-01T00:00:00开始流逝的秒数，不考虑闰秒。之后的时间是正数，之前的是负数。</p>
-<p>需要补充，转换方法</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/10/浏览器兼容问题/" data-id="ckjnr8j4o005mzd9iaomsef3f"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/">grocery</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="_post-Javascript-数组" class="article article-type-_post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/11/06/Javascript-数组/">Javascript 数组</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/11/06/Javascript-数组/" class="article-date">
-  <time datetime="2020-11-06T03:22:46.000Z" itemprop="datePublished">2020-11-06</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="数组重组方法"><a href="#数组重组方法" class="headerlink" title="数组重组方法"></a>数组重组方法</h2><h3 id="1-数组转换成字符串"><a href="#1-数组转换成字符串" class="headerlink" title="1.  数组转换成字符串"></a>1.  数组转换成字符串</h3><ul>
-<li><p>Array.prototype.toString() 将数组转换成 <strong>以逗号分隔的字符串</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"cookie"</span>, <span class="string">"local storage"</span>, <span class="string">"session storage"</span>, <span class="string">"web storage"</span>];</span><br><span class="line">arr.toString();</span><br><span class="line"><span class="comment">// "cookie,local storage,session storage,web storage"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Array.prototype.join([separator]) 将数组转换成 <strong>指定分隔符的字符串</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.join(<span class="string">'/'</span>)</span><br><span class="line"><span class="comment">// "cookie/local storage/session storage/web storage"</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>注意：</code> 如果数组只有一个元素，则该连接字符不显示<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'category'</span>]</span><br><span class="line">arr1.join(<span class="string">'/'</span>)</span><br><span class="line"><span class="comment">// "category"</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-创建新数组"><a href="#2-创建新数组" class="headerlink" title="2.  创建新数组"></a>2.  创建新数组</h3><ul>
-<li>Array.prototype.concat() 合并两个以上数组，最终拿到生成后的新数组，生成的新数组是需要合并的数组的浅拷贝。<ul>
-<li><code>注意：</code>如果将引用类型复制到数组中,引用类型改变，新的数组数组发生改变，反之一样。因为他们指向同一个引用对象。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr_reference_type = [[<span class="string">'concat'</span>],<span class="string">'array prototype function'</span>];</span><br><span class="line"><span class="keyword">var</span> arr_concat = arr.concat(arr_reference_type);</span><br><span class="line"><span class="built_in">console</span>.log(arr_concat);</span><br><span class="line"><span class="comment">// ["cookie", "local storage", "session storage", "web storage", ["concat"], "array prototype function"]</span></span><br><span class="line"><span class="comment">// 修改 arr_reference_type</span></span><br><span class="line">arr_reference_type[<span class="number">0</span>].push(<span class="string">'slice'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr_concat);</span><br><span class="line"><span class="comment">// ["cookie", "local storage", "session storage", "web storage", ["concat", "slice"], "array prototype function"]</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/11/06/Javascript-数组/" data-id="ckjnr8j1b001zzd9ia8hnvdtv"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-css3-单位" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/CSS-css3-单位/">CSS3 单位</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/CSS-css3-单位/" class="article-date">
-  <time datetime="2020-10-22T08:31:44.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="CSS3-中新增的单位"><a href="#CSS3-中新增的单位" class="headerlink" title="CSS3 中新增的单位"></a>CSS3 中新增的单位</h3><ul>
-<li>ch 字符 0（零的宽度）；</li>
-<li>rem 根元素（html元素）的 font-size；<blockquote>
-<p>font size of the root element<br>Equal to the computed value of ‘font-size’ on the root element. when specified on the font-size property of the root element, the rem units refer to the property’s initial value.<br>This means that 1rem equals the the font-size html element (which for most browsers has a default value of 16px)</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li>字体或宽、高等单位，值根据 html 元素 font-size 计算得出</li>
-<li>动态修改 html 的 font-size，实现适配</li>
-<li>IOS6 和 Android 2.1 以上基本适配</li>
-<li>1rem = html’s font size(大多数浏览器是 16px)</li>
-</ol>
-<ul>
-<li>em 是一个相对单位，非固定值。相对于其父 font-size 计算</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/CSS-css3-单位/" data-id="ckjnr8j0c0011zd9i9sf2ls3b"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-EN-words" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/EN-words/">每天 30 词</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/EN-words/" class="article-date">
-  <time datetime="2020-10-22T05:06:41.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>词根 deep<br>deep adj.深的、低沉的、深奥的<br>deepen vt.使加深；使强烈；使低沉/vi.变沉；更低沉<br>deepen the reform 深化改革<br>the need to conceal the mourning deepened grief<br>掩盖悲痛的需要加深了痛楚</p>
-        
-          <a class="article-more-link" href="/2020/10/22/EN-words/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/EN-words/" data-id="ckjnr8j0w001lzd9i46y09agv"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文/">英文</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-bash" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/22/bash/">macos 常用命令</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/22/bash/" class="article-date">
-  <time datetime="2020-10-22T03:59:39.000Z" itemprop="datePublished">2020-10-22</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="macos-解压文件-rar"><a href="#macos-解压文件-rar" class="headerlink" title="macos 解压文件 .rar"></a>macos 解压文件 .rar</h3><p>commands 参数</p>
-<blockquote>
-<p><code>e</code>             Extract files without archived paths # 解压缩文件到当前目录<br>  <code>l[t[a],b]</code>     List archive contents [technical[all], bare]  # 列出压缩文件<br>  <code>p</code>             Print file to stdout #打印文件标准输出设备<br>  <code>t</code>             Test archive files # 测试压缩文件<br>  <code>v[t[a],b]</code>     Verbosely list archive contents [technical[all],bare] # 详细列出压缩文件信息<br>  <code>x</code>             Extract files with full path # 用绝对路径解压缩文件</p>
-</blockquote>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unrar x x.rar</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/10/22/bash/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/22/bash/" data-id="ckjnr8j2d003bzd9iml346fcc"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂货/">杂货</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Vue" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/21/Vue/">Vue N 问</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/21/Vue/" class="article-date">
-  <time datetime="2020-10-21T10:36:52.000Z" itemprop="datePublished">2020-10-21</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="vue-的特点"><a href="#vue-的特点" class="headerlink" title="vue 的特点"></a>vue 的特点</h3><ul>
-<li><p>轻量级框架</p>
-<blockquote>
-<p>自动追踪依赖模板表达式和计算属性，提供 MVVM (Mode-View-ViewMode) 双向绑定和可组合的组件系统，API 简单、灵活、易上手</p>
-</blockquote>
-</li>
-<li><p>双向数据绑定</p>
-<blockquote>
-<p>双向数据绑定是 vue.js 的核心，其专注于 View 层。ViewMode 负责连接 View 和 Mode，保证视图和数据一致。 ViewMode 要做的是：MODE Listen and Data Bindings</p>
-</blockquote>
-</li>
-<li><p>指令</p>
-<blockquote>
-<p>vue.js 与 页面交互主要通过指令完成，指令的作用是当表达式值改变时，相应将其形为应用到 DOM 上</p>
-</blockquote>
-</li>
-<li><p>组件化</p>
-</li>
-<li><p>客户端路由</p>
-</li>
-<li><p>状态管理</p>
-</li>
-</ul>
-        
-          <a class="article-more-link" href="/2020/10/21/Vue/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/21/Vue/" data-id="ckjnr8j1y0030zd9ip71bg4is"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-Margin-auto" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/19/CSS-Margin-auto/">CSS Margin auto</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/19/CSS-Margin-auto/" class="article-date">
-  <time datetime="2020-10-19T06:06:30.000Z" itemprop="datePublished">2020-10-19</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>众所周知，margin: auto 可以使<code>块级元素</code>水平居中。这里要探讨的是为什么会居中，原理是什么？翻看了<a href="https://wiki.developer.mozilla.org/zh-CN/docs/Web/CSS/margin" target="_blank" rel="noopener">MDN</a>，相关描述只有一句，“让浏览器自己选择一个外边距”。</p>
-<p>自动占满可用空间，可用空间平均分配，占满后元素居中，如下图。<br><img src="/images/css/margin-auto-1.jpg" alt="margin:auto"></p>
-        
-          <a class="article-more-link" href="/2020/10/19/CSS-Margin-auto/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/19/CSS-Margin-auto/" data-id="ckjnr8j0a000zzd9i86d8gre0"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-position-absolute" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/10/12/CSS-position-absolute/">CSS position absolute</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/10/12/CSS-position-absolute/" class="article-date">
-  <time datetime="2020-10-12T04:40:01.000Z" itemprop="datePublished">2020-10-12</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <blockquote>
-<p>position: absolute 与 float 一样，使用后<strong>脱离文档流</strong>；具有<strong>破坏性</strong>和<strong>包裹性</strong>；使用会创建 BFC(Block_formatting_context)。<br>absolute 相对于最近的非 ‘static’ 元素定位；如果该元素不存在，则相对于 initial container block 定位</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 300px; height: 100px; background: #efefef;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 100px; height: 50px; background: #390;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/css/position-absolute-1.jpg" alt="position-absolute-1"></p>
-        
-          <a class="article-more-link" href="/2020/10/12/CSS-position-absolute/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/10/12/CSS-position-absolute/" data-id="ckjnr8j0j0017zd9iwrpd1auy"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-  </article>
-  
-  
-    <nav class="page-nav">
-      
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
-    </nav>
-  
-</section>
-
 </div>
 
-  <footer class="footer">
+    <div class="background">
+      
+      <div class="content index width mx-auto px2 my4">
+          
+            <header id="header">
+  <a href="/">
   
+    
+      <div id="logo" style="background-image: url(/images/logo.jpeg);"></div>
+    
   
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
-
-  <div class="outer">
-    <ul class="list-inline">
-      <li>&copy; 2021 女魔头</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
-      <!--
-      <li><a href="/">Helen Zhang</a></li>
-      -->
+    <div id="title">
+      <h1>魔女</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fa fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+       
+        <li><a href="/tags/">Tags</a></li>
+       
+        <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+      
     </ul>
+  </div>
+</header>
+
+          
+          <section id="about">
+  
+    <p>代码是我的圣经，程序使我快乐。&#9829; 爱编程 爱工作 &#9829;</p>
+
+  
+  <p style="display: inline">
+    
+      Find me on
+      <ul id="sociallinks">
+        
+          <li><a class="icon" target="_blank" href="https://github.com/HelenZhangLP" title="github"><i class="fa fa-github"></i></a></li>
+        
+      </ul>.
+    
+  </p>
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives">Writing</a></span>
+  <ul class="post-list">
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-07-06T05:41:14.000Z" itemprop="datePublished">2021-07-06</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/07/06/bash-profile/">.bash_profile/.bashrc/.zshrc</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-28T12:05:15.000Z" itemprop="datePublished">2021-06-28</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/28/%E5%9D%91-JavaScript/">坑-JavaScript</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-26T09:31:32.000Z" itemprop="datePublished">2021-06-26</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-11T03:58:36.000Z" itemprop="datePublished">2021-06-11</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">markdown 使用小技巧</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-05-29T11:41:51.000Z" itemprop="datePublished">2021-05-29</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/">工具 webstorm</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+      </div>
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
 
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
 
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">主页</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">档案</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">关于我</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="搜索">
-        <i class="fe fe-search"></i>
-        搜索
-      </a>
-    </li>
-  </ul>
-</nav>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'forest'});
+      }
+  </script>
 
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
+
       
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-
-</aside>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
+    </div>
 </body>
 </html>

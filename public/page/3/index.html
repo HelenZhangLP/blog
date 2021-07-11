@@ -1,706 +1,278 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  
-  <title>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="代码是我的圣经，程序使我快乐。&amp;#9829; 爱编程 爱工作 &amp;#9829;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="魔女">
+<meta property="og:url" content="https://helenzhanglp.github.io/page/3/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="代码是我的圣经，程序使我快乐。&amp;#9829; 爱编程 爱工作 &amp;#9829;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Helen Zhang">
+<meta name="twitter:card" content="summary">
     
-    女魔头</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
-</head>
-</html>
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>魔女</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
-<main class="content">
-  <section class="jumbotron">
-  <div class="video">
-    
-    <div class="video-media">
-      <img src="/images/ocean/1.jpg" alt="Decorative image frame">
-      
-      <div class="video-overlay"></div>
-    </div>
-    <div class="video-inner text-center text-white">
-      <h1><a href="/">女魔头</a></h1>
-      <p>咕噜的程序员妈妈</p>
-      
-    </div>
-    <div class="video-learn-more">
-      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
   </div>
-</section>
-
-<div id="landingpage">
-  <section class="outer">
-  <article class="articles">
-    
-    
-
-    
-      
-        <article id="post-CSS-你不知道的百分比" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/09/21/CSS-你不知道的百分比/">CSS 你不知道的百分比</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/09/21/CSS-你不知道的百分比/" class="article-date">
-  <time datetime="2020-09-21T07:33:02.000Z" itemprop="datePublished">2020-09-21</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.body.offsetHeight</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>宽设置百分比</p>
-<blockquote>
-<p>根据父元素的宽，浏览器端，根元素 html、body 宽为屏可视区的宽</p>
-</blockquote>
-</li>
-<li><p>高设置百分比</p>
-<blockquote>
-<p>根据父元素的高运算，如上 code ，浏览器 body 未设置高，所以设置百分比要特别注意。</p>
-</blockquote>
-</li>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>padding 设置百分比<blockquote>
-<p>根据父元素宽运算</p>
-</blockquote>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/09/21/CSS-你不知道的百分比/" data-id="ckjnr8j0g0016zd9i3aoogad8"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-CSS-实体滚动" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/23/CSS-实体滚动/">CSS 实画滚动</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/23/CSS-实体滚动/" class="article-date">
-  <time datetime="2020-04-23T05:04:18.000Z" itemprop="datePublished">2020-04-23</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="CSS-动画实现滚动"><a href="#CSS-动画实现滚动" class="headerlink" title="CSS 动画实现滚动"></a>CSS 动画实现滚动</h3><blockquote>
-<p>animation: animation-name（动画名称） animation-duration（动画完成一个周期花费的秒、毫秒）</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.marquee</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1070px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">animation</span>: roll-animation <span class="number">50s</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 规定动画</span><br><span class="line"><span class="keyword">@keyframes</span> animation-roll &#123;</span><br><span class="line">  <span class="selector-tag">from</span>: &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">to</span>: &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/23/CSS-实体滚动/" data-id="ckjnr8j0m0019zd9i04cfp4gz"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-android-问题" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/21/android-问题/">android 问题</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/21/android-问题/" class="article-date">
-  <time datetime="2020-04-21T07:11:06.000Z" itemprop="datePublished">2020-04-21</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><blockquote>
-<p>安卓启动 10.0.2.2 =&gt; localhost</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/21/android-问题/" data-id="ckjnr8j200032zd9i1ls9kx8v"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/疑难/">疑难</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-package-json" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/04/17/package-json/">package.json</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/04/17/package-json/" class="article-date">
-  <time datetime="2020-04-17T03:20:44.000Z" itemprop="datePublished">2020-04-17</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>###　browserslist <a href="https://cli.vuejs.org/zh/guide/browser-compatibility.html#browserslist" target="_blank" rel="noopener">参考文档</a></p>
-<h4 id="browserlist-具体描述-参考文档"><a href="#browserlist-具体描述-参考文档" class="headerlink" title="browserlist 具体描述 参考文档"></a>browserlist 具体描述 <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">参考文档</a></h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"browserslist": [</span><br><span class="line">  "&gt; 1%",</span><br><span class="line">  <span class="string">"last 2 versions"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/04/17/package-json/" data-id="ckjnr8j3i0041zd9ikg5zwwvb"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-正则-常用正则case" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/03/10/Javascript-正则-常用正则case/">Javascript-正则-常用正则case</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/03/10/Javascript-正则-常用正则case/" class="article-date">
-  <time datetime="2020-03-10T05:47:53.000Z" itemprop="datePublished">2020-03-10</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="1、-Demo-1-——-身份证验证"><a href="#1、-Demo-1-——-身份证验证" class="headerlink" title="1、 Demo(1) —— 身份证验证"></a>1、 Demo(1) —— 身份证验证</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 15 位数字/18 位数字/17 位数字 + （X|x）</span></span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/03/10/Javascript-正则-常用正则case/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/03/10/Javascript-正则-常用正则case/" data-id="ckjnr8j1c0023zd9idc39ptle"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-开发工具-Fiddler" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/03/06/开发工具-Fiddler/">开发工具-Fiddler</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/03/06/开发工具-Fiddler/" class="article-date">
-  <time datetime="2020-03-06T08:53:53.000Z" itemprop="datePublished">2020-03-06</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="安装教程推荐"><a href="#安装教程推荐" class="headerlink" title="安装教程推荐"></a><a href="https://www.cnblogs.com/yyhh/p/5140852.html" target="_blank" rel="noopener">安装教程推荐</a></h3><h3 id="坑一，配置后手机移动端不能正确连接抓包"><a href="#坑一，配置后手机移动端不能正确连接抓包" class="headerlink" title="坑一，配置后手机移动端不能正确连接抓包"></a>坑一，配置后手机移动端不能正确连接抓包</h3><blockquote>
-<p>1、fiddler 配置完成后要重启后才生效<br>2、重启打开后，File-Capture Traffic</p>
-</blockquote>
-<h3 id="坑二，Inspector-syntaxView-乱码"><a href="#坑二，Inspector-syntaxView-乱码" class="headerlink" title="坑二，Inspector - syntaxView 乱码"></a>坑二，Inspector - syntaxView 乱码</h3><blockquote>
-<p>工具栏选中 <code>Decode</code></p>
-</blockquote>
-        
-          <a class="article-more-link" href="/2020/03/06/开发工具-Fiddler/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/03/06/开发工具-Fiddler/" data-id="ckjnr8j4c0052zd9i2y8z58e3"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop-tools/">develop tools</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-代码管理工具-git" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/03/03/代码管理工具-git/">代码管理工具 - git</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/03/03/代码管理工具-git/" class="article-date">
-  <time datetime="2020-03-03T03:07:58.000Z" itemprop="datePublished">2020-03-03</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="id-rsa-pub-存储位置"><a href="#id-rsa-pub-存储位置" class="headerlink" title="id_rsa.pub 存储位置"></a>id_rsa.pub 存储位置</h3><blockquote>
-<p><code>windows</code> /c/Users/Administrator/.ssh/id_rsa.pub<br><code>mac</code> ~/.ssh/id_rsa.pub</p>
-</blockquote>
-<h3 id="git-删除分支"><a href="#git-删除分支" class="headerlink" title="git 删除分支"></a>git 删除分支</h3><ol>
-<li>git 删除本地分支 <code>git branch -d branch-name</code>(如果删除不了 -D 强制删除)</li>
-<li>git 删除远程分支 <code>git push origin --delete branch-name</code></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/03/03/代码管理工具-git/" data-id="ckjnr8j40004qzd9i5rk1wy3d"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Node-版本管理" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/02/17/Node-版本管理/">Node 版管理</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/02/17/Node-版本管理/" class="article-date">
-  <time datetime="2020-02-17T06:34:52.000Z" itemprop="datePublished">2020-02-17</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h3 id="nvm-node-版本管理工具"><a href="#nvm-node-版本管理工具" class="headerlink" title="nvm node 版本管理工具"></a>nvm node 版本管理工具</h3><h4 id="安装-use-the-following-cURL-command-脚本-具体参考-https-github-com-nvm-sh-nvm）"><a href="#安装-use-the-following-cURL-command-脚本-具体参考-https-github-com-nvm-sh-nvm）" class="headerlink" title="安装 use the following cURL command 脚本 [具体参考](https://github.com/nvm-sh/nvm）"></a>安装 use the following cURL command 脚本 [具体参考](<a href="https://github.com/nvm-sh/nvm）" target="_blank" rel="noopener">https://github.com/nvm-sh/nvm）</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install script use the following cURL command</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># attempts to add the source lines from the snippet below to the correct profile file (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).</span></span><br><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$([ -z "$&#123;XDG_CONFIG_HOME-&#125;" ] &amp;&amp; printf %s "$&#123;HOME&#125;/.nvm" || printf %s "$&#123;XDG_CONFIG_HOME&#125;/nvm")</span>"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/02/17/Node-版本管理/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/02/17/Node-版本管理/" data-id="ckjnr8j1q002rzd9i0nuhvtjm"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-小灰算法-数组" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/01/15/小灰算法-数组/">小灰算法-数组排序</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/01/15/小灰算法-数组/" class="article-date">
-  <time datetime="2020-01-15T09:03:10.000Z" itemprop="datePublished">2020-01-15</time>
-</a>
-        
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><p>不知道自己在干嘛，总之看这个很累，看完了，再看 <code>Array.prototy.sort()</code> 源码实现。还是一言难尽呐！不过，不管怎么样，既然看都看了，笔记还是写写。</p>
-        
-          <a class="article-more-link" href="/2020/01/15/小灰算法-数组/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/01/15/小灰算法-数组/" data-id="ckjnr8j4j005ezd9ieddune5n"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-        <article id="post-Javascript-正则" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/01/13/Javascript-正则/">Javascript-正则</a>
-    </h2>
-  
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2020/01/13/Javascript-正则/" class="article-date">
-  <time datetime="2020-01-13T07:35:23.000Z" itemprop="datePublished">2020-01-13</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/[\u4e00-\u9fa5]/</span></span><br><span class="line"><span class="built_in">console</span>.dir(reg)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * /[\u4e00-\u9fa5]/</span></span><br><span class="line"><span class="comment">    dotAll: false</span></span><br><span class="line"><span class="comment">    flags: ""</span></span><br><span class="line"><span class="comment">    global: false</span></span><br><span class="line"><span class="comment">    ignoreCase: false</span></span><br><span class="line"><span class="comment">    lastIndex: 0</span></span><br><span class="line"><span class="comment">    multiline: false</span></span><br><span class="line"><span class="comment">    source: "[\u4e00-\u9fa5]"</span></span><br><span class="line"><span class="comment">    sticky: false</span></span><br><span class="line"><span class="comment">    unicode: false</span></span><br><span class="line"><span class="comment"> * /</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-link" href="/2020/01/13/Javascript-正则/">更多...</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://helenzhanglp.github.io/2020/01/13/Javascript-正则/" data-id="ckjnr8j1g0029zd9i47ajngww"
-         class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-      
-  </article>
-  
-  
-    <nav class="page-nav">
-      
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
-    </nav>
-  
-</section>
-
 </div>
 
-  <footer class="footer">
+    <div class="background">
+      
+      <div class="content index width mx-auto px2 my4">
+          
+            <header id="header">
+  <a href="/">
   
+    
+      <div id="logo" style="background-image: url(/images/logo.jpeg);"></div>
+    
   
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
-
-  <div class="outer">
-    <ul class="list-inline">
-      <li>&copy; 2021 女魔头</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/HelenZhangLP">HelenZhangLP</a></li>
-      <!--
-      <li><a href="/">Helen Zhang</a></li>
-      -->
+    <div id="title">
+      <h1>魔女</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fa fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+       
+        <li><a href="/tags/">Tags</a></li>
+       
+        <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+      
     </ul>
+  </div>
+</header>
+
+          
+          <section id="about">
+  
+    <p>代码是我的圣经，程序使我快乐。&#9829; 爱编程 爱工作 &#9829;</p>
+
+  
+  <p style="display: inline">
+    
+      Find me on
+      <ul id="sociallinks">
+        
+          <li><a class="icon" target="_blank" href="https://github.com/HelenZhangLP" title="github"><i class="fa fa-github"></i></a></li>
+        
+      </ul>.
+    
+  </p>
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives">Writing</a></span>
+  <ul class="post-list">
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-07-06T05:41:14.000Z" itemprop="datePublished">2021-07-06</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/07/06/bash-profile/">.bash_profile/.bashrc/.zshrc</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-28T12:05:15.000Z" itemprop="datePublished">2021-06-28</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/28/%E5%9D%91-JavaScript/">坑-JavaScript</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-26T09:31:32.000Z" itemprop="datePublished">2021-06-26</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-06-11T03:58:36.000Z" itemprop="datePublished">2021-06-11</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">markdown 使用小技巧</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+        <time datetime="2021-05-29T11:41:51.000Z" itemprop="datePublished">2021-05-29</time>
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/">工具 webstorm</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+      </div>
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
 
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
 
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/hexo.svg" alt="女魔头"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">主页</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">档案</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">关于我</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="搜索">
-        <i class="fe fe-search"></i>
-        搜索
-      </a>
-    </li>
-  </ul>
-</nav>
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'forest'});
+      }
+  </script>
 
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
+
       
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-
-</aside>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
+    </div>
 </body>
 </html>

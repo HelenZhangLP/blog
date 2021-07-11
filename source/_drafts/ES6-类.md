@@ -35,3 +35,5 @@ class Component {
 }
 ```
 class 定义的类只能用 new 来建立实例，直接以函数的调用方式，如 Component(),Component.call() 等会发生 TypeError
+
+<font color="#f99">test</font>
