@@ -1,7 +1,7 @@
   <% if(is_tag()) { %>
     <% site.tags.map(function(tag){  %>
       <% if(tag.name === page.tag) { %>
-        <div class="tag-list">
+        <div class="tag-list" style="max-height: none">
           <h2 class="tags" id="<%= tag.name %>">
             <span class="tag-text">#&nbsp;<%= tag.name %></span>
           </h2>
