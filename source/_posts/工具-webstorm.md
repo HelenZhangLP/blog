@@ -20,4 +20,5 @@ Runtime version: 11.0.10+9-b1341.41 x86_64
 ## 编辑时自动换行
 > Preferences -> Editor -> General -> soft wraps -> check soft wraps options
 
-
+## 执行保存使用 eslint 格式化（windows 版）
+> Settings -> Languages & Framework -> JavaScript -> Code Quality Tools -> ESlint -> `run eslint --fix on save`

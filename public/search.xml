@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>设计模式</title>
+      <link href="/2021/07/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2021/07/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>软件工程领域一种广为人知的设计模式，<font color="#f33">抽象了创建对象的具体过程。</font> ECMAScript 2005 以前没有类，<u>用函数封装特定接口创建对象。</u><br><a href="http://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/#factoryPattern">具体实例见——JavaScript Object Oriented——工厂模式解决复用</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>.bash_profile/.bashrc/.zshrc</title>
       <link href="/2021/07/06/bash-profile/"/>
       <url>/2021/07/06/bash-profile/</url>
@@ -46,25 +65,6 @@
     
     
     <entry>
-      <title>设计模式</title>
-      <link href="/2021/06/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-      <url>/2021/06/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
-      
-        <content type="html"><![CDATA[<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>软件工程领域一种广为人知的设计模式，<font color="#f33">抽象了创建对象的具体过程。</font> ECMAScript 2005 以前没有类，<u>用函数封装特定接口创建对象。</u><br><a href="http://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/#factoryPattern">具体实例见——JavaScript Object Oriented——工厂模式解决复用</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 设计模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>markdown 使用小技巧</title>
       <link href="/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
       <url>/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
@@ -88,7 +88,7 @@
       <link href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/"/>
       <url>/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/</url>
       
-        <content type="html"><![CDATA[<p>Runtime version: 11.0.10+9-b1341.41 x86_64</p><h2 id="show-current-file-in-sidebar"><a href="#show-current-file-in-sidebar" class="headerlink" title="show current file in sidebar"></a>show current file in sidebar</h2><blockquote><p>sidebar 右上角 <code>select opened file</code></p></blockquote><h2 id="选中多行相同的文本，类似于-sublime-中的-ctrl-D"><a href="#选中多行相同的文本，类似于-sublime-中的-ctrl-D" class="headerlink" title="选中多行相同的文本，类似于 sublime 中的 ctrl+D"></a>选中多行相同的文本，类似于 sublime 中的 ctrl+D</h2><blockquote><p>Add Selection for Next Occurrence(存在的事物) control+G</p></blockquote><h2 id="复制上一行"><a href="#复制上一行" class="headerlink" title="复制上一行"></a>复制上一行</h2><blockquote><p>Duplication Entire lines shift+L</p></blockquote><h2 id="编辑时自动换行"><a href="#编辑时自动换行" class="headerlink" title="编辑时自动换行"></a>编辑时自动换行</h2><blockquote><p>Preferences -&gt; Editor -&gt; General -&gt; soft wraps -&gt; check soft wraps options</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<p>Runtime version: 11.0.10+9-b1341.41 x86_64</p><h2 id="show-current-file-in-sidebar"><a href="#show-current-file-in-sidebar" class="headerlink" title="show current file in sidebar"></a>show current file in sidebar</h2><blockquote><p>sidebar 右上角 <code>select opened file</code></p></blockquote><h2 id="选中多行相同的文本，类似于-sublime-中的-ctrl-D"><a href="#选中多行相同的文本，类似于-sublime-中的-ctrl-D" class="headerlink" title="选中多行相同的文本，类似于 sublime 中的 ctrl+D"></a>选中多行相同的文本，类似于 sublime 中的 ctrl+D</h2><blockquote><p>Add Selection for Next Occurrence(存在的事物) control+G</p></blockquote><h2 id="复制上一行"><a href="#复制上一行" class="headerlink" title="复制上一行"></a>复制上一行</h2><blockquote><p>Duplication Entire lines shift+L</p></blockquote><h2 id="编辑时自动换行"><a href="#编辑时自动换行" class="headerlink" title="编辑时自动换行"></a>编辑时自动换行</h2><blockquote><p>Preferences -&gt; Editor -&gt; General -&gt; soft wraps -&gt; check soft wraps options</p></blockquote><h2 id="执行保存使用-eslint-格式化（windows-版）"><a href="#执行保存使用-eslint-格式化（windows-版）" class="headerlink" title="执行保存使用 eslint 格式化（windows 版）"></a>执行保存使用 eslint 格式化（windows 版）</h2><blockquote><p>Settings -&gt; Languages &amp; Framework -&gt; JavaScript -&gt; Code Quality Tools -&gt; ESlint -&gt; <code>run eslint --fix on save</code></p></blockquote>]]></content>
       
       
       
@@ -385,6 +385,27 @@
     
     
     <entry>
+      <title>ES6 新特性</title>
+      <link href="/2020/11/25/ES6-%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+      <url>/2020/11/25/ES6-%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+      
+        <content type="html"><![CDATA[<h2 id="let-const-声明变量"><a href="#let-const-声明变量" class="headerlink" title="let/const 声明变量"></a>let/const 声明变量</h2><ol><li>解决 ES5 var 初始化变量时出现的变量提升问题</li><li>在 ES5 全局作用域和函数作用域的基础上新增块级作用域</li><li>解决因变量没有及时回收造成的内存泄漏问题</li></ol><p><u>解决使用闭包时出错的问题</u></p><blockquote><p>暂时性死区（Temporal Dead Zone, TDZ) 是只要进入当前作用域，所要使用的变量就已经存在了，但不可获取。只有等到变量的那一行代码出现，才可以获取和使用该变量。</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// temporal dead zone start</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// a is not defined, a is not declare</span></span><br><span class="line"><span class="keyword">let</span> a; <span class="comment">// Declare variable a</span></span><br><span class="line"><span class="comment">// temporal dead zone end，because the variable has emerged</span></span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure><h2 id="对象字面量增强"><a href="#对象字面量增强" class="headerlink" title="对象字面量增强"></a>对象字面量增强</h2><blockquote><p>使用对象字面量建立对象时，变量指定到同名特性时，如下：</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x, y;</span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  x,</span><br><span class="line">  y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ES6 之前</span></span><br><span class="line"><span class="comment"> * x: x</span></span><br><span class="line"><span class="comment"> * y: y</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><blockquote><p>对象特性参考临时建立的匿名函数时，如下</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  <span class="string">&#x27;0&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="string">&#x27;1&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">&#x27;2&#x27;</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">length</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="function"><span class="title">forEach</span>(<span class="params">callback</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="built_in">this</span>.length; i++) &#123;</span><br><span class="line">      callback(<span class="built_in">this</span>[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ES6 之前</span></span><br><span class="line"><span class="comment"> * forEach: function(callback) &#123;</span></span><br><span class="line"><span class="comment"> *   ....</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><blockquote><p>ES6 中可以使用 [] 中指定表达式为对象字面量指定特性</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> prefix = <span class="string">&#x27;dosome&#x27;</span>, n = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  [prefix + n]() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o.dosome1()</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ES6 之前</span></span><br><span class="line"><span class="comment"> * o[prefix + n] = function() &#123;</span></span><br><span class="line"><span class="comment"> *   // ...</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><blockquote><p>ES6 字面量在设值方法 setter/ 取值方法 getter 时：<br><font color="#f33">setter/getter 方法的作用之一，是进行存取的前置或后置处理。也可以实现一定程度的私有特性隐藏</font></p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj_privates = &#123;&#125;;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="keyword">set</span> <span class="title">name</span>(<span class="params">value</span>) &#123;</span><br><span class="line">      obj_privates.name = value.trim()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> <span class="title">name</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> obj_privates.name.toUpperCase()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ES5 通过 Object.defineProperty() 或 Object.defineProperties() 函数设值、取值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = object()</span><br><span class="line">obj.name = <span class="string">&#x27; helen  &#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name) <span class="comment">// helen</span></span><br></pre></td></tr></table></figure><h2 id="解构赋值（Destructuring）"><a href="#解构赋值（Destructuring）" class="headerlink" title="解构赋值（Destructuring）"></a>解构赋值（Destructuring）</h2><blockquote><p>按照一定模式从数组或对象（可枚举）中提取值，对变量进行赋值。<strong>解构赋值的对象是数组或对象，作用是赋值</strong></p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scores = [&#123;<span class="attr">English</span>: <span class="number">120</span>&#125;, &#123;<span class="attr">Math</span>: <span class="number">100</span>&#125;, &#123;<span class="attr">chemistry</span>: <span class="number">111</span>&#125;]</span><br><span class="line"><span class="keyword">let</span> [x,y,z] = scores</span><br><span class="line">x <span class="comment">// &#123;English: 120&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ES6 之前</span></span><br><span class="line"><span class="comment"> * let x = scores[0]</span></span><br><span class="line"><span class="comment"> * let y = scores[1]</span></span><br><span class="line"><span class="comment"> * ...</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><p>可枚举值，都可使用 Destructuring</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line">b <span class="comment">// &quot;b&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">let</span> &#123;a,b,c=<span class="number">100</span>,d&#125; = obj</span><br><span class="line">a <span class="comment">//1</span></span><br><span class="line">b <span class="comment">//2</span></span><br><span class="line">z <span class="comment">//100</span></span><br><span class="line">d <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure><p><font color="#f33">在数组中解构赋值，是从数组中提取值，对应位置赋值给对应变量，解构失败赋值 undefined。等号右边为不可遍历结构会报错。</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = <span class="string">&#x27;ab&#x27;</span></span><br><span class="line">c <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure><p><font color="#f33">解构过程变量也可以赋初值，解构元素少于变量时会取初值</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b=<span class="number">2</span>,c=<span class="number">3</span>] = <span class="string">&#x27;ab&#x27;</span></span><br><span class="line">b <span class="comment">// b</span></span><br><span class="line">c <span class="comment">// 3</span></span><br></pre></td></tr></table></figure><p><font color="#f33">可以只解构某几个元素，或解构尾部元素</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [,...tail] = <span class="string">&#x27;tail&#x27;</span></span><br><span class="line">tail</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [s,,i,,] = <span class="string">&#x27;tail&#x27;</span></span><br><span class="line">s <span class="comment">//t</span></span><br><span class="line">i <span class="comment">//i</span></span><br></pre></td></tr></table></figure><p><font color="#f33">变量转换</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>, b = <span class="number">10</span>;</span><br><span class="line">[a,b] = [b,a]</span><br><span class="line">a <span class="comment">// 10</span></span><br><span class="line">b <span class="comment">// 1</span></span><br></pre></td></tr></table></figure><h2 id="余集（Rest）"><a href="#余集（Rest）" class="headerlink" title="余集（Rest）"></a>余集（Rest）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b] = <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">b <span class="comment">// 2</span></span><br></pre></td></tr></table></figure><p><font color="#f99">变量个数少于迭代元素时，多余元素会被忽略</font></p><blockquote><p>使用余集（Rest）将多余元素收集为数组</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,...b] = <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">b <span class="comment">// [&quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;]</span></span><br></pre></td></tr></table></figure><h2 id="打散（Spread）"><a href="#打散（Spread）" class="headerlink" title="打散（Spread）"></a>打散（Spread）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">    arr2 = [...arr, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr2 <span class="comment">// (5)[1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure><p><font color="#f33">ES9 中，可以对对象进行打散</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,...c] = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>,<span class="attr">d</span>:<span class="number">4</span>,<span class="attr">e</span>:<span class="number">5</span>&#125;</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure><h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><ol><li>合并数组<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="keyword">var</span> c = [...a,...b]</span><br></pre></td></tr></table></figure><font color="red">push 方法的参数不能为数组</font><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">b.push(...a)</span><br></pre></td></tr></table></figure></li><li>数组复制<br>复制底层数据结构的指针，并不是复制全新数组</li><li>与解构赋值结合</li><li>函数调用<ul><li>箭头函数内置不可改变的 this</li><li>箭头函数不能使用 new 关键字实例对象</li><li>箭头函数没有 arguments 对象，无法通过 arguments 对象获取传入的参数</li></ul></li></ol><h2 id="虚拟-Dom"><a href="#虚拟-Dom" class="headerlink" title="虚拟 Dom"></a>虚拟 Dom</h2><p>是利用 JS 去构建真实 DOM 树，用于在浏览器中展示。每当有数据更新时，重新计算整个 DOM 树，新旧对比，进行最小程度的更新，避免大范围页面重排导致的性能问题。虚拟 DOM 树是内存中的数据，本身操作性能高很多。</p><h2 id="单向数据流"><a href="#单向数据流" class="headerlink" title="单向数据流"></a>单向数据流</h2><p>从组件流向子组件，让组件间的关系变得简单可预测<br>props 和 state 是 React 中两个非常重要的概念。<br>props 是外来数据<br>state 是内部数据<br>父组件通过 props 传给子组件，props 改变，react 会递归地向下遍历整个组件树，使用到这个属性的组件中重要渲染<br>组件内部数据只能在组件内部修改<br>状态变化可以被记录和跟踪，可以溯源。</p><p><code>hello $&#123;name&#125;</code> 模板字符串</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ES6 </tag>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>浏览器工作原理——浏览器中的JavaScript执行机制</title>
       <link href="/2020/11/18/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/"/>
       <url>/2020/11/18/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/</url>
@@ -662,7 +683,7 @@
       <link href="/2020/10/21/Vue/"/>
       <url>/2020/10/21/Vue/</url>
       
-        <content type="html"><![CDATA[<h3 id="vue-的特点"><a href="#vue-的特点" class="headerlink" title="vue 的特点"></a>vue 的特点</h3><ul><li><p>轻量级框架</p><blockquote><p>自动追踪依赖模板表达式和计算属性，提供 MVVM (Mode-View-ViewMode) 双向绑定和可组合的组件系统，API 简单、灵活、易上手</p></blockquote></li><li><p>双向数据绑定</p><blockquote><p>双向数据绑定是 vue.js 的核心，其专注于 View 层。ViewMode 负责连接 View 和 Mode，保证视图和数据一致。 ViewMode 要做的是：MODE Listen and Data Bindings</p></blockquote></li><li><p>指令</p><blockquote><p>vue.js 与 页面交互主要通过指令完成，指令的作用是当表达式值改变时，相应将其形为应用到 DOM 上</p></blockquote></li><li><p>组件化</p></li><li><p>客户端路由</p></li><li><p>状态管理</p></li></ul><span id="more"></span><hr><h3 id="使用-npm-方式搭建-vue-单页面应用"><a href="#使用-npm-方式搭建-vue-单页面应用" class="headerlink" title="使用 npm 方式搭建 vue 单页面应用"></a>使用 npm 方式搭建 vue 单页面应用</h3><ol><li>验证 npm 是否正确安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm -v  <span class="comment">#查看 npm 版本</span></span><br></pre></td></tr></table></figure></li><li>安装 vue<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install vue</span><br></pre></td></tr></table></figure></li><li>安装 vue-cli 脚手架<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install --global vue-cli</span><br></pre></td></tr></table></figure></li><li>初始化一个基于 webpack 的新模板<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   vue init webpack my-project</span><br></pre></td></tr></table></figure></li><li>启动项目，验证搭建结果<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$   <span class="built_in">cd</span> my-project</span><br><span class="line">$   npm install  <span class="comment">#安装依赖包</span></span><br><span class="line">$   npm run dev</span><br></pre></td></tr></table></figure><strong><code>看到下图，恭喜你，环境搭建成功</code></strong></li></ol><p><img src="https://www.runoob.com/wp-content/uploads/2017/01/56219E04-D156-43EC-AC59-BFE7E38A62C3.jpg" alt="vue init page"></p><hr>]]></content>
+        <content type="html"><![CDATA[<h3 id="vue-的特点"><a href="#vue-的特点" class="headerlink" title="vue 的特点"></a>vue 的特点</h3><ul><li><p>轻量级框架</p><blockquote><p>自动追踪依赖模板表达式和计算属性，提供 MVVM (Mode-View-ViewMode) 双向绑定和可组合的组件系统，API 简单、灵活、易上手</p></blockquote></li><li><p>双向数据绑定</p><blockquote><p>双向数据绑定是 vue.js 的核心，其专注于 View 层。ViewMode 负责连接 View 和 Mode，保证视图和数据一致。 ViewMode 要做的是：MODE Listen and Data Bindings</p></blockquote></li><li><p>指令</p><blockquote><p>vue.js 与 页面交互主要通过指令完成，指令的作用是当表达式值改变时，相应将其形为应用到 DOM 上</p></blockquote></li></ul><h2 id="Error"><a href="#Error" class="headerlink" title="Error"></a><font color="#f33">Error</font></h2><p><img src="img.png" alt="img.png"></p><blockquote><p>解决 <el-input v-model="form.password" autocomplete="new-password" type="password" class="form-item"/> <strong>autocomplete=”new-password”</strong></p></blockquote><ul><li><p>组件化</p></li><li><p>客户端路由</p></li><li><p>状态管理</p></li></ul><span id="more"></span><hr><h3 id="使用-npm-方式搭建-vue-单页面应用"><a href="#使用-npm-方式搭建-vue-单页面应用" class="headerlink" title="使用 npm 方式搭建 vue 单页面应用"></a>使用 npm 方式搭建 vue 单页面应用</h3><ol><li>验证 npm 是否正确安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm -v  <span class="comment">#查看 npm 版本</span></span><br></pre></td></tr></table></figure></li><li>安装 vue<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install vue</span><br></pre></td></tr></table></figure></li><li>安装 vue-cli 脚手架<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install --global vue-cli</span><br></pre></td></tr></table></figure></li><li>初始化一个基于 webpack 的新模板<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   vue init webpack my-project</span><br></pre></td></tr></table></figure></li><li>启动项目，验证搭建结果<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$   <span class="built_in">cd</span> my-project</span><br><span class="line">$   npm install  <span class="comment">#安装依赖包</span></span><br><span class="line">$   npm run dev</span><br></pre></td></tr></table></figure><strong><code>看到下图，恭喜你，环境搭建成功</code></strong></li></ol><p><img src="https://www.runoob.com/wp-content/uploads/2017/01/56219E04-D156-43EC-AC59-BFE7E38A62C3.jpg" alt="vue init page"></p><hr>]]></content>
       
       
       
@@ -1352,9 +1373,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> 对象 </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> Object </tag>
             
@@ -1377,9 +1398,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -1471,9 +1492,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -1550,9 +1571,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> 面试题 </tag>
             
@@ -1579,9 +1600,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> 小程序 </tag>
+            
+            <tag> Vue </tag>
             
             <tag> 数据绑定 </tag>
             

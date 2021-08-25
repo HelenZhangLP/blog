@@ -16,6 +16,10 @@ tags:
 * 指令
 > vue.js 与 页面交互主要通过指令完成，指令的作用是当表达式值改变时，相应将其形为应用到 DOM 上
 
+## <font color="#f33">Error</font>
+![img.png](img.png)
+> 解决 <el-input v-model="form.password" autocomplete="new-password" type="password" class="form-item"/> **autocomplete="new-password"**
+
 * 组件化
 
 * 客户端路由
