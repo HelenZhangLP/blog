@@ -1,5 +1,5 @@
 ---
-title: 浏览器工作原理——JavaScript数据存储
+title: 浏览器工作原理——JavaScript内存机制
 date: 2020-12-10 14:09:28
 tags:
 - browser
@@ -12,12 +12,13 @@ JavaScript 内存机制
 - [ ] v8 中执行
 
 ## 1. JavaScript 是什么类型的语言
-**静态语言** 在使用之前就需要确认其变量数据类型。如 C 语言
-**动态语言** 在运行过程中需要检查数据类型的语言。如 JavaScript
-**弱类型语言** 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言
-**强类型语言** 运行过程中不支持隐式转换的语言。如 Ruby
+*   **静态语言** 在使用之前就需要确认其变量数据类型。如 C 语言
+*   **动态语言** 在运行过程中需要检查数据类型的语言。如 JavaScript
+*   **弱类型语言** 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言
+*   **强类型语言** 运行过程中不支持隐式转换的语言。如 Ruby
+
 【具体可参考以下象限图】
-![img](https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png)
+![img 向限图](https://thumbnail0.baidupcs.com/thumbnail/64b983d6eod461bcaaea1ad9f5deeff5?fid=809658232-250528-1104244918326849&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-9B6Nr7LziF2Vy%2f4exUR3WzSqVJ8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=233262428495252098&dp-callid=0&time=1631772000&size=c640_u360&quality=90&vuk=809658232&ft)
 <!--more-->
 
 ## 2. JavaScript 7 种数据类型
