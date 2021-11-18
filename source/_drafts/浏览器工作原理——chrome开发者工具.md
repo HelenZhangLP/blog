@@ -31,8 +31,14 @@ chrome 工具是调试页面的核心工具
 |Layers 面板|展示一些渲染过程中分层的基础信息|
 
 ### 网络面板
-网络面板由控制器、过滤器、抓图信息、时间线、详细列表和下载信息概要这 6 个区域构成的
-![img](https://static001.geekbang.org/resource/image/46/57/46fba54f54b9bd43918308f9f1ae1357.png)
+![img](https://thumbnail0.baidupcs.com/thumbnail/0a1fb90a3l61bf551b3eaeb09ae9f8dd?fid=809658232-250528-244542254833761&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-%2fCNmfqdZ8jmywxtPxfkIY6NsJIM%3d&expires=8h&chkbd=0&chkv=0&dp-logid=415638420621144015&dp-callid=0&time=1632452400&size=c10000_u10000&quality=90&vuk=809658232&ft=image)
+从上到下，网络面板依次包括：
+控制器
+过滤器
+抓图信息
+时间线
+详细列表
+下载信息
 
 ### NetWork 面板 —— 控制器
 ![img](https://static001.geekbang.org/resource/image/f0/42/f02477088c0499247e0ed37f46ad2a42.png)

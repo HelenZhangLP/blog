@@ -75,7 +75,7 @@ resolveForType() {
 > 解决方式，图片读取时，取图片服务器存储的图片地址
 
 ## <font color="#f33">微信发事件是在 wx.navigateTo 的成功回调中添加，如下</font>
-```javascript
+```wxmljs
 wx.navigateTo({
     url:
       "/pages/addRecord/addRecord?index=" +
@@ -98,6 +98,15 @@ onLoad: function () {
 }
 ```
 > 如果通过发射事件，可以采用 wx.setStorageSync 存入缓存处理，但缓存记得删除哦
+
+### <font color="#f33">[ app.json file content error] app.json: ["tabBar"]["list"] must contain at least 2 items(env: Windows,mp,1.05.2109222; lib: 2.10.4)</font>
+> 使用自定义的 tabbar 时，内部 app.json 中的 tabbar 不能为空，至少包含两项，list 中 item 要与自定义的 item 一一对应，目的是为了 点击后 switchTo 指定页面
+
+### <font color="#f33">ios端，弹层事件冒泡至下层页面</font>
+> `catch` 事件阻止冒泡，`bind` 事件允许冒泡
+```weapp-wxml
+<view catchtachmove="return"></view>
+```
 
 ## 小程序调试
 ### wx.getRealtimeLogManager() 获取实时日志管理对象

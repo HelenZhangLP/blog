@@ -105,6 +105,7 @@ console.log(obj.name) // helen
 
 ## 解构赋值（Destructuring）
 > 按照一定模式从数组或对象（可枚举）中提取值，对变量进行赋值。**解构赋值的对象是数组或对象，作用是赋值**
+> 除 null 与 undefined 不能进行解构操作以外，其它属性都可以
 
 ```javascript
 let scores = [{English: 120}, {Math: 100}, {chemistry: 111}]
