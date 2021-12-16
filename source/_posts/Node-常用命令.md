@@ -49,3 +49,18 @@ npm@6.8.0 /usr/local/lib/node_modules/npm
 2. 一次ctrl+D
 3. `process.exit()`
 4. .exit
+
+
+### `fs.realpath(path, [cache], [callback(err, resolvedPath)])`
+> 获取真实路径
+
+|parameters|introduce|
+|---|---|
+|path|路径|
+|cache|一个文字的映射路径，用于强制一个特定的路径解决或避免额外的 fs.stat 需要知道的真正路径对象|
+|callback|回调|
+|err|异常|
+|resolvedPath|真实地址|
+
+### `fs.realpathSync(path, [cache])`
+> 同步版的 fs.realpath

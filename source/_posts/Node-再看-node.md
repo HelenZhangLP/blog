@@ -60,3 +60,12 @@ npm cache clean --force # 清除缓存
 npm cache verify # 验证缓存数据的有效性和完整性，清理垃圾数据。
 npm i # 重新安装
 ```
+
+### 要 npm 中 https://www.npmjs.com 发包
+```node
+npm ERR! code E403
+npm ERR! 403 403 Forbidden - PUT https://registry.npmjs.org/wxml-diabet-toast - Forbidden
+npm ERR! 403 In most cases, you or one of your dependencies are requesting
+npm ERR! 403 a package version that is forbidden by your security policy.
+```
+<font color="#f33">**注意查看邮件** 1、Enabling two-factor authentication (2FA) on your npm account: helenzhang1201，2、Please verify your email address. 验证邮箱地址</font>

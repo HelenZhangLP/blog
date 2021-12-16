@@ -89,15 +89,21 @@ npm i webpack webpack-cli webpack-dev-server --save-dev
 
 <!-- more -->
 
-## Error: Cannot find module 'webpack-cli/bin/config-yargs'
-code: 'MODULE_NOT_FOUND'
-> webpack-dev-server --open --mode development
-"webpack-cli": "^4.6.0"
-
-<font color="red">**降版本，将 webpack-cli 版本降至 3**</font>
+### devServer.proxy
+有单独的 API 后端开发服务器，且在同一域上发送 API 请求。
+高级用法：`http-proxy-middleware`
+```javascript
+proxy: {
+  '/api': {
+    target: 'https://qa.amulet.com', // 代理地址
+    pathRewrite: { '^api': '' } // 代理  http://qa.amulet.com/api/user 不传递 api
+    // 默认不接受在 HTTPS 上运行且证书无效的后端服务器
+    secure: false,  // https 代理
+    changeOrigin: true // 将请求头中的 host 改为 target 中的地址 
+  }
+}
 ```
-$ npm i webpack-cli@3 -D --force
-```
+> umijs 中 changeOrigin 设置无效。需要通过 响应中的 `x-real-url` 查看
 
 ## webpack 设置热更新
 <font color="red">这种的配置的问题在于，文本修改后不能及时更新，但是解决了`Cannot find module 'webpack-cli/bin/config-yargs'`的问题</font>
@@ -127,3 +133,34 @@ module.exports = {
 第三种方式
 <font color="red">降低 webpack-cli@3 使用 webpack-dev-server</font>
 > 以上三种方式都没有办法解决，多次修改，浏览器自动刷新修改。都是需要重新启动 webpack
+
+### Error: Cannot find module 'webpack-cli/bin/config-yargs'
+code: 'MODULE_NOT_FOUND'
+> webpack-dev-server --open --mode development
+"webpack-cli": "^4.6.0"
+
+<font color="red">**降版本，将 webpack-cli 版本降至 3**</font>
+```
+$ npm i webpack-cli@3 -D --force
+```
+
+### Error
+<font color="#f33">not found: Error: Can't resolve 'webpack.dev.config.js'</font>
+
+> 解决 webpack-dev-server --config build/webpack.dev.js
+* -- config provide path to a webpack configuration file 给 webpack 提供网页的配置文件
+
+<font color="#f33">TS2307: Cannot find module '@config/env' or its corresponding type declarations.
+</font>
+> 解决 **注意路径一定要正确**
+```javascript
+// webpack.config.js
+resolve: {
+  extensions: ['.ts', '.tsx', '.js'], alias: {
+    "@config": path.resolve(__dirname, '../config')
+  }
+}
+```
+
+### Error proxy 配置后返回 public 中的 html 文件
+> proxy 中配置错误 **未找到对应的接口地址**

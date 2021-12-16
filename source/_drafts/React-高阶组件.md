@@ -4,6 +4,33 @@ tags:
 - react
 ---
 
+### React.PureComponent `数据比较`
+> 浅层对比 prop 和 state 的方式来实现 shouldComponentUpdate 方法 <br />
+> 在深层数据结构发生变化时调用 forceUpdate() 确保组件被正确地更新 <br />
+> 使用 immutable 对象加速嵌套数据对比
+
+### React.Fragment
+> 不额外创建 DOM 元素的情况下， `render()` 方法中返回多个元素
+```javascript
+render() {
+  return (
+    <Fragment>
+      <p>1</p>
+      <h1>2</h1>
+    </Fragment>
+  )
+}
+
+// React v16.2.0
+render() {
+  return (
+    <>
+      <p>1</p>
+      <h1>2</h1>
+    </>
+  )
+}
+```
 高阶组件是一种设计模式
 是一种基于 React 的组合特性而形成的设计模式
 HOC 自身不是 React API 的一部分
