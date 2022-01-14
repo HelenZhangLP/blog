@@ -108,10 +108,26 @@ onLoad: function () {
 <view catchtachmove="return"></view>
 ```
 
+### <font color="#f33">苹果 13 z-index 失效</font>
+> 苹果手机上， transform 变换的时候会让 `z-index 被用在不同的 stacking context`，并非在默认 context 上同等地比较层级。DOM 在 transform 的工程中，Dom 处于一个新的 stacking context 里，z-index 也是相对于这个 stacking context 的，所以表现出来的实际是 stacking context 层次，动画一结束，DOM 回到默认的 context 里，这时 z-index 才是在同一个 context 里比较。
+```wcss
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-25%) translateZ(9999px);
+}
+```
+> `z-index` 改为 `translateZ(9999)`
+
+### [<font color="#f33">小程序登录、获取用户信息调整</font>](https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?highLine=login)
+1、  2021 年 4 月 28 日 之后，通过 `wx.getUserInfo` 与 `<button open-type='getUserInfo' />` 只能获取匿名数据
+2、  `getUserProfile` 接口（基础库 2.10.4）可获取用户头像、昵称、性别及地区信息。`开发者每次获取用户的个人信息均需用户确认`
+
 ## 小程序调试
 ### wx.getRealtimeLogManager() 获取实时日志管理对象
 > 返回 RealtimeLogManager 对象
-日志可以上传至运维后台，可从小程序管理后台“开发->运维中心->实时日志”进入小程序端日志查询页面，或从“小程序插件->实时日志”进入插件端日志查询页面，进而查看开发者打印的日志信息
+日志可以上传至运维后台，可从小程序管理后台“开发->运维中心->实时日志”进入小程序端日志查询页面，或从“小程序插件->实时日志”进入插件端日志查询页面，进而查看开发者打印的日志信息，可获取加密后的openID 与 unionID 数据
 
 
 ## 小程序画柱状图
