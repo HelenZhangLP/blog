@@ -60,6 +60,33 @@ Function,Array,Date,RegExp,Error
 
 > 引用类型，用 `instanceof` 判断引用类型
 
+## 7 种语言类型
+* Undefined
+  > 为什么有些编程规范要求用 void 0 代替 undefined
+  > 
+  **用 void 运算把任意一个表达式变成 undefined**<br />
+  **undefined 用来表示从未赋值的自然状态**<br />
+  变量赋值前是 Undefined 类型，值为 undefined <br />
+  undefined 不是关键字，为了避免无意篡改，建议使用 void 0 获取 undefined
+* Null
+* Boolean 用于表示逻辑上的真与假
+* String 文本数据，最大长度 2^53-1。
+String 是字符串的 UTF16 编码，charAT/charCodeAt/length 等方法针对的都是 UTF16 编码。<br />
+  `字符串的最大长度实际上受字符串的编码长度影响`
+  > Note: 现在的字符集国际标准，字符是以 Unicode 的方式表示的，每个 Unicode 的码点表示一个字符，理论上，Unicode 的范围是无限的。UTF 是 Unicode 的编码方式，规定了码点在计算机中的表示方法。常见的有 UTF-8 和 UTF-16
+  > Unicode 码点通常用 U + ??? 表示，其中 ??? 是十六进制的码点值。
+  > BMP 0-65536（U+0000 - u+FFFF) 的码点被称为基本字符区域。
+  
+Javascript 中的字符串是永远无法变更，一旦构造出来，无法用任何方式改变字符串的内容，所以字符串具胡值类型的特性。
+
+Javascript 字符串把每个 UTF16 单元当作一个字符处理，处理非 BMP 的字符时，要格外小心。
+* Number 数学中的有理数（正整数、0、负整数）
+Symbol
+Object
+
+Null 类型值为 null，表示空值
+
+
 ## JavaScript 所有数据类型取反运算
 `Boolean Number String Object Function Array Date RegExp Error Symbol`
 

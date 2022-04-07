@@ -6,7 +6,7 @@ tags:
 - react
 ---
 
-## problem
+## react Error
 ### react 渲染实体字体 &#247; &#215;
 ```JavaScript
 {key: String.fromCharCode(215), id: 'times'},
@@ -63,4 +63,54 @@ graph TM;
   componentWillMount-->render;
   render-->componentDidMount;
   componentDidMount-->render
+```
+
+1.  虚拟 DOM 机制，降低 UI 的操作
+2.  JSX 语法使用
+
+### React Hooks
+不需要用到 class 中的继续，而且几乎很少在外部调用一个类的实例，组件方法在内部调用或通过生命周期调用
+
+#### React Hooks —— 函数组件 + 状态
+函数之外的空间保存状态，检测变化，触发函数组件重新渲染
+把某个目标结果钩到某个可能会变化的数据源或者事件源上，那么当被钩到的数据或事件发生变化时，产生这个目标结果的代码会重新执行，产生更新后的结果
+
+hooks 逻辑复用在 class 时期需要高阶组件处理
+```javascript
+const withWindowSize = Component => {
+  // 产生一个高阶 WrappedComponent 包含监听窗口大小的逻辑
+  class WrappedComponent extends React.PureComponent {
+    constructor(props) {
+      super(props)
+      this.state = {
+        size: this.getSize()
+      }
+    }
+    
+    getSize() {
+      return window.innerWidth > 1000 ? "large" : "small"
+    }
+    
+    handleResize = () => {
+      const size = this.getSize()
+      this.setState({
+        size
+      })
+    }
+    
+    componentDidMount() {
+      window.addEventListener('resize', this.handleResize)
+    }
+    
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.handleResize)
+    }
+    
+    render() {
+      // 窗口大小传递给真正的业务逻辑组件
+      return <Component size={this.state.size} />
+    }
+  }
+  return WrappedComponent
+}
 ```
