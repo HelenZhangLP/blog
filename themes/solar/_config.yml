@@ -50,6 +50,7 @@ solar:
     shadow_image: /images/shadow.png
     venus_image: /images/venus.png
     space_flight_image: /images/space_flight.jpeg
+    background_img: /images/background-img.jpeg
 
 # RSS
 rss: false
@@ -57,7 +58,7 @@ rss: false
 mermaid: ## mermaid url https://github.com/knsv/mermaid
   enable: true  # default true
   startOnload: true  #default true
-  version: "7.1.2" # default v7.1.2
+  version: "8.7.0" # default v7.1.2
   options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
 
 # Plugins

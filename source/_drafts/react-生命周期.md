@@ -1,8 +1,32 @@
 ---
-title: react 生命周期
+title: React 生命周期
 tags:
-- react
+- React
 ---
+
+```mermaid
+ sequenceDiagram
+	rect rgb(200, 150, 255)
+	par Render 阶段
+	    创建时->>更新时: Go help John
+		and
+		更新时->>卸载时: 
+	end
+	end
+ 创建时-->>更新时: Hi Alice!
+ 更新时-->>卸载时: Hi Alice!
+```
+
+{%plantuml%}
+@startuml
+|#pink|创建时|
+:constructor;
+:getDerivedStateFromProps(o)|
+|更新时|
+:getDerivedStateFromProps(o)|
+|卸载时|
+@enduml
+{%endplantuml%}
 
 React 组件中，生命周期可基本分为三个状态
 

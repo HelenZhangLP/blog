@@ -55,7 +55,11 @@
     
 <script src="/lib/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
 <body>
     <div class="banner">
@@ -124,6 +128,22 @@
           
             
     <ul class="post-list">
+      
+        <li class="post-item">
+          
+    <div class="meta">
+        <time datetime="2020-11-13T12:59:57.000Z" itemprop="datePublished">2020-11-13</time>
+    </div>
+
+
+          <span>
+    
+        <a class="" href="/2020/11/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%883%EF%BC%89%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9E%B6%E6%9E%84/">浏览器工作原理（3）浏览器是多进程架构</a>
+    
+
+
+<span>
+        </li>
       
         <li class="post-item">
           
@@ -198,7 +218,7 @@
 
           <span>
     
-        <a class="" href="/2020/10/22/CSS-css3-%E5%8D%95%E4%BD%8D/">CSS3 单位</a>
+        <a class="" href="/2020/10/22/CSS-css3-%E5%8D%95%E4%BD%8D/">CSS 长度单位</a>
     
 
 
@@ -269,22 +289,6 @@
 <span>
         </li>
       
-        <li class="post-item">
-          
-    <div class="meta">
-        <time datetime="2020-10-12T04:40:01.000Z" itemprop="datePublished">2020-10-12</time>
-    </div>
-
-
-          <span>
-    
-        <a class="" href="/2020/10/12/CSS-position-absolute/">CSS position absolute</a>
-    
-
-
-<span>
-        </li>
-      
     </ul>
     <nav class="nav-list">
       
@@ -297,7 +301,7 @@
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2021 Helen Zhang
+    Copyright &copy; 2023 Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
@@ -319,7 +323,7 @@
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script src='https://unpkg.com/mermaid@8.7.0/dist/mermaid.min.js'></script>
   <script>
       if (window.mermaid) {
           mermaid.initialize({theme: 'forest'});
@@ -339,5 +343,20 @@
 
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

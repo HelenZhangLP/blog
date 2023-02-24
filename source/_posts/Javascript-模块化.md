@@ -11,6 +11,46 @@ tags:
 
 JavaScript 起初只为了验证表单，后来加入了动画等。只需要在 html 中添加 `<script></script>` 标签即可。随着前端复杂度的提高，对于前端代码的`可读性、可扩展性`有较高的要求，就需要分多模块。这一阶段就是无模块化阶段：
 
+## 模块是如何工作的
+使用模块开发时，浏览器或 Node 会创建依赖图。即，你给到入口文件 `main.js`，`import` 加载相关模块代码
+<div style="background: #fff">
+	```mermaid
+	 graph LR
+		main[main.js] --> |import a from './a.js'| a[a.js]
+		main --> |import b from './b.js'| b[b.js]
+		
+	```
+</div>
+浏览器需要将文件解析成 模块记录（Module Records），模块记录需要转换为 模块实例（Module Instance）。对于 ES 模块，具体包含以下三个步骤
+
+### 1.	构造（constructor） —— 查找、下载并解析所有文件到**模块记录**中。
+构造阶段要做的事情：
+> 模块解析 —— 找出下载包含该模块的文件的方式（Url, 文件系统加载）
+> 获取文件（从 URL 下载或从文件系统加载）
+> 将文件解析为模块记录
+
+<div style="background: #fff">
+	```mermaid
+	 graph TD
+	 html[index.html] --> |"&lt;script type='module' src='/main.js'&gt;&lt;/script&gt;"| main[main.js]
+	 main --> |"import a from './a.js'"|a[a.js]
+	```
+</div>
+
+
+2.	实例化（instance） —— 在内存中寻找一块区域来存储所有导出的变量（但还没有填充值）。然后让 export 和 import 都指向这些内存块。这个过程叫做链接（linking）。
+3.	求值 —— 运行代码，在内存块中填入变量的实际值。
+
+```mermaid
+ sequenceDiagram
+     participant constructor
+     participant instance
+	 participant eveluation
+```
+ES 模块是异步的，加载、实例化、求值，异步完成
+
+
+
 ### 一、无模块化
 无模块化阶段代码如下：
 ```html
@@ -160,6 +200,9 @@ needModules.map(item => {
 ### 四、CMD规范
 ### 五、ES6模块化
 2015 年 6 月，TC39 标准委员会正式发布 ES6(ECMAScript 6.0) 以后，JavaScript 有了 `模块` 的概念。
+**模块**为你提供了更好的方法<u>来组织这些变量和函数。通过模块，你可以将有意义的变量和函数分组在一起。</u>
+
+
 * 与 CommonJS 一样，ES6 Module 每个模块都有自身的作用域；
 * 在 ES6 版本中，`import` 和 `export` 是保留关键字；
 * ES6 Module 自动采用严格模式（`use strict`）;

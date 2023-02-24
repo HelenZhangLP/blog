@@ -71,7 +71,7 @@ i {
 	background: #fcc;
 }
 ```
-{% qnimg bfc-float-overflow-1.png extend: ?imageView2/2/w/500 %}
+
 > 由图可以看出，块状元素布局是由上自下，每个元素与父元素左边框接触
 左浮动实现两列表布局
 
@@ -95,4 +95,3 @@ i {
 	background: #fcc;
 }
 ```
-{% qnimg bfc-float-overflow-2.png extend: ?imageView2/2/w/500 %}

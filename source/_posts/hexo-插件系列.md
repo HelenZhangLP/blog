@@ -5,6 +5,9 @@ tags:
 - hexo
 ---
 
+## hexo-renderer-mathjax 
+用来写数学公式，不需要额外的配置，只需要 `npm i hexo-renderer-mathjax`
+
 ## hexo-filter-sequence
 用于画时序图的，使用比较麻烦，[参考1](https://github.com/bubkoo/hexo-filter-sequence)[参考2](https://helenzhanglp.github.io/2019/01/31/hexo-%E5%9D%91/) 如果要画时序图，可以采用下面两种插件替换
 
@@ -38,3 +41,14 @@ style Prototype fill: aliceblue
 |---|-------|---|
 |：|\&#58;|冒号(colon)|
 |,|\&#44;|逗号(comma)|
+
+### hexo-filter-mermaid-diagrams <font color="#f33">升级 mermaid 致最新版，绘制 pie/journey 等图形</font>
+> /themes/**(theme topic, eg: next)/config.yml
+> mermaid 版本默认 v7.1.2，修改版本为 v8.7.0
+```
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  startOnload: true  #default true
+  version: "8.7.0" # default v7.1.2
+  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
+```

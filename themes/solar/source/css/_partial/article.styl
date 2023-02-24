@@ -20,13 +20,14 @@ article
       display: inline
   .content
     h2:before
-      content: "#"
+      content: "Ⅰ"
       color: $color-accent
       position: absolute
-      left: -1rem
-      top: -4px
-      font-size: 1.2rem
+      left: -1.2rem
+      top: -0.2rem
+      font-size: 1.5rem
       font-weight: bold
+	  
     img, video
         max-width: 100%
         height: auto
@@ -92,6 +93,24 @@ article
         margin-top: 0.5em
         position: relative
         text-align: center
+		
+	h3::before
+	 content: "Ⅱ"
+	 color: $color-accent
+	 position: relative
+	 left: 0rem
+	 top: 0.2rem
+	 font-size: 1.5rem
+	 font-weight: bold
+	 
+	h4::before
+	  content: "Ⅲ"
+	  color: $color-accent
+	  position: relative
+	  left: -0.2rem
+	  top: 0.2rem
+	  font-size: 1.5rem
+	  font-weight: bold
 
 .posttitle
     text-transform: none

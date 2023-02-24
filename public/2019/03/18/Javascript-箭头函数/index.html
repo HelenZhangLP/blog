@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="箭头函数Arrow Functions  没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this  从函数中认识 this构造函数123456789101112function Construct() &amp;#123;  this.prop &#x3D; 1  console.log(this.prop,">
+    <meta name="description" content="箭头函数兼容性 箭头函数兼容性  箭头函数定义lambda 函数以尽量简洁的语法定义函数，是函数表达式的简化版。 1234567param &#x3D;&gt; expression &#x2F;&#x2F; 只有一个参数，省略括号，操作符，胖箭头 &#x3D;&gt; 箭头函数的核心。仅一行语句，即为返回值。省略 &amp;#123; return expression &amp;#125;() &#x3D;&gt; expression &#x2F;&#x2F; 没有参数，必须">
 <meta property="og:type" content="article">
-<meta property="og:title" content="箭头函数">
-<meta property="og:url" content="https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="JavaScript-箭头函数">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="魔女">
-<meta property="og:description" content="箭头函数Arrow Functions  没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this  从函数中认识 this构造函数123456789101112function Construct() &amp;#123;  this.prop &#x3D; 1  console.log(this.prop,">
+<meta property="og:description" content="箭头函数兼容性 箭头函数兼容性  箭头函数定义lambda 函数以尽量简洁的语法定义函数，是函数表达式的简化版。 1234567param &#x3D;&gt; expression &#x2F;&#x2F; 只有一个参数，省略括号，操作符，胖箭头 &#x3D;&gt; 箭头函数的核心。仅一行语句，即为返回值。省略 &amp;#123; return expression &amp;#125;() &#x3D;&gt; expression &#x2F;&#x2F; 没有参数，必须">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-18T05:40:26.000Z">
-<meta property="article:modified_time" content="2021-06-09T01:44:49.000Z">
+<meta property="article:modified_time" content="2023-02-08T14:34:27.492Z">
 <meta property="article:author" content="Helen Zhang">
-<meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="ES6">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Function">
 <meta name="twitter:card" content="summary">
     
     
@@ -38,7 +39,7 @@
         
     
     <!-- title -->
-    <title>箭头函数</title>
+    <title>JavaScript-箭头函数</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
@@ -59,7 +60,11 @@
     
 <script src="/lib/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
 <body>
     <div class="banner">
@@ -116,7 +121,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/03/18/Javascript-%E5%87%BD%E6%95%B0-bind-call-apply/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/2019/03/18/JavaScript-%E5%87%BD%E6%95%B0/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
         <li><a class="icon" href="/2019/03/11/immutableJS/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
@@ -132,26 +137,52 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&text=箭头函数"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&is_video=false&description=箭头函数"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=箭头函数&body=Check out this article: https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&name=箭头函数&description=&lt;h3 id=&#34;箭头函数&#34;&gt;&lt;a href=&#34;#箭头函数&#34; class=&#34;headerlink&#34; title=&#34;箭头函数&#34;&gt;&lt;/a&gt;箭头函数&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions&#34;&gt;Arrow Functions&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&text=JavaScript-箭头函数"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&is_video=false&description=JavaScript-箭头函数"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-箭头函数&body=Check out this article: https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&name=JavaScript-箭头函数&description=&lt;h2 id=&#34;箭头函数兼容性&#34;&gt;&lt;a href=&#34;#箭头函数兼容性&#34; class=&#34;headerlink&#34; title=&#34;箭头函数兼容性&#34;&gt;&lt;/a&gt;箭头函数兼容性&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://kangax.github.io/compat-table/es6/#test-arrow_functions&#34;&gt;箭头函数兼容性&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;从函数中认识-this&#34;&gt;&lt;a href=&#34;#从函数中认识-this&#34; class=&#34;headerlink&#34; title=&#34;从函数中认识 this&#34;&gt;&lt;/a&gt;从函数中认识 this&lt;/h4&gt;&lt;h5 id=&#34;构造函数&#34;&gt;&lt;a href=&#34;#构造函数&#34; class=&#34;headerlink&#34; title=&#34;构造函数&#34;&gt;&lt;/a&gt;构造函数&lt;/h5&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Construct&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop, &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;setTimeout&lt;/span&gt;(&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ++&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop, &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;#125;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; construct = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Construct()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1 Construct &amp;#123;prop: 1&amp;#125;prop: 1__proto__: Object&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// NaN Window &amp;#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;箭头函数定义&#34;&gt;&lt;a href=&#34;#箭头函数定义&#34; class=&#34;headerlink&#34; title=&#34;箭头函数定义&#34;&gt;&lt;/a&gt;箭头函数定义&lt;/h2&gt;&lt;p&gt;lambda 函数以尽量简洁的语法定义函数，是函数表达式的简化版。&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;param =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 只有一个参数，省略括号，操作符，胖箭头 =&amp;gt; 箭头函数的核心。仅一行语句，即为返回值。省略 &amp;#123; return expression &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;() =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 没有参数，必须使用 () 是必须的，其它同上&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;(param1, param2) =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 一个以上参数，参数由括号包裹，参数以逗号隔开，其它同上&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	expression1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	expression2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; &lt;span class=&#34;comment&#34;&gt;// &amp;#123;&amp;#125; 包裹的函数体代码块，没有 return 语句，默认返回 undefined，否则返回 return 语句的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;箭头函数与函数执行上下文&#34;&gt;&lt;a href=&#34;#箭头函数与函数执行上下文&#34; class=&#34;headerlink&#34; title=&#34;箭头函数与函数执行上下文&#34;&gt;&lt;/a&gt;箭头函数与函数执行上下文&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;箭头函数没有单独的 &lt;code&gt;this&lt;/code&gt;， &lt;font color=&#34;#a33&#34;&gt;&lt;em&gt;&lt;strong&gt;箭头函数的 &lt;code&gt;this&lt;/code&gt; 与 函数声明所在的上下文相同&lt;/strong&gt;&lt;/em&gt;，&lt;/font&gt;由以 demo 可知，因 箭头函数在 window 中定义，所以 &lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;window&lt;/code&gt;，函数表达式 &lt;code&gt;this&lt;/code&gt; 指向调用的环境，所以 &lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;lambda&lt;/code&gt; 对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;thisLambda&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; lambda = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;comment&#34;&gt;// 在 window 中声明&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;attr&#34;&gt;getThislambda&lt;/span&gt;: &lt;span class=&#34;function&#34;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;comment&#34;&gt;// assets(&amp;#x27;assets&amp;#x27;, true, this)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;lambda&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;variable language_&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;attr&#34;&gt;getThis&lt;/span&gt;: &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;function expression&amp;#x27;&lt;/span&gt;,&lt;span class=&#34;variable language_&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda.&lt;span class=&#34;title function_&#34;&gt;getThislambda&lt;/span&gt;() &lt;span class=&#34;comment&#34;&gt;//Window &amp;#123;window: Window, self: Window, document: document, name: &amp;#x27;&amp;#x27;, location: Location, …&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda.&lt;span class=&#34;title function_&#34;&gt;getThis&lt;/span&gt;() &lt;span class=&#34;comment&#34;&gt;// &amp;#123;getThislambda: ƒ, getThis: ƒ&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;!-- 
+### 箭头函数
+[Arrow Functions](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+&gt; 没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this
+
+##### 构造函数
+```JavaScript
+function Construct() {
+  this.prop = 1
+  console.log(this.prop, this)
+  setTimeout(function() {
+    ++this.prop
+    console.log(this.prop, this)
+  },1)
+}
+var construct = new Construct()
+
+// 1 Construct {prop: 1}prop: 1__proto__: Object
+// NaN Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+``` --&gt;
 "><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%87%BD%E6%95%B0%E4%B8%AD%E8%AE%A4%E8%AF%86-this"><span class="toc-number">1.1.</span> <span class="toc-text">从函数中认识 this</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">构造函数</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">箭头函数兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">箭头函数定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.</span> <span class="toc-text">箭头函数与函数执行上下文</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -163,7 +194,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        箭头函数
+        JavaScript-箭头函数
     </h1>
 
 
@@ -179,18 +210,44 @@
 
 
       
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/" rel="tag">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
     </div>
   </header>
   
 
   <div class="content" itemprop="articleBody">
-    <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow Functions</a></p>
-<blockquote>
-<p>没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this</p>
+    <h2 id="箭头函数兼容性"><a href="#箭头函数兼容性" class="headerlink" title="箭头函数兼容性"></a>箭头函数兼容性</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://kangax.github.io/compat-table/es6/#test-arrow_functions">箭头函数兼容性</a></p>
 </blockquote>
-<h4 id="从函数中认识-this"><a href="#从函数中认识-this" class="headerlink" title="从函数中认识 this"></a>从函数中认识 this</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.prop = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.prop, <span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ++<span class="built_in">this</span>.prop</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.prop, <span class="built_in">this</span>)</span><br><span class="line">  &#125;,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> construct = <span class="keyword">new</span> Construct()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 Construct &#123;prop: 1&#125;prop: 1__proto__: Object</span></span><br><span class="line"><span class="comment">// NaN Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="箭头函数定义"><a href="#箭头函数定义" class="headerlink" title="箭头函数定义"></a>箭头函数定义</h2><p>lambda 函数以尽量简洁的语法定义函数，是函数表达式的简化版。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param =&gt; expression <span class="comment">// 只有一个参数，省略括号，操作符，胖箭头 =&gt; 箭头函数的核心。仅一行语句，即为返回值。省略 &#123; return expression &#125;</span></span><br><span class="line">() =&gt; expression <span class="comment">// 没有参数，必须使用 () 是必须的，其它同上</span></span><br><span class="line">(param1, param2) =&gt; expression <span class="comment">// 一个以上参数，参数由括号包裹，参数以逗号隔开，其它同上</span></span><br><span class="line">() =&gt; &#123;</span><br><span class="line">	expression1;</span><br><span class="line">	expression2;</span><br><span class="line">&#125; <span class="comment">// &#123;&#125; 包裹的函数体代码块，没有 return 语句，默认返回 undefined，否则返回 return 语句的值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="箭头函数与函数执行上下文"><a href="#箭头函数与函数执行上下文" class="headerlink" title="箭头函数与函数执行上下文"></a>箭头函数与函数执行上下文</h2><blockquote>
+<p>箭头函数没有单独的 <code>this</code>， <font color="#a33"><em><strong>箭头函数的 <code>this</code> 与 函数声明所在的上下文相同</strong></em>，</font>由以 demo 可知，因 箭头函数在 window 中定义，所以 <code>this</code> 指向 <code>window</code>，函数表达式 <code>this</code> 指向调用的环境，所以 <code>this</code> 指向 <code>lambda</code> 对象</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">thisLambda</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="keyword">let</span> lambda = &#123;</span><br><span class="line">	<span class="comment">// 在 window 中声明</span></span><br><span class="line">	<span class="attr">getThislambda</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">// assets(&#x27;assets&#x27;, true, this)</span></span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;lambda&#x27;</span>, <span class="variable language_">this</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	</span><br><span class="line">	<span class="attr">getThis</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;function expression&#x27;</span>,<span class="variable language_">this</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lambda.<span class="title function_">getThislambda</span>() <span class="comment">//Window &#123;window: Window, self: Window, document: document, name: &#x27;&#x27;, location: Location, …&#125;</span></span><br><span class="line">lambda.<span class="title function_">getThis</span>() <span class="comment">// &#123;getThislambda: ƒ, getThis: ƒ&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<!-- 
+### 箭头函数
+[Arrow Functions](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+> 没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this
+
+##### 构造函数
+```JavaScript
+function Construct() {
+  this.prop = 1
+  console.log(this.prop, this)
+  setTimeout(function() {
+    ++this.prop
+    console.log(this.prop, this)
+  },1)
+}
+var construct = new Construct()
+
+// 1 Construct {prop: 1}prop: 1__proto__: Object
+// NaN Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+``` -->
 
   </div>
 </article>
@@ -219,25 +276,51 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%87%BD%E6%95%B0%E4%B8%AD%E8%AE%A4%E8%AF%86-this"><span class="toc-number">1.1.</span> <span class="toc-text">从函数中认识 this</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">构造函数</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">箭头函数兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">箭头函数定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.</span> <span class="toc-text">箭头函数与函数执行上下文</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&text=箭头函数"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&is_video=false&description=箭头函数"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=箭头函数&body=Check out this article: https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=箭头函数"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/18/Javascript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&name=箭头函数&description=&lt;h3 id=&#34;箭头函数&#34;&gt;&lt;a href=&#34;#箭头函数&#34; class=&#34;headerlink&#34; title=&#34;箭头函数&#34;&gt;&lt;/a&gt;箭头函数&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions&#34;&gt;Arrow Functions&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&text=JavaScript-箭头函数"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&is_video=false&description=JavaScript-箭头函数"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-箭头函数&body=Check out this article: https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&title=JavaScript-箭头函数"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/18/JavaScript-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/&name=JavaScript-箭头函数&description=&lt;h2 id=&#34;箭头函数兼容性&#34;&gt;&lt;a href=&#34;#箭头函数兼容性&#34; class=&#34;headerlink&#34; title=&#34;箭头函数兼容性&#34;&gt;&lt;/a&gt;箭头函数兼容性&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://kangax.github.io/compat-table/es6/#test-arrow_functions&#34;&gt;箭头函数兼容性&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;从函数中认识-this&#34;&gt;&lt;a href=&#34;#从函数中认识-this&#34; class=&#34;headerlink&#34; title=&#34;从函数中认识 this&#34;&gt;&lt;/a&gt;从函数中认识 this&lt;/h4&gt;&lt;h5 id=&#34;构造函数&#34;&gt;&lt;a href=&#34;#构造函数&#34; class=&#34;headerlink&#34; title=&#34;构造函数&#34;&gt;&lt;/a&gt;构造函数&lt;/h5&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Construct&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop, &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;setTimeout&lt;/span&gt;(&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ++&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.prop, &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;#125;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; construct = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Construct()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1 Construct &amp;#123;prop: 1&amp;#125;prop: 1__proto__: Object&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// NaN Window &amp;#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;箭头函数定义&#34;&gt;&lt;a href=&#34;#箭头函数定义&#34; class=&#34;headerlink&#34; title=&#34;箭头函数定义&#34;&gt;&lt;/a&gt;箭头函数定义&lt;/h2&gt;&lt;p&gt;lambda 函数以尽量简洁的语法定义函数，是函数表达式的简化版。&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;param =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 只有一个参数，省略括号，操作符，胖箭头 =&amp;gt; 箭头函数的核心。仅一行语句，即为返回值。省略 &amp;#123; return expression &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;() =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 没有参数，必须使用 () 是必须的，其它同上&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;(param1, param2) =&amp;gt; expression &lt;span class=&#34;comment&#34;&gt;// 一个以上参数，参数由括号包裹，参数以逗号隔开，其它同上&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	expression1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	expression2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; &lt;span class=&#34;comment&#34;&gt;// &amp;#123;&amp;#125; 包裹的函数体代码块，没有 return 语句，默认返回 undefined，否则返回 return 语句的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;箭头函数与函数执行上下文&#34;&gt;&lt;a href=&#34;#箭头函数与函数执行上下文&#34; class=&#34;headerlink&#34; title=&#34;箭头函数与函数执行上下文&#34;&gt;&lt;/a&gt;箭头函数与函数执行上下文&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;箭头函数没有单独的 &lt;code&gt;this&lt;/code&gt;， &lt;font color=&#34;#a33&#34;&gt;&lt;em&gt;&lt;strong&gt;箭头函数的 &lt;code&gt;this&lt;/code&gt; 与 函数声明所在的上下文相同&lt;/strong&gt;&lt;/em&gt;，&lt;/font&gt;由以 demo 可知，因 箭头函数在 window 中定义，所以 &lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;window&lt;/code&gt;，函数表达式 &lt;code&gt;this&lt;/code&gt; 指向调用的环境，所以 &lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;lambda&lt;/code&gt; 对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;thisLambda&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; lambda = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;comment&#34;&gt;// 在 window 中声明&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;attr&#34;&gt;getThislambda&lt;/span&gt;: &lt;span class=&#34;function&#34;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;comment&#34;&gt;// assets(&amp;#x27;assets&amp;#x27;, true, this)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;lambda&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;variable language_&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;attr&#34;&gt;getThis&lt;/span&gt;: &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;function expression&amp;#x27;&lt;/span&gt;,&lt;span class=&#34;variable language_&#34;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda.&lt;span class=&#34;title function_&#34;&gt;getThislambda&lt;/span&gt;() &lt;span class=&#34;comment&#34;&gt;//Window &amp;#123;window: Window, self: Window, document: document, name: &amp;#x27;&amp;#x27;, location: Location, …&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda.&lt;span class=&#34;title function_&#34;&gt;getThis&lt;/span&gt;() &lt;span class=&#34;comment&#34;&gt;// &amp;#123;getThislambda: ƒ, getThis: ƒ&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;!-- 
+### 箭头函数
+[Arrow Functions](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+&gt; 没有自己的 this、arguments、super、new.target，它不能用作构造函数，更适用于那些本来需要匿名函数的地方，函数简短，并且不绑定 this
+
+##### 构造函数
+```JavaScript
+function Construct() {
+  this.prop = 1
+  console.log(this.prop, this)
+  setTimeout(function() {
+    ++this.prop
+    console.log(this.prop, this)
+  },1)
+}
+var construct = new Construct()
+
+// 1 Construct {prop: 1}prop: 1__proto__: Object
+// NaN Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+``` --&gt;
 "><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -258,7 +341,7 @@
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2021 Helen Zhang
+    Copyright &copy; 2023 Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
@@ -280,7 +363,7 @@
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script src='https://unpkg.com/mermaid@8.7.0/dist/mermaid.min.js'></script>
   <script>
       if (window.mermaid) {
           mermaid.initialize({theme: 'forest'});
@@ -300,5 +383,20 @@
 
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
