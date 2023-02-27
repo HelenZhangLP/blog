@@ -5,7 +5,6 @@ tags:
 date: 2023-02-24 15:51:42
 ---
 
-
 keyWord: 路由器，调制解调器（实现网络信息与电话设施可处理的信息之间的转换），ISP 将个人网络连接到互联网的服务提供商
 web 核心概念：HyperText/Http/Url
 
@@ -14,17 +13,17 @@ web 核心概念：HyperText/Http/Url
 是浏览器用来检索 web 上公布的任何资源机制。
 给定的某一资源在 web 上的地址
 <div style="display: flex">
-	<span class="custom-link custom-box-339">https://</span>
-	<span class="custom-link custom-box-933">helenzhanglp.github.io</span>
-	<span class="custom-link custom-box-939">:80</span>
-	<span class="custom-link custom-box-993">/2023/02/18/URL/</span>
-	<span class="custom-link custom-box-399">?key=value&key1=value</span>
-	<span class="custom-link custom-box-963">#archor</span>
+	<span class="custom-box custom-box-339">https://</span>
+	<span class="custom-box custom-box-933">helenzhanglp.github.io</span>
+	<span class="custom-box custom-box-939">:80</span>
+	<span class="custom-box custom-box-993">/2023/02/18/URL/</span>
+	<span class="custom-box custom-box-399">?key=v1&key1=v2</span>
+	<span class="custom-box custom-box-963">#archor</span>
 </div>
 <p><span class="custom-flag-339">https(http/ftp/mailto)-scheme，表明浏览器要使用何种协议</span></p>
 <div style="display: flex"><span>Authority&nbsp;&nbsp;</span> <span class="custom-flag-933">Domain 域名 表示正在请求哪个 web 服务器</span>&nbsp;<span class="custom-flag-939">port 端口——用于访问 Web 服务器上的资源的技术“门”。如果 Web 服务器使用 HTTP 协议的标准端口（HTTP 为 80，HTTPS 为 443）来授予其资源的访问权限，则通常会被忽略。否则是强制性的。</div>
 <p class="custom-flag-993">Path to resource 资源路径，即网络服务器上资源的路径，早期阶段，像这样的路径表示 Web 服务器上的物理文件位置。</p>
-<p class="custom-flag-399">?key=value&key1=value —— 提供给网络服务器额外的参数，返回资源之前 web 服务器可以用这些参数做额外处理。每个 web 服务器都有关于自己参数的规则。唯一可靠的方式来知道特定 Web 服务器是否处理参数是通过询问 Web 服务器所有者。</p>
+<p class="custom-flag-399">?key=v1&key1=v2 —— 提供给网络服务器额外的参数，返回资源之前 web 服务器可以用这些参数做额外处理。每个 web 服务器都有关于自己参数的规则。唯一可靠的方式来知道特定 Web 服务器是否处理参数是通过询问 Web 服务器所有者。</p>
 <p class="custom-flag-963">#anchor —— 是资源本身的另一部分锚点。锚点表示资源中的一种“书签”，给浏览器显示位于该“加书签”位置的内容的方向</p>
 
 ### URL 的使用场景
@@ -40,41 +39,41 @@ url 必须部分在大多数情况下取约于 url 的上下文
 #### 绝对URL
 * 完整的网络 URL 地址
 <div style="display: flex">
-	<span class="custom-link custom-box-339">https://</span>
-	<span class="custom-link custom-box-933">helenzhanglp.github.io</span>
-	<span class="custom-link custom-box-939">:80</span>
-	<span class="custom-link custom-box-993">/2023/02/18/URL/</span>
-	<span class="custom-link custom-box-399">?key=value&key1=value</span>
-	<span class="custom-link custom-box-963">#archor</span>
+	<span class="custom-box custom-box-339">https://</span>
+	<span class="custom-box custom-box-933">helenzhanglp.github.io</span>
+	<span class="custom-box custom-box-939">:80</span>
+	<span class="custom-box custom-box-993">/2023/02/18/URL/</span>
+	<span class="custom-box custom-box-399">?key=v1&key1=v2</span>
+	<span class="custom-box custom-box-963">#archor</span>
 </div>
 
 * 隐去协议 —— 在这种情况下，浏览器将使用与用于加载该 URL 的文档相同的协议来调用该 URL。
 <div style="display: flex">
-	<span class="custom-link custom-box-933">helenzhanglp.github.io</span>
-	<span class="custom-link custom-box-939">:80</span>
-	<span class="custom-link custom-box-993">/2023/02/18/URL/</span>
-	<span class="custom-link custom-box-399">?key=value&key1=value</span>
-	<span class="custom-link custom-box-963">#archor</span>
+	<span class="custom-box custom-box-933">helenzhanglp.github.io</span>
+	<span class="custom-box custom-box-939">:80</span>
+	<span class="custom-box custom-box-993">/2023/02/18/URL/</span>
+	<span class="custom-box custom-box-399">?key=v1&key1=v2</span>
+	<span class="custom-box custom-box-963">#archor</span>
 </div>
 
 * 隐去域名 —— 这是 HTML 文档中绝对 URL 最常见的用例。浏览器将使用与用于加载托管该 URL 的文档相同的协议和相同的域名。<font color="#a33">注意：不可能省略该域名而不省略协议。</font>
 <div style="display: flex">
-	<span class="custom-link custom-box-993">/2023/02/18/URL/</span>
-	<span class="custom-link custom-box-399">?key=value&key1=value</span>
-	<span class="custom-link custom-box-963">#archor</span>
+	<span class="custom-box custom-box-993">/2023/02/18/URL/</span>
+	<span class="custom-box custom-box-399">?key=v1&key1=v2</span>
+	<span class="custom-box custom-box-963">#archor</span>
 </div>
 
 #### 相对域名
 假设当前地址为 `http://localhost:4000/html/)`
 * 子资源
 <div style="display: flex">
-	<span class="custom-link custom-box-993">2023/02/18/URL/</span>
+	<span class="custom-box custom-box-993">2023/02/18/URL/</span>
 </div>
 url 不以 `/` 开头，浏览器会尝试在包含当前资源的子目录中查找。当前案例，将在 `html` 目录下继续查找
 
 * 回到目录树中
 <div style="display: flex">
-	<span class="custom-link custom-box-993">../2023/02/18/URL/</span>
+	<span class="custom-box custom-box-993">../2023/02/18/URL/</span>
 </div>
 回到上层目录，在上一层目录中查找文件
 

@@ -5,6 +5,11 @@ tags:
 - JavaScript
 - node
 ---
+
+## NodeJS
+Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
+
+
 ### path
 > 提供用于处理文件路径和目录路径的实用工具
 
