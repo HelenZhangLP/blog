@@ -9,14 +9,59 @@ tags:
 ## NodeJS
 Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
 
+### vm 模块
+The node:vm module enables compiling and running code within V8 Virtual Machine context
+vm 模块可以在 V8 虚拟机中编译运行代码
+```javaScript
+vm.runInNewContext(code)
+/**
+ * code <string> 要运行和编译的 JavaScript 代码（The JavaScript code to compile and run）
+ * contextObject <Object> 一个要被上下文化的对象（An object that will be contextified）, 如果未定义，会创建一个新对象（if undefined, a new object will be created.）
+ * options <Object> | <string> 
+ */
+```
+---
+```javaScript
+vm.runInNewContext(code, sandbox, "sea-debug.vm")
+```
 
-### path
+### module
+
+### http 模块
+```JavaScript
+// 1、导入 http 模块
+const http = require('http')
+// 2、创建 Web 服务
+const server = http.createSever()
+// 3、绑定 request 事件
+server.on('request', (req, res) => {
+    const url = req.url
+    let str = '<h1>Not Found</h1>'
+    if (url === '/' || url === '/index.html') {
+        str = '<h1>首页</h1>'
+    } else if (url === '/about.html') {
+        str = '<h1>关于</h1>'
+    }
+
+    // 处理响应数据乱码的问题
+    res.setHeader('content-type', 'text/html; charset=utf-8')
+    // 响应发送给客户端
+    res.end(str)
+})
+
+//4、 启动服务
+server.listen(port, host, () => {
+    console.log(`http://${host}:${port} 已启动`)
+})
+```
+
+### path 模块
 > 提供用于处理文件路径和目录路径的实用工具
 
 ```JavaScript
 const path = require('path')
 ```
-<!-- more -->
+
 - [x] path.resolve()
 > 将路径或片断序列解析为绝对路径
 ```JavaScript

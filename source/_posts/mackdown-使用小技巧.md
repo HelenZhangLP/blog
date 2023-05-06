@@ -5,12 +5,21 @@ tags:
 - Markdown
 ---
 
+## markdown 与 mermaid
+<span class="custom-flag-933">注释片段不能包含代码块，否则会影响 mermaid 渲染</span>
+```
+<!-- ```javascript -->
+<!-- console.log(1)
+	... // some expression
+ -->
+<!-- ``` -->
+```
+<span class="custom-flag-933">markdown mermaid graph 不能用 `end` 标签</span>
+
 ## 个人 markdown 编写规则
-* \#f33 特别注意的问题
+* \#a33 特别注意的问题
 * &gt; 知识点
 * \#f99 弱提醒
-
-## <font color="#f33">markdown mermaid graph 不能用 `end` 标签</font>
 
 ## markdown 显示部分，省略其余
 > <!-- more -->

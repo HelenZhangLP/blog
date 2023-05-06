@@ -9,4 +9,7 @@ tags:
 
 |key|description|
 |--|--|
-|ctrl + c|显示/隐藏 terminal|
+|ctrl + x|open/close terminal —— 显示/隐藏 terminal|
+|ctrl + d|delete row —— 删除整行|
+|command + d|select next occurences —— 选择相同的文本，光标定位在最后一行|
+|command + shift + r|duplicate line —— 复制上一行|
