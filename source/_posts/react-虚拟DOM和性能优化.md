@@ -1,29 +1,113 @@
 ---
-title: 虚拟DOM和性能优化
+title: React 虚拟DOM和性能优化
 date: 2020-12-02 17:32:56
 tags:
-- react
+- React
 ---
 
-React 执行效率高的原因在于它的`虚拟DOM机制`
+## DOM
+DOM 是对结构化文本的抽象表达，web 环境中，DOM 是对 html 文本的抽象描述，每个 html 元素对应一个 DOM 节点，html 元素的层级关系也体现在了 DOM 树上。
+在 DOM 进行增删改操作，都会引起浏览器对网页的重新布局和重新渲染，这个过程很耗时。
 
-## 虚拟 DOM
-前端性能优化的重要一条：**尽量减少对DOM操作**
-DOM 是对结构化广西的抽象表达，web 环境中，DOM 是对 html 文本的抽象描述，每个 html 元素对应一个 DOM 节点，html 元素的层级关系也体现在了 DOM 树上。在 DOM 进行增删改操作，都会引起浏览器对网页的重新布局和重新渲染，这个过程很耗时。
-**软件开发中遇到的所有问题都可以通过增加一层抽象解决** 虚拟 DOM 是 DOM 效率低下的抽象。虚拟 DOM 是用 javascript 描述的DOM 元素。
-```html
-<div className='foo'>hello</div>
+## 通过 React 执行机制了解虚拟 DOM
+### React 视图
+```javaScript
+// index.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <>
+    <ul className="wrap">
+      {
+        (new Array(2)).fill(null).map((_, index) => <button>button {index + 1}</button>)
+      }
+    </ul>
+  </>
+)
 ```
-```JavaScript
+### babel-preset-react-app 编译 JSX
+> const element = createElement(type, props, ...children)
+<span class='custom-box custom-box-933'>type:</span> The type argument must be a valid React component type(tag name like 'div' or React Component or 'Fragment')
+<span class='custom-box custom-box-933'>props:</span> The props argument must either be an object or null
+<span class='custom-box custom-box-933'>optional:</span> ...children，当前元素子节点
+
+```javaScript
+// babel-compile.js
+React.createElement(
+  React.Fragment, 
+  null, 
+  React.createElement(
+    "ul", 
+    {
+      className: "wrap"
+    }, 
+    new Array(2).fill(null).map(function (item) {
+      return React.createElement("li", {
+        key: index
+      }, item);
+    })
+  )
+);
+```
+
+### 虚拟 DOM
+<span class='custom-box custom-box-933'>前端性能优化的重要一条：**尽量减少对DOM操作**，React 执行效率高的原因在于它的`虚拟DOM机制`</span>
+<span class='custom-box custom-box-393'>软件开发中遇到的所有问题都可以通过增加一层抽象解决</span>
+虚拟 DOM 是 DOM 效率低下的抽象。虚拟 DOM 是用 javascript 描述的DOM 元素。
+
+```javaScript
+// console.log(babel-compile.js) -> get virtualDOM
 {
-  type: 'div',
-  props: {
-    className: 'foo',
-    children: 'hello'
-  }
+  "$$typeof": Symbol(react.element), 
+  "type": Symbol(react.fragment),
+  "key": null,
+  "ref": null,
+  "props": {
+    "children": {
+        "type": "ul",
+        "key": null,
+        "ref": null,
+        "props": {
+            "className": "wrap",
+            "children": [
+                {
+                    "type": "li",
+                    "key": "0",
+                    "ref": null,
+                    "props": {
+                        "children": null
+                    },
+                    "_owner": null,
+                    "_store": {}
+                },
+                {
+                    "type": "li",
+                    "key": "1",
+                    "ref": null,
+                    "props": {
+                        "children": null
+                    },
+                    "_owner": null,
+                    "_store": {}
+                }
+            ]
+        },
+        "_owner": null,
+        "_store": {}
+    }
+  },
+  "_owner": null,
+  "_store": {}
 }
 ```
-<!--More-->
+```mermaid
+flowchart LR
+A["index.js"] -->|依赖 babel-preset-react-app 编译| B[babel-compile.js]
+B -->|执行| C[virtualDOM]
+```
+
 ## diff 算法
 react 的调合过程（Reconciliation）react 采用声明式的 API 描述 UI 结构，组件状态或属性更新，组件的 react 方法会返回一个新的虚拟 DOM 对象表述新的 ui 结构。 Diff 算法中，比较新的虚拟 DOM 和 旧的虚拟 DOM，再将 diff 的结果更新到真实 DOM 上。
 React 基于两个假设，降低算法的时间复杂度，进行比较：

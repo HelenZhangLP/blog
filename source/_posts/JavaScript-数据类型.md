@@ -9,13 +9,31 @@ tags:
 
 ![alt](/images/jsDataTypes.jpg)
 与《JavaScript高级程序设计》不同，这张图中没有 null。我这边先就图中的信息作一个解析，图中，将数据类型分为值类型与引用类型。
-<!-- more -->
-http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html
 
 ## JavaScript 数据类型
 ### 基本类型
+基本类型直接代表了最底层的语言实现，是种非对象无方法与属性的数据，有 7 种原始数据类型。
+{%plantuml%}
+@startmindmap
+* 数据类型
+** 原始数据类型(primitive data type)
+*** string
+*** number
+*** bitint
+*** boolean
+*** undefined
+*** null
+*** Symbol
+@endmindmap
+{%endplantuml%}
 <font color="#f33">所以object/NaN 是否属于基本类型？？？ECMAScript 标准定义了7种数据类型：</font>
 
+#### Symbol
+`Symbol([description])` description 对 symbol 的描述，可用于调试但不是访问 symbol 本身
+```javascript
+const symbol1 = Symbol()
+typeof symbol1 // "symbol1"
+```
 * **布尔值（boolean）**，有2个值分别是：true 和 false.
 * **null**，一个表明 null 值的特殊关键字。 `JavaScript 是大小写敏感的，因此 null 与 Null、NULL或变体完全不同`。
 ```javascript

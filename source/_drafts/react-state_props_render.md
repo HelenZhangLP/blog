@@ -25,7 +25,6 @@ class ReactStateCom extends React.Component {
 }
 ```
 通过 setState() 方法来更新状态（state）
-<!--more-->
 
 ## React 组件中的成员 state 和 props
 ### 组件的 state

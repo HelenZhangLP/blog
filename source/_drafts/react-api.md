@@ -39,10 +39,28 @@ React.createElement(
 ```
 
 ## ReactDOM.render()
+### React16 render vs React18 render
+```javaScript
+// react16
+import react from 'React'
+import ReactDom from 'react-dom'
+
+ReactDOM.render(<>...</>, document.getElementById('root'))
+```
+---
+```javaScript
+// React18
+import react from 'React'
+import ReactDOM from 'react-dom/client'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<>...</>)
+```
+[createElement and render 手动实现](https://github.com/HelenZhangLP/react-18/blob/master/src/JSX/handle.js)
 > 在 React 18 中，render 函数已被 createRoot 函数所取代。
 
 ## ReactDOM.createRoot()
-```
+```javaScript
 createRoot(container[, options]);
 ```
 Create a React root for the supplied container and return the root. The root can be used to render a React element into the DOM with render:
@@ -57,7 +75,7 @@ The root can also be unmounted with unmount:
 root.unmount();
 ```
 
-React 核心 API
+<!-- React 核心 API
 *   CreateElement
 *   render
 *   Component
@@ -83,4 +101,4 @@ jsx 中表达式的两种应用场景：
 基本语法
 标签类型
 JavaScript 表达式
-标签属性
+标签属性 -->
