@@ -65,6 +65,62 @@ React.createElement(ComponentDEMO, {
   [具体实现原理见：github/handle.js](https://github.com/HelenZhangLP/react-18/blob/master/src/JSX/handle.js)
 
 ## 类组件
+  ### 构造方法
+  ```javascript
+    class User extends React.Component {
+      constructor() {}
+    }
+  ```
+  <font color='red'>Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</font>
+  <font color='red'>引用错误：在访问 `this` 或从派生构造函数返回之前，必须调用派生类中调用 super 构造函数</font>
+
+  ```javascript
+    class User extends React.Component {
+      constructor() {
+        // super 关键字调用父类构造函数
+        super()
+      }
+    }
+  ```
+  <span class='custom-box custom-box-933'>为什么呢？</span><span class='custom-box custom-box-393'>super() 相当于 React.Component.call(this) 继承父类的 props, context, updater, refs 属性</span>
+
+  ### 继承
+  React 类组件是基于 `extends` 实现继承
+  ```javascript
+    class User extends React.Component {}
+  ```
+  ### React.Component 源码
+  构造函数 Component 中包含四个实例（私有）属性：props/context/refs/updater
+  ```javascript
+    function Component(props, context, updater) {
+      this.props = props
+      this.context = context
+      this.refs = emptyObject
+      this.updater = updater || ReactNoopUpdateQueue
+    }
+  ```
+  `class User extends React.Component {}` 是基于 `call` 继承父类私有方法属性
+  ```javascript
+    let user = new User()
+    Component.call(user)
+    console.log(user)
+    /**
+     * {
+     *  "context": undefined 
+     *  "props" : undefined
+        "refs": {},
+        "updater": {}
+      }   
+      [[Prototype]] : Object
+     * /
+  ```
+  再基于原型继承，继承原型属性 <span class='custom-box custom-box-939'>`Info.prototype => Component.prototype => Object.prototype`</span>
+  ```javascript
+    Class Info extends React.Component {}
+    let info = Info()
+  ```
+  那么 Info 的实例 info 具备了 React.Component 与 Object 上的原型方法
+
 
 ## hooks 组件
 
