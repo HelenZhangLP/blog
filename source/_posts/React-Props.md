@@ -1,10 +1,12 @@
 ---
-title: React Props
+title: Render Props
 tags:
-- React
+  - React
+date: 2023-05-08 23:12:52
 ---
 
-"React Props" 是一种在 react 组件之间<u>使用一个值为函数的 prop 共享代码</u>的简单技术
+
+"Render Props" 是一种在 react 组件之间<u>使用一个值为函数的 prop 共享代码</u>的简单技术
 
 ## 定义函数组件
 ```javascript

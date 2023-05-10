@@ -87,8 +87,6 @@ npm i webpack webpack-cli webpack-dev-server --save-dev
   }
   ```
 
-<!-- more -->
-
 ## Error: Cannot find module 'webpack-cli/bin/config-yargs'
 code: 'MODULE_NOT_FOUND'
 > webpack-dev-server --open --mode development

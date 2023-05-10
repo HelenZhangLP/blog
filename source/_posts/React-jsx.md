@@ -8,10 +8,8 @@ tags:
 ## JSX 介绍
 JavaScript XML 缩写为 JSX
 JSX 作为 JavaScript 语法扩展，支持自定义属性，并具有很强的扩展性
-React 中使用 JSX 语法，必须引用 ‘babel.js’ 解析 JSX
-`<script type="text/babel"></script>` 浏览器内置的 JavaScript 解释器不解析标签里的脚本代码，由 `babel` 解析，避免 react 与原生 javascript 代码混淆
-
-<!-- more -->
+<span class='custom-box custom-box-933'>React 中使用 JSX 语法，必须引用 ‘babel.js’ 解析 JSX</span>
+<span class='custom-box custom-box-393'>`<script type="text/babel"></script>` 浏览器内置的 JavaScript 解释器不解析标签里的脚本代码，由 `babel` 解析，避免 react 与原生 javascript 代码混淆</span>
 
 ## JSX 作为单独文件引入
 ```html
@@ -35,15 +33,40 @@ React 中使用 JSX 语法，必须引用 ‘babel.js’ 解析 JSX
 </html>
 ```
 
-### JSX 表达式
+### 变量命名
+* 驼峰命名（camelCase/PascalCase）
+* 烤肉串命名（kebab-case）
+* 下划线命名
+
+### JS 表达式
 ```javaScript
 const name = 'arithmetic'
 const span = (
   <span>{name}</span>
 )
 ```
+|数据类型|渲染结果|案例|
+|---|---|---|
+|Number|渲染输入内容|{1} --> 1|
+|String|渲染输入内容|{"hello"} --> hello|
+|boolean|渲染内容为空|{true} --> |
+|null|渲染内容为空|{null} --> |
+|undefined|渲染内容为空|{undefined} --> |
+|Symbol|渲染内容为空|{Symbol} --> |
+|BigInt|渲染内容为空|{10n} --> |
+|对象|error|<font color="red">Objects are not valid as a React child (found: object with keys {}). If you meant to render a collection of children, use an array instead.|
+|数组|数组元素分别渲染为字符串|{[1,2]}-->12|
+|函数|error|<font color="red">Warning: Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it</font>|
 
-### JSX 条件表达式 —— 三元运算符
+`除行内样式和JSX 虚拟 DOM 对象外，{} 语法中均不支持使用对象类型`
+
+
+### JS 循环表达式
+```javaScript
+  [].map(item => <div>{item}</div>)
+```
+
+### JS 条件表达式 —— 三元运算符
 ```javascript
 const span = (
   <span>{true ? 1 : 2}</span>

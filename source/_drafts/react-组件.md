@@ -2,8 +2,127 @@
 title: react component
 date: 2021-03-05 10:22:34
 tags:
-- react
+- React
 ---
+
+
+组件命名采用 PascalCase 命名规则。
+## 函数组件
+返回 jsx 视图（JSX 元素，VirturalDOM 虚拟对象）的函数。
+设置的属性值不是<span class='custom-box custom-box-933'>字符串</span>格式，<span class='custom-box custom-box-393'>要基于`{}`进行嵌套</span>
+1.  定义函数组件
+```JavaScript
+function demo1() {
+    return <>
+        <h3>这是一个函数组件</h3>
+    </>
+}
+
+export default demo1
+```
+2.  调用函数组件
+```javascript
+  <ComponentDEMO className="App-header" style={{color: '#a33'}} title="function component demo" data={[1,2,3]} times={3} />
+```
+3. 渲染机制
+  3-1   经过 babel-preset-react-app 转义为 react 原生为：
+```javascript
+React.createElement(ComponentDEMO, {
+  className: "App-header",
+  style: {
+    color: '#a33'
+  },
+  title: "function component demo",
+  data: [1, 2, 3],
+  times: 3
+});
+```
+  3-2   执行 React.createElement 生成 virtualDOM
+```javascript
+{   
+  "$$typeof": Symbol(react.element)
+  "key": null,
+  "ref": null,
+  "type": demo1(),
+  "props": {
+      "className": "App-header",
+      "style": {
+          "color": "#a33"
+      },
+      "title": "function component demo",
+      "data": [
+          1,
+          2,
+          3
+      ],
+      "times": 3
+  },
+  "_owner": null,
+  "_store": {}
+}
+```
+  3-3   root.render 方法将虚拟 DOM 转换为真实 DOM，渲染到页面。
+  [具体实现原理见：github/handle.js](https://github.com/HelenZhangLP/react-18/blob/master/src/JSX/handle.js)
+
+## 类组件
+  ### 构造方法
+  ```javascript
+    class User extends React.Component {
+      constructor() {}
+    }
+  ```
+  <font color='red'>Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</font>
+  <font color='red'>引用错误：在访问 `this` 或从派生构造函数返回之前，必须调用派生类中调用 super 构造函数</font>
+
+  ```javascript
+    class User extends React.Component {
+      constructor() {
+        // super 关键字调用父类构造函数
+        super()
+      }
+    }
+  ```
+  <span class='custom-box custom-box-933'>为什么呢？</span><span class='custom-box custom-box-393'>super() 相当于 React.Component.call(this) 继承父类的 props, context, updater, refs 属性</span>
+
+  ### 继承
+  React 类组件是基于 `extends` 实现继承
+  ```javascript
+    class User extends React.Component {}
+  ```
+  ### React.Component 源码
+  构造函数 Component 中包含四个实例（私有）属性：props/context/refs/updater
+  ```javascript
+    function Component(props, context, updater) {
+      this.props = props
+      this.context = context
+      this.refs = emptyObject
+      this.updater = updater || ReactNoopUpdateQueue
+    }
+  ```
+  `class User extends React.Component {}` 是基于 `call` 继承父类私有方法属性
+  ```javascript
+    let user = new User()
+    Component.call(user)
+    console.log(user)
+    /**
+     * {
+     *  "context": undefined 
+     *  "props" : undefined
+        "refs": {},
+        "updater": {}
+      }   
+      [[Prototype]] : Object
+     * /
+  ```
+  再基于原型继承，继承原型属性 <span class='custom-box custom-box-939'>`Info.prototype => Component.prototype => Object.prototype`</span>
+  ```javascript
+    Class Info extends React.Component {}
+    let info = Info()
+  ```
+  那么 Info 的实例 info 具备了 React.Component 与 Object 上的原型方法
+
+
+## hooks 组件
 
 ##  react 中创建组件的三种方式
 ### 1.  ES5 写法：React.createClass()
