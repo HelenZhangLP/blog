@@ -7,6 +7,9 @@ tags:
 
 
 组件命名采用 PascalCase 命名规则。
+函数组件是静态组件，指的是，基于内部操作让组件更新，父组件更新，子组件才会更新。
+类组件是动态组件，除父组件更新，触发 props 更新外，还可以通过 this.setState 或 this.forceUpdate 修改组件状态
+
 ## 函数组件
 返回 jsx 视图（JSX 元素，VirturalDOM 虚拟对象）的函数。
 设置的属性值不是<span class='custom-box custom-box-933'>字符串</span>格式，<span class='custom-box custom-box-393'>要基于`{}`进行嵌套</span>
@@ -86,10 +89,11 @@ React.createElement(ComponentDEMO, {
 
   ### 继承
   React 类组件是基于 `extends` 实现继承
+
   ```javascript
     class User extends React.Component {}
   ```
-  ### React.Component 源码
+  #### React.Component 源码
   构造函数 Component 中包含四个实例（私有）属性：props/context/refs/updater
   ```javascript
     function Component(props, context, updater) {
@@ -121,6 +125,34 @@ React.createElement(ComponentDEMO, {
   ```
   那么 Info 的实例 info 具备了 React.Component 与 Object 上的原型方法
 
+  ### 内部原理
+  ```javascript
+    // index.js
+    root.render(<Info name="hel"/>)
+  ```
+  ----
+  ```javascript
+    Class Info extends React.Component {
+      /* 属性规则检验 */
+      static defaultProps = {
+        num: 0
+      }
+      static propsType = {
+        title: PropTypes.string.isRequired,
+        num: PropTypes.number
+      }
+      constructor(props) {
+        super()
+        console.log(Object.isFrozen(props)) // true
+      }
+    }
+  ```
+  ```mermaid
+    flowchart TB
+    start["index.js run render"] --> render["new Info({name:'helen'})"]
+    render --> ruleInspection["1.constructor 初始化属性&&规则检验"]
+    ruleInspection --> initState["初始化状态"]
+  ```
 
 ## hooks 组件
 

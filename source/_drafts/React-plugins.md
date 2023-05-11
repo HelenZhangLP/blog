@@ -2,7 +2,7 @@
 title: react plugins
 date: 2021-05-25 10:15:56
 tags:
-- react
+- React
 ---
 
 ## react-dev-inspector

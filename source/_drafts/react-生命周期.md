@@ -4,17 +4,224 @@ tags:
 - React
 ---
 
+
 ```mermaid
- sequenceDiagram
-	rect rgb(200, 150, 255)
-	par Render 阶段
-	    创建时->>更新时: Go help John
-		and
-		更新时->>卸载时: 
-	end
-	end
- 创建时-->>更新时: Hi Alice!
- 更新时-->>卸载时: Hi Alice!
+  flowchart TB
+  subgraph 初次渲染阶段
+    subgraph 初始化阶段
+      step1[初始化属性&&考验规则] --> stpe2[初始化状态]
+    end
+    subgraph 第一次渲染之前
+      step3[UNSAFE_ComponentWillMount]
+    end
+    subgraph 第一次渲染
+      step4[render] --> step5[componentDidMount]
+    end
+    初始化阶段 --> 第一次渲染之前
+    第一次渲染之前 --> 第一次渲染
+  end
+
+  subgraph 组件更新
+    condition1{属性改变 or 状态改变} -->|属性改变| step6_1[UNSAFE_componentWillReceiveProps]
+    condition1 -->|状态改变| step6[shouldComponentUpdate]
+    step6_1 --> step6
+    step6 --> step7[componentWillUpdate]
+    step7 -->|dom-diff| step8[render]
+    step8 --> step9[componentDidUpdate]
+  end
+
+  subgraph 组件销毁
+    step10[componentwillUnmount]
+  end
+
+  初次渲染阶段 --> 组件更新
+  组件更新 --> 组件销毁
+```
+> UNSAFE_* 屏蔽 warning
+
+## 第一次渲染
+### step1 —— 初始化属性&&考验规则
+```JavaScript
+class Vote extends React.Component {
+  /**
+   * method1: handle init props in constructor function(在 constructor 中初始化属性)
+    constructor(props) {
+      super(props) // 把传递进来的 {...props} 挂载到 this
+    }
+  */
+ /**
+  * method2: 不通过显式声明 constructor 初始化属性，react 内部机制会处理
+  */
+}
+```
+### step2 —— 初始化状态
+状态修改，触发视图更新，`React.Component.prototype.setState` 与 `React.Component.prototype.forceUpdate` 都可以更新视图。
+<span class='custom-box custom-box-933'>`React.Component.prototype.forceUpdate` 这种方式不推荐使用，因为：</span>
+<span class='custom-box custom-box-939'>`react.component.forceUpdate` 不会触发 shouldComponentUpdate 生命周期更新。</span>
+
+```JavaScript
+class Vote extends React.Component {
+  state = {
+    supportVote: 0,
+    nagativeVote: 0
+  } // 默认值为 null
+
+  render() {
+    let {supportVote, nagativeVote} = this.state
+    return <>
+      <button onClick={()=>{
+        this.setState({
+          supportVote: ++supportVote
+        })
+      }}>赞成{supportVote}</button>
+      <button onClick={()=>{
+        this.state.nagativeVote++
+        this.forceUpdate()
+      }}>反对{nagativeVote}</button>
+    </>
+  }
+}
+```
+
+### step3 —— ComponentWillMount
+非严格模式下：<font color='#ffa'>Warning: componentWillMount has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.</font>`componentWillMount`已被重命名，不推荐使用。
+严格模式下：<font color='red'>react-dom.development.js:86 Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.</font>
+```JavaScript
+class Vote extends React.Component {
+  state = {
+    supportVote: 0,
+    nagativeVote: 0
+  } // 默认值为 null
+
+  componentWillMount() {
+    console.log('组件渲染前 componentWillMount')
+  }
+
+  render() {
+    let {supportVote, nagativeVote} = this.state
+    return <>
+      <button onClick={()=>{
+        this.setState({
+          supportVote: ++supportVote
+        })
+      }}>赞成{supportVote}</button>
+      <button onClick={()=>{
+        this.state.nagativeVote++
+        this.forceUpdate()
+      }}>反对{nagativeVote}</button>
+    </>
+  }
+}
+```
+
+### step4 —— render
+组件渲染阶段
+
+### step5 —— componentDidMount
+第一次渲染结束，virtualDOM 已经更新成完真实 DOM，可以进行 DOM 操作
+
+## 组件更新
+### step6 —— shouldComponentUpdate
+是否允许组件更新，<span class='custom-box custom-box-933'>`react.component.forceUpdate` 不会触发 shouldComponentUpdate 生命周期更新。</span>
+```javascript
+class Vote extends React.Component {
+  state = {
+    supportVote: 0,
+    nagativeVote: 0
+  } // 默认值为 null
+
+  componentWillMount() {
+    console.log('组件渲染前 componentWillMount')
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount：组件已挂载至页面')
+  }
+
+  /**
+   * 状态修改，触发组件更新
+   * @param {*} nextProps 要修改的属性
+   * @param {*} nextState 要修改的状态
+   * @returns boolean 是否允许更新
+   */  
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate: 是否允许组件更新',this.state, nextState)
+
+    /**
+     * return true 允许更新，执行下一个操作
+     * return false 不允许更新
+     */
+    return true
+  }
+
+  render() {
+    let {supportVote, nagativeVote} = this.state
+    return <>
+      <button onClick={()=>{
+        this.setState({
+          supportVote: ++supportVote
+        })
+      }}>赞成{supportVote}</button>
+      <button onClick={()=>{
+        this.state.nagativeVote++
+        this.forceUpdate()
+      }}>反对{nagativeVote}</button>
+    </>
+  }
+}
+```
+### step7 —— componentWillUpdate
+<font color='#ffa'>Warning: componentWillUpdate has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+</font>
+> 这个阶段状态未更新
+
+```javascript
+class Vote extends React.component {
+  ...
+  componentWillUpdate(){
+    console.log('componentWillUpdate:', this.state) // {
+    //    "supportVote": 0,
+    //    "nagativeVote": 0
+    // }
+  }
+  render() {
+    return <>...</>
+  }
+}
+```
+### step8 —— render
+### step9 —— componentDidUpdate
+组件更新完毕
+
+## 父子组件渲染
+React 组件更新遵循深度优先原则，父组件在操作中遇到子组件，一定是把子组件处理完后，才继续处理父组件。
+### 父组件第一次渲染
+```mermaid
+flowchart TB
+  step1([父组件 ComponentWillMount]) --> step2([父组件 render])
+  subgraph " "
+    step3[子组件 ComponentWillMount] --> step4[子组件 render]
+    step4 --> step5[子组件 ComponentDidMount]
+  end
+
+  step2 --> step3[子组件 ComponentWillMount]
+  step5 --> step6([父组件 ComponentDidMount])
+```
+
+### 父组件更新
+```mermaid
+flowchart TB
+  step1([父组件 shouldComponentUpdate]) --> step2([父组件 ComponentWillUpdate])
+  step2 --> step3([父组件 render])
+  subgraph " "
+    step4[子组件 componentWillReceiveProps] --> step4_1[子组件 shouldComponentUpdate]
+    step4_1 --> step5[子组件 ComponentWillUpdate]
+    step5 --> step6[子组件 render]
+    step6 --> step7[子组件 componentDidUpdate]
+  end
+
+  step3 --> step4
+  step7 --> step8([父组件 ComponentDidUpdate])
 ```
 
 {%plantuml%}
