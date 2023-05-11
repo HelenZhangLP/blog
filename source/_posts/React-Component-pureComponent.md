@@ -76,7 +76,7 @@ obj2.obj 与 obj1.obj 引用地址相同，值不同。第一级只比较引用�
 
 ## React.Component 与 React.PureComponent 的区别
 > PureComponent 会给类组件默认加一个 shouldComponentUpdate 周期函数，在该生命周期中，会对新老属性、状态做浅比较，比较结果返回 false，视力不会更新。
-[如 Demo]()
+[如 Demo](https://github.com/HelenZhangLP/react-18/blob/master/src/Component/pureComponent.jsx)
 ```JavaScript
 addBox = () => {
     let {boxs} = this.state
