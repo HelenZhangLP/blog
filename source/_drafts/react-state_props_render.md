@@ -351,4 +351,3 @@ React 列表中使用 key 帮助 react 框架识别元素的改变，识别一�
 React 特取有效性，key 值权权会传递信息给 React 框架，用户的自定义组件无法读取
 React 表单与HTML表单默认行为相同，在 React 环境中执行 HTML 代码仍然有效
 
-HTML 表单是自己管理自己的状态，根据用户输入修改状态。而 React 组件属于受控组件，它的状态由 state 管理，需要改变时，通过 setState 修改其状态
