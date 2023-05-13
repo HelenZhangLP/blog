@@ -1,13 +1,20 @@
 ---
-title: react 整理
+title: React 整理
 date: 2019-03-19 18:06:55
 tags:
 - JavaScript
 - React
 ---
 
-## index.jsx 
+## 入口文件——index.jsx 
 vscode 支持 jsx 方法高亮，快捷输入，emmet
+### React-16
+```JavaScript
+import React from 'react' // React 语法核心库
+import ReactDOM from 'react-dom' // 构建 HTML(WebApp) 的核心
+ReactDOM.render(<>React16 入口文件</>, document.getElementById('root'))
+```
+### React-18
 ```javaScript
 // index.jsx
 import React from 'react' // React 语法核心库

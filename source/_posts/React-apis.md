@@ -59,6 +59,16 @@ root.render(<>...</>)
 [createElement and render 手动实现](https://github.com/HelenZhangLP/react-18/blob/master/src/JSX/handle.js)
 > 在 React 18 中，render 函数已被 createRoot 函数所取代。
 
+### React 条件渲染
+设计人员创建不同的组件来封装各种业务需求，然后依据需求的不同状态，渲染对应状态下的局部内容
+1. 使用 if 条件判断，分别渲染两种状态下的组件
+2. 逻辑与运算符条件渲染
+
+react 创建、转换、使用列表
+React 列表中使用 key 帮助 react 框架识别元素的改变，识别一个元素 key 最好是在其所在列表中独一无二
+React 特取有效性，key 值权权会传递信息给 React 框架，用户的自定义组件无法读取
+React 表单与HTML表单默认行为相同，在 React 环境中执行 HTML 代码仍然有效
+
 ## Children
 Children lets you manipulate and transform the JSX you received as the children prop.
 Children 可以操作和转换 props.children 中接收到的 JSX

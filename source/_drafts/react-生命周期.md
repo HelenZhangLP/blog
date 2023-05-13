@@ -4,38 +4,39 @@ tags:
 - React
 ---
 
-
 ```mermaid
-  flowchart TB
+  flowchart LR
   subgraph 初次渲染阶段
     subgraph 初始化阶段
-      step1[初始化属性&&考验规则] --> stpe2[初始化状态]
-    end
-    subgraph 第一次渲染之前
-      step3[UNSAFE_ComponentWillMount]
+      start([strart]) -->|初始化属性&&考验规则|step1[getDefaultProps]
+      step1 -->|初始化状态| stpe2[getInitialState]
     end
     subgraph 第一次渲染
-      step4[render] --> step5[componentDidMount]
+      step3["~UNSAFE_ComponentWillMount~"] --> step4[render]
+      step4 --> step5[componentDidMount]
     end
-    初始化阶段 --> 第一次渲染之前
-    第一次渲染之前 --> 第一次渲染
+    初始化阶段  --> 第一次渲染
   end
-
+```
+```mermaid
+  flowchart LR
+  第一次渲染 --> 组件更新
   subgraph 组件更新
-    condition1{属性改变 or 状态改变} -->|属性改变| step6_1[UNSAFE_componentWillReceiveProps]
-    condition1 -->|状态改变| step6[shouldComponentUpdate]
+    condition1{属性改变 or 状态改变} -->|属性改变| step6_1["~UNSAFE_componentWillReceiveProps~"]
+    condition1 -->|状态改变| step6{shouldComponentUpdate}
     step6_1 --> step6
-    step6 --> step7[componentWillUpdate]
+    step6 -->|yes| step7[componentWillUpdate]
     step7 -->|dom-diff| step8[render]
     step8 --> step9[componentDidUpdate]
   end
-
+```
+```mermaid
+  flowchart LR
+  初次渲染阶段 --> 组件更新
+  组件更新 --> 组件销毁
   subgraph 组件销毁
     step10[componentwillUnmount]
   end
-
-  初次渲染阶段 --> 组件更新
-  组件更新 --> 组件销毁
 ```
 > UNSAFE_* 屏蔽 warning
 

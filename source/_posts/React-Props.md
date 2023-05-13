@@ -110,3 +110,97 @@ render prop 是一个用于告知组件需要渲染什么内容的函数 prop
 
 ## 使用 props 而非 render
 render prop 是因为模式才被称为 render prop，<u>`任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被 称为 render prop`</u>
+
+### React Props 只读
+> props 只读属性，需要添加 readOnly，或通过 onChange 属性修改 state，或将从 props 中取出的属性设置为 defaultValue
+
+将上面示例代码中的 readOnly 属性去掉，代码如下：
+```javascript
+...
+function Test(props) {
+  return <input type="text" value={props.test} />
+}
+...
+function FormLogin() {
+  return (
+    <div>
+      <FormTitle />
+      <UserID userId="001" />
+      <UserName userName="Audery" />
+      <Submit />
+      <Test test="1" />
+    </div>
+  )
+}
+```
+`Warning: Failed prop type: You provided a 'value' prop to a form field without an 'onChange' handler. This will render a read-only field. If the field should be mutable use 'defaultValue'. Otherwise, set either 'onChange' or 'readOnly'.
+    in input (created by Test)
+    in Test (created by FormLogin)
+    in div (created by FormLogin)
+    in FormLogin`
+属性类型错误，给没有 onchange 事件的表单提供了 value 属性，如果字段可变的使用 defaultValue，否则，设置 onChange 或 readOnly
+
+### React Props 默认值
+> 在 react 类组件中定义一个默认 props——defaultProps（函数组件可以通过 参数传递 props），使用 defaultProps 默认值来实现 React Props 应用
+
+```javascript
+class ImgTest extends React.Component {
+  render() {
+    return <img src={this.props.src} alt="" style={this.props.style}/>
+  }
+}
+
+ImgTest.defaultProps = {
+  src: "https://www.baidu.com/img/PCpad_012830ebaa7e4379ce9a9ed1b71f7507.png",
+  style: {
+    margin: "0 auto",
+    width: "270px",
+    height: "129px"
+  }
+}
+```
+
+## React Props
+是组件之间的桥梁，负责组件之间的通信
+> props 不可改变，props 的值只能从默认属性和父组件中传递过来
+
+```html
+<script type="text/babel">
+  let root = document.querySelector('#root');
+  const {Input, Button} = antd
+
+  function FormTitle() {
+    return <h1>UserLogin</h1>
+  }
+
+  function Test(props) {
+    return <input type="text" value={props.test} readOnly />
+  }
+
+  function UserID(props) {
+    return <Input placeholder="UserID" value={props.userId} />
+  }
+
+  function UserName(props) {
+    return <Input placeholder="UserName" value={props.userName} />
+  }
+
+  function Submit() {
+    return <Button type="primary" block>Submit</Button>
+  }
+
+  function FormLogin() {
+    return (
+      <div>
+        <FormTitle />
+        <UserID userId="001" />
+        <UserName userName="Audery" />
+        <Submit />
+        <Test test="1" />
+      </div>
+    )
+  }
+
+  ReactDOM.render(<FormLogin />, root)
+</script>
+```
