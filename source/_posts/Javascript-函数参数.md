@@ -3,7 +3,7 @@ title: Javascript-函数参数
 date: 2023-02-03 12:16:15
 tags:
 - Function
-- Javascript
+- JavaScript
 ---
 
 ## 形参（parameter）
