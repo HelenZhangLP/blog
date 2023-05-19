@@ -22,7 +22,7 @@ date: 2021-03-09 09:21:31
   export default class pop extends Component {
     // construct 用于初始化组件的 state及绑定事件
     construct(props) {
-      // 调用父类的 construct 方法，即调用 react.Component 的构造方法。用于完成 react 组件的初始化工作，保证 props 传入组件
+      // 调用父类的 construct 方法，即调用 react.Component 的构造方法。用于完成 reasct 组件的初始化工作，保证 props 传入组件
       super(props);
       this.state = {
         isShow: false, // 展现形式的判断依据

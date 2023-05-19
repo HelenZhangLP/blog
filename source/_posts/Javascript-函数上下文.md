@@ -186,5 +186,3 @@ fn(function(i) {
 	button.addEventListener('click', bindDemo.click.bind(bindDemo)) 
 ```
 > click 函数调用绑定方法，<font color='#a33'>创建一个新函数</font>，该函数体一致，函数行为一致。this 指向绑定参数
-
-

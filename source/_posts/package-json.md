@@ -39,6 +39,13 @@ zhangliping@zhangliingdembp ~/Documents/vite  $ npm uninstall package -g # -g �
   },
   "devDependencies": {
     "webpack-cli": "^4.7.2"
+  },
+  "config": {
+    "server": 9000, // api 服务器端口号 [0-65525]
+    "cros": {
+      "open": false,
+      "safeList": [] // 基于 CROS 跨域请求，React/Vue 中，一般基于 Proxy 实现跨域
+    }
   }
 }
 ```
