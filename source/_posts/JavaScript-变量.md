@@ -1,5 +1,5 @@
 ---
-title: JavaScript-变量
+title: JavaScript 变量
 tags:
   - JavaScript
 date: 2018-05-29 10:13:25

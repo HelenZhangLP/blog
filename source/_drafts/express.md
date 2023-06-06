@@ -207,6 +207,7 @@ app.use('/api', router) // 注册路由模块
 ```
 ### Express 中间件的格式
 Express 中间件，<span class='custom-box custom-box-393'>本质上是一个带有 `next` 参数的 funtion 处理函数</span>
+#### 定义一个中间件
 ```JavaScript
 var express = require("express")
 var app = express()
@@ -226,6 +227,87 @@ app.get('/', function(req, res, next){
 })
 ```
 <span class='custom-box custom-box-933'>中间件函数的形参列表中，必须包含一个 next 参数。</span>路由处理函数中只包含 req 和 res。
+
+### 全局生效的中间件
+客户端发起的任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。
+<span class='custom-box custom-box-393'>通过 `app.use()` 中间件函数，可定义一个全局生效的中间件</span>
+
+```JavaScript
+    // 定义中间件函数
+    cont middleware = (req, res, next) {
+        // 流转关系转交给下一个中间件或路由
+        next()
+    }
+    // 注册全局生效的中间件函数
+    app.use(middleware)
+```
+中间件简化形式
+```JavaScript
+// 全局中间件的简化形式
+app.use((req, res, next) => {
+    next()
+})
+```
+#### 中间件的作用
+多个中间件之间，共享同一份 req 和 res。基于这个特性，我们可以在上流的中间件中，统一为 req 或 res 对象添加自定义的属性或方法，供下游的中间件或路由进行使用。
+```JavaScript
+// 中间件与路由之间共享 req/res 实例
+app.use((req, res, next)=>{
+    req.receivedTime = Date.now()
+    next()
+})
+
+app.get('/', (req, res) => {
+    console.log('请求到达服务器的时间：', req.receivedTime)
+})
+```
+### 定义多个中间件
+```JavaScript
+ app.use((res, req, next) => {console.log('第一个中间件')})
+ app.use((res, req, next) => {console.log('第二个中间件')})
+ app.get('/', (req, reqs) => {console.log('请求路由')})
+ // 第一个中间件 --> 第二个中间件 --> 请求路由
+```
+### 局部生效的中间件
+> 不使用 app.use() 定义的中间件为局部生效中间件。
+```JavaScript
+const middleware = function(req, res, next) {
+    console.log(`this is a locally effective middleware`)
+    next()
+}
+
+app.get('/', middleware, function(req, res) {
+    res.send('Index')
+})
+```
+### 多个局部生效的中间件
+```JavaScript
+    const middleware1 = function(req, res, next) {
+        console.log(`this is the first locally effective middleware`)
+        next()
+    }
+    const middleware2 = function(req, res, next) {
+        console.log(`this is the second locally effective middleware`)
+        next()
+    }
+
+    /**
+     * 以下两种写法都可以使用局部中间件
+     */ 
+    app.get('/', middleware1, middleware2, function(req, res) {
+        console.log('Index')
+    })
+    app.get('/users', [middleware1, middleware2], function(req, res) {
+        console.log('Index')
+    })
+```
+### 中间件使用注意事项
+*   一定要在路由之前注册中间件；
+*   客户端发送过来的请求，可以连续调用多个中间件进行处理；
+*   执行完中间件的业务代码后，不要忘记调用 next() 函数；
+*   为了防止代码逻辑混乱，调用 next() 函数之后不要再写其它代码；
+*   连续调用多个中间件时，多个中间件之间，共享 req 和 res;
+
 ## 能够使用常见的 `express` 中间件
 ## 使用 `express` 写接口
 ## 能够使用 `express` 创建 API 接口

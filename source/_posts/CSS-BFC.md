@@ -7,6 +7,8 @@ categories:
 tags:
 - CSS
 ---
+
+元素设置 position: absolute 或 float: left 会脱离文档流
 [个人的官方是 MDN 文档，信得过，值得依赖](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
 [同时借鉴 前端精选文摘：BFC 神奇背后的原理]（https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html）发现真正要理解 BFC 不仅仅要清楚创建块级格式化上下文的方式，还要清楚一些它布局的规则。
 

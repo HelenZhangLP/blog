@@ -60,7 +60,7 @@ React.createElement(
 ```javaScript
 // console.log(babel-compile.js) -> get virtualDOM
 {
-  "$$typeof": Symbol(react.element), 
+  "$$typeof": Symbol(react.element), // 用于标记 react 元素
   "type": Symbol(react.fragment),
   "key": null,
   "ref": null,
@@ -177,3 +177,151 @@ plugins: [
     whyDidYouUpdate(React)
   }
   ```
+
+## JSX 底层处理机制
+
+```mermaid
+flowchart LR
+a[JSX视图代码] -->|编译| b[虚拟 DOM 对象 VirtualDOM]
+b -->|构建| c[真实 DOM] 
+```
+> 第一次渲染页面直接从 vitureDom --> 真实 Dom；第一次以后更新需要 DOM-DIFF 对比，计算出PATCH（两次视图差异），渲染 Patch。
+
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart TB
+subgraph 第一次渲染
+a["<span>第一次渲染</span>"] --> b["VirtualDOM"]
+end
+subgraph 第二次渲染
+a2["<span>第一次渲染</span><span>第二次渲染</span>"] --> b1["new VirtualDOM"]
+b1 --> diff
+diff{对比 VirtualDOM && new VirtualDOM}  --> patch["get 补丁包"]
+end
+b -->|渲染 virtualDOM| c["真实 DOM"]
+patch -->|渲染补丁包|c
+```
+
+
+## Virtural DOM 的工作原理
+由 ReactNode 节点元素组成的树，一个 ReactNode 实例表示一个轻量的、无状态的、不可变的虚拟 DOM 元素。
+虚拟 DOM 树，最终由 ReactDOM.render 函数最终渲染到浏览器 DOM 树上，形成最终的界面效果。
+
+React 中最主要的类型就是 ReactElement，是 ReactNode 的主要数据来源。
+React Element 四个属性：`type , key, props, ref`
+
+虚拟 dom 的 diff 算法复杂度 $O(n^3)$，经过优化，最终把复杂度降低到 On
+
+## 操作 DOM（Document Object Model） 的几种方式
+### JavaScript 原生获取 DOM
+```JavaScript
+document.getElementById('id')
+document.querySelector('#id')
+document.getElementsByName('user')
+```
+[更多 Javascript 获取 DOM方式](/2021/06/11/JavaScript-Docment-Object-Model/)
+
+### jQuery 获取 DOM
+```JavaScript
+$('#id')
+$('.class')
+$('div')
+```
+
+> 以上两种方式都是直接**操作 DOM 元素**<u>达到视图更新的效果</u>
+
+## Vue 更新视图的方式
+```Vue
+<template>
+  <div id="app">
+    <h1>name: {{name}}</h1>
+  </div>
+</template>
+
+<scirpt>
+  export default {
+    data() {
+      return {
+        name: 'helen'
+      }
+    },
+    methods: {
+      changeName() {
+        this.name = 'zhangLP'
+      }
+    }
+  }
+</scirpt>
+```
+> Vue 改变数据 `this.name = 'zhangLP'` 触发视图改变
+
+## React 更新视图
+```React
+import React, {useState} from 'react'
+
+function App() {
+  // useState(initialState) 返回一个数组，第一个是状态值，第二个是更新状态函数 setState。下例中将setState 函数解构出赋值给 setOn
+  const [on, setOn] = useState(false)
+  return (<>
+    <div onClick={setOn(!on)}>{on ? '开' : '关'}</div>
+  </>)
+}
+
+export default App
+```
+> React 通过 setState() 更新状态，改变数据，触发视图更新
+
+**React + Vue ** 两个框架都是通过操作虚拟 DOM，完成视图更新的，具体如下**
+```mermaid
+graph LR
+subgraph 框架内完成
+A[虚拟 DOM] --> B(计算变更)
+end
+B(计算变量) --> |DIFF|C[操作真实 DOM]
+C[操作真实 DOM] --> D[视图更新]
+```
+
+## what's the Virtual DOM
+```html
+<body style="background-color: rgb(255, 255, 255);">
+    <h3>模拟虚拟 DOM</h3>
+    <ul>
+        <li>js 生成虚拟DOM</li>
+        <li>计算变更</li>
+    </ul>
+</body>
+```
+用 JS 模拟 DOM 生成的 DOM 结构
+```JavaScript
+{
+    tag: 'body',
+    props: {
+        style: 'background-color: rgb(255, 255, 255)'
+    },
+    children: [
+        {
+            tag: 'h1',
+            children: [
+                {text: '模拟虚拟 dom'}
+            ]
+        },
+        {
+            tag: 'ul'
+            children: [
+                {
+                    tag: 'li',
+                    children: [
+                        {text: 'js 生成虚拟 DOM'}
+                    ]
+                },
+                {
+                    tag: 'li',
+                    children: [
+                        {text: '计算变更'}
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```

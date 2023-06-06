@@ -118,3 +118,65 @@ inner 以后的事件不再传播
             })
     </script>
 ```
+
+## <font color='red'>document.body.addEventListener('click', function() {...} 无响应)</font>
+<span class='custom-box custom-box-933'>Reason: document.clientHeigyt = 0，body 没有高度。引起 body 没有高度的原因可能是子元素脱离文档流。</span>
+
+## <font color='red'>The path property of Event objects is non-standard.浏览器新的标准采用Event.composedPath()</font>
+> 当对象数组调用该 侦听器时返回事件路径。
+
+## 事件对象池
+
+## 关于移动端事件对象延迟
+<span class='custom-box custom-box-933'>移动端 click 有 300ms 延迟</span>，移动端 click 是单击事件，PC 端 click 为点击事件。
+<span class='custom-box custom-box-393'>连点两下，</span>PC 端会触发两次 click，一次 dblclick；移动端只会触发 dblclick。
+<span class='custom-box custom-box-339'>移动端单击事件：第一次点击后，监听 300ms，查看是否有第二次点击，有则是双击，没有为单击。</span>
+
+### 移动羰单手指事件模型
+```JavaScript
+export default class Demo1 extends Component {
+    state = {
+        touch: {
+            isMove: false,
+            x: 0,
+            y: 0
+        }
+    }
+    touchStart = (evt) => {
+        const finger = evt.changedTouches[0] // 手指事件信息
+        console.log(evt)
+        this.setState({
+            isMove: false,
+            x: finger.pageX,
+            y: finger.pageY
+        })
+    }
+    touchMove = evt => {
+        const finger = evt.changedTouches[0] // 手指事件信息
+        const {touch} = this.state
+        let x =finger.pageX - touch.x,
+            y = finger.pageY - touch.y
+
+        if (Math.abs(x) > 10 || Math.abs(y) > 10) {
+            this.setState({
+                isMove: true
+            })
+        }
+    }
+    touchEnd = () => {
+        const {touch} = this.state
+        if (touch.isMove) return
+        console.log('点击按钮了')
+    }
+    render() {
+        return <div>
+            <button 
+            onTouchStart={this.touchStart}
+            onTouchMove={this.TouchMove}
+            onTouchEnd={this.touchEnd}>mobileEvent</button>
+        </div>
+    }
+}
+```
+
+### FastClick 解决移动端使用 click 点击事件 300ms 延迟问题
