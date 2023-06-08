@@ -308,7 +308,108 @@ app.get('/', middleware, function(req, res) {
 *   为了防止代码逻辑混乱，调用 next() 函数之后不要再写其它代码；
 *   连续调用多个中间件时，多个中间件之间，共享 req 和 res;
 
-## 能够使用常见的 `express` 中间件
+### 中间件的分类
+错误级别中间件的作用：捕获整个项目中发生的异常错误，从而防止项目异常崩溃。
+> 错误级别中间件的 function 中，<span class='custom-box custom-box-339'>必须包含4个形参，</span>分别是 err,req,res,next 
+
+<span class='custom-box custom-box-933'>错误级别中间件必须在所有路由之后注册</span>
+
+```JavaScript
+// 1 导入 express 模块
+const express = require('express')
+// 2 创建 express 服务器实例
+const server = express()
+
+// 4 定义路由
+server.get('/', (req, res) => {
+    // 定义错误
+    throw new Error('服务器错误')
+    res.send('响应请求')
+})
+
+// 5 中件间捕获整个项目中发生的异常错误，从而防止项目异常崩溃。
+server.use((err, req, res, next) => {
+    console.log('错误：' + err.message)
+    res.send('Error：' + err.message )
+})
+
+// 3 调用 app.listen 方法，指定端口号启动 web 服务器
+server.listen(8090, function() {
+    console.log(`Express server running at http://127.0.0.1:8090`)
+})
+```
+### Express 内置中间件
+Express 4.16.0 版本开始，Express 内置了 3 个常用中间件
+*   `express.static` 快速托管静态资源（html,css,图片等）的内置中间件；
+*   `express.json` 解析 JSON 格式的请求体数据（4.16.0+ 可用）[demo for express.json](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo9/index.js)
+*   `express.urlencoded` 解析 URL-encoded 格式的请求体数据（4.16.0+ 可用）[demo for express.urlencoded](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo10/index.js)
+```JavaScript
+// 配置解析 application/json 格式数据的内置中间件
+app.use(express.json())
+// 解析 application/x-www/form-urlencoded 格式数据中间件
+app.use(express.urlencoded({extended: false}))
+```
+
+这些中间件，极大的提高了 Express 项目的开发效率及体验。
+
+#### 第三方中间件 body-parser
+第三方中间件可按需下载配置，从而提高开发效率。
+body-parser 用于解析请求体数据，在 express@4.16.0 之前经常使用
+```mermaid
+ flowchart LR
+ install[npm install body-parser] --> require[导入中间件 body-parser]
+ require --> use["app.use() 注册使用中间件"]
+```
+[demo for body-parser](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo11/index.js)
+
+### 自定义中间件
+<span class='custom-box custom-box-939'>手动模拟 express.urlencoded 中间件，解析 POST 提交到服务器的表单数据</span>
+```mermaid
+ flowchart TB
+ step1[定义中间件] --> step2[监听req的data事件]
+ step3[监听req的end事件] -->|使用 qureystring | step4[模块解析请求体数据]
+ step5[将解析的数据对象挂载到 req.body] --> step6[封装自定义对象为模块]
+ step2 --> step3
+ step4 --> step5
+```
+---
+
+```JavaScript
+// bodyparse.js
+// 自定义中间件
+const qs = require('qureystring')
+function middleware(req, res, next) {
+    // 监听 req 对象的 data 事件，获取客户端发送到服务器的数据
+    // 数据量大时，无法一次性发送完毕，客户端会进行数据切割，分批发送到服务器。req 的 data 事件可能会触发多次，需要每次触发 data 事件时，获取到的数据只是完整数据的一部分，需要手动拼接接收的数据
+
+    let str = '' // 存储客户端发送过来的请求体
+    // 监听 req 的 data 事件，拼接客户端发送回来的数据
+    req.on('data', (chunk) => {
+        str += chunk
+    })
+
+    // 监听 req 的 end 事件；TODO：把字符串格式的请求体数据，解析成对象格式
+    req.on('end', () => {
+        const body = qs.parse(str)
+        req.body = body;
+        next()
+    })
+}
+module.exports = middleware
+
+// ---------- next page ----------
+// index.js
+const bodyparse = require('./bodyparse')
+// 注册使用中间件
+app.use(bodyparse)
+```
+
+### 跨域中间件
+```mermaid
+ flowchart LR
+ install[安装 npm install cors] --> require["require('cors')"]
+ require --> registeration["app.use(cors())"]
+```
 ## 使用 `express` 写接口
 ## 能够使用 `express` 创建 API 接口
 ## 能够使用 `express` 中启用 cors 跨蹃资源共享

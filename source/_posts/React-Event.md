@@ -1,8 +1,10 @@
 ---
 title: React Event
 tags:
-- React
+  - React
+date: 2023-06-06 11:17:34
 ---
+
 
 ## 事件绑定
 ```JavaScript
