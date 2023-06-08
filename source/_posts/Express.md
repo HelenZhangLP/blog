@@ -1,10 +1,12 @@
 ---
 title: Express
 tags:
-- WebServer
-- node
-- Express
+  - WebServer
+  - node
+  - Express
+date: 2023-06-08 11:38:09
 ---
+
 
 
 [Express 中文网](expressjs.com.cn)，是用于开发 <span class='custom-box custom-box-393'>Web 网站服务器</span> 与 <span class='custom-box custom-box-393'>API 接口服务器</span>
@@ -410,6 +412,3 @@ app.use(bodyparse)
  install[安装 npm install cors] --> require["require('cors')"]
  require --> registeration["app.use(cors())"]
 ```
-## 使用 `express` 写接口
-## 能够使用 `express` 创建 API 接口
-## 能够使用 `express` 中启用 cors 跨蹃资源共享
