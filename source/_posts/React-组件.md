@@ -1,9 +1,10 @@
 ---
 title: React Component
-date: 2021-03-05 10:22:34
 tags:
-- React
+  - React
+date: 2021-03-05 10:22:34
 ---
+
 
 组件命名采用 PascalCase 命名规则。
 类组件是动态组件，除父组件更新，触发 props 更新外，还可以通过 this.setState 或 this.forceUpdate 修改组件状态

@@ -1,7 +1,9 @@
 ---
 title: React-函数组件
+date: 2023-06-15 13:11:43
 tags:
 ---
+
 
 ## 函数组件
 返回 jsx 视图（JSX 元素，VirturalDOM 虚拟对象）的函数。

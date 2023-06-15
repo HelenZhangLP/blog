@@ -1,8 +1,10 @@
 ---
 title: React Hooks
 tags:
-- React
+  - React
+date: 2023-06-15 13:12:13
 ---
+
 
 函数组件实现动态组件类组件的功能
 React 最新版本 v18.2，Hook 是 React 16.8 新增特性。可以在不编写 class 的情况下使用 state 以及其他 React 特性。
