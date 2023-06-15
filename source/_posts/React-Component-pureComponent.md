@@ -3,9 +3,8 @@ title: React.Component && React.PureComponent
 tags:
   - React
   - Component
-date: 2023-05-11 18:11:10
+date: 2021-05-11 18:11:10
 ---
-
 
 > Object.keys(obj) 与 Reflect.ownKeys(obj) 获取 对象 keys
 
@@ -13,15 +12,29 @@ date: 2023-05-11 18:11:10
 > 只比较对象的第一级，第一级以下，深层不进行比较
 ```JavaScript 
 /**
- * 入参是否为 Object 类型
  * @param {*} obj 
- * @returns 
+ * @return Boolean
  */
 function isObj(obj) {
-  return obj !== null && !/^object|function$/.test(typeof object)
+  return obj !== null && /^object|function$/.test(typeof obj)
 }
+```
+```mermaid
+ flowchart LR
+ start((开始)) --> step1{"isObj比较"}
+ step1 -->|是| step2{"===比较"}
+ step2 -->|是| step3{"keys.length比较"}
+ step3 -->|是| step4{"是否存在相同的key\n值是否相等"}
+ step4 -->|是| res1[浅比较相同]
+
+ step4 -->|否| res[不是同一对象]
+ step3 -->|否| res
+ step2 -->|否| res
+ step1 -->|否| res
+```
+```JavaScript
 /**
-* 对象对比函数
+* 浅比较函数
 * @param {*} obj1 
 * @param {*} obj2 
 * @returns 
@@ -44,7 +57,9 @@ function shallowEqual(obj1, obj2) {
   }
   return true
 }
-
+```
+---
+```JavaScript
 // obj1 与 ojb2 比较
 /**
  * 普通类型——属性相同，值不同
@@ -62,17 +77,18 @@ obj1 = {
 }
 console.log(obj1.obj, 'obj1') // {a: 'a'} 'obj1'
 
-obj.n = 3
+let o = obj
 obj2 = {
   x: 'obj',
-  obj: obj
+  obj: o
   // arr: [1,2]
 }
-console.log(obj2.obj, 'obj2') // {a: 'a', n: 3} 'obj2'
+obj2.obj.ccc = 111
+console.log(obj2.obj, 'obj2') // {a: 'a', ccc: 111} 'obj2'
 
 console.log(shallowEqual(obj1, obj2)) // true
 ```
-obj2.obj 与 obj1.obj 引用地址相同，值不同。第一级只比较引用地址。
+> obj2.obj 与 obj1.obj 具有相同的 key，值都是对象类型，虽然引用地址不同，但因为只作了第一级只比较，所以浅比较认为他们是相同的对象。
 
 ## React.Component 与 React.PureComponent 的区别
 > PureComponent 会给类组件默认加一个 shouldComponentUpdate 周期函数，在该生命周期中，会对新老属性、状态做浅比较，比较结果返回 false，视图不会更新。

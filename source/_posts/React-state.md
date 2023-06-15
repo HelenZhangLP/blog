@@ -5,7 +5,6 @@ tags:
 date: 2021-03-09 09:21:31
 ---
 
-
 * React 是单向数据流，自顶向下数据流，由父节点向子节点由上到下传递，通过更新 React 组件状态，实现重新渲染用户界面操作。
 * React 组件可以看成一个*** 状态机 ***（组件通过与用户交互，实现不同的状态，然后通过渲染 UI 保证用户界面和数据的一致性）。
 * React 通过 setState() 方法来更新状态（state）
@@ -71,18 +70,21 @@ Component.prototype.setState = function (partialState, callback) {...}
 
 ```mermaid
   flowchart TB
+  start((开始))
   callback["this.setState({},<b>callback</b>)"]
 
+  start --> callback
   callback --> shouldComponentUpdate{shouldComponentUpdate}
-  shouldComponentUpdate -->|yes| componentWillUpdate[componentWillUnMount]
+  shouldComponentUpdate -->|yes| componentWillUpdate[componentWillUpdate]
   componentWillUpdate --> render[render]
-  shouldComponentUpdate -->|no| callback
+  shouldComponentUpdate -->|no 返回执行callback| callback
   callback --> render
   render --> componentDidUpdate[componentDidUpdate]
 ```
 
 ### setState 执行是异步还是同步
-使用 React 内置的 setState() 修改 state，<span class='custom-box custom-box-393'>每当使用 setState() 时，React 会将需要更新的 state 合并后放入状态队列，触发调和过程（Reconciliation），每当使用 setState() 时，React 会将需要更新的 state 合并后放入状态队列，触发调和过程（Reconciliation）</span>，再根据新的状态结构重新渲染 UI 界面，React 会根据差异对界面进行最小化重新渲染
+使用 React 内置的 setState() 修改 state，<span class='custom-box custom-box-393'>每当使用 setState() 时，React 会将需要更新的 state 合并后放入状态队列，触发调和过程（Reconciliation）</span>，再根据新的状态结构重新渲染 UI 界面，<span class='custom-box custom-box-933'>React 会根据差异对界面进行最小化重新渲染</span>
+
 #### React18 中
 ```JavaScript
 export default class Demo extends React.Component {
@@ -174,8 +176,32 @@ export default class App extends React.Component {
 }
 ```
 > React16 对于异步操作（如：定时器，通过 addEventListener 手动绑定 Dom 事件） setState 的处理方式与 React18 不同，它会变成同步
+```mermaid
+flowchart TB
+subgraph "setState"
+sentences1["this.setState({x: ++x})"]
+sentences2["this.setState({y: ++y})"]
+sentences3["setTimeout(() => {
+        this.setState({z: ++z})   
+        console.log('setState z:', z) // render2 --> setState 同步
+      });"]
+end
 
-## flushSync
+subgraph "任务队列Reconciliation"
+  task1[修改x]
+  task2[修改y]
+end
+
+sentences1 -->|添加任务到队列|task1
+sentences2 -->|添加任务到队列|task2
+
+render[render]
+
+任务队列Reconciliation -->|批处理| render
+sentences3 -->|同步|render
+```
+
+## flushSync 强制刷新执行渲染
 ### 依赖当前的 state 计算下一个 state
 > 采用 `flushSync` 强制刷新执行渲染
 ```JavaScript

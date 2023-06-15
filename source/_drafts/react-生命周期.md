@@ -58,7 +58,7 @@ class Vote extends React.Component {
 ### step2 —— 初始化状态
 状态修改，触发视图更新，`React.Component.prototype.setState` 与 `React.Component.prototype.forceUpdate` 都可以更新视图。
 <span class='custom-box custom-box-933'>`React.Component.prototype.forceUpdate` 这种方式不推荐使用，因为：</span>
-<span class='custom-box custom-box-939'>`react.component.forceUpdate` 不会触发 shouldComponentUpdate 生命周期更新。</span>
+<span class='custom-box custom-box-939'>`React.Component.prototype.forceUpdate` 不会触发 shouldComponentUpdate 生命周期更新。</span>
 
 ```JavaScript
 class Vote extends React.Component {

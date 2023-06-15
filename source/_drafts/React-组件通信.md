@@ -95,8 +95,3 @@ class App extends React.component {
 多层组件嵌套时，用 props 层层传递可以实现通信，但不优雅。<u>可以使用 context 来实现跨级父子组件通信</u>
 context 为了共享对于一个组件树而言是“全局性”的数据，可以尽量减少逐层传递，<u>但并不建议使用 context</u>
 <font color="red">结构复杂时，全局变量不易追踪源头，会导致混乱，不易维护</font>
-
-4.  非嵌套组件通信
-
-4.  延伸
-## 组件的 ref 属性

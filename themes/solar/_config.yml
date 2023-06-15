@@ -58,7 +58,7 @@ rss: false
 mermaid: ## mermaid url https://github.com/knsv/mermaid
   enable: true  # default true
   startOnload: true  #default true
-  version: "9.0.1" # default v7.1.2
+  version: "10.2.3" # default v7.1.2
   options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
   theme: neutral
 

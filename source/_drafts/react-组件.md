@@ -1,34 +1,45 @@
 ---
-title: react component
+title: React Component
 date: 2021-03-05 10:22:34
 tags:
 - React
 ---
 
-
 组件命名采用 PascalCase 命名规则。
-函数组件是静态组件，指的是，基于内部操作让组件更新，父组件更新，子组件才会更新。
 类组件是动态组件，除父组件更新，触发 props 更新外，还可以通过 this.setState 或 this.forceUpdate 修改组件状态
 
-## 函数组件
-返回 jsx 视图（JSX 元素，VirturalDOM 虚拟对象）的函数。
-设置的属性值不是<span class='custom-box custom-box-933'>字符串</span>格式，<span class='custom-box custom-box-393'>要基于`{}`进行嵌套</span>
-1.  定义函数组件
-```JavaScript
-function demo1() {
-    return <>
-        <h3>这是一个函数组件</h3>
-    </>
-}
+```mermaid
+mindmap
+      组件
+        A(静态组件)
+        B[动态组件]
+          c))hooks 函数组件((
+          d)类组件(  
 
-export default demo1
 ```
-2.  调用函数组件
-```javascript
-  <ComponentDEMO className="App-header" style={{color: '#a33'}} title="function component demo" data={[1,2,3]} times={3} />
+## 函数组件
+* 函数组件是静态组件，父组件更新，子组件才会更新，无法基于组件内部的操作控制更新。<i>不具备”[状态](/2021/03/09/React-State/)、[ref](/2021/05/11/React-Refs/)、[周期函数]()等“</i>
+* 函数组件有属性、插槽、父组件可以控制重新渲染；
+* 渲染流程简单，渲染速度快；
+* 基于 FP（函数式编程）思想设计，提供更细粒度的逻辑组织和复用。
+
+## 类组件
+* 具备“状态，[ref](2021/05/11/React-Refs/)，属性、插槽“ 等，可灵活控制组件更新，基于钩子函数也可灵活掌控不同阶段处理不同事项；
+* 渲染流程繁琐，渲染速度慢；
+* 基于 OOP（面向对象）思想设计，更方便实现继承
+
+## Hooks 组件
+* 让函数组件动态化，React 16.8 新增特性，只能运用到函数组件中。
+
+## 组件渲染机制
+```mermaid
+ flowchart LR
+ jsx[jsx 视图] -->|babel-preset-react-app 转义| react[react 原生]
+ react -->|"运行 React.createElement..."| virtualDOM[virtualDOM]
+ virtualDOM -->|root.render| realDOM[真实DOM]
 ```
-3. 渲染机制
-  3-1   经过 babel-preset-react-app 转义为 react 原生为：
+
+### 经过 babel-preset-react-app 转义为 react 原生为：
 ```javascript
 React.createElement(ComponentDEMO, {
   className: "App-header",
@@ -40,7 +51,8 @@ React.createElement(ComponentDEMO, {
   times: 3
 });
 ```
-  3-2   执行 React.createElement 生成 virtualDOM
+
+### 执行 React.createElement 生成 virtualDOM
 ```javascript
 {   
   "$$typeof": Symbol(react.element)
@@ -64,97 +76,8 @@ React.createElement(ComponentDEMO, {
   "_store": {}
 }
 ```
-  3-3   root.render 方法将虚拟 DOM 转换为真实 DOM，渲染到页面。
+### root.render 方法将虚拟 DOM 转换为真实 DOM，渲染到页面。
   [具体实现原理见：github/handle.js](https://github.com/HelenZhangLP/react-18/blob/master/src/JSX/handle.js)
-
-## 类组件
-  ### 构造方法
-  ```javascript
-    class User extends React.Component {
-      constructor() {}
-    }
-  ```
-  <font color='red'>Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor</font>
-  <font color='red'>引用错误：在访问 `this` 或从派生构造函数返回之前，必须调用派生类中调用 super 构造函数</font>
-
-  ```javascript
-    class User extends React.Component {
-      constructor() {
-        // super 关键字调用父类构造函数
-        super()
-      }
-    }
-  ```
-  <span class='custom-box custom-box-933'>为什么呢？</span><span class='custom-box custom-box-393'>super() 相当于 React.Component.call(this) 继承父类的 props, context, updater, refs 属性</span>
-
-  ### 继承
-  React 类组件是基于 `extends` 实现继承
-
-  ```javascript
-    class User extends React.Component {}
-  ```
-  #### React.Component 源码
-  构造函数 Component 中包含四个实例（私有）属性：props/context/refs/updater
-  ```javascript
-    function Component(props, context, updater) {
-      this.props = props
-      this.context = context
-      this.refs = emptyObject
-      this.updater = updater || ReactNoopUpdateQueue
-    }
-  ```
-  `class User extends React.Component {}` 是基于 `call` 继承父类私有方法属性
-  ```javascript
-    let user = new User()
-    Component.call(user)
-    console.log(user)
-    /**
-     * {
-     *  "context": undefined 
-     *  "props" : undefined
-        "refs": {},
-        "updater": {}
-      }   
-      [[Prototype]] : Object
-     * /
-  ```
-  再基于原型继承，继承原型属性 <span class='custom-box custom-box-939'>`Info.prototype => Component.prototype => Object.prototype`</span>
-  ```javascript
-    Class Info extends React.Component {}
-    let info = Info()
-  ```
-  那么 Info 的实例 info 具备了 React.Component 与 Object 上的原型方法
-
-  ### 内部原理
-  ```javascript
-    // index.js
-    root.render(<Info name="hel"/>)
-  ```
-  ----
-  ```javascript
-    Class Info extends React.Component {
-      /* 属性规则检验 */
-      static defaultProps = {
-        num: 0
-      }
-      static propsType = {
-        title: PropTypes.string.isRequired,
-        num: PropTypes.number
-      }
-      constructor(props) {
-        super()
-        console.log(Object.isFrozen(props)) // true
-      }
-    }
-  ```
-  ```mermaid
-    flowchart TB
-    start["index.js run render"] --> render["new Info({name:'helen'})"]
-    render --> ruleInspection["1.constructor 初始化属性&&规则检验"]
-    ruleInspection --> initState["初始化状态"]
-  ```
-
-## hooks 组件
 
 ##  react 中创建组件的三种方式
 ### 1.  ES5 写法：React.createClass()
@@ -188,9 +111,9 @@ React.createElement(ComponentDEMO, {
 ```
 <font color="red">**createClass 内的方法会正确绑定 this 到 React 类的实例上，会导致一定的性能开销**</font>
 
-<!--more-->
 ### 2.  ES6 写法：React.Component
 创建有状态组件，能更好的实现代码利用
+<span class='custom-box custom-box-933'>ES6之前：</span>**需要手动绑定 this**
 
 ```javascript
 import React from 'react';
@@ -206,7 +129,7 @@ class Test extends React.component {
 
   onModify() {
     this.setState({
-      text: 'ES6 需要手动绑定 this'
+      text: 'ES6 之前需要手动绑定 this'
     })
   }
 
@@ -225,7 +148,47 @@ class Test extends React.component {
   }
 }
 ```
-<font color="red">**需要手动绑定 this**</font>
+<span class='custom-box custom-box-933'>ES6：</span>**使用箭头函数，继承当前实例上下文**
+
+```JavaScript
+import React from "react";
+import {Button} from 'antd'
+
+export default class Demo extends React.Component {
+    state = {
+        num: 0
+    }
+
+    componentDidMount() {
+        console.log(this, 'componentDidMount')
+    }
+
+    /**
+     * handleBtn1() {...} 相当于给 Demo.prototype.handleBtn，即给原型上公共方法
+     * this = undefined
+     * this.handleBtn1.bind(this) 指定 this 实例
+     */
+    handleBtn1() {}
+    
+    /**
+     * 相当于添加【实例属性】Demo.hadnleBtn = ()=>{}
+     * 箭头函数的this继承实例自上下文
+     */
+    handleBtn = () => {
+        console.log(this)
+        let {num} = this.state
+        this.setState({
+            num: ++num
+        })
+    }
+
+    render() {
+        return <div>
+            <Button type="primary" onClick={this.handleBtn}>按钮{this.state.num}</Button>
+        </div>
+    }
+}
+```
 
 ### 3.  无状态函数写法，又称线组件 SFC
 > 可读性好，大大减少代码代码量
