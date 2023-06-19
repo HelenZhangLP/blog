@@ -123,7 +123,7 @@ function useState(initialValue) {
 }
 ```
 
-### hooks 多状态
+### 函数组件处理多状态
 * 方法一，useState 不能部分修改状态
 ```javascript
 let [state, setState] = useState({
@@ -239,12 +239,263 @@ handle() {
 ```
 <span class='custom-box custom-box-393'>点击后渲染 1，最终渲染结果是 20. updater 队列中存储的是 10 个回调函数，每次执行回调时，拿到的是上一个计算出的 x 的值。合并处理后，渲染一次，值为 20</span>
 
+## useEffect
+```JavaScript
+import React, {useEffect, useState} from "react"
 
+function Demo() {
+    let [num, setNum] = useState(0)
+    useEffect(() => {
+        console.log('effect', document.getElementsByTagName('div'))
+    })
+    console.log('render')
+    return <div>useEffect,{num}</div>
+}
 
-### 在组件之间复用状态逻辑很难附加到组件的途径
-没有提供将可复用性行为
-<u>React 需要为共享状态逻辑提供更好的原生途径</u>
+export default Demo
+```
+```mermaid
+ flowchart TB
+ subgraph "第一次渲染【componentDidMount】"
+    render --> useEffect
+ end
 
-### 复用组件难以理解
+ subgraph "更新【componentDidUpdate】"
+ render1[render] --> useEffect1[useEffect]
+ end
+```
+> `useEffect(callback)` 第一次渲染完后，执行 callback。更新完成后，同样再次执行 callback
 
-### 难以理解的 class
+### 依赖项为空
+```JavaScript
+...
+useEffect(() => {
+    console.log('effect', document.getElementsByTagName('div'))
+},[])
+...
+```
+
+### 多个依赖项
+> 任一依赖项变化，触发 callback 执行
+```JavaScript
+...
+useEffect(() => {
+    console.log('effect', document.getElementsByTagName('div'))
+},[ids, name])
+...
+```
+<span class='custom-box custom-box-933'>依赖项类似与 ComponentShouldUpdate</span>
+
+### effect 第一渲染不执行，更新的时候运行 callback 返回的函数
+```JavaScript
+...
+useEffect(() => {
+    return ()=>{
+        console.log('effect', document.getElementsByTagName('div'))
+    }
+})
+...
+```
+
+### useEffect 原理分析
+```JavaScript
+import React, {useEffect, useState} from "react"
+
+function Demo() {
+    let [num, setNum] = useState(0)
+    useEffect(() => {
+        console.log('effect', '无依赖')
+    })
+
+    useEffect(()=>{
+        console.log('effect', '依赖为空')
+    },[])
+
+    useEffect(()=>{
+        console.log('effect', '依赖 num 的变化')
+    },[num])
+
+    useEffect(()=>{
+        return () => {
+            console.log('effect', '返回函数')
+        }
+    })
+
+    function handle() {
+        setNum(1)
+    }
+
+    console.log('render')
+    return <button onClick={handle}>useEffect,{num}</button>
+}
+```
+---
+```mermaid
+ flowchart TB
+ subgraph 第一次渲染
+    subgraph render
+        s1["num=0 setNum(){}"]
+        s2["useEffect(()=>{
+            console.log('effect 无依赖')
+        })"]
+        s3["useEffect(()=>{
+            console.log('effect 依赖为空')
+        },[])"]
+        s4["useEffect(()=>{
+            console.log('effect 依赖为num')
+        },[num])"]
+        s5["useEffect(()=>{
+            return () => {
+                console.log('effect 无依赖，无输出，返回函数')
+            }
+        },[num])"]
+    end
+    subgraph effect链表
+        se1["effect 无依赖"]
+        se2["effect 依赖为空"]
+        se3["effect 依赖为num"]
+        se4["effect 无依赖，无输出，返回函数"]
+    end
+
+    render -->|"MountEffect callback 中的依赖项加入链表"| effect链表
+    subgraph output
+        a["effect 无依赖"]
+        b["effect 依赖为空"]
+        c["effect 依赖为num"]
+    end
+ end
+ subgraph 更新
+    subgraph updater
+        s11["num=0 setNum(){}"]
+        s21["useEffect(()=>{
+            console.log('effect 无依赖')
+        })"]
+        s31["useEffect(()=>{
+            console.log('effect 依赖为空')
+        },[])"]
+        s41["useEffect(()=>{
+            console.log('effect 依赖为num')
+        },[num])"]
+        s51["useEffect(()=>{
+            return () => {
+                console.log('effect 无依赖，无输出，返回函数')
+            }
+        },[num])"]
+    end
+    subgraph effect链表1
+        se11["effect 无依赖"]
+        se21["effect 依赖为空"]
+        se31["effect 依赖为num"]
+        se41["effect 无依赖，无输出，返回函数"]
+    end
+    subgraph output1
+        a1["effect 无依赖，无输出，返回函数"]
+        b1["effect 无依赖"]
+        c1["effect 依赖为num"]
+    end
+ end
+ 第一次渲染 -->|"点击按钮，修改 num 状态"| 更新
+```
+
+### Error - 1
+<font color='red'>Line 26:9:  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks</font>
+<span class='custom-box custom-box-393'>每次渲染 react hooks 都要以相同的顺序在组件中调用</span>
+
+```JavaScript
+if(num > 5) {
+    useEffect(() => {
+        console.log(`${num} > 5`)
+    })
+}
+```
+/** 正确方式 **/
+```JavaScript
+useEffect(() => {
+    if(num > 5) {
+        console.log(`${num} > 5`)
+    }
+},[num])
+```
+### Error - 2
+<font color='red'>react-dom.development.js:86 Warning: useEffect must not return anything besides a function, which is used for clean-up.
+It looks like you wrote useEffect(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:
+useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); // Or [] if effect doesn't need props or state</font>
+
+```JavaScript
+useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); 
+```
+
+### Error-3 <font color='red'>快速点击 btn 后，样式或内容会有短暂的闪烁</font>
+```JavaScript
+export default function Demo() {
+    let [num, setNum] = useState(0)
+    useLayoutEffect(()=>{
+        if(!num) setNum(10)
+    },[num])
+    function handleIncremental() {
+        setNum(0)
+    }
+    console.log('render')
+    return <div style={{backgroundColor: num === 0 ? 'red' : 'lightgreen'}}>
+        <p>{num}</p>
+        <Button type="primary" onClick={handleIncremental}>Incremental</Button>
+    </div>
+}
+```
+> 原因分析：
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": true}} }%%
+ flowchart TB
+ subgraph "<b style="color: green; padding:10px">组件渲染步骤</b>"
+    step1["react-app 编译"]
+    step2["创建 virtualDOM"]
+    step3["DOM-DIFF，渲染真实 DOM"]
+    step4["<b style="color: #a33">useEffect 异步执行</b>链表中方法执行"]
+
+    step1 --> step2
+    step2 --> step3
+    step3 --> step4
+    step4 --> step1
+ end
+```
+> 那么真实 DOM 会渲染两次，所以会有内容和样式上的闪烁，使用 useLayoutEffect 解决：
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": true}} }%%
+ flowchart LR
+ subgraph "<b style="color: green; padding:10px">组件渲染步骤</b>"
+    step1["babel-preset-react-app 编译 createElement"]
+    step2["createElement 创建 virtualDOM"]
+    step3["root.render 把 virtualDOM 变为真实 Diff 运算"]
+    step4["<b style="color: #a33">useLayoutEffect</b>阻塞渲染，<b><U>同步执行</U></b>EFFECT 链表中方法"]
+    step5["渲染真实 DOM"]
+
+    step1 --> step2
+    step2 --> step3
+    step3 --> step4
+    step4 --> step5
+ end
+ ```
+ <span class='custom-box custom-box-339'>使用 useLayoutEffect 可以解决闪烁问题，如上图真实 dom 只渲染一次，所以不会闪烁</span>
+
+ ### useEffect 与 useLayoutEffect 区别
+ useLayoutEffect 会阻塞浏览器真实 DOM，优先执行 Effect 链表中的 callback；
+ useEffect 不会阻塞浏览器渲染真实 DOM，在渲染真实 DOM 的同时，去执行 Effect 链表中的 callback.
+ useLayoutEffect 优先于 useEffect 执行
+ 都可以获取 DOM 元素，原因在于真实 DOM 已经生成，区别只是 useLayoutEffect 在执行完 effect 链表后渲染 DOM 到浏览器
+ useEffect 会渲染两次，useLayoutEffect 会合并真实 DOM 渲染。
+ 
+## useRef

@@ -1,7 +1,9 @@
 ---
-title: React-函数组件
+title: React 函数组件
 date: 2023-06-15 13:11:43
 tags:
+- React
+- Function
 ---
 
 

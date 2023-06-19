@@ -1,7 +1,8 @@
 ---
-title: React-类组件
+title: React 类组件
 tags:
   - React
+  - Component
 date: 2023-06-15 13:11:59
 ---
 

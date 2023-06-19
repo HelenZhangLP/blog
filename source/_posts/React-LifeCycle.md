@@ -1,8 +1,10 @@
 ---
 title: React 生命周期
 tags:
-- React
+  - React
+date: 2023-06-15 15:30:25
 ---
+
 
 ```mermaid
   flowchart LR
@@ -39,6 +41,12 @@ tags:
   end
 ```
 > UNSAFE_* 屏蔽 warning
+
+## <font color='red'>the components is not recommended</font>
+|serial number|component name|
+|---|---|
+|1|ComponentWillMount|
+|2|componentWillUpdate|
 
 ## 第一次渲染
 ### step1 —— 初始化属性&&考验规则
