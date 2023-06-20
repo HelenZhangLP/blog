@@ -498,4 +498,4 @@ export default function Demo() {
  都可以获取 DOM 元素，原因在于真实 DOM 已经生成，区别只是 useLayoutEffect 在执行完 effect 链表后渲染 DOM 到浏览器
  useEffect 会渲染两次，useLayoutEffect 会合并真实 DOM 渲染。
  
-## useRef
+## [useRef](/2021/05/11/React-refs/#函数子组件中使用-Ref-进行-DOM-处理)
