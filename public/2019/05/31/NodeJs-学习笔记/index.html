@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="NodeJSNode.js 是一个开源的、跨平台的 JavaScript 运行时环境。 vm 模块The node:vm module enables compiling and running code within V8 Virtual Machine contextvm 模块可以在 V8 虚拟机中编译运行代码 123456vm.runInNewContext(code)&#x2F;** * code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs 学习笔记">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="NodeJSNode.js 是一个开源的、跨平台的 JavaScript 运行时环境。 vm 模块The node:vm module enables compiling and running code within V8 Virtual Machine contextvm 模块可以在 V8 虚拟机中编译运行代码 123456vm.runInNewContext(code)&#x2F;** * code">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-31T06:32:44.000Z">
+<meta property="article:modified_time" content="2023-05-06T15:27:38.988Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>NodeJs 学习笔记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/03/%E5%9D%91-%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86-git/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/21/%E5%88%86%E6%9E%90-hexo-%E8%84%9A%E6%89%8B%E6%9E%B6/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=NodeJs 学习笔记"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=NodeJs 学习笔记"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs 学习笔记&body=Check out this article: https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=NodeJs 学习笔记&description=&lt;h2 id=&#34;NodeJS&#34;&gt;&lt;a href=&#34;#NodeJS&#34; class=&#34;headerlink&#34; title=&#34;NodeJS&#34;&gt;&lt;/a&gt;NodeJS&lt;/h2&gt;&lt;p&gt;Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。&lt;/p&gt;
+&lt;h3 id=&#34;vm-模块&#34;&gt;&lt;a href=&#34;#vm-模块&#34; class=&#34;headerlink&#34; title=&#34;vm 模块&#34;&gt;&lt;/a&gt;vm 模块&lt;/h3&gt;&lt;p&gt;The node:vm module enables compiling and running code within V8 Virtual Machine context&lt;br&gt;vm 模块可以在 V8 虚拟机中编译运行代码&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vm.&lt;span class=&#34;title function_&#34;&gt;runInNewContext&lt;/span&gt;(code)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * code &amp;lt;string&amp;gt; 要运行和编译的 JavaScript 代码（The JavaScript code to compile and run）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * contextObject &amp;lt;Object&amp;gt; 一个要被上下文化的对象（An object that will be contextified）, 如果未定义，会创建一个新对象（if undefined, a new object will be created.）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * options &amp;lt;Object&amp;gt; | &amp;lt;string&amp;gt; &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vm.&lt;span class=&#34;title function_&#34;&gt;runInNewContext&lt;/span&gt;(code, sandbox, &lt;span class=&#34;string&#34;&gt;&amp;quot;sea-debug.vm&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;module&#34;&gt;&lt;a href=&#34;#module&#34; class=&#34;headerlink&#34; title=&#34;module&#34;&gt;&lt;/a&gt;module&lt;/h3&gt;&lt;h3 id=&#34;http-模块&#34;&gt;&lt;a href=&#34;#http-模块&#34; class=&#34;headerlink&#34; title=&#34;http 模块&#34;&gt;&lt;/a&gt;http 模块&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1、导入 http 模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; http = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;http&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 2、创建 Web 服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; server = http.&lt;span class=&#34;title function_&#34;&gt;createSever&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 3、绑定 request 事件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server.&lt;span class=&#34;title function_&#34;&gt;on&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;request&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;function&#34;&gt;(&lt;span class=&#34;params&#34;&gt;req, res&lt;/span&gt;) =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; url = req.&lt;span class=&#34;property&#34;&gt;url&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;Not Found&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/&amp;#x27;&lt;/span&gt; || url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/index.html&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;首页&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/about.html&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;关于&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 处理响应数据乱码的问题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    res.&lt;span class=&#34;title function_&#34;&gt;setHeader&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;content-type&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;text/html; charset=utf-8&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 响应发送给客户端&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    res.&lt;span class=&#34;title function_&#34;&gt;end&lt;/span&gt;(str)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//4、 启动服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server.&lt;span class=&#34;title function_&#34;&gt;listen&lt;/span&gt;(port, host, &lt;span class=&#34;function&#34;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;`http://&lt;span class=&#34;subst&#34;&gt;$&amp;#123;host&amp;#125;&lt;/span&gt;:&lt;span class=&#34;subst&#34;&gt;$&amp;#123;port&amp;#125;&lt;/span&gt; 已启动`&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJS"><span class="toc-number">1.</span> <span class="toc-text">NodeJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vm-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text">vm 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module"><span class="toc-number">1.2.</span> <span class="toc-text">module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.</span> <span class="toc-text">http 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#path-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.4.</span> <span class="toc-text">path 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process"><span class="toc-number">1.5.</span> <span class="toc-text">process</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-%E4%BF%A1%E5%8F%B7%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text">process - 信号事件</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NodeJs 学习笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-05-31T06:32:44.000Z" itemprop="datePublished">2019-05-31</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h2><p>Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。</p>
+<h3 id="vm-模块"><a href="#vm-模块" class="headerlink" title="vm 模块"></a>vm 模块</h3><p>The node:vm module enables compiling and running code within V8 Virtual Machine context<br>vm 模块可以在 V8 虚拟机中编译运行代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="title function_">runInNewContext</span>(code)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * code &lt;string&gt; 要运行和编译的 JavaScript 代码（The JavaScript code to compile and run）</span></span><br><span class="line"><span class="comment"> * contextObject &lt;Object&gt; 一个要被上下文化的对象（An object that will be contextified）, 如果未定义，会创建一个新对象（if undefined, a new object will be created.）</span></span><br><span class="line"><span class="comment"> * options &lt;Object&gt; | &lt;string&gt; </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="title function_">runInNewContext</span>(code, sandbox, <span class="string">&quot;sea-debug.vm&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><h3 id="http-模块"><a href="#http-模块" class="headerlink" title="http 模块"></a>http 模块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、导入 http 模块</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>)</span><br><span class="line"><span class="comment">// 2、创建 Web 服务</span></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createSever</span>()</span><br><span class="line"><span class="comment">// 3、绑定 request 事件</span></span><br><span class="line">server.<span class="title function_">on</span>(<span class="string">&#x27;request&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = req.<span class="property">url</span></span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">&#x27;&lt;h1&gt;Not Found&lt;/h1&gt;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (url === <span class="string">&#x27;/&#x27;</span> || url === <span class="string">&#x27;/index.html&#x27;</span>) &#123;</span><br><span class="line">        str = <span class="string">&#x27;&lt;h1&gt;首页&lt;/h1&gt;&#x27;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url === <span class="string">&#x27;/about.html&#x27;</span>) &#123;</span><br><span class="line">        str = <span class="string">&#x27;&lt;h1&gt;关于&lt;/h1&gt;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理响应数据乱码的问题</span></span><br><span class="line">    res.<span class="title function_">setHeader</span>(<span class="string">&#x27;content-type&#x27;</span>, <span class="string">&#x27;text/html; charset=utf-8&#x27;</span>)</span><br><span class="line">    <span class="comment">// 响应发送给客户端</span></span><br><span class="line">    res.<span class="title function_">end</span>(str)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//4、 启动服务</span></span><br><span class="line">server.<span class="title function_">listen</span>(port, host, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`http://<span class="subst">$&#123;host&#125;</span>:<span class="subst">$&#123;port&#125;</span> 已启动`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="path-模块"><a href="#path-模块" class="headerlink" title="path 模块"></a>path 模块</h3><blockquote>
+<p>提供用于处理文件路径和目录路径的实用工具</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input checked="" disabled="" type="checkbox"> path.resolve()<blockquote>
+<p>将路径或片断序列解析为绝对路径</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不传参</span></span><br><span class="line">path.<span class="title function_">resolve</span>()  <span class="comment">// &#x27;/Users/lipingzhang/gitProject/blog&#x27;</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="number">1</span>) <span class="comment">// TypeError [ERR_INVALID_ARG_TYPE]: The &quot;path&quot; argument must be of type string. Received type number</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>) <span class="comment">// &#x27;/Users/lipingzhang/gitProject/blog/a/b&#x27;</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;/temp&#x27;</span>,<span class="string">&#x27;new&#x27;</span>) <span class="comment">//  &#x27;/temp/new&#x27;</span></span><br><span class="line">path.<span class="title function_">resolve</span>(<span class="string">&#x27;wwwroot&#x27;</span>, <span class="string">&#x27;static_files/png/&#x27;</span>, <span class="string">&#x27;../gif/image.gif&#x27;</span>) <span class="comment">// &#x27;/Users/lipingzhang/gitProject/blog/wwwroot/static_files/gif/image.gif&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><input checked="" disabled="" type="checkbox"> path.join(<string>)<blockquote>
+<p>使用平台特定分隔符将所有给定 path 片段连接在一起，规范化生成路径</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path.<span class="title function_">join</span>() <span class="comment">// &#x27;.&#x27; 表示当前目录</span></span><br><span class="line">path.<span class="title function_">join</span>(process.<span class="title function_">cwd</span>(), <span class="string">&#x27;hexo.json&#x27;</span>) <span class="comment">// &#x27;/Users/lipingzhang/Desktop/hexo-cli的副本/a.json&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="process"><a href="#process" class="headerlink" title="process"></a>process</h3><blockquote>
+<p>全局变量，提供有关当前 Node.js 进程信息，并对其进行控制，不需要 require</p>
+</blockquote>
+<h4 id="process-信号事件"><a href="#process-信号事件" class="headerlink" title="process - 信号事件"></a>process - 信号事件</h4>Interrupt from keyboard<br>SIGINT 在终端运行时，可以被所有平台支持，通常可以通过 <Ctrl>+C 触发(虽然这个不能配置)。 当终端运行在raw模式，它不会被触发。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">process.<span class="title function_">on</span>(<span class="string">&#x27;SIGINT&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// callback function</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJS"><span class="toc-number">1.</span> <span class="toc-text">NodeJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vm-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text">vm 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module"><span class="toc-number">1.2.</span> <span class="toc-text">module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.</span> <span class="toc-text">http 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#path-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.4.</span> <span class="toc-text">path 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process"><span class="toc-number">1.5.</span> <span class="toc-text">process</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-%E4%BF%A1%E5%8F%B7%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text">process - 信号事件</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=NodeJs 学习笔记"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=NodeJs 学习笔记"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJs 学习笔记&body=Check out this article: https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=NodeJs 学习笔记"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/05/31/NodeJs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=NodeJs 学习笔记&description=&lt;h2 id=&#34;NodeJS&#34;&gt;&lt;a href=&#34;#NodeJS&#34; class=&#34;headerlink&#34; title=&#34;NodeJS&#34;&gt;&lt;/a&gt;NodeJS&lt;/h2&gt;&lt;p&gt;Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。&lt;/p&gt;
+&lt;h3 id=&#34;vm-模块&#34;&gt;&lt;a href=&#34;#vm-模块&#34; class=&#34;headerlink&#34; title=&#34;vm 模块&#34;&gt;&lt;/a&gt;vm 模块&lt;/h3&gt;&lt;p&gt;The node:vm module enables compiling and running code within V8 Virtual Machine context&lt;br&gt;vm 模块可以在 V8 虚拟机中编译运行代码&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vm.&lt;span class=&#34;title function_&#34;&gt;runInNewContext&lt;/span&gt;(code)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * code &amp;lt;string&amp;gt; 要运行和编译的 JavaScript 代码（The JavaScript code to compile and run）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * contextObject &amp;lt;Object&amp;gt; 一个要被上下文化的对象（An object that will be contextified）, 如果未定义，会创建一个新对象（if undefined, a new object will be created.）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * options &amp;lt;Object&amp;gt; | &amp;lt;string&amp;gt; &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vm.&lt;span class=&#34;title function_&#34;&gt;runInNewContext&lt;/span&gt;(code, sandbox, &lt;span class=&#34;string&#34;&gt;&amp;quot;sea-debug.vm&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;module&#34;&gt;&lt;a href=&#34;#module&#34; class=&#34;headerlink&#34; title=&#34;module&#34;&gt;&lt;/a&gt;module&lt;/h3&gt;&lt;h3 id=&#34;http-模块&#34;&gt;&lt;a href=&#34;#http-模块&#34; class=&#34;headerlink&#34; title=&#34;http 模块&#34;&gt;&lt;/a&gt;http 模块&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1、导入 http 模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; http = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;http&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 2、创建 Web 服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; server = http.&lt;span class=&#34;title function_&#34;&gt;createSever&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 3、绑定 request 事件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server.&lt;span class=&#34;title function_&#34;&gt;on&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;request&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;function&#34;&gt;(&lt;span class=&#34;params&#34;&gt;req, res&lt;/span&gt;) =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; url = req.&lt;span class=&#34;property&#34;&gt;url&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;Not Found&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/&amp;#x27;&lt;/span&gt; || url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/index.html&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;首页&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (url === &lt;span class=&#34;string&#34;&gt;&amp;#x27;/about.html&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;h1&amp;gt;关于&amp;lt;/h1&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 处理响应数据乱码的问题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    res.&lt;span class=&#34;title function_&#34;&gt;setHeader&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;content-type&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;text/html; charset=utf-8&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 响应发送给客户端&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    res.&lt;span class=&#34;title function_&#34;&gt;end&lt;/span&gt;(str)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//4、 启动服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server.&lt;span class=&#34;title function_&#34;&gt;listen&lt;/span&gt;(port, host, &lt;span class=&#34;function&#34;&gt;() =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;`http://&lt;span class=&#34;subst&#34;&gt;$&amp;#123;host&amp;#125;&lt;/span&gt;:&lt;span class=&#34;subst&#34;&gt;$&amp;#123;port&amp;#125;&lt;/span&gt; 已启动`&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

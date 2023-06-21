@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="mysql.dmg 安装 ** cannot be opened because the developer cannot be verified macOS 上的可执行程序都需要经过苹果授予的证书签名后才能正常执行，自行编译或下载的可执行文件没有签名  解决    系统偏好（System Preferences）-&gt; 安全与隐私（Security &amp; Privacy）-&gt; 打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System">
+<meta property="og:url" content="https://helenzhanglp.github.io/2022/10/19/System/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="mysql.dmg 安装 ** cannot be opened because the developer cannot be verified macOS 上的可执行程序都需要经过苹果授予的证书签名后才能正常执行，自行编译或下载的可执行文件没有签名  解决    系统偏好（System Preferences）-&gt; 安全与隐私（Security &amp; Privacy）-&gt; 打">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-19T07:06:58.000Z">
+<meta property="article:modified_time" content="2022-10-21T04:58:20.000Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="macos">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>System</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2022/10/21/Network-localhost-127-0-0-1-0-0-0-0%E7%9A%84%E5%8C%BA%E5%88%AB%E8%81%94%E7%B3%BB/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/07/06/bash-profile/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2022/10/19/System/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2022/10/19/System/&text=System"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2022/10/19/System/&is_video=false&description=System"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=System&body=Check out this article: https://helenzhanglp.github.io/2022/10/19/System/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2022/10/19/System/&name=System&description=&lt;h2 id=&#34;mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified&#34;&gt;&lt;a href=&#34;#mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified&#34; class=&#34;headerlink&#34; title=&#34;mysql.dmg 安装 ** cannot be opened because the developer cannot be verified&#34;&gt;&lt;/a&gt;mysql.dmg 安装 ** cannot be opened because the developer cannot be verified&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;macOS 上的可执行程序都需要经过苹果授予的证书签名后才能正常执行，&lt;strong&gt;自行编译或下载的可执行文件没有签名&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;解决&#34;&gt;&lt;a href=&#34;#解决&#34; class=&#34;headerlink&#34; title=&#34;解决&#34;&gt;&lt;/a&gt;解决&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;   系统偏好（System Preferences）-&amp;gt; 安全与隐私（Security &amp;amp; Privacy）-&amp;gt; 打开右下脚锁&lt;/li&gt;
+&lt;li&gt;   运行被拦截的软件，出现 cannot be opened because the developer cannot be verified, 点击 cancel&lt;/li&gt;
+&lt;li&gt;   点击 系统偏好 里 Allow Anyway&lt;/li&gt;
+&lt;li&gt;   再次运行需要安装的软件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;brew-install-mysql&#34;&gt;&lt;a href=&#34;#brew-install-mysql&#34; class=&#34;headerlink&#34; title=&#34;brew install mysql&#34;&gt;&lt;/a&gt;brew install mysql&lt;/h2&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ brew install mysql // 安装 mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ brew services start mysql // 启动 mysql 服务&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ mysql -u root // 连接 mysql 服务器&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’&#34;&gt;&lt;a href=&#34;#ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’&#34; class=&#34;headerlink&#34; title=&#34;ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’&#34;&gt;&lt;/a&gt;ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;It’s probably because MySQL is installed but not yet running mysql 安装后没有启动服务&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;解决-1&#34;&gt;&lt;a href=&#34;#解决-1&#34; class=&#34;headerlink&#34; title=&#34;解决&#34;&gt;&lt;/a&gt;解决&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ brew services start mysql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-dmg-%E5%AE%89%E8%A3%85-cannot-be-opened-because-the-developer-cannot-be-verified"><span class="toc-number">1.</span> <span class="toc-text">mysql.dmg 安装 ** cannot be opened because the developer cannot be verified</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-number">1.1.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brew-install-mysql"><span class="toc-number">2.</span> <span class="toc-text">brew install mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-2002-HY000-Can%E2%80%99t-connect-to-local-MySQL-server-through-socket-%E2%80%98-tmp-mysql-sock%E2%80%99"><span class="toc-number">3.</span> <span class="toc-text">ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘&#x2F;tmp&#x2F;mysql.sock’</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-1"><span class="toc-number">3.1.</span> <span class="toc-text">解决</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        System
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-10-19T07:06:58.000Z" itemprop="datePublished">2022-10-19</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/" rel="tag">macos</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified"><a href="#mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified" class="headerlink" title="mysql.dmg 安装 ** cannot be opened because the developer cannot be verified"></a>mysql.dmg 安装 ** cannot be opened because the developer cannot be verified</h2><blockquote>
+<p>macOS 上的可执行程序都需要经过苹果授予的证书签名后才能正常执行，<strong>自行编译或下载的可执行文件没有签名</strong></p>
+</blockquote>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
+<li>   系统偏好（System Preferences）-&gt; 安全与隐私（Security &amp; Privacy）-&gt; 打开右下脚锁</li>
+<li>   运行被拦截的软件，出现 cannot be opened because the developer cannot be verified, 点击 cancel</li>
+<li>   点击 系统偏好 里 Allow Anyway</li>
+<li>   再次运行需要安装的软件</li>
+</ol>
+<h2 id="brew-install-mysql"><a href="#brew-install-mysql" class="headerlink" title="brew install mysql"></a>brew install mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql // 安装 mysql</span><br><span class="line">$ brew services start mysql // 启动 mysql 服务</span><br><span class="line">$ mysql -u root // 连接 mysql 服务器</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’"><a href="#ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’" class="headerlink" title="ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’"></a>ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’</h2><blockquote>
+<p>It’s probably because MySQL is installed but not yet running mysql 安装后没有启动服务</p>
+</blockquote>
+<h3 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew services start mysql</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-dmg-%E5%AE%89%E8%A3%85-cannot-be-opened-because-the-developer-cannot-be-verified"><span class="toc-number">1.</span> <span class="toc-text">mysql.dmg 安装 ** cannot be opened because the developer cannot be verified</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-number">1.1.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brew-install-mysql"><span class="toc-number">2.</span> <span class="toc-text">brew install mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-2002-HY000-Can%E2%80%99t-connect-to-local-MySQL-server-through-socket-%E2%80%98-tmp-mysql-sock%E2%80%99"><span class="toc-number">3.</span> <span class="toc-text">ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘&#x2F;tmp&#x2F;mysql.sock’</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-1"><span class="toc-number">3.1.</span> <span class="toc-text">解决</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2022/10/19/System/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2022/10/19/System/&text=System"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2022/10/19/System/&is_video=false&description=System"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=System&body=Check out this article: https://helenzhanglp.github.io/2022/10/19/System/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2022/10/19/System/&title=System"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2022/10/19/System/&name=System&description=&lt;h2 id=&#34;mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified&#34;&gt;&lt;a href=&#34;#mysql-dmg-安装-cannot-be-opened-because-the-developer-cannot-be-verified&#34; class=&#34;headerlink&#34; title=&#34;mysql.dmg 安装 ** cannot be opened because the developer cannot be verified&#34;&gt;&lt;/a&gt;mysql.dmg 安装 ** cannot be opened because the developer cannot be verified&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;macOS 上的可执行程序都需要经过苹果授予的证书签名后才能正常执行，&lt;strong&gt;自行编译或下载的可执行文件没有签名&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;解决&#34;&gt;&lt;a href=&#34;#解决&#34; class=&#34;headerlink&#34; title=&#34;解决&#34;&gt;&lt;/a&gt;解决&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;   系统偏好（System Preferences）-&amp;gt; 安全与隐私（Security &amp;amp; Privacy）-&amp;gt; 打开右下脚锁&lt;/li&gt;
+&lt;li&gt;   运行被拦截的软件，出现 cannot be opened because the developer cannot be verified, 点击 cancel&lt;/li&gt;
+&lt;li&gt;   点击 系统偏好 里 Allow Anyway&lt;/li&gt;
+&lt;li&gt;   再次运行需要安装的软件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;brew-install-mysql&#34;&gt;&lt;a href=&#34;#brew-install-mysql&#34; class=&#34;headerlink&#34; title=&#34;brew install mysql&#34;&gt;&lt;/a&gt;brew install mysql&lt;/h2&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ brew install mysql // 安装 mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ brew services start mysql // 启动 mysql 服务&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ mysql -u root // 连接 mysql 服务器&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’&#34;&gt;&lt;a href=&#34;#ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’&#34; class=&#34;headerlink&#34; title=&#34;ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’&#34;&gt;&lt;/a&gt;ERROR 2002(HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;It’s probably because MySQL is installed but not yet running mysql 安装后没有启动服务&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;解决-1&#34;&gt;&lt;a href=&#34;#解决-1&#34; class=&#34;headerlink&#34; title=&#34;解决&#34;&gt;&lt;/a&gt;解决&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ brew services start mysql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

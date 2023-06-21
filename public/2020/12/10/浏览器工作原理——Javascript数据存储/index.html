@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="JavaScript 内存机制   JavaScript 内存中的存储  处理垃圾回收  v8 中执行  1. JavaScript 是什么类型的语言静态语言 在使用之前就需要确认其变量数据类型。如 C 语言动态语言 在运行过程中需要检查数据类型的语言。如 JavaScript弱类型语言 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言强类型语言 运行过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器工作原理——JavaScript数据存储">
+<meta property="og:url" content="https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="JavaScript 内存机制   JavaScript 内存中的存储  处理垃圾回收  v8 中执行  1. JavaScript 是什么类型的语言静态语言 在使用之前就需要确认其变量数据类型。如 C 语言动态语言 在运行过程中需要检查数据类型的语言。如 JavaScript弱类型语言 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言强类型语言 运行过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png">
+<meta property="article:published_time" content="2020-12-10T06:09:28.000Z">
+<meta property="article:modified_time" content="2021-06-03T10:51:54.000Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="browser">
+<meta property="article:tag" content="浏览器工作原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>浏览器工作原理——JavaScript数据存储</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/01/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E5%BC%82%E6%AD%A5%E7%9B%B8%E5%85%B3%E7%9A%84webAPI/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/12/02/react-%E8%99%9A%E6%8B%9FDOM%E5%92%8C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&text=浏览器工作原理——JavaScript数据存储"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&is_video=false&description=浏览器工作原理——JavaScript数据存储"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器工作原理——JavaScript数据存储&body=Check out this article: https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&name=浏览器工作原理——JavaScript数据存储&description=&lt;p&gt;JavaScript 内存机制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; JavaScript 内存中的存储&lt;/li&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; 处理垃圾回收&lt;/li&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; v8 中执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-JavaScript-是什么类型的语言&#34;&gt;&lt;a href=&#34;#1-JavaScript-是什么类型的语言&#34; class=&#34;headerlink&#34; title=&#34;1. JavaScript 是什么类型的语言&#34;&gt;&lt;/a&gt;1. JavaScript 是什么类型的语言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;静态语言&lt;/strong&gt; 在使用之前就需要确认其变量数据类型。如 C 语言&lt;br&gt;&lt;strong&gt;动态语言&lt;/strong&gt; 在运行过程中需要检查数据类型的语言。如 JavaScript&lt;br&gt;&lt;strong&gt;弱类型语言&lt;/strong&gt; 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言&lt;br&gt;&lt;strong&gt;强类型语言&lt;/strong&gt; 运行过程中不支持隐式转换的语言。如 Ruby&lt;br&gt;【具体可参考以下象限图】&lt;br&gt;&lt;img src=&#34;https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h2 id=&#34;2-JavaScript-7-种数据类型&#34;&gt;&lt;a href=&#34;#2-JavaScript-7-种数据类型&#34; class=&#34;headerlink&#34; title=&#34;2. JavaScript 7 种数据类型&#34;&gt;&lt;/a&gt;2. JavaScript 7 种数据类型&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;JavaScript 是弱类型动态语言，不需要在使用前定义变量类型，运行过程中同一变量可以存不同数据类型&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;Number&lt;/td&gt;
+&lt;td&gt;可以是整数或带小数点的浮点数，采用 IEEE 754 双精确度（64 位）格式存储，计算浮点数时，需要注意 0.1+0.2=0.30000000000000004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;0或0个以上字符由，’’或””包裹。原字符串不是对象类型，为方便使用，JavaScript引擎会自动转成对象类型，有 length 属性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Boolean&lt;/td&gt;
+&lt;td&gt;任何类型都会转成布尔类型，false,0,’’,NaN, null, undefined 转换为 false; 其它转换为 true。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Undefined&lt;/td&gt;
+&lt;td&gt;变量未声明或声明未赋值 typeof a === ‘undefined’(a 是不存在的变量)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Null&lt;/td&gt;
+&lt;td&gt;空值，清除某个值时可赋值为 null&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;Function,Array,Date 等，都为对象类型。JavaScript 中的对象可以看作是属性的集合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Symbol&lt;/td&gt;
+&lt;td&gt;符号类型，是唯一的并且不可修改，常作为 Object 的 key。通过 Symbol() 函数产生&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;几点注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;typeof Null 返回 Object，这个是 JavaScript bug，为兼容老代码一直未修复；&lt;/li&gt;
+&lt;li&gt;isNaN(Number(‘hello’)) // true 检查无意义的运算，NaN 无效的数字。&lt;/li&gt;
+&lt;li&gt;非严格模式下，null === undefined 是 true，严格模式下 false。&lt;/li&gt;
+&lt;li&gt;isFinite(2/0) 检查是 2/0 否为有限数&lt;/li&gt;
+&lt;li&gt;Object 是引用类型，其它为原始类型。&lt;/li&gt;
+&lt;/ul&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JavaScript-%E6%98%AF%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">1. JavaScript 是什么类型的语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JavaScript-7-%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">2. JavaScript 7 种数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">3. 内存空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">4.</span> <span class="toc-text">4. 垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5-%E2%80%94%E2%80%94-%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%94%B6"><span class="toc-number">4.1.</span> <span class="toc-text">4-1. 垃圾回收策略 —— 手动回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5-%E2%80%94%E2%80%94-%E8%87%AA%E5%8A%A8%E5%9B%9E%E6%94%B6"><span class="toc-number">4.2.</span> <span class="toc-text">4-2. 垃圾回收策略 —— 自动回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E8%B0%83%E7%94%A8%E6%A0%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9B%9E%E6%94%B6%E7%9A%84"><span class="toc-number">4.3.</span> <span class="toc-text">4-2-1. 调用栈中的数据是如何回收的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8C%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">编译器和解释器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E6%98%AF%E5%B1%9E%E4%BA%8E%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%EF%BC%8C-V8-%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5-JavaScript-%E4%BB%A3%E7%A0%81%E7%9A%84%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 是属于解释型语言， V8 是如何执行一段 JavaScript 代码的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91-AST"><span class="toc-number">6.1.</span> <span class="toc-text">抽象语法树 AST</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AST-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">6.1.1.</span> <span class="toc-text">AST 的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AST-%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-number">6.1.2.</span> <span class="toc-text">AST 的生成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AD%97%E8%8A%82%E7%A0%81"><span class="toc-number">6.2.</span> <span class="toc-text">生成字节码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-number">6.3.</span> <span class="toc-text">执行代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91%EF%BC%88JIT%EF%BC%89JavaScript-ignition-TurboFan-%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">6.3.1.</span> <span class="toc-text">即时编译（JIT）JavaScript + ignition + TurboFan 工作过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">7.</span> <span class="toc-text">JavaScript 性能优化</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浏览器工作原理——JavaScript数据存储
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-12-10T06:09:28.000Z" itemprop="datePublished">2020-12-10</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="tag">浏览器工作原理</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>JavaScript 内存机制</p>
+<ul>
+<li><input disabled="" type="checkbox"> JavaScript 内存中的存储</li>
+<li><input disabled="" type="checkbox"> 处理垃圾回收</li>
+<li><input disabled="" type="checkbox"> v8 中执行</li>
+</ul>
+<h2 id="1-JavaScript-是什么类型的语言"><a href="#1-JavaScript-是什么类型的语言" class="headerlink" title="1. JavaScript 是什么类型的语言"></a>1. JavaScript 是什么类型的语言</h2><p><strong>静态语言</strong> 在使用之前就需要确认其变量数据类型。如 C 语言<br><strong>动态语言</strong> 在运行过程中需要检查数据类型的语言。如 JavaScript<br><strong>弱类型语言</strong> 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言<br><strong>强类型语言</strong> 运行过程中不支持隐式转换的语言。如 Ruby<br>【具体可参考以下象限图】<br><img src="https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png" alt="img"></p>
+<span id="more"></span>
+
+<h2 id="2-JavaScript-7-种数据类型"><a href="#2-JavaScript-7-种数据类型" class="headerlink" title="2. JavaScript 7 种数据类型"></a>2. JavaScript 7 种数据类型</h2><blockquote>
+<p>JavaScript 是弱类型动态语言，不需要在使用前定义变量类型，运行过程中同一变量可以存不同数据类型</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Number</td>
+<td>可以是整数或带小数点的浮点数，采用 IEEE 754 双精确度（64 位）格式存储，计算浮点数时，需要注意 0.1+0.2=0.30000000000000004</td>
+</tr>
+<tr>
+<td>String</td>
+<td>0或0个以上字符由，’’或””包裹。原字符串不是对象类型，为方便使用，JavaScript引擎会自动转成对象类型，有 length 属性</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>任何类型都会转成布尔类型，false,0,’’,NaN, null, undefined 转换为 false; 其它转换为 true。</td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>变量未声明或声明未赋值 typeof a === ‘undefined’(a 是不存在的变量)</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>空值，清除某个值时可赋值为 null</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Function,Array,Date 等，都为对象类型。JavaScript 中的对象可以看作是属性的集合</td>
+</tr>
+<tr>
+<td>Symbol</td>
+<td>符号类型，是唯一的并且不可修改，常作为 Object 的 key。通过 Symbol() 函数产生</td>
+</tr>
+</tbody></table>
+<p>几点注意事项：</p>
+<ul>
+<li>typeof Null 返回 Object，这个是 JavaScript bug，为兼容老代码一直未修复；</li>
+<li>isNaN(Number(‘hello’)) // true 检查无意义的运算，NaN 无效的数字。</li>
+<li>非严格模式下，null === undefined 是 true，严格模式下 false。</li>
+<li>isFinite(2/0) 检查是 2/0 否为有限数</li>
+<li>Object 是引用类型，其它为原始类型。</li>
+</ul>
+<h2 id="3-内存空间"><a href="#3-内存空间" class="headerlink" title="3. 内存空间"></a>3. 内存空间</h2><p>JavaScript 执行过程中，主要有三种内存空间，分别是代码空间、栈空间、堆空间。</p>
+<img  src=http://www.plantuml.com/plantuml/svg/IquiIb5usjRwTEsCPoiMFftNhQ2SbfQc4CrbasHdavoVarzabPHJcchtPFVYvmiQdw_SzNBwbaSDKu3eQV_wPvtBNopiWKZPw8DLszde9zbnwG81aWdfHQcfUNRF5dH0zB_Vq_5YG_FpAIk08k_tT4ACKm2wu6dJ2gYHExgUxEX-DgqTdwb5gIbsJnUqGSn4KHWB0000>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="string">&#x27;memory space&#x27;</span>;</span><br><span class="line">  <span class="keyword">var</span> c = &#123;<span class="attr">name</span>: <span class="string">&#x27;helen&#x27;</span>&#125;</span><br><span class="line">  <span class="keyword">var</span> d = c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img  src=http://www.plantuml.com/plantuml/svg/oqqiKCX81HBLN0fF-sUyREz_Eg5NmTOEncdOmwLWQ6XW21JYKj3JqmFJG04Ja9hglCJSL2i5zOpKdDGyzLgkMYwkufB4v6o55nkQdqzPyMn11yXOXUJ4eXG5fRJyV8MdxNkVJTtmh7FvYuKzJtPqFTdH_MnQkvA2ifbP6bYbWa8kq2b0bH3Rd_UjVxgeMK4vBGqchO3JaM2G218qX7AIG9pSrDpyeag5ueB4v5IeUBA2bguTsDDm0P0ke9-W_1Hq1Iae2e2-H7BfY_MzppPF9T6bjLmG30cPfwqhdcvi81GgE8C4NuYabUObbsJcvu5S2fA6yJKq5Qg1iLaBTmt43foU8S8lwB6c6wrSKfIO1mpvejIyabXTEnGVSDK20000>
+<p>**<br>对象类型是存储在 heap，stack 中保存对象引用地址，JavaScript 通过栈中的引用地址访问。</p>
+<blockquote>
+<p>原始类型保存的栈中，对象类型保存在堆中。堆中只保存对象类型的引用地址，JavaScript引擎通过栈的引用地址进行访问</p>
+</blockquote>
+<p>JavaScript 引擎是需要用栈来维护程序执行期间上下文的状态，如果栈空间太大，所有的数据都存放在栈里，会影响上下文的切换效率，进而影响到整个程序的执行效率。<br>如上 demo，foo 函数结束后，foo 函数执行上下文会被回收，指针移动到全局执行上下文。<br>所以通常情况下 <strong>栈如果设置过大，会影响切换效率，所以栈是用存放一些原始类型的小数据</strong>，引用类型数据占用空间较大，故这类数据会存在在堆中，<strong>堆空间大，存放数据多。但分配内存和回收内存占时间长</strong><br>JavaScript 中，<code>原始类型的赋值会完全复制变量的值，而引用类型的赋值是复制引用地址</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;helen&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> test1 = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> test2 = <span class="number">2</span></span><br><span class="line">  <span class="keyword">var</span> innerBar = &#123;</span><br><span class="line">    <span class="attr">setName</span>: <span class="keyword">function</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">      name = newName</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">getName</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(test1)</span><br><span class="line">      <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> innerBar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="title function_">foo</span>()</span><br><span class="line">bar.<span class="title function_">setName</span>(<span class="string">&#x27;zhang&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bar.<span class="title function_">getName</span>())</span><br></pre></td></tr></table></figure>
+<ol>
+<li> 当 JavaScript 引擎执行 foo 函数时，会先编译，创建空执行上下文；</li>
+<li> 编译内部函数 setName 时，由于内部函数引用外部函数变量，于是堆内存空间创建一个 “closure(foo)” 保存变量 name;</li>
+<li> 编译内部函数 getName 时，函数内部引用了外部函数变量 test1，于堆内存中的 “closure(foo)” 保存变量 test1</li>
+<li> foo 函数执行结束后，返回的 getName, setName 与 closure(foo) 存在引用关系。<blockquote>
+<p>产生闭包的核心有两步：一是需要预扫描内部函数；二是把内部函数引用 的外部变量保存在堆内存中</p>
+</blockquote>
+</li>
+</ol>
+<p>JavaScript 中变量没有数据类型，只有值有数据类型</p>
+<h2 id="4-垃圾回收"><a href="#4-垃圾回收" class="headerlink" title="4. 垃圾回收"></a>4. 垃圾回收</h2><h3 id="4-1-垃圾回收策略-——-手动回收"><a href="#4-1-垃圾回收策略-——-手动回收" class="headerlink" title="4-1. 垃圾回收策略 —— 手动回收"></a>4-1. 垃圾回收策略 —— <strong>手动回收</strong></h3><p>C/C++ 是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在堆中分配内存</span></span><br><span class="line"><span class="type">char</span>* p = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">2048</span>);  <span class="comment">//在堆空间中分配2048字节的空间，并将分配后的引用地址保存到p中</span></span><br><span class="line"><span class="comment">//使用p指向的内存</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用结束后，销毁这段内存</span></span><br><span class="line"><span class="built_in">free</span>(p)；</span><br><span class="line">p = <span class="literal">NULL</span>；</span><br></pre></td></tr></table></figure>
+<p>C 语言，使用 malloc 函数分配内存，然后再使用。如果不再需要这块数据，使用 free 函数来释放内存。如果这段数据不再需要，又没有主动调用 free 函数销毁，就会发生 <strong>内存泄漏</strong></p>
+<h3 id="4-2-垃圾回收策略-——-自动回收"><a href="#4-2-垃圾回收策略-——-自动回收" class="headerlink" title="4-2. 垃圾回收策略 —— 自动回收"></a>4-2. 垃圾回收策略 —— <strong>自动回收</strong></h3><p>Java、JavaScript、Python 等语言，产生的垃圾数据是由垃圾回收器来释放的，不需要手动释放。</p>
+<h3 id="4-2-1-调用栈中的数据是如何回收的"><a href="#4-2-1-调用栈中的数据是如何回收的" class="headerlink" title="4-2-1. 调用栈中的数据是如何回收的"></a>4-2-1. 调用栈中的数据是如何回收的</h3><h2 id="编译器和解释器"><a href="#编译器和解释器" class="headerlink" title="编译器和解释器"></a>编译器和解释器</h2><p>执行程序前，需要将代码翻译成机器能的语言。根据语言的执行流程，可分为编译型语言和解释型语言。<br><strong>编译型语言</strong> 在程序执行之前，需要经过编译器编译的过程，并且编译之后会直接保留机器能懂的二进制文件，这样每次运行程序时，都可以直接运行该二进制文件，这样每次运行程序时，都可以直接运行该二进制文件，而不需要每次重新编译。</p>
+<pre class="mermaid">  graph LR;
+  源代码 -->|词法分析<br/>语法分析| 抽象语法树AST;
+  抽象语法树AST -->|词义分析| 中间代码;
+  中间代码 -->|代码优化| 二进制文件;
+  二进制文件 -->|直接执行|执行</pre>
+<p><strong>解释型语言</strong> 在每次运行时都要通过解释器对程序进行动态解释和执行</p>
+<pre class="mermaid">  graph LR;
+  源代码 -->|词法分析<br/>语法分析| 抽象语法树AST;
+  抽象语法树AST -->|词义分析| 字节码;
+  字节码 -->|解释执行| 执行;</pre>
+
+<h2 id="JavaScript-是属于解释型语言，-V8-是如何执行一段-JavaScript-代码的？"><a href="#JavaScript-是属于解释型语言，-V8-是如何执行一段-JavaScript-代码的？" class="headerlink" title="JavaScript 是属于解释型语言， V8 是如何执行一段 JavaScript 代码的？"></a>JavaScript 是属于解释型语言， V8 是如何执行一段 JavaScript 代码的？</h2><pre class="mermaid">  graph LR;
+  源代码 --> |语法分析<br/>词法分析| 抽象语法树AST
+  源代码 --> |语法分析<br/>词法分析| 执行上下文
+  抽象语法树AST --> |Ignition 解释器| 字节码
+  字节码 --> |TurboFan 编译器| 机器码</pre>
+<h3 id="抽象语法树-AST"><a href="#抽象语法树-AST" class="headerlink" title="抽象语法树 AST"></a>抽象语法树 AST</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;helen&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>;</span><br><span class="line"><span class="title function_">foo</span>();</span><br></pre></td></tr></table></figure>
+<p>以上代码经过 JavaScript-ast 处理后，生成 ast 结构：</p>
+<img  src=http://www.plantuml.com/plantuml/svg/VL1D2y8m3BtlL-IelQbdOVXr5WMl4cVSXcqwqWpKNsyx2og2j-JbVOHN1aLHr_BPOLSOs8gl1LrX31nGMZnPMb5bKL1Rpn7-nRqas1p1tHaTvQKXIuaFcvwhf8MBzwFnuB2mlhhk5PKSiGu2s97smjzWj9bCPybaVUk4GeWsNmoOvxIFu4U3NF_JBD7QzoshudDvGgdxn0r5IR6LLpDF>
+
+<h4 id="AST-的使用"><a href="#AST-的使用" class="headerlink" title="AST 的使用"></a>AST 的使用</h4><ol>
+<li> Babel 的工作原理就是先将 ES6 源码转换成 AST，然后再将 ES6 语法的 AST 转换为 ES5 语法的 AST，最后利用 AST 生成 JavaScript 源码。</li>
+<li> 用来检查 JavaScript 编写规范的插件 ESLint，检查流程也是需要将源码转换为 AST，然后再利用 AST 来检查代码规范化的问题。</li>
+</ol>
+<h4 id="AST-的生成"><a href="#AST-的生成" class="headerlink" title="AST 的生成"></a>AST 的生成</h4><ol>
+<li>分词（tokenize）又称词法分析。将源码拆解为 token。<br><code>var name = &#39;helen&#39;</code> 拆解为以下四个 token</li>
+</ol>
+<ul>
+<li>keyword 关键字 var</li>
+<li>name 标识符 identifier</li>
+<li>argument 赋值运算符 =</li>
+<li>literal 字符串 helen</li>
+</ul>
+<ol start="2">
+<li> 解析（parse）语法分析。将 token 根据语法规则转为 AST。若源码存在语法错误，终止，抛出“语法错误”</li>
+</ol>
+<h3 id="生成字节码"><a href="#生成字节码" class="headerlink" title="生成字节码"></a>生成字节码</h3><p>解释器 ignition 将 AST 生成字节码，并解释执行字节码。<br>早期 v8 没有字节码，是直接将 AST 转换为机器码，机器码执行效率非常高。<br>随着 Chrome 在手机上运行，特别是 512M 内存的手机上，V8 需要消耗大量内存存放转换后的机器码。字节码就是为解决内存问题而生的。<br><strong>字节码是介于 AST 和机器码之间的一种代码。与特定类型的机器码无关，字节码需要通过解释器 ignition 转换为机器码后才能执行</strong></p>
+<h3 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h3><p>解释器 ignition 生成字节码，并逐条解释执行字节码。<br>Ignition 执行过程中，如果发现有热点代码（HotSpot）（重复执行多次的代码），那么后台的编译器（TurboFan）会把该段热点的字节码编译为高效的机器码，再次执行这段代码时，只需要执行编译后的机器码。大大提高了执行效率。<br>字节码配合解释器和编译器的技术称为 <strong>即时编译（JIT）</strong> 即，解释器在解释执行代码同时发现热点代码，TurboFan 把热点字节码转换为机器码，并保存转换后的机器码，以便下次使用。</p>
+<h4 id="即时编译（JIT）JavaScript-ignition-TurboFan-工作过程"><a href="#即时编译（JIT）JavaScript-ignition-TurboFan-工作过程" class="headerlink" title="即时编译（JIT）JavaScript + ignition + TurboFan 工作过程"></a>即时编译（JIT）JavaScript + ignition + TurboFan 工作过程</h4><pre class="mermaid"> graph TD;
+ JavaScriptCode -->|tokenize<br/>parse| 抽象代码树AST
+ 抽象代码树AST-->|ignition|字节码Bytecode
+ 字节码Bytecode --> HotSpot{hot}
+ HotSpot --> |yes| 编译器TurboFan
+ HotSpot --> |no| 解释器Ignition
+ 编译器TurboFan--> 机器码MachineCode
+ 机器码MachineCode --> 输出结果
+ 解释器Ignition --> |逐条解释执行|输出结果</pre>
+
+<h2 id="JavaScript-性能优化"><a href="#JavaScript-性能优化" class="headerlink" title="JavaScript 性能优化"></a>JavaScript 性能优化</h2><p>优化中心在单次脚本执行时间和脚本的网络下载上，主要关注三点：</p>
+<ol>
+<li> 提升单次脚本的执行速度，避免 JavaScript 的长任务霸占主线程，这样可以使页面快速响应交互；</li>
+<li> 避免大的内联脚本，因为解析 HTML 的过程中，解析和编译会占用主线程；</li>
+<li> 减少 JavaScript 文件的容量，因为更小的文件会提升下载速度，并且占用更低的内存。</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JavaScript-%E6%98%AF%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">1. JavaScript 是什么类型的语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JavaScript-7-%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">2. JavaScript 7 种数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">3. 内存空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">4.</span> <span class="toc-text">4. 垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5-%E2%80%94%E2%80%94-%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%94%B6"><span class="toc-number">4.1.</span> <span class="toc-text">4-1. 垃圾回收策略 —— 手动回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5-%E2%80%94%E2%80%94-%E8%87%AA%E5%8A%A8%E5%9B%9E%E6%94%B6"><span class="toc-number">4.2.</span> <span class="toc-text">4-2. 垃圾回收策略 —— 自动回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E8%B0%83%E7%94%A8%E6%A0%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9B%9E%E6%94%B6%E7%9A%84"><span class="toc-number">4.3.</span> <span class="toc-text">4-2-1. 调用栈中的数据是如何回收的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8C%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">编译器和解释器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E6%98%AF%E5%B1%9E%E4%BA%8E%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%EF%BC%8C-V8-%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AE%B5-JavaScript-%E4%BB%A3%E7%A0%81%E7%9A%84%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 是属于解释型语言， V8 是如何执行一段 JavaScript 代码的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91-AST"><span class="toc-number">6.1.</span> <span class="toc-text">抽象语法树 AST</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AST-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">6.1.1.</span> <span class="toc-text">AST 的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AST-%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-number">6.1.2.</span> <span class="toc-text">AST 的生成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AD%97%E8%8A%82%E7%A0%81"><span class="toc-number">6.2.</span> <span class="toc-text">生成字节码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-number">6.3.</span> <span class="toc-text">执行代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91%EF%BC%88JIT%EF%BC%89JavaScript-ignition-TurboFan-%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">6.3.1.</span> <span class="toc-text">即时编译（JIT）JavaScript + ignition + TurboFan 工作过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">7.</span> <span class="toc-text">JavaScript 性能优化</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&text=浏览器工作原理——JavaScript数据存储"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&is_video=false&description=浏览器工作原理——JavaScript数据存储"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器工作原理——JavaScript数据存储&body=Check out this article: https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&title=浏览器工作原理——JavaScript数据存储"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/12/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94Javascript%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/&name=浏览器工作原理——JavaScript数据存储&description=&lt;p&gt;JavaScript 内存机制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; JavaScript 内存中的存储&lt;/li&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; 处理垃圾回收&lt;/li&gt;
+&lt;li&gt;&lt;input disabled type=&#34;checkbox&#34;&gt; v8 中执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-JavaScript-是什么类型的语言&#34;&gt;&lt;a href=&#34;#1-JavaScript-是什么类型的语言&#34; class=&#34;headerlink&#34; title=&#34;1. JavaScript 是什么类型的语言&#34;&gt;&lt;/a&gt;1. JavaScript 是什么类型的语言&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;静态语言&lt;/strong&gt; 在使用之前就需要确认其变量数据类型。如 C 语言&lt;br&gt;&lt;strong&gt;动态语言&lt;/strong&gt; 在运行过程中需要检查数据类型的语言。如 JavaScript&lt;br&gt;&lt;strong&gt;弱类型语言&lt;/strong&gt; 运行过程中支持隐式转换的语言。C 和 JavaScript 都支持隐式转换，都是弱类型语言&lt;br&gt;&lt;strong&gt;强类型语言&lt;/strong&gt; 运行过程中不支持隐式转换的语言。如 Ruby&lt;br&gt;【具体可参考以下象限图】&lt;br&gt;&lt;img src=&#34;https://static001.geekbang.org/resource/image/36/f0/36f0f5bdce0a6d8c36cbb8a76931cff0.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h2 id=&#34;2-JavaScript-7-种数据类型&#34;&gt;&lt;a href=&#34;#2-JavaScript-7-种数据类型&#34; class=&#34;headerlink&#34; title=&#34;2. JavaScript 7 种数据类型&#34;&gt;&lt;/a&gt;2. JavaScript 7 种数据类型&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;JavaScript 是弱类型动态语言，不需要在使用前定义变量类型，运行过程中同一变量可以存不同数据类型&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;Number&lt;/td&gt;
+&lt;td&gt;可以是整数或带小数点的浮点数，采用 IEEE 754 双精确度（64 位）格式存储，计算浮点数时，需要注意 0.1+0.2=0.30000000000000004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;0或0个以上字符由，’’或””包裹。原字符串不是对象类型，为方便使用，JavaScript引擎会自动转成对象类型，有 length 属性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Boolean&lt;/td&gt;
+&lt;td&gt;任何类型都会转成布尔类型，false,0,’’,NaN, null, undefined 转换为 false; 其它转换为 true。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Undefined&lt;/td&gt;
+&lt;td&gt;变量未声明或声明未赋值 typeof a === ‘undefined’(a 是不存在的变量)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Null&lt;/td&gt;
+&lt;td&gt;空值，清除某个值时可赋值为 null&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;Function,Array,Date 等，都为对象类型。JavaScript 中的对象可以看作是属性的集合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Symbol&lt;/td&gt;
+&lt;td&gt;符号类型，是唯一的并且不可修改，常作为 Object 的 key。通过 Symbol() 函数产生&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;几点注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;typeof Null 返回 Object，这个是 JavaScript bug，为兼容老代码一直未修复；&lt;/li&gt;
+&lt;li&gt;isNaN(Number(‘hello’)) // true 检查无意义的运算，NaN 无效的数字。&lt;/li&gt;
+&lt;li&gt;非严格模式下，null === undefined 是 true，严格模式下 false。&lt;/li&gt;
+&lt;li&gt;isFinite(2/0) 检查是 2/0 否为有限数&lt;/li&gt;
+&lt;li&gt;Object 是引用类型，其它为原始类型。&lt;/li&gt;
+&lt;/ul&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

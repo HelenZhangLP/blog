@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1、 Demo(1) —— 身份证验证12&#x2F;&#x2F; 15 位数字&#x2F;18 位数字&#x2F;17 位数字 + （X|x）const reg &#x3D; &#x2F;(^\d&amp;#123;15&amp;#125;$)|(^\d&amp;#123;18&amp;#125;$)|(^\d&amp;#123;17&amp;#125;(\d|X|x)$)&#x2F;   2、 Demo(2)1234567891011121314151617let value &#x3D; &amp;#x27;&lt;html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-正则-常用正则case">
+<meta property="og:url" content="https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="1、 Demo(1) —— 身份证验证12&#x2F;&#x2F; 15 位数字&#x2F;18 位数字&#x2F;17 位数字 + （X|x）const reg &#x3D; &#x2F;(^\d&amp;#123;15&amp;#125;$)|(^\d&amp;#123;18&amp;#125;$)|(^\d&amp;#123;17&amp;#125;(\d|X|x)$)&#x2F;   2、 Demo(2)1234567891011121314151617let value &#x3D; &amp;#x27;&lt;html">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-10T05:47:53.000Z">
+<meta property="article:modified_time" content="2021-06-09T01:44:49.000Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="RegExp">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript-正则-常用正则case</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/04/17/package-json/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/03/06/%E5%B7%A5%E5%85%B7-Fiddler/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&text=JavaScript-正则-常用正则case"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&is_video=false&description=JavaScript-正则-常用正则case"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-正则-常用正则case&body=Check out this article: https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&name=JavaScript-正则-常用正则case&description=&lt;h3 id=&#34;1、-Demo-1-——-身份证验证&#34;&gt;&lt;a href=&#34;#1、-Demo-1-——-身份证验证&#34; class=&#34;headerlink&#34; title=&#34;1、 Demo(1) —— 身份证验证&#34;&gt;&lt;/a&gt;1、 Demo(1) —— 身份证验证&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 15 位数字/18 位数字/17 位数字 + （X|x）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; reg = &lt;span class=&#34;regexp&#34;&gt;/(^\d&amp;#123;15&amp;#125;$)|(^\d&amp;#123;18&amp;#125;$)|(^\d&amp;#123;17&amp;#125;(\d|X|x)$)/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h3 id=&#34;2、-Demo-2&#34;&gt;&lt;a href=&#34;#2、-Demo-2&#34; class=&#34;headerlink&#34; title=&#34;2、 Demo(2)&#34;&gt;&lt;/a&gt;2、 Demo(2)&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; value = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;html&amp;gt;   $%^##sbd&amp;lt;/html&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 替换 html 代码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = value.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/[&amp;lt;&amp;gt;\w+/]/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;quot;   $%^##&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 替换是否存在表情&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 多个空格替换为一个空格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/\s+/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 特殊符号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; regEn = &lt;span class=&#34;regexp&#34;&gt;/[`~@#$%^&amp;amp;*()_+&amp;lt;&amp;gt;?:&amp;quot;&amp;#123;&amp;#125;,./;&amp;#x27;[]]/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; regCn = &lt;span class=&#34;regexp&#34;&gt;/[·#￥（——）：；“”‘、|《》？、【】[]]/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(regEn, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(regCn, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;3、-Demo-3-——-手机号中间四位替换为&#34;&gt;&lt;a href=&#34;#3、-Demo-3-——-手机号中间四位替换为&#34; class=&#34;headerlink&#34; title=&#34;3、  Demo(3) —— 手机号中间四位替换为 ****&#34;&gt;&lt;/a&gt;3、  Demo(3) —— 手机号中间四位替换为 ****&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;13381895220&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;str.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^(.&amp;#123;3&amp;#125;)(.&amp;#123;4&amp;#125;)(.&amp;#123;4&amp;#125;)$/&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;quot;$1****$3&amp;quot;&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// &amp;quot;133****5220&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;4、-Demo-4-——-首字母大写&#34;&gt;&lt;a href=&#34;#4、-Demo-4-——-首字母大写&#34; class=&#34;headerlink&#34; title=&#34;4、  Demo(4) —— 首字母大写&#34;&gt;&lt;/a&gt;4、  Demo(4) —— 首字母大写&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; value = &lt;span class=&#34;string&#34;&gt;&amp;#x27;front-end development engineer&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;value.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^./&lt;/span&gt;,value[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;title function_&#34;&gt;toUpperCase&lt;/span&gt;()) &lt;span class=&#34;comment&#34;&gt;// &amp;quot;Front-end development engineer&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;value.&lt;span class=&#34;title function_&#34;&gt;split&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;).&lt;span class=&#34;title function_&#34;&gt;map&lt;/span&gt;(&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;item&lt;/span&gt; =&amp;gt;&lt;/span&gt; item.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^./&lt;/span&gt;, item[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;title function_&#34;&gt;toUpperCase&lt;/span&gt;())).&lt;span class=&#34;title function_&#34;&gt;join&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;quot;Front-end Development Engineer&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-Demo-1-%E2%80%94%E2%80%94-%E8%BA%AB%E4%BB%BD%E8%AF%81%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">1、 Demo(1) —— 身份证验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81-Demo-2"><span class="toc-number">2.</span> <span class="toc-text">2、 Demo(2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81-Demo-3-%E2%80%94%E2%80%94-%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%AD%E9%97%B4%E5%9B%9B%E4%BD%8D%E6%9B%BF%E6%8D%A2%E4%B8%BA"><span class="toc-number">3.</span> <span class="toc-text">3、  Demo(3) —— 手机号中间四位替换为 ****</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81-Demo-4-%E2%80%94%E2%80%94-%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99"><span class="toc-number">4.</span> <span class="toc-text">4、  Demo(4) —— 首字母大写</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript-正则-常用正则case
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-03-10T05:47:53.000Z" itemprop="datePublished">2020-03-10</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/" rel="tag">RegExp</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1、-Demo-1-——-身份证验证"><a href="#1、-Demo-1-——-身份证验证" class="headerlink" title="1、 Demo(1) —— 身份证验证"></a>1、 Demo(1) —— 身份证验证</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 15 位数字/18 位数字/17 位数字 + （X|x）</span></span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="2、-Demo-2"><a href="#2、-Demo-2" class="headerlink" title="2、 Demo(2)"></a>2、 Demo(2)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="string">&#x27;&lt;html&gt;   $%^##sbd&lt;/html&gt;&#x27;</span></span><br><span class="line"><span class="comment">// 替换 html 代码</span></span><br><span class="line">name = value.<span class="title function_">replace</span>(<span class="regexp">/[&lt;&gt;\w+/]/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="comment">// &quot;   $%^##&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换是否存在表情</span></span><br><span class="line">name = name.<span class="title function_">replace</span>(<span class="regexp">/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个空格替换为一个空格</span></span><br><span class="line">name = name.<span class="title function_">replace</span>(<span class="regexp">/\s+/g</span>, <span class="string">&#x27; &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特殊符号</span></span><br><span class="line"><span class="keyword">const</span> regEn = <span class="regexp">/[`~@#$%^&amp;*()_+&lt;&gt;?:&quot;&#123;&#125;,./;&#x27;[]]/g</span>;</span><br><span class="line"><span class="keyword">const</span> regCn = <span class="regexp">/[·#￥（——）：；“”‘、|《》？、【】[]]/g</span>;</span><br><span class="line"></span><br><span class="line">name = name.<span class="title function_">replace</span>(regEn, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">name = name.<span class="title function_">replace</span>(regCn, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、-Demo-3-——-手机号中间四位替换为"><a href="#3、-Demo-3-——-手机号中间四位替换为" class="headerlink" title="3、  Demo(3) —— 手机号中间四位替换为 ****"></a>3、  Demo(3) —— 手机号中间四位替换为 ****</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;13381895220&#x27;</span></span><br><span class="line">str.<span class="title function_">replace</span>(<span class="regexp">/^(.&#123;3&#125;)(.&#123;4&#125;)(.&#123;4&#125;)$/</span>, <span class="string">&quot;$1****$3&quot;</span>) <span class="comment">// &quot;133****5220&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、-Demo-4-——-首字母大写"><a href="#4、-Demo-4-——-首字母大写" class="headerlink" title="4、  Demo(4) —— 首字母大写"></a>4、  Demo(4) —— 首字母大写</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">&#x27;front-end development engineer&#x27;</span></span><br><span class="line">value.<span class="title function_">replace</span>(<span class="regexp">/^./</span>,value[<span class="number">0</span>].<span class="title function_">toUpperCase</span>()) <span class="comment">// &quot;Front-end development engineer&quot;</span></span><br><span class="line"></span><br><span class="line">value.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> item.<span class="title function_">replace</span>(<span class="regexp">/^./</span>, item[<span class="number">0</span>].<span class="title function_">toUpperCase</span>())).<span class="title function_">join</span>(<span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="comment">// &quot;Front-end Development Engineer&quot;</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-Demo-1-%E2%80%94%E2%80%94-%E8%BA%AB%E4%BB%BD%E8%AF%81%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">1、 Demo(1) —— 身份证验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81-Demo-2"><span class="toc-number">2.</span> <span class="toc-text">2、 Demo(2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81-Demo-3-%E2%80%94%E2%80%94-%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%AD%E9%97%B4%E5%9B%9B%E4%BD%8D%E6%9B%BF%E6%8D%A2%E4%B8%BA"><span class="toc-number">3.</span> <span class="toc-text">3、  Demo(3) —— 手机号中间四位替换为 ****</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81-Demo-4-%E2%80%94%E2%80%94-%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99"><span class="toc-number">4.</span> <span class="toc-text">4、  Demo(4) —— 首字母大写</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&text=JavaScript-正则-常用正则case"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&is_video=false&description=JavaScript-正则-常用正则case"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-正则-常用正则case&body=Check out this article: https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&title=JavaScript-正则-常用正则case"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/03/10/Javascript-%E6%AD%A3%E5%88%99-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99case/&name=JavaScript-正则-常用正则case&description=&lt;h3 id=&#34;1、-Demo-1-——-身份证验证&#34;&gt;&lt;a href=&#34;#1、-Demo-1-——-身份证验证&#34; class=&#34;headerlink&#34; title=&#34;1、 Demo(1) —— 身份证验证&#34;&gt;&lt;/a&gt;1、 Demo(1) —— 身份证验证&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 15 位数字/18 位数字/17 位数字 + （X|x）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; reg = &lt;span class=&#34;regexp&#34;&gt;/(^\d&amp;#123;15&amp;#125;$)|(^\d&amp;#123;18&amp;#125;$)|(^\d&amp;#123;17&amp;#125;(\d|X|x)$)/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+
+&lt;h3 id=&#34;2、-Demo-2&#34;&gt;&lt;a href=&#34;#2、-Demo-2&#34; class=&#34;headerlink&#34; title=&#34;2、 Demo(2)&#34;&gt;&lt;/a&gt;2、 Demo(2)&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; value = &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;lt;html&amp;gt;   $%^##sbd&amp;lt;/html&amp;gt;&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 替换 html 代码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = value.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/[&amp;lt;&amp;gt;\w+/]/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;quot;   $%^##&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 替换是否存在表情&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 多个空格替换为一个空格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/\s+/g&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 特殊符号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; regEn = &lt;span class=&#34;regexp&#34;&gt;/[`~@#$%^&amp;amp;*()_+&amp;lt;&amp;gt;?:&amp;quot;&amp;#123;&amp;#125;,./;&amp;#x27;[]]/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; regCn = &lt;span class=&#34;regexp&#34;&gt;/[·#￥（——）：；“”‘、|《》？、【】[]]/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(regEn, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;name = name.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(regCn, &lt;span class=&#34;string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;3、-Demo-3-——-手机号中间四位替换为&#34;&gt;&lt;a href=&#34;#3、-Demo-3-——-手机号中间四位替换为&#34; class=&#34;headerlink&#34; title=&#34;3、  Demo(3) —— 手机号中间四位替换为 ****&#34;&gt;&lt;/a&gt;3、  Demo(3) —— 手机号中间四位替换为 ****&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; str = &lt;span class=&#34;string&#34;&gt;&amp;#x27;13381895220&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;str.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^(.&amp;#123;3&amp;#125;)(.&amp;#123;4&amp;#125;)(.&amp;#123;4&amp;#125;)$/&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;quot;$1****$3&amp;quot;&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// &amp;quot;133****5220&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;4、-Demo-4-——-首字母大写&#34;&gt;&lt;a href=&#34;#4、-Demo-4-——-首字母大写&#34; class=&#34;headerlink&#34; title=&#34;4、  Demo(4) —— 首字母大写&#34;&gt;&lt;/a&gt;4、  Demo(4) —— 首字母大写&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; value = &lt;span class=&#34;string&#34;&gt;&amp;#x27;front-end development engineer&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;value.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^./&lt;/span&gt;,value[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;title function_&#34;&gt;toUpperCase&lt;/span&gt;()) &lt;span class=&#34;comment&#34;&gt;// &amp;quot;Front-end development engineer&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;value.&lt;span class=&#34;title function_&#34;&gt;split&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;).&lt;span class=&#34;title function_&#34;&gt;map&lt;/span&gt;(&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;item&lt;/span&gt; =&amp;gt;&lt;/span&gt; item.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(&lt;span class=&#34;regexp&#34;&gt;/^./&lt;/span&gt;, item[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;title function_&#34;&gt;toUpperCase&lt;/span&gt;())).&lt;span class=&#34;title function_&#34;&gt;join&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;quot;Front-end Development Engineer&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

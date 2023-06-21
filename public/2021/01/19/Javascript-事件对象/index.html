@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="事件事件是浏览器赋予元素的默认行为  事件具有传播机制，事件流描述从页面中接受事件的顺序。     捕获阶段(CAPTURING_PHASE 1)，从外层到最内层一一查的；    目标阶段(AT_TARGET 2)，触发事件源的点击行为；    冒泡阶段(BUBBLING_PASH 3)，按捕获阶段分析出来的路径，从内到外触发每个元素的点击事件   事件绑定事件绑定是给浏览器赋予元素默认行为绑定一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-事件对象">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="事件事件是浏览器赋予元素的默认行为  事件具有传播机制，事件流描述从页面中接受事件的顺序。     捕获阶段(CAPTURING_PHASE 1)，从外层到最内层一一查的；    目标阶段(AT_TARGET 2)，触发事件源的点击行为；    冒泡阶段(BUBBLING_PASH 3)，按捕获阶段分析出来的路径，从内到外触发每个元素的点击事件   事件绑定事件绑定是给浏览器赋予元素默认行为绑定一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://helenzhanglp.github.io/images/js/event.jpg">
+<meta property="article:published_time" content="2021-01-19T08:52:04.000Z">
+<meta property="article:modified_time" content="2023-06-06T02:10:02.640Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://helenzhanglp.github.io/images/js/event.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript-事件对象</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/03/03/React-jsx/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/01/18/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94async-await%EF%BC%88%E7%94%A8%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E5%86%99%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%EF%BC%89/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&text=JavaScript-事件对象"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&is_video=false&description=JavaScript-事件对象"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-事件对象&body=Check out this article: https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&name=JavaScript-事件对象&description=&lt;h2 id=&#34;事件&#34;&gt;&lt;a href=&#34;#事件&#34; class=&#34;headerlink&#34; title=&#34;事件&#34;&gt;&lt;/a&gt;事件&lt;/h2&gt;&lt;p&gt;事件是浏览器赋予元素的默认行为&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;事件具有传播机制，事件流描述从页面中接受事件的顺序。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;   捕获阶段(CAPTURING_PHASE 1)，从外层到最内层一一查的；&lt;/li&gt;
+&lt;li&gt;   目标阶段(AT_TARGET 2)，触发事件源的点击行为；&lt;/li&gt;
+&lt;li&gt;   冒泡阶段(BUBBLING_PASH 3)，按捕获阶段分析出来的路径，从内到外触发每个元素的点击事件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;事件绑定&#34;&gt;&lt;a href=&#34;#事件绑定&#34; class=&#34;headerlink&#34; title=&#34;事件绑定&#34;&gt;&lt;/a&gt;事件绑定&lt;/h2&gt;&lt;p&gt;事件绑定是给浏览器赋予元素默认行为绑定一个方法。即使没有绑定方法，点击元素也会触发相应的事件。&lt;/p&gt;
+&lt;h2 id=&#34;事件传播（事件冒泡与事件捕获）&#34;&gt;&lt;a href=&#34;#事件传播（事件冒泡与事件捕获）&#34; class=&#34;headerlink&#34; title=&#34;事件传播（事件冒泡与事件捕获）&#34;&gt;&lt;/a&gt;事件传播（事件冒泡与事件捕获）&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/js/event.jpg&#34; alt=&#34;冒泡，捕获&#34;&gt;&lt;br&gt;当一个元素接收到事件时，会把它接收到的事件逐级向上传播给它的祖先元素，一直传到【顶层对象】&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IE9以上、Chrome、Safari 事件冒泡顶层对象是 window&lt;br&gt;IE7/IE8 事件冒泡顶层对象是 Document&lt;br&gt;事件冒泡对所有浏览器默认存在，且由元素 html 结构决定。&lt;span class=&#34;custom-box custom-box-339&#34;&gt;所以即使定位或浮动脱离文档流的元素也是存在冒泡现象的&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;outer&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;inner&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;type&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; html = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;property&#34;&gt;getElement&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        body = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;property&#34;&gt;body&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root&amp;#x27;&lt;/span&gt;),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer&amp;#x27;&lt;/span&gt;),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;span class=&#34;custom-box custom-box-393&#34;&gt;&lt;code&gt;window 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;document 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;html 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;body 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;root 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;outer 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;inner 捕获&lt;/code&gt;&lt;/span&gt;&lt;span class=&#34;custom-box custom-box-339&#34;&gt; –&amp;gt; 目标阶段 –&amp;gt; &lt;/span&gt; &lt;span class=&#34;custom-box custom-box-993&#34;&gt;&lt;code&gt;inner 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;outer 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;root 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;body 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;html 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;document 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;window 冒泡&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="toc-number">2.</span> <span class="toc-text">事件绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">事件传播（事件冒泡与事件捕获）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#event-stopPropagation-%E2%80%94%E2%80%94%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD"><span class="toc-number">3.1.</span> <span class="toc-text">event.stopPropagation()——阻止事件传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-stopImmediatePropagation-%E2%80%94%E2%80%94%E2%80%94-%E7%AB%8B%E5%8D%B3%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E4%BC%A0%E6%92%AD"><span class="toc-number">3.2.</span> <span class="toc-text">event.stopImmediatePropagation ——— 立即阻止事件传传播</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="toc-number">4.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">事件委托的优点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-body-addEventListener-%E2%80%98click%E2%80%99-function-%E2%80%A6-%E6%97%A0%E5%93%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">document.body.addEventListener(‘click’, function() {…} 无响应)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-path-property-of-Event-objects-is-non-standard-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%96%B0%E7%9A%84%E6%A0%87%E5%87%86%E9%87%87%E7%94%A8Event-composedPath"><span class="toc-number">6.</span> <span class="toc-text">The path property of Event objects is non-standard.浏览器新的标准采用Event.composedPath()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E6%B1%A0"><span class="toc-number">7.</span> <span class="toc-text">事件对象池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%BB%B6%E8%BF%9F"><span class="toc-number">8.</span> <span class="toc-text">关于移动端事件对象延迟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%BE%B0%E5%8D%95%E6%89%8B%E6%8C%87%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-number">8.1.</span> <span class="toc-text">移动羰单手指事件模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastClick-%E8%A7%A3%E5%86%B3%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BD%BF%E7%94%A8-click-%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6-300ms-%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.</span> <span class="toc-text">FastClick 解决移动端使用 click 点击事件 300ms 延迟问题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript-事件对象
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2021-01-19T08:52:04.000Z" itemprop="datePublished">2021-01-19</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是浏览器赋予元素的默认行为</p>
+<blockquote>
+<p>事件具有传播机制，事件流描述从页面中接受事件的顺序。</p>
+<ol>
+<li>   捕获阶段(CAPTURING_PHASE 1)，从外层到最内层一一查的；</li>
+<li>   目标阶段(AT_TARGET 2)，触发事件源的点击行为；</li>
+<li>   冒泡阶段(BUBBLING_PASH 3)，按捕获阶段分析出来的路径，从内到外触发每个元素的点击事件</li>
+</ol>
+</blockquote>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件绑定是给浏览器赋予元素默认行为绑定一个方法。即使没有绑定方法，点击元素也会触发相应的事件。</p>
+<h2 id="事件传播（事件冒泡与事件捕获）"><a href="#事件传播（事件冒泡与事件捕获）" class="headerlink" title="事件传播（事件冒泡与事件捕获）"></a>事件传播（事件冒泡与事件捕获）</h2><p><img src="/images/js/event.jpg" alt="冒泡，捕获"><br>当一个元素接收到事件时，会把它接收到的事件逐级向上传播给它的祖先元素，一直传到【顶层对象】</p>
+<blockquote>
+<p>IE9以上、Chrome、Safari 事件冒泡顶层对象是 window<br>IE7/IE8 事件冒泡顶层对象是 Document<br>事件冒泡对所有浏览器默认存在，且由元素 html 结构决定。<span class='custom-box custom-box-339'>所以即使定位或浮动脱离文档流的元素也是存在冒泡现象的</span></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;outer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> html = <span class="variable language_">document</span>.<span class="property">getElement</span>,</span></span><br><span class="line"><span class="language-javascript">        body = <span class="variable language_">document</span>.<span class="property">body</span>,</span></span><br><span class="line"><span class="language-javascript">        root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        outer = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;outer&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        inner = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inner&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        inner.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner click 冒泡&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        inner.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner click 捕获&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,<span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer click 冒泡&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        outer.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer click 捕获&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,<span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;root click 冒泡&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;root click 捕获&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,<span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><span class='custom-box custom-box-393'><code>window 捕获</code> –&gt; <code>document 捕获</code> –&gt; <code>html 捕获</code> –&gt; <code>body 捕获</code> –&gt; <code>root 捕获</code> –&gt; <code>outer 捕获</code> –&gt; <code>inner 捕获</code></span><span class='custom-box custom-box-339'> –&gt; 目标阶段 –&gt; </span> <span class='custom-box custom-box-993'><code>inner 冒泡</code> –&gt; <code>outer 冒泡</code> –&gt; <code>root 冒泡</code> –&gt; <code>body 冒泡</code> –&gt; <code>html 冒泡</code> –&gt; <code>document 冒泡</code> –&gt; <code>window 冒泡</code></span></p>
+<pre class="mermaid"> flowchart LR
+ capturing["捕获阶段 CAPTURING_PHASE"] --> AT_TARGET["目标阶段 AT_TARGET"]
+ AT_TARGET --> bubbling["冒泡阶段 BUBBLING_PASH"]</pre>
+<p>使用事件源对象的事件属性绑定事件函数及使用html标签事件属性绑定事件函数的事件流都是冒泡</p>
+<h3 id="event-stopPropagation-——阻止事件传播"><a href="#event-stopPropagation-——阻止事件传播" class="headerlink" title="event.stopPropagation()——阻止事件传播"></a>event.stopPropagation()——阻止事件传播</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    ...</span></span><br><span class="line"><span class="language-javascript">        inner.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            event.<span class="title function_">stopPropagation</span>()</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner click 冒泡&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        ...</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>root 捕获</code> –&gt; <code>outer 捕获</code> –&gt; <code>inner 捕获</code> –&gt; <code>inner 冒泡</code><br>inner 以后的事件不再传播</p>
+</blockquote>
+<h3 id="event-stopImmediatePropagation-———-立即阻止事件传传播"><a href="#event-stopImmediatePropagation-———-立即阻止事件传传播" class="headerlink" title="event.stopImmediatePropagation ——— 立即阻止事件传传播"></a>event.stopImmediatePropagation ——— 立即阻止事件传传播</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    ...</span></span><br><span class="line"><span class="language-javascript">        root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            event.<span class="title function_">stopImmediatePropagation</span>()</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;root click 捕获&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,<span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>root 捕获</code><br>   立即阻止事件传播，包括当前 dom 绑定的未执行的其它方法</p>
+</blockquote>
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><p>利用事件传播机制，实现的一套 <span class='custom-box custom-box-393'>事件绑定处理方案</span><br><span class='custom-box custom-box-933'>要求当前事件必须支持事件传播机制（如：mouseenter,mouseleave）；某事件单独做了事件绑定，并阻止了事件传播，事件委托不生效</span></p>
+<h3 id="事件委托的优点："><a href="#事件委托的优点：" class="headerlink" title="事件委托的优点："></a>事件委托的优点：</h3><ul>
+<li>提高 JS 代码运行的性能，并且把处理的逻辑都集中在一起</li>
+<li>给动态绑定的元素做事件绑定</li>
+<li>除某些元素外的其它元素的事件处理，需要基于事件委托来做</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> html = <span class="variable language_">document</span>.<span class="property">getElement</span>,</span></span><br><span class="line"><span class="language-javascript">        body = <span class="variable language_">document</span>.<span class="property">body</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params">evt</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> id = evt.<span class="property">target</span>.<span class="property">id</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (id === <span class="string">&#x27;inner&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do something&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do other thing&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="document-body-addEventListener-‘click’-function-…-无响应"><a href="#document-body-addEventListener-‘click’-function-…-无响应" class="headerlink" title="document.body.addEventListener(‘click’, function() {…} 无响应)"></a><font color='red'>document.body.addEventListener(‘click’, function() {…} 无响应)</font></h2><p><span class='custom-box custom-box-933'>Reason: document.clientHeigyt = 0，body 没有高度。引起 body 没有高度的原因可能是子元素脱离文档流。</span></p>
+<h2 id="The-path-property-of-Event-objects-is-non-standard-浏览器新的标准采用Event-composedPath"><a href="#The-path-property-of-Event-objects-is-non-standard-浏览器新的标准采用Event-composedPath" class="headerlink" title="The path property of Event objects is non-standard.浏览器新的标准采用Event.composedPath()"></a><font color='red'>The path property of Event objects is non-standard.浏览器新的标准采用Event.composedPath()</font></h2><blockquote>
+<p>当对象数组调用该 侦听器时返回事件路径。</p>
+</blockquote>
+<h2 id="事件对象池"><a href="#事件对象池" class="headerlink" title="事件对象池"></a>事件对象池</h2><h2 id="关于移动端事件对象延迟"><a href="#关于移动端事件对象延迟" class="headerlink" title="关于移动端事件对象延迟"></a>关于移动端事件对象延迟</h2><p><span class='custom-box custom-box-933'>移动端 click 有 300ms 延迟</span>，移动端 click 是单击事件，PC 端 click 为点击事件。<br><span class='custom-box custom-box-393'>连点两下，</span>PC 端会触发两次 click，一次 dblclick；移动端只会触发 dblclick。<br><span class='custom-box custom-box-339'>移动端单击事件：第一次点击后，监听 300ms，查看是否有第二次点击，有则是双击，没有为单击。</span></p>
+<h3 id="移动羰单手指事件模型"><a href="#移动羰单手指事件模型" class="headerlink" title="移动羰单手指事件模型"></a>移动羰单手指事件模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">        <span class="attr">touch</span>: &#123;</span><br><span class="line">            <span class="attr">isMove</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">x</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">y</span>: <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    touchStart = <span class="function">(<span class="params">evt</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> finger = evt.<span class="property">changedTouches</span>[<span class="number">0</span>] <span class="comment">// 手指事件信息</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(evt)</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">            <span class="attr">isMove</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">x</span>: finger.<span class="property">pageX</span>,</span><br><span class="line">            <span class="attr">y</span>: finger.<span class="property">pageY</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    touchMove = <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> finger = evt.<span class="property">changedTouches</span>[<span class="number">0</span>] <span class="comment">// 手指事件信息</span></span><br><span class="line">        <span class="keyword">const</span> &#123;touch&#125; = <span class="variable language_">this</span>.<span class="property">state</span></span><br><span class="line">        <span class="keyword">let</span> x =finger.<span class="property">pageX</span> - touch.<span class="property">x</span>,</span><br><span class="line">            y = finger.<span class="property">pageY</span> - touch.<span class="property">y</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">abs</span>(x) &gt; <span class="number">10</span> || <span class="title class_">Math</span>.<span class="title function_">abs</span>(y) &gt; <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                <span class="attr">isMove</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    touchEnd = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;touch&#125; = <span class="variable language_">this</span>.<span class="property">state</span></span><br><span class="line">        <span class="keyword">if</span> (touch.<span class="property">isMove</span>) <span class="keyword">return</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;点击按钮了&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">button</span> </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onTouchStart</span>=<span class="string">&#123;this.touchStart&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onTouchMove</span>=<span class="string">&#123;this.TouchMove&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onTouchEnd</span>=<span class="string">&#123;this.touchEnd&#125;</span>&gt;</span>mobileEvent<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="FastClick-解决移动端使用-click-点击事件-300ms-延迟问题"><a href="#FastClick-解决移动端使用-click-点击事件-300ms-延迟问题" class="headerlink" title="FastClick 解决移动端使用 click 点击事件 300ms 延迟问题"></a>FastClick 解决移动端使用 click 点击事件 300ms 延迟问题</h3>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="toc-number">2.</span> <span class="toc-text">事件绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">事件传播（事件冒泡与事件捕获）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#event-stopPropagation-%E2%80%94%E2%80%94%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD"><span class="toc-number">3.1.</span> <span class="toc-text">event.stopPropagation()——阻止事件传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-stopImmediatePropagation-%E2%80%94%E2%80%94%E2%80%94-%E7%AB%8B%E5%8D%B3%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E4%BC%A0%E4%BC%A0%E6%92%AD"><span class="toc-number">3.2.</span> <span class="toc-text">event.stopImmediatePropagation ——— 立即阻止事件传传播</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="toc-number">4.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">事件委托的优点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-body-addEventListener-%E2%80%98click%E2%80%99-function-%E2%80%A6-%E6%97%A0%E5%93%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">document.body.addEventListener(‘click’, function() {…} 无响应)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-path-property-of-Event-objects-is-non-standard-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%96%B0%E7%9A%84%E6%A0%87%E5%87%86%E9%87%87%E7%94%A8Event-composedPath"><span class="toc-number">6.</span> <span class="toc-text">The path property of Event objects is non-standard.浏览器新的标准采用Event.composedPath()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E6%B1%A0"><span class="toc-number">7.</span> <span class="toc-text">事件对象池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%BB%B6%E8%BF%9F"><span class="toc-number">8.</span> <span class="toc-text">关于移动端事件对象延迟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%BE%B0%E5%8D%95%E6%89%8B%E6%8C%87%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-number">8.1.</span> <span class="toc-text">移动羰单手指事件模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastClick-%E8%A7%A3%E5%86%B3%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BD%BF%E7%94%A8-click-%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6-300ms-%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.</span> <span class="toc-text">FastClick 解决移动端使用 click 点击事件 300ms 延迟问题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&text=JavaScript-事件对象"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&is_video=false&description=JavaScript-事件对象"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-事件对象&body=Check out this article: https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&title=JavaScript-事件对象"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/&name=JavaScript-事件对象&description=&lt;h2 id=&#34;事件&#34;&gt;&lt;a href=&#34;#事件&#34; class=&#34;headerlink&#34; title=&#34;事件&#34;&gt;&lt;/a&gt;事件&lt;/h2&gt;&lt;p&gt;事件是浏览器赋予元素的默认行为&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;事件具有传播机制，事件流描述从页面中接受事件的顺序。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;   捕获阶段(CAPTURING_PHASE 1)，从外层到最内层一一查的；&lt;/li&gt;
+&lt;li&gt;   目标阶段(AT_TARGET 2)，触发事件源的点击行为；&lt;/li&gt;
+&lt;li&gt;   冒泡阶段(BUBBLING_PASH 3)，按捕获阶段分析出来的路径，从内到外触发每个元素的点击事件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;事件绑定&#34;&gt;&lt;a href=&#34;#事件绑定&#34; class=&#34;headerlink&#34; title=&#34;事件绑定&#34;&gt;&lt;/a&gt;事件绑定&lt;/h2&gt;&lt;p&gt;事件绑定是给浏览器赋予元素默认行为绑定一个方法。即使没有绑定方法，点击元素也会触发相应的事件。&lt;/p&gt;
+&lt;h2 id=&#34;事件传播（事件冒泡与事件捕获）&#34;&gt;&lt;a href=&#34;#事件传播（事件冒泡与事件捕获）&#34; class=&#34;headerlink&#34; title=&#34;事件传播（事件冒泡与事件捕获）&#34;&gt;&lt;/a&gt;事件传播（事件冒泡与事件捕获）&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/js/event.jpg&#34; alt=&#34;冒泡，捕获&#34;&gt;&lt;br&gt;当一个元素接收到事件时，会把它接收到的事件逐级向上传播给它的祖先元素，一直传到【顶层对象】&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IE9以上、Chrome、Safari 事件冒泡顶层对象是 window&lt;br&gt;IE7/IE8 事件冒泡顶层对象是 Document&lt;br&gt;事件冒泡对所有浏览器默认存在，且由元素 html 结构决定。&lt;span class=&#34;custom-box custom-box-339&#34;&gt;所以即使定位或浮动脱离文档流的元素也是存在冒泡现象的&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;outer&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;inner&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;type&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; html = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;property&#34;&gt;getElement&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        body = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;property&#34;&gt;body&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root&amp;#x27;&lt;/span&gt;),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer&amp;#x27;&lt;/span&gt;),&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner = &lt;span class=&#34;variable language_&#34;&gt;document&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;getElementById&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        inner.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;inner click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        outer.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;outer click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root click 冒泡&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        root.&lt;span class=&#34;title function_&#34;&gt;addEventListener&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;click&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;            &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;root click 捕获&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;        &amp;#125;,&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;language-javascript&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;span class=&#34;custom-box custom-box-393&#34;&gt;&lt;code&gt;window 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;document 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;html 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;body 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;root 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;outer 捕获&lt;/code&gt; –&amp;gt; &lt;code&gt;inner 捕获&lt;/code&gt;&lt;/span&gt;&lt;span class=&#34;custom-box custom-box-339&#34;&gt; –&amp;gt; 目标阶段 –&amp;gt; &lt;/span&gt; &lt;span class=&#34;custom-box custom-box-993&#34;&gt;&lt;code&gt;inner 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;outer 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;root 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;body 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;html 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;document 冒泡&lt;/code&gt; –&amp;gt; &lt;code&gt;window 冒泡&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。 homebrew 安装安装1&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;HEAD&#x2F;install.sh)&quot; curl: (7) Failed to connect to raw.githubuserco">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macos 常用命令">
+<meta property="og:url" content="https://helenzhanglp.github.io/2020/10/22/macos/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。 homebrew 安装安装1&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;HEAD&#x2F;install.sh)&quot; curl: (7) Failed to connect to raw.githubuserco">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://helenzhanglp.github.io/images/macos/ipaddress.png">
+<meta property="article:published_time" content="2020-10-22T03:59:39.000Z">
+<meta property="article:modified_time" content="2021-07-11T07:34:07.640Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="grocery">
+<meta property="article:tag" content="macos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://helenzhanglp.github.io/images/macos/ipaddress.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>macos 常用命令</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/22/EN-words/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/10/21/Vue/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/10/22/macos/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/10/22/macos/&text=macos 常用命令"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/10/22/macos/&is_video=false&description=macos 常用命令"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=macos 常用命令&body=Check out this article: https://helenzhanglp.github.io/2020/10/22/macos/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/10/22/macos/&name=macos 常用命令&description=&lt;p&gt;空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。&lt;/p&gt;
+&lt;h2 id=&#34;homebrew-安装&#34;&gt;&lt;a href=&#34;#homebrew-安装&#34; class=&#34;headerlink&#34; title=&#34;homebrew 安装&#34;&gt;&lt;/a&gt;homebrew 安装&lt;/h2&gt;&lt;h3 id=&#34;安装&#34;&gt;&lt;a href=&#34;#安装&#34; class=&#34;headerlink&#34; title=&#34;安装&#34;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题&#34;&gt;&lt;a href=&#34;#curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题&#34; class=&#34;headerlink&#34; title=&#34;curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题&#34;&gt;&lt;/a&gt;&lt;font color=&#34;#f33&#34;&gt;curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题&lt;/font&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;DNS 污染造成的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt; 使用 &lt;code&gt;https://www.ipaddress.com/&lt;/code&gt; 查询 &lt;code&gt;raw.githubbusercontent.com&lt;/code&gt; 的正确 IP&lt;br&gt;&lt;img src=&#34;/images/macos/ipaddress.png&#34; alt=&#34;img.png&#34;&gt;    &lt;/li&gt;
+&lt;li&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;$ &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;vim /etc/hosts&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.108.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.109.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.110.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.111.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个打脸的事实，安装好之后不要乱骚情，测试删除。使用的方法版本不对，结果又整出下面的妖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443&#34;&gt;&lt;a href=&#34;#fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443&#34; class=&#34;headerlink&#34; title=&#34;fatal: unable to access ‘https://github.com/Homebrew/brew/&amp;#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443&#34;&gt;&lt;/a&gt;&lt;font color=&#34;#f33&#34;&gt;fatal: unable to access ‘&lt;a href=&#34;https://github.com/Homebrew/brew/&amp;#39;&#34;&gt;https://github.com/Homebrew/brew/&amp;#39;&lt;/a&gt;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443&lt;/font&gt;&lt;/h3&gt;&lt;p&gt;步骤如上，&lt;code&gt;ipaddress&lt;/code&gt; 中查找 &lt;code&gt;github&lt;/code&gt; ip。hosts 中配置代理。我的配置如下&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;140.82.113.4 github.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#homebrew-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">homebrew 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-%E6%8B%92%E7%BB%9D%E8%BF%9E%E6%8E%A5-%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fatal-unable-to-access-%E2%80%98https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443"><span class="toc-number">1.3.</span> <span class="toc-text">fatal: unable to access ‘https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;brew&#x2F;&#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brew-%E5%AE%89%E8%A3%85-node"><span class="toc-number">2.</span> <span class="toc-text">brew 安装 node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6-rar"><span class="toc-number">3.</span> <span class="toc-text">macos 解压文件 .rar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D-%E6%9B%B4%E5%A4%9A%E7%9B%B8%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">macos 文件重命名 更多相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">macos 复制文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E5%AE%89%E8%A3%85-tree-%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">macos 安装 tree 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">6.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">6.2.</span> <span class="toc-text">方法二</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        macos 常用命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-10-22T03:59:39.000Z" itemprop="datePublished">2020-10-22</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/" rel="tag">grocery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/" rel="tag">macos</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。</p>
+<h2 id="homebrew-安装"><a href="#homebrew-安装" class="headerlink" title="homebrew 安装"></a>homebrew 安装</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题"><a href="#curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题" class="headerlink" title="curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题"></a><font color="#f33">curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题</font></h3><blockquote>
+<p>DNS 污染造成的</p>
+</blockquote>
+<ol>
+<li> 使用 <code>https://www.ipaddress.com/</code> 查询 <code>raw.githubbusercontent.com</code> 的正确 IP<br><img src="/images/macos/ipaddress.png" alt="img.png">    </li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vim /etc/hosts</span></span><br><span class="line">185.199.108.133 raw.githubusercontent.com</span><br><span class="line">185.199.109.133 raw.githubusercontent.com</span><br><span class="line">185.199.110.133 raw.githubusercontent.com</span><br><span class="line">185.199.111.133 raw.githubusercontent.com</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一个打脸的事实，安装好之后不要乱骚情，测试删除。使用的方法版本不对，结果又整出下面的妖</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443"><a href="#fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443" class="headerlink" title="fatal: unable to access ‘https://github.com/Homebrew/brew/&#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443"></a><font color="#f33">fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/Homebrew/brew/&#39;">https://github.com/Homebrew/brew/&#39;</a>: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</font></h3><p>步骤如上，<code>ipaddress</code> 中查找 <code>github</code> ip。hosts 中配置代理。我的配置如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">140.82.113.4 github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="brew-安装-node"><a href="#brew-安装-node" class="headerlink" title="brew 安装 node"></a>brew 安装 node</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+<h2 id="macos-解压文件-rar"><a href="#macos-解压文件-rar" class="headerlink" title="macos 解压文件 .rar"></a>macos 解压文件 .rar</h2><p>commands 参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">`e`             Extract files without archived paths # 解压缩文件到当前目录</span><br><span class="line">  `l[t[a],b]`     List archive contents [technical[all], bare]  # 列出压缩文件</span><br><span class="line">  `p`             Print file to stdout #打印文件标准输出设备</span><br><span class="line">  `t`             Test archive files # 测试压缩文件</span><br><span class="line">  `v[t[a],b]`     Verbosely list archive contents [technical[all],bare] # 详细列出压缩文件信息</span><br><span class="line">  `x`             Extract files with full path # 用绝对路径解压缩文件</span><br><span class="line"></span><br><span class="line">  ```bash</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">unrar x x.rar</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="macos-文件重命名-更多相关"><a href="#macos-文件重命名-更多相关" class="headerlink" title="macos 文件重命名 更多相关"></a>macos 文件重命名 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/liujiacai/p/8313548.html">更多相关</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mv</span> 切图图片资源/ static</span><br></pre></td></tr></table></figure>
+
+<h2 id="macos-复制文件"><a href="#macos-复制文件" class="headerlink" title="macos 复制文件"></a>macos 复制文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> webpack.config.js webpack.dev.config.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="macos-安装-tree-命令"><a href="#macos-安装-tree-命令" class="headerlink" title="macos 安装 tree 命令"></a>macos 安装 tree 命令</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ul>
+<li><code>cd $home</code></li>
+<li><code>vim .bashrc</code></li>
+<li><code>alias tree = &quot;find . -print | sed -e &#39;s;[^/]*/;|____;g;s;____|; |;g&#39;&quot;</code></li>
+<li><code>source .bashrc</code></li>
+</ul>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>也可以使用 homebrew 安装 tree 命令行：<br><code>1 $ brew install tree</code></p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#homebrew-%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">homebrew 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-%E6%8B%92%E7%BB%9D%E8%BF%9E%E6%8E%A5-%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fatal-unable-to-access-%E2%80%98https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443"><span class="toc-number">1.3.</span> <span class="toc-text">fatal: unable to access ‘https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;brew&#x2F;&#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brew-%E5%AE%89%E8%A3%85-node"><span class="toc-number">2.</span> <span class="toc-text">brew 安装 node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6-rar"><span class="toc-number">3.</span> <span class="toc-text">macos 解压文件 .rar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D-%E6%9B%B4%E5%A4%9A%E7%9B%B8%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">macos 文件重命名 更多相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">macos 复制文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-%E5%AE%89%E8%A3%85-tree-%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">macos 安装 tree 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">6.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">6.2.</span> <span class="toc-text">方法二</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/10/22/macos/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/10/22/macos/&text=macos 常用命令"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/10/22/macos/&is_video=false&description=macos 常用命令"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=macos 常用命令&body=Check out this article: https://helenzhanglp.github.io/2020/10/22/macos/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/10/22/macos/&title=macos 常用命令"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/10/22/macos/&name=macos 常用命令&description=&lt;p&gt;空难发生于最近，电脑硬盘坏了，换了新硬盘。新电脑，一切重新开始。&lt;/p&gt;
+&lt;h2 id=&#34;homebrew-安装&#34;&gt;&lt;a href=&#34;#homebrew-安装&#34; class=&#34;headerlink&#34; title=&#34;homebrew 安装&#34;&gt;&lt;/a&gt;homebrew 安装&lt;/h2&gt;&lt;h3 id=&#34;安装&#34;&gt;&lt;a href=&#34;#安装&#34; class=&#34;headerlink&#34; title=&#34;安装&#34;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题&#34;&gt;&lt;a href=&#34;#curl-7-Failed-to-connect-to-raw-githubusercontent-com-port-443-拒绝连接-问题&#34; class=&#34;headerlink&#34; title=&#34;curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题&#34;&gt;&lt;/a&gt;&lt;font color=&#34;#f33&#34;&gt;curl: (7) Failed to connect to raw.githubusercontent.com port 443: 拒绝连接 问题&lt;/font&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;DNS 污染造成的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt; 使用 &lt;code&gt;https://www.ipaddress.com/&lt;/code&gt; 查询 &lt;code&gt;raw.githubbusercontent.com&lt;/code&gt; 的正确 IP&lt;br&gt;&lt;img src=&#34;/images/macos/ipaddress.png&#34; alt=&#34;img.png&#34;&gt;    &lt;/li&gt;
+&lt;li&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta prompt_&#34;&gt;$ &lt;/span&gt;&lt;span class=&#34;language-bash&#34;&gt;vim /etc/hosts&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.108.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.109.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.110.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;185.199.111.133 raw.githubusercontent.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个打脸的事实，安装好之后不要乱骚情，测试删除。使用的方法版本不对，结果又整出下面的妖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443&#34;&gt;&lt;a href=&#34;#fatal-unable-to-access-‘https-github-com-Homebrew-brew-39-LibreSSL-SSL-connect-SSL-ERROR-SYSCALL-in-connection-to-github-com-443&#34; class=&#34;headerlink&#34; title=&#34;fatal: unable to access ‘https://github.com/Homebrew/brew/&amp;#39;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443&#34;&gt;&lt;/a&gt;&lt;font color=&#34;#f33&#34;&gt;fatal: unable to access ‘&lt;a href=&#34;https://github.com/Homebrew/brew/&amp;#39;&#34;&gt;https://github.com/Homebrew/brew/&amp;#39;&lt;/a&gt;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443&lt;/font&gt;&lt;/h3&gt;&lt;p&gt;步骤如上，&lt;code&gt;ipaddress&lt;/code&gt; 中查找 &lt;code&gt;github&lt;/code&gt; ip。hosts 中配置代理。我的配置如下&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;140.82.113.4 github.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

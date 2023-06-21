@@ -1,0 +1,4 @@
+---
+title: JavaScript—Symbol
+tags:
+---

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="浏览器样式缓存问题这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：  浏览器端 ctrl(command) + shift + r手机浏览器同样要清除缓存，如 safari history -&gt; clear all   master 分支中修改样式，然后发布，不是必须提交远程hexo db.json db.json 为缓存文件，如果 the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 坑">
+<meta property="og:url" content="https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="浏览器样式缓存问题这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：  浏览器端 ctrl(command) + shift + r手机浏览器同样要清除缓存，如 safari history -&gt; clear all   master 分支中修改样式，然后发布，不是必须提交远程hexo db.json db.json 为缓存文件，如果 the">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-31T08:44:18.000Z">
+<meta property="article:modified_time" content="2021-07-11T07:34:07.641Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Hexo 坑</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/31/%E5%B7%A5%E5%85%B7-atom-%E6%8F%92%E4%BB%B6/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/25/taro/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&text=Hexo 坑"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&is_video=false&description=Hexo 坑"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo 坑&body=Check out this article: https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&name=Hexo 坑&description=&lt;h2 id=&#34;浏览器样式缓存问题&#34;&gt;&lt;a href=&#34;#浏览器样式缓存问题&#34; class=&#34;headerlink&#34; title=&#34;浏览器样式缓存问题&#34;&gt;&lt;/a&gt;浏览器样式缓存问题&lt;/h2&gt;&lt;p&gt;这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;浏览器端 ctrl(command) + shift + r&lt;br&gt;手机浏览器同样要清除缓存，如 safari history -&amp;gt; clear all &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;master-分支中修改样式，然后发布，不是必须提交远程&#34;&gt;&lt;a href=&#34;#master-分支中修改样式，然后发布，不是必须提交远程&#34; class=&#34;headerlink&#34; title=&#34;master 分支中修改样式，然后发布，不是必须提交远程&#34;&gt;&lt;/a&gt;master 分支中修改样式，然后发布，不是必须提交远程&lt;/h2&gt;&lt;h2 id=&#34;hexo-db-json&#34;&gt;&lt;a href=&#34;#hexo-db-json&#34; class=&#34;headerlink&#34; title=&#34;hexo db.json&#34;&gt;&lt;/a&gt;hexo db.json&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 &lt;code&gt;hexo g&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;hexo-启动草稿服务&#34;&gt;&lt;a href=&#34;#hexo-启动草稿服务&#34; class=&#34;headerlink&#34; title=&#34;hexo 启动草稿服务&#34;&gt;&lt;/a&gt;hexo 启动草稿服务&lt;/h2&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo g &amp;amp;&amp;amp; hexo s --drafts&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;hexo-deploy-没有反应&#34;&gt;&lt;a href=&#34;#hexo-deploy-没有反应&#34; class=&#34;headerlink&#34; title=&#34;hexo deploy 没有反应&#34;&gt;&lt;/a&gt;hexo deploy 没有反应&lt;/h2&gt;&lt;p&gt;&lt;code&gt;检查&lt;/code&gt; _config.yml 中 deploy 配置&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">浏览器样式缓存问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#master-%E5%88%86%E6%94%AF%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8F%91%E5%B8%83%EF%BC%8C%E4%B8%8D%E6%98%AF%E5%BF%85%E9%A1%BB%E6%8F%90%E4%BA%A4%E8%BF%9C%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">master 分支中修改样式，然后发布，不是必须提交远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-db-json"><span class="toc-number">3.</span> <span class="toc-text">hexo db.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-%E5%90%AF%E5%8A%A8%E8%8D%89%E7%A8%BF%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">hexo 启动草稿服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-deploy-%E6%B2%A1%E6%9C%89%E5%8F%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">hexo deploy 没有反应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E9%A1%B5%E9%9D%A2%E7%A9%BA%E7%99%BD"><span class="toc-number">6.</span> <span class="toc-text">访问页面空白</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E8%A1%8C%EF%BC%8C%E5%9C%A8%E9%A6%96%E9%A1%B5%E5%B1%95%E7%A4%BA%E7%BC%A9%E7%95%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%AF%A5%E6%96%B9%E6%B3%95%E8%83%BD%E8%A2%AB-hexo-%E6%9B%B4%E5%A5%BD%E8%AF%86%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">断行，在首页展示缩略信息，该方法能被 hexo 更好识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-No-layout-index-html"><span class="toc-number">8.</span> <span class="toc-text">ERROR - No layout: index.html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-%E5%8F%91%E5%B8%83%E5%88%B0-git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AE%E5%87%BA%E7%8E%B0%E7%A9%BA%E7%99%BD%E9%A1%B5%E6%88%96%E6%97%A0%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">ERROR - 发布到 git 服务器访问出现空白页或无主题样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0-gitalk"><span class="toc-number">10.</span> <span class="toc-text">ERROR - 博客中添加 gitalk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-theme-%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9%EF%BC%8C%E5%85%88%E9%9C%80%E8%A6%81%E5%85%88%E6%8F%90%E4%BA%A4%E8%87%B3-github%EF%BC%8C%E5%86%8D-deploy"><span class="toc-number">11.</span> <span class="toc-text">ERROR - theme 样式修改，先需要先提交至 github，再 deploy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Spawn-failed"><span class="toc-number">12.</span> <span class="toc-text">Error: Spawn failed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-%E4%B8%AD%E5%8A%A0%E5%85%A5-sequence-diagram%EF%BC%8C%E5%AE%89%E8%A3%85-hexo-filter-sequence-%E5%90%8E%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="toc-number">13.</span> <span class="toc-text">hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hexo 坑
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-01-31T08:44:18.000Z" itemprop="datePublished">2019-01-31</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="浏览器样式缓存问题"><a href="#浏览器样式缓存问题" class="headerlink" title="浏览器样式缓存问题"></a>浏览器样式缓存问题</h2><p>这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：</p>
+<blockquote>
+<p>浏览器端 ctrl(command) + shift + r<br>手机浏览器同样要清除缓存，如 safari history -&gt; clear all </p>
+</blockquote>
+<h2 id="master-分支中修改样式，然后发布，不是必须提交远程"><a href="#master-分支中修改样式，然后发布，不是必须提交远程" class="headerlink" title="master 分支中修改样式，然后发布，不是必须提交远程"></a>master 分支中修改样式，然后发布，不是必须提交远程</h2><h2 id="hexo-db-json"><a href="#hexo-db-json" class="headerlink" title="hexo db.json"></a>hexo db.json</h2><blockquote>
+<p>db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 <code>hexo g</code></p>
+</blockquote>
+<h2 id="hexo-启动草稿服务"><a href="#hexo-启动草稿服务" class="headerlink" title="hexo 启动草稿服务"></a>hexo 启动草稿服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g &amp;&amp; hexo s --drafts</span><br></pre></td></tr></table></figure>
+
+<h2 id="hexo-deploy-没有反应"><a href="#hexo-deploy-没有反应" class="headerlink" title="hexo deploy 没有反应"></a>hexo deploy 没有反应</h2><p><code>检查</code> _config.yml 中 deploy 配置</p>
+<h2 id="访问页面空白"><a href="#访问页面空白" class="headerlink" title="访问页面空白"></a>访问页面空白</h2><p><code>检查</code> themes</p>
+<h2 id="断行，在首页展示缩略信息，该方法能被-hexo-更好识别"><a href="#断行，在首页展示缩略信息，该方法能被-hexo-更好识别" class="headerlink" title="断行，在首页展示缩略信息，该方法能被 hexo 更好识别"></a>断行，在首页展示缩略信息，该方法能被 hexo 更好识别</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span><br><span class="line">  enable: true</span><br><span class="line">  length: 150</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-No-layout-index-html"><a href="#ERROR-No-layout-index-html" class="headerlink" title="ERROR - No layout: index.html"></a>ERROR - No layout: index.html</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br><span class="line">WARN  No layout: index.html</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<p><code>解决办法：</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/zhwangart/hexo-theme-ocean.git themes/ocean</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Modify theme setting in _config.yml to ocean<br><code>theme: ocean</code></p>
+</blockquote>
+<h2 id="ERROR-发布到-git-服务器访问出现空白页或无主题样式"><a href="#ERROR-发布到-git-服务器访问出现空白页或无主题样式" class="headerlink" title="ERROR - 发布到 git 服务器访问出现空白页或无主题样式"></a>ERROR - 发布到 git 服务器访问出现空白页或无主题样式</h2><blockquote>
+<p>原因是发布到 github 上的项目名称要与个人github的用户名一致，且加后缀 .github.io，如 ‘helenzhanglp.github.io’</p>
+</blockquote>
+<h2 id="ERROR-博客中添加-gitalk"><a href="#ERROR-博客中添加-gitalk" class="headerlink" title="ERROR - 博客中添加 gitalk"></a>ERROR - 博客中添加 gitalk</h2><blockquote>
+<p><em>## Error Error: Not Found. ##</em><br><code>解决办法：</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  clientID: 8e7e6dda81936172806e # GitHub Application Client ID</span><br><span class="line">  clientSecret: 97f71b6bbdf731bc650ec39212061882b8f36e71 # Client Secret</span><br><span class="line">  repo: &#x27;blog&#x27; # Repository name 仓库不能为私有仓库 Private Repository</span><br><span class="line">  owner: HelenZhangLP  # GitHub ID</span><br><span class="line">  admin: HelenZhangLP # GitHub ID</span><br></pre></td></tr></table></figure>
+
+<h2 id="ERROR-theme-样式修改，先需要先提交至-github，再-deploy"><a href="#ERROR-theme-样式修改，先需要先提交至-github，再-deploy" class="headerlink" title="ERROR - theme 样式修改，先需要先提交至 github，再 deploy"></a>ERROR - theme 样式修改，先需要先提交至 github，再 deploy</h2><h2 id="Error-Spawn-failed"><a href="#Error-Spawn-failed" class="headerlink" title="Error: Spawn failed"></a>Error: Spawn failed</h2><blockquote>
+<p>fatal: unable to access ‘<a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP/helenzhanglp.github.io.git/&#39;">https://github.com/HelenZhangLP/helenzhanglp.github.io.git/&#39;</a>: Received HTTP code 502 from<br> proxy after CONNECT<br>FATAL Something’s wrong. Maybe you can find the solution here: <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">https://hexo.io/docs/troubleshooting.html</a></p>
+</blockquote>
+<p><code>解决办法：</code><br>_config.yml 中 修改 deploy，https 链接换成 ssh<br>deploy:<br>  type: git<br>  repo: <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;">&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;</a>:<em>/</em>.github.io.git</p>
+<h2 id="hexo-中加入-sequence-diagram，安装-hexo-filter-sequence-后不显示"><a href="#hexo-中加入-sequence-diagram，安装-hexo-filter-sequence-后不显示" class="headerlink" title="hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示"></a>hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sequence-diagram.js:792 Uncaught ReferenceError: Raphael is not defined</span><br><span class="line">    at sequence-diagram.js:792</span><br><span class="line">    at sequence-diagram.js:1468</span><br><span class="line">(anonymous) @ sequence-diagram.js:792</span><br><span class="line">(anonymous) @ sequence-diagram.js:1468</span><br><span class="line">(index):93 Uncaught ReferenceError: Diagram is not defined</span><br><span class="line">    at (index):93</span><br><span class="line">(anonymous) @ (index):93</span><br></pre></td></tr></table></figure>
+<p><code>解决办法：</code><br>临时在头部加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(config.sequence) &#123;%&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.core.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcdn.net/ajax/libs/raphael/2.3.0/raphael.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%B7%E5%BC%8F%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">浏览器样式缓存问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#master-%E5%88%86%E6%94%AF%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8F%91%E5%B8%83%EF%BC%8C%E4%B8%8D%E6%98%AF%E5%BF%85%E9%A1%BB%E6%8F%90%E4%BA%A4%E8%BF%9C%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">master 分支中修改样式，然后发布，不是必须提交远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-db-json"><span class="toc-number">3.</span> <span class="toc-text">hexo db.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-%E5%90%AF%E5%8A%A8%E8%8D%89%E7%A8%BF%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">hexo 启动草稿服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-deploy-%E6%B2%A1%E6%9C%89%E5%8F%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">hexo deploy 没有反应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E9%A1%B5%E9%9D%A2%E7%A9%BA%E7%99%BD"><span class="toc-number">6.</span> <span class="toc-text">访问页面空白</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E8%A1%8C%EF%BC%8C%E5%9C%A8%E9%A6%96%E9%A1%B5%E5%B1%95%E7%A4%BA%E7%BC%A9%E7%95%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%AF%A5%E6%96%B9%E6%B3%95%E8%83%BD%E8%A2%AB-hexo-%E6%9B%B4%E5%A5%BD%E8%AF%86%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">断行，在首页展示缩略信息，该方法能被 hexo 更好识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-No-layout-index-html"><span class="toc-number">8.</span> <span class="toc-text">ERROR - No layout: index.html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-%E5%8F%91%E5%B8%83%E5%88%B0-git-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AE%E5%87%BA%E7%8E%B0%E7%A9%BA%E7%99%BD%E9%A1%B5%E6%88%96%E6%97%A0%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">ERROR - 发布到 git 服务器访问出现空白页或无主题样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0-gitalk"><span class="toc-number">10.</span> <span class="toc-text">ERROR - 博客中添加 gitalk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ERROR-theme-%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9%EF%BC%8C%E5%85%88%E9%9C%80%E8%A6%81%E5%85%88%E6%8F%90%E4%BA%A4%E8%87%B3-github%EF%BC%8C%E5%86%8D-deploy"><span class="toc-number">11.</span> <span class="toc-text">ERROR - theme 样式修改，先需要先提交至 github，再 deploy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Spawn-failed"><span class="toc-number">12.</span> <span class="toc-text">Error: Spawn failed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-%E4%B8%AD%E5%8A%A0%E5%85%A5-sequence-diagram%EF%BC%8C%E5%AE%89%E8%A3%85-hexo-filter-sequence-%E5%90%8E%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="toc-number">13.</span> <span class="toc-text">hexo 中加入 sequence diagram，安装 hexo-filter-sequence 后不显示</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&text=Hexo 坑"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&is_video=false&description=Hexo 坑"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo 坑&body=Check out this article: https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&title=Hexo 坑"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/01/31/%E5%9D%91-hexo/&name=Hexo 坑&description=&lt;h2 id=&#34;浏览器样式缓存问题&#34;&gt;&lt;a href=&#34;#浏览器样式缓存问题&#34; class=&#34;headerlink&#34; title=&#34;浏览器样式缓存问题&#34;&gt;&lt;/a&gt;浏览器样式缓存问题&lt;/h2&gt;&lt;p&gt;这个其实也不只是 hexo 页面会遇到的问题，所有页面修改样式后都会有样式缓存的问题，解决办法如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;浏览器端 ctrl(command) + shift + r&lt;br&gt;手机浏览器同样要清除缓存，如 safari history -&amp;gt; clear all &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;master-分支中修改样式，然后发布，不是必须提交远程&#34;&gt;&lt;a href=&#34;#master-分支中修改样式，然后发布，不是必须提交远程&#34; class=&#34;headerlink&#34; title=&#34;master 分支中修改样式，然后发布，不是必须提交远程&#34;&gt;&lt;/a&gt;master 分支中修改样式，然后发布，不是必须提交远程&lt;/h2&gt;&lt;h2 id=&#34;hexo-db-json&#34;&gt;&lt;a href=&#34;#hexo-db-json&#34; class=&#34;headerlink&#34; title=&#34;hexo db.json&#34;&gt;&lt;/a&gt;hexo db.json&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;db.json 为缓存文件，如果 theme 有修改，请删除 db.json。然后再执行 &lt;code&gt;hexo g&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;hexo-启动草稿服务&#34;&gt;&lt;a href=&#34;#hexo-启动草稿服务&#34; class=&#34;headerlink&#34; title=&#34;hexo 启动草稿服务&#34;&gt;&lt;/a&gt;hexo 启动草稿服务&lt;/h2&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo g &amp;amp;&amp;amp; hexo s --drafts&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;hexo-deploy-没有反应&#34;&gt;&lt;a href=&#34;#hexo-deploy-没有反应&#34; class=&#34;headerlink&#34; title=&#34;hexo deploy 没有反应&#34;&gt;&lt;/a&gt;hexo deploy 没有反应&lt;/h2&gt;&lt;p&gt;&lt;code&gt;检查&lt;/code&gt; _config.yml 中 deploy 配置&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

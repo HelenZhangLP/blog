@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="生成器函数JavaScript 依赖于单纯程执行模型，导致的问题是服务请求未完成前，UI 页面都在等待渲染状态，用户看到是空白页面。生成器函数能生成一组值的序列，每个值的生成都是基于每次请求，并不同于标准函数那样立即生成。  yield 用于生成独立的值  1234567891011&#x2F;&#x2F; 创建一个生成器函数function* SnacksGenerator() &amp;#123;	yield &amp;#x27">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-生成器函数">
+<meta property="og:url" content="https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="生成器函数JavaScript 依赖于单纯程执行模型，导致的问题是服务请求未完成前，UI 页面都在等待渲染状态，用户看到是空白页面。生成器函数能生成一组值的序列，每个值的生成都是基于每次请求，并不同于标准函数那样立即生成。  yield 用于生成独立的值  1234567891011&#x2F;&#x2F; 创建一个生成器函数function* SnacksGenerator() &amp;#123;	yield &amp;#x27">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-14T13:28:15.000Z">
+<meta property="article:modified_time" content="2023-02-24T07:55:59.740Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Function">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript-生成器函数</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2023/02/14/JavaScript-Promise/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2023/02/04/Javascript-%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&text=JavaScript-生成器函数"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&is_video=false&description=JavaScript-生成器函数"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-生成器函数&body=Check out this article: https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&name=JavaScript-生成器函数&description=&lt;h2 id=&#34;生成器函数&#34;&gt;&lt;a href=&#34;#生成器函数&#34; class=&#34;headerlink&#34; title=&#34;生成器函数&#34;&gt;&lt;/a&gt;生成器函数&lt;/h2&gt;&lt;p&gt;JavaScript 依赖于单纯程执行模型，导致的问题是服务请求未完成前，UI 页面都在等待渲染状态，用户看到是空白页面。&lt;br&gt;生成器函数能生成一组值的序列，每个值的生成都是基于每次请求，并不同于标准函数那样立即生成。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yield 用于生成独立的值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 创建一个生成器函数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;cookie&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;dried fruit&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chips&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// for-of 循环取出生成的值序列&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; snack &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(snack)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yield* 把执行权交给下一个生成器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义生成器一&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chilies&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;(); &lt;span class=&#34;comment&#34;&gt;// 执行权交给 SanacksGenerator&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;mushroom&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;lamb&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;sesame sauce&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;peppercorns&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义生成器二&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;cookie&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;dried fruit&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chips&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; item &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;title function_&#34;&gt;assets&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;assets&amp;#x27;&lt;/span&gt;, item !== &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;, item)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;for-of 循环取出生成器中生成的值序列，迭代器进行迭代的语法糖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义一个生成器，可生成 ingredient 序列&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chilies&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;mushroom&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;lamb&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;sesame sauce&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;peppercorns&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**	&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;* 调用生成器 ingredient 创建一个迭代器 _ 以下是 for-of 的实现&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;let IngredientIterator = Ingredient()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;let item; // 保存生成器产生的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 迭代器进行迭代的语法糖 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;while(!(item = IngredientIterator.next()).done) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;	assets(&amp;#x27;assets&amp;#x27;, item !== null, item.value)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 这里 for-of 注意是遍历生成器的值的序列，并不是迭代器哦&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(item &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;title function_&#34;&gt;assets&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;assets&amp;#x27;&lt;/span&gt;, item !== &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;, item.&lt;span class=&#34;property&#34;&gt;value&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;font color=&#34;#a33&#34;&gt;调用生成器，不会直接执行生成器，而是产生一个迭代器对象与生成器通信。迭代器对象暴露的最基本的接口是 &lt;code&gt;next&lt;/code&gt;，&lt;code&gt;next&lt;/code&gt; 用来向生成器求一个值，从而控制生成器，遇到 &lt;code&gt;yield&lt;/code&gt; 返回中间对象。多次循环，直至 &lt;code&gt;&amp;#123;value: undefined, done: true&amp;#125;&lt;/code&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h3 id=&#34;生成器与迭代器工作流&#34;&gt;&lt;a href=&#34;#生成器与迭代器工作流&#34; class=&#34;headerlink&#34; title=&#34;生成器与迭代器工作流&#34;&gt;&lt;/a&gt;生成器与迭代器工作流&lt;/h3&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">生成器函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.1.</span> <span class="toc-text">生成器与迭代器工作流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%E9%80%9A%E4%BF%A1"><span class="toc-number">1.2.</span> <span class="toc-text">生成器与迭代器通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yield-next"><span class="toc-number">1.2.1.</span> <span class="toc-text">yield &#x2F; next</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try-catch"><span class="toc-number">1.2.2.</span> <span class="toc-text">try-catch</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.</span> <span class="toc-text">生成器的执行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E8%B7%9F%E8%B8%AA%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">执行上下文跟踪生成器函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%89%8D%E7%9A%84%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">调用生成器函数之前的应用状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">调用生成器函数之后的应用状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B9%8B%E5%90%8E"><span class="toc-number">1.4.3.</span> <span class="toc-text">生成函数执行之后</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E8%B7%8C%E4%BB%A3%E5%99%A8%E7%9A%84-next-%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.4.</span> <span class="toc-text">调用跌代器的 next 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iterator-next-%E6%89%A7%E8%A1%8C%E4%B9%8B%E5%90%8E"><span class="toc-number">1.4.5.</span> <span class="toc-text">iterator.next() 执行之后</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript-生成器函数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-02-14T13:28:15.000Z" itemprop="datePublished">2023-02-14</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/" rel="tag">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h2><p>JavaScript 依赖于单纯程执行模型，导致的问题是服务请求未完成前，UI 页面都在等待渲染状态，用户看到是空白页面。<br>生成器函数能生成一组值的序列，每个值的生成都是基于每次请求，并不同于标准函数那样立即生成。</p>
+<blockquote>
+<p>yield 用于生成独立的值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个生成器函数</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">SnacksGenerator</span>() &#123;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;cookie&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;dried fruit&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;chips&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for-of 循环取出生成的值序列</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> snack <span class="keyword">of</span> <span class="title class_">SnacksGenerator</span>()) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(snack)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>yield* 把执行权交给下一个生成器</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义生成器一</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">Ingredient</span>() &#123;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;chilies&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span>* <span class="title class_">SnacksGenerator</span>(); <span class="comment">// 执行权交给 SanacksGenerator</span></span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;mushroom&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;lamb&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;sesame sauce&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;peppercorns&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义生成器二</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">SnacksGenerator</span>() &#123;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;cookie&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;dried fruit&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;chips&#x27;</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> item <span class="keyword">of</span> <span class="title class_">Ingredient</span>()) &#123;</span><br><span class="line">	<span class="title function_">assets</span>(<span class="string">&#x27;assets&#x27;</span>, item !== <span class="literal">null</span>, item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>for-of 循环取出生成器中生成的值序列，迭代器进行迭代的语法糖</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个生成器，可生成 ingredient 序列</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">Ingredient</span>() &#123;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;chilies&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;mushroom&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;lamb&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;sesame sauce&#x27;</span>;</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;peppercorns&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**	</span></span><br><span class="line"><span class="comment">* 调用生成器 ingredient 创建一个迭代器 _ 以下是 for-of 的实现</span></span><br><span class="line"><span class="comment">let IngredientIterator = Ingredient()</span></span><br><span class="line"><span class="comment">let item; // 保存生成器产生的值</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">// 迭代器进行迭代的语法糖 </span></span><br><span class="line"><span class="comment">while(!(item = IngredientIterator.next()).done) &#123;</span></span><br><span class="line"><span class="comment">	assets(&#x27;assets&#x27;, item !== null, item.value)</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里 for-of 注意是遍历生成器的值的序列，并不是迭代器哦</span></span><br><span class="line"><span class="keyword">for</span>(item <span class="keyword">of</span> <span class="title class_">Ingredient</span>()) &#123;</span><br><span class="line">	<span class="title function_">assets</span>(<span class="string">&#x27;assets&#x27;</span>, item !== <span class="literal">null</span>, item.<span class="property">value</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color='#a33'>调用生成器，不会直接执行生成器，而是产生一个迭代器对象与生成器通信。迭代器对象暴露的最基本的接口是 <code>next</code>，<code>next</code> 用来向生成器求一个值，从而控制生成器，遇到 <code>yield</code> 返回中间对象。多次循环，直至 <code>&#123;value: undefined, done: true&#125;</code></font></p>
+<h3 id="生成器与迭代器工作流"><a href="#生成器与迭代器工作流" class="headerlink" title="生成器与迭代器工作流"></a>生成器与迭代器工作流</h3><div style="background: #fff">
+<pre class="mermaid">    flowchart TD
+    invokeGenerator[调用生成器] -->|"Generator()"| iterator("迭代器 Iterator")
+    iterator -->|"next()"| yield{生成器中是否还有yield?}
+    yield -->|yes| Yes("
+    {
+        value: 'cookie', // 结果值
+        done: false // 指示器
+    }")
+    yield -->|no| No("
+    {
+        value: undefined, // 结果值
+        done: true // 指示器
+    }")
+    No -->|"done: ture"| End</pre>
+</div>
+
+<h3 id="生成器与迭代器通信"><a href="#生成器与迭代器通信" class="headerlink" title="生成器与迭代器通信"></a>生成器与迭代器通信</h3><h4 id="yield-next"><a href="#yield-next" class="headerlink" title="yield / next"></a>yield / next</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成器传参</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">Generator</span>(param)&#123;</span><br><span class="line">	<span class="keyword">yield</span> param</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为生成器提供一个初始值 initialValue</span></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Iterator</span> = <span class="title class_">Generator</span>(<span class="string">&#x27;initialValue&#x27;</span>)</span><br><span class="line"><span class="comment">// 用 next 方法向生成器请求一个值</span></span><br><span class="line"><span class="title class_">Iterator</span>.<span class="title function_">next</span>() </span><br><span class="line"><span class="comment">// 可以用 next 方法为等待中的 yield 表达式提供值</span></span><br><span class="line"><span class="title class_">Iterator</span>.<span class="title function_">next</span>(<span class="string">&#x27;is wait yield?&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>next 方法可以为等待中的 yield 提供值，所以第一个 next 方法传参无效，因为第一次执行生成器代码，没有等待中的 yield.</p>
+</blockquote>
+<h4 id="try-catch"><a href="#try-catch" class="headerlink" title="try-catch"></a>try-catch</h4><p>迭代器通过 throw 方法向生成器抛出异常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建生成器</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title class_">Generator</span>() &#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">	 <span class="keyword">yield</span> <span class="string">&#x27;try-catch&#x27;</span></span><br><span class="line"> &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">	 <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Iterator</span> = <span class="title class_">Generator</span>()</span><br><span class="line"><span class="title class_">Iterator</span>.<span class="title function_">next</span>()</span><br><span class="line"><span class="title class_">Iterator</span>.<span class="keyword">throw</span>(<span class="string">&#x27;throw an exception&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="生成器的执行状态"><a href="#生成器的执行状态" class="headerlink" title="生成器的执行状态"></a>生成器的执行状态</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title class_">GeneratorFn</span>(name) &#123;</span><br><span class="line">	<span class="keyword">yield</span> name + <span class="string">&#x27; Suspended&#x27;</span></span><br><span class="line">	<span class="keyword">yield</span> name + <span class="string">&#x27; Executing&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> iterator = <span class="title class_">GeneratorFn</span>()</span><br><span class="line">iterator.<span class="title function_">next</span>()</span><br><span class="line">iterator.<span class="title function_">next</span>()</span><br></pre></td></tr></table></figure>
+<img  src=http://www.plantuml.com/plantuml/svg/jP5DIyD048Rl-ok6lJHHgtTfUn4Hpps9z90cOnj8DoNPI4M4AXwg5FNGYnGKGT63eWU_Q9J-cMoQct_1JT9FJoAufzcTsNdUUKUPKo6RBG0jUcuTcO465BdcS4gOpH4SirBbHBUPos6TewDnsu4yh25BOwKoYbGWUNb8hbmGhQxmUuFEPTWw4-TtNn_jSIok3uFUITW-Y5xU1iUlONC_jrGk40c6c4Uab4rpo5basE2AMWAA3TGzRhBAK1MtwoIfWabPJ2TXlna--zFam9-XHP_tmNilFBgDhjhfYwn9hwBr17J7H4jAqMe8yv21iIaP2j7ZWpYzYOT9_gLTfU0iYVeTqRq0khkjMHukGsPiobI31J1i9fDRbejxT7RYZOJgeAPNqIXDxoB9q5_QaYuhgTF_sPZL4VglnamQZ8pXZlVJ65YnQtKBEHhV>
+
+<h3 id="执行上下文跟踪生成器函数"><a href="#执行上下文跟踪生成器函数" class="headerlink" title="执行上下文跟踪生成器函数"></a>执行上下文跟踪生成器函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个生成器函数</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">generator</span>(<span class="params">snack</span>) &#123;</span><br><span class="line">	<span class="keyword">yield</span> snack + <span class="string">&#x27;Production&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> iterator = <span class="title function_">generator</span>(<span class="string">&#x27;chips&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="调用生成器函数之前的应用状态"><a href="#调用生成器函数之前的应用状态" class="headerlink" title="调用生成器函数之前的应用状态"></a>调用生成器函数之前的应用状态</h4><blockquote>
+</blockquote>
+<img  src=http://www.plantuml.com/plantuml/svg/PL1DJW8n55vFJ_426pGIKHOaP38RWXo04vIPD-F4sfgsg4WcCI76VrVgMjt83eqR3WG3nx2b1X6xQVgzz_tLLxh7C20Xeqf1dtWivTYs64H2Quo8rw7XGI95bqSDmOG4bYRxkYKHESb8I6LaQUjBFMHCdBWjBnPSExWOnx5xjzCpX9rTP-Y6MbAkZgX4hesol_qJJMcZ3VEFmUnncBzSMRU5Quk93cKDeuMd6gY2mlHYEFqypw_Vvwzta_7DP7oRFryMB26pKHSL7Ql9ZrCf3etJ2d4-ki-_dcOFe-dRe02-3wNc5XIhrLgjKjc05KeGW1LDDKggJV0wcDuOcoBckyhc42z1xeR6M9cB9WXBR8ylNECk3tKg-2QKDlgPpPcHlwNAqlvrEVYNcgm3zVfI_PUrOlWD>
+<hr>
+<h4 id="调用生成器函数之后的应用状态"><a href="#调用生成器函数之后的应用状态" class="headerlink" title="调用生成器函数之后的应用状态"></a>调用生成器函数之后的应用状态</h4><blockquote>
+</blockquote>
+<img  src=http://www.plantuml.com/plantuml/svg/TLAxJiCm59tZhx3Q0Og8A5IYeegoeD8FO4GC9d5I2sCZnuMMAX8IGhoPA3Emq0qG2mj_GqC_0xjvqFIHmP6lxtdSOrk1x51i0uUY881TOEmXPzyNlCNSJKwvW9JuJUaBZ1amA65uM_T3bqk9NH021mbt5go3AUN7ZHZdSIRZSj7pl7Y_JKumN5sBIUD3AH0B3f70J2fcvAl_BEhY-iR656S8h9La5AIL3qYRC3yPgq7v7g9rTaG4Fz2iA825mNb_y74wVBkBFdk_zs-3bxC2j2ouM5-6nKgbMYsNIt0COjjGco4I2oIv08QfFc0eaqaXJCNIIZqlT_4TzTudvUQeAJ6b5J0rUGqkE4ro62meWIIJp0C8rAfgC7EnnKPYNeivad2s11TBtR2Wo4BThEZWyFtizw4VFLrgXT7jnUbigZnnUpoQwEfr-7pxytNzytKJFLve5YDCCQbW3ZOQSGuC65COSwT9N1UpNTFEcz1kywvCePzXrlUV59XcpLgdBWAaoK5p_3nLdUIkrR9S_rd7efu1o0cacpy0>
+<hr>
+<h4 id="生成函数执行之后"><a href="#生成函数执行之后" class="headerlink" title="生成函数执行之后"></a>生成函数执行之后</h4><blockquote>
+<p>生成函数执行之后，generator 函数执行上下文出栈，但不被销毁，因为 iterator 保持着对 generator 函数执行上下文的引用</p>
+</blockquote>
+<img  src=http://www.plantuml.com/plantuml/svg/TP99JiCm58RNyIcUsWKK4J5K0b5LtLIb1-049dM2XR6HOw208Y4XLEOLPGriODS22n0Ijo6Xny2kEpTaaSWlx_-_DxWOgaD6IiXZE0pX63cRsDiEfDZZjR9WGWAZmPOA924SEOnoic7oeIQK8ZKK8G_BMfhia30c3gfMvmkkR3Zh-xuzRz0Z0alBrjJ-L1BpS1TBmfLsne7-fbbdLzRMfZmZL5pejO8DUOVMAGzwRLMPsCIimlUf53l65OUGYSzUujUJJkicUM_-thRYfzCC58imMvc7R3w_khguc8CHIQa4fXYgYCHAIEIu-a5EbN0RMETc6XRNZrN6WOtlfDcU1Fx3qpXD2xdklG0ptXRT3MSqe3ULGHKer6yTWs1OHnVcxt5FKS7dO3Pt76MqMMIIjHrqsgU_To_9mxaXTFTdvrFM4oNrqU4a5y-Tn-kVpykVpwlalc5SdCWOMLKVEIRiDfaYZ10NYe0qrmc4FwKk35k0L9FuuorkVEco4HglrsN4LsvfQikeFoLmkrIJCW55avf2OMIX0-UHuQOeXXYTEjXCoYLmKohu0m00>
+<hr>
+<h4 id="调用跌代器的-next-方法"><a href="#调用跌代器的-next-方法" class="headerlink" title="调用跌代器的 next 方法"></a>调用跌代器的 next 方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个生成器函数</span></span><br><span class="line"><span class="keyword">function</span>* <span class="title function_">generator</span>(<span class="params">snack</span>) &#123;</span><br><span class="line">	<span class="keyword">yield</span> snack + <span class="string">&#x27;Production&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> iterator = <span class="title function_">generator</span>(<span class="string">&#x27;chips&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> res = iterator.<span class="title function_">next</span>()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>再次激活 Generator 执行上下文，并推入栈。从上一次执行位置之后继续执行</p>
+</blockquote>
+<img  src=http://www.plantuml.com/plantuml/svg/TPAxJiCm58Rd-2ciTe0Y8cuI5LNL1PK-02DYC8cJMhWsibskYeI447ScO0OMs02niF0sDErZSDmqRLf2XaIsp_-Vx_nELPi3Jcl8uqHhV8ISBU9jXqgsXRygkLIOix1fGaMfG0vdWgxRUknBOwYF8kGHvUV93YZdSg-Hw08fJB9T388WMQ-pGueN5XFJvD0e8lGEKLGOS2OXVFEiYyihAtyy8rIT6un2RESMssSY78pLu7AByBhOPKgsh2lHkD0vVUry7FVURkBF--xjM-Vvf82hLJnTdyN5fQLoUNw-X3EIMWrR66Qe8aOgvBZm84THtUQcWe6E1Z29dnuqg4WgruIDAU58z-hZ96VVyVtx9Ca_8C0165f0A1KyvJNPZfw21eEuXdX8mnlsS3ZYw3SBsi8pJ8ePF5qwYWfW5a4jkE7U-qdtxZL-FBSD-lUQvBOAITFzR6ZnnKllwVhdw_Bdwof-EBCcJfHgqdvZilw4_yWoMQKQTwF9V9-AJRSs3W6mur0kfu4PLerYGcaIs5Ns3xOb4rtGfAPIoLpQq3aJO8vYr0PAX-ddNBIRG_0B>
+<hr>
+<h4 id="iterator-next-执行之后"><a href="#iterator-next-执行之后" class="headerlink" title="iterator.next() 执行之后"></a>iterator.next() 执行之后</h4><blockquote>
+<p>生成器挂起，返回生成器表达式的值与生成器状态值对象</p>
+</blockquote>
+<img  src=http://www.plantuml.com/plantuml/svg/TLAxJiCm59tZhxXgXr94nACIYAhgWafN9Bx094wmC7PbExogI4W8yMQYpC026o0M5lw6flqCxAOfRGaP4kNwdiSzrpMb3ncf8uzXfQ2Dd2tixOHIHDnV4qn8O3JSrg4aX2E7KKusRJ_uGclYenXvMFfvi4F2cDXlfhX0S9sMYq4GfF-Rz8Z0ub9AcXvgYRbgOKcuDimuDDyywkBowkeVpXZLveUZOAkyImye3uTZDPdOmgp1zwWKkvOLAoXqJr-wxyVzrvlaezExVUq-dHIWLeEPnXmKAvMLbOM5Cen1wdMmPgWc4ciXaUEQ1pcIg8ZfAhJtC8j85KhUDcqfs932ZpnD1I_DcR2uEGamKoJES4t2Kw9rRbDCRMQrngJHiw-aypPjz1-VngPngRZ9B3DJCWB3D4VkaJ9lKuFmryT0B8ZumFOip9JRSS6GnQRNi47_xQHtzv8yd5k1mThJMDVC8iZ1UAR9nNF_yVhxy_BxyogvFxCaJfpTbT6G4xZ1Y3cu64sAk8m4sgt_sIZA9WDNsWjhMwQ4q3IcMXrRmeXvB90SnA-CQHsbcRCuDyV13m00>
+<hr>
+<p>最后再执行 <code>iteractor.next()</code> 没有 <code>yield</code> 表达式，<code>return &#123;value: undefined, done: true&#125;</code> 生成器进入结束状态。</p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">生成器函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.1.</span> <span class="toc-text">生成器与迭代器工作流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%E9%80%9A%E4%BF%A1"><span class="toc-number">1.2.</span> <span class="toc-text">生成器与迭代器通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yield-next"><span class="toc-number">1.2.1.</span> <span class="toc-text">yield &#x2F; next</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try-catch"><span class="toc-number">1.2.2.</span> <span class="toc-text">try-catch</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.</span> <span class="toc-text">生成器的执行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E8%B7%9F%E8%B8%AA%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">执行上下文跟踪生成器函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%89%8D%E7%9A%84%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">调用生成器函数之前的应用状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">调用生成器函数之后的应用状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B9%8B%E5%90%8E"><span class="toc-number">1.4.3.</span> <span class="toc-text">生成函数执行之后</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E8%B7%8C%E4%BB%A3%E5%99%A8%E7%9A%84-next-%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.4.</span> <span class="toc-text">调用跌代器的 next 方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iterator-next-%E6%89%A7%E8%A1%8C%E4%B9%8B%E5%90%8E"><span class="toc-number">1.4.5.</span> <span class="toc-text">iterator.next() 执行之后</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&text=JavaScript-生成器函数"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&is_video=false&description=JavaScript-生成器函数"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-生成器函数&body=Check out this article: https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&title=JavaScript-生成器函数"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/02/14/JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/&name=JavaScript-生成器函数&description=&lt;h2 id=&#34;生成器函数&#34;&gt;&lt;a href=&#34;#生成器函数&#34; class=&#34;headerlink&#34; title=&#34;生成器函数&#34;&gt;&lt;/a&gt;生成器函数&lt;/h2&gt;&lt;p&gt;JavaScript 依赖于单纯程执行模型，导致的问题是服务请求未完成前，UI 页面都在等待渲染状态，用户看到是空白页面。&lt;br&gt;生成器函数能生成一组值的序列，每个值的生成都是基于每次请求，并不同于标准函数那样立即生成。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yield 用于生成独立的值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 创建一个生成器函数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;cookie&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;dried fruit&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chips&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// for-of 循环取出生成的值序列&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; snack &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(snack)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yield* 把执行权交给下一个生成器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义生成器一&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chilies&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;(); &lt;span class=&#34;comment&#34;&gt;// 执行权交给 SanacksGenerator&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;mushroom&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;lamb&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;sesame sauce&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;peppercorns&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义生成器二&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;SnacksGenerator&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;cookie&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;dried fruit&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chips&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; item &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;title function_&#34;&gt;assets&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;assets&amp;#x27;&lt;/span&gt;, item !== &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;, item)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;for-of 循环取出生成器中生成的值序列，迭代器进行迭代的语法糖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义一个生成器，可生成 ingredient 序列&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;* &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;chilies&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;mushroom&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;lamb&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;sesame sauce&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;peppercorns&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**	&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;* 调用生成器 ingredient 创建一个迭代器 _ 以下是 for-of 的实现&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;let IngredientIterator = Ingredient()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;let item; // 保存生成器产生的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 迭代器进行迭代的语法糖 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;while(!(item = IngredientIterator.next()).done) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;	assets(&amp;#x27;assets&amp;#x27;, item !== null, item.value)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 这里 for-of 注意是遍历生成器的值的序列，并不是迭代器哦&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(item &lt;span class=&#34;keyword&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Ingredient&lt;/span&gt;()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;title function_&#34;&gt;assets&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;assets&amp;#x27;&lt;/span&gt;, item !== &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;, item.&lt;span class=&#34;property&#34;&gt;value&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;font color=&#34;#a33&#34;&gt;调用生成器，不会直接执行生成器，而是产生一个迭代器对象与生成器通信。迭代器对象暴露的最基本的接口是 &lt;code&gt;next&lt;/code&gt;，&lt;code&gt;next&lt;/code&gt; 用来向生成器求一个值，从而控制生成器，遇到 &lt;code&gt;yield&lt;/code&gt; 返回中间对象。多次循环，直至 &lt;code&gt;&amp;#123;value: undefined, done: true&amp;#125;&lt;/code&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h3 id=&#34;生成器与迭代器工作流&#34;&gt;&lt;a href=&#34;#生成器与迭代器工作流&#34; class=&#34;headerlink&#34; title=&#34;生成器与迭代器工作流&#34;&gt;&lt;/a&gt;生成器与迭代器工作流&lt;/h3&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

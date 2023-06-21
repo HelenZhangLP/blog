@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="markdown 与 mermaid注释片段不能包含代码块，否则会影响 mermaid 渲染 12345&lt;!-- &#96;&#96;&#96;javascript --&gt;&lt;!-- console.log(1)	... &#x2F;&#x2F; some expression --&gt;&lt;!-- &#96;&#96;&#96; --&gt; markdown mermaid graph 不能用 end 标签 个人 markdown 编写规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown 使用小技巧">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="markdown 与 mermaid注释片段不能包含代码块，否则会影响 mermaid 渲染 12345&lt;!-- &#96;&#96;&#96;javascript --&gt;&lt;!-- console.log(1)	... &#x2F;&#x2F; some expression --&gt;&lt;!-- &#96;&#96;&#96; --&gt; markdown mermaid graph 不能用 end 标签 个人 markdown 编写规">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-11T03:58:36.000Z">
+<meta property="article:modified_time" content="2023-05-06T15:27:38.000Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>markdown 使用小技巧</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/06/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&text=markdown 使用小技巧"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&is_video=false&description=markdown 使用小技巧"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=markdown 使用小技巧&body=Check out this article: https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&name=markdown 使用小技巧&description=&lt;h2 id=&#34;markdown-与-mermaid&#34;&gt;&lt;a href=&#34;#markdown-与-mermaid&#34; class=&#34;headerlink&#34; title=&#34;markdown 与 mermaid&#34;&gt;&lt;/a&gt;markdown 与 mermaid&lt;/h2&gt;&lt;p&gt;&lt;span class=&#34;custom-flag-933&#34;&gt;注释片段不能包含代码块，否则会影响 mermaid 渲染&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- ```javascript --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- console.log(1)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	... // some expression&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- ``` --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;span class=&#34;custom-flag-933&#34;&gt;markdown mermaid graph 不能用 &lt;code&gt;end&lt;/code&gt; 标签&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;个人-markdown-编写规则&#34;&gt;&lt;a href=&#34;#个人-markdown-编写规则&#34; class=&#34;headerlink&#34; title=&#34;个人 markdown 编写规则&#34;&gt;&lt;/a&gt;个人 markdown 编写规则&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;#a33 特别注意的问题&lt;/li&gt;
+&lt;li&gt;&amp;gt; 知识点&lt;/li&gt;
+&lt;li&gt;#f99 弱提醒&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;markdown-显示部分，省略其余&#34;&gt;&lt;a href=&#34;#markdown-显示部分，省略其余&#34; class=&#34;headerlink&#34; title=&#34;markdown 显示部分，省略其余&#34;&gt;&lt;/a&gt;markdown 显示部分，省略其余&lt;/h2&gt;&lt;blockquote&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;markdown-中使用-mermaid-编制流程图&#34;&gt;&lt;a href=&#34;#markdown-中使用-mermaid-编制流程图&#34; class=&#34;headerlink&#34; title=&#34;markdown 中使用 mermaid 编制流程图&#34;&gt;&lt;/a&gt;markdown 中使用 mermaid 编制流程图&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;graph TD &lt;font color=&#34;#f33&#34;&gt;td 要大写&lt;/font&gt;&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%8E-mermaid"><span class="toc-number">1.</span> <span class="toc-text">markdown 与 mermaid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA-markdown-%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">个人 markdown 编写规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%EF%BC%8C%E7%9C%81%E7%95%A5%E5%85%B6%E4%BD%99"><span class="toc-number">3.</span> <span class="toc-text">markdown 显示部分，省略其余</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E4%BD%BF%E7%94%A8-mermaid-%E7%BC%96%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">markdown 中使用 mermaid 编制流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E7%BC%96%E8%BE%91%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%8A%A8%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">markdown 中编辑一些代码动图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%EF%BC%8C%E9%9C%80%E8%A6%81%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">markdown 中插入图片，需要重启服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#table-%E4%B8%AD-%E6%8D%A2%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">table 中 换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E6%80%8E%E4%B9%88%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E5%B9%B6%E7%B4%AF%E5%8A%A0%E5%85%B6%E5%AE%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">markdown 中怎么定义变量并累加其实字符串，如下：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        markdown 使用小技巧
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2021-06-11T03:58:36.000Z" itemprop="datePublished">2021-06-11</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="markdown-与-mermaid"><a href="#markdown-与-mermaid" class="headerlink" title="markdown 与 mermaid"></a>markdown 与 mermaid</h2><p><span class="custom-flag-933">注释片段不能包含代码块，否则会影响 mermaid 渲染</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- ```javascript --&gt;</span><br><span class="line">&lt;!-- console.log(1)</span><br><span class="line">	... // some expression</span><br><span class="line"> --&gt;</span><br><span class="line">&lt;!-- ``` --&gt;</span><br></pre></td></tr></table></figure>
+<p><span class="custom-flag-933">markdown mermaid graph 不能用 <code>end</code> 标签</span></p>
+<h2 id="个人-markdown-编写规则"><a href="#个人-markdown-编写规则" class="headerlink" title="个人 markdown 编写规则"></a>个人 markdown 编写规则</h2><ul>
+<li>#a33 特别注意的问题</li>
+<li>&gt; 知识点</li>
+<li>#f99 弱提醒</li>
+</ul>
+<h2 id="markdown-显示部分，省略其余"><a href="#markdown-显示部分，省略其余" class="headerlink" title="markdown 显示部分，省略其余"></a>markdown 显示部分，省略其余</h2><blockquote>
+<span id="more"></span>
+</blockquote>
+<h2 id="markdown-中使用-mermaid-编制流程图"><a href="#markdown-中使用-mermaid-编制流程图" class="headerlink" title="markdown 中使用 mermaid 编制流程图"></a>markdown 中使用 mermaid 编制流程图</h2><blockquote>
+<p>graph TD <font color="#f33">td 要大写</font></p>
+</blockquote>
+<h2 id="markdown-中编辑一些代码动图"><a href="#markdown-中编辑一些代码动图" class="headerlink" title="markdown 中编辑一些代码动图"></a>markdown 中编辑一些代码动图</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6909481718156099597#heading-0">keynote 制作代码编辑动图</a></p>
+<h2 id="markdown-中插入图片，需要重启服务"><a href="#markdown-中插入图片，需要重启服务" class="headerlink" title="markdown 中插入图片，需要重启服务"></a>markdown 中插入图片，需要重启服务</h2><h2 id="table-中-换行"><a href="#table-中-换行" class="headerlink" title="table 中 换行"></a>table 中 换行</h2><blockquote>
+<p>使用 <code>&lt;br /&gt;</code> 标签</p>
+</blockquote>
+<h2 id="markdown-中怎么定义变量并累加其实字符串，如下："><a href="#markdown-中怎么定义变量并累加其实字符串，如下：" class="headerlink" title="markdown 中怎么定义变量并累加其实字符串，如下："></a>markdown 中怎么定义变量并累加其实字符串，如下：</h2><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 定义变量</span><br><span class="line">[<span class="symbol">url</span>]: <span class="link">https://baidu.com</span></span><br><span class="line">[<span class="string">url测试</span>][<span class="symbol">url</span>]+/a/b/index.html</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%8E-mermaid"><span class="toc-number">1.</span> <span class="toc-text">markdown 与 mermaid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA-markdown-%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">个人 markdown 编写规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%EF%BC%8C%E7%9C%81%E7%95%A5%E5%85%B6%E4%BD%99"><span class="toc-number">3.</span> <span class="toc-text">markdown 显示部分，省略其余</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E4%BD%BF%E7%94%A8-mermaid-%E7%BC%96%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">markdown 中使用 mermaid 编制流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E7%BC%96%E8%BE%91%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%8A%A8%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">markdown 中编辑一些代码动图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%EF%BC%8C%E9%9C%80%E8%A6%81%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">markdown 中插入图片，需要重启服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#table-%E4%B8%AD-%E6%8D%A2%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">table 中 换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown-%E4%B8%AD%E6%80%8E%E4%B9%88%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E5%B9%B6%E7%B4%AF%E5%8A%A0%E5%85%B6%E5%AE%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">markdown 中怎么定义变量并累加其实字符串，如下：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&text=markdown 使用小技巧"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&is_video=false&description=markdown 使用小技巧"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=markdown 使用小技巧&body=Check out this article: https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&title=markdown 使用小技巧"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/&name=markdown 使用小技巧&description=&lt;h2 id=&#34;markdown-与-mermaid&#34;&gt;&lt;a href=&#34;#markdown-与-mermaid&#34; class=&#34;headerlink&#34; title=&#34;markdown 与 mermaid&#34;&gt;&lt;/a&gt;markdown 与 mermaid&lt;/h2&gt;&lt;p&gt;&lt;span class=&#34;custom-flag-933&#34;&gt;注释片段不能包含代码块，否则会影响 mermaid 渲染&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- ```javascript --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- console.log(1)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	... // some expression&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!-- ``` --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;span class=&#34;custom-flag-933&#34;&gt;markdown mermaid graph 不能用 &lt;code&gt;end&lt;/code&gt; 标签&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;个人-markdown-编写规则&#34;&gt;&lt;a href=&#34;#个人-markdown-编写规则&#34; class=&#34;headerlink&#34; title=&#34;个人 markdown 编写规则&#34;&gt;&lt;/a&gt;个人 markdown 编写规则&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;#a33 特别注意的问题&lt;/li&gt;
+&lt;li&gt;&amp;gt; 知识点&lt;/li&gt;
+&lt;li&gt;#f99 弱提醒&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;markdown-显示部分，省略其余&#34;&gt;&lt;a href=&#34;#markdown-显示部分，省略其余&#34; class=&#34;headerlink&#34; title=&#34;markdown 显示部分，省略其余&#34;&gt;&lt;/a&gt;markdown 显示部分，省略其余&lt;/h2&gt;&lt;blockquote&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;markdown-中使用-mermaid-编制流程图&#34;&gt;&lt;a href=&#34;#markdown-中使用-mermaid-编制流程图&#34; class=&#34;headerlink&#34; title=&#34;markdown 中使用 mermaid 编制流程图&#34;&gt;&lt;/a&gt;markdown 中使用 mermaid 编制流程图&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;graph TD &lt;font color=&#34;#f33&#34;&gt;td 要大写&lt;/font&gt;&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

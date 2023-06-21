@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="JavaScript 引入 Promise 解决了异步编码风格的问题 以下是关于异步编码中遇到的具体问题与解决方式    代码逻辑不连续 –&gt; 封装代码，让逻辑处理线性  回调地狱 –&gt; 消灭嵌套调用与多次错误处理  Promise 与 微任务  代码逻辑不连续页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器工作原理——异步WebAPI(Promise)">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="JavaScript 引入 Promise 解决了异步编码风格的问题 以下是关于异步编码中遇到的具体问题与解决方式    代码逻辑不连续 –&gt; 封装代码，让逻辑处理线性  回调地狱 –&gt; 消灭嵌套调用与多次错误处理  Promise 与 微任务  代码逻辑不连续页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-13T08:18:53.000Z">
+<meta property="article:modified_time" content="2021-07-11T07:34:07.642Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="browser">
+<meta property="article:tag" content="浏览器工作原理">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>浏览器工作原理——异步WebAPI(Promise)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/01/18/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94async-await%EF%BC%88%E7%94%A8%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E5%86%99%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%EF%BC%89/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/01/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&text=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&is_video=false&description=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器工作原理——异步WebAPI(Promise)&body=Check out this article: https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&name=浏览器工作原理——异步WebAPI(Promise)&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&#34;#f99&#34;&gt;&lt;strong&gt;&lt;code&gt;JavaScript 引入 Promise 解决了异步编码风格的问题&lt;/code&gt;&lt;/strong&gt;&lt;/font&gt; 以下是关于异步编码中遇到的具体问题与解决方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt; 代码逻辑不连续 –&amp;gt; 封装代码，让逻辑处理线性&lt;/li&gt;
+&lt;li&gt; 回调地狱 –&amp;gt; 消灭嵌套调用与多次错误处理&lt;/li&gt;
+&lt;li&gt; Promise 与 微任务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;代码逻辑不连续&#34;&gt;&lt;a href=&#34;#代码逻辑不连续&#34; class=&#34;headerlink&#34; title=&#34;代码逻辑不连续&#34;&gt;&lt;/a&gt;代码逻辑不连续&lt;/h2&gt;&lt;p&gt;页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进程或线程中去执行，避免耗时任务霸占页面主线程。&lt;/p&gt;
+&lt;img src=&#34;http://www.plantuml.com/plantuml/svg/XLB1RjD04BtlLuoKAv4QKAySaNe22MuLXssyJgmuwxBU712g54IX8LGDK2b11PfMgX2gL8fQaPeQaP_nxhedVe5nRJMkLQS77xnlvhqtyyPlENoL2jg6kjTUzJZZyh5yxZ8Gh2ufRxYC49VP4gG7mcaq9LXE0ZaU9rSbe8CJFTwEfv_DztVmWW2KjS1C1g8WDEVJf8FwqAOEVz8KZ5fGMLoqBqbkB8w2VjmTwT543Jx4lywYC5JzVQZOjZsdGnsic_TlocjJt8JRUlSBLEZ20k9h-3thi0vED-dfbySNdyQgDqAqLilSbG-9t5HOrsbnIC7yZYjp-Ek9-l4giuMuf7whDX--En--bncVZRRqC5de0tpBhRYwt7GiY_6drVkpLx96Sf6gmJTrC8o2RXGSfi7gtd2M5-MUR3BnI7XrvllfJc_9gBfSMN4xxCwAvreeNA0W-CV0u-0wl8LkRzJFSWoEpCvwoaeOjo1f9GL7gDOGZF4hkMpv1PcBxauytKYsfFlzV5xw3EdtLEzdFdrK_lTdK_sUwAsF-6AEtgg_XsRhs9o69XodxOcZIqFNpgQA3iekikWf8qSRNyU9N5vYC5GRvsaRRYNUtoo8bbvzOY0_tty0&#34;&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;上图为一个异步编程编程模型，页面主线程发起一个耗时的任务，并将任务交给另一个进程处理，页面主线程继续执行消息队列中的任务。anotherProcess 处理完这个任务后，会将任务添加渲染进程的消息队列中，并排队等待循环系统处理。排队结束后，循环系统会取出消息队列中的任务进行处理，并触发相关回调操作。&lt;/p&gt;
+&lt;p&gt;如上是页面编程的一大特点 &lt;strong&gt;异步回调&lt;/strong&gt;&lt;br&gt;web 页面的单线程架构决定了异步回调 &lt;strong&gt;异步回调影响到了我们的编码方式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用 XMLHttpRequest 实现一个下载的需求&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 失败回调&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;error&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(error)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;onResolve&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;response&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(response)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; xhr = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;XMLHttpRequest&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;ontimeout&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;e&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(e)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;onerror&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;e&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(e)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;onreadystatechange&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onResolve&lt;/span&gt;(xhr.&lt;span class=&#34;property&#34;&gt;response&lt;/span&gt;)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;variable constant_&#34;&gt;URL&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;http://test.com&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;open&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;Get&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;variable constant_&#34;&gt;URL&lt;/span&gt;, &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;); &lt;span class=&#34;comment&#34;&gt;// 设置请未类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 设置参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;timeout&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;3000&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;responseType&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;test&amp;#x27;&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 设置响应返回的数据格式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;setRequestHeader&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;X_TEST&amp;#x27;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&amp;#x27;test&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;send&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91%E4%B8%8D%E8%BF%9E%E7%BB%AD"><span class="toc-number">1.</span> <span class="toc-text">代码逻辑不连续</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%AE%A9%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%8F%98%E5%BE%97%E7%BA%BF%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">封装异步代码，让处理流程变得线性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%E5%9B%9E%E8%B0%83%E5%9C%B0%E5%9F%9F"><span class="toc-number">1.2.</span> <span class="toc-text">新的问题：回调地域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E8%A7%A3%E5%86%B3%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%85%B3%E9%94%AE%E7%82%B9-%E2%80%94%E2%80%94-%E6%B6%88%E7%81%AD%E5%B5%8C%E5%A5%97%E8%B0%83%E7%94%A8%E5%92%8C%E5%A4%9A%E6%AC%A1%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">Promise 解决的几个核心关键点 —— 消灭嵌套调用和多次错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E4%B8%8E-%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">Promise 与 微任务</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浏览器工作原理——异步WebAPI(Promise)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2021-01-13T08:18:53.000Z" itemprop="datePublished">2021-01-13</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/" rel="tag">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="tag">浏览器工作原理</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p><font color="#f99"><strong><code>JavaScript 引入 Promise 解决了异步编码风格的问题</code></strong></font> 以下是关于异步编码中遇到的具体问题与解决方式</p>
+</blockquote>
+<ol>
+<li> 代码逻辑不连续 –&gt; 封装代码，让逻辑处理线性</li>
+<li> 回调地狱 –&gt; 消灭嵌套调用与多次错误处理</li>
+<li> Promise 与 微任务</li>
+</ol>
+<h2 id="代码逻辑不连续"><a href="#代码逻辑不连续" class="headerlink" title="代码逻辑不连续"></a>代码逻辑不连续</h2><p>页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进程或线程中去执行，避免耗时任务霸占页面主线程。</p>
+<img  src=http://www.plantuml.com/plantuml/svg/XLB1RjD04BtlLuoKAv4QKAySaNe22MuLXssyJgmuwxBU712g54IX8LGDK2b11PfMgX2gL8fQaPeQaP_nxhedVe5nRJMkLQS77xnlvhqtyyPlENoL2jg6kjTUzJZZyh5yxZ8Gh2ufRxYC49VP4gG7mcaq9LXE0ZaU9rSbe8CJFTwEfv_DztVmWW2KjS1C1g8WDEVJf8FwqAOEVz8KZ5fGMLoqBqbkB8w2VjmTwT543Jx4lywYC5JzVQZOjZsdGnsic_TlocjJt8JRUlSBLEZ20k9h-3thi0vED-dfbySNdyQgDqAqLilSbG-9t5HOrsbnIC7yZYjp-Ek9-l4giuMuf7whDX--En--bncVZRRqC5de0tpBhRYwt7GiY_6drVkpLx96Sf6gmJTrC8o2RXGSfi7gtd2M5-MUR3BnI7XrvllfJc_9gBfSMN4xxCwAvreeNA0W-CV0u-0wl8LkRzJFSWoEpCvwoaeOjo1f9GL7gDOGZF4hkMpv1PcBxauytKYsfFlzV5xw3EdtLEzdFdrK_lTdK_sUwAsF-6AEtgg_XsRhs9o69XodxOcZIqFNpgQA3iekikWf8qSRNyU9N5vYC5GRvsaRRYNUtoo8bbvzOY0_tty0>
+<span id="more"></span>
+<p>上图为一个异步编程编程模型，页面主线程发起一个耗时的任务，并将任务交给另一个进程处理，页面主线程继续执行消息队列中的任务。anotherProcess 处理完这个任务后，会将任务添加渲染进程的消息队列中，并排队等待循环系统处理。排队结束后，循环系统会取出消息队列中的任务进行处理，并触发相关回调操作。</p>
+<p>如上是页面编程的一大特点 <strong>异步回调</strong><br>web 页面的单线程架构决定了异步回调 <strong>异步回调影响到了我们的编码方式</strong></p>
+<p><code>使用 XMLHttpRequest 实现一个下载的需求</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 失败回调</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onReject</span>(<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onResolve</span>(<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">xhr.<span class="property">ontimeout</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">onReject</span>(e)&#125;</span><br><span class="line">xhr.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">onReject</span>(e)&#125;</span><br><span class="line">xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;<span class="title function_">onResolve</span>(xhr.<span class="property">response</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">URL</span> = <span class="string">&#x27;http://test.com&#x27;</span></span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;Get&#x27;</span>, <span class="variable constant_">URL</span>, <span class="literal">true</span>); <span class="comment">// 设置请未类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置参数</span></span><br><span class="line">xhr.<span class="property">timeout</span> = <span class="number">3000</span></span><br><span class="line">xhr.<span class="property">responseType</span> = <span class="string">&#x27;test&#x27;</span> <span class="comment">// 设置响应返回的数据格式</span></span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X_TEST&#x27;</span>,<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line"></span><br><span class="line">xhr.<span class="title function_">send</span>()</span><br></pre></td></tr></table></figure>
+<p>上面代码问题在于回调多，导致逻辑不连贯、不线性。接下来封装代码，降低处理异步回调次数</p>
+<h3 id="封装异步代码，让处理流程变得线性"><a href="#封装异步代码，让处理流程变得线性" class="headerlink" title="封装异步代码，让处理流程变得线性"></a>封装异步代码，让处理流程变得线性</h3><img  src=http://www.plantuml.com/plantuml/svg/TL1DIm9H5DtFhxZeOa3IWdOFQji-MhgPPkvaCStOcsSe8HHfXWKPjSdC29FQ66qYSQ1VCr_zYzxpcJXQlCtCEUUUS--Xg3FDth4GKXOoe7XGGfV16XpbxJo5VMG5no3g1Z9rQOoKg4NK0cD5ab_EBvVBETtPLvTWsp4gHEKVOr41DGEfIs2Aw1GDjDckPd6KqH9ESBTYwmHC3lyYanMsAaNaympBJ9qo9bAALDWAe9e2pPskdDPCyHGwlIXuFubxzVZZCtpeH-sQ46yxPKXp6_xWI06O4LzTSwNlUK7p2TAciP9adsjHw-m_LkB1ssLutf8ifnE6sUnwmaFmivQ2JxWG2EwxyVlfl54kbviNXeDUq7cLTafLcIaWycx2RYV-kWaQ8t6zK-8rcUR2wOtHz-sTDE3ywcg2ZRoNo1lummj_U1mE-lwmBJlWid6OR5yS8Ceb8EBgVKNy291dIgmnKXABZokPJIRWs9kunuCXav5C9hCuy_S-SjXrh4FaqrmRD1_vz0y0>
+<p>关注 request（输入内容）和 response (输出内容)，封装异步请求过程</p>
+<ol>
+<li> 把输入 http 请求的信息封装到一个 request 对象中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// makeRequest 用于构造 request 对象</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeRequest</span>(<span class="params">request_url</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> request = &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;Get&#x27;</span>,</span><br><span class="line">    <span class="attr">url</span>: request_url,</span><br><span class="line">    <span class="attr">headers</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">body</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">credentials</span>: <span class="literal">false</span>, <span class="comment">//安全设置</span></span><br><span class="line">    <span class="attr">sync</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">responseType</span>: <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">    <span class="attr">referrer</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">timeout</span>: <span class="number">3000</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> request</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li> 封装请求过程，请求过程细节封装到 XFetch 函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * request 输入 http 的信息，如请求头、延时、返回类型等</span></span><br><span class="line"><span class="comment"> * resolve 成功回调函数</span></span><br><span class="line"><span class="comment"> * reject 失败回调函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">XFetch</span>(<span class="params">request, resolve, reject</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">  xhr.<span class="property">ontimeout</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">reject</span>(e)&#125;</span><br><span class="line">  xhr.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">reject</span>(e)&#125;</span><br><span class="line">  xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.<span class="property">state</span> == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(xhr.<span class="property">response</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建一个请求</span></span><br><span class="line">  xhr.<span class="title function_">open</span>(request.<span class="property">method</span>, request.<span class="property">url</span>, request.<span class="property">sync</span>)</span><br><span class="line">  xhr.<span class="property">timeout</span> = request.<span class="property">timeout</span></span><br><span class="line">  xhr.<span class="property">requestType</span> = request.<span class="property">requestType</span></span><br><span class="line"></span><br><span class="line">  xhr.<span class="title function_">send</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li> 业务代码<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">XFetch</span>(</span><br><span class="line">  <span class="title function_">makeRequest</span>(<span class="string">&#x27;http://xxx.com&#x27;</span>),</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">data</span>) &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(data)&#125;,</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">reject</span>(<span class="params">error</span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(error)&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="新的问题：回调地域"><a href="#新的问题：回调地域" class="headerlink" title="新的问题：回调地域"></a>新的问题：回调地域</h3>多个接口请求相互依赖，就是存在请求之间嵌套，嵌套太多的回调函数，会使自己陷入 <strong>回调地狱</strong>，如下代码<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">XFetch</span>(</span><br><span class="line">  <span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request1.com&#x27;</span>),</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="title class_">XFetch</span>(</span><br><span class="line">      <span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request2.com&#x27;</span>),</span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">response</span>) &#123;</span><br><span class="line">        <span class="title class_">XFetch</span>(</span><br><span class="line">          <span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request3.com&#x27;</span>),</span><br><span class="line">          <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">response</span>) &#123;</span><br><span class="line">            ...</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="keyword">function</span> <span class="title function_">reject</span>(<span class="params">error</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">reject</span>(<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">reject</span>(<span class="params">error</span>) &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(error)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+上面代码中， <strong>嵌套</strong> 调用，内层的任务执行依赖外层，并在上个任务的回调函数内部执行新的业务逻辑，多层嵌套，代码可读性变差；另外执行每个任务都有成功或失败两种结果，体现在代码中就需要对每个任务结果做两次判断，这样每个任务都要进行一次错误处理，使得代码混乱。</li>
+</ol>
+<h2 id="Promise-解决的几个核心关键点-——-消灭嵌套调用和多次错误处理"><a href="#Promise-解决的几个核心关键点-——-消灭嵌套调用和多次错误处理" class="headerlink" title="Promise 解决的几个核心关键点 —— 消灭嵌套调用和多次错误处理"></a>Promise 解决的几个核心关键点 —— 消灭嵌套调用和多次错误处理</h2><p>使用 Promise 重新构造 XFetch</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">XFetch</span>(<span class="params">request</span>)&#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">executor</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&#x27;Get&#x27;</span>, request.<span class="property">url</span>, <span class="literal">true</span>)</span><br><span class="line">    xhr.<span class="property">ontimeout</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">reject</span>(e)&#125;</span><br><span class="line">    xhr.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;<span class="title function_">reject</span>(e)&#125;</span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">readyState</span> === <span class="number">4</span>) <span class="comment">// &#x27;DONE&#x27;</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(<span class="variable language_">this</span>.<span class="property">responseText</span>, <span class="variable language_">this</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> error = &#123;</span><br><span class="line">            <span class="attr">code</span>: <span class="variable language_">this</span>.<span class="property">status</span>,</span><br><span class="line">            <span class="attr">response</span>: <span class="variable language_">this</span>.<span class="property">response</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="title function_">reject</span>(error, <span class="variable language_">this</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    xhr.<span class="title function_">send</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上：</p>
+<ul>
+<li>使用 Promise，调用 XFetch 时，返回一个 Promise 对象</li>
+<li>构建 Promise 对象时，传入 executor 函数，XFetch 主要业务在 executor 中执行</li>
+<li>如果运行在 executor 函数中的业务执行成功了，会调用 resolve 函数；如果执行失败，调用 reject 函数</li>
+<li>在 executor 函数中调用 resolve 函数时，会触发 promise.then 设置的回调函数；而调用 reject 函数时，会触发 promise.catch 设置的回调函数</li>
+</ul>
+<p><strong>使用 Promise 封装后的 XFetch，来解决嵌套调用和多次异常处理的问题</strong><br>产生嵌套函数的主要原因是在发起任务请求时会带上回调函数，任务结束后，下个任务是在回调函数中处理的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x1 = <span class="title class_">XFetch</span>(<span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request1.com&#x27;</span>))</span><br><span class="line"><span class="keyword">var</span> x2 = x1.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">XFetch</span>(<span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request2.com&#x27;</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> x3 = x2.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">XFetch</span>(<span class="title function_">makeRequest</span>(<span class="string">&#x27;http://request3.com&#x27;</span>))</span><br><span class="line">&#125;)</span><br><span class="line">x3.<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise 解决嵌套回调的方式</strong></p>
+<ol>
+<li> Promise 实现了回调函数的延时绑定。</li>
+<li> 需要将回调函数 onResolve 的返回值穿透到最外层<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// executor 执行业务逻辑</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">executor</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="title function_">resolve</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建 Promise 对象</span></span><br><span class="line"><span class="keyword">var</span> promiseObj1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onResolve</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="comment">// 回调中可以执行下个异步请求，返回 promise 对象</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(value + <span class="number">1</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//promiseObj1.then(onResolve) 延迟执行回调函数，不存在嵌套</span></span><br><span class="line"><span class="keyword">var</span> promiseObj2 = promiseObj1.<span class="title function_">then</span>(onResolve)</span><br><span class="line"><span class="comment">// 取出上个回调返回的 promise</span></span><br><span class="line">promiseObj2.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Promise 通过 <strong>回调函数延迟绑定</strong> 和 <strong>回调函数返回值穿透的技术</strong> 解决<code>循环嵌套</code>的问题</p>
+<p><strong>promise 是怎么处理异常的</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 业务处理代码</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">executor</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> rand = <span class="title class_">Math</span>.<span class="title function_">random</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(rand)</span><br><span class="line">  <span class="keyword">if</span> (rand &lt; <span class="number">0.5</span>) &#123;</span><br><span class="line">    <span class="title function_">resolve</span>()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p0 = <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line"><span class="keyword">var</span> p1 = p0.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success-1&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> p2 = p1.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success-2&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> p3 = p2.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success-3&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line">&#125;)</span><br><span class="line">p3.<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;catch error&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被 onReject 函数处理或 catch 语句捕获为止</p>
+<h2 id="Promise-与-微任务"><a href="#Promise-与-微任务" class="headerlink" title="Promise 与 微任务"></a>Promise 与 微任务</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">executor</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="number">100</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> demo = <span class="keyword">new</span> <span class="title class_">Promise</span>(executor)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onResolve</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">&#125;</span><br><span class="line">demo.<span class="title function_">then</span>(onResolve)</span><br></pre></td></tr></table></figure>
+<p>代码执行顺序：</p>
+<ol>
+<li> 首先执行 new Promise 时，Promise 的构造函数会被执行</li>
+<li> Promise 构造函数会调用参数 executor 函数。executor 中执行 resolve, resolve 内部调用 demo.then 设置的函数 onResolve</li>
+</ol>
+<p><strong>browmise</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Bromise</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> onResolve_ = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">var</span> onReject_ = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">then</span> = <span class="keyword">function</span>(<span class="params">onResolve, onReject</span>) &#123;</span><br><span class="line">    onResolve_ = onResolve</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器推迟 onResolve_ 执行</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">      <span class="title function_">onResolve_</span>(value)</span><br><span class="line">    &#125;,<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">executor</span>(resolve, <span class="literal">null</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">executor</span>(<span class="params">resolve, reject</span>) &#123; <span class="title function_">resolve</span>(<span class="number">100</span>)&#125;  <span class="comment">//将Promise改成我们自己的Bromsielet</span></span><br><span class="line">demo = <span class="keyword">new</span> <span class="title class_">Bromise</span>(executor)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onResolve</span>(<span class="params">value</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">&#125;</span><br><span class="line">demo.<span class="title function_">then</span>(onResolve)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>onResolve_ is not a function 加入定时器让 onResolve 延迟执行<br>上面采用了定时器来推迟 onResolve 的执行，不过使用定时器的效率并不是太高，好在我们有微任务，所以 Promise 又把这个定时器改造成了微任务了，这样既可以让 onResolve_ 延时被调用，又提升了代码的执行效率</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91%E4%B8%8D%E8%BF%9E%E7%BB%AD"><span class="toc-number">1.</span> <span class="toc-text">代码逻辑不连续</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%AE%A9%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%8F%98%E5%BE%97%E7%BA%BF%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">封装异步代码，让处理流程变得线性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%E5%9B%9E%E8%B0%83%E5%9C%B0%E5%9F%9F"><span class="toc-number">1.2.</span> <span class="toc-text">新的问题：回调地域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E8%A7%A3%E5%86%B3%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%85%B3%E9%94%AE%E7%82%B9-%E2%80%94%E2%80%94-%E6%B6%88%E7%81%AD%E5%B5%8C%E5%A5%97%E8%B0%83%E7%94%A8%E5%92%8C%E5%A4%9A%E6%AC%A1%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">Promise 解决的几个核心关键点 —— 消灭嵌套调用和多次错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E4%B8%8E-%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">Promise 与 微任务</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&text=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&is_video=false&description=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器工作原理——异步WebAPI(Promise)&body=Check out this article: https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&title=浏览器工作原理——异步WebAPI(Promise)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E4%BD%BF%E7%94%A8Promise%EF%BC%8C%E5%91%8A%E5%88%AB%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/&name=浏览器工作原理——异步WebAPI(Promise)&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&#34;#f99&#34;&gt;&lt;strong&gt;&lt;code&gt;JavaScript 引入 Promise 解决了异步编码风格的问题&lt;/code&gt;&lt;/strong&gt;&lt;/font&gt; 以下是关于异步编码中遇到的具体问题与解决方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt; 代码逻辑不连续 –&amp;gt; 封装代码，让逻辑处理线性&lt;/li&gt;
+&lt;li&gt; 回调地狱 –&amp;gt; 消灭嵌套调用与多次错误处理&lt;/li&gt;
+&lt;li&gt; Promise 与 微任务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;代码逻辑不连续&#34;&gt;&lt;a href=&#34;#代码逻辑不连续&#34; class=&#34;headerlink&#34; title=&#34;代码逻辑不连续&#34;&gt;&lt;/a&gt;代码逻辑不连续&lt;/h2&gt;&lt;p&gt;页面事件循环系统，页面中的任务都是在主线程上执行的，在执行如下载网络文件任务、获取摄像头等耗时任务，要放在页面主线程之外的进程或线程中去执行，避免耗时任务霸占页面主线程。&lt;/p&gt;
+&lt;img src=&#34;http://www.plantuml.com/plantuml/svg/XLB1RjD04BtlLuoKAv4QKAySaNe22MuLXssyJgmuwxBU712g54IX8LGDK2b11PfMgX2gL8fQaPeQaP_nxhedVe5nRJMkLQS77xnlvhqtyyPlENoL2jg6kjTUzJZZyh5yxZ8Gh2ufRxYC49VP4gG7mcaq9LXE0ZaU9rSbe8CJFTwEfv_DztVmWW2KjS1C1g8WDEVJf8FwqAOEVz8KZ5fGMLoqBqbkB8w2VjmTwT543Jx4lywYC5JzVQZOjZsdGnsic_TlocjJt8JRUlSBLEZ20k9h-3thi0vED-dfbySNdyQgDqAqLilSbG-9t5HOrsbnIC7yZYjp-Ek9-l4giuMuf7whDX--En--bncVZRRqC5de0tpBhRYwt7GiY_6drVkpLx96Sf6gmJTrC8o2RXGSfi7gtd2M5-MUR3BnI7XrvllfJc_9gBfSMN4xxCwAvreeNA0W-CV0u-0wl8LkRzJFSWoEpCvwoaeOjo1f9GL7gDOGZF4hkMpv1PcBxauytKYsfFlzV5xw3EdtLEzdFdrK_lTdK_sUwAsF-6AEtgg_XsRhs9o69XodxOcZIqFNpgQA3iekikWf8qSRNyU9N5vYC5GRvsaRRYNUtoo8bbvzOY0_tty0&#34;&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;上图为一个异步编程编程模型，页面主线程发起一个耗时的任务，并将任务交给另一个进程处理，页面主线程继续执行消息队列中的任务。anotherProcess 处理完这个任务后，会将任务添加渲染进程的消息队列中，并排队等待循环系统处理。排队结束后，循环系统会取出消息队列中的任务进行处理，并触发相关回调操作。&lt;/p&gt;
+&lt;p&gt;如上是页面编程的一大特点 &lt;strong&gt;异步回调&lt;/strong&gt;&lt;br&gt;web 页面的单线程架构决定了异步回调 &lt;strong&gt;异步回调影响到了我们的编码方式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用 XMLHttpRequest 实现一个下载的需求&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 失败回调&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;error&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(error)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;onResolve&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;response&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(response)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; xhr = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;XMLHttpRequest&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;ontimeout&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;e&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(e)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;onerror&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;e&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onReject&lt;/span&gt;(e)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;onreadystatechange&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &amp;#123;&lt;span class=&#34;title function_&#34;&gt;onResolve&lt;/span&gt;(xhr.&lt;span class=&#34;property&#34;&gt;response&lt;/span&gt;)&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;variable constant_&#34;&gt;URL&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;http://test.com&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;open&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;Get&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;variable constant_&#34;&gt;URL&lt;/span&gt;, &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;); &lt;span class=&#34;comment&#34;&gt;// 设置请未类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 设置参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;timeout&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;3000&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;property&#34;&gt;responseType&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;test&amp;#x27;&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 设置响应返回的数据格式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;setRequestHeader&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;X_TEST&amp;#x27;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&amp;#x27;test&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xhr.&lt;span class=&#34;title function_&#34;&gt;send&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）IntroFundamentals: ReactivityFundamentals: Writing PluginsFundamentals: Render FunctionState ManagementRoutingForm Validationi18nvue 的特点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue N 问">
+<meta property="og:url" content="https://helenzhanglp.github.io/2020/10/21/Vue/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）IntroFundamentals: ReactivityFundamentals: Writing PluginsFundamentals: Render FunctionState ManagementRoutingForm Validationi18nvue 的特点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2017/01/56219E04-D156-43EC-AC59-BFE7E38A62C3.jpg">
+<meta property="article:published_time" content="2020-10-21T10:36:52.000Z">
+<meta property="article:modified_time" content="2023-05-06T15:27:38.991Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2017/01/56219E04-D156-43EC-AC59-BFE7E38A62C3.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Vue N 问</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/10/22/macos/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/10/19/CSS-Margin-auto/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/10/21/Vue/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/10/21/Vue/&text=Vue N 问"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/10/21/Vue/&is_video=false&description=Vue N 问"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vue N 问&body=Check out this article: https://helenzhanglp.github.io/2020/10/21/Vue/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/10/21/Vue/&name=Vue N 问&description=&lt;h2 id=&#34;从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）&#34;&gt;&lt;a href=&#34;#从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）&#34; class=&#34;headerlink&#34; title=&#34;从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）&#34;&gt;&lt;/a&gt;从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）&lt;/h2&gt;&lt;h3 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Reactivity&#34;&gt;&lt;a href=&#34;#Fundamentals-Reactivity&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Reactivity&#34;&gt;&lt;/a&gt;Fundamentals: Reactivity&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Writing-Plugins&#34;&gt;&lt;a href=&#34;#Fundamentals-Writing-Plugins&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Writing Plugins&#34;&gt;&lt;/a&gt;Fundamentals: Writing Plugins&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Render-Function&#34;&gt;&lt;a href=&#34;#Fundamentals-Render-Function&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Render Function&#34;&gt;&lt;/a&gt;Fundamentals: Render Function&lt;/h3&gt;&lt;h3 id=&#34;State-Management&#34;&gt;&lt;a href=&#34;#State-Management&#34; class=&#34;headerlink&#34; title=&#34;State Management&#34;&gt;&lt;/a&gt;State Management&lt;/h3&gt;&lt;h3 id=&#34;Routing&#34;&gt;&lt;a href=&#34;#Routing&#34; class=&#34;headerlink&#34; title=&#34;Routing&#34;&gt;&lt;/a&gt;Routing&lt;/h3&gt;&lt;h3 id=&#34;Form-Validation&#34;&gt;&lt;a href=&#34;#Form-Validation&#34; class=&#34;headerlink&#34; title=&#34;Form Validation&#34;&gt;&lt;/a&gt;Form Validation&lt;/h3&gt;&lt;h3 id=&#34;i18n&#34;&gt;&lt;a href=&#34;#i18n&#34; class=&#34;headerlink&#34; title=&#34;i18n&#34;&gt;&lt;/a&gt;i18n&lt;/h3&gt;&lt;h3 id=&#34;vue-的特点&#34;&gt;&lt;a href=&#34;#vue-的特点&#34; class=&#34;headerlink&#34; title=&#34;vue 的特点&#34;&gt;&lt;/a&gt;vue 的特点&lt;/h3&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-Vue-%E9%AB%98%E7%BA%A7%E6%80%A7%E8%83%BD%EF%BC%88Vue-Workshop-Advanced-Features-from-the-Groupd-up%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Reactivity"><span class="toc-number">1.2.</span> <span class="toc-text">Fundamentals: Reactivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Writing-Plugins"><span class="toc-number">1.3.</span> <span class="toc-text">Fundamentals: Writing Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Render-Function"><span class="toc-number">1.4.</span> <span class="toc-text">Fundamentals: Render Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-Management"><span class="toc-number">1.5.</span> <span class="toc-text">State Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Routing"><span class="toc-number">1.6.</span> <span class="toc-text">Routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Form-Validation"><span class="toc-number">1.7.</span> <span class="toc-text">Form Validation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i18n"><span class="toc-number">1.8.</span> <span class="toc-text">i18n</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.9.</span> <span class="toc-text">vue 的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-npm-%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA-vue-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8"><span class="toc-number">1.10.</span> <span class="toc-text">使用 npm 方式搭建 vue 单页面应用</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Vue N 问
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-10-21T10:36:52.000Z" itemprop="datePublished">2020-10-21</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）"><a href="#从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）" class="headerlink" title="从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）"></a>从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）</h2><h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><h3 id="Fundamentals-Reactivity"><a href="#Fundamentals-Reactivity" class="headerlink" title="Fundamentals: Reactivity"></a>Fundamentals: Reactivity</h3><h3 id="Fundamentals-Writing-Plugins"><a href="#Fundamentals-Writing-Plugins" class="headerlink" title="Fundamentals: Writing Plugins"></a>Fundamentals: Writing Plugins</h3><h3 id="Fundamentals-Render-Function"><a href="#Fundamentals-Render-Function" class="headerlink" title="Fundamentals: Render Function"></a>Fundamentals: Render Function</h3><h3 id="State-Management"><a href="#State-Management" class="headerlink" title="State Management"></a>State Management</h3><h3 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h3><h3 id="Form-Validation"><a href="#Form-Validation" class="headerlink" title="Form Validation"></a>Form Validation</h3><h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><h3 id="vue-的特点"><a href="#vue-的特点" class="headerlink" title="vue 的特点"></a>vue 的特点</h3><ul>
+<li><p>轻量级框架</p>
+<blockquote>
+<p>自动追踪依赖模板表达式和计算属性，提供 MVVM (Mode-View-ViewMode) 双向绑定和可组合的组件系统，API 简单、灵活、易上手</p>
+</blockquote>
+</li>
+<li><p>双向数据绑定</p>
+<blockquote>
+<p>双向数据绑定是 vue.js 的核心，其专注于 View 层。ViewMode 负责连接 View 和 Mode，保证视图和数据一致。 ViewMode 要做的是：MODE Listen and Data Bindings</p>
+</blockquote>
+</li>
+<li><p>指令</p>
+<blockquote>
+<p>vue.js 与 页面交互主要通过指令完成，指令的作用是当表达式值改变时，相应将其形为应用到 DOM 上</p>
+</blockquote>
+</li>
+<li><p>组件化</p>
+</li>
+<li><p>客户端路由</p>
+</li>
+<li><p>状态管理</p>
+</li>
+</ul>
+<span id="more"></span>
+<hr>
+<h3 id="使用-npm-方式搭建-vue-单页面应用"><a href="#使用-npm-方式搭建-vue-单页面应用" class="headerlink" title="使用 npm 方式搭建 vue 单页面应用"></a>使用 npm 方式搭建 vue 单页面应用</h3><ol>
+<li> 验证 npm 是否正确安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm -v  <span class="comment">#查看 npm 版本</span></span><br></pre></td></tr></table></figure></li>
+<li> 安装 vue<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install vue</span><br></pre></td></tr></table></figure></li>
+<li> 安装 vue-cli 脚手架<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   npm install --global vue-cli</span><br></pre></td></tr></table></figure></li>
+<li> 初始化一个基于 webpack 的新模板<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   vue init webpack my-project</span><br></pre></td></tr></table></figure></li>
+<li> 启动项目，验证搭建结果<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$   <span class="built_in">cd</span> my-project</span><br><span class="line">$   npm install  <span class="comment">#安装依赖包</span></span><br><span class="line">$   npm run dev</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>  <strong><code>看到下图，恭喜你，环境搭建成功</code></strong></p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2017/01/56219E04-D156-43EC-AC59-BFE7E38A62C3.jpg" alt="vue init page"></p>
+<hr>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%A4%B4%E5%AE%9E%E7%8E%B0-Vue-%E9%AB%98%E7%BA%A7%E6%80%A7%E8%83%BD%EF%BC%88Vue-Workshop-Advanced-Features-from-the-Groupd-up%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-number">1.1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Reactivity"><span class="toc-number">1.2.</span> <span class="toc-text">Fundamentals: Reactivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Writing-Plugins"><span class="toc-number">1.3.</span> <span class="toc-text">Fundamentals: Writing Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamentals-Render-Function"><span class="toc-number">1.4.</span> <span class="toc-text">Fundamentals: Render Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-Management"><span class="toc-number">1.5.</span> <span class="toc-text">State Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Routing"><span class="toc-number">1.6.</span> <span class="toc-text">Routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Form-Validation"><span class="toc-number">1.7.</span> <span class="toc-text">Form Validation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i18n"><span class="toc-number">1.8.</span> <span class="toc-text">i18n</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.9.</span> <span class="toc-text">vue 的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-npm-%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA-vue-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8"><span class="toc-number">1.10.</span> <span class="toc-text">使用 npm 方式搭建 vue 单页面应用</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/10/21/Vue/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2020/10/21/Vue/&text=Vue N 问"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2020/10/21/Vue/&is_video=false&description=Vue N 问"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vue N 问&body=Check out this article: https://helenzhanglp.github.io/2020/10/21/Vue/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/10/21/Vue/&title=Vue N 问"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/10/21/Vue/&name=Vue N 问&description=&lt;h2 id=&#34;从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）&#34;&gt;&lt;a href=&#34;#从头实现-Vue-高级性能（Vue-Workshop-Advanced-Features-from-the-Groupd-up）&#34; class=&#34;headerlink&#34; title=&#34;从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）&#34;&gt;&lt;/a&gt;从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）&lt;/h2&gt;&lt;h3 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Reactivity&#34;&gt;&lt;a href=&#34;#Fundamentals-Reactivity&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Reactivity&#34;&gt;&lt;/a&gt;Fundamentals: Reactivity&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Writing-Plugins&#34;&gt;&lt;a href=&#34;#Fundamentals-Writing-Plugins&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Writing Plugins&#34;&gt;&lt;/a&gt;Fundamentals: Writing Plugins&lt;/h3&gt;&lt;h3 id=&#34;Fundamentals-Render-Function&#34;&gt;&lt;a href=&#34;#Fundamentals-Render-Function&#34; class=&#34;headerlink&#34; title=&#34;Fundamentals: Render Function&#34;&gt;&lt;/a&gt;Fundamentals: Render Function&lt;/h3&gt;&lt;h3 id=&#34;State-Management&#34;&gt;&lt;a href=&#34;#State-Management&#34; class=&#34;headerlink&#34; title=&#34;State Management&#34;&gt;&lt;/a&gt;State Management&lt;/h3&gt;&lt;h3 id=&#34;Routing&#34;&gt;&lt;a href=&#34;#Routing&#34; class=&#34;headerlink&#34; title=&#34;Routing&#34;&gt;&lt;/a&gt;Routing&lt;/h3&gt;&lt;h3 id=&#34;Form-Validation&#34;&gt;&lt;a href=&#34;#Form-Validation&#34; class=&#34;headerlink&#34; title=&#34;Form Validation&#34;&gt;&lt;/a&gt;Form Validation&lt;/h3&gt;&lt;h3 id=&#34;i18n&#34;&gt;&lt;a href=&#34;#i18n&#34; class=&#34;headerlink&#34; title=&#34;i18n&#34;&gt;&lt;/a&gt;i18n&lt;/h3&gt;&lt;h3 id=&#34;vue-的特点&#34;&gt;&lt;a href=&#34;#vue-的特点&#34; class=&#34;headerlink&#34; title=&#34;vue 的特点&#34;&gt;&lt;/a&gt;vue 的特点&lt;/h3&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
