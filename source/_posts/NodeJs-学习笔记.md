@@ -3,11 +3,40 @@ title: NodeJs 学习笔记
 date: 2019-05-31 14:32:44
 tags:
 - JavaScript
-- node
+- Node
 ---
 
-## NodeJS
 Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
+
+## fs 模块
+```JavaScript
+const fs = require('fs')
+fs.readFile('./context.txt',callback)
+```
+<font color='red'>[Error: ENOENT: no such file or directory, open 'context.txt'] </font>
+<span class='custom-box custom-box-393'>`path` 为相对路径时，`./` 指的是 node 运行环境的地址，如在 '/' 下运行 `node ./src/index.js` 当前目录是指根目录，`/context.txt`不存在，所以找不到文件。</span>
+[具体的 Demo 案例](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js)
+
+### fs - util
+The node:util module supports the needs of Node.js internal APIs. Many of the utilities are useful for application and developers as well.
+node:util 模块支持 Node.js 内部 APIs 的需求。许多实用程序对应用程序和模块开发人员是有用的
+
+#### fs - util.promisify
+```JavaScript
+/**
+ * original <Function>
+ * returns: <Function>
+ */ 
+util.promisify(original)
+```
+Takes a function following the common error-first callback style, i.e. taking an (err, value) => ... callback as the last argument，and returns a version that returns promises.
+采用遵循常见的错误优先样式的回调函数，也就是说采用 `(err, value) => ...` 回调函数作为参数，且返回 promises 版本。
+```JavaScript
+// 引入 util 模块
+const util = require('util'), fs = require('fs')
+let uReadFile = util.promisify(fs.readFile)
+uReadFile('./context.txt').then(v => console.log(v.toString()), e => console.log(e))
+```
 
 ### vm 模块
 The node:vm module enables compiling and running code within V8 Virtual Machine context

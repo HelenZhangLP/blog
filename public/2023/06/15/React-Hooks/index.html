@@ -14,7 +14,7 @@
 <meta property="og:description" content="函数组件实现动态组件类组件的功能React 最新版本 v18.2，Hook 是 React 16.8 新增特性。可以在不编写 class 的情况下使用 state 以及其他 React 特性。引入 Hook 的动机——解决看起来不相关的问题Hoos 是执行函数，产生函数上下文 useState在函数组件中使用状态，并且后期基于状态修改，进而更新组件 12345678910&#x2F;** * initail">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-15T05:12:13.000Z">
-<meta property="article:modified_time" content="2023-06-20T06:30:21.820Z">
+<meta property="article:modified_time" content="2023-06-21T08:04:16.088Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -449,7 +449,7 @@
  end</pre>
 <p> <span class='custom-box custom-box-339'>使用 useLayoutEffect 可以解决闪烁问题，如上图真实 dom 只渲染一次，所以不会闪烁</span></p>
 <h3 id="useEffect-与-useLayoutEffect-区别"><a href="#useEffect-与-useLayoutEffect-区别" class="headerlink" title="useEffect 与 useLayoutEffect 区别"></a>useEffect 与 useLayoutEffect 区别</h3><p> useLayoutEffect 会阻塞浏览器真实 DOM，优先执行 Effect 链表中的 callback；<br> useEffect 不会阻塞浏览器渲染真实 DOM，在渲染真实 DOM 的同时，去执行 Effect 链表中的 callback.<br> useLayoutEffect 优先于 useEffect 执行<br> 都可以获取 DOM 元素，原因在于真实 DOM 已经生成，区别只是 useLayoutEffect 在执行完 effect 链表后渲染 DOM 到浏览器<br> useEffect 会渲染两次，useLayoutEffect 会合并真实 DOM 渲染。</p>
-<h2 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><a href="/2021/05/11/React-refs/#%E5%87%BD%E6%95%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-Ref-%E8%BF%9B%E8%A1%8C-DOM-%E5%A4%84%E7%90%86">useRef</a></h2>
+<h2 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><a href="/2021/05/11/React-Refs/#%E5%87%BD%E6%95%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-Ref-%E8%BF%9B%E8%A1%8C-DOM-%E5%A4%84%E7%90%86">useRef</a></h2>
   </div>
 </article>
 

@@ -40,7 +40,7 @@ xhr.open('GET','data/item.json', true)
 xhr.send(null)
 // 请求内容处理
 xhr.onreadystatechange = function() {
-	console.log(xhr.readystate)
+	console.log(xhr.readystate) // 请求代理当前所处的状态
 }
 ```
 |方法|定义|
@@ -49,10 +49,14 @@ xhr.onreadystatechange = function() {
 |xhr.send(body)|发送http请求，发送请求体<br/>异步请求：请求发送后立即返回<br/>同步请求：响应到达后返回<br/>**body**:请求主体，get或head请求，请求主体为 null|
 |xhr.readyState|xhr 代理当前所处的状态 <br/> 0 UNSENT 代理被创建，但尚未调用 open() 方法。<br/> 1 OPENED open() 方法已经被调用。<br/>2 HEADERS_RECEIVED send() 方法已经被调用，并且头部和状态已经可获得。<br/>3 LOADING 下载中；responseText 属性已经包含部分数据。<br/>4 DONE 下载操作已完成。|
 
-<div style="background-color: #fff">
 ```mermaid
 flowchart TD
+subgraph onreadystatechange
+	state{"xhr.state >= 200 && xhr.state < 300"} -->|yes| responseText["处理响应"]
+	state --> |no| error[处理异常]
+end
 xhr("var xhr = new XMLHttpRequest()") -->|初始化Http请求| open("xhr.open('GET','data/item.json', true)") 
 open --> |发送请求| send("xhr.send(null)")
+send --> |"请求内容处理 xhr.readyState > 1"| onreadystatechange
 ```
-</div>
+[具体DEMO](https://github.com/HelenZhangLP/demo/blob/master/js/AJAX/index.html)

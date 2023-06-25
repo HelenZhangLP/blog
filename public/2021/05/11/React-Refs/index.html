@@ -9,12 +9,12 @@
     <meta name="description" content="受控组件基于修改数据&#x2F;状态，让视图更新，达到需要的效果 非受控组件基于 ref 获取 DOM 元素，操作 DOM 实现需求和效果 非受控组件应用场景：   管理焦点、文本选择、媒体播放   触发强制动画   集成第三方 DOM 库  基于 ref 可以实现的功能：   赋值给标签，获取 DOM 元素；   赋值给类子组件，获取子组件的属性、方法   赋值给函数子组件，获取子组件的 DOM 元素【配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Refs">
-<meta property="og:url" content="https://helenzhanglp.github.io/2021/05/11/React-refs/index.html">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/05/11/React-Refs/index.html">
 <meta property="og:site_name" content="魔女">
 <meta property="og:description" content="受控组件基于修改数据&#x2F;状态，让视图更新，达到需要的效果 非受控组件基于 ref 获取 DOM 元素，操作 DOM 实现需求和效果 非受控组件应用场景：   管理焦点、文本选择、媒体播放   触发强制动画   集成第三方 DOM 库  基于 ref 可以实现的功能：   赋值给标签，获取 DOM 元素；   赋值给类子组件，获取子组件的属性、方法   赋值给函数子组件，获取子组件的 DOM 元素【配">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-11T12:46:13.000Z">
-<meta property="article:modified_time" content="2023-06-20T06:35:09.738Z">
+<meta property="article:modified_time" content="2023-06-24T07:23:16.701Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="Component">
@@ -136,16 +136,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/05/11/React-refs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&text=React Refs"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&is_video=false&description=React Refs"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=React Refs&body=Check out this article: https://helenzhanglp.github.io/2021/05/11/React-refs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&name=React Refs&description=&lt;h2 id=&#34;受控组件&#34;&gt;&lt;a href=&#34;#受控组件&#34; class=&#34;headerlink&#34; title=&#34;受控组件&#34;&gt;&lt;/a&gt;受控组件&lt;/h2&gt;&lt;p&gt;基于修改数据/状态，让视图更新，达到需要的效果&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/05/11/React-Refs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&text=React Refs"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&is_video=false&description=React Refs"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=React Refs&body=Check out this article: https://helenzhanglp.github.io/2021/05/11/React-Refs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&name=React Refs&description=&lt;h2 id=&#34;受控组件&#34;&gt;&lt;a href=&#34;#受控组件&#34; class=&#34;headerlink&#34; title=&#34;受控组件&#34;&gt;&lt;/a&gt;受控组件&lt;/h2&gt;&lt;p&gt;基于修改数据/状态，让视图更新，达到需要的效果&lt;/p&gt;
 &lt;h2 id=&#34;非受控组件&#34;&gt;&lt;a href=&#34;#非受控组件&#34; class=&#34;headerlink&#34; title=&#34;非受控组件&#34;&gt;&lt;/a&gt;非受控组件&lt;/h2&gt;&lt;p&gt;基于 &lt;code&gt;ref&lt;/code&gt; 获取 DOM 元素，操作 DOM 实现需求和效果&lt;/p&gt;
 &lt;h3 id=&#34;非受控组件应用场景：&#34;&gt;&lt;a href=&#34;#非受控组件应用场景：&#34; class=&#34;headerlink&#34; title=&#34;非受控组件应用场景：&#34;&gt;&lt;/a&gt;非受控组件应用场景：&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;  管理焦点、文本选择、媒体播放&lt;/li&gt;
@@ -271,16 +271,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/05/11/React-refs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&text=React Refs"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&is_video=false&description=React Refs"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=React Refs&body=Check out this article: https://helenzhanglp.github.io/2021/05/11/React-refs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&title=React Refs"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/05/11/React-refs/&name=React Refs&description=&lt;h2 id=&#34;受控组件&#34;&gt;&lt;a href=&#34;#受控组件&#34; class=&#34;headerlink&#34; title=&#34;受控组件&#34;&gt;&lt;/a&gt;受控组件&lt;/h2&gt;&lt;p&gt;基于修改数据/状态，让视图更新，达到需要的效果&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/05/11/React-Refs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&text=React Refs"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&is_video=false&description=React Refs"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=React Refs&body=Check out this article: https://helenzhanglp.github.io/2021/05/11/React-Refs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&title=React Refs"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/05/11/React-Refs/&name=React Refs&description=&lt;h2 id=&#34;受控组件&#34;&gt;&lt;a href=&#34;#受控组件&#34; class=&#34;headerlink&#34; title=&#34;受控组件&#34;&gt;&lt;/a&gt;受控组件&lt;/h2&gt;&lt;p&gt;基于修改数据/状态，让视图更新，达到需要的效果&lt;/p&gt;
 &lt;h2 id=&#34;非受控组件&#34;&gt;&lt;a href=&#34;#非受控组件&#34; class=&#34;headerlink&#34; title=&#34;非受控组件&#34;&gt;&lt;/a&gt;非受控组件&lt;/h2&gt;&lt;p&gt;基于 &lt;code&gt;ref&lt;/code&gt; 获取 DOM 元素，操作 DOM 实现需求和效果&lt;/p&gt;
 &lt;h3 id=&#34;非受控组件应用场景：&#34;&gt;&lt;a href=&#34;#非受控组件应用场景：&#34; class=&#34;headerlink&#34; title=&#34;非受控组件应用场景：&#34;&gt;&lt;/a&gt;非受控组件应用场景：&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;  管理焦点、文本选择、媒体播放&lt;/li&gt;

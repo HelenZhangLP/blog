@@ -2,20 +2,30 @@
 title: http 请求状态码
 date: 2019-06-12T10:38:02.000Z
 tags:
+  - WebAPI
   - 网络请求
 ---
 
-# [http 请求状态码 200](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200)
+## http 请求状态码
+|状态码|描述|更多|
+|--|--|--|
+|200 OK|请求成功|默认情况下响应可以缓存|
+|201 Created|成功的应答状态码，请求已被成功处理且创建了新资源|常规使用场景是 `POST` 请求返回值|
+|202 Accepted|服务端收到了请求信息，但尚未处理|将请求交给另外一个服务器或进行处理，**对请求进行批处理**|
+
+### [http 请求状态码 200](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200)
 
 > 请求成功，默认状态下 200 响应可以被缓存
 
-> - GET: 已经取得资源，并将资源添加到响应的消息体中。
+#### 不同请求方式，请求成功的意义不同
+|请求方式|意义|
+|---|---|
+|GET|已经取得资源，并将资源添加到响应的消息体中|
+|POST|响应的消息体中包含此次请求的结果|
+
 > - HEAD: 响应的消息体为头部信息。
-> - POST: 响应的消息体中包含此次请求的结果。
 > - TRACE: 响应的消息体中包含服务器接收到的请求信息。
 > - PUT 和 DELETE 的请求成功通常并不是响应 200 OK 的状态码，而是 204 No Content 表示无内容(或者 201 Created表示一个资源首次被创建成功)。
-
-<!-- more -->
 
 # [http 请求状态码 206](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206)
 
