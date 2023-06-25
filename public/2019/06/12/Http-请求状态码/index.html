@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="http 请求状态码   状态码 描述 更多    200 OK 请求成功 默认情况下响应可以缓存   201 Created 成功的应答状态码，请求已被成功处理且创建了新资源 常规使用场景是 POST 请求返回值   http 请求状态码 200 请求成功，默认状态下 200 响应可以被缓存  不同请求方式，请求成功的意义不同   请求方式 意义    GET 已经取得资源，并将资源添加到响应的">
+    <meta name="description" content="http 请求状态码   状态码 描述 更多    200 OK 请求成功 默认情况下响应可以缓存   201 Created 成功的应答状态码，请求已被成功处理且创建了新资源 常规使用场景是 POST 请求返回值   202 Accepted 服务端收到了请求信息，但尚未处理 将请求交给另外一个服务器或进行处理，对请求进行批处理   http 请求状态码 200 请求成功，默认状态下 200 响">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http 请求状态码">
 <meta property="og:url" content="https://helenzhanglp.github.io/2019/06/12/Http-%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/index.html">
 <meta property="og:site_name" content="魔女">
-<meta property="og:description" content="http 请求状态码   状态码 描述 更多    200 OK 请求成功 默认情况下响应可以缓存   201 Created 成功的应答状态码，请求已被成功处理且创建了新资源 常规使用场景是 POST 请求返回值   http 请求状态码 200 请求成功，默认状态下 200 响应可以被缓存  不同请求方式，请求成功的意义不同   请求方式 意义    GET 已经取得资源，并将资源添加到响应的">
+<meta property="og:description" content="http 请求状态码   状态码 描述 更多    200 OK 请求成功 默认情况下响应可以缓存   201 Created 成功的应答状态码，请求已被成功处理且创建了新资源 常规使用场景是 POST 请求返回值   202 Accepted 服务端收到了请求信息，但尚未处理 将请求交给另外一个服务器或进行处理，对请求进行批处理   http 请求状态码 200 请求成功，默认状态下 200 响">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-12T02:38:02.000Z">
-<meta property="article:modified_time" content="2023-06-25T04:51:32.343Z">
+<meta property="article:modified_time" content="2023-06-25T05:33:43.433Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="WebAPI">
 <meta property="article:tag" content="网络请求">
@@ -163,6 +163,11 @@
 &lt;td&gt;成功的应答状态码，请求已被成功处理且创建了新资源&lt;/td&gt;
 &lt;td&gt;常规使用场景是 &lt;code&gt;POST&lt;/code&gt; 请求返回值&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;202 Accepted&lt;/td&gt;
+&lt;td&gt;服务端收到了请求信息，但尚未处理&lt;/td&gt;
+&lt;td&gt;将请求交给另外一个服务器或进行处理，&lt;strong&gt;对请求进行批处理&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 &lt;h3 id=&#34;http-请求状态码-200&#34;&gt;&lt;a href=&#34;#http-请求状态码-200&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 200&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200&#34;&gt;http 请求状态码 200&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;请求成功，默认状态下 200 响应可以被缓存&lt;/p&gt;
@@ -252,6 +257,11 @@
 <td>201 Created</td>
 <td>成功的应答状态码，请求已被成功处理且创建了新资源</td>
 <td>常规使用场景是 <code>POST</code> 请求返回值</td>
+</tr>
+<tr>
+<td>202 Accepted</td>
+<td>服务端收到了请求信息，但尚未处理</td>
+<td>将请求交给另外一个服务器或进行处理，<strong>对请求进行批处理</strong></td>
 </tr>
 </tbody></table>
 <h3 id="http-请求状态码-200"><a href="#http-请求状态码-200" class="headerlink" title="http 请求状态码 200"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200">http 请求状态码 200</a></h3><blockquote>
@@ -372,6 +382,11 @@
 &lt;td&gt;201 Created&lt;/td&gt;
 &lt;td&gt;成功的应答状态码，请求已被成功处理且创建了新资源&lt;/td&gt;
 &lt;td&gt;常规使用场景是 &lt;code&gt;POST&lt;/code&gt; 请求返回值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;202 Accepted&lt;/td&gt;
+&lt;td&gt;服务端收到了请求信息，但尚未处理&lt;/td&gt;
+&lt;td&gt;将请求交给另外一个服务器或进行处理，&lt;strong&gt;对请求进行批处理&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 &lt;h3 id=&#34;http-请求状态码-200&#34;&gt;&lt;a href=&#34;#http-请求状态码-200&#34; class=&#34;headerlink&#34; title=&#34;http 请求状态码 200&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200&#34;&gt;http 请求状态码 200&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;
