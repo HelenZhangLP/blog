@@ -1,5 +1,5 @@
 ---
-title: 网络请求
+title: WebAPI-网络请求
 date: 2018-08-08 12:00:00
 tags:
 - JavaScript
@@ -16,20 +16,19 @@ flowchart LR
 HTTP头 --> 流程控制
 ```
 ### HTTP
-### Ajax
 ### fetch api
 是对 XMLHttpRequest 的一层替代
-### axios
-对底层网络请求的一层封装
 
+## AJAX
 AJAX(Asynchronous JavaScript and XML) 使用 XMLHttpRequest 构建的网页编程实践。
+AJAX 本身不是一种技术，<u>是一种将一些现有技术(HTML/XHTML,CSS,JavaScript,DOM,XML,XSLT,XMLHttpRequest)结合起来使用的方法。</u>
+AJAX 使得页面不需要重载，且能更快的回应用户操作。
 AJAX 只允许更新一个 html 中的部分 dom。不需要加载整个页面。
 AJAX 还允许异步工作，这意味着当网页的一部分正试图重新加载时，您的代码可以继续运行
 （相比之下，同步会阻止代码继续运行，直到这部分的网页完成重新加载）。
-
 通过交互式网站和现代 Web 标准，AJAX 正在逐渐被 JavaScript 框架中的函数和官方的 Fetch API 标准取代。
 
-## XMLHttpRequest
+### AJAX 核心 - XMLHttpRequest
 > 通过使用 XMLHttpRequest 发送 Http 请求，实现浏览器网页端与服务器端的数据交换
 ```JavaScript
 // 通过构造函数 XMLHttpRequest，创建 xhr 实例
@@ -60,3 +59,13 @@ open --> |发送请求| send("xhr.send(null)")
 send --> |"请求内容处理 xhr.readyState > 1"| onreadystatechange
 ```
 [具体DEMO](https://github.com/HelenZhangLP/demo/blob/master/js/AJAX/index.html)
+
+### axios
+是 AJAX 请求库，对底层网络请求的一层封装
+Promise based HTTP client for the browser and node.js
+基于 Promise 的 HTTP 客户端，用于浏览器和 node.js
+
+Make XMLHttpRequest from the browser 浏览器端发出的 AJAX 请求；
+Make HTTP requests from the node.js node.js 发出的 http 请求；
+Supports the Promise API 支持 Promise API；
+Intercept request and response 拦截请求和响应；
