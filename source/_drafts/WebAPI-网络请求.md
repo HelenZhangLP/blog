@@ -63,7 +63,33 @@ send --> |"请求内容处理 xhr.readyState > 1"| onreadystatechange
 ### axios
 是 AJAX 请求库，对底层网络请求的一层封装
 Promise based HTTP client for the browser and node.js
-基于 Promise 的 HTTP 客户端，用于浏览器和 node.js
+基于 Promise 的 HTTP 客户端，用于**浏览器**和**node.js**
+
+#### Request Config
+There are the available config options for making request, Only the url is required. Requests will default to GET if method is not specified.
+发送请求的可用配置项，只有 url 是必须的。请求方法不指定默认为 GET
+
+```JavaScript
+{
+	url: '/user', // server url that will be used for the request
+	method: 'get', // default
+	baseURL: 'https://some-domain.com/api/', // baseurl will be prepended to 'url' unless 'url' is absolute. (baseurl 相对于 url 前置，除非 url 是绝对路径) It can be convenient to set 'baseURL' for an instance of axios to pass relative URLs to methods of that instance（传递相对 url 给实例方法）
+	transformRequest: [],
+	transformResponse: [],
+}
+```
+
+#### Response Schema
+```JavaScript
+{
+	data: {}, // the response that was provided by the server / 服务端提供的响应数据
+	headers: {}, // the server responded with All header names are lowercase and can be accessed using the bracket notation 请求头名称小写且可以使用括号（response.headers['content-type']）访问
+	request: {} // It is the last ClientRequest instance in node.js(in redirects) an XMLHttpRequest instance in the browser node.js 中最后一个 ClientRequest 实例和浏览器端一个 XMLHttpRequest 实例
+	config: {},
+	status: 200,
+	statusText: 'OK'
+}
+```
 
 Make XMLHttpRequest from the browser 浏览器端发出的 AJAX 请求；
 Make HTTP requests from the node.js node.js 发出的 http 请求；

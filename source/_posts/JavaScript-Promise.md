@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Promise
+title: JavaScript Promise
 date: 2019-02-14 21:33:57
 tags:
 - JavaScript

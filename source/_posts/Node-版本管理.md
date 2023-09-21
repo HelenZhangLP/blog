@@ -2,11 +2,28 @@
 title: Node 工具包
 date: 2020-02-17 14:34:52
 tags:
-- node
+- Node
 ---
 
-### tools
-#### nrm
+## tools
+### nodemon
+<span class='custom-box custom-box-933'>问题：</span>在编写 `node.js` 项目时，修改项目代码后，需要 `ctrl+c` 停止项目，再重启。
+> [nodemon](https://www.npmjs.com/package/nodemon)工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。
+```bash
+$ npm install -g nodemon
+```
+
+### pm2
+服务持久化管理的 <span class='custom-box custom-box-939'>即使终端关闭，服务器也在，电脑重启后，服务器关闭。</span>
+```bash
+$ npm i pm2 -g #安装 pm2
+$ pm2 start server.js --name TASK #启动
+$ pm2 restart TASK #重启
+$ pm2 stop TASK #暂停
+$ pm2 delete TASK #删除
+```
+
+### nrm
 由于 npm 官方镜像源在国外，下包时会存在下载慢的问题。所以我们一般在将镜像源切换为淘宝镜像源
 ```bash
 zhangliping@zhangliingdembp ~/Documents/vite  $ npm config get reigstry # 查看当前下包的镜像源
@@ -22,13 +39,13 @@ zhangliping@zhangliingdembp ~/Desktop/node/src/demo5/中文/leave a blank space 
 zhangliping@zhangliingdembp ~/Desktop/node/src/demo5/中文/leave a blank space  $ nrm use taobao # 使用淘宝镜像
 ```
 
-#### i5ting_toc 把 md 文档转换为 html 页面的工具
+### i5ting_toc 把 md 文档转换为 html 页面的工具
 ```bash
 zhangliping@zhangliingdembp /  $ npm install -g iString_toc # 将 iString_toc 安装为全局包
 zhangliping@zhangliingdembp /  $ iString_toc -f ./name.md -o # 调用 iString_toc 将 md 转换为 html 
 ```
 
-#### nvm node 版本管理工具
+### nvm node 版本管理工具
 > 安装 use the following cURL command 脚本 [具体参考](https://github.com/nvm-sh/nvm）
 
 ```bash

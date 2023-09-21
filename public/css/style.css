@@ -1048,7 +1048,7 @@ article header .postdate {
   display: inline;
 }
 article .content h2:before {
-  content: "①";
+  content: "α";
   color: #5bac4a;
   position: absolute;
   left: -2rem;
@@ -1140,7 +1140,7 @@ article .content h3 +p {
   margin-left: 2rem;
 }
 article .content h3::before {
-  content: "②";
+  content: "β";
   color: #5bac4a;
   position: relative;
   left: -0.5rem;
@@ -1155,7 +1155,7 @@ article .content h4 +p {
   margin-left: 3rem;
 }
 article .content h4::before {
-  content: "③";
+  content: "γ";
   color: #5bac4a;
   position: relative;
   left: -0.4rem;
@@ -1187,7 +1187,6 @@ article .content h4::before {
 .tag-list {
   display: block;
   height: auto;
-  max-height: 17.5em;
   overflow: hidden;
   margin-bottom: 1.5em;
 }

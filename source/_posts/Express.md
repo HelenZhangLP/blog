@@ -7,12 +7,14 @@ tags:
 date: 2023-06-08 11:38:09
 ---
 
-
-
 [Express 中文网](expressjs.com.cn)，是用于开发 <span class='custom-box custom-box-393'>Web 网站服务器</span> 与 <span class='custom-box custom-box-393'>API 接口服务器</span>
 ## 认识 `express`
 > <span class='custom-box custom-box-933'>基于 Node.js 平台</span><span class='custom-box custom-box-339'>快速、开放、极简</span>的 <span class='custom-box custom-box-933'>Web 开发框架。</span>
 是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，<span class='custom-box custom-box-933'>专门用来创建 Web 服务器的</span>
+Express is a routing and middleware web framework that has minimal functionality of its own
+Express 是一个路由和中间件 web 框架，本身功能很少。
+<font color='red'>An Express application is essentially a series of middleware function calls.
+<u>**Express 应用程序本质上是一系列中间件函数调用。**</u></font>
 
 ### 安装 express
 ```bash
@@ -70,7 +72,7 @@ app.post('/user', (req, res) => {
 })
 ```
 
-#### 4. 请求参数
+> 请求参数
 <span class='custom-box custom-box-393'>查询参数</span> 通过 req.query 获取客户端（/user/age=15&gender=male）
 <span class='custom-box custom-box-393'>查询动态参数</span>  通过 req.params 获取客户端（/user/1），动态参数可以是多个
 
@@ -87,7 +89,7 @@ app.get('/user/:id/:name', (req, res) => {
     res.send({id:1})
 })
 ```
-## 能够使用 `express.static()` 快递托管静态资源
+#### 能够使用 `express.static()` 快速托管静态资源
 <span class='custom-box custom-box-393'>express.static() 用于创建静态资源服务器</span> 
 
 ```JavaScript
@@ -96,7 +98,7 @@ app.get('/user/:id/:name', (req, res) => {
 app.use(express.static('public'))
 ...
 ```
-### 托管多个静态资源
+> 托管多个静态资源
 多次调用 `express.static()` 函数，托管多个静态资源目录。
 <span class='custom-box custom-box-933'>访问静态资源时，多个目录中有相同名称的资源时，`express.static()` 函数会根据目录的添加顺序查找所需的文件</span>
 
@@ -105,30 +107,15 @@ app.use(express.static('public'))
 app.use(express.static('public'))
 app.use(express.static('files'))
 ```
-### 挂载路径前缀
+> 挂载路径前缀
 在托管的静态资源访问路径前 <span class='custom-box custom-box-393'>挂载路径前缀</span>，避免因挂载顺序问题，导致不能访问到指定资源的问题。
 ```JavaScript
 ...
 app.use('/public',express.static('public'))
 ```
-### nodemon
-<span class='custom-box custom-box-933'>问题：</span>在编写 `node.js` 项目时，修改项目代码后，需要 `ctrl+c` 停止项目，再重启。
-[nodemon](https://www.npmjs.com/package/nodemon)工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。
-```bash
-$ npm install -g nodemon
-```
 
-### pm2
-服务持久化管理的 <span class='custom-box custom-box-939'>即使终端关闭，服务器也在，电脑重启后，服务器关闭。</span>
-```bash
-$ npm i pm2 -g #安装 pm2
-$ pm2 start server.js --name TASK #启动
-$ pm2 restart TASK #重启
-$ pm2 stop TASK #暂停
-$ pm2 delete TASK #删除
-```
 ## `express` 路由
-路由指的是 <span class='custom-box custom-box-393'>映射关系</span>，在 Express 中，路由指的是 <span class='custom-box custom-box-393'>客户端请求与服务器处理函数的**<u>映射关系</u>**</span>
+路由指的是 <span class='custom-box custom-box-393'>映射关系</span>，在 Express 中，路由指的是 <span class='custom-box custom-box-393'>客户端请求与服务器处理函数的 **<u>映射关系</u>**</span>
 Express 中路由由 <span class='custom-box custom-box-393'>请求类型(METHOD:POST/GET),请求 URL 地址（PATH）, 处理函数（HANDLE）</span>组成。
 ```JavaScript
 ...
@@ -189,27 +176,34 @@ const router = require('./routerModule.js')
 app.use('/api', router) // 注册路由模块
 ...
 ```
-## 能够使用 `express` 路由精简项目结构
 ## `express` 中间件
 ### 什么是中间件
-中间件（Middleware），业务流程的**中间处理环节**。
-### 中间件的处理流程
-当一个请求到达 Express 服务器之后，可以连续调用多个中间件，从而 <span class='custom-box custom-box-393'>对这次请求进行<u>预处理</u></span>。
-```mermaid
- flowchart LR
- client((客户端))
- subgraph Express服务器
-  middleware1([中间件1]) -->|"next()"| middleware2([中间件2])
-  middleware2 -->|"next()"| middleware3([中间件3])
-  middleware3 -->|"next()"| middleware4([中间件...])
-  middleware4 -->|"next()"| ending[["<b>路由</b><br/>处理完毕，响应这次请求"]]
- end
- client -->|请求| middleware1
- ending -->|响应| client
+> 中间件（Middleware），业务流程的<u>**中间处理环节**</u>。
+Middleware functions are functions that have access to the request object(req)、response object(res), and the next middleware function in the application's request-response cycle. the next middleware function is commonly denoted by a variable named next.
+中间件函数可以访问请求对象、响应对象以及在请求响应周期内的下一个中间件函数。下一个中间件函数通常由一个变量名 next 表示。 
+
+You can load application-level and router-level middleware with an optional mount path. 
+你可以加载带有可选装载路径的应用级别中间件路由级别中间件。
+
+### 中间件的作用
+<span class='custom-box custom-box-933'>多个中间件之间，共享同一份 req 和 res</span>。基于这个特性，<u>**我们可以在上流的中间件中，统一为 req 或 res 对象添加自定义的属性或方法，供下游的中间件或路由进行使用。**</u>
+
+```JavaScript
+// 中间件与路由之间共享 req/res 实例
+app.use((req, res, next)=>{
+    req.receivedTime = Date.now()
+    next()
+})
+
+app.get('/', (req, res) => {
+    console.log('请求到达服务器的时间：', req.receivedTime)
+})
 ```
-### Express 中间件的格式
+
+### 定义一个中间件
 Express 中间件，<span class='custom-box custom-box-393'>本质上是一个带有 `next` 参数的 funtion 处理函数</span>
-#### 定义一个中间件
+<span class='custom-box custom-box-933'>中间件函数的形参列表中，必须包含一个 next 参数</span>。路由处理函数中只包含 req 和 res。
+
 ```JavaScript
 var express = require("express")
 var app = express()
@@ -228,9 +222,8 @@ app.get('/', function(req, res, next){
     next()
 })
 ```
-<span class='custom-box custom-box-933'>中间件函数的形参列表中，必须包含一个 next 参数。</span>路由处理函数中只包含 req 和 res。
 
-### 全局生效的中间件
+#### 定义全局生效的中间件
 客户端发起的任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。
 <span class='custom-box custom-box-393'>通过 `app.use()` 中间件函数，可定义一个全局生效的中间件</span>
 
@@ -250,27 +243,7 @@ app.use((req, res, next) => {
     next()
 })
 ```
-#### 中间件的作用
-多个中间件之间，共享同一份 req 和 res。基于这个特性，我们可以在上流的中间件中，统一为 req 或 res 对象添加自定义的属性或方法，供下游的中间件或路由进行使用。
-```JavaScript
-// 中间件与路由之间共享 req/res 实例
-app.use((req, res, next)=>{
-    req.receivedTime = Date.now()
-    next()
-})
-
-app.get('/', (req, res) => {
-    console.log('请求到达服务器的时间：', req.receivedTime)
-})
-```
-### 定义多个中间件
-```JavaScript
- app.use((res, req, next) => {console.log('第一个中间件')})
- app.use((res, req, next) => {console.log('第二个中间件')})
- app.get('/', (req, reqs) => {console.log('请求路由')})
- // 第一个中间件 --> 第二个中间件 --> 请求路由
-```
-### 局部生效的中间件
+#### 定义局部生效的中间件
 > 不使用 app.use() 定义的中间件为局部生效中间件。
 ```JavaScript
 const middleware = function(req, res, next) {
@@ -282,7 +255,19 @@ app.get('/', middleware, function(req, res) {
     res.send('Index')
 })
 ```
-### 多个局部生效的中间件
+
+---
+You can load a series of middleware functions together,which creates a sub-stack of the middleware system at a mount point.
+你可以一起加载多个中间件函数，将会在挂载点创建中间件子堆栈。
+---
+#### 定义多个中间件
+```JavaScript
+ app.use((res, req, next) => {console.log('第一个中间件')})
+ app.use((res, req, next) => {console.log('第二个中间件')})
+ app.get('/', (req, reqs) => {console.log('请求路由')})
+ // 第一个中间件 --> 第二个中间件 --> 请求路由
+```
+#### 多个局部生效的中间件
 ```JavaScript
     const middleware1 = function(req, res, next) {
         console.log(`this is the first locally effective middleware`)
@@ -303,6 +288,7 @@ app.get('/', middleware, function(req, res) {
         console.log('Index')
     })
 ```
+
 ### 中间件使用注意事项
 *   一定要在路由之前注册中间件；
 *   客户端发送过来的请求，可以连续调用多个中间件进行处理；
@@ -311,11 +297,54 @@ app.get('/', middleware, function(req, res) {
 *   连续调用多个中间件时，多个中间件之间，共享 req 和 res;
 
 ### 中间件的分类
-错误级别中间件的作用：捕获整个项目中发生的异常错误，从而防止项目异常崩溃。
+1.  应用级别中间件(Application-level middleware)
+> 通过`app.use()`或`app.get()`或`app.post()`，<span class='custom-box custom-box-933'>绑定到 app 实例上的中间件</span>，称为应用级别中间件。
+2.  路由级别中间件(Router-level middleware)
+> 绑定到 `express.Router()` 实例上的中间件，叫做路由级别中间件。<span class='custom-box custom-box-933'>注意：应用级别中间件是绑定在 `app` 上，路由级别中间件绑定在 `express.Router()` 实例上。</span>
+3.  错误级别中间件(Error-level middleware)
+> 错误级别中间件的作用：捕获整个项目中发生的异常错误，从而防止项目异常崩溃。<span class='custom-box custom-box-933'>错误级别中间件必须在所有路由之后注册</span>
+4.  Express 内置中间件(Built-in middleware)
+    *   express.static 快速托管静态资源的内置中间件；
+    *   express.json 解析 JSON 格式的请求体数据；[demo for express.json](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo9/index.js)
+    *   express.urlencoded 解析 URL-encoded 格式的请求数据;[demo for express.urlencoded](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo10/index.js)
+    > 其中 `express.json` 和 `express.urlencoded` 只能在 4.16.0+ 以后的版本中使用
+5.  第三方中间件(Third-party middleware)
+
+### 应用级别中间件(Application-level middleware)
+Bind application-level middleware to an instance of the app object by using the app.use() and app.METHOD functions, where METHOD is the HTTP method of the request that the middleware function handles (such as GET,PUT,POST) in lowercase. 
+通过使用 `app.use()`和`app.METHOD()` 函数绑定应用级别中间件到应用程序对象实例。其中，`METHOD` 是 中间件函数以小写形式处理的 `HTTP 请求 method`（如：GET,PUT,POST）
+
+#### 不带挂载路径的中间件，每次 app 接受请求时执行
+```JavaScript
+// 导入 express 
+var express = require('express')
+var app = express()
+
+app.use(function(req, res, next){
+    console.log('define application-level middleware')
+})
+```
+#### 带有挂载路径的中间件函数，任何类型的 http 请求当前路径中间件都会被执行
+```JavaScript
+app.use('/user/:id', function(req, res, next){
+    consolt.log('request type', req.method)
+    next()
+})
+```
+#### 
+#### 带有中间件子堆栈的数组，处理 get 请求
+```JavaScript
+function lg(req, res, next) {console.log('lg');next()}
+function log(req, res, next) {console.log('log');next()}
+
+let stuff = [lg, log]
+app.get('/user/:id', stuff, function(req,res,next){
+    res.send('userInfo')
+})
+```
+
+### 错误级别中间件
 > 错误级别中间件的 function 中，<span class='custom-box custom-box-339'>必须包含4个形参，</span>分别是 err,req,res,next 
-
-<span class='custom-box custom-box-933'>错误级别中间件必须在所有路由之后注册</span>
-
 ```JavaScript
 // 1 导入 express 模块
 const express = require('express')
@@ -340,22 +369,53 @@ server.listen(8090, function() {
     console.log(`Express server running at http://127.0.0.1:8090`)
 })
 ```
+
 ### Express 内置中间件
 Express 4.16.0 版本开始，Express 内置了 3 个常用中间件
 *   `express.static` 快速托管静态资源（html,css,图片等）的内置中间件；
-*   `express.json` 解析 JSON 格式的请求体数据（4.16.0+ 可用）[demo for express.json](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo9/index.js)
-*   `express.urlencoded` 解析 URL-encoded 格式的请求体数据（4.16.0+ 可用）[demo for express.urlencoded](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo10/index.js)
+*   `express.json` 解析 JSON 格式的请求体数据（4.16.0+ 可用）;
+
+```JavaScript
+// post 请求，body 中带请求体
+app.get('/getUser',(req, res)=>{
+    // req.body 接收客户端传过来的数据
+    console.log(req.body) // undefined，默认情况下，没有配置解析表单数据中间件，req.body = undefined
+})
+```
+---
 ```JavaScript
 // 配置解析 application/json 格式数据的内置中间件
 app.use(express.json())
+// post 请求，body 中带 json 格式请求数据
+app.get('/getUser',(req, res)=>{
+    console.log(req.body) // {id: 'u12950'}
+})
+```
+*   `express.urlencoded` 解析 URL-encoded 格式的请求体数据（4.16.0+ 可用）
+
+```JavaScript
+// post 请求，body 中带 x-www-form-urlencoded 格式数据
+app.get('/getUser',(req, res)=>{
+    // req.body 接收客户端传过来的数据
+    console.log(req.body) // {}，默认情况下，没有配置解析表单数据中间件，req.body = undefined
+})
+```
+---
+```JavaScript
 // 解析 application/x-www/form-urlencoded 格式数据中间件
 app.use(express.urlencoded({extended: false}))
+// post 请求，body 中带 x-www-form-urlencoded 格式数据
+app.get('/getUser',(req, res)=>{
+    // req.body 接收客户端传过来的数据
+    console.log(req.body) // {id: 'u12950'}，默认情况下，没有配置解析表单数据中间件，req.body = {}
+})
 ```
-
 这些中间件，极大的提高了 Express 项目的开发效率及体验。
 
-#### 第三方中间件 body-parser
+### 第三方中间件
 第三方中间件可按需下载配置，从而提高开发效率。
+
+#### 第三方中间件 body-parser
 body-parser 用于解析请求体数据，在 express@4.16.0 之前经常使用
 ```mermaid
  flowchart LR
@@ -405,10 +465,121 @@ const bodyparse = require('./bodyparse')
 // 注册使用中间件
 app.use(bodyparse)
 ```
+### 中间件的处理流程
+当一个请求到达 Express 服务器之后，可以连续调用多个中间件，从而 <span class='custom-box custom-box-393'>对这次请求进行<u>预处理</u></span>。
+```mermaid
+ flowchart LR
+ client((客户端))
+ subgraph Express服务器
+  middleware1([中间件1]) -->|"next()"| middleware2([中间件2])
+  middleware2 -->|"next()"| middleware3([中间件3])
+  middleware3 -->|"next()"| middleware4([中间件...])
+  middleware4 -->|"next()"| ending[["<b>路由</b><br/>处理完毕，响应这次请求"]]
+ end
+ client -->|请求| middleware1
+ ending -->|响应| client
+```
 
-### 跨域中间件
+### 跨域（Cross-Origin Resource Sharing）中间件
+[更多关于跨域...](/2019/02/22/跨域/#跨域资源共享（CORS）当前主流解决方案)
 ```mermaid
  flowchart LR
  install[安装 npm install cors] --> require["require('cors')"]
  require --> registeration["app.use(cors())"]
+```
+
+### 在 Express 中使用 session 认证
+#### 安装 express-session 中间件
+```bash
+$ npm install express-session
+```
+#### 配置和使用 express-session 中间件
+> express-session 中间件配置成功后，可通过 req.session 来访问和使用 session 对象。进而可以向 session 中存数据
+> req.session.destory() 函数 清空服务器保存的 session 信息
+```JavaScript
+// 1. 导入 session 中间件
+const session = require('express-session')
+// 2. 配置 session 中间件
+app.use(session({
+    secret: '', // secret 属性的值可以为任意字符串
+    resave: false,
+    saveUninitialized: true
+}))
+// 3. 向 session 中存储数据
+app.post('/api/login', (req, res) => {
+    // 判断客户端是否提交正确的信息
+    const {userName, password} = req.body
+    if(userName !== 'admin' || password !== '123') return res.send({status: 1, msg: '用户名或密码错误！'})
+
+    // session 存储数据
+    req.session.user = req.body // 将用户信息存储到 session
+    req.session.isLogin = true // 将用户登录状态存储到 session
+
+    // 返回结果给客户端
+    res.send({status:0, msg: '登录成功'})
+})
+// 4. 获取 session 中存储的数据
+app.get('api/user', (req, res) => {
+    const {user} = req.session
+    if (user) {
+        res.send({status: 0, user})
+    }
+    res.send({status: 1, msg: '没有该用户'})
+})
+// 5. req.session.destory() 函数，清空服务器信息
+app.post('/api/logout', (req, res) => {
+    // 清空服务器 session 
+    req.session.destory()
+    res.send({
+        status: 0,
+        msg: '退出登录'
+    })
+})
+```
+
+### Express 中使用 JWT 身份认证
+#### 安装 JWT 包
+```bash
+$ npm install jsonwebtoken express-jwt
+```
+* jsonwebtoken 用于生成 JWT 字符串
+* express-jwt 将 JWT 字符串解析还原成 JSON 对象
+
+#### 定义 secret 密钥
+为了保证 JWT 字符串的安全性，防止 JWT 字符串在网络传输过程中被人破解，我们需要专门定义一个用于加密和解密的 secret 密钥。
+生成 JWT 字符串时，需要使用 secret 密钥对用户信息进行加密，最终得到加密好的 JWT 字符串
+当把 JWT 字符串解析还原成 JSON 对象时，需要使用 secret 密钥进行解密
+secret 密钥本质是任意字符串
+
+#### 生成 JWT 字符串
+调用 jsonwebtoken 包提供的 sign() 方法，将用户的信息加密成 JWT 字符串，响应给客户
+```JavaScript
+cont jwt = require('jsonwebtoken')
+
+// 三个参数：用户信息，加密密钥，配置对象
+const token = jwt.sign(user, secretKey, {expiresIn: '30s'})
+```
+
+#### JWT 还原为 JSON 对象
+客户端访问权限接口时，需要主动通过请求头中的 Authorization 字段将 Token 字符串发送到服务器进行身份认证。
+服务器可以通过 express-jwt 中间件，自动将客户端发送的 Token 解析还原成 JSON 对象
+```JavaScript
+// app.use() 注册中间件
+// expressJWT() 解析 Token 中间件
+// unless() 指定不需要鉴权的接口
+app.use(expressJWT({secret: secretKey}).unless({path: [/\^/api\/\/]}))
+```
+
+#### 捕获解析 JWT 失败后产生的错误
+当使用 express-jwt 解析 token 字符串时，如果客户端发送过来的 Token 字符串不合法或过期，会产生解析失败的错误，影响项目正常运行，我们可以通过 Express 错误中间件，捕获并进行错误处理
+```JavaScript
+app.use((err, req, res, next) => {
+    // token 解析失败
+    if (err.name === 'UnauthorizedError') {
+        return res.send({status: 401, message: '未知错误'})
+    }
+
+    // 其它原因导致错误
+    res.send({status: 500, message: '服务器错误'})
+})
 ```

@@ -14,7 +14,7 @@
 <meta property="og:description" content="同源，相同的协议 + 相同的域名 + 相同的端口号在页面中用 about:blank 或 JavaScript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有明确包含有关原始服务器的信息。例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  机制）。 如果此弹出窗口也包含代码，则该代码将继">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-02-22T10:14:44.000Z">
-<meta property="article:modified_time" content="2023-06-08T03:36:52.196Z">
+<meta property="article:modified_time" content="2023-07-19T04:08:13.250Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="Origin">
 <meta property="article:tag" content="跨域">
@@ -358,7 +358,8 @@
   server1 -->|服务端配置 cors 响应头<br/>解除浏览器跨域访问限制| browser1
  end</pre>
 
-<h4 id="CORS-跨域资源共享"><a href="#CORS-跨域资源共享" class="headerlink" title="CORS 跨域资源共享"></a>CORS 跨域资源共享</h4><ul>
+<h4 id="CORS-跨域资源共享"><a href="#CORS-跨域资源共享" class="headerlink" title="CORS 跨域资源共享"></a>CORS 跨域资源共享</h4><p>浏览器的<code>同源安全策略</code>默认阻止网页跨域获取资源。<u>但如果接口服务器配置了 CORS 相关的 HTTP 响应头，就可以解除浏览器的跨域访问限制。</u></p>
+<ul>
 <li>响应头 Access-Control-Allow-Origin, origin 参数值指定了<strong>允许访问该资源外域的 URL</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="string">&#x27;http://abc.com&#x27;</span>) <span class="comment">// 或者为 * 允许所有资源访问</span></span><br></pre></td></tr></table></figure></li>
 <li>响应头 Access-Control-Allow-Headers<br>默认情况下，CORS 仅支持客户端向服务器发送如下9个请求头：<br>Accept,Accept-Language,Content-Language,DPR,Downlink,Save-Data,Viewport-Width,Width,Content-Type(text/plain, multipart/form-data,application/x-www-form-urlencoded 三者之一)<br><span class='custom-box custom-box-933'>如果客户端向服务器发送了额外的请求头信息，服务器端需要通过 Access-Control-Allow-Headers 对额外的请求头进行声明，否则请求失败。</span><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>, <span class="string">&#x27;custom-header&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
 <li>响应头 Access-Control-Allow-Methods<br>默认情况下，CORS 只支持客户端发起 GET/POST/HEAD 请求。<br>如果客户端希望通过 PUT、DELETE 等方式请求服务器资源，需要在服务器端，通过 Access-Control-Allow-Methods 指明实际请求所允许使用的 HTTP 方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>, <span class="string">&#x27;*&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
