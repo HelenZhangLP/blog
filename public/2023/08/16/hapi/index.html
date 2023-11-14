@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="导入 joi 1const Joi &#x3D; require(&amp;#x27;joi&amp;#x27;) ValidationThis tutorial is compatible with hapi v17 and newer; and joi v16 and newer.该教程兼容 hapi 17+ 和 joi 16+ Overviewvalidating data can be very helpful i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hapi">
+<meta property="og:url" content="https://helenzhanglp.github.io/2023/08/16/hapi/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="导入 joi 1const Joi &#x3D; require(&amp;#x27;joi&amp;#x27;) ValidationThis tutorial is compatible with hapi v17 and newer; and joi v16 and newer.该教程兼容 hapi 17+ 和 joi 16+ Overviewvalidating data can be very helpful i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-16T03:48:05.000Z">
+<meta property="article:modified_time" content="2023-08-25T07:11:57.690Z">
+<meta property="article:author" content="Helen Zhang">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>hapi</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2023/09/22/%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2023/08/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/08/16/hapi/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/08/16/hapi/&text=hapi"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/08/16/hapi/&is_video=false&description=hapi"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hapi&body=Check out this article: https://helenzhanglp.github.io/2023/08/16/hapi/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/08/16/hapi/&name=hapi&description=&lt;p&gt;导入 joi&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Joi&lt;/span&gt; = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;joi&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;Validation&#34;&gt;&lt;a href=&#34;#Validation&#34; class=&#34;headerlink&#34; title=&#34;Validation&#34;&gt;&lt;/a&gt;Validation&lt;/h2&gt;&lt;p&gt;This tutorial is compatible with hapi v17 and newer; and joi v16 and newer.&lt;br&gt;该教程兼容 hapi 17+ 和 joi 16+&lt;/p&gt;
+&lt;h3 id=&#34;Overview&#34;&gt;&lt;a href=&#34;#Overview&#34; class=&#34;headerlink&#34; title=&#34;Overview&#34;&gt;&lt;/a&gt;Overview&lt;/h3&gt;&lt;p&gt;validating data can be very helpful in making sure that your application is stable and secure&lt;/p&gt;
+&lt;h2 id=&#34;Joi&#34;&gt;&lt;a href=&#34;#Joi&#34; class=&#34;headerlink&#34; title=&#34;Joi&#34;&gt;&lt;/a&gt;Joi&lt;/h2&gt;&lt;h3 id=&#34;any&#34;&gt;&lt;a href=&#34;#any&#34; class=&#34;headerlink&#34; title=&#34;any&#34;&gt;&lt;/a&gt;any&lt;/h3&gt;&lt;h4 id=&#34;any-required&#34;&gt;&lt;a href=&#34;#any-required&#34; class=&#34;headerlink&#34; title=&#34;any.required()&#34;&gt;&lt;/a&gt;any.required()&lt;/h4&gt;&lt;p&gt;Marks a key as required which not allow &lt;code&gt;undefined&lt;/code&gt; as value. All keys are optional by default.&lt;br&gt;标记密钥必填不能使用 &lt;code&gt;undefined&lt;/code&gt;，所有 key 默认可选。&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Validation"><span class="toc-number">1.</span> <span class="toc-text">Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Joi"><span class="toc-number">2.</span> <span class="toc-text">Joi</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-number">2.1.</span> <span class="toc-text">any</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#any-required"><span class="toc-number">2.1.1.</span> <span class="toc-text">any.required()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string"><span class="toc-number">2.2.</span> <span class="toc-text">string</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#string-alphanum"><span class="toc-number">2.2.1.</span> <span class="toc-text">string.alphanum()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-min-limit-encoding"><span class="toc-number">2.2.2.</span> <span class="toc-text">string.min(limit, [encoding])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-max-limit-encoding"><span class="toc-number">2.2.3.</span> <span class="toc-text">string.max(limit, [encoding])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-pattern-regex-name-options"><span class="toc-number">2.2.4.</span> <span class="toc-text">string.pattern(regex,[name | options])</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        hapi
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-08-16T03:48:05.000Z" itemprop="datePublished">2023-08-16</time>
+    </div>
+
+
+      
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>导入 joi</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Joi</span> = <span class="built_in">require</span>(<span class="string">&#x27;joi&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a>Validation</h2><p>This tutorial is compatible with hapi v17 and newer; and joi v16 and newer.<br>该教程兼容 hapi 17+ 和 joi 16+</p>
+<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>validating data can be very helpful in making sure that your application is stable and secure</p>
+<h2 id="Joi"><a href="#Joi" class="headerlink" title="Joi"></a>Joi</h2><h3 id="any"><a href="#any" class="headerlink" title="any"></a>any</h3><h4 id="any-required"><a href="#any-required" class="headerlink" title="any.required()"></a>any.required()</h4><p>Marks a key as required which not allow <code>undefined</code> as value. All keys are optional by default.<br>标记密钥必填不能使用 <code>undefined</code>，所有 key 默认可选。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">joi.<span class="title function_">string</span>().required()</span><br></pre></td></tr></table></figure>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>Generates a schema object that matches a string data type.<br>Joi.string() 生成一个匹配字符串数据类型的架构对象。</p>
+<blockquote>
+<p>Note that the empty string is not allowed and must be enabled with <code>allow(&#39;&#39;)</code>. empty string is not a valid string by default.<br>注意：空白字符串不允许使用，默认情况下不是有效字符串</p>
+</blockquote>
+<p><code>Joi.string().allow(&#39;&#39;)</code> 允许为空字符串<br><code>Joi.string().empty(&#39;&#39;).default(&#39;default value&#39;)</code> 为空字符串指定默认值</p>
+<h4 id="string-alphanum"><a href="#string-alphanum" class="headerlink" title="string.alphanum()"></a>string.alphanum()</h4><p>Requires the string value to only contain a-z, A-Z, and 0-9<br>请求值只能包含 a-z, A-Z, 0-9</p>
+<blockquote>
+<p>Joi.string().alphanum() 当前字段验证规则为字符串只包含 a-z, A-Z, 0-9</p>
+</blockquote>
+<h4 id="string-min-limit-encoding"><a href="#string-min-limit-encoding" class="headerlink" title="string.min(limit, [encoding])"></a>string.min(limit, [encoding])</h4><p>Specifies the minimum number string characters where:<br>指定字符串最少包含几个字符，其中：</p>
+<ul>
+<li><code>limit</code> - the minimum number of string characters required or a reference.(请求或引用的字符串最少包含几个字符)</li>
+<li><code>encoding</code> - if specified, the string length is calclulated in bytes using the provided encoding.(如果指定，使用指定的编码用字节计算字符长度)<blockquote>
+<p>Joi.string().min(2) 验证规则为最少包含两个字符</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="string-max-limit-encoding"><a href="#string-max-limit-encoding" class="headerlink" title="string.max(limit, [encoding])"></a>string.max(limit, [encoding])</h4><p>Specifies the maximum munber of string characters where:<br>指定字符字符的最大长度，其中：</p>
+<ul>
+<li><code>limit</code> - the maximum mumber of string characters allowed or reference.(允许或引用的字符串的最大字符数)</li>
+<li><code>encoding</code> - if specified, the string length is calclulated in bytes using provided encoding.(如果指定，使用指定的编码方式以字节的方式计算字符串长度)<blockquote>
+<p>Joi.string().max(10) 字符串类型，最多包含 10 个字符</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="string-pattern-regex-name-options"><a href="#string-pattern-regex-name-options" class="headerlink" title="string.pattern(regex,[name | options])"></a>string.pattern(regex,[name | options])</h4><p>Defines a pattern rules where:<br>定义模式规则，其中：</p>
+<ul>
+<li><code>regex</code> - a regular expression object the string value must match against.(字符串值必须与正则表达式值相匹配)Note that if the pattern is a regular expression(注意：如果模式是一个正则表达式),for it to match the entire key name, it must begin with <code>^</code> and end with <code>$</code>.(为了能够匹配整个键名，必须以 ^ 开头，以 $ 结尾)</li>
+<li><code>name</code> - optional name for patterns(useful with multiple patterns).(模式的可选名称，适用于多个模式)</li>
+<li><code>options</code> - an optional configuration object with the following supported properties:(一个带有以下支持属性的可选配置对象)<ul>
+<li><code>name</code> - optional pattern name (可选模式名称)</li>
+<li><code>invert</code> - optional boolean flag. Defaults to <code>false</code> behavior. if specified <code>true</code>,the provided pattern will be disallowed instead of required.(可选的布尔标识，默认为 false，如果设置为 true. 则提供的模式将被禁用，不是必须的)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> invertedNamedSchema = <span class="title class_">Joi</span>.<span class="title function_">string</span>().<span class="title function_">pattern</span>(<span class="regexp">/^[a-z]+$/</span>, &#123; <span class="attr">name</span>: <span class="string">&#x27;alpha&#x27;</span>, <span class="attr">invert</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">invertedNamedSchema.<span class="title function_">validate</span>(<span class="string">&#x27;lowercase&#x27;</span>); <span class="comment">// ValidationError: &quot;value&quot; with value &quot;lowercase&quot; matches the inverted alpha pattern</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Validation"><span class="toc-number">1.</span> <span class="toc-text">Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Joi"><span class="toc-number">2.</span> <span class="toc-text">Joi</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-number">2.1.</span> <span class="toc-text">any</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#any-required"><span class="toc-number">2.1.1.</span> <span class="toc-text">any.required()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string"><span class="toc-number">2.2.</span> <span class="toc-text">string</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#string-alphanum"><span class="toc-number">2.2.1.</span> <span class="toc-text">string.alphanum()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-min-limit-encoding"><span class="toc-number">2.2.2.</span> <span class="toc-text">string.min(limit, [encoding])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-max-limit-encoding"><span class="toc-number">2.2.3.</span> <span class="toc-text">string.max(limit, [encoding])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-pattern-regex-name-options"><span class="toc-number">2.2.4.</span> <span class="toc-text">string.pattern(regex,[name | options])</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/08/16/hapi/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/08/16/hapi/&text=hapi"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/08/16/hapi/&is_video=false&description=hapi"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hapi&body=Check out this article: https://helenzhanglp.github.io/2023/08/16/hapi/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/08/16/hapi/&title=hapi"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/08/16/hapi/&name=hapi&description=&lt;p&gt;导入 joi&lt;/p&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Joi&lt;/span&gt; = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;joi&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;Validation&#34;&gt;&lt;a href=&#34;#Validation&#34; class=&#34;headerlink&#34; title=&#34;Validation&#34;&gt;&lt;/a&gt;Validation&lt;/h2&gt;&lt;p&gt;This tutorial is compatible with hapi v17 and newer; and joi v16 and newer.&lt;br&gt;该教程兼容 hapi 17+ 和 joi 16+&lt;/p&gt;
+&lt;h3 id=&#34;Overview&#34;&gt;&lt;a href=&#34;#Overview&#34; class=&#34;headerlink&#34; title=&#34;Overview&#34;&gt;&lt;/a&gt;Overview&lt;/h3&gt;&lt;p&gt;validating data can be very helpful in making sure that your application is stable and secure&lt;/p&gt;
+&lt;h2 id=&#34;Joi&#34;&gt;&lt;a href=&#34;#Joi&#34; class=&#34;headerlink&#34; title=&#34;Joi&#34;&gt;&lt;/a&gt;Joi&lt;/h2&gt;&lt;h3 id=&#34;any&#34;&gt;&lt;a href=&#34;#any&#34; class=&#34;headerlink&#34; title=&#34;any&#34;&gt;&lt;/a&gt;any&lt;/h3&gt;&lt;h4 id=&#34;any-required&#34;&gt;&lt;a href=&#34;#any-required&#34; class=&#34;headerlink&#34; title=&#34;any.required()&#34;&gt;&lt;/a&gt;any.required()&lt;/h4&gt;&lt;p&gt;Marks a key as required which not allow &lt;code&gt;undefined&lt;/code&gt; as value. All keys are optional by default.&lt;br&gt;标记密钥必填不能使用 &lt;code&gt;undefined&lt;/code&gt;，所有 key 默认可选。&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

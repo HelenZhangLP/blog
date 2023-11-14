@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="关键词   Continuous Integration   Continuous Delivery   Continuous Deployment  CI&#x2F;CDCI&#x2F;CD 在应用开发阶段引入自动化来频繁向客户交付应用的方法。  核心概念是持续集成、持续交付、持续部署。  CI&#x2F;CD 持续自动化和持续监控贯穿于应用的整个生命周期（集成、测试、交付、部署）相关联的事务称为 CI&#x2F;CD 管道。（开发+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CI&#x2F;CD 持续集成、持续交付、持续部署">
+<meta property="og:url" content="https://helenzhanglp.github.io/2023/10/26/CI-CD/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="关键词   Continuous Integration   Continuous Delivery   Continuous Deployment  CI&#x2F;CDCI&#x2F;CD 在应用开发阶段引入自动化来频繁向客户交付应用的方法。  核心概念是持续集成、持续交付、持续部署。  CI&#x2F;CD 持续自动化和持续监控贯穿于应用的整个生命周期（集成、测试、交付、部署）相关联的事务称为 CI&#x2F;CD 管道。（开发+">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-26T05:52:18.000Z">
+<meta property="article:modified_time" content="2023-11-02T03:08:20.412Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="grocery">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>CI/CD 持续集成、持续交付、持续部署</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2023/09/22/%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/10/26/CI-CD/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&text=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&is_video=false&description=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CI/CD 持续集成、持续交付、持续部署&body=Check out this article: https://helenzhanglp.github.io/2023/10/26/CI-CD/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&name=CI/CD 持续集成、持续交付、持续部署&description=&lt;h2 id=&#34;关键词&#34;&gt;&lt;a href=&#34;#关键词&#34; class=&#34;headerlink&#34; title=&#34;关键词&#34;&gt;&lt;/a&gt;关键词&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;  Continuous Integration&lt;/li&gt;
+&lt;li&gt;  Continuous Delivery&lt;/li&gt;
+&lt;li&gt;  Continuous Deployment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;CI-CD&#34;&gt;&lt;a href=&#34;#CI-CD&#34; class=&#34;headerlink&#34; title=&#34;CI/CD&#34;&gt;&lt;/a&gt;CI/CD&lt;/h2&gt;&lt;p&gt;CI/CD 在应用开发阶段引入&lt;strong&gt;自动化&lt;/strong&gt;来频繁向客户交付应用的&lt;strong&gt;方法&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;核心概念是&lt;u&gt;持续集成&lt;/u&gt;、&lt;u&gt;持续交付&lt;/u&gt;、&lt;u&gt;持续部署&lt;/u&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;CI/CD 持续自动化和持续监控贯穿于应用的整个生命周期（集成、测试、交付、部署）&lt;br&gt;相关联的事务称为 CI/CD 管道。（开发+运维）敏捷协同。&lt;/p&gt;
+&lt;p&gt;CI/CD 是指既可能仅指&lt;u&gt;集成和持续交付&lt;/u&gt;的&lt;b&gt;关联环节&lt;/b&gt;。&lt;br&gt;           也可以指&lt;u&gt;持续集成、持续交付、持续部署&lt;/u&gt;三项关联环节。&lt;br&gt;CI/CD 即一个流程，形象的表示为管道。&lt;/p&gt;
+&lt;h2 id=&#34;CI-持续集成（Continuous-Integration）&#34;&gt;&lt;a href=&#34;#CI-持续集成（Continuous-Integration）&#34; class=&#34;headerlink&#34; title=&#34;CI 持续集成（Continuous Integration）&#34;&gt;&lt;/a&gt;CI 持续集成（Continuous Integration）&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;协同开发&lt;/strong&gt;，多位开发人员同时处理一个应用的不同模块或功能&lt;br&gt;&lt;span class=&#34;custom-box-993&#34;&gt;&lt;b&gt;持续集成&lt;/b&gt;旨在帮助开发人员更加方便地将代码更改合并到主分支。&lt;/span&gt;一旦有改动代码合并到主分支，系统会自动构建应用，并运行不同级别的自动化测试验证，确保应用正常运行。&lt;br&gt;如果自动化测试发现代码冲突，CI 会即时轻松地快速修复这些错误。&lt;/p&gt;
+"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.</span> <span class="toc-text">关键词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-CD"><span class="toc-number">2.</span> <span class="toc-text">CI&#x2F;CD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%88Continuous-Integration%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">CI 持续集成（Continuous Integration）</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CI/CD 持续集成、持续交付、持续部署
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">魔女</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-10-26T05:52:18.000Z" itemprop="datePublished">2023-10-26</time>
+    </div>
+
+
+      
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grocery/" rel="tag">grocery</a></li></ul>
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><ul>
+<li>  Continuous Integration</li>
+<li>  Continuous Delivery</li>
+<li>  Continuous Deployment</li>
+</ul>
+<h2 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h2><p>CI/CD 在应用开发阶段引入<strong>自动化</strong>来频繁向客户交付应用的<strong>方法</strong>。</p>
+<blockquote>
+<p>核心概念是<u>持续集成</u>、<u>持续交付</u>、<u>持续部署</u>。</p>
+</blockquote>
+<p>CI/CD 持续自动化和持续监控贯穿于应用的整个生命周期（集成、测试、交付、部署）<br>相关联的事务称为 CI/CD 管道。（开发+运维）敏捷协同。</p>
+<p>CI/CD 是指既可能仅指<u>集成和持续交付</u>的<b>关联环节</b>。<br>           也可以指<u>持续集成、持续交付、持续部署</u>三项关联环节。<br>CI/CD 即一个流程，形象的表示为管道。</p>
+<h2 id="CI-持续集成（Continuous-Integration）"><a href="#CI-持续集成（Continuous-Integration）" class="headerlink" title="CI 持续集成（Continuous Integration）"></a>CI 持续集成（Continuous Integration）</h2><p><strong>协同开发</strong>，多位开发人员同时处理一个应用的不同模块或功能<br><span class="custom-box-993"><b>持续集成</b>旨在帮助开发人员更加方便地将代码更改合并到主分支。</span>一旦有改动代码合并到主分支，系统会自动构建应用，并运行不同级别的自动化测试验证，确保应用正常运行。<br>如果自动化测试发现代码冲突，CI 会即时轻松地快速修复这些错误。</p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.</span> <span class="toc-text">关键词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-CD"><span class="toc-number">2.</span> <span class="toc-text">CI&#x2F;CD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%88Continuous-Integration%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">CI 持续集成（Continuous Integration）</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2023/10/26/CI-CD/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&text=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&is_video=false&description=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CI/CD 持续集成、持续交付、持续部署&body=Check out this article: https://helenzhanglp.github.io/2023/10/26/CI-CD/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&title=CI/CD 持续集成、持续交付、持续部署"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2023/10/26/CI-CD/&name=CI/CD 持续集成、持续交付、持续部署&description=&lt;h2 id=&#34;关键词&#34;&gt;&lt;a href=&#34;#关键词&#34; class=&#34;headerlink&#34; title=&#34;关键词&#34;&gt;&lt;/a&gt;关键词&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;  Continuous Integration&lt;/li&gt;
+&lt;li&gt;  Continuous Delivery&lt;/li&gt;
+&lt;li&gt;  Continuous Deployment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;CI-CD&#34;&gt;&lt;a href=&#34;#CI-CD&#34; class=&#34;headerlink&#34; title=&#34;CI/CD&#34;&gt;&lt;/a&gt;CI/CD&lt;/h2&gt;&lt;p&gt;CI/CD 在应用开发阶段引入&lt;strong&gt;自动化&lt;/strong&gt;来频繁向客户交付应用的&lt;strong&gt;方法&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;核心概念是&lt;u&gt;持续集成&lt;/u&gt;、&lt;u&gt;持续交付&lt;/u&gt;、&lt;u&gt;持续部署&lt;/u&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;CI/CD 持续自动化和持续监控贯穿于应用的整个生命周期（集成、测试、交付、部署）&lt;br&gt;相关联的事务称为 CI/CD 管道。（开发+运维）敏捷协同。&lt;/p&gt;
+&lt;p&gt;CI/CD 是指既可能仅指&lt;u&gt;集成和持续交付&lt;/u&gt;的&lt;b&gt;关联环节&lt;/b&gt;。&lt;br&gt;           也可以指&lt;u&gt;持续集成、持续交付、持续部署&lt;/u&gt;三项关联环节。&lt;br&gt;CI/CD 即一个流程，形象的表示为管道。&lt;/p&gt;
+&lt;h2 id=&#34;CI-持续集成（Continuous-Integration）&#34;&gt;&lt;a href=&#34;#CI-持续集成（Continuous-Integration）&#34; class=&#34;headerlink&#34; title=&#34;CI 持续集成（Continuous Integration）&#34;&gt;&lt;/a&gt;CI 持续集成（Continuous Integration）&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;协同开发&lt;/strong&gt;，多位开发人员同时处理一个应用的不同模块或功能&lt;br&gt;&lt;span class=&#34;custom-box-993&#34;&gt;&lt;b&gt;持续集成&lt;/b&gt;旨在帮助开发人员更加方便地将代码更改合并到主分支。&lt;/span&gt;一旦有改动代码合并到主分支，系统会自动构建应用，并运行不同级别的自动化测试验证，确保应用正常运行。&lt;br&gt;如果自动化测试发现代码冲突，CI 会即时轻松地快速修复这些错误。&lt;/p&gt;
+"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023 Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <script>
+      if (window.mermaid) {
+          mermaid.initialize({theme: 'default'});
+      }
+  </script>
+
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

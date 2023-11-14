@@ -7,7 +7,17 @@ type: "about"
 Everything happens for the best 一切都是最好的安排
 it's me, Helen.Zhang
 本人修炼千年，只为成精
+> @author： 张丽萍
+  @tags: html/css, JavaScript, NodeJs, Python, Scratch, 知识搬运工，babyCoding 开创者
 
+```mermaid
+ mindmap
+    root((编程语言))
+        JavaScript
+        Python
+        Scratch
+```
+---
 ```mermaid
  mindmap
   root((Web 开发技术))

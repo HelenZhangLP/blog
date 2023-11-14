@@ -11,22 +11,58 @@ tags:
 与《JavaScript高级程序设计》不同，这张图中没有 null。我这边先就图中的信息作一个解析，图中，将数据类型分为值类型与引用类型。
 
 ## JavaScript 数据类型
-### 基本类型
+### 基本类型（也称原型数据类型，值类型）
 基本类型直接代表了最底层的语言实现，是种非对象无方法与属性的数据，有 7 种原始数据类型。
 {%plantuml%}
 @startmindmap
 * 数据类型
-** 原始数据类型(primitive data type)
+** 基本数据类型/原始数据类型(primitive data type)/值类型
 *** string
 *** number
-*** bitint
 *** boolean
 *** undefined
 *** null
 *** Symbol
+*** bigint
+** 引用类型
+*** object
+**** {}
+**** []
+**** /^$/
+*** function
 @endmindmap
 {%endplantuml%}
 <font color="#f33">所以object/NaN 是否属于基本类型？？？ECMAScript 标准定义了7种数据类型：</font>
+
+## 基本数据类型 —— number
+> number 数字类型的值可以是正数、负数、零以及小数；也是可以 Infinity 无穷大；还可以是 NaN(not a number) 是 number 类型但不是一个有效数字。
+
+### isNaN 检测参数是否为有效数字
+<b class="custom-box-339">`isNaN([value])`</b><span class="custom-box-993">检测一个值[value]是否为“非有效数字”，返回 true 代表[value]为非有效数字，false 则代表[value]为有效数字。</span>
+```JavaScript
+// 如果参数[value]不是数字类型的值，则浏览器会默认采用“基于 Number([value]) 进行隐式转换”的方式，将参数转换为数字类型。
+if([value] !== typeof number) {
+  Number([value]) // 浏览器基于 Number([value]) 实现数据类型转换
+}
+```
+
+### Number([value]) 数据转换详解
+* 字符串转换为数字类型
+  > Number(''), 则转换结果为 0;
+    Number('1'), 则转换结果为 1;
+    Number('1px'), 则转换结果为 NaN;
+<div class="custom-box-933">字符串中带除 ‘.’ 以外的非有效数字，转换结果都为 NaN</div>
+ 
+  > Number('.1.1'), 多个小数点为无效数字，所以转换结果依然是 NaN
+
+* 布尔类型转换为数字类型
+  > Number(true) 结果为 1；
+    Number(false) 结果为 0；
+
+* BigInt 可以转换为数字 
+  > Number(1n) 结果为 1；
+
+* Symbol 类型的值不参转换为数字，<font color="#f33">Uncaught TypeError: Cannot convert a Symbol value to a number</font>
 
 #### Symbol
 `Symbol([description])` description 对 symbol 的描述，可用于调试但不是访问 symbol 本身
@@ -94,8 +130,38 @@ Function,Array,Date,RegExp,Error
 > 1.  基础数据类型中，数字大于 0，非空字符串，取返回为 true
 > 2.  其它可归为对象类型，字面量 [],{} 与基本类型的包装类型以及其它如 Date,Error 返回值都为对象，对对象取反，返回值为 false
 
+## 数据结构
 ## JavaScript 数据类型的 length 属性
 ### Uncaught SyntaxError: Invalid or unexpected token
 `1.length` 基本数据类型，number 没有 length
 ### Uncaught SyntaxError: Unexpected token '.'
 `{}.length` 把字面量对象赋值给一个变量，再取 length
+
+## JS 输出方案
+### 浏览器弹窗
+> 一般用于与客户交互，给出一些提示。<span class="custom-box-933">alert 的参数如果不是数字类型会先转换成数字类型再输出</span>
+* alert([content]) 
+* confirm() 
+* prompt
+
+```JavaScript
+alert({}) //[object, Object]
+alert([1,2,3]) // 1,2,3
+alert(BigInt(1)) // 1
+```
+<font color="#f33">Uncaught TypeError: Cannot convert a Symbol value to a string</font>
+```JavaScript
+alert(Symbol())
+```
+
+### 控制台输出
+> 一般用于开发中开发者调试代码，<span class="custom-box-933">console.log 中，参数是什么类型，控制台输出什么类型</span>
+* console.log
+* console.time / console.timeEnd
+* console.dir
+* console.table
+
+### website 页面输出
+* document.write
+* [element].innerHTML/innerText
+* [input].value
