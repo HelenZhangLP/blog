@@ -1,14 +1,11 @@
 ---
-title: JavaScript 数据类型
-date: 2019-02-08 10:38:30
+title: JavaScript 数字类型
+date: 2012-01-08 10:38:30
 categories:
 - 技术
 tags:
 - JavaScript
 ---
-
-![alt](/images/jsDataTypes.jpg)
-与《JavaScript高级程序设计》不同，这张图中没有 null。我这边先就图中的信息作一个解析，图中，将数据类型分为值类型与引用类型。
 
 ## JavaScript 数据类型
 ### 基本类型（也称原型数据类型，值类型）
@@ -46,7 +43,7 @@ if([value] !== typeof number) {
 }
 ```
 
-### Number([value]) 数据转换详解
+### Number([value]) 参数转换为数字详解
 * 字符串转换为数字类型
   > Number(''), 则转换结果为 0;
     Number('1'), 则转换结果为 1;
@@ -63,6 +60,20 @@ if([value] !== typeof number) {
   > Number(1n) 结果为 1；
 
 * Symbol 类型的值不参转换为数字，<font color="#f33">Uncaught TypeError: Cannot convert a Symbol value to a number</font>
+
+* 引用类型通过 Number([value]) 转换为数字
+  * 获取引用类型的 [Symbol.toPrimitive] 属性值
+  * 没有 Symbol.toPrimitive 该属性，则获取当前引用类型的 valueOf 原始值
+  * 如果没有原始值，则将通过 toString 将其转换为字符串，最后将字符串转换为 Number
+
+
+### parseInt/parseFloat 将其它类型数据转换为数字类型
+> parseFloat([value])/parseInt([value]) 入参 value 必须为字符串数字类型，如果不是浏览器会通过 [value].toString() 隐式转换。
+转换方式是从字符串左侧第一个字符开始查的有效数字字符，遇到非有效数字停止查找。返回有效数字。如果未找到有效数字，则返回 NaN.
+
+### toFixed([N]) 保留小数点后几位
+### toExponential
+### toPrecision
 
 #### Symbol
 `Symbol([description])` description 对 symbol 的描述，可用于调试但不是访问 symbol 本身

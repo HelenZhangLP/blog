@@ -1,9 +1,18 @@
 ---
-title: Vue N 问
-date: 2020-10-21 18:36:52
+title: Vue 笔记
+date: 2017-10-21 18:36:52
 tags:
-- Vue
+- vue
 ---
+
+## MVVM 架构
+```mermaid
+ flowchart LR
+ v[View] --> vm[ViewMode]
+ vm --> m[Model]
+ m --> vm
+ vm --> v
+```
 
 ## 从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）
 ### Intro

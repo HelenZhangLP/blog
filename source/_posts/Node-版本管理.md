@@ -8,7 +8,14 @@ tags:
 ## tools
 ### nodemon
 <span class='custom-box custom-box-933'>问题：</span>在编写 `node.js` 项目时，修改项目代码后，需要 `ctrl+c` 停止项目，再重启。
+
 > [nodemon](https://www.npmjs.com/package/nodemon)工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。
+nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+nodemon 是一个帮助开发 node 的工具，当文件夹中的文件被检测到变化时，自动重启 node 应用。
+nodemon does not require any additional changes to your code or method of development. nodemon is a replacement wrapper for node. to use nodemon,replace the word node on the command line when executing your script
+nodemon 不需要对你的代码或开发方法做额外的改变，
+nodemon 是 `node` 的替换包。要使用 nodemon，需要在执行脚本时替换命令行中的 `node`
+
 ```bash
 $ npm install -g nodemon
 ```

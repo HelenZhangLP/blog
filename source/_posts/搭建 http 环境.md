@@ -1,8 +1,10 @@
 ---
 title: 搭建 http 环境
 tags:
-- http
+  - http
+date: 2019-05-03 11:01:59
 ---
+
 
 ## OpenResty
 OpenResty 基于 Nginx 的 “强化包”，不仅**支持 http/https**，还特别<u>集成了<font color="red">脚本语言 Lua 简化 Nginx 二次开发</font>。**方便搭建动态网关**，能够当成应用容器来编写业务逻辑</u>

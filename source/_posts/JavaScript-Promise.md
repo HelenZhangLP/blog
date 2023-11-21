@@ -1,19 +1,34 @@
 ---
-title: JavaScript Promise
-date: 2019-02-14 21:33:57
+title: JavaScript-Promise
+date: 2017-02-14 21:33:57
 tags:
 - JavaScript
 ---
 
-<!-- ## 同步与异步 -->
+```mermaid
+ mindmap
+  root[异步编程]
+    异步编程解释
+      fs 文件操作
+      数据库操作
+      Ajax
+      定时器
+    传统异步操作存在的问题
+      回调地狱
+    Promise
+      API(Promise API)
+      problem))Promise 自定义封装((
+      async&await )async and await(
+```
+
+> Promise 是 ES6 规范新增技术，是用来封装一个异步操作，并获取其成功/失败结果值。<span class='custom-box custom-box-933'>是 JS 中进行异步编程的最新解决方案（Promise 之前采用回调函数）</span>
 
 ## 异步编程
-* fs 文件操作
+* fs 文件操作 —— 是对计算机磁盘的读写操作
 > 使用 Promise 封装文件读取，[DEMO 案例](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js)
 	```JavaScript
 	require('fs').readFile('index.html',(err, data) => {...})
 	```
-
 * 数据库操作
 * AJAX
 > 使用Promise 封装 AJAX，[DEMO 案例](https://github.com/HelenZhangLP/demo/blob/master/js/AJAX/index.html)
@@ -29,7 +44,7 @@ setTimeout(() => {...}, 1000);
 * callback
 * Promise(新的解决方案)
 
-## Promise
+## Promise 详解
 * 是一个`构造函数`；
 * 用来<span class='custom-box custom-box-933'>封装一个异步操作</span>
 * <span class='custom-box custom-box-393'>可以获取成功/失败结果和值</span>`PromiseState,PromiseResult`。
@@ -72,6 +87,8 @@ export function asyncRandom() {
 ```
 ### Promise 支持链式调用
 > 可以解决回调地狱[关于回调地狱](/2021/01/13/浏览器工作原理（N）使用Promise，告别回调函数/#新的问题：回调地域)
+
+### 指定回调函数的方式更加灵活
 
 ### Promise 的状态 [[PromiseState]](Promise 的实例属性)
 * Pending 等待状态

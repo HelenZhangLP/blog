@@ -1,11 +1,57 @@
 ---
-title: JavaScript 字符串
-date: 2020-01-09 10:14:03
+title: JavaScript-字符串
+date: 2012-01-09 10:14:03
 categories: 技术
 tags:
 - JavaScript
-- String
 ---
+
+## 字符串
+> 字符串是由一个或多个字符组成，须由引号包裹；
+  每个字符串都有自己的 lenght 属性；
+  字符串中每个字符都有相应的位置，该位置被称为**索引**
+  索引值从 0 开始，逐步递增
+  最后一个字符的索引为 string.length - 1
+
+## 模板字符串
+> 双引号 "" / 单引号 '' / 反引号 `` 包起来的都是<span class='custom-box custom-box-933'>字符串</span>
+<div class="custom-box-339">``反引号，ES6新增的模版字符串，有助于字符串的拼接</div>
+
+### 模板字符串实现字符串拼接
+> js 表达式 —— 执行代码有返回结果，如变量/三元运算符...
+  ${} 用来包裹 JS 表达式
+
+```JavaScript
+  var x = 1, y = 2, z = 3;
+  var str = `${x} + ${y} = ${x+y}`
+```
+
+## 其他数据类型转换为字符串
+* [value].toString()
+* String([value])
+  ```JavaScript
+    String(1) // '1'
+    String(NaN) // 'NaN'
+    String(Infinity) // 'Infinity'
+    String(true) // 'true'
+    String(null) // 'null'
+    String(undefined) // 'undefined'
+    String(Symbol()) // 'Symbol()'
+    String(BigInt(10)) // '10'
+    String(function(){}) // 'function(){}'
+    String(/^$/) // '/^%/'
+
+    /* ========== 数组 ============ */
+    String([1,2]) // '1,2'
+    String([]) // ''
+
+    /* ========== 对象 ============ */
+    String({}) // [object, Object]
+  ```
+  <span class='custom-box custom-box-933'>总结：</span>
+  * 数组转换为字符串，是将数组中每一项用逗号分隔；空数组转换为空字符串；
+  * 普通对象转换为字符串，不论对象中包含哪些信息，结果都是 “[object, Object]”;
+  * 其它类型都是直接用引号包裹即可
 
 > `需求删除最后一个为 & 的字符`
 ### String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。
