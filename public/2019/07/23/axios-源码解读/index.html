@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="123456789101112131415161718├── &#x2F;dist&#x2F;                     # 项目输出目录├── &#x2F;lib&#x2F;                      # 项目源码目录│ ├── &#x2F;cancel&#x2F;                 # 定义取消功能│ ├── &#x2F;core&#x2F;                   # 一些核心功能│ │ ├── Axios.js">
+    <meta name="description" content="Getting Started(入门) Promise based HTTP client (基于 Promise 的 HTTP 客户端)，for the browser and node.js.(用于浏览器和 nodeJS)  What is Axios?Axios ia a promise-based HTTP Client for node.js and the browser.Axios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="axios 源码解读">
 <meta property="og:url" content="https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/index.html">
 <meta property="og:site_name" content="魔女">
-<meta property="og:description" content="123456789101112131415161718├── &#x2F;dist&#x2F;                     # 项目输出目录├── &#x2F;lib&#x2F;                      # 项目源码目录│ ├── &#x2F;cancel&#x2F;                 # 定义取消功能│ ├── &#x2F;core&#x2F;                   # 一些核心功能│ │ ├── Axios.js">
+<meta property="og:description" content="Getting Started(入门) Promise based HTTP client (基于 Promise 的 HTTP 客户端)，for the browser and node.js.(用于浏览器和 nodeJS)  What is Axios?Axios ia a promise-based HTTP Client for node.js and the browser.Axios">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-23T08:20:03.000Z">
-<meta property="article:modified_time" content="2021-07-11T07:34:07.638Z">
+<meta property="article:modified_time" content="2023-11-20T12:28:42.177Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
@@ -98,41 +98,59 @@
         <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/07/24/Javascript-%E5%BC%82%E6%AD%A5/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2019/07/22/vue-config-js/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+          <li><a class="icon" href="/2019/07/24/%E6%88%91%E6%89%80%E8%A7%81%E8%BF%87%E7%9A%84-npm-%E5%BA%93/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2019/07/22/vue-config-js/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br />
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
@@ -144,7 +162,33 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&name=axios 源码解读&description=&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;├── /dist/                     # 项目输出目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── /lib/                      # 项目源码目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /cancel/                 # 定义取消功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /core/                   # 一些核心功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── Axios.js               # axios的核心主类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── InterceptorManager.js  # 拦截器构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── settle.js              # 根据http响应状态，改变Promise的状态&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /helpers/                # 一些辅助方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /adapters/               # 定义请求的适配器 xhr、http&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── http.js                # 实现http适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── xhr.js                 # 实现xhr适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── axios.js                 # 对外暴露接口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── defaults.js              # 默认配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ └── utils.js                 # 公用工具&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── package.json               # 项目信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── index.d.ts                 # 配置TypeScript的声明文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── index.js                   # 入口文件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&name=axios 源码解读&description=&lt;center&gt;Getting Started(入门)&lt;/center&gt;
+Promise based HTTP client (基于 Promise 的 HTTP 客户端)，for the browser and node.js.(用于浏览器和 nodeJS)
+
+&lt;h2 id=&#34;What-is-Axios&#34;&gt;&lt;a href=&#34;#What-is-Axios&#34; class=&#34;headerlink&#34; title=&#34;What is Axios?&#34;&gt;&lt;/a&gt;What is Axios?&lt;/h2&gt;&lt;p&gt;Axios ia a promise-based HTTP Client for node.js and the browser.&lt;br&gt;Axios 是一个 HTTP Client，用于 node.js 和 浏览器。&lt;br&gt;it is isomorphic(同构的)（=it can run in the browser and node.js with the same codebase）.&lt;br&gt;On the server-side it uses the native node.js http module, while on the client it uses XMLHTTPRequests.&lt;/p&gt;
+&lt;h2 id=&#34;Features&#34;&gt;&lt;a href=&#34;#Features&#34; class=&#34;headerlink&#34; title=&#34;Features&#34;&gt;&lt;/a&gt;Features&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Make XMLHttpRequests from the browser 从浏览器端发送 XMLHttpRequest 请求&lt;/li&gt;
+&lt;li&gt;Make http requests from node.js 从 node.js 端发送 http 请求&lt;/li&gt;
+&lt;li&gt;Supports the Promise API 支持 Promise API&lt;/li&gt;
+&lt;li&gt;Intercept request and response 拦截请求和响应&lt;/li&gt;
+&lt;li&gt;Transform request and response data 转换请求和响应数据&lt;/li&gt;
+&lt;li&gt;Cancel requests&lt;/li&gt;
+&lt;li&gt;Timeouts&lt;/li&gt;
+&lt;li&gt;Query parameters serialization with support for nested(嵌套) entries 支持嵌套的查询参数序列化嵌套条目&lt;/li&gt;
+&lt;li&gt;Automatic request body serialization to: 自动将请求体序列化为：&lt;ul&gt;
+&lt;li&gt;json( application/json )&lt;/li&gt;
+&lt;li&gt;Multipart / FormData( multiple/form-data )&lt;/li&gt;
+&lt;li&gt;URL encoded form( application/x-www-form-urlencoded )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Posting HTML forms as JSON 以 JSON 形式发布 HTML 表单&lt;/li&gt;
+&lt;li&gt;Automatic JSON data handling in response 响应时自动处理 JSON 数据&lt;/li&gt;
+&lt;li&gt;Progess capturing for browser and node.js with extra info(speed rate, remaining time) 携带额外信息的浏览器和 node.js 的进度捕获。&lt;/li&gt;
+&lt;li&gt;Setting bandwidth limits for node.js 设置 node.js 带宽限制。&lt;/li&gt;
+&lt;li&gt;Compatible with spec-compliant FormData and Blob (including node.js) 兼容数据规范和 Blob&lt;/li&gt;
+&lt;li&gt;Client side support for protecting against XSRF 客户端支持防止XSRF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;├── /dist/                     # 项目输出目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── /lib/                      # 项目源码目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /cancel/                 # 定义取消功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /core/                   # 一些核心功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── Axios.js               # axios的核心主类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── InterceptorManager.js  # 拦截器构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── settle.js              # 根据http响应状态，改变Promise的状态&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /helpers/                # 一些辅助方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /adapters/               # 定义请求的适配器 xhr、http&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── http.js                # 实现http适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── xhr.js                 # 实现xhr适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── axios.js                 # 对外暴露接口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── defaults.js              # 默认配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ └── utils.js                 # 公用工具&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── package.json               # 项目信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── index.d.ts                 # 配置TypeScript的声明文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── index.js                   # 入口文件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;pre class=&#34;mermaid&#34;&gt;graph TD
 a[&#34;index.js/require(&#39;./lib/axios&#39;)&#34;] --&gt; b[&#34;createInstance(defaults)&#34;]
@@ -155,16 +199,15 @@ c --&gt; d[&#34;Constructor Axios&#34;]&lt;/pre&gt;
 
     </div>
     <div id="toc">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Axios"><span class="toc-number">1.</span> <span class="toc-text">What is Axios?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-number">2.</span> <span class="toc-text">Features</span></a></li></ol>
     </div>
   </span>
 </div>
-
       
       <div class="content index width mx-auto px2 my4">
           
           <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+  <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
         axios 源码解读
@@ -172,34 +215,62 @@ c --&gt; d[&#34;Constructor Axios&#34;]&lt;/pre&gt;
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">魔女</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
         <time datetime="2019-07-23T08:20:03.000Z" itemprop="datePublished">2019-07-23</time>
     </div>
 
 
-      
+          
     <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── /dist/                     # 项目输出目录</span><br><span class="line">├── /lib/                      # 项目源码目录</span><br><span class="line">│ ├── /cancel/                 # 定义取消功能</span><br><span class="line">│ ├── /core/                   # 一些核心功能</span><br><span class="line">│ │ ├── Axios.js               # axios的核心主类</span><br><span class="line">│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求</span><br><span class="line">│ │ ├── InterceptorManager.js  # 拦截器构造函数</span><br><span class="line">│ │ └── settle.js              # 根据http响应状态，改变Promise的状态</span><br><span class="line">│ ├── /helpers/                # 一些辅助方法</span><br><span class="line">│ ├── /adapters/               # 定义请求的适配器 xhr、http</span><br><span class="line">│ │ ├── http.js                # 实现http适配器</span><br><span class="line">│ │ └── xhr.js                 # 实现xhr适配器</span><br><span class="line">│ ├── axios.js                 # 对外暴露接口</span><br><span class="line">│ ├── defaults.js              # 默认配置</span><br><span class="line">│ └── utils.js                 # 公用工具</span><br><span class="line">├── package.json               # 项目信息</span><br><span class="line">├── index.d.ts                 # 配置TypeScript的声明文件</span><br><span class="line">└── index.js                   # 入口文件</span><br></pre></td></tr></table></figure>
+    <div class="content" itemprop="articleBody">
+      <center>Getting Started(入门)</center>
+Promise based HTTP client (基于 Promise 的 HTTP 客户端)，for the browser and node.js.(用于浏览器和 nodeJS)
+
+<h2 id="What-is-Axios"><a href="#What-is-Axios" class="headerlink" title="What is Axios?"></a>What is Axios?</h2><p>Axios ia a promise-based HTTP Client for node.js and the browser.<br>Axios 是一个 HTTP Client，用于 node.js 和 浏览器。<br>it is isomorphic(同构的)（=it can run in the browser and node.js with the same codebase）.<br>On the server-side it uses the native node.js http module, while on the client it uses XMLHTTPRequests.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>Make XMLHttpRequests from the browser 从浏览器端发送 XMLHttpRequest 请求</li>
+<li>Make http requests from node.js 从 node.js 端发送 http 请求</li>
+<li>Supports the Promise API 支持 Promise API</li>
+<li>Intercept request and response 拦截请求和响应</li>
+<li>Transform request and response data 转换请求和响应数据</li>
+<li>Cancel requests</li>
+<li>Timeouts</li>
+<li>Query parameters serialization with support for nested(嵌套) entries 支持嵌套的查询参数序列化嵌套条目</li>
+<li>Automatic request body serialization to: 自动将请求体序列化为：<ul>
+<li>json( application/json )</li>
+<li>Multipart / FormData( multiple/form-data )</li>
+<li>URL encoded form( application/x-www-form-urlencoded )</li>
+</ul>
+</li>
+<li>Posting HTML forms as JSON 以 JSON 形式发布 HTML 表单</li>
+<li>Automatic JSON data handling in response 响应时自动处理 JSON 数据</li>
+<li>Progess capturing for browser and node.js with extra info(speed rate, remaining time) 携带额外信息的浏览器和 node.js 的进度捕获。</li>
+<li>Setting bandwidth limits for node.js 设置 node.js 带宽限制。</li>
+<li>Compatible with spec-compliant FormData and Blob (including node.js) 兼容数据规范和 Blob</li>
+<li>Client side support for protecting against XSRF 客户端支持防止XSRF</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── /dist/                     # 项目输出目录</span><br><span class="line">├── /lib/                      # 项目源码目录</span><br><span class="line">│ ├── /cancel/                 # 定义取消功能</span><br><span class="line">│ ├── /core/                   # 一些核心功能</span><br><span class="line">│ │ ├── Axios.js               # axios的核心主类</span><br><span class="line">│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求</span><br><span class="line">│ │ ├── InterceptorManager.js  # 拦截器构造函数</span><br><span class="line">│ │ └── settle.js              # 根据http响应状态，改变Promise的状态</span><br><span class="line">│ ├── /helpers/                # 一些辅助方法</span><br><span class="line">│ ├── /adapters/               # 定义请求的适配器 xhr、http</span><br><span class="line">│ │ ├── http.js                # 实现http适配器</span><br><span class="line">│ │ └── xhr.js                 # 实现xhr适配器</span><br><span class="line">│ ├── axios.js                 # 对外暴露接口</span><br><span class="line">│ ├── defaults.js              # 默认配置</span><br><span class="line">│ └── utils.js                 # 公用工具</span><br><span class="line">├── package.json               # 项目信息</span><br><span class="line">├── index.d.ts                 # 配置TypeScript的声明文件</span><br><span class="line">└── index.js                   # 入口文件</span><br></pre></td></tr></table></figure>
 
 <pre class="mermaid">graph TD
 a["index.js/require('./lib/axios')"] --> b["createInstance(defaults)"]
 b --> c["new Axios(defaults)"]
 c --> d["Constructor Axios"]</pre>
 
-  </div>
+    </div>
 </article>
-
 
 
       </div>
@@ -224,7 +295,7 @@ c --> d["Constructor Axios"]</pre>
     </div>
 
     <div id="toc-footer" style="display: none">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Axios"><span class="toc-number">1.</span> <span class="toc-text">What is Axios?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-number">2.</span> <span class="toc-text">Features</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -238,7 +309,33 @@ c --> d["Constructor Axios"]</pre>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&title=axios 源码解读"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&name=axios 源码解读&description=&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;├── /dist/                     # 项目输出目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── /lib/                      # 项目源码目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /cancel/                 # 定义取消功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /core/                   # 一些核心功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── Axios.js               # axios的核心主类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── InterceptorManager.js  # 拦截器构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── settle.js              # 根据http响应状态，改变Promise的状态&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /helpers/                # 一些辅助方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /adapters/               # 定义请求的适配器 xhr、http&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── http.js                # 实现http适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── xhr.js                 # 实现xhr适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── axios.js                 # 对外暴露接口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── defaults.js              # 默认配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ └── utils.js                 # 公用工具&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── package.json               # 项目信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── index.d.ts                 # 配置TypeScript的声明文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── index.js                   # 入口文件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/07/23/axios-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/&name=axios 源码解读&description=&lt;center&gt;Getting Started(入门)&lt;/center&gt;
+Promise based HTTP client (基于 Promise 的 HTTP 客户端)，for the browser and node.js.(用于浏览器和 nodeJS)
+
+&lt;h2 id=&#34;What-is-Axios&#34;&gt;&lt;a href=&#34;#What-is-Axios&#34; class=&#34;headerlink&#34; title=&#34;What is Axios?&#34;&gt;&lt;/a&gt;What is Axios?&lt;/h2&gt;&lt;p&gt;Axios ia a promise-based HTTP Client for node.js and the browser.&lt;br&gt;Axios 是一个 HTTP Client，用于 node.js 和 浏览器。&lt;br&gt;it is isomorphic(同构的)（=it can run in the browser and node.js with the same codebase）.&lt;br&gt;On the server-side it uses the native node.js http module, while on the client it uses XMLHTTPRequests.&lt;/p&gt;
+&lt;h2 id=&#34;Features&#34;&gt;&lt;a href=&#34;#Features&#34; class=&#34;headerlink&#34; title=&#34;Features&#34;&gt;&lt;/a&gt;Features&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Make XMLHttpRequests from the browser 从浏览器端发送 XMLHttpRequest 请求&lt;/li&gt;
+&lt;li&gt;Make http requests from node.js 从 node.js 端发送 http 请求&lt;/li&gt;
+&lt;li&gt;Supports the Promise API 支持 Promise API&lt;/li&gt;
+&lt;li&gt;Intercept request and response 拦截请求和响应&lt;/li&gt;
+&lt;li&gt;Transform request and response data 转换请求和响应数据&lt;/li&gt;
+&lt;li&gt;Cancel requests&lt;/li&gt;
+&lt;li&gt;Timeouts&lt;/li&gt;
+&lt;li&gt;Query parameters serialization with support for nested(嵌套) entries 支持嵌套的查询参数序列化嵌套条目&lt;/li&gt;
+&lt;li&gt;Automatic request body serialization to: 自动将请求体序列化为：&lt;ul&gt;
+&lt;li&gt;json( application/json )&lt;/li&gt;
+&lt;li&gt;Multipart / FormData( multiple/form-data )&lt;/li&gt;
+&lt;li&gt;URL encoded form( application/x-www-form-urlencoded )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Posting HTML forms as JSON 以 JSON 形式发布 HTML 表单&lt;/li&gt;
+&lt;li&gt;Automatic JSON data handling in response 响应时自动处理 JSON 数据&lt;/li&gt;
+&lt;li&gt;Progess capturing for browser and node.js with extra info(speed rate, remaining time) 携带额外信息的浏览器和 node.js 的进度捕获。&lt;/li&gt;
+&lt;li&gt;Setting bandwidth limits for node.js 设置 node.js 带宽限制。&lt;/li&gt;
+&lt;li&gt;Compatible with spec-compliant FormData and Blob (including node.js) 兼容数据规范和 Blob&lt;/li&gt;
+&lt;li&gt;Client side support for protecting against XSRF 客户端支持防止XSRF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;├── /dist/                     # 项目输出目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── /lib/                      # 项目源码目录&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /cancel/                 # 定义取消功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /core/                   # 一些核心功能&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── Axios.js               # axios的核心主类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── dispatchRequest.js     # 用来调用http请求适配器方法发送请求&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── InterceptorManager.js  # 拦截器构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── settle.js              # 根据http响应状态，改变Promise的状态&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /helpers/                # 一些辅助方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── /adapters/               # 定义请求的适配器 xhr、http&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ ├── http.js                # 实现http适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ │ └── xhr.js                 # 实现xhr适配器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── axios.js                 # 对外暴露接口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ ├── defaults.js              # 默认配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│ └── utils.js                 # 公用工具&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── package.json               # 项目信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── index.d.ts                 # 配置TypeScript的声明文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── index.js                   # 入口文件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;pre class=&#34;mermaid&#34;&gt;graph TD
 a[&#34;index.js/require(&#39;./lib/axios&#39;)&#34;] --&gt; b[&#34;createInstance(defaults)&#34;]
@@ -264,36 +361,47 @@ c --&gt; d[&#34;Constructor Axios&#34;]&lt;/pre&gt;
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023 Helen Zhang
+    Copyright &copy; 2023
+      Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </nav>
   </div>
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
   <script>
-      if (window.mermaid) {
-          mermaid.initialize({theme: 'default'});
-      }
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
   </script>
-
-
+  
       
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 

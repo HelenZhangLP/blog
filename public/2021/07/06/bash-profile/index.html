@@ -101,41 +101,59 @@
         <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2022/10/19/System/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2021/06/28/%E5%9D%91-JavaScript/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+          <li><a class="icon" href="/2022/10/19/System/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2021/06/28/%E5%9D%91-JavaScript/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br />
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/07/06/bash-profile/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
@@ -171,12 +189,11 @@
     </div>
   </span>
 </div>
-
       
       <div class="content index width mx-auto px2 my4">
           
           <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+  <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
         .bash_profile/.bashrc/.zshrc
@@ -184,25 +201,28 @@
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">魔女</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
         <time datetime="2021-07-06T05:41:14.000Z" itemprop="datePublished">2021-07-06</time>
     </div>
 
 
-      
+          
     <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/" rel="tag">macos</a></li></ul>
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <p><img src="/images/macos/terminal.png" alt="img.png"><br>灾难性事件，电脑硬盘挂了。那么近几天我所做的是恢复之前的配置<br/><br><font color="#f99"><br>    需求如上图：<br>    terminal 中显示 git 分支，当前路径，主机及用户名<br></font></p>
+    <div class="content" itemprop="articleBody">
+      <p><img src="/images/macos/terminal.png" alt="img.png"><br>灾难性事件，电脑硬盘挂了。那么近几天我所做的是恢复之前的配置<br/><br><font color="#f99"><br>    需求如上图：<br>    terminal 中显示 git 分支，当前路径，主机及用户名<br></font></p>
 <h2 id="几个-bash-配置文件的说明"><a href="#几个-bash-配置文件的说明" class="headerlink" title="几个 bash 配置文件的说明"></a>几个 bash 配置文件的说明</h2><ul>
 <li>  <code>/etc/profile</code> 为系统的每个用户设置环境信息，当用户第一次登录时，该文件被执行，并从 <code>/etc/profile.d</code> 目录的配置文件中搜集 shell 的设置</li>
 <li>  <code>/etc/bashrc</code> 为每个运行 bash shell 的用户执行此文件，当 bash shell 被打开时，该文件被读取</li>
@@ -231,9 +251,8 @@
 
 <h2 id="ERROR-切换分支后，分支号没有实时更新"><a href="#ERROR-切换分支后，分支号没有实时更新" class="headerlink" title="ERROR 切换分支后，分支号没有实时更新"></a><font color="#f33">ERROR 切换分支后，分支号没有实时更新</font></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ~/.zshrc</span></span></span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line">find_git_branch() &#123;</span><br><span class="line">        git branch 2&gt; /dev/null | sed -n -e &#x27;s/^\* \(.*\)/[\1]/p&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setopt PROMPT_SUBST</span><br><span class="line">export PROMPT=&#x27;%9F%n@%10F%M%f %13F%~%f %F&#123;green&#125;$(find_git_branch)%f %F&#123;normal&#125;$%f &#x27;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
       </div>
@@ -307,36 +326,47 @@
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023 Helen Zhang
+    Copyright &copy; 2023
+      Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </nav>
   </div>
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
   <script>
-      if (window.mermaid) {
-          mermaid.initialize({theme: 'default'});
-      }
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
   </script>
-
-
+  
       
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 

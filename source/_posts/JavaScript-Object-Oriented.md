@@ -1,5 +1,5 @@
 ---
-title: JavaScript - Object Oriented
+title: JavaScript-Object Oriented
 date: 2019-03-21 10:02:40
 tags:
 - JavaScript
@@ -39,24 +39,6 @@ console.log('b' in obj, obj.b) // false undefined
 |[[Enumerable]]|是否能通过 for-in 枚举属性|
 |[[Get]]|读取属性时调用|
 |[[Set]]|设置属性时调用|
-
-## 创建对象
-### 创建字面量(Literal)对象
-```JavaScript
-let myBaby = {
-  age: 2,
-  name: 'Audrey'
-}
-```
-
-### 创建实例对象
-```JavaScript
-let baby = new Object()
-baby.name = 'Audrey',
-baby.age = 2
-```
-
-> 开发过程中实际多采用字面量形式创建对象，<u>字面量对象避端是<font color="#FFD700">产生大量重复代码</font>**</u>
 
 ## <a id="factoryPattern" href="#factoryPattern">工厂模式——<font color="#f99">解决复用</font></a>
 ```JavaScript
@@ -243,6 +225,7 @@ console.log(gumi.gender) // female
 JavaScript 没有 private 之类的语法，**可以通过 Closure 模拟**
 私有属性只有访问权限，不修改
 <font color="#f99">**1. 用 getter 将变量变为私有属性**</font>
+
 ```JavaScript
 function Account(name, balance) {
     this.getName = () => name;

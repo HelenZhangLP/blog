@@ -346,10 +346,14 @@
   font-weight: bold;
   color: #dedede;
 }
-.content h4,
+.content h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #dedede;
+}
 .content h5,
 .content h6 {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: #ccc;
   display: inline;
@@ -458,6 +462,10 @@ body {
 ul,
 li {
   list-style: none;
+}
+.header {
+  padding-bottom: 1rem;
+  border-bottom: dashed 0.1rem #efefef;
 }
 .content {
   flex: 1;
@@ -1028,8 +1036,9 @@ article header .posttitle {
   margin-top: 0;
   margin-bottom: 0;
   text-transform: none;
-  font-size: 1.5em;
+  font-size: 2.2em;
   line-height: 1.35;
+  font-family: cursive;
 }
 article header .meta {
   margin-top: 0;
@@ -1162,11 +1171,6 @@ article .content h4::before {
   top: 0.2rem;
   font-size: 1.5rem;
   font-weight: bold;
-}
-.posttitle {
-  text-transform: none;
-  font-size: 1.5em;
-  line-height: 1.25;
 }
 .article-tag .tag-link:before {
   content: "#";
@@ -2097,6 +2101,7 @@ article .content h4::before {
   border-radius: 2px;
   font-weight: bold;
   padding: 0 5px;
+  color: #fafafa;
 }
 .custom-box-339 {
   background-color: #339;

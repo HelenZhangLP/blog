@@ -2,17 +2,46 @@
 title: Vue 笔记
 date: 2017-10-21 18:36:52
 tags:
-- vue
+- 框架
+- Vue
 ---
 
-## MVVM 架构
-```mermaid
- flowchart LR
- v[View] --> vm[ViewMode]
- vm --> m[Model]
- m --> vm
- vm --> v
+数据驱动视图变化，即可以绑定文本到数据，也可以绑定 DOM 结构到数据
+
+## Vue2 vs Vue3
+### Vue3 允许用户使用多个根节点
+```html
+  <!--Vue2 只允许有一个根节点-->
+  <template>
+    <div id="root">根节点</div>
+  </template>
+  <!--Vue3 可以有多个根节点-->
+  <template>
+    <div>节点1</div>
+    <div>节点2</div>
+  </template>
 ```
+
+## 指令
+vue 提供的特性，会对绑定的目标元素添加响应式的特殊行为。
+* v-if 
+* v-for 
+* v-model
+* v-on
+* v-bind 绑定 html 特性
+
+## 计算属性
+需要使用多个表达式时，使用计算属性
+
+## Vue1
+![Vue1 lifeCycle image](/images/vue/vue1Lifecycle.png)
+## Vue2
+![Vue2 lifeCycle image](/images/vue/vue2Lifecycle.png)
+## Vue1 vs Vue2
+* 模板中不能包含多个根元素，根元素只能有一个。
+* 生命周期函数 beforeCompile 编译前调用，<span class='custom-box custom-box-933'>使用 created 钩子函数代替。</span>
+* 生命周期函数 compiled 在编译结束后调用。此时指令生效，数据变化触发 DOM 更新。<span class='custom-box custom-box-933'>使用 mounted 钩子函数代替</span>
+* 生命周期函数 attached 
 
 ## 从头实现 Vue 高级性能（Vue Workshop:Advanced Features from the Groupd up）
 ### Intro

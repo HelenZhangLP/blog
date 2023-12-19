@@ -99,41 +99,59 @@
         <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2021/05/11/React-Component-pureComponent/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+          <li><a class="icon" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2021/05/11/React-Component-pureComponent/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br />
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/05/11/React-Refs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
@@ -166,12 +184,11 @@
     </div>
   </span>
 </div>
-
       
       <div class="content index width mx-auto px2 my4">
           
           <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+  <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
         React Refs
@@ -179,25 +196,28 @@
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">魔女</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
         <time datetime="2021-05-11T12:46:13.000Z" itemprop="datePublished">2021-05-11</time>
     </div>
 
 
-      
+          
     <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Component/" rel="tag">Component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <h2 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h2><p>基于修改数据/状态，让视图更新，达到需要的效果</p>
+    <div class="content" itemprop="articleBody">
+      <h2 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h2><p>基于修改数据/状态，让视图更新，达到需要的效果</p>
 <h2 id="非受控组件"><a href="#非受控组件" class="headerlink" title="非受控组件"></a>非受控组件</h2><p>基于 <code>ref</code> 获取 DOM 元素，操作 DOM 实现需求和效果</p>
 <h3 id="非受控组件应用场景："><a href="#非受控组件应用场景：" class="headerlink" title="非受控组件应用场景："></a>非受控组件应用场景：</h3><ul>
 <li>  管理焦点、文本选择、媒体播放</li>
@@ -239,9 +259,8 @@
 
 <p>具体实现</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">ChildFn</span> =  <span class="title class_">React</span>.<span class="title function_">forwardRef</span>(<span class="keyword">function</span> <span class="title function_">ChildFn</span> (props, ref) &#123;</span><br><span class="line">    <span class="keyword">let</span> [state, setState] = <span class="title function_">useState</span>(<span class="string">&#x27;函数组件中使用状态&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回子组件方法给父组件</span></span><br><span class="line">    <span class="title function_">useImperativeHandle</span>(ref, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            state,</span><br><span class="line">            setState</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&#123;ref&#125;</span>&gt;</span>It&#x27;s function component<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">DemoFn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> component = <span class="title function_">useRef</span>(<span class="literal">null</span>)</span><br><span class="line">    <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(component.<span class="property">current</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">ChildFn</span> <span class="attr">ref</span>=<span class="string">&#123;component&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  </div>
+    </div>
 </article>
-
 
 
       </div>
@@ -312,36 +331,47 @@
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023 Helen Zhang
+    Copyright &copy; 2023
+      Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </nav>
   </div>
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
   <script>
-      if (window.mermaid) {
-          mermaid.initialize({theme: 'default'});
-      }
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
   </script>
-
-
+  
       
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 

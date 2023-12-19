@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="JavaScript 对象与对象属性123let obj &#x3D; &amp;#123;v: 1, o: undefined&amp;#125;console.log(&amp;#x27;o&amp;#x27; in obj, obj.o) &#x2F;&#x2F; true undefinedconsole.log(&amp;#x27;b&amp;#x27; in obj, obj.b) &#x2F;&#x2F; false undefined 虽然，属性值都是 undefined，但">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript - Object Oriented">
+<meta property="og:title" content="JavaScript-Object Oriented">
 <meta property="og:url" content="https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/index.html">
 <meta property="og:site_name" content="魔女">
 <meta property="og:description" content="JavaScript 对象与对象属性123let obj &#x3D; &amp;#123;v: 1, o: undefined&amp;#125;console.log(&amp;#x27;o&amp;#x27; in obj, obj.o) &#x2F;&#x2F; true undefinedconsole.log(&amp;#x27;b&amp;#x27; in obj, obj.b) &#x2F;&#x2F; false undefined 虽然，属性值都是 undefined，但">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://helenzhanglp.github.io/images/1.gif">
 <meta property="article:published_time" content="2019-03-21T02:02:40.000Z">
-<meta property="article:modified_time" content="2023-05-08T14:08:38.016Z">
+<meta property="article:modified_time" content="2023-12-15T02:40:55.562Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="对象">
 <meta property="article:tag" content="JavaScript">
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>JavaScript - Object Oriented</title>
+    <title>JavaScript-Object Oriented</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
@@ -103,53 +103,71 @@
         <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/03/25/CSS-%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2019/03/20/Javascript-Class/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+          <li><a class="icon" href="/2019/03/25/CSS-%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2019/03/20/Javascript-Class/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br />
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&text=JavaScript - Object Oriented"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&is_video=false&description=JavaScript - Object Oriented"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript - Object Oriented&body=Check out this article: https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&name=JavaScript - Object Oriented&description=&lt;h2 id=&#34;JavaScript-对象与对象属性&#34;&gt;&lt;a href=&#34;#JavaScript-对象与对象属性&#34; class=&#34;headerlink&#34; title=&#34;JavaScript 对象与对象属性&#34;&gt;&lt;/a&gt;JavaScript 对象与对象属性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; obj = &amp;#123;&lt;span class=&#34;attr&#34;&gt;v&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;attr&#34;&gt;o&lt;/span&gt;: &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;o&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;o&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// true undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;b&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;b&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// false undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&text=JavaScript-Object Oriented"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&is_video=false&description=JavaScript-Object Oriented"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-Object Oriented&body=Check out this article: https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&name=JavaScript-Object Oriented&description=&lt;h2 id=&#34;JavaScript-对象与对象属性&#34;&gt;&lt;a href=&#34;#JavaScript-对象与对象属性&#34; class=&#34;headerlink&#34; title=&#34;JavaScript 对象与对象属性&#34;&gt;&lt;/a&gt;JavaScript 对象与对象属性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; obj = &amp;#123;&lt;span class=&#34;attr&#34;&gt;v&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;attr&#34;&gt;o&lt;/span&gt;: &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;o&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;o&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// true undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;b&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;b&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// false undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;font color=&#34;#f33&#34;&gt;虽然，属性值都是 undefined，但 &lt;strong&gt;特性名不存在与特性值赋为 undefined 是不同的，&lt;/strong&gt; 可以用 &lt;code&gt;in&lt;/code&gt; 运算符，查看对象是否有某个属性&lt;/font&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;JavaScript 通过一些属性时都会带有一些特征值，ECMA-262 定义的，只有内部使用的，外部不能访问的特性，初期是为了实现 JavaScript 引擎使用的。具体如下表&lt;/p&gt;
@@ -208,42 +226,44 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 对象与对象属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E9%9D%A2%E9%87%8F-Literal-%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text">创建字面量(Literal)对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">创建实例对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%A4%8D%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">工厂模式——解决复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-new%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%AF%B9%E8%B1%A1%E8%AF%86%E5%88%AB%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">构造函数 + new——解决对象识别问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">4.0.1.</span> <span class="toc-text">构建构造函数的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-%E6%99%AE%E9%80%9A%E8%B0%83%E7%94%A8"><span class="toc-number">4.0.2.</span> <span class="toc-text">构造函数调用 —— 普通调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-call-apply-%E5%9C%A8%E9%83%A8%E5%88%86"><span class="toc-number">4.0.3.</span> <span class="toc-text">构造函数调用 —— call&#x2F;apply 在部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">原型相关方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">for-in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">5.4.</span> <span class="toc-text">构造函数原型的几种写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%E7%B1%BB%E6%A8%A1%E6%8B%9F"><span class="toc-number">6.</span> <span class="toc-text">ES6 类模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-static"><span class="toc-number">6.1.</span> <span class="toc-text">模拟 static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">6.2.</span> <span class="toc-text">模拟 私有属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">6.2.1.</span> <span class="toc-text">特性描述器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E6%8F%8F%E8%BF%B0%E5%99%A8%E7%89%B9%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA-API"><span class="toc-number">6.2.2.</span> <span class="toc-text">有关描述器特性的几个 API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">6.2.3.</span> <span class="toc-text">详解对象定义与属性描述器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%85%85%E3%80%81%E5%BC%A5%E5%B0%81%E3%80%81%E5%86%BB%E7%BB%93"><span class="toc-number">6.3.</span> <span class="toc-text">扩充、弥封、冻结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">原型对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E-prototype"><span class="toc-number">7.1.</span> <span class="toc-text">构造函数与 prototype</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 对象与对象属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%A4%8D%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">工厂模式——解决复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-new%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%AF%B9%E8%B1%A1%E8%AF%86%E5%88%AB%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">构造函数 + new——解决对象识别问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">3.0.1.</span> <span class="toc-text">构建构造函数的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-%E6%99%AE%E9%80%9A%E8%B0%83%E7%94%A8"><span class="toc-number">3.0.2.</span> <span class="toc-text">构造函数调用 —— 普通调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-call-apply-%E5%9C%A8%E9%83%A8%E5%88%86"><span class="toc-number">3.0.3.</span> <span class="toc-text">构造函数调用 —— call&#x2F;apply 在部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">原型相关方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.3.</span> <span class="toc-text">for-in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">构造函数原型的几种写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%E7%B1%BB%E6%A8%A1%E6%8B%9F"><span class="toc-number">5.</span> <span class="toc-text">ES6 类模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-static"><span class="toc-number">5.1.</span> <span class="toc-text">模拟 static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">5.2.</span> <span class="toc-text">模拟 私有属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">5.2.1.</span> <span class="toc-text">特性描述器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E6%8F%8F%E8%BF%B0%E5%99%A8%E7%89%B9%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA-API"><span class="toc-number">5.2.2.</span> <span class="toc-text">有关描述器特性的几个 API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">5.2.3.</span> <span class="toc-text">详解对象定义与属性描述器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%85%85%E3%80%81%E5%BC%A5%E5%B0%81%E3%80%81%E5%86%BB%E7%BB%93"><span class="toc-number">5.3.</span> <span class="toc-text">扩充、弥封、冻结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.</span> <span class="toc-text">原型对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E-prototype"><span class="toc-number">6.1.</span> <span class="toc-text">构造函数与 prototype</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
-
       
       <div class="content index width mx-auto px2 my4">
           
           <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+  <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
-        JavaScript - Object Oriented
+        JavaScript-Object Oriented
     </h1>
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">魔女</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
         <time datetime="2019-03-21T02:02:40.000Z" itemprop="datePublished">2019-03-21</time>
     </div>
 
 
-      
+          
     <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object/" rel="tag">Object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1/" rel="tag">对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a></li></ul>
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <h2 id="JavaScript-对象与对象属性"><a href="#JavaScript-对象与对象属性" class="headerlink" title="JavaScript 对象与对象属性"></a>JavaScript 对象与对象属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">v</span>: <span class="number">1</span>, <span class="attr">o</span>: <span class="literal">undefined</span>&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;o&#x27;</span> <span class="keyword">in</span> obj, obj.<span class="property">o</span>) <span class="comment">// true undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b&#x27;</span> <span class="keyword">in</span> obj, obj.<span class="property">b</span>) <span class="comment">// false undefined</span></span><br></pre></td></tr></table></figure>
+    <div class="content" itemprop="articleBody">
+      <h2 id="JavaScript-对象与对象属性"><a href="#JavaScript-对象与对象属性" class="headerlink" title="JavaScript 对象与对象属性"></a>JavaScript 对象与对象属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">v</span>: <span class="number">1</span>, <span class="attr">o</span>: <span class="literal">undefined</span>&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;o&#x27;</span> <span class="keyword">in</span> obj, obj.<span class="property">o</span>) <span class="comment">// true undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b&#x27;</span> <span class="keyword">in</span> obj, obj.<span class="property">b</span>) <span class="comment">// false undefined</span></span><br></pre></td></tr></table></figure>
 <p><font color="#f33">虽然，属性值都是 undefined，但 <strong>特性名不存在与特性值赋为 undefined 是不同的，</strong> 可以用 <code>in</code> 运算符，查看对象是否有某个属性</font></p>
 <blockquote>
 <p>JavaScript 通过一些属性时都会带有一些特征值，ECMA-262 定义的，只有内部使用的，外部不能访问的特性，初期是为了实现 JavaScript 引擎使用的。具体如下表</p>
@@ -298,13 +318,6 @@
 <td>设置属性时调用</td>
 </tr>
 </tbody></table>
-<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="创建字面量-Literal-对象"><a href="#创建字面量-Literal-对象" class="headerlink" title="创建字面量(Literal)对象"></a>创建字面量(Literal)对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myBaby = &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Audrey&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建实例对象"><a href="#创建实例对象" class="headerlink" title="创建实例对象"></a>创建实例对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> baby = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br><span class="line">baby.<span class="property">name</span> = <span class="string">&#x27;Audrey&#x27;</span>,</span><br><span class="line">baby.<span class="property">age</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>开发过程中实际多采用字面量形式创建对象，<u>字面量对象避端是<font color="#FFD700">产生大量重复代码</font>**</u></p>
-</blockquote>
 <h2 id="工厂模式——解决复用"><a href="#工厂模式——解决复用" class="headerlink" title="工厂模式——解决复用"></a><a id="factoryPattern" href="#factoryPattern">工厂模式——<font color="#f99">解决复用</font></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">baby</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name,</span><br><span class="line">    age</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Audrey</span> = <span class="title function_">baby</span>(<span class="string">&#x27;Audrey&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Gulu</span> = <span class="title function_">baby</span>(<span class="string">&#x27;Gulu&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="title class_">Audrey</span> <span class="keyword">instanceof</span> baby</span><br><span class="line"><span class="comment">// false</span></span><br><span class="line"><span class="title class_">Audrey</span> <span class="keyword">instanceof</span> <span class="title class_">Object</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(<span class="title class_">Audrey</span>)</span><br><span class="line"><span class="comment">// &#123;&#125;__proto__: Object</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="构造函数-new——解决对象识别问题"><a href="#构造函数-new——解决对象识别问题" class="headerlink" title="构造函数 + new——解决对象识别问题"></a>构造函数 + new——<font color="#f99">解决对象识别问题</font></h2><blockquote>
@@ -517,9 +530,8 @@ style instance fill:#f99,stroke:#333,stroke-width:4px</pre>
 <p>hasOwnProperty() 判断实例本身是否具有某个属性</p>
 </blockquote>
 
-  </div>
+    </div>
 </article>
-
 
 
       </div>
@@ -544,21 +556,21 @@ style instance fill:#f99,stroke:#333,stroke-width:4px</pre>
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 对象与对象属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E9%9D%A2%E9%87%8F-Literal-%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text">创建字面量(Literal)对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">创建实例对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%A4%8D%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">工厂模式——解决复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-new%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%AF%B9%E8%B1%A1%E8%AF%86%E5%88%AB%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">构造函数 + new——解决对象识别问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">4.0.1.</span> <span class="toc-text">构建构造函数的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-%E6%99%AE%E9%80%9A%E8%B0%83%E7%94%A8"><span class="toc-number">4.0.2.</span> <span class="toc-text">构造函数调用 —— 普通调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-call-apply-%E5%9C%A8%E9%83%A8%E5%88%86"><span class="toc-number">4.0.3.</span> <span class="toc-text">构造函数调用 —— call&#x2F;apply 在部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">原型相关方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">for-in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">5.4.</span> <span class="toc-text">构造函数原型的几种写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%E7%B1%BB%E6%A8%A1%E6%8B%9F"><span class="toc-number">6.</span> <span class="toc-text">ES6 类模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-static"><span class="toc-number">6.1.</span> <span class="toc-text">模拟 static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">6.2.</span> <span class="toc-text">模拟 私有属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">6.2.1.</span> <span class="toc-text">特性描述器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E6%8F%8F%E8%BF%B0%E5%99%A8%E7%89%B9%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA-API"><span class="toc-number">6.2.2.</span> <span class="toc-text">有关描述器特性的几个 API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">6.2.3.</span> <span class="toc-text">详解对象定义与属性描述器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%85%85%E3%80%81%E5%BC%A5%E5%B0%81%E3%80%81%E5%86%BB%E7%BB%93"><span class="toc-number">6.3.</span> <span class="toc-text">扩充、弥封、冻结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">7.</span> <span class="toc-text">原型对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E-prototype"><span class="toc-number">7.1.</span> <span class="toc-text">构造函数与 prototype</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 对象与对象属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">数据属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">访问器属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%A4%8D%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">工厂模式——解决复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-new%E2%80%94%E2%80%94%E8%A7%A3%E5%86%B3%E5%AF%B9%E8%B1%A1%E8%AF%86%E5%88%AB%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">构造函数 + new——解决对象识别问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">3.0.1.</span> <span class="toc-text">构建构造函数的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-%E6%99%AE%E9%80%9A%E8%B0%83%E7%94%A8"><span class="toc-number">3.0.2.</span> <span class="toc-text">构造函数调用 —— 普通调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E2%80%94%E2%80%94-call-apply-%E5%9C%A8%E9%83%A8%E5%88%86"><span class="toc-number">3.0.3.</span> <span class="toc-text">构造函数调用 —— call&#x2F;apply 在部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">原型相关方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.3.</span> <span class="toc-text">for-in 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">构造函数原型的几种写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-%E7%B1%BB%E6%A8%A1%E6%8B%9F"><span class="toc-number">5.</span> <span class="toc-text">ES6 类模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-static"><span class="toc-number">5.1.</span> <span class="toc-text">模拟 static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">5.2.</span> <span class="toc-text">模拟 私有属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">5.2.1.</span> <span class="toc-text">特性描述器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E6%8F%8F%E8%BF%B0%E5%99%A8%E7%89%B9%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA-API"><span class="toc-number">5.2.2.</span> <span class="toc-text">有关描述器特性的几个 API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E5%99%A8"><span class="toc-number">5.2.3.</span> <span class="toc-text">详解对象定义与属性描述器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%85%85%E3%80%81%E5%BC%A5%E5%B0%81%E3%80%81%E5%86%BB%E7%BB%93"><span class="toc-number">5.3.</span> <span class="toc-text">扩充、弥封、冻结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.</span> <span class="toc-text">原型对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E-prototype"><span class="toc-number">6.1.</span> <span class="toc-text">构造函数与 prototype</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&text=JavaScript - Object Oriented"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&is_video=false&description=JavaScript - Object Oriented"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript - Object Oriented&body=Check out this article: https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript - Object Oriented"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&name=JavaScript - Object Oriented&description=&lt;h2 id=&#34;JavaScript-对象与对象属性&#34;&gt;&lt;a href=&#34;#JavaScript-对象与对象属性&#34; class=&#34;headerlink&#34; title=&#34;JavaScript 对象与对象属性&#34;&gt;&lt;/a&gt;JavaScript 对象与对象属性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; obj = &amp;#123;&lt;span class=&#34;attr&#34;&gt;v&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;attr&#34;&gt;o&lt;/span&gt;: &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;o&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;o&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// true undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;b&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;b&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// false undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&text=JavaScript-Object Oriented"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&is_video=false&description=JavaScript-Object Oriented"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-Object Oriented&body=Check out this article: https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&title=JavaScript-Object Oriented"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2019/03/21/JavaScript-Object-Oriented/&name=JavaScript-Object Oriented&description=&lt;h2 id=&#34;JavaScript-对象与对象属性&#34;&gt;&lt;a href=&#34;#JavaScript-对象与对象属性&#34; class=&#34;headerlink&#34; title=&#34;JavaScript 对象与对象属性&#34;&gt;&lt;/a&gt;JavaScript 对象与对象属性&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; obj = &amp;#123;&lt;span class=&#34;attr&#34;&gt;v&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;attr&#34;&gt;o&lt;/span&gt;: &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;o&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;o&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// true undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;b&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; obj, obj.&lt;span class=&#34;property&#34;&gt;b&lt;/span&gt;) &lt;span class=&#34;comment&#34;&gt;// false undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;font color=&#34;#f33&#34;&gt;虽然，属性值都是 undefined，但 &lt;strong&gt;特性名不存在与特性值赋为 undefined 是不同的，&lt;/strong&gt; 可以用 &lt;code&gt;in&lt;/code&gt; 运算符，查看对象是否有某个属性&lt;/font&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;JavaScript 通过一些属性时都会带有一些特征值，ECMA-262 定义的，只有内部使用的，外部不能访问的特性，初期是为了实现 JavaScript 引擎使用的。具体如下表&lt;/p&gt;
@@ -632,36 +644,47 @@ style instance fill:#f99,stroke:#333,stroke-width:4px</pre>
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023 Helen Zhang
+    Copyright &copy; 2023
+      Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </nav>
   </div>
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
   <script>
-      if (window.mermaid) {
-          mermaid.initialize({theme: 'default'});
-      }
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
   </script>
-
-
+  
       
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 

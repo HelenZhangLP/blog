@@ -5,7 +5,6 @@ tags:
 date: 2019-05-03 11:01:59
 ---
 
-
 ## OpenResty
 OpenResty 基于 Nginx 的 “强化包”，不仅**支持 http/https**，还特别<u>集成了<font color="red">脚本语言 Lua 简化 Nginx 二次开发</font>。**方便搭建动态网关**，能够当成应用容器来编写业务逻辑</u>
 
@@ -23,9 +22,6 @@ $ openresty -s quit -p `pwd` -c config/nginx.conf
 
 <font color="red">mac 使用 run.sh 替换 windows 的 run.bat</font>
 <font color="darkgreen">127.0.0.1 为 loopback 环回地址 wireshark(windows) 中选择 Npcap loopback Adapter; wireshark(mac) 选择 loopback: lo0</font>
-
-<!--more-->
-
 
 ## 踩坑记
 ### Error: Failed to connect to raw.githubusercontent.com port 443:Failed to download resource "openresty-openssl111--patch"

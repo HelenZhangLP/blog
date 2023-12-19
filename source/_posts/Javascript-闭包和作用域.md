@@ -6,6 +6,27 @@ tags:
 - Function
 ---
 
+```JavaScript
+	var x = 1
+	function fn() {
+		var x = 10
+		return function() {
+			console.log(x * 2)
+		}
+	}
+
+	fn()()
+
+	let fn1 = () => {
+		var x = 10
+		return () => {
+			console.log(x * 2)
+		}
+	}
+
+	fn1()()
+```
+
 ## 闭包
 闭包是纯函数式编程语言的主要特征之一。
 闭包允许函数访问并操作函数外的变量，只要闭包或变量存在于声明函数时所在的作用域内，闭包即可使用函数使用这些变量或函数。

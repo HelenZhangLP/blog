@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="toolsnodemon问题：在编写 node.js 项目时，修改项目代码后，需要 ctrl+c 停止项目，再重启。  nodemon工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。  1$ npm install -g nodemon  pm2服务持久化管理的 即使终端关闭，服务器也在，电脑重启后，服务器关闭。 12345$ npm i pm2 -g #安装">
+    <meta name="description" content="toolsnodemon问题：在编写 node.js 项目时，修改项目代码后，需要 ctrl+c 停止项目，再重启。  nodemon工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。nodemon is a tool that helps develop node.js based applications by automatically restarting">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node 工具包">
 <meta property="og:url" content="https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="魔女">
-<meta property="og:description" content="toolsnodemon问题：在编写 node.js 项目时，修改项目代码后，需要 ctrl+c 停止项目，再重启。  nodemon工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。  1$ npm install -g nodemon  pm2服务持久化管理的 即使终端关闭，服务器也在，电脑重启后，服务器关闭。 12345$ npm i pm2 -g #安装">
+<meta property="og:description" content="toolsnodemon问题：在编写 node.js 项目时，修改项目代码后，需要 ctrl+c 停止项目，再重启。  nodemon工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。nodemon is a tool that helps develop node.js based applications by automatically restarting">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-17T06:34:52.000Z">
-<meta property="article:modified_time" content="2023-07-24T06:00:07.552Z">
+<meta property="article:modified_time" content="2023-11-17T10:01:40.583Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="Node">
 <meta name="twitter:card" content="summary">
@@ -98,41 +98,59 @@
         <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2020/03/03/%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86-git/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2020/01/15/%E5%B0%8F%E7%81%B0%E7%AE%97%E6%B3%95-%E6%95%B0%E7%BB%84/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+          <li><a class="icon" href="/2020/03/03/%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86-git/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2020/01/15/%E5%B0%8F%E7%81%B0%E7%AE%97%E6%B3%95-%E6%95%B0%E7%BB%84/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br />
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
@@ -146,7 +164,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/&title=Node 工具包"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/&name=Node 工具包&description=&lt;h2 id=&#34;tools&#34;&gt;&lt;a href=&#34;#tools&#34; class=&#34;headerlink&#34; title=&#34;tools&#34;&gt;&lt;/a&gt;tools&lt;/h2&gt;&lt;h3 id=&#34;nodemon&#34;&gt;&lt;a href=&#34;#nodemon&#34; class=&#34;headerlink&#34; title=&#34;nodemon&#34;&gt;&lt;/a&gt;nodemon&lt;/h3&gt;&lt;p&gt;&lt;span class=&#34;custom-box custom-box-933&#34;&gt;问题：&lt;/span&gt;在编写 &lt;code&gt;node.js&lt;/code&gt; 项目时，修改项目代码后，需要 &lt;code&gt;ctrl+c&lt;/code&gt; 停止项目，再重启。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/nodemon&#34;&gt;nodemon&lt;/a&gt;工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/nodemon&#34;&gt;nodemon&lt;/a&gt;工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。&lt;br&gt;nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.&lt;br&gt;nodemon 是一个帮助开发 node 的工具，当文件夹中的文件被检测到变化时，自动重启 node 应用。&lt;br&gt;nodemon does not require any additional changes to your code or method of development. nodemon is a replacement wrapper for node. to use nodemon,replace the word node on the command line when executing your script&lt;br&gt;nodemon 不需要对你的代码或开发方法做额外的改变，&lt;br&gt;nodemon 是 &lt;code&gt;node&lt;/code&gt; 的替换包。要使用 nodemon，需要在执行脚本时替换命令行中的 &lt;code&gt;node&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ npm install -g nodemon&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
@@ -162,12 +180,11 @@
     </div>
   </span>
 </div>
-
       
       <div class="content index width mx-auto px2 my4">
           
           <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+  <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
         Node 工具包
@@ -175,27 +192,30 @@
 
 
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">魔女</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
         <time datetime="2020-02-17T06:34:52.000Z" itemprop="datePublished">2020-02-17</time>
     </div>
 
 
-      
+          
     <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/" rel="tag">Node</a></li></ul>
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <h2 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h2><h3 id="nodemon"><a href="#nodemon" class="headerlink" title="nodemon"></a>nodemon</h3><p><span class='custom-box custom-box-933'>问题：</span>在编写 <code>node.js</code> 项目时，修改项目代码后，需要 <code>ctrl+c</code> 停止项目，再重启。</p>
+    <div class="content" itemprop="articleBody">
+      <h2 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h2><h3 id="nodemon"><a href="#nodemon" class="headerlink" title="nodemon"></a>nodemon</h3><p><span class='custom-box custom-box-933'>问题：</span>在编写 <code>node.js</code> 项目时，修改项目代码后，需要 <code>ctrl+c</code> 停止项目，再重启。</p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodemon">nodemon</a>工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。</p>
+<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodemon">nodemon</a>工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。<br>nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.<br>nodemon 是一个帮助开发 node 的工具，当文件夹中的文件被检测到变化时，自动重启 node 应用。<br>nodemon does not require any additional changes to your code or method of development. nodemon is a replacement wrapper for node. to use nodemon,replace the word node on the command line when executing your script<br>nodemon 不需要对你的代码或开发方法做额外的改变，<br>nodemon 是 <code>node</code> 的替换包。要使用 nodemon，需要在执行脚本时替换命令行中的 <code>node</code></p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g nodemon</span><br></pre></td></tr></table></figure>
 
@@ -223,9 +243,8 @@
 <p>If any requested packages are not present in the local project dependencies，then they are installed to a folder in the npm cache,which is added to the <code>PATH</code> environment variable in the executed process. A prompt is printed(which can be suppressed by providing either – yes or  –no)<br>如果任何请求包在本地项目依赖中不存在，那么它们会被安装到 npm 缓存的文件夹中，添加到执行过程中的 PATH 环境变量。提示被打印（通过提供 –yes 或 –no 控制）</p>
 <p>Package names provided without a specifier will be matched with Whatever version exists in the local project，Package names with a specifier will only be considered a match if they have the exact same name and version as the local dependency.<br>提供不带说明符的包名将被与本地项目中任何存在的版本相匹配，带有说明符的包名在本地依赖项中有着完全相同的名称和版本将被认为匹配。</p>
 
-  </div>
+    </div>
 </article>
-
 
 
       </div>
@@ -266,7 +285,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/&title=Node 工具包"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2020/02/17/Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/&name=Node 工具包&description=&lt;h2 id=&#34;tools&#34;&gt;&lt;a href=&#34;#tools&#34; class=&#34;headerlink&#34; title=&#34;tools&#34;&gt;&lt;/a&gt;tools&lt;/h2&gt;&lt;h3 id=&#34;nodemon&#34;&gt;&lt;a href=&#34;#nodemon&#34; class=&#34;headerlink&#34; title=&#34;nodemon&#34;&gt;&lt;/a&gt;nodemon&lt;/h3&gt;&lt;p&gt;&lt;span class=&#34;custom-box custom-box-933&#34;&gt;问题：&lt;/span&gt;在编写 &lt;code&gt;node.js&lt;/code&gt; 项目时，修改项目代码后，需要 &lt;code&gt;ctrl+c&lt;/code&gt; 停止项目，再重启。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/nodemon&#34;&gt;nodemon&lt;/a&gt;工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/nodemon&#34;&gt;nodemon&lt;/a&gt;工具，可以监听项目变化，项目代码修改后，nodemon 自动重启项目，方便开发调试。&lt;br&gt;nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.&lt;br&gt;nodemon 是一个帮助开发 node 的工具，当文件夹中的文件被检测到变化时，自动重启 node 应用。&lt;br&gt;nodemon does not require any additional changes to your code or method of development. nodemon is a replacement wrapper for node. to use nodemon,replace the word node on the command line when executing your script&lt;br&gt;nodemon 不需要对你的代码或开发方法做额外的改变，&lt;br&gt;nodemon 是 &lt;code&gt;node&lt;/code&gt; 的替换包。要使用 nodemon，需要在执行脚本时替换命令行中的 &lt;code&gt;node&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ npm install -g nodemon&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
@@ -293,36 +312,47 @@
       
       <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023 Helen Zhang
+    Copyright &copy; 2023
+      Helen Zhang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/tags/">Tags</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
       </ul>
     </nav>
   </div>
 </footer>
 
 
-  <script src='https://unpkg.com/mermaid@10.2.3/dist/mermaid.min.js'></script>
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
   <script>
-      if (window.mermaid) {
-          mermaid.initialize({theme: 'default'});
-      }
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
   </script>
-
-
+  
       
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
