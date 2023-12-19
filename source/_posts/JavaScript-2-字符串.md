@@ -1,0 +1,242 @@
+---
+title: JavaScript-字符串
+date: 2012-01-09 10:14:03
+categories: 技术
+tags:
+- JavaScript
+---
+
+## 字符串
+> 字符串是由一个或多个字符组成，须由引号包裹；
+  每个字符串都有自己的 lenght 属性；
+  字符串中每个字符都有相应的位置，该位置被称为**索引**
+  索引值从 0 开始，逐步递增
+  最后一个字符的索引为 string.length - 1
+
+## 模板字符串
+> 双引号 "" / 单引号 '' / 反引号 `` 包起来的都是<span class='custom-box custom-box-933'>字符串</span>
+<div class="custom-box-339">``反引号，ES6新增的模版字符串，有助于字符串的拼接</div>
+
+### 模板字符串实现字符串拼接
+> js 表达式 —— 执行代码有返回结果，如变量/三元运算符...
+  ${} 用来包裹 JS 表达式
+  `+` 用于拼接字符串
+
+```JavaScript
+  var x = 1, y = 2, z = 3;
+  var str = `${x} + ${y} = ${x+y}`
+```
+
+### 字符串拼接
+`+` 加号的字符串拼接 
+`+` 加号的左右两边，有一边是字符串，结果为字符串；
+`+` 加号的左右两边，有一边是对象【目的是将对象转换为数字，接着进行数学运算】
+    * 获取对象的[Symbol.toPrimitive]或者valueOf
+    * 未拿到原始值，则基于 toString 将对象转换为字符串
+    * 对象转换为字符串后进行字符串拼接
+
+```JavaScript
+  console.log('1'+[1,2]) // '11,2'
+  /**
+   * 将对象转换为数字，进行数学运算
+   * [1,2][Symbol.toPrimitive] undefined
+   * [1,2].valueOf() [1,2] 非原始值类型
+   * [1,2].toString() '1,2'
+   * '1' + '1,2' '112'
+   */ 
+
+```
+
+## 其他数据类型转换为字符串
+* [value].toString()
+* String([value])
+  ```JavaScript
+    String(1) // '1'
+    String(NaN) // 'NaN'
+    String(Infinity) // 'Infinity'
+    String(true) // 'true'
+    String(null) // 'null'
+    String(undefined) // 'undefined'
+    String(Symbol()) // 'Symbol()'
+    String(BigInt(10)) // '10'
+    String(function(){}) // 'function(){}'
+    String(/^$/) // '/^%/'
+
+    /* ========== 数组 ============ */
+    String([1,2]) // '1,2'
+    String([]) // ''
+
+    /* ========== 对象 ============ */
+    String({}) // [object, Object]
+  ```
+  <span class='custom-box custom-box-933'>总结：</span>
+  * 数组转换为字符串，是将数组中每一项用逗号分隔；空数组转换为空字符串；
+  * 普通对象转换为字符串，不论对象中包含哪些信息，结果都是 “[object, Object]”;
+  * 其它类型都是直接用引号包裹即可
+
+> `需求删除最后一个为 & 的字符`
+### String.prototype.replace() 返回一个部分或全部匹配由替代模式所取代的新的字符串。
+> str.replace(regexp|substr, newSubStr|function)
+
+```javascript
+let str = 'zhangliping&'
+// regexp = /&$/
+str.replace(/&$/, "") // zhangliping
+/*
+ * --- 引申 ---
+ * 删除字符串全部的 &
+ */
+str.replace(/&$/g, "") // 全局替换
+str.replace(/^&/,"") // 替换开头
+str.replace(/[?&]$/, "") //替换结尾的 ? 或 &
+
+formatParamets() {
+  const url = window.location.href; // 获取当前浏览器的URL
+  const params = {}; // 存储最终JSON结果对象
+  url.replace(/([^?&]+)=([^?&]+)/g, (match, p1, p2) => {
+    params[p1] = decodeURIComponent(p2); // 解析字符为中文
+    return p2 + '=' + p1;
+  });
+  return params;
+}
+```
+
+## 分割字符串
+### String.prototype.slice() 方法取字符串的一部分，返回新字符串，原字符串不动
+> str.slice(beginIndex[, endIndex])
+* beginIndex 从该索引（以 0 这基数）处开始提取原字符串。如果为负数，会被当做 strlength + beginLength
+* endIndex 可选，以 0 基数，endIndex 处结束提取字符串。省略则视为默认 strlength。或为负数，endIndex = strlength - endIndex
+
+```javascript
+let str = 'zhangliping&'
+// 取默认值，str.slice() 不传参
+str.slice() // zhangliping& beginIndex 默认值 0， endIndex 默认值 strlength
+// beginIndex >= strlength, endIndex 取默认值
+str.slice(-1) // '&' beginIndex = strlength - 1，截取到字符串长度
+// start < 0 && abs(start) > strlength, length 取默认值
+str.slice(-100) // 'zhangliping&'
+// beginIndex 取默认值 0，endIndex >= strlength
+str.slice(13) // ''
+// beginIndex < 0，endIndex 取默认值
+str.slice(0, 12) // zhangliping&
+// beginIndex 取默认值 0，endIndex < 0
+str.slice(0, -1) // 'zhangliping' endIndex = strlength - 1 截取最后一位
+// beginIndex 取默认值 0，endIndex == 0
+str.slice(0, 0) // ''
+```
+
+### String.prototype.substring() 返回从开始位置到结束位置的一个子集。
+> str.substring(indexStart[, indexEnd])
+* indexStart 需要截取的第一个字符的索引，该索引位置的字符作为返回字符串的首字母
+* indexEnd 0 到字符串长度之间的整数，以该数字为索引的字符不包含截取位置内
+
+```javascript
+let str = 'zhangliping&';
+// str.substring() indexStart 默认值 0； indexEnd 默认值 strlength
+str.substring() // 'zhangliping&'
+// indexStart > strlength
+str.substring(5) // ''
+// indexStart < 0 && abs(indexStart) > strlength
+str.substring(-15) // indexStart = 0
+// indexStart < 0 && abs(indexStart) < strlength
+str.substring(-1) // indexStart = 0
+// indexStart = 0 indexEnd > strlength
+str.substring(0, 15) // 'zhangliping&'
+str.substring(0, str.length-1);// zhangliping
+```
+
+### String.proptotype.substr() 返回一个字符串从指定位置开始
+> 被认作是遗留的函数，非 JavaScript 核心语言的一部分。目前没有严格被废弃。但将来可能被移除
+str.substr(start[, length])
+* 不会改变原字符串
+* start 与 slice 的第一个参数相同从该索引（以 0 这基数）处开始提取原字符串，若为负数，看作 strlength（字符串长度） + start。
+** Microsoft' JScript 不支持负 start 索引 **
+* length 提取的字符数
+
+```javascript
+let str = 'zhangliping';
+// str.substr() 不传参
+str.substr() // 'zhangliping' start 默认值 0， length 默认值字符串长度
+// start >= strlength length 取默认值
+str.substr(13) // ''
+// start < 0 length 取默认值
+str.substr(-14) // 'zhangliping' 取出全部字符串
+// start 取默认值 0，length >= strlength
+str.substr(-4) // start = strlength - 4 从 index = 8 开始截取
+// start < 0 && abs(start) > strlength, length 取默认值
+str.substr(0, 14) // 'zhangliping'
+// start 取默认值 0， length <= strlength
+str.substr(0, -1) // ''
+// 截取字符串最后一位
+str.substr(0, strlength - 1) // 'zhangliping'
+```
+
+### slice/substr/substring 对比
+| 方法名 | 参数一 | 参数二 |
+|----| ---------------- | ------------ |
+| slice | beginIndex — 开始位置索引，以 0 为基数 | endIndex — 截取至 endIndex - 1 位置 |
+| substr | start — 同上 | length - 截取字符长度 |
+| substring | indexStart — 同上 | indexEnd — 截取至 indexEnd - 1 的位置 |
+
+| 方法名 | 参数一abs(负数)并大于等于字符串长度 | 参数一负数并小于字符串长度 | 参数一大于 strlength | 参数二abs(负数)并大于等于字符串长度| 参数一负数并小于字符串长度 | 参数二大于 strlength |
+|----|  ---------- | ---------- | -------- | ------- | ---| --- |
+| slice | beginIndex = 0 | beginIndex = strlength - beginIndex | 返回空串 |  endIndex = 0 | endIndex = strlength - endIndex | endIndex = strlength |
+| substr | 同上 | 同上 | 同上 | 同上 | |length = strlength |
+| substring | indexStart = 0 | indexStart = 0 | 同上 | indexEnd = 0 | indexEnd = 0 | indexEnd = strlength |
+
+> 1.  slice、substring、sub 都是字符串截取方法；
+  2.  substring 参数不能为负数，如果有负数，则视为 0；
+  3.  substr 与 slice 同参数可以为负数。当为负数时，实际取的值是当前参数与字符串相加的和，第一个参数相加之和大于 0，时结果为 0；第二个参数相加之和大于 0 时，取字符串长度。substring 与 slice 两个参数都为索引，substr 第二个参数为截取字符串长度。 substr 在淘汰的过程中，慎用。
+
+## 查找字符串方法
+### includes() 区分大小写查找字符串，返回 Boolean 值。（ES6 新增方法）
+```javascript
+var str = 'Mr Brownlow, fortunately, was able to persuade him to abandon this wild idea';
+console.log(str.includes('persuade')) // true
+```
+### indexOf() 和 lastIndexOf() 同样是区分大小写匹配字符串，存在返回索引值，否则返回 -1。
+### match() 检索返回一个匹配正则表达式的结果
+> str.match(regexp)
+> `参数`：一个正则表达式对象。
+> 若参数为非正则表达式对象，会隐式地使用 `new RegExp(obj)` 转换为 RegExp
+> 若没给参数，参数默认为包含空字符串数组，如 `[""]`
+
+```javascript
+const str = 'abc abc'
+let reg = /(\w+)/g
+str.match(reg)
+/**
+  [ 'abc', 'abc' ]
+ */
+reg = /(\w+)/
+str.match(reg)
+/**
+ [ 'abc', 'abc', index: 0, input: 'abc abc', groups: undefined ]
+*/
+```
+> `返回值：`
+> 使用 g 标志，返回表达式匹配的所有结果，不返回匹配捕获组(`[ 'abc', 'abc' ]`)
+> 不使用 g 标志，返回第一个完整匹配及其相关的捕获组（input 搜索字符串；groups 捕获数组或 `undefined`; index 匹配结果开始位置）。
+
+##  字符串补齐方法
+### padStart(targetLength[,padString]) 在字符串前面加入指定字符padString，达到 targetLength 指定长度
+### padEnd(targetLength,[,padString]) 在字符串后面加入指定字符 padString，达到 targetLength 指定长度
+```javaScript
+// 隐藏电话号码后四位
+var tel = '13381892220';
+var secretTel = tel.substr(3, tel.length - 8).padEnd(tel.length-4, '*').padStart(tel.length, '*')
+console.log(secretTel) // ****189****
+```
+
+## 字符串中常用方法
+str.chartAt
+str.chartCodeAt
+str.substr
+str.substring
+str.slice
+str.split
+str.replace
+str.instanceof / str.lastIndexOf
+str.includes
+str.trim
+str.match

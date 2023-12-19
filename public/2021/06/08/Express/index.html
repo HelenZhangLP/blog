@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Express 中文网，是用于开发 Web 网站服务器 与 API 接口服务器 认识 express 基于 Node.js 平台快速、开放、极简的 Web 开发框架。是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，专门用来创建 Web 服务器的Express is a routing and middleware web fram">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Express">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/06/08/Express/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="Express 中文网，是用于开发 Web 网站服务器 与 API 接口服务器 认识 express 基于 Node.js 平台快速、开放、极简的 Web 开发框架。是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，专门用来创建 Web 服务器的Express is a routing and middleware web fram">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-08T03:38:09.000Z">
+<meta property="article:modified_time" content="2023-11-17T02:45:24.291Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="WebServer">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="Express">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Express</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </span>
+    <br />
+    <span id="actions">
+      <ul>
+        
+          <li><a class="icon" href="/2021/06/11/mackdown-%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2021/05/29/%E5%B7%A5%E5%85%B7-webstorm/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br />
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/06/08/Express/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/06/08/Express/&text=Express"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/06/08/Express/&is_video=false&description=Express"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Express&body=Check out this article: https://helenzhanglp.github.io/2021/06/08/Express/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/06/08/Express/&name=Express&description=&lt;p&gt;&lt;a href=&#34;expressjs.com.cn&#34;&gt;Express 中文网&lt;/a&gt;，是用于开发 &lt;span class=&#34;custom-box custom-box-393&#34;&gt;Web 网站服务器&lt;/span&gt; 与 &lt;span class=&#34;custom-box custom-box-393&#34;&gt;API 接口服务器&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;认识-express&#34;&gt;&lt;a href=&#34;#认识-express&#34; class=&#34;headerlink&#34; title=&#34;认识 express&#34;&gt;&lt;/a&gt;认识 &lt;code&gt;express&lt;/code&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;custom-box custom-box-933&#34;&gt;基于 Node.js 平台&lt;/span&gt;&lt;span class=&#34;custom-box custom-box-339&#34;&gt;快速、开放、极简&lt;/span&gt;的 &lt;span class=&#34;custom-box custom-box-933&#34;&gt;Web 开发框架。&lt;/span&gt;&lt;br&gt;是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，&lt;span class=&#34;custom-box custom-box-933&#34;&gt;专门用来创建 Web 服务器的&lt;/span&gt;&lt;br&gt;Express is a routing and middleware web framework that has minimal functionality of its own&lt;br&gt;Express 是一个路由和中间件 web 框架，本身功能很少。&lt;br&gt;&lt;font color=&#34;red&#34;&gt;An Express application is essentially a series of middleware function calls.&lt;br&gt;&lt;u&gt;&lt;strong&gt;Express 应用程序本质上是一系列中间件函数调用。&lt;/strong&gt;&lt;/u&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;安装-express&#34;&gt;&lt;a href=&#34;#安装-express&#34; class=&#34;headerlink&#34; title=&#34;安装 express&#34;&gt;&lt;/a&gt;安装 express&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ npm i express@4.17.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;使用-express-创建-web-服务器&#34;&gt;&lt;a href=&#34;#使用-express-创建-web-服务器&#34; class=&#34;headerlink&#34; title=&#34;使用 express 创建 web 服务器&#34;&gt;&lt;/a&gt;使用 &lt;code&gt;express&lt;/code&gt; 创建 web 服务器&lt;/h3&gt;&lt;pre class=&#34;mermaid&#34;&gt; flowchart LR
+ s1[导入] --&gt; s2[创建 Web 服务器]
+ s2 --&gt; s3[启动 Web 服务器]&lt;/pre&gt;
+&lt;hr&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1. 导入 express&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; express = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;express&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 2. 创建 web 服务器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; app = &lt;span class=&#34;title function_&#34;&gt;express&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 3. 启动 web 服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;express.&lt;span class=&#34;title function_&#34;&gt;listen&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;80&lt;/span&gt;, &lt;span class=&#34;function&#34;&gt;()=&amp;gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;express server running at http://127.0.0.1&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;Express-的基本使用&#34;&gt;&lt;a href=&#34;#Express-的基本使用&#34; class=&#34;headerlink&#34; title=&#34;Express 的基本使用&#34;&gt;&lt;/a&gt;Express 的基本使用&lt;/h3&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86-express"><span class="toc-number">1.</span> <span class="toc-text">认识 express</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-express"><span class="toc-number">1.1.</span> <span class="toc-text">安装 express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-express-%E5%88%9B%E5%BB%BA-web-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">使用 express 创建 web 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">Express 的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%9B%91%E5%90%AC-GET-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 监听 GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%9B%91%E5%90%AC-POST-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 监听 POST 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SEND-%E5%B0%86%E5%A4%84%E7%90%86%E5%A5%BD%E7%9A%84%E5%86%85%E5%AE%B9%E5%8F%91%E9%80%81%E7%BB%99%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. SEND 将处理好的内容发送给客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%BD%E5%A4%9F%E4%BD%BF%E7%94%A8-express-static-%E5%BF%AB%E9%80%9F%E6%89%98%E7%AE%A1%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">能够使用 express.static() 快速托管静态资源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#express-%E8%B7%AF%E7%94%B1"><span class="toc-number">2.</span> <span class="toc-text">express 路由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8C%B9%E9%85%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">路由的匹配过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B7%AF%E7%94%B1"><span class="toc-number">2.2.</span> <span class="toc-text">模块化路由</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建路由模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.2.</span> <span class="toc-text">使用路由模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#express-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">express 中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">什么是中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">中间件的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">定义一个中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.1.</span> <span class="toc-text">定义全局生效的中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B1%80%E9%83%A8%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.2.</span> <span class="toc-text">定义局部生效的中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%A4%9A%E4%B8%AA%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.3.</span> <span class="toc-text">定义多个中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%B1%80%E9%83%A8%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.4.</span> <span class="toc-text">多个局部生效的中间件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.4.</span> <span class="toc-text">中间件使用注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.5.</span> <span class="toc-text">中间件的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E4%B8%AD%E9%97%B4%E4%BB%B6-Application-level-middleware"><span class="toc-number">3.6.</span> <span class="toc-text">应用级别中间件(Application-level middleware)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E6%8C%82%E8%BD%BD%E8%B7%AF%E5%BE%84%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%8C%E6%AF%8F%E6%AC%A1-app-%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E6%97%B6%E6%89%A7%E8%A1%8C"><span class="toc-number">3.6.1.</span> <span class="toc-text">不带挂载路径的中间件，每次 app 接受请求时执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E6%8C%82%E8%BD%BD%E8%B7%AF%E5%BE%84%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BB%BB%E4%BD%95%E7%B1%BB%E5%9E%8B%E7%9A%84-http-%E8%AF%B7%E6%B1%82%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%83%BD%E4%BC%9A%E8%A2%AB%E6%89%A7%E8%A1%8C"><span class="toc-number">3.6.2.</span> <span class="toc-text">带有挂载路径的中间件函数，任何类型的 http 请求当前路径中间件都会被执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.6.3.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AD%90%E5%A0%86%E6%A0%88%E7%9A%84%E6%95%B0%E7%BB%84%EF%BC%8C%E5%A4%84%E7%90%86-get-%E8%AF%B7%E6%B1%82"><span class="toc-number">3.6.4.</span> <span class="toc-text">带有中间件子堆栈的数组，处理 get 请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%BA%A7%E5%88%AB%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.7.</span> <span class="toc-text">错误级别中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E5%86%85%E7%BD%AE%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.8.</span> <span class="toc-text">Express 内置中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.9.</span> <span class="toc-text">第三方中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%AD%E9%97%B4%E4%BB%B6-body-parser"><span class="toc-number">3.9.1.</span> <span class="toc-text">第三方中间件 body-parser</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.10.</span> <span class="toc-text">自定义中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">3.11.</span> <span class="toc-text">中间件的处理流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%EF%BC%88Cross-Origin-Resource-Sharing%EF%BC%89%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.12.</span> <span class="toc-text">跨域（Cross-Origin Resource Sharing）中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Express-%E4%B8%AD%E4%BD%BF%E7%94%A8-session-%E8%AE%A4%E8%AF%81"><span class="toc-number">3.13.</span> <span class="toc-text">在 Express 中使用 session 认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-express-session-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.13.1.</span> <span class="toc-text">安装 express-session 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8-express-session-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.13.2.</span> <span class="toc-text">配置和使用 express-session 中间件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="toc-number">3.14.</span> <span class="toc-text">Express 中使用 JWT 身份认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-JWT-%E5%8C%85"><span class="toc-number">3.14.1.</span> <span class="toc-text">安装 JWT 包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-secret-%E5%AF%86%E9%92%A5"><span class="toc-number">3.14.2.</span> <span class="toc-text">定义 secret 密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90-JWT-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.14.3.</span> <span class="toc-text">生成 JWT 字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E8%BF%98%E5%8E%9F%E4%B8%BA-JSON-%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.14.4.</span> <span class="toc-text">JWT 还原为 JSON 对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E8%A7%A3%E6%9E%90-JWT-%E5%A4%B1%E8%B4%A5%E5%90%8E%E4%BA%A7%E7%94%9F%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-number">3.14.5.</span> <span class="toc-text">捕获解析 JWT 失败后产生的错误</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="header">
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Express
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+        <time datetime="2021-06-08T03:38:09.000Z" itemprop="datePublished">2021-06-08</time>
+    </div>
+
+
+          
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Express/" rel="tag">Express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebServer/" rel="tag">WebServer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
+
+      </div>
+  </header>
+  
+
+    <div class="content" itemprop="articleBody">
+      <p><a href="expressjs.com.cn">Express 中文网</a>，是用于开发 <span class='custom-box custom-box-393'>Web 网站服务器</span> 与 <span class='custom-box custom-box-393'>API 接口服务器</span></p>
+<h2 id="认识-express"><a href="#认识-express" class="headerlink" title="认识 express"></a>认识 <code>express</code></h2><blockquote>
+<p><span class='custom-box custom-box-933'>基于 Node.js 平台</span><span class='custom-box custom-box-339'>快速、开放、极简</span>的 <span class='custom-box custom-box-933'>Web 开发框架。</span><br>是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，<span class='custom-box custom-box-933'>专门用来创建 Web 服务器的</span><br>Express is a routing and middleware web framework that has minimal functionality of its own<br>Express 是一个路由和中间件 web 框架，本身功能很少。<br><font color='red'>An Express application is essentially a series of middleware function calls.<br><u><strong>Express 应用程序本质上是一系列中间件函数调用。</strong></u></font></p>
+</blockquote>
+<h3 id="安装-express"><a href="#安装-express" class="headerlink" title="安装 express"></a>安装 express</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i express@4.17.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-express-创建-web-服务器"><a href="#使用-express-创建-web-服务器" class="headerlink" title="使用 express 创建 web 服务器"></a>使用 <code>express</code> 创建 web 服务器</h3><pre class="mermaid"> flowchart LR
+ s1[导入] --> s2[创建 Web 服务器]
+ s2 --> s3[启动 Web 服务器]</pre>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 导入 express</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="comment">// 2. 创建 web 服务器</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line"><span class="comment">// 3. 启动 web 服务</span></span><br><span class="line">express.<span class="title function_">listen</span>(<span class="number">80</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;express server running at http://127.0.0.1&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Express-的基本使用"><a href="#Express-的基本使用" class="headerlink" title="Express 的基本使用"></a>Express 的基本使用</h3><h4 id="1-监听-GET-请求"><a href="#1-监听-GET-请求" class="headerlink" title="1. 监听 GET 请求"></a>1. 监听 GET 请求</h4><p>通过 app.get(url, function(req, res){}) 方法，监听客户端的 GET 请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 参数1：客户端请求的 URL 地址</span></span><br><span class="line"><span class="comment"> * 参数2：请求对应的处理函数</span></span><br><span class="line"><span class="comment"> *  req: 请求对象</span></span><br><span class="line"><span class="comment"> *  res: 响应对象</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;请求 URL&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res</span>)&#123;&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="2-监听-POST-请求"><a href="#2-监听-POST-请求" class="headerlink" title="2. 监听 POST 请求"></a>2. 监听 POST 请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 参数1：客户端请求 URL</span></span><br><span class="line"><span class="comment"> * 参数2：请求对应的处理函数</span></span><br><span class="line"><span class="comment"> *  req: 请求对象</span></span><br><span class="line"><span class="comment"> *  res: 响应对象</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;请求 URL&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="3-SEND-将处理好的内容发送给客户端"><a href="#3-SEND-将处理好的内容发送给客户端" class="headerlink" title="3. SEND 将处理好的内容发送给客户端"></a>3. SEND 将处理好的内容发送给客户端</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">send</span>(&#123;...&#125;) <span class="comment">// 向客户端发送请求内容</span></span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/user&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;success&#x27;</span>) <span class="comment">// 向客户端发送文本信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>请求参数<br><span class='custom-box custom-box-393'>查询参数</span> 通过 req.query 获取客户端（/user/age=15&amp;gender=male）<br><span class='custom-box custom-box-393'>查询动态参数</span>  通过 req.params 获取客户端（/user/1），动态参数可以是多个</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意 url 参数要加 ?(?age=15&amp;gender=male) 【clientUrl http://127.0.0.1:9000/users/?age=15&amp;gender=male】</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/users/?age=15&amp;gender=male&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">query</span>, <span class="string">&#x27;req.query&#x27;</span>) <span class="comment">// &#123; age: &#x27;15&#x27;, gender: &#x27;male&#x27; &#125; req.query</span></span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">id</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// req.params 获取动态参数 /user/:id 【clientUrl http://127.0.0.1:9000/user/1】</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id/:name&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">params</span>, <span class="string">&#x27;req.params&#x27;</span>)</span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">id</span>:<span class="number">1</span>&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="能够使用-express-static-快速托管静态资源"><a href="#能够使用-express-static-快速托管静态资源" class="headerlink" title="能够使用 express.static() 快速托管静态资源"></a>能够使用 <code>express.static()</code> 快速托管静态资源</h4><p><span class='custom-box custom-box-393'>express.static() 用于创建静态资源服务器</span> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 可以将 public 目录下的图片、CSS文件、JavaScript 文件对外开放访问</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">&#x27;public&#x27;</span>))</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>托管多个静态资源<br>多次调用 <code>express.static()</code> 函数，托管多个静态资源目录。<br><span class='custom-box custom-box-933'>访问静态资源时，多个目录中有相同名称的资源时，<code>express.static()</code> 函数会根据目录的添加顺序查找所需的文件</span></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">&#x27;public&#x27;</span>))</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">&#x27;files&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>挂载路径前缀<br>在托管的静态资源访问路径前 <span class='custom-box custom-box-393'>挂载路径前缀</span>，避免因挂载顺序问题，导致不能访问到指定资源的问题。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/public&#x27;</span>,express.<span class="title function_">static</span>(<span class="string">&#x27;public&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="express-路由"><a href="#express-路由" class="headerlink" title="express 路由"></a><code>express</code> 路由</h2><p>路由指的是 <span class='custom-box custom-box-393'>映射关系</span>，在 Express 中，路由指的是 <span class='custom-box custom-box-393'>客户端请求与服务器处理函数的 <strong><u>映射关系</u></strong></span><br>Express 中路由由 <span class='custom-box custom-box-393'>请求类型(METHOD:POST/GET),请求 URL 地址（PATH）, 处理函数（HANDLE）</span>组成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">app.<span class="title function_">METHOD</span>(<span class="variable constant_">PATH</span>, <span class="variable constant_">HANDLE</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="路由的匹配过程"><a href="#路由的匹配过程" class="headerlink" title="路由的匹配过程"></a>路由的匹配过程</h3><p>当请求到服务器之后，需要经过路由的匹配，匹配成功后，才会调用对应的处理函数<br>匹配时，按照路由的顺序进行，请求类型与请求 URL 匹配成功，Express 将请求转交给 handle 函数。</p>
+<pre class="mermaid"> flowchart LR
+ start((客户端请求))
+ subgraph app
+  req1["app.get('/', fn1)"]
+  req2["app.get('/', fn2)"]
+  req3["app.get('/', fn3)"]
+  reqMore["更多..."]
+ end
+ subgraph 处理函数
+  fn1["fn1(req, res){// 处理函数}"]
+  fn2["fn2(req, res){// 处理函数}"]
+  fn3["fn3(req, res){// 处理函数}"]
+
+  req1 -->|分发| fn1
+  req2 -->|分发| fn2
+  req3 -->|分发| fn3
+ end
+ start --> app</pre>
+<h3 id="模块化路由"><a href="#模块化路由" class="headerlink" title="模块化路由"></a>模块化路由</h3><p>为了方便对路由进行模块化管理，<span class='custom-box custom-box-933'>Express 不建议将路由直接挂载在 app 上，推荐将路由抽离为单独的模块</span></p>
+<h4 id="创建路由模块"><a href="#创建路由模块" class="headerlink" title="创建路由模块"></a>创建路由模块</h4><pre class="mermaid"> flowchart LR
+ subgraph routerModulejs
+ step1[导入 express] --> step2[创建路由对象]
+ step2 --> step3[挂载路由]
+ step3 --> step4[导出路由]
+ end
+ subgraph indexjs
+ step5[导入路由模块] --> step6[注册路由模块]
+ end
+ step4 --> step5</pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// routerModule.js</span></span><br><span class="line"><span class="comment">// 1. 导入 express</span></span><br><span class="line"><span class="comment">// 2. 创建路由对象</span></span><br><span class="line"><span class="comment">// 3. 挂载路由</span></span><br><span class="line"><span class="comment">// 4. 导出路由 </span></span><br></pre></td></tr></table></figure>
+<h4 id="使用路由模块"><a href="#使用路由模块" class="headerlink" title="使用路由模块"></a>使用路由模块</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;./routerModule.js&#x27;</span>)</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, router) <span class="comment">// 注册路由模块</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="express-中间件"><a href="#express-中间件" class="headerlink" title="express 中间件"></a><code>express</code> 中间件</h2><h3 id="什么是中间件"><a href="#什么是中间件" class="headerlink" title="什么是中间件"></a>什么是中间件</h3><blockquote>
+<p>中间件（Middleware），业务流程的<u><strong>中间处理环节</strong></u>。<br>Middleware functions are functions that have access to the request object(req)、response object(res), and the next middleware function in the application’s request-response cycle. the next middleware function is commonly denoted by a variable named next.<br>中间件函数可以访问请求对象、响应对象以及在请求响应周期内的下一个中间件函数。下一个中间件函数通常由一个变量名 next 表示。 </p>
+</blockquote>
+<p>You can load application-level and router-level middleware with an optional mount path.<br>你可以加载带有可选装载路径的应用级别中间件路由级别中间件。</p>
+<h3 id="中间件的作用"><a href="#中间件的作用" class="headerlink" title="中间件的作用"></a>中间件的作用</h3><p><span class='custom-box custom-box-933'>多个中间件之间，共享同一份 req 和 res</span>。基于这个特性，<u><strong>我们可以在上流的中间件中，统一为 req 或 res 对象添加自定义的属性或方法，供下游的中间件或路由进行使用。</strong></u></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 中间件与路由之间共享 req/res 实例</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res, next</span>)=&gt;</span>&#123;</span><br><span class="line">    req.<span class="property">receivedTime</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求到达服务器的时间：&#x27;</span>, req.<span class="property">receivedTime</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义一个中间件"><a href="#定义一个中间件" class="headerlink" title="定义一个中间件"></a>定义一个中间件</h3><p>Express 中间件，<span class='custom-box custom-box-393'>本质上是一个带有 <code>next</code> 参数的 funtion 处理函数</span><br><span class='custom-box custom-box-933'>中间件函数的形参列表中，必须包含一个 next 参数</span>。路由处理函数中只包含 req 和 res。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 挂载中间件</span></span><br><span class="line"><span class="comment"> * app.get http method for which the middleware function applies</span></span><br><span class="line"><span class="comment"> * &#x27;/&#x27; Path(route) for which the middleware function applies</span></span><br><span class="line"><span class="comment"> * function(req, res, next)&#123;&#125; the middleware function</span></span><br><span class="line"><span class="comment"> *  req http request argument to the middleware function,called &#x27;req&#x27; by convention</span></span><br><span class="line"><span class="comment"> *  res http response argument to the middleware function, called &#x27;res&#x27; by convention</span></span><br><span class="line"><span class="comment"> *  next callback argument to the middleware funtion, called &#x27;next&#x27; by convention</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>)&#123;</span><br><span class="line">    <span class="comment">// next 函数是实现多个中间件连续调用的关键，它表示把流转关系转交给下一个中间件或路由</span></span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="定义全局生效的中间件"><a href="#定义全局生效的中间件" class="headerlink" title="定义全局生效的中间件"></a>定义全局生效的中间件</h4><p>客户端发起的任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。<br><span class='custom-box custom-box-393'>通过 <code>app.use()</code> 中间件函数，可定义一个全局生效的中间件</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义中间件函数</span></span><br><span class="line">cont middleware = (req, res, next) &#123;</span><br><span class="line">    <span class="comment">// 流转关系转交给下一个中间件或路由</span></span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注册全局生效的中间件函数</span></span><br><span class="line">app.<span class="title function_">use</span>(middleware)</span><br></pre></td></tr></table></figure>
+<p>中间件简化形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局中间件的简化形式</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="定义局部生效的中间件"><a href="#定义局部生效的中间件" class="headerlink" title="定义局部生效的中间件"></a>定义局部生效的中间件</h4><blockquote>
+<p>不使用 app.use() 定义的中间件为局部生效中间件。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> middleware = <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`this is a locally effective middleware`</span>)</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, middleware, <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;Index&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>You can load a series of middleware functions together,which creates a sub-stack of the middleware system at a mount point.<br>你可以一起加载多个中间件函数，将会在挂载点创建中间件子堆栈。</p>
+<hr>
+<h4 id="定义多个中间件"><a href="#定义多个中间件" class="headerlink" title="定义多个中间件"></a>定义多个中间件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">res, req, next</span>) =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;第一个中间件&#x27;</span>)&#125;)</span><br><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">res, req, next</span>) =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;第二个中间件&#x27;</span>)&#125;)</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, reqs</span>) =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求路由&#x27;</span>)&#125;)</span><br><span class="line"><span class="comment">// 第一个中间件 --&gt; 第二个中间件 --&gt; 请求路由</span></span><br></pre></td></tr></table></figure>
+<h4 id="多个局部生效的中间件"><a href="#多个局部生效的中间件" class="headerlink" title="多个局部生效的中间件"></a>多个局部生效的中间件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> middleware1 = <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`this is the first locally effective middleware`</span>)</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> middleware2 = <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`this is the second locally effective middleware`</span>)</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以下两种写法都可以使用局部中间件</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, middleware1, middleware2, <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Index&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/users&#x27;</span>, [middleware1, middleware2], <span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Index&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="中间件使用注意事项"><a href="#中间件使用注意事项" class="headerlink" title="中间件使用注意事项"></a>中间件使用注意事项</h3><ul>
+<li>  一定要在路由之前注册中间件；</li>
+<li>  客户端发送过来的请求，可以连续调用多个中间件进行处理；</li>
+<li>  执行完中间件的业务代码后，不要忘记调用 next() 函数；</li>
+<li>  为了防止代码逻辑混乱，调用 next() 函数之后不要再写其它代码；</li>
+<li>  连续调用多个中间件时，多个中间件之间，共享 req 和 res;</li>
+</ul>
+<h3 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h3><ol>
+<li> 应用级别中间件(Application-level middleware)<blockquote>
+<p>通过<code>app.use()</code>或<code>app.get()</code>或<code>app.post()</code>，<span class='custom-box custom-box-933'>绑定到 app 实例上的中间件</span>，称为应用级别中间件。</p>
+</blockquote>
+</li>
+<li> 路由级别中间件(Router-level middleware)<blockquote>
+<p>绑定到 <code>express.Router()</code> 实例上的中间件，叫做路由级别中间件。<span class='custom-box custom-box-933'>注意：应用级别中间件是绑定在 <code>app</code> 上，路由级别中间件绑定在 <code>express.Router()</code> 实例上。</span></p>
+</blockquote>
+</li>
+<li> 错误级别中间件(Error-level middleware)<blockquote>
+<p>错误级别中间件的作用：捕获整个项目中发生的异常错误，从而防止项目异常崩溃。<span class='custom-box custom-box-933'>错误级别中间件必须在所有路由之后注册</span></p>
+</blockquote>
+</li>
+<li>Express 内置中间件(Built-in middleware)<ul>
+<li>  express.static 快速托管静态资源的内置中间件；</li>
+<li>  express.json 解析 JSON 格式的请求体数据；<a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP/demo/blob/master/node/src/demo9/index.js">demo for express.json</a></li>
+<li>express.urlencoded 解析 URL-encoded 格式的请求数据;<a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP/demo/blob/master/node/src/demo10/index.js">demo for express.urlencoded</a><blockquote>
+<p>其中 <code>express.json</code> 和 <code>express.urlencoded</code> 只能在 4.16.0+ 以后的版本中使用</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li> 第三方中间件(Third-party middleware)</li>
+</ol>
+<h3 id="应用级别中间件-Application-level-middleware"><a href="#应用级别中间件-Application-level-middleware" class="headerlink" title="应用级别中间件(Application-level middleware)"></a>应用级别中间件(Application-level middleware)</h3><p>Bind application-level middleware to an instance of the app object by using the app.use() and app.METHOD functions, where METHOD is the HTTP method of the request that the middleware function handles (such as GET,PUT,POST) in lowercase.<br>通过使用 <code>app.use()</code>和<code>app.METHOD()</code> 函数绑定应用级别中间件到应用程序对象实例。其中，<code>METHOD</code> 是 中间件函数以小写形式处理的 <code>HTTP 请求 method</code>（如：GET,PUT,POST）</p>
+<h4 id="不带挂载路径的中间件，每次-app-接受请求时执行"><a href="#不带挂载路径的中间件，每次-app-接受请求时执行" class="headerlink" title="不带挂载路径的中间件，每次 app 接受请求时执行"></a>不带挂载路径的中间件，每次 app 接受请求时执行</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入 express </span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">req, res, next</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;define application-level middleware&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="带有挂载路径的中间件函数，任何类型的-http-请求当前路径中间件都会被执行"><a href="#带有挂载路径的中间件函数，任何类型的-http-请求当前路径中间件都会被执行" class="headerlink" title="带有挂载路径的中间件函数，任何类型的 http 请求当前路径中间件都会被执行"></a>带有挂载路径的中间件函数，任何类型的 http 请求当前路径中间件都会被执行</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/user/:id&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>)&#123;</span><br><span class="line">    consolt.<span class="title function_">log</span>(<span class="string">&#x27;request type&#x27;</span>, req.<span class="property">method</span>)</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="带有中间件子堆栈的数组，处理-get-请求"><a href="#带有中间件子堆栈的数组，处理-get-请求" class="headerlink" title="带有中间件子堆栈的数组，处理 get 请求"></a>带有中间件子堆栈的数组，处理 get 请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">lg</span>(<span class="params">req, res, next</span>) &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;lg&#x27;</span>);<span class="title function_">next</span>()&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">log</span>(<span class="params">req, res, next</span>) &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;log&#x27;</span>);<span class="title function_">next</span>()&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stuff = [lg, log]</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/user/:id&#x27;</span>, stuff, <span class="keyword">function</span>(<span class="params">req,res,next</span>)&#123;</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;userInfo&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误级别中间件"><a href="#错误级别中间件" class="headerlink" title="错误级别中间件"></a>错误级别中间件</h3><blockquote>
+<p>错误级别中间件的 function 中，<span class='custom-box custom-box-339'>必须包含4个形参，</span>分别是 err,req,res,next </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 导入 express 模块</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="comment">// 2 创建 express 服务器实例</span></span><br><span class="line"><span class="keyword">const</span> server = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4 定义路由</span></span><br><span class="line">server.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 定义错误</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;服务器错误&#x27;</span>)</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;响应请求&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5 中件间捕获整个项目中发生的异常错误，从而防止项目异常崩溃。</span></span><br><span class="line">server.<span class="title function_">use</span>(<span class="function">(<span class="params">err, req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;错误：&#x27;</span> + err.<span class="property">message</span>)</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">&#x27;Error：&#x27;</span> + err.<span class="property">message</span> )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3 调用 app.listen 方法，指定端口号启动 web 服务器</span></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8090</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Express server running at http://127.0.0.1:8090`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Express-内置中间件"><a href="#Express-内置中间件" class="headerlink" title="Express 内置中间件"></a>Express 内置中间件</h3><p>Express 4.16.0 版本开始，Express 内置了 3 个常用中间件</p>
+<ul>
+<li>  <code>express.static</code> 快速托管静态资源（html,css,图片等）的内置中间件；</li>
+<li>  <code>express.json</code> 解析 JSON 格式的请求体数据（4.16.0+ 可用）;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// post 请求，body 中带请求体</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getUser&#x27;</span>,<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// req.body 接收客户端传过来的数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>) <span class="comment">// undefined，默认情况下，没有配置解析表单数据中间件，req.body = undefined</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置解析 application/json 格式数据的内置中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>())</span><br><span class="line"><span class="comment">// post 请求，body 中带 json 格式请求数据</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getUser&#x27;</span>,<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>) <span class="comment">// &#123;id: &#x27;u12950&#x27;&#125;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>  <code>express.urlencoded</code> 解析 URL-encoded 格式的请求体数据（4.16.0+ 可用）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// post 请求，body 中带 x-www-form-urlencoded 格式数据</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getUser&#x27;</span>,<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// req.body 接收客户端传过来的数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>) <span class="comment">// &#123;&#125;，默认情况下，没有配置解析表单数据中间件，req.body = undefined</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解析 application/x-www/form-urlencoded 格式数据中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123;<span class="attr">extended</span>: <span class="literal">false</span>&#125;))</span><br><span class="line"><span class="comment">// post 请求，body 中带 x-www-form-urlencoded 格式数据</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getUser&#x27;</span>,<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// req.body 接收客户端传过来的数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>) <span class="comment">// &#123;id: &#x27;u12950&#x27;&#125;，默认情况下，没有配置解析表单数据中间件，req.body = &#123;&#125;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些中间件，极大的提高了 Express 项目的开发效率及体验。</p>
+<h3 id="第三方中间件"><a href="#第三方中间件" class="headerlink" title="第三方中间件"></a>第三方中间件</h3><p>第三方中间件可按需下载配置，从而提高开发效率。</p>
+<h4 id="第三方中间件-body-parser"><a href="#第三方中间件-body-parser" class="headerlink" title="第三方中间件 body-parser"></a>第三方中间件 body-parser</h4><p>body-parser 用于解析请求体数据，在 <a href="mailto:&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#x2e;&#x31;&#54;&#46;&#48;">&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#x2e;&#x31;&#54;&#46;&#48;</a> 之前经常使用</p>
+<pre class="mermaid"> flowchart LR
+ install[npm install body-parser] --> require[导入中间件 body-parser]
+ require --> use["app.use() 注册使用中间件"]</pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP/demo/blob/master/node/src/demo11/index.js">demo for body-parser</a></p>
+<h3 id="自定义中间件"><a href="#自定义中间件" class="headerlink" title="自定义中间件"></a>自定义中间件</h3><p><span class='custom-box custom-box-939'>手动模拟 express.urlencoded 中间件，解析 POST 提交到服务器的表单数据</span></p>
+<pre class="mermaid"> flowchart TB
+ step1[定义中间件] --> step2[监听req的data事件]
+ step3[监听req的end事件] -->|使用 qureystring | step4[模块解析请求体数据]
+ step5[将解析的数据对象挂载到 req.body] --> step6[封装自定义对象为模块]
+ step2 --> step3
+ step4 --> step5</pre>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bodyparse.js</span></span><br><span class="line"><span class="comment">// 自定义中间件</span></span><br><span class="line"><span class="keyword">const</span> qs = <span class="built_in">require</span>(<span class="string">&#x27;qureystring&#x27;</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">middleware</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="comment">// 监听 req 对象的 data 事件，获取客户端发送到服务器的数据</span></span><br><span class="line">    <span class="comment">// 数据量大时，无法一次性发送完毕，客户端会进行数据切割，分批发送到服务器。req 的 data 事件可能会触发多次，需要每次触发 data 事件时，获取到的数据只是完整数据的一部分，需要手动拼接接收的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">&#x27;&#x27;</span> <span class="comment">// 存储客户端发送过来的请求体</span></span><br><span class="line">    <span class="comment">// 监听 req 的 data 事件，拼接客户端发送回来的数据</span></span><br><span class="line">    req.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="function">(<span class="params">chunk</span>) =&gt;</span> &#123;</span><br><span class="line">        str += chunk</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听 req 的 end 事件；TODO：把字符串格式的请求体数据，解析成对象格式</span></span><br><span class="line">    req.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> body = qs.<span class="title function_">parse</span>(str)</span><br><span class="line">        req.<span class="property">body</span> = body;</span><br><span class="line">        <span class="title function_">next</span>()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = middleware</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---------- next page ----------</span></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> bodyparse = <span class="built_in">require</span>(<span class="string">&#x27;./bodyparse&#x27;</span>)</span><br><span class="line"><span class="comment">// 注册使用中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(bodyparse)</span><br></pre></td></tr></table></figure>
+<h3 id="中间件的处理流程"><a href="#中间件的处理流程" class="headerlink" title="中间件的处理流程"></a>中间件的处理流程</h3><p>当一个请求到达 Express 服务器之后，可以连续调用多个中间件，从而 <span class='custom-box custom-box-393'>对这次请求进行<u>预处理</u></span>。</p>
+<pre class="mermaid"> flowchart LR
+ client((客户端))
+ subgraph Express服务器
+  middleware1([中间件1]) -->|"next()"| middleware2([中间件2])
+  middleware2 -->|"next()"| middleware3([中间件3])
+  middleware3 -->|"next()"| middleware4([中间件...])
+  middleware4 -->|"next()"| ending[["<b>路由</b><br/>处理完毕，响应这次请求"]]
+ end
+ client -->|请求| middleware1
+ ending -->|响应| client</pre>
+
+<h3 id="跨域（Cross-Origin-Resource-Sharing）中间件"><a href="#跨域（Cross-Origin-Resource-Sharing）中间件" class="headerlink" title="跨域（Cross-Origin Resource Sharing）中间件"></a>跨域（Cross-Origin Resource Sharing）中间件</h3><p><a href="/2019/02/22/%E8%B7%A8%E5%9F%9F/#%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB%EF%BC%88CORS%EF%BC%89%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">更多关于跨域…</a></p>
+<pre class="mermaid"> flowchart LR
+ install[安装 npm install cors] --> require["require('cors')"]
+ require --> registeration["app.use(cors())"]</pre>
+
+<h3 id="在-Express-中使用-session-认证"><a href="#在-Express-中使用-session-认证" class="headerlink" title="在 Express 中使用 session 认证"></a>在 Express 中使用 session 认证</h3><h4 id="安装-express-session-中间件"><a href="#安装-express-session-中间件" class="headerlink" title="安装 express-session 中间件"></a>安装 express-session 中间件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-session</span><br></pre></td></tr></table></figure>
+<h4 id="配置和使用-express-session-中间件"><a href="#配置和使用-express-session-中间件" class="headerlink" title="配置和使用 express-session 中间件"></a>配置和使用 express-session 中间件</h4><blockquote>
+<p>express-session 中间件配置成功后，可通过 req.session 来访问和使用 session 对象。进而可以向 session 中存数据<br>req.session.destory() 函数 清空服务器保存的 session 信息</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 导入 session 中间件</span></span><br><span class="line"><span class="keyword">const</span> session = <span class="built_in">require</span>(<span class="string">&#x27;express-session&#x27;</span>)</span><br><span class="line"><span class="comment">// 2. 配置 session 中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">session</span>(&#123;</span><br><span class="line">    <span class="attr">secret</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// secret 属性的值可以为任意字符串</span></span><br><span class="line">    <span class="attr">resave</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">saveUninitialized</span>: <span class="literal">true</span></span><br><span class="line">&#125;))</span><br><span class="line"><span class="comment">// 3. 向 session 中存储数据</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/login&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 判断客户端是否提交正确的信息</span></span><br><span class="line">    <span class="keyword">const</span> &#123;userName, password&#125; = req.<span class="property">body</span></span><br><span class="line">    <span class="keyword">if</span>(userName !== <span class="string">&#x27;admin&#x27;</span> || password !== <span class="string">&#x27;123&#x27;</span>) <span class="keyword">return</span> res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>: <span class="number">1</span>, <span class="attr">msg</span>: <span class="string">&#x27;用户名或密码错误！&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// session 存储数据</span></span><br><span class="line">    req.<span class="property">session</span>.<span class="property">user</span> = req.<span class="property">body</span> <span class="comment">// 将用户信息存储到 session</span></span><br><span class="line">    req.<span class="property">session</span>.<span class="property">isLogin</span> = <span class="literal">true</span> <span class="comment">// 将用户登录状态存储到 session</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回结果给客户端</span></span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>:<span class="number">0</span>, <span class="attr">msg</span>: <span class="string">&#x27;登录成功&#x27;</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 4. 获取 session 中存储的数据</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;api/user&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;user&#125; = req.<span class="property">session</span></span><br><span class="line">    <span class="keyword">if</span> (user) &#123;</span><br><span class="line">        res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>: <span class="number">0</span>, user&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>: <span class="number">1</span>, <span class="attr">msg</span>: <span class="string">&#x27;没有该用户&#x27;</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 5. req.session.destory() 函数，清空服务器信息</span></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/logout&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 清空服务器 session </span></span><br><span class="line">    req.<span class="property">session</span>.<span class="title function_">destory</span>()</span><br><span class="line">    res.<span class="title function_">send</span>(&#123;</span><br><span class="line">        <span class="attr">status</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">msg</span>: <span class="string">&#x27;退出登录&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Express-中使用-JWT-身份认证"><a href="#Express-中使用-JWT-身份认证" class="headerlink" title="Express 中使用 JWT 身份认证"></a>Express 中使用 JWT 身份认证</h3><h4 id="安装-JWT-包"><a href="#安装-JWT-包" class="headerlink" title="安装 JWT 包"></a>安装 JWT 包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install jsonwebtoken express-jwt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>jsonwebtoken 用于生成 JWT 字符串</li>
+<li>express-jwt 将 JWT 字符串解析还原成 JSON 对象</li>
+</ul>
+<h4 id="定义-secret-密钥"><a href="#定义-secret-密钥" class="headerlink" title="定义 secret 密钥"></a>定义 secret 密钥</h4><p>为了保证 JWT 字符串的安全性，防止 JWT 字符串在网络传输过程中被人破解，我们需要专门定义一个用于加密和解密的 secret 密钥。<br>生成 JWT 字符串时，需要使用 secret 密钥对用户信息进行加密，最终得到加密好的 JWT 字符串<br>当把 JWT 字符串解析还原成 JSON 对象时，需要使用 secret 密钥进行解密<br>secret 密钥本质是任意字符串</p>
+<h4 id="生成-JWT-字符串"><a href="#生成-JWT-字符串" class="headerlink" title="生成 JWT 字符串"></a>生成 JWT 字符串</h4><p>调用 jsonwebtoken 包提供的 sign() 方法，将用户的信息加密成 JWT 字符串，响应给客户</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cont jwt = <span class="built_in">require</span>(<span class="string">&#x27;jsonwebtoken&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 三个参数：用户信息，加密密钥，配置对象</span></span><br><span class="line"><span class="keyword">const</span> token = jwt.<span class="title function_">sign</span>(user, secretKey, &#123;<span class="attr">expiresIn</span>: <span class="string">&#x27;30s&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="JWT-还原为-JSON-对象"><a href="#JWT-还原为-JSON-对象" class="headerlink" title="JWT 还原为 JSON 对象"></a>JWT 还原为 JSON 对象</h4><p>客户端访问权限接口时，需要主动通过请求头中的 Authorization 字段将 Token 字符串发送到服务器进行身份认证。<br>服务器可以通过 express-jwt 中间件，自动将客户端发送的 Token 解析还原成 JSON 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.use() 注册中间件</span></span><br><span class="line"><span class="comment">// expressJWT() 解析 Token 中间件</span></span><br><span class="line"><span class="comment">// unless() 指定不需要鉴权的接口</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">expressJWT</span>(&#123;<span class="attr">secret</span>: secretKey&#125;).<span class="title function_">unless</span>(&#123;<span class="attr">path</span>: [<span class="regexp">/\^/</span>api\/\/]&#125;))</span><br></pre></td></tr></table></figure>
+
+<h4 id="捕获解析-JWT-失败后产生的错误"><a href="#捕获解析-JWT-失败后产生的错误" class="headerlink" title="捕获解析 JWT 失败后产生的错误"></a>捕获解析 JWT 失败后产生的错误</h4><p>当使用 express-jwt 解析 token 字符串时，如果客户端发送过来的 Token 字符串不合法或过期，会产生解析失败的错误，影响项目正常运行，我们可以通过 Express 错误中间件，捕获并进行错误处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">err, req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// token 解析失败</span></span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">name</span> === <span class="string">&#x27;UnauthorizedError&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>: <span class="number">401</span>, <span class="attr">message</span>: <span class="string">&#x27;未知错误&#x27;</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 其它原因导致错误</span></span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">status</span>: <span class="number">500</span>, <span class="attr">message</span>: <span class="string">&#x27;服务器错误&#x27;</span>&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+    </div>
+</article>
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86-express"><span class="toc-number">1.</span> <span class="toc-text">认识 express</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-express"><span class="toc-number">1.1.</span> <span class="toc-text">安装 express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-express-%E5%88%9B%E5%BB%BA-web-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">使用 express 创建 web 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">Express 的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%9B%91%E5%90%AC-GET-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 监听 GET 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%9B%91%E5%90%AC-POST-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 监听 POST 请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SEND-%E5%B0%86%E5%A4%84%E7%90%86%E5%A5%BD%E7%9A%84%E5%86%85%E5%AE%B9%E5%8F%91%E9%80%81%E7%BB%99%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. SEND 将处理好的内容发送给客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%BD%E5%A4%9F%E4%BD%BF%E7%94%A8-express-static-%E5%BF%AB%E9%80%9F%E6%89%98%E7%AE%A1%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">能够使用 express.static() 快速托管静态资源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#express-%E8%B7%AF%E7%94%B1"><span class="toc-number">2.</span> <span class="toc-text">express 路由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8C%B9%E9%85%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">路由的匹配过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E8%B7%AF%E7%94%B1"><span class="toc-number">2.2.</span> <span class="toc-text">模块化路由</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建路由模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%9D%97"><span class="toc-number">2.2.2.</span> <span class="toc-text">使用路由模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#express-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">express 中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">什么是中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">中间件的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">定义一个中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.1.</span> <span class="toc-text">定义全局生效的中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B1%80%E9%83%A8%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.2.</span> <span class="toc-text">定义局部生效的中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%A4%9A%E4%B8%AA%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.3.</span> <span class="toc-text">定义多个中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%B1%80%E9%83%A8%E7%94%9F%E6%95%88%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.3.4.</span> <span class="toc-text">多个局部生效的中间件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.4.</span> <span class="toc-text">中间件使用注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.5.</span> <span class="toc-text">中间件的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%BA%A7%E5%88%AB%E4%B8%AD%E9%97%B4%E4%BB%B6-Application-level-middleware"><span class="toc-number">3.6.</span> <span class="toc-text">应用级别中间件(Application-level middleware)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E6%8C%82%E8%BD%BD%E8%B7%AF%E5%BE%84%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%8C%E6%AF%8F%E6%AC%A1-app-%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E6%97%B6%E6%89%A7%E8%A1%8C"><span class="toc-number">3.6.1.</span> <span class="toc-text">不带挂载路径的中间件，每次 app 接受请求时执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E6%8C%82%E8%BD%BD%E8%B7%AF%E5%BE%84%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BB%BB%E4%BD%95%E7%B1%BB%E5%9E%8B%E7%9A%84-http-%E8%AF%B7%E6%B1%82%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%83%BD%E4%BC%9A%E8%A2%AB%E6%89%A7%E8%A1%8C"><span class="toc-number">3.6.2.</span> <span class="toc-text">带有挂载路径的中间件函数，任何类型的 http 请求当前路径中间件都会被执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.6.3.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AD%90%E5%A0%86%E6%A0%88%E7%9A%84%E6%95%B0%E7%BB%84%EF%BC%8C%E5%A4%84%E7%90%86-get-%E8%AF%B7%E6%B1%82"><span class="toc-number">3.6.4.</span> <span class="toc-text">带有中间件子堆栈的数组，处理 get 请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%BA%A7%E5%88%AB%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.7.</span> <span class="toc-text">错误级别中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E5%86%85%E7%BD%AE%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.8.</span> <span class="toc-text">Express 内置中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.9.</span> <span class="toc-text">第三方中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%AD%E9%97%B4%E4%BB%B6-body-parser"><span class="toc-number">3.9.1.</span> <span class="toc-text">第三方中间件 body-parser</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.10.</span> <span class="toc-text">自定义中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">3.11.</span> <span class="toc-text">中间件的处理流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%EF%BC%88Cross-Origin-Resource-Sharing%EF%BC%89%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.12.</span> <span class="toc-text">跨域（Cross-Origin Resource Sharing）中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Express-%E4%B8%AD%E4%BD%BF%E7%94%A8-session-%E8%AE%A4%E8%AF%81"><span class="toc-number">3.13.</span> <span class="toc-text">在 Express 中使用 session 认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-express-session-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.13.1.</span> <span class="toc-text">安装 express-session 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8-express-session-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">3.13.2.</span> <span class="toc-text">配置和使用 express-session 中间件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="toc-number">3.14.</span> <span class="toc-text">Express 中使用 JWT 身份认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-JWT-%E5%8C%85"><span class="toc-number">3.14.1.</span> <span class="toc-text">安装 JWT 包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-secret-%E5%AF%86%E9%92%A5"><span class="toc-number">3.14.2.</span> <span class="toc-text">定义 secret 密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90-JWT-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.14.3.</span> <span class="toc-text">生成 JWT 字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E8%BF%98%E5%8E%9F%E4%B8%BA-JSON-%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.14.4.</span> <span class="toc-text">JWT 还原为 JSON 对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E8%A7%A3%E6%9E%90-JWT-%E5%A4%B1%E8%B4%A5%E5%90%8E%E4%BA%A7%E7%94%9F%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-number">3.14.5.</span> <span class="toc-text">捕获解析 JWT 失败后产生的错误</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/06/08/Express/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/06/08/Express/&text=Express"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/06/08/Express/&is_video=false&description=Express"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Express&body=Check out this article: https://helenzhanglp.github.io/2021/06/08/Express/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/06/08/Express/&title=Express"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/06/08/Express/&name=Express&description=&lt;p&gt;&lt;a href=&#34;expressjs.com.cn&#34;&gt;Express 中文网&lt;/a&gt;，是用于开发 &lt;span class=&#34;custom-box custom-box-393&#34;&gt;Web 网站服务器&lt;/span&gt; 与 &lt;span class=&#34;custom-box custom-box-393&#34;&gt;API 接口服务器&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;认识-express&#34;&gt;&lt;a href=&#34;#认识-express&#34; class=&#34;headerlink&#34; title=&#34;认识 express&#34;&gt;&lt;/a&gt;认识 &lt;code&gt;express&lt;/code&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;custom-box custom-box-933&#34;&gt;基于 Node.js 平台&lt;/span&gt;&lt;span class=&#34;custom-box custom-box-339&#34;&gt;快速、开放、极简&lt;/span&gt;的 &lt;span class=&#34;custom-box custom-box-933&#34;&gt;Web 开发框架。&lt;/span&gt;&lt;br&gt;是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，&lt;span class=&#34;custom-box custom-box-933&#34;&gt;专门用来创建 Web 服务器的&lt;/span&gt;&lt;br&gt;Express is a routing and middleware web framework that has minimal functionality of its own&lt;br&gt;Express 是一个路由和中间件 web 框架，本身功能很少。&lt;br&gt;&lt;font color=&#34;red&#34;&gt;An Express application is essentially a series of middleware function calls.&lt;br&gt;&lt;u&gt;&lt;strong&gt;Express 应用程序本质上是一系列中间件函数调用。&lt;/strong&gt;&lt;/u&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;安装-express&#34;&gt;&lt;a href=&#34;#安装-express&#34; class=&#34;headerlink&#34; title=&#34;安装 express&#34;&gt;&lt;/a&gt;安装 express&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ npm i express@4.17.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;使用-express-创建-web-服务器&#34;&gt;&lt;a href=&#34;#使用-express-创建-web-服务器&#34; class=&#34;headerlink&#34; title=&#34;使用 express 创建 web 服务器&#34;&gt;&lt;/a&gt;使用 &lt;code&gt;express&lt;/code&gt; 创建 web 服务器&lt;/h3&gt;&lt;pre class=&#34;mermaid&#34;&gt; flowchart LR
+ s1[导入] --&gt; s2[创建 Web 服务器]
+ s2 --&gt; s3[启动 Web 服务器]&lt;/pre&gt;
+&lt;hr&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 1. 导入 express&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; express = &lt;span class=&#34;built_in&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;express&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 2. 创建 web 服务器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; app = &lt;span class=&#34;title function_&#34;&gt;express&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 3. 启动 web 服务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;express.&lt;span class=&#34;title function_&#34;&gt;listen&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;80&lt;/span&gt;, &lt;span class=&#34;function&#34;&gt;()=&amp;gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;express server running at http://127.0.0.1&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;Express-的基本使用&#34;&gt;&lt;a href=&#34;#Express-的基本使用&#34; class=&#34;headerlink&#34; title=&#34;Express 的基本使用&#34;&gt;&lt;/a&gt;Express 的基本使用&lt;/h3&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023
+      Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
+  </script>
+  
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

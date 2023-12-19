@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="对象数据类型即引用类型  mindmap  对象数据类型    普通对象      类数组     实例     原型对象   数组对象    正则对象    日期对象    Set&#x2F;Map  创建对象创建字面量(Literal)对象 由 0 到 多组键值对(属性名和属性值)组成。   属性名是对象的一个属性； 属性名一般是字符串，也可以是数字、布尔值、undefined、null、SymbolU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-引用类型">
+<meta property="og:url" content="https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="对象数据类型即引用类型  mindmap  对象数据类型    普通对象      类数组     实例     原型对象   数组对象    正则对象    日期对象    Set&#x2F;Map  创建对象创建字面量(Literal)对象 由 0 到 多组键值对(属性名和属性值)组成。   属性名是对象的一个属性； 属性名一般是字符串，也可以是数字、布尔值、undefined、null、SymbolU">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-03-19T04:20:05.000Z">
+<meta property="article:modified_time" content="2023-12-12T06:47:39.397Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Object">
+<meta property="article:tag" content="对象继承">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript-引用类型</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </span>
+    <br />
+    <span id="actions">
+      <ul>
+        
+          <li><a class="icon" href="/2012/12/15/JavaScript-6-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2012/03/18/JavaScript-5-%E5%87%BD%E6%95%B0/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br />
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&text=JavaScript-引用类型"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&is_video=false&description=JavaScript-引用类型"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-引用类型&body=Check out this article: https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&name=JavaScript-引用类型&description=&lt;p&gt;对象数据类型即引用类型&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt; mindmap
+ 对象数据类型 
+  普通对象 
+    类数组
+    实例
+    原型对象
+  数组对象 
+  正则对象 
+  日期对象 
+  Set/Map&lt;/pre&gt;
+
+&lt;h2 id=&#34;创建对象&#34;&gt;&lt;a href=&#34;#创建对象&#34; class=&#34;headerlink&#34; title=&#34;创建对象&#34;&gt;&lt;/a&gt;创建对象&lt;/h2&gt;&lt;h3 id=&#34;创建字面量-Literal-对象&#34;&gt;&lt;a href=&#34;#创建字面量-Literal-对象&#34; class=&#34;headerlink&#34; title=&#34;创建字面量(Literal)对象&#34;&gt;&lt;/a&gt;创建字面量(Literal)对象&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;由 0 到 多组&lt;u&gt;键值对(属性名和属性值)&lt;/u&gt;组成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;属性名是对象的一个属性；&lt;/li&gt;
+&lt;li&gt;属性名一般是字符串，也可以是数字、布尔值、undefined、null、Symbol&lt;br&gt;&lt;font color=&#34;red&#34;&gt;Uncaught SyntaxError: Unexpected number&lt;/font&gt; 属性名不可以是 bigInt 类型&lt;/li&gt;
+&lt;li&gt;如果将属性名设置为 Object 类型，会通过 toString 将属性名转换为 [object Object]&lt;/li&gt;
+&lt;li&gt;属性名设置为函数，可以正常编译通过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; symb = &lt;span class=&#34;title class_&#34;&gt;Symbol&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;bracket&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; myBaby = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;attr&#34;&gt;name&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;Audery&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;111&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  [symb]: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 注意 Symbol 类型的值要用 [] 包裹起来&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;创建实例对象&#34;&gt;&lt;a href=&#34;#创建实例对象&#34; class=&#34;headerlink&#34; title=&#34;创建实例对象&#34;&gt;&lt;/a&gt;创建实例对象&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; baby = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Object&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baby.&lt;span class=&#34;property&#34;&gt;name&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;Audery&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baby.&lt;span class=&#34;property&#34;&gt;age&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;开发过程中实际多采用字面量形式创建对象，&lt;u&gt;字面量对象避端是&lt;font color=&#34;#FFD700&#34;&gt;产生大量重复代码&lt;/font&gt;**&lt;/u&gt;&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E9%9D%A2%E9%87%8F-Literal-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">创建字面量(Literal)对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">创建实例对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%88%90%E5%91%98%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">对象成员访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">3.</span> <span class="toc-text">原型和原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E7%BB%A7%E6%89%BF"><span class="toc-number">3.1.</span> <span class="toc-text">JavaScript 继承</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="header">
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript-引用类型
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+        <time datetime="2012-03-19T04:20:05.000Z" itemprop="datePublished">2012-03-19</time>
+    </div>
+
+
+          
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object/" rel="tag">Object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF/" rel="tag">对象继承</a></li></ul>
+
+      </div>
+  </header>
+  
+
+    <div class="content" itemprop="articleBody">
+      <p>对象数据类型即引用类型</p>
+<pre class="mermaid"> mindmap
+ 对象数据类型 
+  普通对象 
+    类数组
+    实例
+    原型对象
+  数组对象 
+  正则对象 
+  日期对象 
+  Set/Map</pre>
+
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="创建字面量-Literal-对象"><a href="#创建字面量-Literal-对象" class="headerlink" title="创建字面量(Literal)对象"></a>创建字面量(Literal)对象</h3><blockquote>
+<p>由 0 到 多组<u>键值对(属性名和属性值)</u>组成。</p>
+</blockquote>
+<ul>
+<li>属性名是对象的一个属性；</li>
+<li>属性名一般是字符串，也可以是数字、布尔值、undefined、null、Symbol<br><font color='red'>Uncaught SyntaxError: Unexpected number</font> 属性名不可以是 bigInt 类型</li>
+<li>如果将属性名设置为 Object 类型，会通过 toString 将属性名转换为 [object Object]</li>
+<li>属性名设置为函数，可以正常编译通过。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> symb = <span class="title class_">Symbol</span>(<span class="string">&#x27;bracket&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> myBaby = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Audery&#x27;</span>,</span><br><span class="line">  <span class="number">0</span>: <span class="number">111</span>,</span><br><span class="line">  [symb]: <span class="number">1</span> <span class="comment">// 注意 Symbol 类型的值要用 [] 包裹起来</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建实例对象"><a href="#创建实例对象" class="headerlink" title="创建实例对象"></a>创建实例对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> baby = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br><span class="line">baby.<span class="property">name</span> = <span class="string">&#x27;Audery&#x27;</span>,</span><br><span class="line">baby.<span class="property">age</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开发过程中实际多采用字面量形式创建对象，<u>字面量对象避端是<font color="#FFD700">产生大量重复代码</font>**</u></p>
+</blockquote>
+<h2 id="对象成员访问"><a href="#对象成员访问" class="headerlink" title="对象成员访问"></a>对象成员访问</h2><blockquote>
+<p>获取对象中某个属性名对应的属性值</p>
+</blockquote>
+<ul>
+<li>对象.属性名<br><span class='custom-box custom-box-933'>仅适用于属性名为字符串类型</span></li>
+<li>对象[属性名]<br><span class='custom-box custom-box-393'>注意：这种方式获取属性值时，要特别关注<code>属性名数据类型</code></span></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myBaby.<span class="property">name</span>) <span class="comment">// Audery</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myBaby[<span class="number">0</span>]) <span class="comment">// 111</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(myBaby[symb]) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>对象内置属性<br><code>__proto__</code> [[prototype]] 对象属性，对象创建时生成</p>
+<h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><p>JavaScript 是基于原型的面向对象语言，对象默认有 prototype，可以将需要共享的实例方法绑在 prototype 上，达到方法共享的目的。对象每个实例都有各自 <code>__proto__</code> 属性，该属性指向对象的 prototype 属性上。这种原型链接的关系称为原型链，null 是原型链的最后一个链接。</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015727237">继承</a></p>
+<h3 id="JavaScript-继承"><a href="#JavaScript-继承" class="headerlink" title="JavaScript 继承"></a>JavaScript 继承</h3><ul>
+<li>原型链继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Super</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Son</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line"><span class="title class_">Son</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Super</span>()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只要把子类的原型指向父类的实例就可以了，再演示一个更丰满的例子</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Base</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">friends</span> = [<span class="string">&#x27;lily&#x27;</span>, <span class="string">&#x27;lucy&#x27;</span>, <span class="string">&#x27;coco&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Son</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line"><span class="title class_">Son</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Base</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Audery</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Audery&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Gulu</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Gulu&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="title class_">Gulu</span>.<span class="property">friends</span>.<span class="title function_">push</span>(<span class="string">&#x27;emily&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Audery</span>.<span class="property">friends</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用类型会出现数组引用多实例因共享导致的相互污染的问题，考虑使用 ** 构造函数继承 ** 实现</p>
+</blockquote>
+<ul>
+<li><p>构造函数继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Base</span>(<span class="params">female</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sex</span> = female</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">friends</span> = [<span class="string">&#x27;lily&#x27;</span>, <span class="string">&#x27;lucy&#x27;</span>, <span class="string">&#x27;coco&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Son</span>(<span class="params">name, age, female</span>) &#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  <span class="title class_">Base</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Audery</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Audery&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Gulu</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Gulu&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="title class_">Gulu</span>.<span class="property">friends</span>.<span class="title function_">push</span>(<span class="string">&#x27;emily&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Audery</span>.<span class="property">friends</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Gulu</span>.<span class="property">friends</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面说了，通过对象冒充调用父类构造方法，其实就是复制父类构造函数中的属性、方法，到子类构造函数中，原型方法无法继承</p>
+</blockquote>
+</li>
+<li><p>组合继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Base</span>(<span class="params">female</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sex</span> = female</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">friends</span> = [<span class="string">&#x27;lily&#x27;</span>, <span class="string">&#x27;lucy&#x27;</span>, <span class="string">&#x27;coco&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Base</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">say</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;I have some friends, they are &#x27;</span> + <span class="variable language_">this</span>.<span class="property">friends</span>.<span class="title function_">join</span>(<span class="string">&#x27;、&#x27;</span>)+<span class="string">&#x27; respectively!&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Son</span>(<span class="params">name, age, female</span>) &#123;</span><br><span class="line">  <span class="comment">// 对象冒充调用父类方法</span></span><br><span class="line">  <span class="title class_">Base</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, female); <span class="comment">// 子类冒充父类，子类调用父类构造函数。即，子类复制子父类代码</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原型继承父类实例指向子类原型</span></span><br><span class="line"><span class="title class_">Son</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Base</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Audery</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Audery&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="title class_">Gulu</span> = <span class="keyword">new</span> <span class="title class_">Son</span>(<span class="string">&#x27;Gulu&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="title class_">Gulu</span>.<span class="property">friends</span>.<span class="title function_">push</span>(<span class="string">&#x27;emily&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>组合继承实现了：</p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 属性私有化、方法共享、引用数组间不相互污染</li>
+</ul>
+</li>
+</ul>
+<p>** 以上是原型链继承的周边，不使用 Object.create， 以下是使用 Object.create 方法相关继承的演生 **</p>
+<ul>
+<li><p>原型式继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">base</span>(<span class="params">o</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">F</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">  F.<span class="property"><span class="keyword">prototype</span></span> = o;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">F</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseObj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;基类&#x27;</span>,</span><br><span class="line">  <span class="attr">arr</span>: [<span class="string">&#x27;array1&#x27;</span>,<span class="string">&#x27;array2&#x27;</span>,<span class="string">&#x27;array3&#x27;</span>],</span><br><span class="line">  <span class="attr">fn</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>, <span class="variable language_">this</span>.<span class="property">arr</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baseInstance1 = <span class="title function_">base</span>(baseObj)</span><br><span class="line"><span class="keyword">var</span> baseInstance2 = <span class="title function_">base</span>(baseObj)</span><br><span class="line">baseInstance2.<span class="property">name</span> = <span class="string">&#x27;修改属性值&#x27;</span></span><br><span class="line">baseInstance1.<span class="property">arr</span>.<span class="title function_">push</span>(<span class="string">&#x27;array4&#x27;</span>)</span><br><span class="line"><span class="comment">/* === baseInstance2 添加了一个实例属性 === */</span></span><br></pre></td></tr></table></figure></li>
+<li><p>寄生式继承</p>
+</li>
+<li><p>寄生组合继承</p>
+</li>
+<li><p>Class extends</p>
+<blockquote>
+<p>如果子类中存在构造函数，则需要在使用 this 之前首先调用 super。 与寄生组合继承不同的是，ES6 先将父类实例对象的属性和方法加到 this 上，必须先调用 super 方法，然后再用的子类构造函数修改 this</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * babel.min.js:2 Uncaught SyntaxError: Inline Babel script: &#x27;this&#x27; is not allowed before super()</span></span><br><span class="line"><span class="comment">     3 |   constructor(props) &#123;</span></span><br><span class="line"><span class="comment">      4 |     // super(props);</span></span><br><span class="line"><span class="comment">    &gt; 5 |     this.state = &#123;date: new Date()&#125;;</span></span><br><span class="line"><span class="comment">        |     ^</span></span><br><span class="line"><span class="comment">      6 |   &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>实现原理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null。</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property">setPrototypeOf</span> = <span class="keyword">function</span> (<span class="params">obj, proto</span>) &#123;</span><br><span class="line">  obj.<span class="property">__proto__</span> = proto;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 的实例继承 A 的实例</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(B.<span class="property"><span class="keyword">prototype</span></span>, A.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 继承 A 的静态属性</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(B, A);</span><br></pre></td></tr></table></figure>
+
+    </div>
+</article>
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">创建对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E9%9D%A2%E9%87%8F-Literal-%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">创建字面量(Literal)对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">创建实例对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%88%90%E5%91%98%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">对象成员访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">3.</span> <span class="toc-text">原型和原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E7%BB%A7%E6%89%BF"><span class="toc-number">3.1.</span> <span class="toc-text">JavaScript 继承</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&text=JavaScript-引用类型"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&is_video=false&description=JavaScript-引用类型"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript-引用类型&body=Check out this article: https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&title=JavaScript-引用类型"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2012/03/19/JavaScript-4-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/&name=JavaScript-引用类型&description=&lt;p&gt;对象数据类型即引用类型&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt; mindmap
+ 对象数据类型 
+  普通对象 
+    类数组
+    实例
+    原型对象
+  数组对象 
+  正则对象 
+  日期对象 
+  Set/Map&lt;/pre&gt;
+
+&lt;h2 id=&#34;创建对象&#34;&gt;&lt;a href=&#34;#创建对象&#34; class=&#34;headerlink&#34; title=&#34;创建对象&#34;&gt;&lt;/a&gt;创建对象&lt;/h2&gt;&lt;h3 id=&#34;创建字面量-Literal-对象&#34;&gt;&lt;a href=&#34;#创建字面量-Literal-对象&#34; class=&#34;headerlink&#34; title=&#34;创建字面量(Literal)对象&#34;&gt;&lt;/a&gt;创建字面量(Literal)对象&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;由 0 到 多组&lt;u&gt;键值对(属性名和属性值)&lt;/u&gt;组成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;属性名是对象的一个属性；&lt;/li&gt;
+&lt;li&gt;属性名一般是字符串，也可以是数字、布尔值、undefined、null、Symbol&lt;br&gt;&lt;font color=&#34;red&#34;&gt;Uncaught SyntaxError: Unexpected number&lt;/font&gt; 属性名不可以是 bigInt 类型&lt;/li&gt;
+&lt;li&gt;如果将属性名设置为 Object 类型，会通过 toString 将属性名转换为 [object Object]&lt;/li&gt;
+&lt;li&gt;属性名设置为函数，可以正常编译通过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; symb = &lt;span class=&#34;title class_&#34;&gt;Symbol&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;bracket&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; myBaby = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;attr&#34;&gt;name&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;Audery&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;111&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  [symb]: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 注意 Symbol 类型的值要用 [] 包裹起来&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;创建实例对象&#34;&gt;&lt;a href=&#34;#创建实例对象&#34; class=&#34;headerlink&#34; title=&#34;创建实例对象&#34;&gt;&lt;/a&gt;创建实例对象&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; baby = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Object&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baby.&lt;span class=&#34;property&#34;&gt;name&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;Audery&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baby.&lt;span class=&#34;property&#34;&gt;age&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;开发过程中实际多采用字面量形式创建对象，&lt;u&gt;字面量对象避端是&lt;font color=&#34;#FFD700&#34;&gt;产生大量重复代码&lt;/font&gt;**&lt;/u&gt;&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2023
+      Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
+  </script>
+  
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
