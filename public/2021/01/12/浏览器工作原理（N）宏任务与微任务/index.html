@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="宏任务如同开会分配工作，微任务是工作过程中加入临时任务 微任务——实时性和效率之间一个有效的权衡 基于微任务的技术有MutationObserver、 Promise 以及以 Promise 为基础开发出来的其它技术  宏任务   主线程上的任务    渲染事件（如解析 DOM、计算布局、绘制）   用户交互事件（如鼠标、滚动、放大缩小等）   JavaScript 脚本执行   网络请求">
+  <head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="宏任务如同开会分配工作，微任务是工作过程中加入临时任务 微任务——实时性和效率之间一个有效的权衡 基于微任务的技术有MutationObserver、 Promise 以及以 Promise 为基础开发出来的其它技术  宏任务   主线程上的任务    渲染事件（如解析 DOM、计算布局、绘制）   用户交互事件（如鼠标、滚动、放大缩小等）   JavaScript 脚本执行   网络请求">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器工作原理——宏任务与微任务">
 <meta property="og:url" content="https://helenzhanglp.github.io/2021/01/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88N%EF%BC%89%E5%AE%8F%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1/index.html">
@@ -15,50 +15,57 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/3c/15/3c2b9b474c4df544df61ebd62a7b3715.png">
 <meta property="article:published_time" content="2021-01-12T10:48:11.000Z">
-<meta property="article:modified_time" content="2021-07-05T05:27:30.961Z">
+<meta property="article:modified_time" content="2024-01-25T07:31:03.791Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="browser">
 <meta property="article:tag" content="浏览器工作原理">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://static001.geekbang.org/resource/image/3c/15/3c2b9b474c4df544df61ebd62a7b3715.png">
     
-    
+      
         
           
               <link rel="shortcut icon" href="/images/logo.jpeg">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>浏览器工作原理——宏任务与微任务</title>
-    <!-- styles -->
-    
+              
+                
+                  
+                    
+                        <link rel="icon" type="image/png" href="/images/logo.jpeg"
+                          sizes="192x192">
+                        
+                          
+                            
+                              
+                                  <link rel="apple-touch-icon" sizes="180x180"
+                                    href="/images/apple-touch-icon.png">
+                                  
+                                    
+                                      
+                                        <!-- title -->
+                                        <title>
+                                          浏览器工作原理——宏任务与微任务
+                                        </title>
+                                        <!-- styles -->
+                                        
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-    
+                                          
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
 
-    
+                                            
 <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
-    
+                                              
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- rss -->
-    
-    
-    <!-- jquery -->
-    
+                                                <link
+                                                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                                                  rel="stylesheet" />
+                                                <!-- rss -->
+                                                
+                                                      
+                                                          <!-- jquery -->
+                                                          
 <script src="/lib/jquery/jquery.min.js"></script>
 
 <!-- hexo injector head_end start -->
@@ -67,8 +74,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
-<body>
-    <div class="banner">
+    <body>
+      <div class="banner">
 <div id="blogtitel" class="blogtitel">魔女</div>
 <ul id="wrapper" class="wrapper">
   <div class="sun">
@@ -96,9 +103,9 @@
 </ul>
 </div>
 
-    <div class="background">
-      
-        <div id="header-post">
+        <div class="background">
+          
+            <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
@@ -214,10 +221,10 @@ step5 --&gt; step6(统计执行完成的时长)&lt;/pre&gt;
     </div>
   </span>
 </div>
-      
-      <div class="content index width mx-auto px2 my4">
-          
-          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+              
+                <div class="content index width mx-auto px2 my4">
+                  
+                        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
@@ -387,9 +394,9 @@ step2 --> |解决频繁操作dom引发的性能问题| step3(MutationObserver异
 </article>
 
 
-      </div>
-      
-       <div id="footer-post-container">
+                </div>
+                
+                  <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -480,10 +487,10 @@ step5 --&gt; step6(统计执行完成的时长)&lt;/pre&gt;
   </div>
 </div>
 
-      
-      <footer id="footer">
+                    
+                      <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023
+    Copyright &copy; 2024
       Helen Zhang
   </div>
   <div class="footer-right">
@@ -524,7 +531,7 @@ step5 --&gt; step6(统计执行完成的时长)&lt;/pre&gt;
     }
   </script>
   
-      
+                        
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
@@ -535,8 +542,8 @@ step5 --&gt; step6(统计执行完成的时长)&lt;/pre&gt;
 <!-- Disqus Comments -->
 
 
-    </div>
-<script type="text/x-mathjax-config">
+        </div>
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
@@ -552,4 +559,5 @@ step5 --&gt; step6(统计执行完成的时长)&lt;/pre&gt;
 </script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
-</html>
+
+    </html>

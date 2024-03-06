@@ -9,6 +9,8 @@ tags:
 Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
 
 ## fs 模块
+The `node:fs` module enables interacting with the file system in a way modeled on standand POSIX functions
+`node:fs` 支持以标准POSIX函数为模型化的方式与文件系统交互。
 ```JavaScript
 const fs = require('fs')
 fs.readFile('./context.txt',callback)
@@ -16,6 +18,14 @@ fs.readFile('./context.txt',callback)
 <font color='red'>[Error: ENOENT: no such file or directory, open 'context.txt'] </font>
 <span class='custom-box custom-box-393'>`path` 为相对路径时，`./` 指的是 node 运行环境的地址，如在 '/' 下运行 `node ./src/index.js` 当前目录是指根目录，`/context.txt`不存在，所以找不到文件。</span>
 [具体的 Demo 案例](https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js)
+
+### fs.realpathSync(path[,options])
+return the resolved pathname 返回已解析的路径名
+*   path `<string>` | `<Buffer>` | `<URL>`
+*   options `<string>` | `<Object>`
+    * encoding `<string>` Default: 'utf8'
+    * encoding utf8/buffer/base64
+*   Returns: `<string>` | `<Buffer>`
 
 ### fs - util
 The node:util module supports the needs of Node.js internal APIs. Many of the utilities are useful for application and developers as well.
@@ -107,8 +117,56 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif') // '/Users/lipi
 path.join() // '.' 表示当前目录
 path.join(process.cwd(), 'hexo.json') // '/Users/lipingzhang/Desktop/hexo-cli的副本/a.json'
 ```
-### process
+
+## process
+The process object provides information about, and control over(对...的控制)，the current Node.js process.
+进程对象提供了当前 NodeJs 进程的相关信息和支配。
+
 > 全局变量，提供有关当前 Node.js 进程信息，并对其进行控制，不需要 require
+
+### platform
+### chdir
+### process.cwd()
+The `process.cwd()` 返回 <string>，this method returns the current working directory of the Node.js process.
+
+### process.env
+> <Object>
+The process.env property returns an object containing the user enviroment.
+
+### argv
+### nextTick
+
+### Process events
+#### Event: 'unhandledRejection'
+> The 'unhandledRejection' event is emitted whenever a Promise is rejected and no error handler is attached to the promise within a turn of the event loop.
+当 Promise 请求被拒绝且一轮事件循环中没有错误处理程序添加到 promise 时，发送 'unhandledRejection' 
+when programing with Promises, exceptions are encapsulated as 'rejected promise'
+当使用 Promise 编程时，异常被封装为 'rejected promise'
+Rejections can be caught and handled using `promise.catch()` and are propagated through a `Promise` chain.
+使用 `prmise.catch()` 可以捕获并处理 Rejections，通过 promise chain 可以传播 rejections.
+The `unhandledRejection` event is useful for detecting and keeping track of promises that were rejected whose rejections have not yet been handled.
+`unhandledRejection` 事件可以用于检测和跟踪那些未处理或拒绝的 rejections 
+
+```JavaScript
+    const process = require('node:process')
+
+    /**
+     * reason <Error> | <any> The object with which the promise was rejected (typically an Error object).
+     * promise <Promise> The rejected promise.
+     */
+    process.on('unhandledRejection', (reason, promise) => {
+        // ...
+    })
+
+    // The following will also trigger the 'unhandledRejection' event to be emitted:
+    function SomeResource() {
+        // Initially set the loaded status to a rejected promise
+        this.loaded = Promise.reject(new Error('Resource not yet loaded!'));
+    }
+
+    const resource = new SomeResource();
+```
+
 #### process - 信号事件
 Interrupt from keyboard
 SIGINT 在终端运行时，可以被所有平台支持，通常可以通过 <Ctrl>+C 触发(虽然这个不能配置)。 当终端运行在raw模式，它不会被触发。

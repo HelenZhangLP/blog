@@ -1,5 +1,5 @@
 ---
-title: Python 启蒙
+title: Python 入门
 date: 2023-03-13 13:05:46
 tags:
 - Python

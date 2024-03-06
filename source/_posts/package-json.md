@@ -1,10 +1,12 @@
 ---
 title: package.json
-date: 2020-04-17 11:20:44
+date: 2018-04-17 11:20:44
 tags:
 - webpack
 - node
 ---
+
+[参考 npmjs 官方文档](https://docs.npmjs.com/cli/v7/configuring-npm/package-json/#private)
 
 ```bash
 zhangliping@zhangliingdembp ~/Documents/vite  $ npm install # 安装 package.json > dependencies 节点下的所有包
@@ -24,17 +26,19 @@ zhangliping@zhangliingdembp ~/Documents/vite  $ npm uninstall package -g # -g �
 ```javascript
 //package.json
 {
-  "name": "axios",
+  "name": "axios", // 包的名称
   "version": "1.0.0",
   "description": "",
   /* "main": "index.js", 移除，防止意外发布代码 */
-  "private": true, // 确保安装包是私有的
+  // If you set `private: true` in your package.json, then npm will refuse to publish it.
+  // this is a way to prevent accidental publication of private repositories
+  "private": true, // 确保安装包是私有的，防止不小心执行了 `npm publish` 发布到 npm 服务器
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": { // 依赖包
     "webpack": "^5.43.0"
   },
   "devDependencies": {

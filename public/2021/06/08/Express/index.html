@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Express 中文网，是用于开发 Web 网站服务器 与 API 接口服务器 认识 express 基于 Node.js 平台快速、开放、极简的 Web 开发框架。是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，专门用来创建 Web 服务器的Express is a routing and middleware web fram">
+  <head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Express 中文网，是用于开发 Web 网站服务器 与 API 接口服务器 认识 express 基于 Node.js 平台快速、开放、极简的 Web 开发框架。是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，专门用来创建 Web 服务器的Express is a routing and middleware web fram">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express">
 <meta property="og:url" content="https://helenzhanglp.github.io/2021/06/08/Express/index.html">
@@ -14,50 +14,57 @@
 <meta property="og:description" content="Express 中文网，是用于开发 Web 网站服务器 与 API 接口服务器 认识 express 基于 Node.js 平台快速、开放、极简的 Web 开发框架。是 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法，类似于 NodeJs 中内置的 http 模块，专门用来创建 Web 服务器的Express is a routing and middleware web fram">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-08T03:38:09.000Z">
-<meta property="article:modified_time" content="2023-11-17T02:45:24.291Z">
+<meta property="article:modified_time" content="2024-01-25T07:31:03.756Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="WebServer">
 <meta property="article:tag" content="node">
 <meta property="article:tag" content="Express">
 <meta name="twitter:card" content="summary">
     
-    
+      
         
           
               <link rel="shortcut icon" href="/images/logo.jpeg">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Express</title>
-    <!-- styles -->
-    
+              
+                
+                  
+                    
+                        <link rel="icon" type="image/png" href="/images/logo.jpeg"
+                          sizes="192x192">
+                        
+                          
+                            
+                              
+                                  <link rel="apple-touch-icon" sizes="180x180"
+                                    href="/images/apple-touch-icon.png">
+                                  
+                                    
+                                      
+                                        <!-- title -->
+                                        <title>
+                                          Express
+                                        </title>
+                                        <!-- styles -->
+                                        
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-    
+                                          
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
 
-    
+                                            
 <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
-    
+                                              
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- rss -->
-    
-    
-    <!-- jquery -->
-    
+                                                <link
+                                                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                                                  rel="stylesheet" />
+                                                <!-- rss -->
+                                                
+                                                      
+                                                          <!-- jquery -->
+                                                          
 <script src="/lib/jquery/jquery.min.js"></script>
 
 <!-- hexo injector head_end start -->
@@ -66,8 +73,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
-<body>
-    <div class="banner">
+    <body>
+      <div class="banner">
 <div id="blogtitel" class="blogtitel">魔女</div>
 <ul id="wrapper" class="wrapper">
   <div class="sun">
@@ -95,9 +102,9 @@
 </ul>
 </div>
 
-    <div class="background">
-      
-        <div id="header-post">
+        <div class="background">
+          
+            <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
@@ -184,10 +191,10 @@
     </div>
   </span>
 </div>
-      
-      <div class="content index width mx-auto px2 my4">
-          
-          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+              
+                <div class="content index width mx-auto px2 my4">
+                  
+                        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
@@ -364,7 +371,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解析 application/x-www/form-urlencoded 格式数据中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123;<span class="attr">extended</span>: <span class="literal">false</span>&#125;))</span><br><span class="line"><span class="comment">// post 请求，body 中带 x-www-form-urlencoded 格式数据</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getUser&#x27;</span>,<span class="function">(<span class="params">req, res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// req.body 接收客户端传过来的数据</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>) <span class="comment">// &#123;id: &#x27;u12950&#x27;&#125;，默认情况下，没有配置解析表单数据中间件，req.body = &#123;&#125;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这些中间件，极大的提高了 Express 项目的开发效率及体验。</p>
 <h3 id="第三方中间件"><a href="#第三方中间件" class="headerlink" title="第三方中间件"></a>第三方中间件</h3><p>第三方中间件可按需下载配置，从而提高开发效率。</p>
-<h4 id="第三方中间件-body-parser"><a href="#第三方中间件-body-parser" class="headerlink" title="第三方中间件 body-parser"></a>第三方中间件 body-parser</h4><p>body-parser 用于解析请求体数据，在 <a href="mailto:&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#x2e;&#x31;&#54;&#46;&#48;">&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#x2e;&#x31;&#54;&#46;&#48;</a> 之前经常使用</p>
+<h4 id="第三方中间件-body-parser"><a href="#第三方中间件-body-parser" class="headerlink" title="第三方中间件 body-parser"></a>第三方中间件 body-parser</h4><p>body-parser 用于解析请求体数据，在 <a href="mailto:&#101;&#120;&#x70;&#x72;&#x65;&#115;&#115;&#x40;&#x34;&#46;&#x31;&#x36;&#x2e;&#48;">&#101;&#120;&#x70;&#x72;&#x65;&#115;&#115;&#x40;&#x34;&#46;&#x31;&#x36;&#x2e;&#48;</a> 之前经常使用</p>
 <pre class="mermaid"> flowchart LR
  install[npm install body-parser] --> require[导入中间件 body-parser]
  require --> use["app.use() 注册使用中间件"]</pre>
@@ -419,9 +426,9 @@
 </article>
 
 
-      </div>
-      
-       <div id="footer-post-container">
+                </div>
+                
+                  <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -483,10 +490,10 @@
   </div>
 </div>
 
-      
-      <footer id="footer">
+                    
+                      <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023
+    Copyright &copy; 2024
       Helen Zhang
   </div>
   <div class="footer-right">
@@ -527,7 +534,7 @@
     }
   </script>
   
-      
+                        
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
@@ -538,8 +545,8 @@
 <!-- Disqus Comments -->
 
 
-    </div>
-<script type="text/x-mathjax-config">
+        </div>
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
@@ -555,4 +562,5 @@
 </script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
-</html>
+
+    </html>

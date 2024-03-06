@@ -6,6 +6,124 @@ tags:
 - React
 ---
 
+```mermaid
+ mindmap
+ 前端开发
+  组件化/模块化
+    优势
+      有利于团队合作，避免代码冲突
+      有利于代码利用，代码维护，提高开发复用
+    组件分类
+      业务组件
+       普通业务组件
+       通用业务组件
+      功能组件【UI组件】  
+  工程化
+```
+
+
+## react 基础知识
+
+## react 中的组件化开发
+* 业务组件
+  ** 普通组件
+  ** 通用业务组件
+* 功能组件【适用于多个项目】，如 UI 组件库等通用功能组件。
+
+## React 工程化
+基于 webpack/vite/rollup/turbopack 打包，用于实现组件合并、压缩、打包；代码编译、兼容、校验等。
+使用 `create-react-app` 构建 React 工程化项目
+
+### 通过 `yarn create react-app my-app` 创建 react 应用
+
+```json
+// package.json
+  "pravite": true, //私有包，避免将包发到 npm 公网
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "react": "^18.2.0", // react 核心依赖包
+    "react-dom": "^18.2.0", // react 视图渲染核心
+    // "react-native": 用于构建和渲染 APP
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.0" // 性能检测工具
+    "babel-preset-react-app": "", // 对 @babel/preset-env 语法包的重写，重写的目的：让语法包可以识别 react 语法，实现代码转换。ES6 转为 ES5
+  },
+  "scripts": { // 打包命令，打包命令是基于 "react-scripts" 处理
+    "start": "react-scripts start", // 生产环境，在本地启动 web 服务器，预览打包内容
+    "build": "react-scripts build", // 生产环境：将打包部署的内容输出到 dist 目录中
+    "test": "react-scripts test", // 单元测试
+    "eject": "react-scripts eject" // 暴露 webpack 配置规则
+  },
+  /**
+   * 词法检测：
+   * 1. 词法错误，不符合标准规范
+   * 2. 符合代码标准，但不符合 ESLINT 标准
+   */
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }, //webpack 中 ESLINT 词法检测的相关配置
+  "browserslist": {
+    "production": [ // 生产环境兼容情况
+      ">0.2%", // 使用率超过 0.2% 的浏览器
+      "not dead", // 不考虑 IE
+      "not op_mini all" // 不考虑 open 浏览器
+    ],
+    "development": [ // 开发环境浏览器兼容情况
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  } // 基于 browserslist 规范，设置浏览器的兼容情况
+```
+> `react-scripts` 脚手架中对于打包命令的封装，基于 `react-scripts` 的打包，会调用 `node_modules` 中的 webpack 进行处理。
+脚手架为了让项目目录看起来干净，将 webpack 打包规则及相关的插件/loader 隐藏到 `node_modules`目录中。
+
+### 暴露 webpack 配置项
+```bash
+  $ yarn eject
+```
+<span class='custom-box custom-box-993'>Are you sure you want to eject? This action is permanent...</span>
+<span class='custom-box custom-box-933'>Remove untracked files, stash or commit any changes, and try again.</span>
+缓存区存在未跟踪文件需要隐藏或提交修改文件。<span class='custom-box custom-box-393'>弹出配置前需要保证 git 空间干净，避免代码冲突</span>
+
+## react 项目目录
+```
+├── README.md
+├── node_modules // 第三方依赖包
+│   ├── @aashutoshrathi
+│   ├── ...
+├── public // 模板文件夹
+│   ├── index.js
+├── package.json // 包配置文件
+|—— src // 业务文件夹
+|   |—— index.js
+|—— build // 生产打包文件夹
+|   |—— static
+|   |   |—— main.***.js
+|—— config
+|   |—— jtest
+|   |   |—— ...
+|   |—— webpack/persistentCache
+|   |   |—— ...
+|   |—— env.js
+|   |—— getHttpsConfig.js
+|   |—— modules.js
+|   |—— paths.js // 打包中需要的一些路径配置
+|   |—— webpack.config.js // 脚手架默认的 webpack 打包规则配置
+|   |—— webpackDevServer.config.js // 开发环境打包预览服务配置
+|—— scripts // 后期执行相关打包命令的入口文件
+|   |—— build.js 
+|   |—— start.js
+|   |—— build.js
+```
+
+
+
 ## 入口文件——index.jsx 
 vscode 支持 jsx 方法高亮，快捷输入，emmet
 ### React-16

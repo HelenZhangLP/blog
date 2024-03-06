@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="认识 webpack Webpack 是一个**模块打包器**。能够根据模块的依赖关系递归地构建一个依赖关系图（Dephendency Graph），    当中包含了应用程序的所有模块，最后打包成一个或多个bundle  webpack 功能  Webpack 打包出的静态资源在 HTML 中引用。   Webpack 能将 CSS 和图片等打包到同一个包； Webpack 打包前还能对文件进行">
+  <head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="认识 webpack Webpack 是一个**模块打包器**。能够根据模块的依赖关系递归地构建一个依赖关系图（Dephendency Graph），    当中包含了应用程序的所有模块，最后打包成一个或多个bundle  webpack 功能  Webpack 打包出的静态资源在 HTML 中引用。   Webpack 能将 CSS 和图片等打包到同一个包； Webpack 打包前还能对文件进行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handwriting Webpack">
 <meta property="og:url" content="https://helenzhanglp.github.io/2021/03/29/Webpack-handwriting/index.html">
@@ -14,49 +14,56 @@
 <meta property="og:description" content="认识 webpack Webpack 是一个**模块打包器**。能够根据模块的依赖关系递归地构建一个依赖关系图（Dephendency Graph），    当中包含了应用程序的所有模块，最后打包成一个或多个bundle  webpack 功能  Webpack 打包出的静态资源在 HTML 中引用。   Webpack 能将 CSS 和图片等打包到同一个包； Webpack 打包前还能对文件进行">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-29T06:36:25.000Z">
-<meta property="article:modified_time" content="2021-06-10T04:09:35.000Z">
+<meta property="article:modified_time" content="2024-01-25T07:31:03.775Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="打包工具">
 <meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
     
-    
+      
         
           
               <link rel="shortcut icon" href="/images/logo.jpeg">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/logo.jpeg" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Handwriting Webpack</title>
-    <!-- styles -->
-    
+              
+                
+                  
+                    
+                        <link rel="icon" type="image/png" href="/images/logo.jpeg"
+                          sizes="192x192">
+                        
+                          
+                            
+                              
+                                  <link rel="apple-touch-icon" sizes="180x180"
+                                    href="/images/apple-touch-icon.png">
+                                  
+                                    
+                                      
+                                        <!-- title -->
+                                        <title>
+                                          Handwriting Webpack
+                                        </title>
+                                        <!-- styles -->
+                                        
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-    
+                                          
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
 
-    
+                                            
 <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
-    
+                                              
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- rss -->
-    
-    
-    <!-- jquery -->
-    
+                                                <link
+                                                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                                                  rel="stylesheet" />
+                                                <!-- rss -->
+                                                
+                                                      
+                                                          <!-- jquery -->
+                                                          
 <script src="/lib/jquery/jquery.min.js"></script>
 
 <!-- hexo injector head_end start -->
@@ -65,8 +72,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
-<body>
-    <div class="banner">
+    <body>
+      <div class="banner">
 <div id="blogtitel" class="blogtitel">魔女</div>
 <ul id="wrapper" class="wrapper">
   <div class="sun">
@@ -94,9 +101,9 @@
 </ul>
 </div>
 
-    <div class="background">
-      
-        <div id="header-post">
+        <div class="background">
+          
+            <div id="header-post">
   <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
@@ -188,10 +195,10 @@
     </div>
   </span>
 </div>
-      
-      <div class="content index width mx-auto px2 my4">
-          
-          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+              
+                <div class="content index width mx-auto px2 my4">
+                  
+                        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="header">
     
     <h1 class="posttitle" itemprop="name headline">
@@ -276,9 +283,9 @@
 </article>
 
 
-      </div>
-      
-       <div id="footer-post-container">
+                </div>
+                
+                  <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -345,10 +352,10 @@
   </div>
 </div>
 
-      
-      <footer id="footer">
+                    
+                      <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2023
+    Copyright &copy; 2024
       Helen Zhang
   </div>
   <div class="footer-right">
@@ -389,7 +396,7 @@
     }
   </script>
   
-      
+                        
 <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
@@ -400,8 +407,8 @@
 <!-- Disqus Comments -->
 
 
-    </div>
-<script type="text/x-mathjax-config">
+        </div>
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
@@ -417,4 +424,5 @@
 </script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
-</html>
+
+    </html>
