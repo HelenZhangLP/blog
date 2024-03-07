@@ -14,7 +14,7 @@
 <meta property="og:description" content="Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。 fs 模块The node:fs module enables interacting with the file system in a way modeled on standand POSIX functionsnode:fs 支持以标准POSIX函数为模型化的方式与文件系统交互。 12const fs &#x3D; requ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-31T06:32:44.000Z">
-<meta property="article:modified_time" content="2024-03-04T08:29:15.030Z">
+<meta property="article:modified_time" content="2024-03-04T08:32:26.447Z">
 <meta property="article:author" content="Helen Zhang">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Node">
@@ -176,13 +176,13 @@
 &lt;p&gt;&lt;font color=&#34;red&#34;&gt;[Error: ENOENT: no such file or directory, open ‘context.txt’] &lt;/font&gt;&lt;br&gt;&lt;span class=&#34;custom-box custom-box-393&#34;&gt;&lt;code&gt;path&lt;/code&gt; 为相对路径时，&lt;code&gt;./&lt;/code&gt; 指的是 node 运行环境的地址，如在 ‘/‘ 下运行 &lt;code&gt;node ./src/index.js&lt;/code&gt; 当前目录是指根目录，&lt;code&gt;/context.txt&lt;/code&gt;不存在，所以找不到文件。&lt;/span&gt;&lt;br&gt;&lt;a href=&#34;https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js&#34;&gt;具体的 Demo 案例&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;fs-realpathSync-path-options&#34;&gt;&lt;a href=&#34;#fs-realpathSync-path-options&#34; class=&#34;headerlink&#34; title=&#34;fs.realpathSync(path[,options])&#34;&gt;&lt;/a&gt;fs.realpathSync(path[,options])&lt;/h3&gt;&lt;p&gt;return the resolved pathname 返回已解析的路径名&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;  path &lt;string&gt; | &lt;buffer&gt; | &lt;url&gt;&lt;/url&gt;&lt;/buffer&gt;&lt;/string&gt;&lt;/li&gt;
-&lt;li&gt;options &lt;string&gt; | &lt;object&gt;&lt;ul&gt;
-&lt;li&gt;encoding &lt;string&gt; Default: ‘utf8’&lt;/string&gt;&lt;/li&gt;
+&lt;li&gt;  path &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Buffer&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;URL&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;options &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Object&amp;gt;&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;encoding &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; Default: ‘utf8’&lt;/li&gt;
 &lt;li&gt;encoding utf8/buffer/base64&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/object&gt;&lt;/string&gt;&lt;/li&gt;
-&lt;li&gt;  Returns: &lt;string&gt; | &lt;buffer&gt;&lt;/buffer&gt;&lt;/string&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;li&gt;  Returns: &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Buffer&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;fs-util&#34;&gt;&lt;a href=&#34;#fs-util&#34; class=&#34;headerlink&#34; title=&#34;fs - util&#34;&gt;&lt;/a&gt;fs - util&lt;/h3&gt;&lt;p&gt;The node:util module supports the needs of Node.js internal APIs. Many of the utilities are useful for application and developers as well.&lt;br&gt;node:util 模块支持 Node.js 内部 APIs 的需求。许多实用程序对应用程序和模块开发人员是有用的&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
@@ -232,13 +232,13 @@
 <p><font color='red'>[Error: ENOENT: no such file or directory, open ‘context.txt’] </font><br><span class='custom-box custom-box-393'><code>path</code> 为相对路径时，<code>./</code> 指的是 node 运行环境的地址，如在 ‘/‘ 下运行 <code>node ./src/index.js</code> 当前目录是指根目录，<code>/context.txt</code>不存在，所以找不到文件。</span><br><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js">具体的 Demo 案例</a></p>
 <h3 id="fs-realpathSync-path-options"><a href="#fs-realpathSync-path-options" class="headerlink" title="fs.realpathSync(path[,options])"></a>fs.realpathSync(path[,options])</h3><p>return the resolved pathname 返回已解析的路径名</p>
 <ul>
-<li>  path <string> | <Buffer> | <URL></li>
-<li>options <string> | <Object><ul>
-<li>encoding <string> Default: ‘utf8’</li>
+<li>  path <code>&lt;string&gt;</code> | <code>&lt;Buffer&gt;</code> | <code>&lt;URL&gt;</code></li>
+<li>options <code>&lt;string&gt;</code> | <code>&lt;Object&gt;</code><ul>
+<li>encoding <code>&lt;string&gt;</code> Default: ‘utf8’</li>
 <li>encoding utf8/buffer/base64</li>
 </ul>
 </li>
-<li>  Returns: <string> | <Buffer></li>
+<li>  Returns: <code>&lt;string&gt;</code> | <code>&lt;Buffer&gt;</code></li>
 </ul>
 <h3 id="fs-util"><a href="#fs-util" class="headerlink" title="fs - util"></a>fs - util</h3><p>The node:util module supports the needs of Node.js internal APIs. Many of the utilities are useful for application and developers as well.<br>node:util 模块支持 Node.js 内部 APIs 的需求。许多实用程序对应用程序和模块开发人员是有用的</p>
 <h4 id="fs-util-promisify"><a href="#fs-util-promisify" class="headerlink" title="fs - util.promisify"></a>fs - util.promisify</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * original &lt;Function&gt;</span></span><br><span class="line"><span class="comment"> * returns: &lt;Function&gt;</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line">util.<span class="title function_">promisify</span>(original)</span><br></pre></td></tr></table></figure>
@@ -276,7 +276,9 @@
 <Object>
 The process.env property returns an object containing the user enviroment.
 </blockquote>
-<h3 id="argv"><a href="#argv" class="headerlink" title="argv"></a>argv</h3><h3 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h3><h3 id="Process-events"><a href="#Process-events" class="headerlink" title="Process events"></a>Process events</h3><h4 id="Event-‘unhandledRejection’"><a href="#Event-‘unhandledRejection’" class="headerlink" title="Event: ‘unhandledRejection’"></a>Event: ‘unhandledRejection’</h4><p>The ‘unhandledRejection’ event is emitted whenever a Promise is rejected and no error handler is attached to the promise within a turn of the event loop.<br>当 Promise 请求被拒绝且一轮事件循环中没有错误处理程序添加到 promise 时，发送 ‘unhandledRejection’<br>when programing with Promises, exceptions are encapsulated as ‘rejected promise’<br>当使用 Promise 编程时，异常被封装为 ‘rejected promise’<br>Rejections can be caught and handled using <code>promise.catch()</code> and are propagated through a <code>Promise</code> chain.<br>使用 <code>prmise.catch()</code> 可以捕获并处理 Rejections，通过 promise chain 可以传播 rejections.<br>The <code>unhandledRejection</code> event is useful for detecting and keeping track of promises that were rejected whose rejections have not yet been handled.<br><code>unhandledRejection</code> 事件可以用于检测和跟踪那些未处理或拒绝的 rejections </p>
+<h3 id="argv"><a href="#argv" class="headerlink" title="argv"></a>argv</h3><h3 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h3><h3 id="Process-events"><a href="#Process-events" class="headerlink" title="Process events"></a>Process events</h3><h4 id="Event-‘unhandledRejection’"><a href="#Event-‘unhandledRejection’" class="headerlink" title="Event: ‘unhandledRejection’"></a>Event: ‘unhandledRejection’</h4><blockquote>
+<p>The ‘unhandledRejection’ event is emitted whenever a Promise is rejected and no error handler is attached to the promise within a turn of the event loop.<br>当 Promise 请求被拒绝且一轮事件循环中没有错误处理程序添加到 promise 时，发送 ‘unhandledRejection’<br>when programing with Promises, exceptions are encapsulated as ‘rejected promise’<br>当使用 Promise 编程时，异常被封装为 ‘rejected promise’<br>Rejections can be caught and handled using <code>promise.catch()</code> and are propagated through a <code>Promise</code> chain.<br>使用 <code>prmise.catch()</code> 可以捕获并处理 Rejections，通过 promise chain 可以传播 rejections.<br>The <code>unhandledRejection</code> event is useful for detecting and keeping track of promises that were rejected whose rejections have not yet been handled.<br><code>unhandledRejection</code> 事件可以用于检测和跟踪那些未处理或拒绝的 rejections </p>
+</blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> process = <span class="built_in">require</span>(<span class="string">&#x27;node:process&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * reason &lt;Error&gt; | &lt;any&gt; The object with which the promise was rejected (typically an Error object).</span></span><br><span class="line"><span class="comment"> * promise &lt;Promise&gt; The rejected promise.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&#x27;unhandledRejection&#x27;</span>, <span class="function">(<span class="params">reason, promise</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// The following will also trigger the &#x27;unhandledRejection&#x27; event to be emitted:</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SomeResource</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Initially set the loaded status to a rejected promise</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">loaded</span> = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Resource not yet loaded!&#x27;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resource = <span class="keyword">new</span> <span class="title class_">SomeResource</span>();</span><br></pre></td></tr></table></figure>
 
 <h4 id="process-信号事件"><a href="#process-信号事件" class="headerlink" title="process - 信号事件"></a>process - 信号事件</h4><p>Interrupt from keyboard<br>SIGINT 在终端运行时，可以被所有平台支持，通常可以通过 <Ctrl>+C 触发(虽然这个不能配置)。 当终端运行在raw模式，它不会被触发。</p>
@@ -328,13 +330,13 @@ The process.env property returns an object containing the user enviroment.
 &lt;p&gt;&lt;font color=&#34;red&#34;&gt;[Error: ENOENT: no such file or directory, open ‘context.txt’] &lt;/font&gt;&lt;br&gt;&lt;span class=&#34;custom-box custom-box-393&#34;&gt;&lt;code&gt;path&lt;/code&gt; 为相对路径时，&lt;code&gt;./&lt;/code&gt; 指的是 node 运行环境的地址，如在 ‘/‘ 下运行 &lt;code&gt;node ./src/index.js&lt;/code&gt; 当前目录是指根目录，&lt;code&gt;/context.txt&lt;/code&gt;不存在，所以找不到文件。&lt;/span&gt;&lt;br&gt;&lt;a href=&#34;https://github.com/HelenZhangLP/demo/blob/master/node/src/demo14/index.js&#34;&gt;具体的 Demo 案例&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;fs-realpathSync-path-options&#34;&gt;&lt;a href=&#34;#fs-realpathSync-path-options&#34; class=&#34;headerlink&#34; title=&#34;fs.realpathSync(path[,options])&#34;&gt;&lt;/a&gt;fs.realpathSync(path[,options])&lt;/h3&gt;&lt;p&gt;return the resolved pathname 返回已解析的路径名&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;  path &lt;string&gt; | &lt;buffer&gt; | &lt;url&gt;&lt;/url&gt;&lt;/buffer&gt;&lt;/string&gt;&lt;/li&gt;
-&lt;li&gt;options &lt;string&gt; | &lt;object&gt;&lt;ul&gt;
-&lt;li&gt;encoding &lt;string&gt; Default: ‘utf8’&lt;/string&gt;&lt;/li&gt;
+&lt;li&gt;  path &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Buffer&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;URL&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;options &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Object&amp;gt;&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;encoding &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; Default: ‘utf8’&lt;/li&gt;
 &lt;li&gt;encoding utf8/buffer/base64&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/object&gt;&lt;/string&gt;&lt;/li&gt;
-&lt;li&gt;  Returns: &lt;string&gt; | &lt;buffer&gt;&lt;/buffer&gt;&lt;/string&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;li&gt;  Returns: &lt;code&gt;&amp;lt;string&amp;gt;&lt;/code&gt; | &lt;code&gt;&amp;lt;Buffer&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;fs-util&#34;&gt;&lt;a href=&#34;#fs-util&#34; class=&#34;headerlink&#34; title=&#34;fs - util&#34;&gt;&lt;/a&gt;fs - util&lt;/h3&gt;&lt;p&gt;The node:util module supports the needs of Node.js internal APIs. Many of the utilities are useful for application and developers as well.&lt;br&gt;node:util 模块支持 Node.js 内部 APIs 的需求。许多实用程序对应用程序和模块开发人员是有用的&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>

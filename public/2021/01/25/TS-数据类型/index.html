@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="微软公司研发2012 年 TypeScript 0.8.1 Luke Hoban  timeline     title History of TypeScript     November 15, 2012 : Announcing TypeScript 0.8.1          : Luke Hoban     October 8, 2018: Announcing TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS 变量定义与数据类型">
+<meta property="og:url" content="https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="魔女">
+<meta property="og:description" content="微软公司研发2012 年 TypeScript 0.8.1 Luke Hoban  timeline     title History of TypeScript     November 15, 2012 : Announcing TypeScript 0.8.1          : Luke Hoban     October 8, 2018: Announcing TypeScript">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-25T07:52:09.000Z">
+<meta property="article:modified_time" content="2024-03-06T13:46:45.454Z">
+<meta property="article:author" content="Helen Zhang">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+    
+      
+        
+          
+              <link rel="shortcut icon" href="/images/logo.jpeg">
+              
+                
+                  
+                    
+                        <link rel="icon" type="image/png" href="/images/logo.jpeg"
+                          sizes="192x192">
+                        
+                          
+                            
+                              
+                                  <link rel="apple-touch-icon" sizes="180x180"
+                                    href="/images/apple-touch-icon.png">
+                                  
+                                    
+                                      
+                                        <!-- title -->
+                                        <title>
+                                          TS 变量定义与数据类型
+                                        </title>
+                                        <!-- styles -->
+                                        
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+                                          
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+                                            
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+                                              
+<link rel="stylesheet" href="/css/style.css">
+
+                                                <link
+                                                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                                                  rel="stylesheet" />
+                                                <!-- rss -->
+                                                
+                                                      
+                                                          <!-- jquery -->
+                                                          
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+    <body>
+      <div class="banner">
+<div id="blogtitel" class="blogtitel">魔女</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+        <div class="background">
+          
+            <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </span>
+    <br />
+    <span id="actions">
+      <ul>
+        
+          <li><a class="icon" href="/2021/03/03/React-jsx/"><i class="fa fa-chevron-left" aria-hidden="true"
+                onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+          
+            
+              <li><a class="icon" href="/2021/01/19/Javascript-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/"><i class="fa fa-chevron-right"
+                    aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a>
+              </li>
+              
+                <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i
+                      class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();'
+                      onmouseout='$("#i-top").toggle();'></i></a></li>
+                <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"
+                      onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();'
+                      onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br />
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&text=TS 变量定义与数据类型"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&is_video=false&description=TS 变量定义与数据类型"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TS 变量定义与数据类型&body=Check out this article: https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&name=TS 变量定义与数据类型&description=&lt;p&gt;微软公司研发&lt;br&gt;2012 年 TypeScript 0.8.1 Luke Hoban&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt; timeline
+    title History of TypeScript
+    November 15, 2012 : Announcing TypeScript 0.8.1
+         : Luke Hoban
+    October 8, 2018: Announcing TypeScript 3.1
+                    : 中文网最新版本
+    November 20, 2023: Announcing TypeScript 5.3&lt;/pre&gt;
+
+&lt;h2 id=&#34;变量&#34;&gt;&lt;a href=&#34;#变量&#34; class=&#34;headerlink&#34; title=&#34;变量&#34;&gt;&lt;/a&gt;变量&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 声明变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;variable&lt;/span&gt;: number&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;variable = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// variable = &amp;#x27;hello&amp;#x27; // Type &amp;#x27;string&amp;#x27; is not assignable to type &amp;#x27;number&amp;#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; _variable = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 变量声明的同时赋值，TS 可以自动对变量进行类型检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;_variable = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// // Type &amp;#x27;string&amp;#x27; is not assignable to type &amp;#x27;number&amp;#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;变量声明的同时赋值，TS 可以自动对变量进行类型检测&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;declare &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;getPublicUrlOrPath&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    isEnvDevelopment: boolean,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    homepage: string | &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    envPublicUrl: string | &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;): string;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;数据类型&#34;&gt;&lt;a href=&#34;#数据类型&#34; class=&#34;headerlink&#34; title=&#34;数据类型&#34;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;例子&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;let n=1,u=Ob0001,m=Oxf00d,o=Oo744,big=10n&lt;/td&gt;
+&lt;td&gt;任意类型数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;let s=’string’&lt;/td&gt;
+&lt;td&gt;任意字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;let a=true,b=false&lt;/td&gt;
+&lt;td&gt;布尔值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;字面量&lt;/td&gt;
+&lt;td&gt;其本身&lt;/td&gt;
+&lt;td&gt;限制字面量的值是该值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;any&lt;/td&gt;
+&lt;td&gt;任何类型&lt;/td&gt;
+&lt;td&gt;可以赋值给其它的变量，赋值后当前变量值修改，但类型未修改&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unknown&lt;/td&gt;
+&lt;td&gt;未知类型&lt;/td&gt;
+&lt;td&gt;一个安全的 any 类型，不能赋值给其它变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;void&lt;/td&gt;
+&lt;td&gt;空值(undefined)&lt;/td&gt;
+&lt;td&gt;没有值(或undefined)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;never&lt;/td&gt;
+&lt;td&gt;没有值&lt;/td&gt;
+&lt;td&gt;不能是任何值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;object&lt;/td&gt;
+&lt;td&gt;{name: ‘moses’}&lt;/td&gt;
+&lt;td&gt;任意 JS 对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;array&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;JS 数组&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tuple&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;enum&lt;/td&gt;
+&lt;td&gt;enum(A,B)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h3 id=&#34;字面量&#34;&gt;&lt;a href=&#34;#字面量&#34; class=&#34;headerlink&#34; title=&#34;字面量&#34;&gt;&lt;/a&gt;字面量&lt;/h3&gt;&lt;p&gt;&lt;span class=&#34;custom-box custom-box-939&#34;&gt;以下情况类似于常量，值不能修改。&lt;/span&gt;&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">联合类型 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-number">2.3.</span> <span class="toc-text">any</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BigInt-literals-are-not-available-when-targeting-lower-than-ES2020"><span class="toc-number">2.3.1.</span> <span class="toc-text">BigInt literals are not available when targeting lower than ES2020.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unknown-%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">unknown 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E8%A8%80"><span class="toc-number">2.4.1.</span> <span class="toc-text">断言</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-number">2.5.</span> <span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-number">2.6.</span> <span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object"><span class="toc-number">2.7.</span> <span class="toc-text">object</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#object-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%B5%8B%E5%80%BC"><span class="toc-number">2.7.1.</span> <span class="toc-text">object 对象类型的声明与赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%93%E6%9E%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.7.2.</span> <span class="toc-text">函数结构声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">2.8.</span> <span class="toc-text">array</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.8.1.</span> <span class="toc-text">数组声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC"><span class="toc-number">2.8.2.</span> <span class="toc-text">数组赋值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">2.9.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.10.</span> <span class="toc-text">枚举类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.10.1.</span> <span class="toc-text">枚举定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B-amp"><span class="toc-number">3.1.</span> <span class="toc-text">联合类型 &amp;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-number">3.2.</span> <span class="toc-text">类型别名</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+              
+                <div class="content index width mx-auto px2 my4">
+                  
+                        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="header">
+    
+    <h1 class="posttitle" itemprop="name headline">
+        TS 变量定义与数据类型
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            魔女
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+        <time datetime="2021-01-25T07:52:09.000Z" itemprop="datePublished">2021-01-25</time>
+    </div>
+
+
+          
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/" rel="tag">TypeScript</a></li></ul>
+
+      </div>
+  </header>
+  
+
+    <div class="content" itemprop="articleBody">
+      <p>微软公司研发<br>2012 年 TypeScript 0.8.1 Luke Hoban</p>
+<pre class="mermaid"> timeline
+    title History of TypeScript
+    November 15, 2012 : Announcing TypeScript 0.8.1
+         : Luke Hoban
+    October 8, 2018: Announcing TypeScript 3.1
+                    : 中文网最新版本
+    November 20, 2023: Announcing TypeScript 5.3</pre>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明变量</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">variable</span>: number</span><br><span class="line"></span><br><span class="line">variable = <span class="number">1</span></span><br><span class="line"><span class="comment">// variable = &#x27;hello&#x27; // Type &#x27;string&#x27; is not assignable to type &#x27;number&#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> _variable = <span class="literal">true</span> <span class="comment">// 变量声明的同时赋值，TS 可以自动对变量进行类型检测</span></span><br><span class="line">_variable = <span class="number">1</span> <span class="comment">// // Type &#x27;string&#x27; is not assignable to type &#x27;number&#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>变量声明的同时赋值，TS 可以自动对变量进行类型检测</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">declare <span class="keyword">function</span> <span class="title function_">getPublicUrlOrPath</span>(<span class="params"></span></span><br><span class="line"><span class="params">    isEnvDevelopment: boolean,</span></span><br><span class="line"><span class="params">    homepage: string | <span class="literal">undefined</span>,</span></span><br><span class="line"><span class="params">    envPublicUrl: string | <span class="literal">undefined</span>,</span></span><br><span class="line"><span class="params"></span>): string;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>例子</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>number</td>
+<td>let n=1,u=Ob0001,m=Oxf00d,o=Oo744,big=10n</td>
+<td>任意类型数字</td>
+</tr>
+<tr>
+<td>string</td>
+<td>let s=’string’</td>
+<td>任意字符串</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>let a=true,b=false</td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td>字面量</td>
+<td>其本身</td>
+<td>限制字面量的值是该值</td>
+</tr>
+<tr>
+<td>any</td>
+<td>任何类型</td>
+<td>可以赋值给其它的变量，赋值后当前变量值修改，但类型未修改</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>未知类型</td>
+<td>一个安全的 any 类型，不能赋值给其它变量</td>
+</tr>
+<tr>
+<td>void</td>
+<td>空值(undefined)</td>
+<td>没有值(或undefined)</td>
+</tr>
+<tr>
+<td>never</td>
+<td>没有值</td>
+<td>不能是任何值</td>
+</tr>
+<tr>
+<td>object</td>
+<td>{name: ‘moses’}</td>
+<td>任意 JS 对象</td>
+</tr>
+<tr>
+<td>array</td>
+<td>[]</td>
+<td>JS 数组</td>
+</tr>
+<tr>
+<td>tuple</td>
+<td>[]</td>
+<td></td>
+</tr>
+<tr>
+<td>enum</td>
+<td>enum(A,B)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p><span class='custom-box custom-box-939'>以下情况类似于常量，值不能修改。</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">variable_</span>: <span class="number">1</span> <span class="comment">// 这种情况下类似于常量</span></span><br><span class="line"><span class="comment">// variable_ = 2 // 不能将类型“2”分配给类型“1”。ts(2322)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型 |"></a>联合类型 |</h3><p><span class='custom-box custom-box-939'>以下情况，变量的值可以多个</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">_var</span>: <span class="string">&quot;string&quot;</span> | <span class="number">2</span> <span class="comment">// 联合类型，_var 的值既可以是字符串 string，又可以是 2</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">var_</span>: boolean | string</span><br></pre></td></tr></table></figure>
+
+<h3 id="any"><a href="#any" class="headerlink" title="any"></a>any</h3><p><span class='custom-box custom-box-939'>任意类型，变量设置为 any 类型相当于对该变量关闭了 TS 的类型检测</span><br><span class='custom-box custom-box-933'>使用 TS 时，不建议使用 any 类型</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let var_any: any</span></span><br><span class="line"><span class="comment">// 隐式 any：声明变量时不指定类型，则 TS 解析器会自动判断变量类型为 any</span></span><br><span class="line"><span class="keyword">let</span> var_any <span class="comment">// TS7043: Variable &#x27;var_any&#x27; implicitly(含蓄地；暗中地) has an &#x27;any&#x27; type,</span></span><br><span class="line">            <span class="comment">// but a better type may be inferred(推断) from usage（使用）.</span></span><br><span class="line">    var_any = <span class="number">1</span></span><br><span class="line">    var_any = <span class="number">1n</span></span><br><span class="line">    var_any = <span class="string">&#x27;string&#x27;</span></span><br><span class="line">    var_any = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="BigInt-literals-are-not-available-when-targeting-lower-than-ES2020"><a href="#BigInt-literals-are-not-available-when-targeting-lower-than-ES2020" class="headerlink" title="BigInt literals are not available when targeting lower than ES2020."></a><font color='red'>BigInt literals are not available when targeting lower than ES2020.</font></h4><p>这里需要 ts 编译时，编译为 es2020 及以上版，<a href="/2022/03/06/TS-%E7%BC%96%E8%AF%91/">【具体操作见】</a></p>
+<h3 id="unknown-类型"><a href="#unknown-类型" class="headerlink" title="unknown 类型"></a>unknown 类型</h3><p>在变量类型不确定时建议使用 <code>unknown</code> 类型<br><span class='custom-box custom-box-393'>unknown 是一个安全类型的 any</span><br><span class='custom-box custom-box-339'>不能直接赋值给其它变量</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">var_unknown</span>: unknown</span><br><span class="line">var_unknown = <span class="title class_">Number</span>.<span class="property">MAX_VALUE</span></span><br><span class="line"></span><br><span class="line">variable = var_unknown <span class="comment">// TS2322 Type &#x27;unknown&#x27; is not assignable to type number【不能将类型“unknown”分配给类型“number”。ts(2322)】</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ’unknown‘ 类型的值不能直接赋值给任何变量</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> !=== <span class="string">&#x27;unknown&#x27;</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><blockquote>
+<p>解决 ‘unknown’ 类型变量赋值问题<br>断言有两种写法，如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 断言 可以用来告诉解析器变量实际类型</span></span><br><span class="line">variable = var_unknown <span class="keyword">as</span> number <span class="comment">// TS2322 Type &#x27;unknown&#x27; is not assignable to type number【不能将类型“unknown”分配给类型“number”。ts(2322)】</span></span><br><span class="line">variable = &lt;number&gt;var_unknown</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable)</span><br></pre></td></tr></table></figure>
+
+<h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><blockquote>
+<p>函数没有返回值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>): <span class="keyword">void</span> &#123;&#125; </span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fnUndefined</span>(<span class="params"></span>): <span class="keyword">void</span> &#123;<span class="keyword">return</span> <span class="literal">undefined</span>&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fnNull</span>(<span class="params"></span>): <span class="keyword">void</span> &#123;<span class="keyword">return</span> <span class="literal">null</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="never"><a href="#never" class="headerlink" title="never"></a>never</h3><blockquote>
+<p>永远不会有返回值，可以在定义错误问题报错</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>): never &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="title class_">Error</span>(<span class="string">&#x27;错了&#x27;</span>)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p>以下方式声明 <code>object</code> 对象类型，对于对象赋值没有任何约束作用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">obj</span>: object</span><br><span class="line">obj = &#123;&#125;</span><br><span class="line">obj = []</span><br><span class="line">obj = <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="object-对象类型的声明与赋值"><a href="#object-对象类型的声明与赋值" class="headerlink" title="object 对象类型的声明与赋值"></a>object 对象类型的声明与赋值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">_obj</span>: &#123; <span class="attr">name</span>: string &#125;</span><br><span class="line"><span class="comment">// TS2741: Property &#x27;name&#x27; is missing in type &#x27;&#123;&#125;&#x27;, but required in type &#123;name: string&#125;</span></span><br><span class="line"><span class="comment">// 类型 &quot;&#123;&#125;&quot; 中缺少属性 &quot;name&quot;，但类型 &quot;&#123; name: string; &#125;&quot; 中需要该属性。ts(2741)</span></span><br><span class="line"><span class="comment">// _obj = &#123;&#125; </span></span><br><span class="line">_obj = &#123; <span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不能添加不存在的属性给已声明的对象，赋值过程中也不能缺少属性</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _obj = &#123; name: &#x27;moses&#x27;, age: 33 &#125; // 对象字面量只能指定已知属性，并且“age”不在类型“&#123; name: string; &#125;”中。ts(2353)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">obj_</span>: &#123; <span class="attr">name</span>: string, <span class="attr">age</span>: number &#125;</span><br><span class="line"><span class="comment">// obj_ = &#123; name: &#x27;moses&#x27; &#125; // 类型 &quot;&#123; name: string; &#125;&quot; 中缺少属性 &quot;age&quot;，但类型 &quot;&#123; name: string; age: number; &#125;&quot; 中需要该属性。ts(2741)</span></span><br><span class="line">obj_ = &#123; <span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">age</span>: <span class="number">33</span> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以通过 ? 语法声明非必填，或不一定有的属性，具体如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象属性非必须，非必填</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">_obj_</span>: &#123; <span class="attr">name</span>: string, age?: number &#125;</span><br><span class="line">_obj_ = &#123; <span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">age</span>: <span class="number">33</span> &#125;</span><br><span class="line">_obj_ = &#123; <span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过以下语法可设置多个非必填属性，具体如下：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存在多个非必填属性</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">_object</span>: &#123; <span class="attr">name</span>: string, [<span class="attr">propertyName</span>: string]: any &#125;</span><br><span class="line">_object = &#123; <span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">age</span>: <span class="number">33</span>, <span class="attr">hobbies</span>: [<span class="string">&#x27;reading&#x27;</span>, <span class="string">&#x27;cooking&#x27;</span>, <span class="string">&#x27;studing&#x27;</span>] &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数结构声明"><a href="#函数结构声明" class="headerlink" title="函数结构声明"></a>函数结构声明</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置函数结构声明</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">fn</span>: <span class="function">(<span class="params">argments1: number, argments2: number</span>) =&gt;</span> number</span><br><span class="line"></span><br><span class="line">fn = <span class="keyword">function</span> (<span class="params">n1, n2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n1 + n2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="array"><a href="#array" class="headerlink" title="array"></a>array</h3><h4 id="数组声明"><a href="#数组声明" class="headerlink" title="数组声明"></a>数组声明</h4><blockquote>
+<p>数组声明方式1</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组声明</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr_Array</span>: <span class="title class_">Array</span>&lt;number&gt;</span><br><span class="line">arr_Array = []</span><br><span class="line">arr_Array = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="comment">// arr_Array = [&#x27;arr&#x27;] // 不能将类型“string”分配给类型“number”。ts(2322)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数组声明方式2</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">let</span> <span class="attr">arr</span>: [] <span class="comment">// 声明了一个空数组</span></span><br><span class="line"><span class="comment">// 空数组赋值时不能有元素</span></span><br><span class="line"><span class="comment">// arr = [1] // 不能将类型“[number]”分配给类型“[]”。</span></span><br></pre></td></tr></table></figure>
+<h4 id="数组赋值"><a href="#数组赋值" class="headerlink" title="数组赋值"></a>数组赋值</h4><blockquote>
+<p>数组元素需要按指定类型赋值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">arr_str</span>: string[] <span class="comment">// 字符串数组，数组元素只能为字符串</span></span><br><span class="line">arr_str = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;r&#x27;</span>]</span><br><span class="line"><span class="comment">// arr_str = [&#x27;a&#x27;, &#x27;r&#x27;, &#x27;r&#x27;, 1] // 不能将类型“number”分配给类型“string”。ts(2322)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr_num</span>: number[]</span><br><span class="line">arr_num = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="comment">// arr_num = [1, 2, true] // 不能将类型“boolean”分配给类型“number”。ts(2322)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><blockquote>
+<p>固定长度的数组，数组元素固定类型</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">_tuple</span>: [string, number, boolean]</span><br><span class="line">_tuple = [<span class="string">&#x27;1&#x27;</span>,<span class="number">1</span>,<span class="literal">true</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p :&#123;<span class="attr">name</span>: string, <span class="attr">gender</span>: string&#125;</span><br><span class="line">p = &#123;<span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">gender</span>: <span class="string">&#x27;male&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>gender 为字符串不得于数据库存储，<span class='custom-box custom-box-933'>所以这里将 gender 定义为数字类型，0 表示 male, 1表示 female</span></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p :&#123;<span class="attr">name</span>: string, <span class="attr">gender</span>: <span class="number">0</span> | <span class="number">1</span>&#125; <span class="comment">// 采用联合类型给变量设置多个值</span></span><br><span class="line">p = &#123;<span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">gender</span>: <span class="number">1</span>&#125; </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>问题：不利于代码维护，阅读性差，<span class='custom-box custom-box-933'>采用枚举类解决可读性问题</span></p>
+</blockquote>
+<h4 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum <span class="title class_">Gender</span> &#123;</span><br><span class="line">    male,</span><br><span class="line">    female</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>案例中 gender 声明为枚举类型</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">p</span>: &#123;<span class="attr">name</span>: string, <span class="attr">gender</span>: <span class="title class_">Gender</span>&#125;</span><br><span class="line">p = &#123;<span class="attr">name</span>: <span class="string">&#x27;moses&#x27;</span>, <span class="attr">gender</span>: <span class="title class_">Gender</span>.<span class="property">male</span>&#125; <span class="comment">// 加强可读性</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="联合类型-amp"><a href="#联合类型-amp" class="headerlink" title="联合类型 &amp;"></a>联合类型 &amp;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> union :&#123;<span class="attr">a</span>:object&#125; &amp; &#123;<span class="attr">b</span>:string&#125;</span><br><span class="line"><span class="comment">// union = &#123; a: null, b: &#x27;1&#x27; &#125; //不能将类型“null”分配给类型“object”。ts(2322)</span></span><br><span class="line">union = &#123;<span class="attr">a</span>: &#123;&#125;, <span class="attr">b</span>: <span class="string">&#x27;1&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type mytype = <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> | <span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: mytype</span><br><span class="line"></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line">a = <span class="number">3</span></span><br><span class="line">a = <span class="number">8</span> <span class="comment">//不能将类型“8”分配给类型“mytype”。ts(2322)</span></span><br></pre></td></tr></table></figure>
+    </div>
+</article>
+
+
+                </div>
+                
+                  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">联合类型 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-number">2.3.</span> <span class="toc-text">any</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BigInt-literals-are-not-available-when-targeting-lower-than-ES2020"><span class="toc-number">2.3.1.</span> <span class="toc-text">BigInt literals are not available when targeting lower than ES2020.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unknown-%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">unknown 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E8%A8%80"><span class="toc-number">2.4.1.</span> <span class="toc-text">断言</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-number">2.5.</span> <span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-number">2.6.</span> <span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object"><span class="toc-number">2.7.</span> <span class="toc-text">object</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#object-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%B5%8B%E5%80%BC"><span class="toc-number">2.7.1.</span> <span class="toc-text">object 对象类型的声明与赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%93%E6%9E%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.7.2.</span> <span class="toc-text">函数结构声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">2.8.</span> <span class="toc-text">array</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.8.1.</span> <span class="toc-text">数组声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC"><span class="toc-number">2.8.2.</span> <span class="toc-text">数组赋值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">2.9.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.10.</span> <span class="toc-text">枚举类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.10.1.</span> <span class="toc-text">枚举定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B-amp"><span class="toc-number">3.1.</span> <span class="toc-text">联合类型 &amp;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-number">3.2.</span> <span class="toc-text">类型别名</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&text=TS 变量定义与数据类型"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&is_video=false&description=TS 变量定义与数据类型"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TS 变量定义与数据类型&body=Check out this article: https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=TS 变量定义与数据类型"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://helenzhanglp.github.io/2021/01/25/TS-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&name=TS 变量定义与数据类型&description=&lt;p&gt;微软公司研发&lt;br&gt;2012 年 TypeScript 0.8.1 Luke Hoban&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt; timeline
+    title History of TypeScript
+    November 15, 2012 : Announcing TypeScript 0.8.1
+         : Luke Hoban
+    October 8, 2018: Announcing TypeScript 3.1
+                    : 中文网最新版本
+    November 20, 2023: Announcing TypeScript 5.3&lt;/pre&gt;
+
+&lt;h2 id=&#34;变量&#34;&gt;&lt;a href=&#34;#变量&#34; class=&#34;headerlink&#34; title=&#34;变量&#34;&gt;&lt;/a&gt;变量&lt;/h2&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 声明变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;variable&lt;/span&gt;: number&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;variable = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// variable = &amp;#x27;hello&amp;#x27; // Type &amp;#x27;string&amp;#x27; is not assignable to type &amp;#x27;number&amp;#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; _variable = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// 变量声明的同时赋值，TS 可以自动对变量进行类型检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;_variable = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;// // Type &amp;#x27;string&amp;#x27; is not assignable to type &amp;#x27;number&amp;#x27;.[不能将类型“string”分配给类型“number”。ts(2322)]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;变量声明的同时赋值，TS 可以自动对变量进行类型检测&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;declare &lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;getPublicUrlOrPath&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    isEnvDevelopment: boolean,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    homepage: string | &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;    envPublicUrl: string | &lt;span class=&#34;literal&#34;&gt;undefined&lt;/span&gt;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;): string;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;数据类型&#34;&gt;&lt;a href=&#34;#数据类型&#34; class=&#34;headerlink&#34; title=&#34;数据类型&#34;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;例子&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;let n=1,u=Ob0001,m=Oxf00d,o=Oo744,big=10n&lt;/td&gt;
+&lt;td&gt;任意类型数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;let s=’string’&lt;/td&gt;
+&lt;td&gt;任意字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;let a=true,b=false&lt;/td&gt;
+&lt;td&gt;布尔值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;字面量&lt;/td&gt;
+&lt;td&gt;其本身&lt;/td&gt;
+&lt;td&gt;限制字面量的值是该值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;any&lt;/td&gt;
+&lt;td&gt;任何类型&lt;/td&gt;
+&lt;td&gt;可以赋值给其它的变量，赋值后当前变量值修改，但类型未修改&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unknown&lt;/td&gt;
+&lt;td&gt;未知类型&lt;/td&gt;
+&lt;td&gt;一个安全的 any 类型，不能赋值给其它变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;void&lt;/td&gt;
+&lt;td&gt;空值(undefined)&lt;/td&gt;
+&lt;td&gt;没有值(或undefined)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;never&lt;/td&gt;
+&lt;td&gt;没有值&lt;/td&gt;
+&lt;td&gt;不能是任何值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;object&lt;/td&gt;
+&lt;td&gt;{name: ‘moses’}&lt;/td&gt;
+&lt;td&gt;任意 JS 对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;array&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;JS 数组&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tuple&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;enum&lt;/td&gt;
+&lt;td&gt;enum(A,B)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h3 id=&#34;字面量&#34;&gt;&lt;a href=&#34;#字面量&#34; class=&#34;headerlink&#34; title=&#34;字面量&#34;&gt;&lt;/a&gt;字面量&lt;/h3&gt;&lt;p&gt;&lt;span class=&#34;custom-box custom-box-939&#34;&gt;以下情况类似于常量，值不能修改。&lt;/span&gt;&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+                    
+                      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024
+      Helen Zhang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a href="/about/">
+              About
+            </a></li>
+          
+          <li><a href="/archives/">
+              Writing
+            </a></li>
+          
+          <li><a href="/tags/">
+              Tags
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://github.com/HelenZhangLP">
+              Projects
+            </a></li>
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  <!-- <script src='https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'default' });
+    }
+  </script>
+  
+                        
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+    </html>
